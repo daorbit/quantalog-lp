@@ -2,10 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 import {
   formatDate,
   getAllPosts,
@@ -14,18 +10,17 @@ import {
   getSlugs,
 } from "@/lib/blog";
 import { site } from "@/lib/site";
-import { mdxComponents } from "@/components/mdx-components";
+import { Button } from "@/components/ui";
 
 type Params = { slug: string };
 
 // Every post is rendered at build time. Nothing is fetched at request time, so
 // the whole /blog tree ships as static HTML.
-export async function generateStaticParams(): Promise<Params[]> {
-  const slugs = await getSlugs();
-  return slugs.map((slug) => ({ slug }));
+export function generateStaticParams(): Params[] {
+  return getSlugs().map((slug) => ({ slug }));
 }
 
-// A slug that is not in generateStaticParams 404s instead of rendering on demand.
+// A slug outside generateStaticParams 404s instead of rendering on demand.
 export const dynamicParams = false;
 
 export async function generateMetadata({
@@ -34,10 +29,8 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
   if (!post) return { title: "Post not found" };
-
-  const url = `${site.url}/blog/${post.slug}`;
 
   return {
     title: post.title,
@@ -45,7 +38,7 @@ export async function generateMetadata({
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
-      url,
+      url: `${site.url}/blog/${post.slug}`,
       title: post.title,
       description: post.description,
       publishedTime: post.date,
@@ -60,32 +53,17 @@ export async function generateMetadata({
   };
 }
 
-const mdxOptions: MDXRemoteProps["options"] = {
-  mdxOptions: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypePrettyCode,
-        {
-          themes: { light: "github-light", dark: "github-dark-dimmed" },
-          keepBackground: false,
-        },
-      ],
-    ],
-  },
-};
-
 export default async function BlogPostPage({
   params,
 }: {
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
   if (!post) notFound();
 
-  const related = await getRelatedPosts(slug);
+  const related = getRelatedPosts(slug);
+  const { Body } = post;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -110,9 +88,9 @@ export default async function BlogPostPage({
       <article className="mx-auto max-w-2xl px-5 py-16">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1.5 text-sm text-fg-muted transition hover:text-fg"
+          className="group inline-flex items-center gap-1.5 text-sm text-fg-muted transition hover:text-fg"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
           All posts
         </Link>
 
@@ -121,21 +99,21 @@ export default async function BlogPostPage({
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-border px-2.5 py-0.5 text-xs text-fg-muted"
+                className="rounded-full border border-border bg-bg-subtle px-2.5 py-0.5 text-[11px] font-medium text-fg-muted"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h1 className="mt-4 text-balance text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+          <h1 className="mt-5 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.03em] sm:text-[2.5rem]">
             {post.title}
           </h1>
           <p className="mt-4 text-pretty text-lg leading-relaxed text-fg-muted">
             {post.description}
           </p>
 
-          <div className="mt-7 flex items-center gap-3">
+          <div className="mt-8 flex items-center gap-3">
             <div
               className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 text-xs font-semibold text-accent"
               aria-hidden="true"
@@ -147,17 +125,17 @@ export default async function BlogPostPage({
               <p className="text-fg-muted">
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
                 {" · "}
-                {post.readingTime}
+                {post.readingMinutes} min read
               </p>
             </div>
           </div>
         </header>
 
         <div className="prose-q mt-10">
-          <MDXRemote source={post.content} components={mdxComponents} options={mdxOptions} />
+          <Body />
         </div>
 
-        <div className="mt-14 rounded-xl border border-border bg-bg-subtle p-7 text-center">
+        <div className="card mt-16 p-8 text-center">
           <p className="text-base font-semibold tracking-tight">
             Try {site.name} on your own site
           </p>
@@ -165,18 +143,15 @@ export default async function BlogPostPage({
             One script tag, no cookies, live numbers in about three seconds. Free
             forever on the Hobby plan.
           </p>
-          <a
-            href={`${site.app}/signup`}
-            className="mt-5 inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition hover:opacity-90"
-          >
+          <Button href={`${site.app}/signup`} className="group mt-6">
             Start free
-            <ArrowRight className="h-4 w-4" />
-          </a>
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Button>
         </div>
 
         {related.length > 0 && (
-          <section className="mt-14 border-t border-border pt-10">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-fg-muted">
+          <section className="mt-16 border-t border-border pt-10">
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-faint">
               Keep reading
             </h2>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -184,9 +159,9 @@ export default async function BlogPostPage({
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="group rounded-xl border border-border bg-surface p-5 transition hover:border-border-strong"
+                  className="card card-hover group p-5"
                 >
-                  <p className="text-sm font-semibold tracking-tight transition group-hover:text-accent">
+                  <p className="text-sm font-semibold tracking-tight transition-colors group-hover:text-accent">
                     {p.title}
                   </p>
                   <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-fg-muted">

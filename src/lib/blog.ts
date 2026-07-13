@@ -1,79 +1,50 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import matter from "gray-matter";
-import readingTime from "reading-time";
+import type { ComponentType } from "react";
+import { introducingQuantalog } from "@/content/posts/introducing-quantalog";
 
-export type Post = {
+export type PostMeta = {
   slug: string;
   title: string;
   description: string;
-  date: string;
+  date: string; // ISO
   tags: string[];
   author: { name: string; role: string };
-  cover?: string;
-  readingTime: string;
-  content: string;
+  readingMinutes: number;
 };
 
-export type PostMeta = Omit<Post, "content">;
+export type Post = PostMeta & {
+  /** The article body, authored as plain JSX. */
+  Body: ComponentType;
+};
 
-const CONTENT_DIR = path.join(process.cwd(), "content", "blog");
+// The single registry of published posts. Adding a post = write a file under
+// src/content/posts and add it here. When a CMS lands, only this array's source
+// changes — every consumer below (and the pages) keeps working unchanged.
+const POSTS: Post[] = [introducingQuantalog];
 
-// Everything below is async on purpose: a future CMS (Sanity/Contentful/our own
-// Mongo API) can replace the fs reads without any caller changing.
+const sorted = () => [...POSTS].sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
-async function readPostFile(slug: string): Promise<Post> {
-  const raw = await fs.readFile(path.join(CONTENT_DIR, `${slug}.mdx`), "utf8");
-  const { data, content } = matter(raw);
-
-  return {
-    slug,
-    title: String(data.title ?? slug),
-    description: String(data.description ?? ""),
-    date: new Date(data.date ?? Date.now()).toISOString(),
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-    author: {
-      name: String(data.author?.name ?? "Quantalog"),
-      role: String(data.author?.role ?? "Team"),
-    },
-    cover: data.cover ? String(data.cover) : undefined,
-    readingTime: readingTime(content).text,
-    content,
-  };
+export function getSlugs(): string[] {
+  return POSTS.map((p) => p.slug);
 }
 
-export async function getSlugs(): Promise<string[]> {
-  const entries = await fs.readdir(CONTENT_DIR).catch(() => [] as string[]);
-  return entries.filter((f) => f.endsWith(".mdx")).map((f) => f.replace(/\.mdx$/, ""));
+export function getPost(slug: string): Post | undefined {
+  return POSTS.find((p) => p.slug === slug);
 }
 
-export async function getPost(slug: string): Promise<Post | null> {
-  try {
-    return await readPostFile(slug);
-  } catch {
-    return null;
-  }
+export function getAllPosts(): PostMeta[] {
+  return sorted().map(({ Body: _Body, ...meta }) => meta);
 }
 
-export async function getAllPosts(): Promise<PostMeta[]> {
-  const slugs = await getSlugs();
-  const posts = await Promise.all(slugs.map(readPostFile));
-  return posts
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
-    .map(({ content: _content, ...meta }) => meta);
-}
-
-export async function getRelatedPosts(slug: string, limit = 2): Promise<PostMeta[]> {
-  const current = await getPost(slug);
-  const all = await getAllPosts();
-  const others = all.filter((p) => p.slug !== slug);
+export function getRelatedPosts(slug: string, limit = 2): PostMeta[] {
+  const current = getPost(slug);
+  const others = getAllPosts().filter((p) => p.slug !== slug);
   if (!current) return others.slice(0, limit);
 
-  // Rank by shared tags, then recency (the sort from getAllPosts is stable).
+  // Rank by shared tags; the recency sort from getAllPosts breaks ties.
   return others
-    .map((p) => ({
-      post: p,
-      score: p.tags.filter((t) => current.tags.includes(t)).length,
+    .map((post) => ({
+      post,
+      score: post.tags.filter((t) => current.tags.includes(t)).length,
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
@@ -85,5 +56,6 @@ export function formatDate(iso: string): string {
     year: "numeric",
     month: "short",
     day: "numeric",
+    timeZone: "UTC",
   });
 }
