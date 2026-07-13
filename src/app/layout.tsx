@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
@@ -59,6 +60,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </ThemeProvider>
+
+        {/* Quantalog eats its own dog food: this landing page is tracked by Quantalog. */}
+        <Script
+          src={`${site.api}/tracker.js`}
+          data-site={site.siteId}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
