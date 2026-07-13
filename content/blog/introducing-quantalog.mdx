@@ -1,0 +1,92 @@
+---
+title: "Introducing Quantalog: real-time analytics you can embed"
+description: "Why we built a cookieless analytics engine with a multi-tenant API — and how to ship analytics to your own users in an afternoon."
+date: "2026-07-13"
+tags: ["product", "privacy", "api"]
+author:
+  name: "Ajay Goswami"
+  role: "Founder"
+---
+
+Most analytics tools are built for one audience: the person who owns the website. You paste a script, you open a dashboard, you look at a number. That model works right up until the moment your product *is* a platform — a site builder, an app generator, an agency portal — and suddenly the person who needs the numbers isn't you. It's your customer, and their customer after that.
+
+That is the gap Quantalog was built to close.
+
+## Two products in one
+
+Quantalog is a normal web analytics tool. Add one script tag, get visitors, pageviews, referrers, campaigns, devices and countries, updating live.
+
+It is also a **platform API**. One API key lets your backend create a project per end-user, register the sites they deploy, get an embed snippet back, and read those stats into your own UI. Your users see your dashboard. They never have to know we exist.
+
+<Callout>
+If you have ever wanted to offer "Analytics" as a tab inside your own product without building an ingestion pipeline, that is exactly the thing this replaces.
+</Callout>
+
+## No cookies, and we mean it
+
+There is no cookie. There is no `localStorage` entry. There is no cross-site identifier.
+
+A visitor is a hash:
+
+```
+visitorHash = sha256(ip + userAgent + siteId + dailySalt)
+```
+
+The salt rotates every day. That has three consequences worth being explicit about:
+
+- The same person visiting tomorrow is a **new** visitor to us. We cannot build a profile across days.
+- The same person on two different customer sites produces two unrelated hashes. There is no cross-site graph to sell, or to leak.
+- The raw IP is hashed on receipt and discarded. It is never written to disk.
+
+Because there is no personal identifier stored on the device, there is nothing for a visitor to consent to — so there is no consent banner to add.
+
+## Live means live
+
+The tracker sends events with `navigator.sendBeacon`, the collector writes them straight to MongoDB, and the dashboard polls every three seconds. There is no batch window and no sampling. If someone lands on your pricing page while you are watching, you see it while you are watching.
+
+The tracker itself is under a kilobyte and loads with `async`, so it never blocks rendering:
+
+```html
+<script
+  async
+  src="https://cdn.quantalog.com/tracker.js"
+  data-site="qs_7f3a9c21"
+></script>
+```
+
+It patches `history.pushState` and listens for `popstate`, which means React Router and the Next.js App Router report route changes as pageviews with no extra code from you.
+
+## Shipping analytics to your own users
+
+Here is the whole integration, from the platform's side. First, provision a project and a site for one of your end-users:
+
+```bash
+curl -X POST https://api.quantalog.com/v1/projects \
+  -H "Authorization: Bearer sk_live_..." \
+  -d '{ "name": "Jane'\''s Store", "extUserId": "user_8812" }'
+
+curl -X POST https://api.quantalog.com/v1/projects/prj_31f/sites \
+  -H "Authorization: Bearer sk_live_..." \
+  -d '{ "name": "Store", "domain": "jane.shop", "framework": "next" }'
+```
+
+That second call returns a `snippet`. Inject it into the `<head>` of the app you generate for Jane, and her site is now reporting.
+
+Then read her numbers back and render them wherever you like:
+
+```ts
+const res = await fetch(
+  `https://api.quantalog.com/v1/sites/${siteId}/stats?range=24h`,
+  { headers: { Authorization: `Bearer ${process.env.QUANTALOG_KEY}` } }
+);
+
+const { visitors, pageviews, live, topPages, countries } = await res.json();
+```
+
+`extUserId` is whatever your system already calls Jane. We store it as an opaque string and never try to authenticate her — you own that relationship, and every key is hard-scoped to its own workspace, so one customer's key can never read another's data.
+
+## What is next
+
+The collector, the dashboard and the `/v1` API are live today. Next up: funnels, custom events, and a white-label tracker domain so the script tag can be served from *your* hostname.
+
+If you want to try it, the Hobby plan is free forever and takes about three minutes to wire up. If you are a platform and want the API, [tell us what you are building](mailto:hello@quantalog.com).

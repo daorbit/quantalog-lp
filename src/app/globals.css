@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+/* Dark is opt-in via a class on <html>, driven by next-themes. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Accent — same emerald ramp as the dashboard app. */
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+
+  /* Neutral dark surfaces — no purple cast. */
+  --color-ink-0: #c9ced6;
+  --color-ink-100: #a8aeb8;
+  --color-ink-200: #8b929e;
+  --color-ink-300: #5f6673;
+  --color-ink-400: #3a3f4a;
+  --color-ink-500: #2b2f38;
+  --color-ink-600: #22252c;
+  --color-ink-700: #1a1c22;
+  --color-ink-800: #131519;
+  --color-ink-900: #0b0c0f;
+}
+
+/* Semantic tokens: one set per theme, everything else references these. */
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f7f8f9;
+  --surface: #ffffff;
+  --border: #e4e6ea;
+  --border-strong: #d2d6dc;
+  --fg: #0b0c0f;
+  --fg-muted: #5f6673;
+  --accent: #059669;
+  --accent-fg: #ffffff;
+  --grid-line: rgba(11, 12, 15, 0.05);
+  --glow: rgba(16, 185, 129, 0.12);
+}
+
+.dark {
+  --bg: #0b0c0f;
+  --bg-subtle: #131519;
+  --surface: #131519;
+  --border: #22252c;
+  --border-strong: #2b2f38;
+  --fg: #f3f5f7;
+  --fg-muted: #8b929e;
+  --accent: #10b981;
+  --accent-fg: #04150e;
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --glow: rgba(16, 185, 129, 0.16);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Sticky header height, so #anchor targets don't hide underneath it. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: var(--glow);
+  color: var(--fg);
+}
+
+/* Faint blueprint grid behind the hero. */
+.grid-bg {
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+.live-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Long-form article typography — the MDX body renders inside .prose-q. */
+.prose-q {
+  color: var(--fg);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-q > * + * {
+  margin-top: 1.25em;
+}
+.prose-q h2 {
+  margin-top: 2.25em;
+  margin-bottom: 0.6em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 6rem;
+}
+.prose-q h3 {
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+  font-size: 1.2rem;
+  font-weight: 650;
+  scroll-margin-top: 6rem;
+}
+.prose-q a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-q strong {
+  font-weight: 650;
+  color: var(--fg);
+}
+.prose-q ul,
+.prose-q ol {
+  padding-left: 1.4em;
+}
+.prose-q ul {
+  list-style: disc;
+}
+.prose-q ol {
+  list-style: decimal;
+}
+.prose-q li::marker {
+  color: var(--fg-muted);
+}
+.prose-q li + li {
+  margin-top: 0.4em;
+}
+.prose-q blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1em;
+  color: var(--fg-muted);
+  font-style: italic;
+}
+.prose-q hr {
+  border-color: var(--border);
+}
+.prose-q table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.prose-q th,
+.prose-q td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.prose-q th {
+  background: var(--bg-subtle);
+  font-weight: 600;
+}
+/* Wide tables scroll inside themselves; the page body never scrolls sideways. */
+.prose-q .table-wrap {
+  overflow-x: auto;
+}
+.prose-q :not(pre) > code {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.1em 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+.prose-q pre {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* rehype-pretty-code emits both themes; show the one matching the mode. */
+.prose-q pre[data-theme],
+.prose-q code[data-theme] {
+  background: var(--shiki-light-bg);
+  color: var(--shiki-light);
+}
+.prose-q pre[data-theme] span,
+.prose-q code[data-theme] span {
+  color: var(--shiki-light);
+}
+.dark .prose-q pre[data-theme],
+.dark .prose-q code[data-theme] {
+  background: var(--shiki-dark-bg);
+  color: var(--shiki-dark);
+}
+.dark .prose-q pre[data-theme] span,
+.dark .prose-q code[data-theme] span {
+  color: var(--shiki-dark);
+}

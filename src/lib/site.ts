@@ -1,0 +1,20 @@
+export const site = {
+  name: "Quantalog",
+  tagline: "Real-time analytics you can embed.",
+  description:
+    "Privacy-first web analytics with a real-time dashboard and a multi-tenant API. Ship analytics to your own users in an afternoon.",
+  url: "https://quantalog.com",
+  app: "https://real-ana-fe.vercel.app",
+  api: "https://real-ana-be.vercel.app",
+  docs: "https://real-ana-fe.vercel.app/docs",
+  twitter: "@quantalog",
+  github: "https://github.com/quantalog",
+  email: "hello@quantalog.com",
+} as const;
+
+export const nav = [
+  { href: "/#features", label: "Features" },
+  { href: "/#platform", label: "Platform API" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/blog", label: "Blog" },
+] as const;
