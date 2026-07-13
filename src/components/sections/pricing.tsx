@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
 
 const plans = [
@@ -32,7 +33,7 @@ const plans = [
       "Unlimited team members",
       "2-year data retention",
       "UTM and campaign reports",
-      "Email reports",
+      "Scheduled email reports",
     ],
   },
   {
@@ -56,63 +57,68 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 py-24">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-            Pricing
-          </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-            Priced per pageview. Not per person you track.
-          </h2>
-          <p className="mt-4 text-pretty leading-relaxed text-fg-muted">
-            Every plan includes the full dashboard. No feature is held back to sell
-            you an upgrade.
-          </p>
-        </div>
+    <section id="pricing" className="border-t border-border bg-bg-subtle">
+      <div className="mx-auto max-w-6xl px-5 py-28">
+        <SectionHeading
+          centered
+          eyebrow="Pricing"
+          title="Priced per pageview. Not per person you track."
+          body="Every plan includes the full dashboard. No feature is held back to sell you an upgrade."
+        />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-16 grid items-start gap-5 lg:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col rounded-xl border p-7 ${
+              className={`card relative flex flex-col p-7 ${
                 plan.featured
-                  ? "border-accent bg-surface shadow-xl shadow-black/5"
-                  : "border-border bg-surface"
+                  ? "border-accent/60 shadow-float lg:-mt-4 lg:pb-10 lg:pt-10"
+                  : "card-hover"
               }`}
             >
               {plan.featured && (
-                <span className="absolute -top-2.5 left-7 rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-semibold text-accent-fg">
-                  Most popular
-                </span>
+                <>
+                  <span
+                    className="pointer-events-none absolute -inset-px -z-10 rounded-xl opacity-40 blur-lg"
+                    style={{ background: "var(--glow)" }}
+                    aria-hidden="true"
+                  />
+                  <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-accent px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-accent-fg shadow-soft">
+                    Most popular
+                  </span>
+                </>
               )}
 
-              <h3 className="text-base font-semibold tracking-tight">{plan.name}</h3>
-              <p className="mt-1.5 text-sm text-fg-muted">{plan.blurb}</p>
+              <h3 className="text-[15px] font-semibold tracking-tight">{plan.name}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{plan.blurb}</p>
 
-              <div className="mt-6 flex items-baseline gap-1.5">
-                <span className="text-4xl font-bold tracking-tight">{plan.price}</span>
+              <div className="mt-7 flex items-baseline gap-1.5">
+                <span className="text-[2.75rem] font-bold leading-none tracking-[-0.03em]">
+                  {plan.price}
+                </span>
                 <span className="text-sm text-fg-muted">{plan.cadence}</span>
               </div>
 
               <a
                 href={plan.href}
-                className={`mt-7 rounded-lg py-2.5 text-center text-sm font-medium transition ${
+                className={`mt-8 rounded-lg py-2.5 text-center text-sm font-medium transition duration-200 ${
                   plan.featured
-                    ? "bg-accent text-accent-fg hover:opacity-90"
-                    : "border border-border text-fg hover:border-border-strong"
+                    ? "bg-accent text-accent-fg shadow-soft hover:brightness-110"
+                    : "border border-border bg-surface text-fg hover:border-border-strong hover:bg-surface-raised"
                 }`}
               >
                 {plan.cta}
               </a>
 
-              <ul className="mt-7 space-y-3 border-t border-border pt-7">
+              <ul className="mt-8 space-y-3 border-t border-border pt-8">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm">
-                    <Check
-                      className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                    <span
+                      className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/12"
                       aria-hidden="true"
-                    />
+                    >
+                      <Check className="h-2.5 w-2.5 text-accent" strokeWidth={3.5} />
+                    </span>
                     <span className="text-fg-muted">{f}</span>
                   </li>
                 ))}
@@ -120,6 +126,10 @@ export function Pricing() {
             </div>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-xs text-fg-faint">
+          All prices in USD. Cancel any time — no exit interview.
+        </p>
       </div>
     </section>
   );

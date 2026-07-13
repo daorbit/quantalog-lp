@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getAllPosts, formatDate } from "@/lib/blog";
+import { Eyebrow } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -17,10 +18,8 @@ export default async function BlogIndexPage() {
   return (
     <div className="mx-auto max-w-4xl px-5 py-20">
       <header className="max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-          Blog
-        </p>
-        <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight">
+        <Eyebrow>Blog</Eyebrow>
+        <h1 className="mt-4 text-balance text-[2.5rem] font-bold leading-[1.1] tracking-[-0.03em]">
           Notes from the build
         </h1>
         <p className="mt-4 text-pretty leading-relaxed text-fg-muted">
@@ -38,7 +37,7 @@ export default async function BlogIndexPage() {
       {featured && (
         <Link
           href={`/blog/${featured.slug}`}
-          className="group mt-14 block overflow-hidden rounded-xl border border-border bg-surface p-8 transition hover:border-border-strong"
+          className="card card-hover group mt-14 block overflow-hidden p-8"
         >
           <div className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
             <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 font-medium text-accent">
@@ -62,7 +61,7 @@ export default async function BlogIndexPage() {
       )}
 
       {rest.length > 0 && (
-        <div className="mt-6 divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
+        <div className="card mt-4 divide-y divide-border overflow-hidden">
           {rest.map((post) => (
             <Link
               key={post.slug}

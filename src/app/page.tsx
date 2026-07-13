@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero";
+import { Logos } from "@/components/sections/logos";
 import { Features } from "@/components/sections/features";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Platform } from "@/components/sections/platform";
@@ -43,6 +44,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
+      <Logos />
       <Features />
       <HowItWorks />
       <Platform />

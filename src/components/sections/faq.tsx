@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import { SectionHeading } from "../ui";
 
 export const faqs = [
   {
@@ -29,33 +30,41 @@ export const faqs = [
 
 export function Faq() {
   return (
-    <section className="border-t border-border bg-bg-subtle">
-      <div className="mx-auto max-w-3xl px-5 py-24">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-            FAQ
-          </p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-            Questions people actually ask
-          </h2>
-        </div>
+    <section className="border-t border-border">
+      <div className="mx-auto max-w-3xl px-5 py-28">
+        <SectionHeading centered eyebrow="FAQ" title="Questions people actually ask" />
 
-        <div className="mt-12 divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
+        <div className="card mt-14 divide-y divide-border overflow-hidden">
           {faqs.map((item) => (
-            <details key={item.q} className="group px-6 py-5">
+            <details key={item.q} className="group px-6 py-5 transition-colors open:bg-bg-subtle">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                <span className="text-sm font-medium text-fg">{item.q}</span>
-                <Plus
-                  className="h-4 w-4 shrink-0 text-fg-muted transition-transform group-open:rotate-45"
+                <span className="text-[14.5px] font-medium text-fg transition-colors group-hover:text-accent">
+                  {item.q}
+                </span>
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border text-fg-muted transition-all duration-200 group-open:rotate-45 group-open:border-accent/40 group-open:text-accent"
                   aria-hidden="true"
-                />
+                >
+                  <Plus className="h-3.5 w-3.5" />
+                </span>
               </summary>
-              <p className="mt-3 text-pretty text-sm leading-relaxed text-fg-muted">
+              <p className="mt-3.5 max-w-prose text-pretty text-sm leading-relaxed text-fg-muted">
                 {item.a}
               </p>
             </details>
           ))}
         </div>
+
+        <p className="mt-8 text-center text-sm text-fg-muted">
+          Still stuck?{" "}
+          <a
+            href="mailto:hello@quantalog.com"
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Email us
+          </a>{" "}
+          — a human replies.
+        </p>
       </div>
     </section>
   );

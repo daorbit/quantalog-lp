@@ -31,35 +31,39 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-subtle">
-      <div className="mx-auto max-w-6xl px-5 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+    <footer className="border-t border-border">
+      <div className="mx-auto max-w-6xl px-5 py-16">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-fg-muted">
               {site.description}
             </p>
+            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-bg-subtle px-3 py-1 text-[11px] text-fg-muted">
+              <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
+              All systems operational
+            </p>
           </div>
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-fg">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg">
                 {col.title}
               </h3>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-4 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     {"external" in link && link.external ? (
                       <a
                         href={link.href}
-                        className="text-sm text-fg-muted transition hover:text-fg"
+                        className="text-sm text-fg-muted transition-colors hover:text-fg"
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-sm text-fg-muted transition hover:text-fg"
+                        className="text-sm text-fg-muted transition-colors hover:text-fg"
                       >
                         {link.label}
                       </Link>
@@ -71,12 +75,11 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-fg-muted">
+        <div className="mt-14 flex flex-col gap-3 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-fg-faint">
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <p className="flex items-center gap-2 text-xs text-fg-muted">
-            <span className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+          <p className="text-xs text-fg-faint">
             No cookies. No cross-site tracking. GDPR-ready.
           </p>
         </div>
