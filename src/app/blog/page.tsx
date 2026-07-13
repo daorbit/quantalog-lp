@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-export default async function BlogIndexPage() {
-  const posts = await getAllPosts();
+export default function BlogIndexPage() {
+  const posts = getAllPosts();
   const [featured, ...rest] = posts;
 
   return (
@@ -45,7 +45,7 @@ export default async function BlogIndexPage() {
             </span>
             <time dateTime={featured.date}>{formatDate(featured.date)}</time>
             <span aria-hidden="true">·</span>
-            <span>{featured.readingTime}</span>
+            <span>{featured.readingMinutes} min read</span>
           </div>
           <h2 className="mt-4 text-balance text-2xl font-bold tracking-tight transition group-hover:text-accent">
             {featured.title}
@@ -71,7 +71,7 @@ export default async function BlogIndexPage() {
               <div className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
                 <span aria-hidden="true">·</span>
-                <span>{post.readingTime}</span>
+                <span>{post.readingMinutes} min read</span>
               </div>
               <h2 className="mt-2.5 text-balance text-lg font-semibold tracking-tight transition group-hover:text-accent">
                 {post.title}
