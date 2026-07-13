@@ -1,4 +1,5 @@
 import { CodeCard } from "../code-card";
+import { Eyebrow } from "../ui";
 
 const snippet = `<script
   async
@@ -24,50 +25,65 @@ const steps = [
   },
 ];
 
+const facts = [
+  { k: "Tracker size", v: "0.9 KB" },
+  { k: "Cookies set", v: "0" },
+  { k: "First data", v: "~3s" },
+];
+
 export function HowItWorks() {
   return (
-    <section className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 py-24">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+    <section className="border-t border-border bg-bg-subtle">
+      <div className="mx-auto max-w-6xl px-5 py-28">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-              Setup
-            </p>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Three steps. Roughly two minutes.
+            <Eyebrow>Setup</Eyebrow>
+            <h2 className="mt-4 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.02em] sm:text-[2.5rem]">
+              Three steps.
+              <br />
+              Roughly two minutes.
             </h2>
-            <p className="mt-4 leading-relaxed text-fg-muted">
+            <p className="mt-4 max-w-md leading-relaxed text-fg-muted">
               No SDK to install, no build step to change, no cookie policy to
-              rewrite. The tracker patches <code className="font-mono text-[0.9em] text-fg">history.pushState</code>,
-              so single-page apps report route changes on their own.
+              rewrite. The tracker patches{" "}
+              <code className="rounded border border-border bg-surface px-1.5 py-0.5 font-mono text-[0.85em] text-fg">
+                history.pushState
+              </code>
+              , so single-page apps report route changes on their own.
             </p>
 
-            <ol className="mt-10 space-y-7">
+            <ol className="relative mt-12 space-y-8">
+              {/* The rail that turns three list items into a sequence. */}
+              <span
+                className="absolute bottom-4 left-[15px] top-4 w-px bg-border"
+                aria-hidden="true"
+              />
               {steps.map((s) => (
-                <li key={s.n} className="flex gap-5">
-                  <span className="mt-0.5 font-mono text-sm font-semibold text-accent">
+                <li key={s.n} className="relative flex gap-5">
+                  <span className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface font-mono text-[11px] font-semibold text-accent shadow-soft">
                     {s.n}
                   </span>
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight">{s.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-fg-muted">{s.body}</p>
+                  <div className="pt-1">
+                    <h3 className="text-[15px] font-semibold tracking-tight">{s.title}</h3>
+                    <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-fg-muted">
+                      {s.body}
+                    </p>
                   </div>
                 </li>
               ))}
             </ol>
           </div>
 
-          <div className="lg:pl-6">
-            <CodeCard filename="index.html" language="html" code={snippet} />
-            <div className="mt-4 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
-              {[
-                { k: "Tracker size", v: "0.9 KB" },
-                { k: "Cookies set", v: "0" },
-                { k: "Time to first data", v: "~3s" },
-              ].map((x) => (
-                <div key={x.k} className="bg-surface px-4 py-4">
-                  <p className="text-xs text-fg-muted">{x.k}</p>
-                  <p className="mt-1 text-lg font-semibold tabular-nums tracking-tight">
+          <div className="lg:pl-4">
+            <CodeCard filename="app/layout.tsx" language="html" code={snippet} />
+
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {facts.map((x) => (
+                <div key={x.k} className="card px-4 py-4">
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-fg-faint">
+                    {x.k}
+                  </p>
+                  <p className="mt-1.5 text-xl font-semibold tabular-nums tracking-tight">
                     {x.v}
                   </p>
                 </div>

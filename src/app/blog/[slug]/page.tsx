@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
@@ -60,7 +60,7 @@ export async function generateMetadata({
   };
 }
 
-const mdxOptions = {
+const mdxOptions: MDXRemoteProps["options"] = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -74,7 +74,7 @@ const mdxOptions = {
       ],
     ],
   },
-} as const;
+};
 
 export default async function BlogPostPage({
   params,

@@ -35,42 +35,63 @@
 /* Semantic tokens: one set per theme, everything else references these. */
 :root {
   --bg: #ffffff;
-  --bg-subtle: #f7f8f9;
+  --bg-subtle: #fafafa;
   --surface: #ffffff;
-  --border: #e4e6ea;
-  --border-strong: #d2d6dc;
+  --surface-raised: #ffffff;
+  --border: #e6e8eb;
+  --border-strong: #d0d4da;
   --fg: #0b0c0f;
-  --fg-muted: #5f6673;
+  --fg-muted: #62697a;
+  --fg-faint: #9aa1ae;
   --accent: #059669;
   --accent-fg: #ffffff;
-  --grid-line: rgba(11, 12, 15, 0.05);
-  --glow: rgba(16, 185, 129, 0.12);
+  --grid-line: rgba(11, 12, 15, 0.045);
+  --glow: rgba(16, 185, 129, 0.1);
+  --ring: rgba(5, 150, 105, 0.35);
+  /* Layered, tight shadows — the thing that separates "styled" from "designed". */
+  --shadow-sm: 0 1px 2px rgba(11, 12, 15, 0.04), 0 1px 1px rgba(11, 12, 15, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(11, 12, 15, 0.06), 0 2px 4px -2px rgba(11, 12, 15, 0.04);
+  --shadow-lg: 0 24px 48px -12px rgba(11, 12, 15, 0.12), 0 8px 16px -8px rgba(11, 12, 15, 0.06);
+  --hairline: rgba(11, 12, 15, 0.06);
 }
 
 .dark {
   --bg: #0b0c0f;
-  --bg-subtle: #131519;
+  --bg-subtle: #101216;
   --surface: #131519;
-  --border: #22252c;
-  --border-strong: #2b2f38;
+  --surface-raised: #171a1f;
+  --border: #23262d;
+  --border-strong: #32363f;
   --fg: #f3f5f7;
   --fg-muted: #8b929e;
+  --fg-faint: #5f6673;
   --accent: #10b981;
   --accent-fg: #04150e;
-  --grid-line: rgba(255, 255, 255, 0.04);
-  --glow: rgba(16, 185, 129, 0.16);
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --glow: rgba(16, 185, 129, 0.14);
+  --ring: rgba(16, 185, 129, 0.45);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --hairline: rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-subtle: var(--bg-subtle);
   --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-fg: var(--fg);
   --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
+
+  --shadow-soft: var(--shadow-sm);
+  --shadow-card: var(--shadow-md);
+  --shadow-float: var(--shadow-lg);
 }
 
 html {
@@ -84,6 +105,14 @@ body {
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* One consistent focus ring everywhere, instead of the browser default. */
+:where(a, button, summary, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -125,7 +154,63 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .rise {
-  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Staggered entrance so the hero resolves top-down instead of all at once. */
+.rise-1 { animation-delay: 0.04s; }
+.rise-2 { animation-delay: 0.1s; }
+.rise-3 { animation-delay: 0.17s; }
+.rise-4 { animation-delay: 0.25s; }
+.rise-5 { animation-delay: 0.34s; }
+
+/* Headline gets a barely-there vertical sheen; flat white reads cheap. */
+.headline {
+  background: linear-gradient(180deg, var(--fg) 30%, color-mix(in oklab, var(--fg) 68%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Cards: hairline top highlight + lift on hover. */
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, var(--hairline) 30%, var(--hairline) 70%, transparent);
+  pointer-events: none;
+}
+.card-hover:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Logo marquee — duplicated track, translate by exactly half. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+  width: max-content;
+}
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
 }
 
 /* Long-form article typography — the MDX body renders inside .prose-q. */

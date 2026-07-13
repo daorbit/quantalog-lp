@@ -1,63 +1,83 @@
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
+import { Button } from "../ui";
 import { DashboardPreview } from "../dashboard-preview";
+
+const trustPoints = ["Under 1 KB", "No cookies", "Live in ~3s", "GDPR-ready"];
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute left-1/2 top-0 h-80 w-[52rem] -translate-x-1/2 rounded-full opacity-60 blur-3xl"
+        className="pointer-events-none absolute left-1/2 -top-24 h-[26rem] w-[60rem] -translate-x-1/2 rounded-full blur-[100px]"
         style={{ background: "var(--glow)" }}
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-20 sm:pt-28">
+      <div className="relative mx-auto max-w-6xl px-5 pb-24 pt-16 sm:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <a
             href="/blog/introducing-quantalog"
-            className="rise inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-fg-muted transition hover:border-border-strong"
+            className="rise rise-1 group inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-1 pr-3 text-xs text-fg-muted shadow-soft backdrop-blur transition hover:border-border-strong hover:text-fg"
           >
-            <Zap className="h-3.5 w-3.5 text-accent" />
-            <span>Introducing the Quantalog Platform API</span>
-            <ArrowRight className="h-3 w-3" />
+            <span className="rounded-full bg-accent px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-accent-fg">
+              New
+            </span>
+            <span>Introducing the Platform API</span>
+            <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
 
-          <h1 className="rise mt-7 text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-6xl">
+          <h1 className="rise rise-2 headline mt-8 text-balance text-[2.75rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-[4.25rem]">
             Real-time analytics
             <br />
-            <span className="text-accent">you can embed.</span>
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(100deg, var(--accent), color-mix(in oklab, var(--accent) 55%, var(--fg)))",
+              }}
+            >
+              you can embed.
+            </span>
           </h1>
 
-          <p className="rise mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-fg-muted sm:text-lg">
+          <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
             Cookieless web analytics with a live dashboard — plus a multi-tenant
             REST API so you can ship analytics to your own users. One script tag,
             zero consent banners.
           </p>
 
-          <div className="rise mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={`${site.app}/signup`}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-accent-fg transition hover:opacity-90 sm:w-auto"
-            >
+          <div className="rise rise-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href={`${site.app}/signup`} size="lg" className="group w-full sm:w-auto">
               Start free — no card
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#platform"
-              className="inline-flex w-full items-center justify-center rounded-lg border border-border bg-surface px-6 py-3 text-sm font-medium text-fg transition hover:border-border-strong sm:w-auto"
-            >
-              See the API
-            </a>
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Button>
+            <Button href="#platform" variant="secondary" size="lg" className="w-full sm:w-auto">
+              Explore the API
+            </Button>
           </div>
 
-          <p className="mt-5 text-xs text-fg-muted">
-            &lt; 1 KB tracker · no cookies · data live in under 3 seconds
-          </p>
+          <ul className="rise rise-5 mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {trustPoints.map((point) => (
+              <li key={point} className="flex items-center gap-1.5 text-xs text-fg-faint">
+                <span className="h-1 w-1 rounded-full bg-accent" aria-hidden="true" />
+                {point}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="rise mt-16">
-          <DashboardPreview />
+        <div className="rise rise-5 relative mt-20">
+          {/* Grounding glow so the dashboard sits on the page instead of floating. */}
+          <div
+            className="pointer-events-none absolute -inset-x-8 -bottom-8 top-12 rounded-[2rem] blur-3xl"
+            style={{ background: "var(--glow)" }}
+            aria-hidden="true"
+          />
+          <div className="relative">
+            <DashboardPreview />
+          </div>
         </div>
       </div>
     </section>
