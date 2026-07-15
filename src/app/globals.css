@@ -326,3 +326,120 @@ body {
 .dark .prose-q code[data-theme] span {
   color: var(--shiki-dark);
 }
+
+/* ------------------------------------------------------------------ *
+ * Docs — two-column layout with a sticky sidebar nav.
+ * ------------------------------------------------------------------ */
+.docs-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 1024px) {
+  .docs-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 3.5rem;
+  }
+}
+
+.docs-sidebar {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .docs-sidebar {
+    display: block;
+  }
+  .docs-nav {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.docs-nav-group + .docs-nav-group {
+  margin-top: 1.5rem;
+}
+.docs-nav-heading {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+  margin-bottom: 0.5rem;
+}
+.docs-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.docs-nav-link {
+  display: block;
+  padding: 0.35rem 0.6rem;
+  margin-left: -0.6rem;
+  border-radius: 0.5rem;
+  font-size: 13.5px;
+  color: var(--fg-muted);
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s;
+}
+.docs-nav-link:hover {
+  color: var(--fg);
+  background: var(--bg-subtle);
+}
+.docs-nav-link.is-active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  font-weight: 600;
+}
+
+/* Reference tables inside a doc body. */
+.doc-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+}
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.doc-table th,
+.doc-table td {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.doc-table th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-muted);
+  font-weight: 600;
+}
+.doc-table tr:last-child td {
+  border-bottom: none;
+}
+.doc-table code {
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.doc-method {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.35rem;
+  font-family: var(--font-mono, monospace);
+}
+.doc-method-get {
+  color: #3b82f6;
+  background: color-mix(in srgb, #3b82f6 14%, transparent);
+}
+.doc-method-post {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.doc-method-delete {
+  color: #ef4444;
+  background: color-mix(in srgb, #ef4444 14%, transparent);
+}

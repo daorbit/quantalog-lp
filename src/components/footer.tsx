@@ -9,7 +9,7 @@ const columns = [
       { href: "/#features", label: "Features" },
       { href: "/#platform", label: "Platform API" },
       { href: "/#pricing", label: "Pricing" },
-      { href: site.docs, label: "Docs", external: true },
+      { href: "/docs", label: "Docs" },
     ],
   },
   {
