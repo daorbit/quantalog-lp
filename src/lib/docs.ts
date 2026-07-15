@@ -3,6 +3,8 @@ import { overview } from "@/content/docs/overview";
 import { tracking } from "@/content/docs/tracking";
 import { customEvents } from "@/content/docs/custom-events";
 import { filters } from "@/content/docs/filters";
+import { funnels } from "@/content/docs/funnels";
+import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
 import { privacy } from "@/content/docs/privacy";
@@ -30,6 +32,8 @@ const DOCS: Doc[] = [
   tracking,
   customEvents,
   filters,
+  funnels,
+  retention,
   platformApi,
   apiReference,
   privacy,
