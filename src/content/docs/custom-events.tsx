@@ -28,6 +28,14 @@ window.rta.track("checkout_started", { plan: "pro", value: 49 });`}</Pre>
         the period who fired it at least once.
       </P>
 
+      <H2 id="revenue">Revenue &amp; goals</H2>
+      <P>
+        Pass a numeric <Code>value</Code> in the properties and Quantalog sums it
+        into revenue — per event and across all events for the period. This turns
+        any event into a goal with a dollar figure attached.
+      </P>
+      <Pre label="revenue event">{`window.rta.track("purchase", { value: 49.0, plan: "pro" });`}</Pre>
+
       <Callout>
         Keep event names stable and lowercase (e.g. <Code>signup_completed</Code>).
         A renamed event starts a fresh row rather than continuing the old one.

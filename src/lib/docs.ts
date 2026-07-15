@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { overview } from "@/content/docs/overview";
 import { tracking } from "@/content/docs/tracking";
 import { customEvents } from "@/content/docs/custom-events";
+import { filters } from "@/content/docs/filters";
 import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
 import { privacy } from "@/content/docs/privacy";
@@ -28,6 +29,7 @@ const DOCS: Doc[] = [
   overview,
   tracking,
   customEvents,
+  filters,
   platformApi,
   apiReference,
   privacy,
