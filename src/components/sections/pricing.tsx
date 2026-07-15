@@ -1,6 +1,9 @@
+"use client";
+
 import { Check } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
+import { track } from "@/lib/track";
 
 const plans = [
   {
@@ -101,6 +104,9 @@ export function Pricing() {
 
               <a
                 href={plan.href}
+                onClick={() =>
+                  track("pricing_plan_selected", { plan: plan.name })
+                }
                 className={`mt-8 rounded-lg py-2.5 text-center text-sm font-medium transition duration-200 ${
                   plan.featured
                     ? "bg-accent text-accent-fg shadow-soft hover:brightness-110"

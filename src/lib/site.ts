@@ -4,11 +4,11 @@ export const site = {
   description:
     "Privacy-first web analytics with a real-time dashboard and a multi-tenant API. Ship analytics to your own users in an afternoon.",
   url: "https://quantalog.com",
-  app: "https://real-ana-fe.vercel.app",
+  app: "https://studio-quantalog.daorbit.in",
   api: "https://real-ana-be.vercel.app",
   // Public site key for this landing page's own analytics. Not a secret.
   siteId: "eLizHKCwJNNVxFQY",
-  docs: "https://real-ana-fe.vercel.app/docs",
+  docs: "https://studio-quantalog.daorbit.in/docs",
   twitter: "@quantalog",
   github: "https://github.com/quantalog",
   email: "hello@quantalog.com",

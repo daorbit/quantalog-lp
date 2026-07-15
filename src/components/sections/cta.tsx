@@ -23,11 +23,24 @@ export function Cta() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`} size="lg" className="group w-full sm:w-auto">
+          <Button
+            href={`${site.app}/signup`}
+            size="lg"
+            className="group w-full sm:w-auto"
+            track="cta_start_free"
+            trackProps={{ location: "footer_cta" }}
+          >
             Start free
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Button>
-          <Button href={site.docs} variant="secondary" size="lg" className="w-full sm:w-auto">
+          <Button
+            href={site.docs}
+            variant="secondary"
+            size="lg"
+            className="w-full sm:w-auto"
+            track="read_docs"
+            trackProps={{ location: "footer_cta" }}
+          >
             Read the docs
           </Button>
         </div>

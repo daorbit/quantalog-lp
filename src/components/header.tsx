@@ -6,6 +6,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 import { nav, site } from "@/lib/site";
+import { track } from "@/lib/track";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -55,12 +56,14 @@ export function Header() {
           <ThemeToggle />
           <a
             href={`${site.app}/login`}
+            onClick={() => track("sign_in", { location: "header" })}
             className="hidden rounded-md px-3 py-2 text-[13.5px] text-fg-muted transition-colors hover:text-fg md:inline-flex"
           >
             Sign in
           </a>
           <a
             href={`${site.app}/signup`}
+            onClick={() => track("cta_start_free", { location: "header" })}
             className="group hidden items-center gap-1.5 rounded-lg bg-accent px-3.5 py-2 text-[13.5px] font-medium text-accent-fg shadow-soft transition duration-200 hover:brightness-110 md:inline-flex"
           >
             Start free
@@ -94,12 +97,14 @@ export function Header() {
             <div className="flex gap-3 py-4">
               <a
                 href={`${site.app}/login`}
+                onClick={() => track("sign_in", { location: "mobile_menu" })}
                 className="flex-1 rounded-lg border border-border py-2.5 text-center text-sm text-fg"
               >
                 Sign in
               </a>
               <a
                 href={`${site.app}/signup`}
+                onClick={() => track("cta_start_free", { location: "mobile_menu" })}
                 className="flex-1 rounded-lg bg-accent py-2.5 text-center text-sm font-medium text-accent-fg"
               >
                 Start free

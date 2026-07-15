@@ -1,7 +1,10 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { CodeCard } from "../code-card";
 import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
+import { track } from "@/lib/track";
 
 const createProject = `# 1. Your backend creates a project for one of your users
 curl -X POST https://api.quantalog.com/v1/projects \\
@@ -81,6 +84,7 @@ export function Platform() {
 
         <a
           href={site.docs}
+          onClick={() => track("read_docs", { location: "platform" })}
           className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent"
         >
           Read the API reference

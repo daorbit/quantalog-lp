@@ -143,7 +143,12 @@ export default async function BlogPostPage({
             One script tag, no cookies, live numbers in about three seconds. Free
             forever on the Hobby plan.
           </p>
-          <Button href={`${site.app}/signup`} className="group mt-6">
+          <Button
+            href={`${site.app}/signup`}
+            className="group mt-6"
+            track="cta_start_free"
+            trackProps={{ location: "blog_post" }}
+          >
             Start free
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Button>

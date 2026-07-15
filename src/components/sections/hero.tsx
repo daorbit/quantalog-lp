@@ -49,11 +49,24 @@ export function Hero() {
           </p>
 
           <div className="rise rise-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href={`${site.app}/signup`} size="lg" className="group w-full sm:w-auto">
+            <Button
+              href={`${site.app}/signup`}
+              size="lg"
+              className="group w-full sm:w-auto"
+              track="cta_start_free"
+              trackProps={{ location: "hero" }}
+            >
               Start free — no card
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Button>
-            <Button href="#platform" variant="secondary" size="lg" className="w-full sm:w-auto">
+            <Button
+              href="#platform"
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto"
+              track="explore_api"
+              trackProps={{ location: "hero" }}
+            >
               Explore the API
             </Button>
           </div>

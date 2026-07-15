@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { track } from "@/lib/track";
 
 type ButtonProps = {
   href: string;
@@ -6,6 +9,10 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "ghost";
   size?: "md" | "lg";
   className?: string;
+  /** Fire a custom Quantalog event on click, e.g. "cta_start_free". */
+  track?: string;
+  /** Optional properties sent with the tracked event. */
+  trackProps?: Record<string, unknown>;
 };
 
 const variants = {
@@ -27,16 +34,22 @@ export function Button({
   variant = "primary",
   size = "md",
   className = "",
+  track: event,
+  trackProps,
 }: ButtonProps) {
   const cls = `inline-flex items-center justify-center gap-2 rounded-lg font-medium transition duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   const internal = href.startsWith("/") || href.startsWith("#");
 
+  const onClick = event
+    ? () => track(event, trackProps)
+    : undefined;
+
   return internal ? (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} onClick={onClick}>
       {children}
     </Link>
   ) : (
-    <a href={href} className={cls}>
+    <a href={href} className={cls} onClick={onClick}>
       {children}
     </a>
   );
