@@ -137,7 +137,7 @@ function Body() {
       <P>
         If you want to try it, the Hobby plan is free forever and takes about three
         minutes to wire up. If you are a platform and want the API,{" "}
-        <A href="mailto:hello@quantalog.com">tell us what you are building</A>.
+        <A href="mailto:daorbit2k25@gmail.com">tell us what you are building</A>.
       </P>
     </>
   );

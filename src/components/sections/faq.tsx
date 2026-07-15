@@ -58,7 +58,7 @@ export function Faq() {
         <p className="mt-8 text-center text-sm text-fg-muted">
           Still stuck?{" "}
           <a
-            href="mailto:hello@quantalog.com"
+            href="mailto:daorbit2k25@gmail.com"
             className="font-medium text-accent underline-offset-4 hover:underline"
           >
             Email us

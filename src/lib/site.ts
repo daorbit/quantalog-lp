@@ -11,7 +11,7 @@ export const site = {
   docs: "https://studio-quantalog.daorbit.in/docs",
   twitter: "@quantalog",
   github: "https://github.com/quantalog",
-  email: "hello@quantalog.com",
+  email: "daorbit2k25@gmail.com",
 } as const;
 
 export const nav = [
