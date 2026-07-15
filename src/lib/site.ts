@@ -3,7 +3,7 @@ export const site = {
   tagline: "Real-time analytics you can embed.",
   description:
     "Privacy-first web analytics with a real-time dashboard and a multi-tenant API. Ship analytics to your own users in an afternoon.",
-  url: "https://quantalog.com",
+  url: "https://quantalog.daorbit.in",
   app: "https://studio-quantalog.daorbit.in",
   api: "https://real-ana-be.vercel.app",
   // Public site key for this landing page's own analytics. Not a secret.
