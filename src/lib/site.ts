@@ -7,7 +7,7 @@ export const site = {
   app: "https://real-ana-fe.vercel.app",
   api: "https://real-ana-be.vercel.app",
   // Public site key for this landing page's own analytics. Not a secret.
-  siteId: "eOeiSiwdGDlPeCTo",
+  siteId: "eLizHKCwJNNVxFQY",
   docs: "https://real-ana-fe.vercel.app/docs",
   twitter: "@quantalog",
   github: "https://github.com/quantalog",

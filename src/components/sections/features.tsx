@@ -3,6 +3,7 @@ import {
   Code2,
   Globe2,
   Layers,
+  MousePointerClick,
   ShieldCheck,
   Zap,
 } from "lucide-react";
@@ -28,6 +29,11 @@ const features = [
     icon: Globe2,
     title: "The dimensions that matter",
     body: "Pages, referrers, UTM campaigns, devices, browsers and countries — derived server-side from the request, not the client.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "Custom events and goals",
+    body: "One line — rta.track(\"signup\", { plan: \"pro\" }) — turns any action into a tracked event with its own conversion rate. No dashboards to wire up.",
   },
   {
     icon: Layers,
