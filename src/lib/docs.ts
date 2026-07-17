@@ -8,6 +8,7 @@ import { channels } from "@/content/docs/channels";
 import { conversions } from "@/content/docs/conversions";
 import { outbound } from "@/content/docs/outbound";
 import { errorTracking } from "@/content/docs/error-tracking";
+import { exporting } from "@/content/docs/exporting";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
@@ -42,6 +43,7 @@ const DOCS: Doc[] = [
   conversions,
   outbound,
   errorTracking,
+  exporting,
   platformApi,
   apiReference,
   privacy,
