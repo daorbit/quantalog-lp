@@ -4,6 +4,10 @@ import { tracking } from "@/content/docs/tracking";
 import { customEvents } from "@/content/docs/custom-events";
 import { filters } from "@/content/docs/filters";
 import { funnels } from "@/content/docs/funnels";
+import { channels } from "@/content/docs/channels";
+import { conversions } from "@/content/docs/conversions";
+import { outbound } from "@/content/docs/outbound";
+import { errorTracking } from "@/content/docs/error-tracking";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
@@ -34,6 +38,10 @@ const DOCS: Doc[] = [
   filters,
   funnels,
   retention,
+  channels,
+  conversions,
+  outbound,
+  errorTracking,
   platformApi,
   apiReference,
   privacy,
