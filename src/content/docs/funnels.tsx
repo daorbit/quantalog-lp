@@ -1,4 +1,4 @@
-import type { Doc } from "@/lib/docs";
+﻿import type { Doc } from "@/lib/docs";
 import { H2, P, Ul, Li, Callout } from "@/components/prose";
 
 function Body() {
@@ -6,14 +6,14 @@ function Body() {
     <>
       <P>
         A funnel measures how many people make it through an ordered sequence of
-        steps — say <b>landing → pricing → signup</b> — and where they drop off
+        steps â€” say <b>landing â†’ pricing â†’ signup</b> â€” and where they drop off
         between each one. It answers &quot;where am I losing people?&quot;.
       </P>
 
       <H2 id="building">Building a funnel</H2>
       <Ul>
         <Li>
-          Open <b>Analytics → Funnel</b> and add two or more steps (up to eight).
+          Open <b>Analytics â†’ Funnel</b> and add two or more steps (up to eight).
         </Li>
         <Li>
           Each step is either a <b>Page</b> (a path someone visited) or an{" "}
@@ -37,8 +37,8 @@ function Body() {
       </P>
 
       <Callout>
-        Mixing pages and events works well: e.g. page <b>/pricing</b> → event{" "}
-        <b>checkout_started</b> → event <b>purchase</b>.
+        Mixing pages and events works well: e.g. page <b>/pricing</b> â†’ event{" "}
+        <b>checkout_started</b> â†’ event <b>purchase</b>.
       </Callout>
     </>
   );
@@ -50,6 +50,6 @@ export const funnels: Doc = {
   description:
     "Measure conversion through an ordered sequence of pages and events, and see where people drop off.",
   category: "Tracking",
-  order: 4,
+  order: 5,
   Body,
 };

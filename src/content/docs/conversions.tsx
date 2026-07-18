@@ -1,11 +1,11 @@
-import type { Doc } from "@/lib/docs";
+﻿import type { Doc } from "@/lib/docs";
 import { H2, P, Ul, Li, Callout, Code } from "@/components/prose";
 
 function Body() {
   return (
     <>
       <P>
-        A goal is an outcome you care about — a signup, a purchase, reaching a{" "}
+        A goal is an outcome you care about â€” a signup, a purchase, reaching a{" "}
         <Code>/thank-you</Code> page. Quantalog scores every goal over the window
         you&apos;re viewing and shows its conversion rate, so you can watch the
         numbers that actually matter to the business.
@@ -13,12 +13,12 @@ function Body() {
 
       <H2 id="creating">Creating a goal</H2>
       <Ul>
-        <Li>Open <b>Analytics → Goals</b> and give the goal a name.</Li>
+        <Li>Open <b>Analytics â†’ Goals</b> and give the goal a name.</Li>
         <Li>
           Pick <b>Page</b> and enter a path (e.g. <Code>/thank-you</Code>), or{" "}
           <b>Event</b> and enter a custom event name (e.g. <Code>purchase</Code>).
         </Li>
-        <Li>Hit <b>Add</b> — it starts scoring immediately.</Li>
+        <Li>Hit <b>Add</b> â€” it starts scoring immediately.</Li>
       </Ul>
 
       <H2 id="counting">How conversions are counted</H2>
@@ -45,6 +45,6 @@ export const conversions: Doc = {
   description:
     "Define goals from pages or events and track their conversion rate over any window.",
   category: "Tracking",
-  order: 7,
+  order: 8,
   Body,
 };

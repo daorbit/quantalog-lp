@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { overview } from "@/content/docs/overview";
 import { tracking } from "@/content/docs/tracking";
+import { scriptOptions } from "@/content/docs/script-options";
 import { customEvents } from "@/content/docs/custom-events";
 import { filters } from "@/content/docs/filters";
 import { funnels } from "@/content/docs/funnels";
@@ -35,6 +36,7 @@ export type Doc = DocMeta & {
 const DOCS: Doc[] = [
   overview,
   tracking,
+  scriptOptions,
   customEvents,
   filters,
   funnels,

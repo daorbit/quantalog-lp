@@ -1,4 +1,4 @@
-import type { Doc } from "@/lib/docs";
+﻿import type { Doc } from "@/lib/docs";
 import { H2, P, Ul, Li, Callout, Code } from "@/components/prose";
 
 function Body() {
@@ -14,7 +14,7 @@ function Body() {
       <P>
         Alongside the <b>1h / 24h / 7d / 30d</b> presets, the <b>Custom</b> button
         opens a calendar where you pick a start and end date. Every number on the
-        page — headline metrics, breakdowns, goals — re-scopes to that window, and
+        page â€” headline metrics, breakdowns, goals â€” re-scopes to that window, and
         the comparison automatically uses the equal-length period just before it.
       </P>
       <Ul>
@@ -54,6 +54,6 @@ export const exporting: Doc = {
   description:
     "Scope any view to a custom date range and download the raw events as Excel or CSV.",
   category: "Tracking",
-  order: 10,
+  order: 11,
   Body,
 };

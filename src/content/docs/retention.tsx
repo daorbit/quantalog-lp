@@ -1,4 +1,4 @@
-import type { Doc } from "@/lib/docs";
+﻿import type { Doc } from "@/lib/docs";
 import { H2, P, Ul, Li, Callout } from "@/components/prose";
 
 function Body() {
@@ -7,12 +7,12 @@ function Body() {
       <P>
         Retention shows whether people come <b>back</b>. Visitors are grouped into
         weekly cohorts by when they were first seen, and each cohort&apos;s return
-        rate is tracked across the following weeks — a quick read on stickiness.
+        rate is tracked across the following weeks â€” a quick read on stickiness.
       </P>
 
       <H2 id="reading">Reading the grid</H2>
       <Ul>
-        <Li>Each row is one weekly cohort — the visitors first seen that week.</Li>
+        <Li>Each row is one weekly cohort â€” the visitors first seen that week.</Li>
         <Li>
           Each cell is the share of that cohort active again N weeks later. Week 0
           is always 100% (the cohort itself).
@@ -23,7 +23,7 @@ function Body() {
       <H2 id="caveat">A privacy caveat</H2>
       <P>
         Quantalog identifies visitors with a hash that rotates daily for privacy,
-        so retention measures returns within the hash&apos;s lifetime — not lifetime
+        so retention measures returns within the hash&apos;s lifetime â€” not lifetime
         loyalty. Read the near-term weeks as directional signal rather than exact
         long-run numbers.
       </P>
@@ -40,8 +40,8 @@ export const retention: Doc = {
   slug: "retention",
   title: "Retention",
   description:
-    "Weekly cohort retention — whether visitors come back, and how sticky each cohort is.",
+    "Weekly cohort retention â€” whether visitors come back, and how sticky each cohort is.",
   category: "Tracking",
-  order: 5,
+  order: 6,
   Body,
 };

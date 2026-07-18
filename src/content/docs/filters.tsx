@@ -1,4 +1,4 @@
-import type { Doc } from "@/lib/docs";
+﻿import type { Doc } from "@/lib/docs";
 import { H2, P, Ul, Li, Code, Callout } from "@/components/prose";
 
 function Body() {
@@ -6,7 +6,7 @@ function Body() {
     <>
       <P>
         Filters turn the dashboard into an explorable segment. Click any row in a
-        breakdown — a country, a device, a referrer, a page, a UTM source — and
+        breakdown â€” a country, a device, a referrer, a page, a UTM source â€” and
         every number on the page re-scopes to just that slice of traffic.
       </P>
 
@@ -18,15 +18,15 @@ function Body() {
           remove it, or <b>Clear all</b> to reset.
         </Li>
         <Li>
-          Stack multiple filters — e.g. <Code>country: US</Code> and{" "}
-          <Code>device: mobile</Code> — to narrow to an exact segment.
+          Stack multiple filters â€” e.g. <Code>country: US</Code> and{" "}
+          <Code>device: mobile</Code> â€” to narrow to an exact segment.
         </Li>
       </Ul>
 
       <H2 id="dimensions">Filterable dimensions</H2>
       <P>
         Page, referrer, country, language, device, browser, OS, UTM source, and UTM
-        campaign. The real-time &quot;Right now&quot; count stays unfiltered — it
+        campaign. The real-time &quot;Right now&quot; count stays unfiltered â€” it
         always reflects everyone currently on the site.
       </P>
 
@@ -50,6 +50,6 @@ export const filters: Doc = {
   description:
     "Click any breakdown to re-scope the whole dashboard, stack filters, and query segments over the API.",
   category: "Tracking",
-  order: 3,
+  order: 4,
   Body,
 };

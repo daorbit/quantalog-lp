@@ -1,4 +1,4 @@
-import type { Doc } from "@/lib/docs";
+﻿import type { Doc } from "@/lib/docs";
 import { H2, P, Ul, Li, Callout, Code } from "@/components/prose";
 
 function Body() {
@@ -14,17 +14,17 @@ function Body() {
       <Ul>
         <Li>Uncaught exceptions (<Code>window.onerror</Code>).</Li>
         <Li>Unhandled promise rejections.</Li>
-        <Li>Failed resource loads — an image or script that 404s.</Li>
+        <Li>Failed resource loads â€” an image or script that 404s.</Li>
       </Ul>
       <P>
         Errors are grouped by message and the page they happened on, and shown
-        under <b>Analytics → Errors</b> or the <b>JS errors</b> Home widget, newest
+        under <b>Analytics â†’ Errors</b> or the <b>JS errors</b> Home widget, newest
         and most frequent first.
       </P>
 
       <H2 id="privacy">Privacy &amp; limits</H2>
       <P>
-        Only the error <b>message</b> and the page path are sent — never stack
+        Only the error <b>message</b> and the page path are sent â€” never stack
         contents, variable values, or personal data. Each page reports at most a
         handful of errors so a single broken page can&apos;t flood your dashboard.
       </P>
@@ -44,6 +44,6 @@ export const errorTracking: Doc = {
   description:
     "Surface uncaught JavaScript errors and broken resources per page, straight from the tracker.",
   category: "Tracking",
-  order: 9,
+  order: 10,
   Body,
 };
