@@ -7,7 +7,7 @@ export const site = {
   app: "https://studio-quantalog.daorbit.in",
   api: "https://real-ana-be.vercel.app",
   // Public site key for this landing page's own analytics. Not a secret.
-  siteId: "eLizHKCwJNNVxFQY",
+  siteId: "hvlZR6aginzuYJiI",
   // Docs now live on this landing page. Relative path works everywhere on the
   // marketing site; the dashboard app links to `${site.url}/docs` absolutely.
   docs: "/docs",
