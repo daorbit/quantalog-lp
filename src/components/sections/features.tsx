@@ -8,6 +8,7 @@ import {
   Zap,
 } from "lucide-react";
 import { SectionHeading } from "../ui";
+import { Reveal } from "../reveal";
 
 const features = [
   {
@@ -63,14 +64,20 @@ export function Features() {
         />
 
         <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <div key={f.title} className="card card-hover group p-7">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-colors duration-200 group-hover:border-accent/40 group-hover:bg-accent/10">
+          {features.map((f, i) => (
+            <Reveal
+              key={f.title}
+              // Stagger across the row, then restart — a uniform delay on a
+              // 3-column grid makes the third column feel broken.
+              delay={((i % 3) + 1) as 1 | 2 | 3}
+              className="card card-hover group p-7"
+            >
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
                 <f.icon className="h-[18px] w-[18px]" aria-hidden="true" />
               </div>
               <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{f.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-fg-muted">{f.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

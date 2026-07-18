@@ -9,8 +9,15 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
+      {/* Two offset glows rather than one centred blob — an asymmetric wash
+          reads as lighting, a single circle reads as a gradient. */}
       <div
         className="pointer-events-none absolute left-1/2 -top-24 h-[26rem] w-[60rem] -translate-x-1/2 rounded-full blur-[100px]"
+        style={{ background: "var(--glow)" }}
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -left-40 top-40 h-88 w-136 rounded-full opacity-70 blur-[120px]"
         style={{ background: "var(--glow)" }}
         aria-hidden="true"
       />
@@ -29,23 +36,16 @@ export function Hero() {
           </a>
 
           <h1 className="rise rise-2 headline mt-8 text-balance text-[2.75rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-[4.25rem]">
-            Real-time analytics
-            <br />
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(100deg, var(--accent), color-mix(in oklab, var(--accent) 55%, var(--fg)))",
-              }}
-            >
-              you can embed.
-            </span>
+            Your analytics miss up to{" "}
+            <span className="underline-sketch text-accent">half</span>
+            <br className="hidden sm:block" /> your traffic.
           </h1>
 
           <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
-            Cookieless web analytics with a live dashboard — plus a multi-tenant
-            REST API so you can ship analytics to your own users. One script tag,
-            zero consent banners.
+            Cookie-based tools only measure the visitors who accept the banner.
+            The rest stay invisible. Quantalog sets no cookies and stores no
+            personal data — so there is no banner to decline, and nothing to
+            miss.
           </p>
 
           <div className="rise rise-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -88,7 +88,9 @@ export function Hero() {
             style={{ background: "var(--glow)" }}
             aria-hidden="true"
           />
-          <div className="relative">
+          {/* The product shot is the proof — give it real elevation and an
+              inset hairline so it sits on the page rather than in it. */}
+          <div className="panel relative overflow-hidden">
             <DashboardPreview />
           </div>
         </div>

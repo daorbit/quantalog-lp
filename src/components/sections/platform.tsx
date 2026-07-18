@@ -3,30 +3,34 @@
 import { ArrowRight } from "lucide-react";
 import { CodeCard } from "../code-card";
 import { SectionHeading } from "../ui";
+import { Reveal } from "../reveal";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 
 const createProject = `# 1. Your backend creates a project for one of your users
-curl -X POST https://api.quantalog.com/v1/projects \\
+curl -X POST ${site.api}/v1/projects \\
   -H "Authorization: Bearer sk_live_..." \\
   -d '{ "name": "Jane'\\''s Store", "extUserId": "user_8812" }'
 
 # 2. Register the site they deployed — the snippet comes back
-curl -X POST https://api.quantalog.com/v1/projects/prj_31f/sites \\
+curl -X POST ${site.api}/v1/projects/prj_31f/sites \\
   -H "Authorization: Bearer sk_live_..." \\
   -d '{ "name": "Store", "domain": "jane.shop" }'`;
 
 const readStats = `// 3. Render their numbers inside YOUR product's UI
 const res = await fetch(
-  \`https://api.quantalog.com/v1/sites/\${siteId}/stats?range=24h\`,
+  \`${site.api}/v1/sites/\${siteId}/stats?range=24h\`,
   { headers: { Authorization: \`Bearer \${process.env.QUANTALOG_KEY}\` } }
 );
 
 const { visitors, pageviews, live, topPages } = await res.json();`;
 
+// Mirrors src/routes/v1.ts — every route here exists.
 const endpoints = [
   { method: "POST", path: "/v1/projects", desc: "Create a project for an end-user" },
+  { method: "GET", path: "/v1/projects", desc: "List projects, filter by your user id" },
   { method: "POST", path: "/v1/projects/:pid/sites", desc: "Register a site, get the snippet" },
+  { method: "GET", path: "/v1/projects/:pid/sites", desc: "List the sites under a project" },
   { method: "GET", path: "/v1/sites/:siteId/stats", desc: "Read every dashboard metric" },
   { method: "GET", path: "/v1/sites/:siteId/snippet", desc: "Fetch the snippet again, any time" },
   { method: "DELETE", path: "/v1/sites/:siteId", desc: "Remove a site and its data" },
@@ -59,11 +63,15 @@ export function Platform() {
         />
 
         <div className="mt-16 grid gap-4 lg:grid-cols-2">
-          <CodeCard filename="provision.sh" language="bash" code={createProject} />
-          <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
+          <Reveal delay={1}>
+            <CodeCard filename="provision.sh" language="bash" code={createProject} />
+          </Reveal>
+          <Reveal delay={2}>
+            <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
+          </Reveal>
         </div>
 
-        <div className="card mt-4 overflow-hidden">
+        <Reveal className="card mt-4 overflow-hidden">
           <div className="divide-y divide-border">
             {endpoints.map((e) => (
               <div
@@ -80,7 +88,7 @@ export function Platform() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
 
         <a
           href={site.docs}

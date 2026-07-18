@@ -171,6 +171,52 @@ body {
   color: transparent;
 }
 
+/* A hand-drawn underline for the one number the hero is built around.
+   Uses a real SVG stroke rather than a border so it keeps the wobble. */
+.underline-sketch {
+  position: relative;
+  white-space: nowrap;
+}
+.underline-sketch::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  bottom: -0.22em;
+  width: 104%;
+  height: 0.32em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* Two overlapping strokes — a single pass reads as a plain border. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M3 12c34-6 62-7 96-5s62 6 98 2' fill='none' stroke='%2310b981' stroke-width='4' stroke-linecap='round' opacity='.95'/%3E%3Cpath d='M8 15c40-4 74-5 108-3s52 4 80 1' fill='none' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* Reveal on scroll. Elements start shifted and are released by an observer
+   adding .is-visible — so nothing animates until it is actually looked at. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Staggered children, for grids that should resolve left-to-right. */
+.reveal-d1 { transition-delay: 0.06s; }
+.reveal-d2 { transition-delay: 0.12s; }
+.reveal-d3 { transition-delay: 0.18s; }
+.reveal-d4 { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Cards: hairline top highlight + lift on hover. */
 .card {
   position: relative;
@@ -193,6 +239,28 @@ body {
   border-color: var(--border-strong);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+}
+
+/* A raised panel: larger radius, deeper shadow, and an inset hairline so the
+   edge catches light the way a real surface does. Used for the pieces that
+   should sit above the page — the dashboard frame, the consent-gap panel. */
+.panel {
+  position: relative;
+  border-radius: 1rem;
+  background: var(--surface);
+  box-shadow:
+    inset 0 0 0 1px var(--hairline),
+    0 0 0 1px var(--border),
+    var(--shadow-lg);
+}
+
+/* Soft radial spotlight, for anchoring a section without a hard edge. */
+.spotlight {
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 0%,
+    var(--glow),
+    transparent 70%
+  );
 }
 
 /* Logo marquee — duplicated track, translate by exactly half. */

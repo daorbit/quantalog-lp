@@ -1,9 +1,11 @@
 import { CodeCard } from "../code-card";
 import { Eyebrow } from "../ui";
+import { site } from "@/lib/site";
 
+// The real tracker URL — someone will paste this straight into their <head>.
 const snippet = `<script
   async
-  src="https://cdn.quantalog.com/tracker.js"
+  src="${site.api}/tracker.js"
   data-site="qs_7f3a9c21"
 ></script>`;
 
