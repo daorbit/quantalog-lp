@@ -4,6 +4,7 @@ import {
   Globe2,
   Layers,
   MousePointerClick,
+  Share2,
   ShieldCheck,
   Zap,
 } from "lucide-react";
@@ -40,6 +41,11 @@ const features = [
     icon: Layers,
     title: "Workspaces and sites",
     body: "Group properties under a workspace, invite the team, and keep every site's data cleanly scoped and isolated.",
+  },
+  {
+    icon: Share2,
+    title: "Dashboards you can share",
+    body: "Publish a read-only view at a link anyone can open — no account needed. You pick which panels are visible, and everything else never leaves the server.",
   },
   {
     icon: Code2,

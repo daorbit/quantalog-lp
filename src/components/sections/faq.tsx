@@ -19,6 +19,10 @@ export const faqs = [
     a: "It is for companies whose customers each have their own site — app builders, hosting platforms, agencies. With one API key you create a project per end-user, register their sites, inject the tracker automatically, and read their stats back to render inside your own product.",
   },
   {
+    q: "Can I share a dashboard with a client?",
+    a: "Yes. Any workspace can be published as a read-only page at a link that works without an account — useful for clients, an office screen, or open stats. You choose which of the fourteen panels are visible, and anything switched off is never sent to that page at all. Your site keys, settings, team and raw events are never shared. If a link reaches the wrong person, replacing it revokes the old one immediately.",
+  },
+  {
     q: "Where is the data stored?",
     a: "In MongoDB Atlas. Raw IP addresses are never persisted; they are hashed on receipt and discarded. You can export or delete a site's data at any time from the dashboard.",
   },
