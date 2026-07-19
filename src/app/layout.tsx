@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+  },
   keywords: [
     "web analytics",
     "real-time analytics",
@@ -35,12 +39,21 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: [
+      {
+        url: "/OgImage.png",
+        width: 1369,
+        height: 1149,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     site: site.twitter,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: ["/OgImage.png"],
   },
   robots: { index: true, follow: true },
 };
