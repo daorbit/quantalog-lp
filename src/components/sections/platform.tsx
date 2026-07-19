@@ -75,7 +75,7 @@ export function Platform() {
           <div className="divide-y divide-border">
             {endpoints.map((e) => (
               <div
-                key={e.path}
+                key={`${e.method} ${e.path}`}
                 className="flex flex-col gap-1.5 px-5 py-3.5 transition-colors hover:bg-bg-subtle sm:flex-row sm:items-center sm:gap-4"
               >
                 <span

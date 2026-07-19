@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
+import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Compare } from "@/components/sections/compare";
@@ -46,6 +47,9 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
+      {/* Straight after the hero: the tour answers "what is this" faster than
+          any amount of copy below it can. */}
+      <Demo />
       <Logos />
       {/* The argument, before the feature list: why cookie-based tools
           under-report, then what you get instead. */}
