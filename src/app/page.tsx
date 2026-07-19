@@ -54,7 +54,7 @@ export default function HomePage() {
       <HowItWorks />
       <Compare />
       <Platform />
-      <Pricing />
+      {/* <Pricing /> */}
       <Faq />
       <Cta />
     </>
