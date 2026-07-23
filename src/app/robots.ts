@@ -6,9 +6,11 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // Next's build artefacts carry no content worth crawling, and letting a
-      // bot walk them only spends crawl budget that should go to docs.
-      disallow: ["/_next/", "/404"],
+      // Deliberately NOT blocking /_next/: Google renders the page before
+      // judging it, and the CSS and JS it needs to do that are served from
+      // there. Blocking it saves no meaningful crawl budget and makes the
+      // rendered page look broken to the crawler.
+      disallow: ["/404"],
     },
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,
