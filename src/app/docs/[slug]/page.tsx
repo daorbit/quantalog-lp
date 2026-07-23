@@ -10,6 +10,8 @@ import {
 } from "@/lib/docs";
 import { site } from "@/lib/site";
 import { DocsNav } from "@/components/docs-nav";
+import { JsonLd } from "@/components/json-ld";
+import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
@@ -39,6 +41,11 @@ export async function generateMetadata({
       title: doc.title,
       description: doc.description,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: doc.title,
+      description: doc.description,
+    },
   };
 }
 
@@ -55,8 +62,29 @@ export default async function DocPage({
   const { prev, next } = getDocSiblings(slug);
   const { Body } = doc;
 
+  const jsonLd = graph(
+    {
+      "@type": "TechArticle",
+      "@id": `${site.url}/docs/${doc.slug}#article`,
+      headline: doc.title,
+      description: doc.description,
+      url: `${site.url}/docs/${doc.slug}`,
+      articleSection: doc.category,
+      inLanguage: "en",
+      isPartOf: { "@id": SITE_ID },
+      publisher: { "@id": ORG_ID },
+      author: { "@id": ORG_ID },
+    },
+    breadcrumbs([
+      { name: "Home", path: "/" },
+      { name: "Docs", path: "/docs" },
+      { name: doc.title, path: `/docs/${doc.slug}` },
+    ])
+  );
+
   return (
     <div className="mx-auto max-w-6xl px-5 py-16">
+      <JsonLd data={jsonLd} />
       <div className="docs-layout">
         <aside className="docs-sidebar">
           <DocsNav groups={groups} />

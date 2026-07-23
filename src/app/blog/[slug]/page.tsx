@@ -11,6 +11,8 @@ import {
 } from "@/lib/blog";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui";
+import { JsonLd } from "@/components/json-ld";
+import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
@@ -65,25 +67,32 @@ export default async function BlogPostPage({
   const related = getRelatedPosts(slug);
   const { Body } = post;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { "@type": "Person", name: post.author.name },
-    publisher: { "@type": "Organization", name: site.name, url: site.url },
-    mainEntityOfPage: `${site.url}/blog/${post.slug}`,
-    keywords: post.tags.join(", "),
-  };
+  const jsonLd = graph(
+    {
+      "@type": "BlogPosting",
+      "@id": `${site.url}/blog/${post.slug}#post`,
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { "@type": "Person", name: post.author.name },
+      publisher: { "@id": ORG_ID },
+      isPartOf: { "@id": SITE_ID },
+      mainEntityOfPage: `${site.url}/blog/${post.slug}`,
+      image: `${site.url}/OgImage.png`,
+      inLanguage: "en",
+      keywords: post.tags.join(", "),
+    },
+    breadcrumbs([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+      { name: post.title, path: `/blog/${post.slug}` },
+    ])
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
 
       <article className="mx-auto max-w-2xl px-5 py-16">
         <Link

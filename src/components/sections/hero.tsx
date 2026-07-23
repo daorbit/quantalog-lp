@@ -35,10 +35,19 @@ export function Hero() {
             <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
 
+          {/* The visible headline is a hook and says nothing about what the
+              product is, which leaves a crawler with no topic for the page's
+              most important element. The screen-reader-only span gives the H1
+              that context without altering what a visitor sees. */}
           <h1 className="rise rise-2 headline mt-8 text-balance text-[2.75rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-[4.25rem]">
             Your analytics miss up to{" "}
             <span className="underline-sketch text-accent">half</span>
             <br className="hidden sm:block" /> your traffic.
+            <span className="sr-only">
+              {" "}
+              Quantalog is privacy-first, cookieless web analytics with a
+              real-time dashboard and an embeddable multi-tenant API.
+            </span>
           </h1>
 
           <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">

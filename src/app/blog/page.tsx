@@ -3,20 +3,57 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getAllPosts, formatDate } from "@/lib/blog";
 import { Eyebrow } from "@/components/ui";
+import { JsonLd } from "@/components/json-ld";
+import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Engineering notes and product updates from the Quantalog team — privacy-first analytics, real-time data, and the platform API.",
   alternates: { canonical: "/blog" },
+  openGraph: {
+    type: "website",
+    url: `${site.url}/blog`,
+    title: "Blog",
+    description:
+      "Engineering notes and product updates from the Quantalog team.",
+  },
 };
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();
   const [featured, ...rest] = posts;
 
+  const jsonLd = graph(
+    {
+      "@type": "Blog",
+      "@id": `${site.url}/blog#blog`,
+      name: `${site.name} Blog`,
+      description:
+        "Engineering notes and product updates from the Quantalog team.",
+      url: `${site.url}/blog`,
+      isPartOf: { "@id": SITE_ID },
+      publisher: { "@id": ORG_ID },
+      inLanguage: "en",
+      blogPost: posts.map((post) => ({
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.description,
+        datePublished: post.date,
+        url: `${site.url}/blog/${post.slug}`,
+        author: { "@type": "Person", name: post.author.name },
+      })),
+    },
+    breadcrumbs([
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+    ])
+  );
+
   return (
     <div className="mx-auto max-w-4xl px-5 py-20">
+      <JsonLd data={jsonLd} />
       <header className="max-w-2xl">
         <Eyebrow>Blog</Eyebrow>
         <h1 className="mt-4 text-balance text-[2.5rem] font-bold leading-[1.1] tracking-[-0.03em]">
