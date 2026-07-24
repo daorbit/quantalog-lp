@@ -4,6 +4,7 @@ import {
   Globe2,
   Layers,
   MousePointerClick,
+  Search,
   Share2,
   ShieldCheck,
   Zap,
@@ -36,6 +37,11 @@ const features = [
     icon: MousePointerClick,
     title: "Custom events and goals",
     body: "One line — rta.track(\"signup\", { plan: \"pro\" }) — turns any action into a tracked event with its own conversion rate. No dashboards to wire up.",
+  },
+  {
+    icon: Search,
+    title: "SEO audits built in",
+    body: "Run a Lighthouse-backed audit on any page you track: meta tags, content, structured data, broken links and Core Web Vitals, scored and kept over time so you can prove a fix worked.",
   },
   {
     icon: Layers,

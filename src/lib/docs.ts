@@ -16,6 +16,7 @@ import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
 import { privacy } from "@/content/docs/privacy";
+import { demo } from "@/content/docs/demo";
 
 export type DocCategory = "Getting started" | "Tracking" | "Platform API";
 
@@ -37,6 +38,7 @@ export type Doc = DocMeta & {
 // nav sorts by category then `order`.
 const DOCS: Doc[] = [
   overview,
+  demo,
   tracking,
   scriptOptions,
   customEvents,

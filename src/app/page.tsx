@@ -3,6 +3,7 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
+import { TryDemo } from "@/components/sections/try-demo";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Compare } from "@/components/sections/compare";
 import { Platform } from "@/components/sections/platform";
@@ -52,8 +53,10 @@ const jsonLd = graph(
       "Funnels and conversion goals",
       "Retention cohorts",
       "SEO audits with Lighthouse scores",
+      "Broken link and structured data checks",
       "Multi-tenant Platform API",
       "Public shareable dashboards",
+      "Shareable SEO audit reports",
     ],
   },
   {
@@ -81,6 +84,9 @@ export default function HomePage() {
           under-report, then what you get instead. */}
       <ConsentGap />
       <Features />
+      {/* After the feature list and before the comparison: the visitor now
+          knows what is claimed, and looking is cheaper than reading on. */}
+      <TryDemo />
       <HowItWorks />
       <Compare />
       <Platform />
