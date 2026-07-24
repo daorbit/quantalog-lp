@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     "cookieless analytics",
     "embedded analytics",
     "multi-tenant analytics API",
+    "SEO audit tool",
+    "Lighthouse SEO report",
+    "broken link checker",
+    "Core Web Vitals monitoring",
     "Plausible alternative",
   ],
   openGraph: {

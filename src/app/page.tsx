@@ -4,6 +4,7 @@ import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
 import { TryDemo } from "@/components/sections/try-demo";
+import { Seo } from "@/components/sections/seo";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Compare } from "@/components/sections/compare";
 import { Platform } from "@/components/sections/platform";
@@ -84,7 +85,11 @@ export default function HomePage() {
           under-report, then what you get instead. */}
       <ConsentGap />
       <Features />
-      {/* After the feature list and before the comparison: the visitor now
+      {/* SEO gets its own section rather than one card in the grid: it is the
+          half of the product a pure counter cannot do, so it carries the
+          argument for choosing this over one. */}
+      <Seo />
+      {/* After the case is made and before the comparison: the visitor now
           knows what is claimed, and looking is cheaper than reading on. */}
       <TryDemo />
       <HowItWorks />

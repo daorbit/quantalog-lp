@@ -2,7 +2,7 @@ export const site = {
   name: "Quantalog",
   tagline: "Real-time analytics you can embed.",
   description:
-    "Privacy-first web analytics with a real-time dashboard and a multi-tenant API. Ship analytics to your own users in an afternoon.",
+    "Privacy-first web analytics with real-time dashboards, built-in SEO audits and a multi-tenant API. See who visits, find what's holding your pages back, and ship it all to your own users.",
   url: "https://quantalog.daorbit.in",
   app: "https://studio-quantalog.daorbit.in",
   api: "https://quantalog-be.daorbit.in",
@@ -18,6 +18,7 @@ export const site = {
 
 export const nav = [
   { href: "/#features", label: "Features" },
+  { href: "/#seo", label: "SEO" },
   { href: "/#compare", label: "Compare" },
   { href: "/#platform", label: "Platform API" },
   // { href: "/#pricing", label: "Pricing" },

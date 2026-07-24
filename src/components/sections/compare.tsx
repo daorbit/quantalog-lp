@@ -21,6 +21,8 @@ const rows: { feature: string; values: [Support, Support, Support] }[] = [
   { feature: "Funnels and retention cohorts", values: ["yes", "yes", "no"] },
   { feature: "Scroll depth and engaged time", values: ["yes", "partial", "no"] },
   { feature: "Custom events with revenue", values: ["yes", "yes", "no"] },
+  { feature: "SEO audits in the same dashboard", values: ["yes", "no", "no"] },
+  { feature: "Broken link and schema checks", values: ["yes", "no", "no"] },
   { feature: "Raw event export (CSV / XLSX)", values: ["yes", "partial", "no"] },
   { feature: "Multi-tenant API for your own users", values: ["yes", "no", "no"] },
   { feature: "Under 1 KB on the page", values: ["yes", "no", "yes"] },

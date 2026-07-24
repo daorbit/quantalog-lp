@@ -23,6 +23,18 @@ export const faqs = [
     a: "Yes. Any workspace can be published as a read-only page at a link that works without an account — useful for clients, an office screen, or open stats. You choose which of the fourteen panels are visible, and anything switched off is never sent to that page at all. Your site keys, settings, team and raw events are never shared. If a link reaches the wrong person, replacing it revokes the old one immediately.",
   },
   {
+    q: "What do the SEO audits actually check?",
+    a: "A page you already track is fetched the way a crawler reads it and run through Google Lighthouse. You get the four Lighthouse scores, meta tags measured against the lengths search results display, heading structure and readability, images missing alt text, structured data validated against schema.org, every link followed and checked for broken targets and redirect chains, and Core Web Vitals for mobile and desktop. A site crawl covers the problems a single page cannot show, and every run is kept so you can prove a fix moved the number.",
+  },
+  {
+    q: "Can I send an SEO report to a client?",
+    a: "Yes, two ways. Publish it at a link anyone can open — you choose section by section what is visible, and anything switched off is stripped on the server rather than hidden — or export the report as a print-ready page and save it as a PDF. Sharing is per report, so publishing one audit never exposes the rest of the site's history.",
+  },
+  {
+    q: "Can I try it without signing up?",
+    a: "Yes. The login page has a live demo that opens a fully populated workspace in one click — a month of sample traffic, a complete SEO audit with history, and every screen in the product. It is read-only, the data is generated in your browser, and no account or card is involved.",
+  },
+  {
     q: "Where is the data stored?",
     a: "In MongoDB Atlas. Raw IP addresses are never persisted; they are hashed on receipt and discarded. You can export or delete a site's data at any time from the dashboard.",
   },
