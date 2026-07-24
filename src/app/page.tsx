@@ -79,7 +79,7 @@ export default function HomePage() {
       <Hero />
       {/* Straight after the hero: the tour answers "what is this" faster than
           any amount of copy below it can. */}
-      <Demo />
+      {/* <Demo /> */}
       <Logos />
       {/* The argument, before the feature list: why cookie-based tools
           under-report, then what you get instead. */}
