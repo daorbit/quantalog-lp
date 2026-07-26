@@ -108,6 +108,13 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
+/* Thin scrollbars, matching the dashboard app. */
+* { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--fg-faint); }
+
 /* One consistent focus ring everywhere, instead of the browser default. */
 :where(a, button, summary, input, [tabindex]):focus-visible {
   outline: 2px solid var(--ring);

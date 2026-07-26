@@ -31,7 +31,7 @@ function planFeatures(plan: ResolvedPlan): string[] {
     plural(plan.maxWorkspaces, "workspace"),
     `${plan.maxSitesPerWorkspace} sites per workspace`,
     `${plan.monthlyAuditQuota} SEO audits / month`,
-    `${plan.monthlyCrawlQuota} site crawls / month`,
+    `${plural(plan.monthlyCrawlQuota, "site crawl")} / month`,
     ...plan.features,
   ];
 }
@@ -123,7 +123,7 @@ export function Pricing() {
         )}
 
         {plans && (
-          <div className="mt-10 grid items-stretch gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
             {plans.map((plan) => {
               const featured = plan.slug === FEATURED_SLUG;
               const price = yearly ? plan.priceYearly : plan.priceMonthly;
@@ -132,10 +132,8 @@ export function Pricing() {
               return (
                 <div
                   key={plan.slug}
-                  className={`card relative flex h-full flex-col p-7 ${
-                    featured
-                      ? "border-accent/60 shadow-float lg:-mt-4 lg:mb-4"
-                      : "card-hover"
+                  className={`card relative flex flex-col p-7 ${
+                    featured ? "border-accent/60 shadow-float lg:scale-[1.03]" : "card-hover"
                   }`}
                 >
                   {featured && (
@@ -184,7 +182,7 @@ export function Pricing() {
                     {price === 0 ? "Start free" : "Get started"}
                   </a>
 
-                  <ul className="mt-8 flex-1 space-y-3 border-t border-border pt-8">
+                  <ul className="mt-8 space-y-3 border-t border-border pt-8">
                     {planFeatures(plan).map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm">
                         <span
