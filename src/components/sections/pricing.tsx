@@ -6,6 +6,14 @@ import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 
+const CURRENCIES = ["INR", "USD"] as const;
+type Currency = (typeof CURRENCIES)[number];
+
+const CURRENCY_SYMBOLS: Record<Currency, string> = { INR: "₹", USD: "$" };
+const CURRENCY_LOCALES: Record<Currency, string> = { INR: "en-IN", USD: "en-US" };
+
+type CurrencyPrices = Record<Currency, number>;
+
 type ResolvedPlan = {
   slug: string;
   name: string;
@@ -16,8 +24,8 @@ type ResolvedPlan = {
   monthlyCrawlQuota: number;
   features: string[];
   sortOrder: number;
-  priceMonthly: number;
-  priceYearly: number;
+  priceMonthly: CurrencyPrices;
+  priceYearly: CurrencyPrices;
 };
 
 const FEATURED_SLUG = "pro";
@@ -36,15 +44,27 @@ function planFeatures(plan: ResolvedPlan): string[] {
   ];
 }
 
-function formatPrice(amountPaise: number) {
-  if (amountPaise === 0) return "₹0";
-  return `₹${(amountPaise / 100).toLocaleString("en-IN", { maximumFractionDigits: 0 })}`;
+function detectCurrency(): Currency {
+  if (typeof navigator === "undefined") return "USD";
+  const region = navigator.language.split("-")[1]?.toUpperCase();
+  return region === "IN" ? "INR" : "USD";
+}
+
+function formatPrice(amountMinor: number, currency: Currency) {
+  const symbol = CURRENCY_SYMBOLS[currency];
+  if (amountMinor === 0) return `${symbol}0`;
+  return `${symbol}${(amountMinor / 100).toLocaleString(CURRENCY_LOCALES[currency], { maximumFractionDigits: 0 })}`;
 }
 
 export function Pricing() {
   const [plans, setPlans] = useState<ResolvedPlan[] | null>(null);
   const [error, setError] = useState(false);
   const [yearly, setYearly] = useState(false);
+  const [currency, setCurrency] = useState<Currency>("USD");
+
+  useEffect(() => {
+    setCurrency(detectCurrency());
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -75,7 +95,7 @@ export function Pricing() {
         />
 
         {plans && (
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
             <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface p-1">
               <button
                 type="button"
@@ -103,6 +123,21 @@ export function Pricing() {
                 </span>
               </button>
             </div>
+
+            <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface p-1">
+              {CURRENCIES.map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setCurrency(c)}
+                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                    currency === c ? "bg-accent text-accent-fg shadow-soft" : "text-fg-muted hover:text-fg"
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
@@ -126,8 +161,9 @@ export function Pricing() {
           <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
             {plans.map((plan) => {
               const featured = plan.slug === FEATURED_SLUG;
-              const price = yearly ? plan.priceYearly : plan.priceMonthly;
-              const monthlyEquivalent = yearly && plan.priceYearly > 0 ? Math.round(plan.priceYearly / 12) : null;
+              const price = (yearly ? plan.priceYearly : plan.priceMonthly)[currency];
+              const yearlyPrice = plan.priceYearly[currency];
+              const monthlyEquivalent = yearly && yearlyPrice > 0 ? Math.round(yearlyPrice / 12) : null;
 
               return (
                 <div
@@ -157,19 +193,19 @@ export function Pricing() {
                   <div className="mt-7">
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-[2.75rem] font-bold leading-none tracking-[-0.03em]">
-                        {formatPrice(price)}
+                        {formatPrice(price, currency)}
                       </span>
                       <span className="text-sm text-fg-muted">
                         {price === 0 ? "forever" : yearly ? "per year" : "per month"}
                       </span>
                     </div>
                     <div className="mt-1.5 h-4 text-xs text-fg-faint">
-                      {monthlyEquivalent !== null && `≈ ${formatPrice(monthlyEquivalent)} / month billed yearly`}
+                      {monthlyEquivalent !== null && `≈ ${formatPrice(monthlyEquivalent, currency)} / month billed yearly`}
                     </div>
                   </div>
 
                   <a
-                    href={`${site.app}/signup?plan=${plan.slug}${yearly ? "&cycle=yearly" : ""}`}
+                    href={`${site.app}/signup?plan=${plan.slug}${yearly ? "&cycle=yearly" : ""}&currency=${currency}`}
                     onClick={() =>
                       track("pricing_plan_selected", { plan: plan.slug, cycle: yearly ? "yearly" : "monthly" })
                     }
@@ -202,7 +238,7 @@ export function Pricing() {
         )}
 
         <p className="mt-10 text-center text-xs text-fg-faint">
-          All prices in INR. Cancel any time — no exit interview.
+          Prices in {currency}. Cancel any time — no exit interview.
         </p>
       </div>
     </section>
