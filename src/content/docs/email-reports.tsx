@@ -13,7 +13,7 @@ function Body() {
 
       <H2 id="creating">Creating a report</H2>
       <P>
-        Open <b>Email reports</b> in the sidebar and choose <b>New report</b>.
+        Open <b>Reports</b> in the sidebar and choose <b>New report</b>.
         Each report belongs to one workspace and covers either every site in it
         or a specific selection.
       </P>
@@ -126,7 +126,7 @@ function Body() {
 
 export const emailReports: Doc = {
   slug: "email-reports",
-  title: "Scheduled email reports",
+  title: "Reports",
   description:
     "Email analytics and SEO summaries on a schedule, with a spreadsheet attachment, to anyone you choose.",
   category: "Tracking",

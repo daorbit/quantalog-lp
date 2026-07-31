@@ -109,7 +109,7 @@ export function Reports() {
 
       <div className="relative mx-auto max-w-6xl px-5 py-28">
         <SectionHeading
-          eyebrow="Scheduled reports"
+          eyebrow="Reports"
           title={
             <>
               The people who need the numbers
