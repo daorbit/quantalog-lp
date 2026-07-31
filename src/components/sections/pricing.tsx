@@ -23,6 +23,8 @@ type ResolvedPlan = {
   monthlyAuditQuota: number;
   monthlyCrawlQuota: number;
   features: string[];
+  /** Report recipients per schedule, including the owner. */
+  maxReportRecipients: number;
   sortOrder: number;
   priceMonthly: CurrencyPrices;
   priceYearly: CurrencyPrices;
@@ -40,6 +42,9 @@ function planFeatures(plan: ResolvedPlan): string[] {
     `${plan.maxSitesPerWorkspace} sites per workspace`,
     `${plan.monthlyAuditQuota} SEO audits / month`,
     `${plural(plan.monthlyCrawlQuota, "site crawl")} / month`,
+    // Spelled out rather than left to `plan.features`: the recipient cap is the
+    // line a buyer comparing tiers actually reads.
+    `${plural(plan.maxReportRecipients, "report recipient")} per report`,
     ...plan.features,
   ];
 }

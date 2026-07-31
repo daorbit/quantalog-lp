@@ -5,6 +5,7 @@ import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
 import { TryDemo } from "@/components/sections/try-demo";
 import { Seo } from "@/components/sections/seo";
+import { Reports } from "@/components/sections/reports";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Compare } from "@/components/sections/compare";
 import { Platform } from "@/components/sections/platform";
@@ -58,6 +59,7 @@ const jsonLd = graph(
       "Multi-tenant Platform API",
       "Public shareable dashboards",
       "Shareable SEO audit reports",
+      "Scheduled email reports with spreadsheet attachments",
     ],
   },
   {
@@ -89,6 +91,10 @@ export default function HomePage() {
           half of the product a pure counter cannot do, so it carries the
           argument for choosing this over one. */}
       <Seo />
+      {/* Directly after SEO: both answer "why not just a pageview counter",
+          and this one closes with the deliverable a buyer hands to someone
+          else. */}
+      <Reports />
       {/* After the case is made and before the comparison: the visitor now
           knows what is claimed, and looking is cheaper than reading on. */}
       <TryDemo />
