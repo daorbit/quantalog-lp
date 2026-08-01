@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, CalendarClock, FileSpreadsheet, MailCheck, Users } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, CalendarClock, FileSpreadsheet, MessageCircle, Users } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
@@ -33,9 +33,9 @@ const points = [
     body: "Pick the rhythm that matches how the work is reviewed. Pause a report when a project goes quiet and it keeps every setting for when it comes back.",
   },
   {
-    icon: MailCheck,
-    title: "Verify before it ships",
-    body: "Send yourself a copy on demand, built from the same data and template as the real thing — so the first one your client sees isn't the first one you see.",
+    icon: MessageCircle,
+    title: "Email or WhatsApp",
+    body: "Share the full report and its spreadsheet by email, and get a short version on your own WhatsApp the moment it goes out. Send yourself a copy first to check it.",
   },
 ];
 
@@ -117,7 +117,7 @@ export function Reports() {
               <span className="text-accent">rarely open dashboards.</span>
             </>
           }
-          body="Send your traffic and SEO summary on a schedule — to yourself, your client, or whoever asked. Headline numbers in the body, the full breakdown attached as a spreadsheet, and a live link if you want one."
+          body="Send your traffic and SEO summary on a schedule — to yourself, your client, or whoever asked. Headline numbers up front, the full breakdown attached as a spreadsheet, and a copy on your own WhatsApp if you want one."
         />
 
         <div className="mt-16 grid items-start gap-10 lg:grid-cols-[1fr_380px]">

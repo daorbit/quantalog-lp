@@ -52,6 +52,36 @@ function Body() {
         than once in a 24-hour period.
       </P>
 
+      <H2 id="channels">Email and WhatsApp</H2>
+      <P>
+        A report can go out by email, by WhatsApp, or both. They carry the same
+        numbers in the form each medium suits:
+      </P>
+      <Ul>
+        <Li>
+          <b>Email</b> — the full summary, the SEO table, and the spreadsheet
+          attached.
+        </Li>
+        <Li>
+          <b>WhatsApp</b> — headline numbers, the top three SEO movers, and the
+          dashboard link. No attachment: a spreadsheet in a chat thread is
+          rarely opened.
+        </Li>
+      </Ul>
+      <P>
+        WhatsApp reports are delivered to <b>your own mobile number</b>, taken
+        from your profile — add it under Settings before turning the channel on.
+        To share a report with a client or colleague, add their email address
+        instead.
+      </P>
+      <Callout>
+        WhatsApp delivery is deliberately limited to your own number. Messages
+        send from a shared platform number, and a chat has nowhere to put an
+        unsubscribe link — so a report arriving on a client&apos;s phone would
+        come from an unfamiliar sender they couldn&apos;t opt out of. Email is the
+        channel built for sharing, and it carries the spreadsheet too.
+      </Callout>
+
       <H2 id="recipients">Who receives it</H2>
       <P>
         You always receive your own reports. Beyond that, add any address you
@@ -128,7 +158,7 @@ export const emailReports: Doc = {
   slug: "email-reports",
   title: "Reports",
   description:
-    "Email analytics and SEO summaries on a schedule, with a spreadsheet attachment, to anyone you choose.",
+    "Send analytics and SEO summaries on a schedule by email or WhatsApp, with a spreadsheet attachment.",
   category: "Tracking",
   order: 14,
   Body,
