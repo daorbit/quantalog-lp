@@ -20,8 +20,8 @@ const columns = [
       { href: "/blog", label: "Blog" },
       { href: "/compare", label: "Comparisons" },
       { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
       { href: site.github, label: "GitHub", external: true },
-      { href: `mailto:${site.email}`, label: "Contact", external: true },
     ],
   },
   {

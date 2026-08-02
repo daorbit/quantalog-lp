@@ -71,7 +71,9 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "About Quantalog",
+  // The root layout's template appends the brand, so naming it here would
+  // render "About Quantalog — Quantalog".
+  title: "About",
   description: DESCRIPTION,
   alternates: { canonical: "/about" },
   openGraph: {

@@ -115,19 +115,19 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Platform API — embed white label analytics in your product",
+  title: "White label analytics API for your product",
   description: DESCRIPTION,
   alternates: { canonical: "/platform-api" },
   openGraph: {
     type: "website",
     url: `${site.url}/platform-api`,
-    title: "Platform API — embed white label analytics in your product",
+    title: "White label analytics API for your product",
     description: DESCRIPTION,
     images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Platform API — embed white label analytics in your product",
+    title: "White label analytics API for your product",
     description: DESCRIPTION,
     images: ["/OgImage.png"],
   },
@@ -138,7 +138,7 @@ export default function PlatformApiPage() {
     {
       "@type": "WebPage",
       "@id": `${site.url}/platform-api#page`,
-      name: "Platform API — embed white label analytics in your product",
+      name: "White label analytics API for your product",
       description: DESCRIPTION,
       url: `${site.url}/platform-api`,
       isPartOf: { "@id": SITE_ID },

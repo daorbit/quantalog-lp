@@ -117,19 +117,19 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "SEO audit tool with Lighthouse scores and broken link checks",
+  title: "SEO audit tool with Lighthouse scores",
   description: DESCRIPTION,
   alternates: { canonical: "/seo-audits" },
   openGraph: {
     type: "website",
     url: `${site.url}/seo-audits`,
-    title: "SEO audit tool with Lighthouse scores and broken link checks",
+    title: "SEO audit tool with Lighthouse scores",
     description: DESCRIPTION,
     images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SEO audit tool with Lighthouse scores and broken link checks",
+    title: "SEO audit tool with Lighthouse scores",
     description: DESCRIPTION,
     images: ["/OgImage.png"],
   },
@@ -140,7 +140,7 @@ export default function SeoAuditsPage() {
     {
       "@type": "WebPage",
       "@id": `${site.url}/seo-audits#page`,
-      name: "SEO audit tool with Lighthouse scores and broken link checks",
+      name: "SEO audit tool with Lighthouse scores",
       description: DESCRIPTION,
       url: `${site.url}/seo-audits`,
       isPartOf: { "@id": SITE_ID },
