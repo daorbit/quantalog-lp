@@ -51,7 +51,7 @@ function validate(data: FormData): Errors {
   else if (!EMAIL.test(email)) errors.email = "That does not look like an email address.";
 
   if (!message) errors.message = "Please write your message.";
-  else if (message.length < 10) errors.message = "A little more detail, please — at least 10 characters.";
+  else if (message.length < 10) errors.message = "Please write a little more.";
 
   return errors;
 }
