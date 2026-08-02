@@ -10,6 +10,16 @@
       ],
       "destination": "https://quantalog.daorbit.in/:path*",
       "permanent": true
+    },
+    {
+      "source": "/vs/:path*",
+      "destination": "/compare/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/vs",
+      "destination": "/compare",
+      "permanent": true
     }
   ],
   "rewrites": [

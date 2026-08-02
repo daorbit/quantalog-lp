@@ -317,4 +317,4 @@ export function getAllComparisons(): Comparison[] {
   return COMPARISONS;
 }
 
-export const comparisonUrl = (slug: string) => `${site.url}/vs/${slug}`;
+export const comparisonUrl = (slug: string) => `${site.url}/compare/${slug}`;

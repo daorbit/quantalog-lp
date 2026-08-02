@@ -1,5 +1,6 @@
+import Link from "next/link";
 import {
-  Braces, FileSearch, Gauge, Link2Off, Layers, TrendingUp,
+  ArrowRight, Braces, FileSearch, Gauge, Link2Off, Layers, TrendingUp,
 } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
@@ -83,6 +84,14 @@ export function Seo() {
             </Reveal>
           ))}
         </div>
+
+        <Link
+          href="/seo-audits"
+          className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent"
+        >
+          Everything the SEO audit checks
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </Link>
       </div>
     </section>
   );

@@ -158,9 +158,17 @@ export default function AboutPage() {
             The second thing we kept running into: traffic tells you who
             arrived, and says nothing about who never did. Teams end up paying
             for an analytics tool and an SEO tool and manually correlating the
-            two. Quantalog puts SEO audits — meta tags, structured data, broken
-            links, Lighthouse scores and Core Web Vitals — in the same dashboard
-            as the traffic they explain.
+            two. Quantalog puts{" "}
+            <Link href="/seo-audits" className="text-accent hover:underline">
+              SEO audits
+            </Link>{" "}
+            — meta tags, structured data, broken links, Lighthouse scores and
+            Core Web Vitals — in the same dashboard as the traffic they explain,
+            and sends both to whoever asked in one{" "}
+            <Link href="/reports" className="text-accent hover:underline">
+              scheduled report
+            </Link>
+            .
           </p>
         </div>
       </section>
@@ -200,7 +208,7 @@ export default function AboutPage() {
           the roadmap; it is the roadmap.
         </p>
         <Link
-          href="/vs"
+          href="/compare"
           className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent"
         >
           See how Quantalog compares to other tools

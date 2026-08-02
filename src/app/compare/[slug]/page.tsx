@@ -15,7 +15,7 @@ import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
-// Every comparison renders at build time; the whole /vs tree ships as static HTML.
+// Every comparison renders at build time; /compare ships entirely as static HTML.
 export function generateStaticParams(): Params[] {
   return getComparisonSlugs().map((slug) => ({ slug }));
 }
@@ -34,10 +34,10 @@ export async function generateMetadata({
   return {
     title: c.title,
     description: c.description,
-    alternates: { canonical: `/vs/${c.slug}` },
+    alternates: { canonical: `/compare/${c.slug}` },
     openGraph: {
       type: "article",
-      url: `${site.url}/vs/${c.slug}`,
+      url: `${site.url}/compare/${c.slug}`,
       title: c.title,
       description: c.description,
       images: ["/OgImage.png"],
@@ -92,10 +92,10 @@ export default async function ComparisonPage({
   const jsonLd = graph(
     {
       "@type": "Article",
-      "@id": `${site.url}/vs/${c.slug}#article`,
+      "@id": `${site.url}/compare/${c.slug}#article`,
       headline: c.title,
       description: c.description,
-      url: `${site.url}/vs/${c.slug}`,
+      url: `${site.url}/compare/${c.slug}`,
       inLanguage: "en",
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -111,7 +111,7 @@ export default async function ComparisonPage({
     },
     {
       "@type": "FAQPage",
-      "@id": `${site.url}/vs/${c.slug}#faq`,
+      "@id": `${site.url}/compare/${c.slug}#faq`,
       isPartOf: { "@id": SITE_ID },
       mainEntity: c.faqs.map((f) => ({
         "@type": "Question",
@@ -121,8 +121,8 @@ export default async function ComparisonPage({
     },
     breadcrumbs([
       { name: "Home", path: "/" },
-      { name: "Comparisons", path: "/vs" },
-      { name: c.title, path: `/vs/${c.slug}` },
+      { name: "Comparisons", path: "/compare" },
+      { name: c.title, path: `/compare/${c.slug}` },
     ])
   );
 
@@ -132,7 +132,7 @@ export default async function ComparisonPage({
 
       <header className="border-b border-border pb-10">
         <Link
-          href="/vs"
+          href="/compare"
           className="text-sm text-fg-muted transition hover:text-fg"
         >
           All comparisons
@@ -255,7 +255,7 @@ export default async function ComparisonPage({
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {others.map((o) => (
               <li key={o.slug}>
-                <Link href={`/vs/${o.slug}`} className="card card-hover group block p-5">
+                <Link href={`/compare/${o.slug}`} className="card card-hover group block p-5">
                   <span className="font-semibold tracking-tight transition group-hover:text-accent">
                     {o.title}
                   </span>

@@ -13,10 +13,10 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: "Analytics tool comparisons",
   description: DESCRIPTION,
-  alternates: { canonical: "/vs" },
+  alternates: { canonical: "/compare" },
   openGraph: {
     type: "website",
-    url: `${site.url}/vs`,
+    url: `${site.url}/compare`,
     title: "Analytics tool comparisons",
     description: DESCRIPTION,
   },
@@ -28,10 +28,10 @@ export default function ComparisonsIndexPage() {
   const jsonLd = graph(
     {
       "@type": "CollectionPage",
-      "@id": `${site.url}/vs#page`,
+      "@id": `${site.url}/compare#page`,
       name: "Analytics tool comparisons",
       description: DESCRIPTION,
-      url: `${site.url}/vs`,
+      url: `${site.url}/compare`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
       inLanguage: "en",
@@ -41,13 +41,13 @@ export default function ComparisonsIndexPage() {
           "@type": "ListItem",
           position: i + 1,
           name: c.title,
-          url: `${site.url}/vs/${c.slug}`,
+          url: `${site.url}/compare/${c.slug}`,
         })),
       },
     },
     breadcrumbs([
       { name: "Home", path: "/" },
-      { name: "Comparisons", path: "/vs" },
+      { name: "Comparisons", path: "/compare" },
     ])
   );
 
@@ -68,7 +68,7 @@ export default function ComparisonsIndexPage() {
       <ul className="mt-10 grid gap-4 sm:grid-cols-2">
         {comparisons.map((c) => (
           <li key={c.slug}>
-            <Link href={`/vs/${c.slug}`} className="card card-hover group block h-full p-6">
+            <Link href={`/compare/${c.slug}`} className="card card-hover group block h-full p-6">
               <h2 className="font-semibold tracking-tight transition group-hover:text-accent">
                 {c.title}
               </h2>

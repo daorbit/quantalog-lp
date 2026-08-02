@@ -18,9 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: site.url, lastModified: built, changeFrequency: "weekly", priority: 1 },
     { url: `${site.url}/docs`, lastModified: built, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/blog`, lastModified: built, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${site.url}/vs`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/compare`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     // Feature pages carry their own queries — "automated analytics reports",
     // "white label analytics API" — that the homepage cannot rank for.
+    { url: `${site.url}/seo-audits`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/reports`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/platform-api`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/about`, lastModified: built, changeFrequency: "yearly", priority: 0.5 },
@@ -38,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // High priority: "X alternative" is the highest-intent query the site can
   // answer, and these are the only pages written for it.
   const comparisonRoutes: MetadataRoute.Sitemap = comparisons.map((c) => ({
-    url: `${site.url}/vs/${c.slug}`,
+    url: `${site.url}/compare/${c.slug}`,
     lastModified: built,
     changeFrequency: "monthly",
     priority: 0.8,

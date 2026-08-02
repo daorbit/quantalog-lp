@@ -4,9 +4,9 @@ import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
 const namedComparisons = [
-  { href: "/vs/google-analytics-alternative", label: "vs Google Analytics" },
-  { href: "/vs/plausible-alternative", label: "vs Plausible" },
-  { href: "/vs/matomo-alternative", label: "vs Matomo" },
+  { href: "/compare/google-analytics-alternative", label: "vs Google Analytics" },
+  { href: "/compare/plausible-alternative", label: "vs Plausible" },
+  { href: "/compare/matomo-alternative", label: "vs Matomo" },
 ];
 
 /**

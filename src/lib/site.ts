@@ -16,14 +16,44 @@ export const site = {
   email: "daorbit2k25@gmail.com",
 } as const;
 
-// Where a feature has a page of its own, the nav points at the page rather
-// than the homepage anchor: a crawlable URL can rank, a fragment cannot.
+/**
+ * Header navigation.
+ *
+ * Every feature that has a page of its own is linked by URL rather than by a
+ * homepage anchor — a crawlable page can rank, a fragment cannot, and the
+ * header is the strongest internal link on the site.
+ *
+ * The feature pages are grouped under one menu instead of sitting flat: seven
+ * top-level items was already the ceiling, and a nav that scrolls is worse for
+ * a visitor than one that nests.
+ */
+export const productNav = [
+  {
+    href: "/#features",
+    label: "Features",
+    blurb: "Real-time traffic, funnels, goals and retention",
+  },
+  {
+    href: "/seo-audits",
+    label: "SEO audits",
+    blurb: "Lighthouse scores, broken links and structured data",
+  },
+  {
+    href: "/reports",
+    label: "Reports",
+    blurb: "Scheduled email and WhatsApp summaries for clients",
+  },
+  {
+    href: "/platform-api",
+    label: "Platform API",
+    blurb: "White label analytics for your own customers",
+  },
+] as const;
+
 export const nav = [
-  { href: "/#features", label: "Features" },
-  { href: "/#seo", label: "SEO" },
-  { href: "/reports", label: "Reports" },
-  { href: "/platform-api", label: "Platform API" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
   { href: "/blog", label: "Blog" },
+  { href: "/compare", label: "Compare" },
+  { href: "/about", label: "About" },
 ] as const;

@@ -7,8 +7,9 @@ const columns = [
     title: "Product",
     links: [
       { href: "/#features", label: "Features" },
-      { href: "/platform-api", label: "Platform API" },
+      { href: "/seo-audits", label: "SEO audits" },
       { href: "/reports", label: "Reports" },
+      { href: "/platform-api", label: "Platform API" },
       { href: "/#pricing", label: "Pricing" },
       { href: "/docs", label: "Docs" },
     ],
@@ -17,7 +18,7 @@ const columns = [
     title: "Resources",
     links: [
       { href: "/blog", label: "Blog" },
-      { href: "/vs", label: "Comparisons" },
+      { href: "/compare", label: "Comparisons" },
       { href: "/about", label: "About" },
       { href: site.github, label: "GitHub", external: true },
       { href: `mailto:${site.email}`, label: "Contact", external: true },

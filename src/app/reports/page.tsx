@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
+  ArrowRight,
   CalendarClock,
   CheckCircle2,
   FileSpreadsheet,
@@ -218,6 +220,25 @@ export default function ReportsPage() {
             immediately — there is no link to revoke afterwards.
           </p>
         </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+          Traffic and SEO in one send
+        </h2>
+        <p className="mt-6 text-pretty leading-relaxed text-fg-muted">
+          A report is not two attachments from two tools. Audit scores and what
+          moved since the last run sit in the same email as the visitor numbers,
+          because the person reading it wants one answer about how the site is
+          doing — not a reconciliation exercise.
+        </p>
+        <Link
+          href="/seo-audits"
+          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent"
+        >
+          What the SEO audit checks
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </Link>
       </section>
 
       <section className="mt-16">
