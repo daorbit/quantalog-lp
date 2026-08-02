@@ -24,18 +24,26 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.png", type: "image/png" }],
     apple: [{ url: "/favicon.png", type: "image/png" }],
   },
+  // Google ignores this tag; Bing and several AI crawlers still read it, and it
+  // costs nothing. The terms that matter are carried by the headings and body
+  // copy, not here.
   keywords: [
     "web analytics",
     "real-time analytics",
     "privacy-first analytics",
     "cookieless analytics",
+    "analytics without cookie banner",
+    "GDPR compliant analytics",
     "embedded analytics",
+    "white label analytics",
     "multi-tenant analytics API",
     "SEO audit tool",
     "Lighthouse SEO report",
     "broken link checker",
     "Core Web Vitals monitoring",
+    "Google Analytics alternative",
     "Plausible alternative",
+    "Matomo alternative",
   ],
   openGraph: {
     type: "website",

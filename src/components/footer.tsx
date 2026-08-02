@@ -16,6 +16,7 @@ const columns = [
     title: "Resources",
     links: [
       { href: "/blog", label: "Blog" },
+      { href: "/vs", label: "Comparisons" },
       { href: site.github, label: "GitHub", external: true },
       { href: `mailto:${site.email}`, label: "Contact", external: true },
     ],

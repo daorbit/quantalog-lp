@@ -45,8 +45,9 @@ export function Hero() {
             <br className="hidden sm:block" /> your traffic.
             <span className="sr-only">
               {" "}
-              Quantalog is privacy-first, cookieless web analytics with a
-              real-time dashboard and an embeddable multi-tenant API.
+              Quantalog is privacy-first, cookieless web analytics — a
+              GDPR-friendly Google Analytics alternative with a real-time
+              dashboard, built-in SEO audits and an embeddable multi-tenant API.
             </span>
           </h1>
 

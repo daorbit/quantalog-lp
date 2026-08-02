@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { getAllDocs } from "@/lib/docs";
+import { getAllComparisons } from "@/lib/comparisons";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const docs = getAllDocs();
+  const comparisons = getAllComparisons();
 
   // The site is statically exported, so "last modified" is build time. That is
   // honest for pages without their own date, and it stops every URL from
@@ -16,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: site.url, lastModified: built, changeFrequency: "weekly", priority: 1 },
     { url: `${site.url}/docs`, lastModified: built, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/blog`, lastModified: built, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${site.url}/vs`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/privacy`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
     { url: `${site.url}/terms`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
   ];
@@ -27,6 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // High priority: "X alternative" is the highest-intent query the site can
+  // answer, and these are the only pages written for it.
+  const comparisonRoutes: MetadataRoute.Sitemap = comparisons.map((c) => ({
+    url: `${site.url}/vs/${c.slug}`,
+    lastModified: built,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${site.url}/blog/${post.slug}`,
     lastModified: post.date,
@@ -34,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...docRoutes, ...postRoutes];
+  return [...staticRoutes, ...comparisonRoutes, ...docRoutes, ...postRoutes];
 }

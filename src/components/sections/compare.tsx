@@ -1,6 +1,13 @@
-import { Check, Minus } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check, Minus } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
+
+const namedComparisons = [
+  { href: "/vs/google-analytics-alternative", label: "vs Google Analytics" },
+  { href: "/vs/plausible-alternative", label: "vs Plausible" },
+  { href: "/vs/matomo-alternative", label: "vs Matomo" },
+];
 
 /**
  * How Quantalog sits against the two things it actually replaces.
@@ -116,6 +123,22 @@ export function Compare() {
           Categories, not specific products — capabilities vary between vendors
           in each column.
         </p>
+
+        {/* Named comparisons live on their own pages, where a claim about one
+            product can be specific enough to be checked. */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm">
+          <span className="text-fg-muted">Comparing a specific tool?</span>
+          {namedComparisons.map((c) => (
+            <Link
+              key={c.href}
+              href={c.href}
+              className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-medium transition hover:border-accent hover:text-accent"
+            >
+              {c.label}
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
