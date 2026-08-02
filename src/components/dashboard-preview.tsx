@@ -1,5 +1,15 @@
-// A static mock of the real dashboard. Deliberately not interactive and not a
-// chart library: it renders identically on the server, so SSG output is stable.
+"use client";
+
+// A mock of the real dashboard. Not a chart library and not real data: every
+// figure below is a constant, so the server and the first client render agree
+// and the page stays statically exported.
+//
+// It does move, though. The product sells "real-time", and a frozen screenshot
+// captioned "polling 3s" argues against the pitch — so the counters drift and
+// the chart draws itself once the page is interactive. The drift starts after
+// mount, never on the server.
+
+import { useLiveNumber } from "./use-live-number";
 
 const SERIES = [
   18, 24, 21, 30, 27, 36, 33, 44, 39, 52, 47, 61, 55, 72, 66, 84, 78, 96, 88, 74,
@@ -40,15 +50,43 @@ function linePath(values: number[]) {
   return d;
 }
 
-function Stat({ label, value, delta }: { label: string; value: string; delta: string }) {
+/**
+ * One headline number.
+ *
+ * `seed` is what renders on the server. If `live` is set the digits drift after
+ * mount and flash on change; the rest (bounce rate, session length) hold still,
+ * because a metric that jitters every three seconds reads as noise rather than
+ * as traffic arriving.
+ */
+function Stat({
+  label,
+  seed,
+  delta,
+  live = false,
+  format = (n: number) => n.toLocaleString("en-US"),
+  every,
+}: {
+  label: string;
+  seed: number;
+  delta: string;
+  live?: boolean;
+  format?: (n: number) => string;
+  every?: number;
+}) {
+  const { value, bumped } = useLiveNumber(seed, { every, drift: Math.max(2, seed * 0.0006) });
+  const shown = live ? value : seed;
+
   return (
     <div className="border-border px-5 py-4 not-last:border-b sm:not-last:border-b-0 sm:not-last:border-r">
       <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
         {label}
       </p>
       <div className="mt-2 flex items-baseline gap-2">
-        <p className="text-[1.75rem] font-semibold leading-none tabular-nums tracking-[-0.02em]">
-          {value}
+        <p
+          className="tick-num text-[1.75rem] font-semibold leading-none tracking-[-0.02em]"
+          data-bumped={live && bumped}
+        >
+          {format(shown)}
         </p>
         <span className="rounded bg-accent/10 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-accent">
           {delta}
@@ -76,11 +114,12 @@ function BarList({
         <span className="text-[11px] uppercase tracking-wide text-fg-faint">{unit}</span>
       </div>
       <ul className="mt-4 space-y-1.5">
-        {rows.map((row) => (
+        {rows.map((row, i) => (
           <li key={row.label} className="relative overflow-hidden rounded">
             <div
-              className="absolute inset-y-0 left-0 bg-accent/[0.13]"
-              style={{ width: `${row.pct}%` }}
+              className="bar-fill absolute inset-y-0 left-0 bg-accent/[0.13]"
+              // Staggered so the list fills top-down, the way a query returns.
+              style={{ width: `${row.pct}%`, animationDelay: `${0.5 + i * 0.09}s` }}
               aria-hidden="true"
             />
             <div className="absolute inset-y-0 left-0 w-0.5 bg-accent/50" aria-hidden="true" />
@@ -101,6 +140,14 @@ export function DashboardPreview() {
   const pts = points(SERIES);
   const last = pts[pts.length - 1];
 
+  // Concurrent visitors move faster and swing wider than the daily totals —
+  // that contrast is what makes the number read as "right now".
+  const { value: online, bumped: onlineBumped } = useLiveNumber(42, {
+    every: 2400,
+    drift: 3,
+    band: 0.22,
+  });
+
   return (
     <div className="card overflow-hidden shadow-float">
       {/* Window chrome */}
@@ -113,7 +160,11 @@ export function DashboardPreview() {
         <div className="mx-auto flex items-center gap-2 rounded-md border border-border bg-surface px-3 py-1 shadow-soft">
           <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
           <span className="font-mono text-[11px] text-fg-muted">
-            acme.com · <span className="text-fg">42</span> visitors online
+            quantalog.daorbit.in ·{" "}
+            <span className="tick-num text-fg" data-bumped={onlineBumped}>
+              {online}
+            </span>{" "}
+            visitors online
           </span>
         </div>
         <div className="hidden items-center gap-1 sm:flex" aria-hidden="true">
@@ -132,11 +183,16 @@ export function DashboardPreview() {
         </div>
       </div>
 
-      <div className="grid border-b border-border sm:grid-cols-4">
-        <Stat label="Visitors" value="12,847" delta="+18.2%" />
-        <Stat label="Pageviews" value="41,203" delta="+11.4%" />
-        <Stat label="Bounce rate" value="34%" delta="−6.1%" />
-        <Stat label="Avg. session" value="2m 41s" delta="+9.8%" />
+      <div className="stat-sweep relative grid overflow-hidden border-b border-border sm:grid-cols-4">
+        <Stat label="Visitors" seed={12847} delta="+18.2%" live every={3000} />
+        <Stat label="Pageviews" seed={41203} delta="+11.4%" live every={2100} />
+        <Stat label="Bounce rate" seed={34} delta="−6.1%" format={(n) => `${n}%`} />
+        <Stat
+          label="Avg. session"
+          seed={161}
+          delta="+9.8%"
+          format={(n) => `${Math.floor(n / 60)}m ${n % 60}s`}
+        />
       </div>
 
       {/* Traffic area chart */}
@@ -180,8 +236,17 @@ export function DashboardPreview() {
             />
           ))}
 
-          <path d={`${linePath(SERIES)} L ${W},${H} L 0,${H} Z`} fill="url(#q-fill)" />
           <path
+            className="chart-area"
+            d={`${linePath(SERIES)} L ${W},${H} L 0,${H} Z`}
+            fill="url(#q-fill)"
+          />
+          {/* Drawn with a dash offset equal to its own length, so it paints in
+              from the left instead of appearing all at once. The length is an
+              over-estimate of the path — exact is unnecessary, too short is not. */}
+          <path
+            className="chart-line"
+            style={{ "--line-len": "1400" } as React.CSSProperties}
             d={linePath(SERIES)}
             fill="none"
             stroke="var(--accent)"
@@ -190,7 +255,14 @@ export function DashboardPreview() {
             vectorEffect="non-scaling-stroke"
           />
           {/* Leading edge marker — the "this is happening now" cue. */}
-          <circle cx={last[0]} cy={last[1]} r="7" fill="var(--accent)" opacity="0.18" />
+          <circle
+            className="chart-edge"
+            cx={last[0]}
+            cy={last[1]}
+            r="7"
+            fill="var(--accent)"
+            opacity="0.18"
+          />
           <circle
             cx={last[0]}
             cy={last[1]}

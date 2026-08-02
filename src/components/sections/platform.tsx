@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CodeCard } from "../code-card";
 import { SectionHeading } from "../ui";
@@ -90,14 +91,23 @@ export function Platform() {
           </div>
         </Reveal>
 
-        <a
-          href={site.docs}
-          onClick={() => track("read_docs", { location: "platform" })}
-          className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent"
-        >
-          Read the API reference
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-        </a>
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
+          <Link
+            href="/platform-api"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-accent"
+          >
+            How the Platform API works
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
+          <a
+            href={site.docs}
+            onClick={() => track("read_docs", { location: "platform" })}
+            className="group inline-flex items-center gap-2 text-sm font-medium text-fg-muted transition hover:text-fg"
+          >
+            Read the API reference
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </a>
+        </div>
       </div>
     </section>
   );

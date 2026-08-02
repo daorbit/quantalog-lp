@@ -1,4 +1,5 @@
-import { ArrowDownRight, ArrowUpRight, CalendarClock, FileSpreadsheet, MessageCircle, Users } from "lucide-react";
+import Link from "next/link";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, CalendarClock, FileSpreadsheet, MessageCircle, Users } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
@@ -143,6 +144,14 @@ export function Reports() {
             <EmailPreview />
           </Reveal>
         </div>
+
+        <Link
+          href="/reports"
+          className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent"
+        >
+          Everything scheduled reports can do
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </Link>
       </div>
     </section>
   );

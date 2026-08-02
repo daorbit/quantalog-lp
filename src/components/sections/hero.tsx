@@ -3,7 +3,13 @@ import { site } from "@/lib/site";
 import { Button } from "../ui";
 import { DashboardPreview } from "../dashboard-preview";
 
-const trustPoints = ["Under 1 KB", "No cookies", "Live in ~3s", "GDPR-ready"];
+/* Each claim is a number a visitor can check, not an adjective. */
+const trustPoints = [
+  { value: "<1 KB", label: "tracker size" },
+  { value: "0", label: "cookies set" },
+  { value: "~3s", label: "to first data" },
+  { value: "100%", label: "of visitors counted" },
+];
 
 export function Hero() {
   return (
@@ -84,11 +90,17 @@ export function Hero() {
             </Button>
           </div>
 
-          <ul className="rise rise-5 mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          {/* Read as a spec strip rather than a bullet list: on an analytics
+              page the numbers are the argument, so they get the weight. */}
+          <ul className="rise rise-5 mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
             {trustPoints.map((point) => (
-              <li key={point} className="flex items-center gap-1.5 text-xs text-fg-faint">
-                <span className="h-1 w-1 rounded-full bg-accent" aria-hidden="true" />
-                {point}
+              <li key={point.label} className="text-center">
+                <p className="text-[1.5rem] font-semibold leading-none tracking-[-0.03em] text-accent">
+                  {point.value}
+                </p>
+                <p className="mt-1.5 text-[11px] uppercase tracking-[0.08em] text-fg-faint">
+                  {point.label}
+                </p>
               </li>
             ))}
           </ul>

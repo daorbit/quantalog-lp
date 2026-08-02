@@ -19,6 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/docs`, lastModified: built, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/blog`, lastModified: built, changeFrequency: "weekly", priority: 0.8 },
     { url: `${site.url}/vs`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
+    // Feature pages carry their own queries — "automated analytics reports",
+    // "white label analytics API" — that the homepage cannot rank for.
+    { url: `${site.url}/reports`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/platform-api`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/about`, lastModified: built, changeFrequency: "yearly", priority: 0.5 },
     { url: `${site.url}/privacy`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
     { url: `${site.url}/terms`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
   ];

@@ -16,11 +16,13 @@ export const site = {
   email: "daorbit2k25@gmail.com",
 } as const;
 
+// Where a feature has a page of its own, the nav points at the page rather
+// than the homepage anchor: a crawlable URL can rank, a fragment cannot.
 export const nav = [
   { href: "/#features", label: "Features" },
   { href: "/#seo", label: "SEO" },
-  { href: "/#compare", label: "Compare" },
-  { href: "/#platform", label: "Platform API" },
+  { href: "/reports", label: "Reports" },
+  { href: "/platform-api", label: "Platform API" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
   { href: "/blog", label: "Blog" },
