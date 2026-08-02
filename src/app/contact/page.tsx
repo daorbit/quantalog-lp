@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen, Github, Mail, MessageSquare } from "lucide-react";
+import { BookOpen, Clock, Mail, MessageSquare, ShieldCheck } from "lucide-react";
 import { Eyebrow } from "@/components/ui";
 import { ContactForm } from "@/components/contact-form";
 import { JsonLd } from "@/components/json-ld";
@@ -19,14 +19,14 @@ const DESCRIPTION =
  * asking to sit in your page's critical path, is a fair question to have.
  */
 
+/** What someone can expect, stated before they spend effort on the form. */
+const promises = [
+  { icon: Clock, text: "A reply within one working day" },
+  { icon: Mail, text: "A receipt in your inbox straight away" },
+  { icon: ShieldCheck, text: "No mailing list, ever" },
+];
+
 const elsewhere = [
-  {
-    icon: BookOpen,
-    title: "Read the docs first",
-    body: "Installation, custom events, the Platform API reference and how the privacy model works are all documented.",
-    href: "/docs",
-    cta: "Browse the docs",
-  },
   {
     icon: MessageSquare,
     title: "Try it before you ask",
@@ -36,12 +36,11 @@ const elsewhere = [
     external: true,
   },
   {
-    icon: Github,
-    title: "Something broken?",
-    body: "Bug reports and feature requests are welcome on GitHub, where they stay visible instead of disappearing into an inbox.",
-    href: site.github,
-    cta: "Open an issue",
-    external: true,
+    icon: BookOpen,
+    title: "The answer may be written down",
+    body: "Installation, custom events, the Platform API reference and how the privacy model works are all documented.",
+    href: "/docs",
+    cta: "Browse the docs",
   },
 ];
 
@@ -87,41 +86,55 @@ export default function ContactPage() {
     <div className="mx-auto max-w-5xl px-5 py-16">
       <JsonLd data={jsonLd} />
 
-      <header className="max-w-2xl">
-        <Eyebrow>Contact</Eyebrow>
+      <header className="mx-auto max-w-2xl text-center">
+        <div className="flex justify-center">
+          <Eyebrow>Contact</Eyebrow>
+        </div>
         <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
           Talk to a <span className="text-accent">person</span>.
         </h1>
         <p className="mt-6 text-pretty text-lg leading-relaxed text-fg-muted">
           Questions about pricing, whether the tracking model fits your
           compliance position, or what you are trying to build on the Platform
-          API — send it over. There is no ticket queue and no chatbot in front
-          of it.
+          API — send it over. No ticket queue, no chatbot in front of it.
         </p>
+
+        {/* Set expectations before the form, not after it: the cost of filling
+            this in is decided here, and "we'll reply in a day" is the thing
+            that makes it worth the effort. */}
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          {promises.map((p) => (
+            <li key={p.text} className="flex items-center gap-2 text-sm text-fg-muted">
+              <p.icon className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+              {p.text}
+            </li>
+          ))}
+        </ul>
       </header>
 
-      <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1fr_320px]">
+      {/* The form is the page. It gets the full column and the sidebar becomes
+          a footer, rather than two half-width columns where neither reads well. */}
+      <div className="mx-auto mt-14 max-w-2xl">
         <ContactForm />
 
-        <aside className="space-y-4">
-          <div className="card p-6">
-            <Mail className="h-5 w-5 text-accent" aria-hidden="true" />
-            <h2 className="mt-4 text-[15px] font-semibold tracking-tight">
-              Prefer your own mail client?
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-              Write to{" "}
-              <a href={`mailto:${site.email}`} className="text-accent hover:underline">
-                {site.email}
-              </a>{" "}
-              — it reaches the same place as the form.
-            </p>
-          </div>
+        <p className="mt-5 text-center text-sm text-fg-muted">
+          Prefer your own mail client? Write to{" "}
+          <a href={`mailto:${site.email}`} className="text-accent hover:underline">
+            {site.email}
+          </a>{" "}
+          — it reaches the same place.
+        </p>
+      </div>
 
+      <div className="mx-auto mt-20 max-w-3xl border-t border-border pt-12">
+        <h2 className="text-center text-sm font-semibold uppercase tracking-[0.1em] text-fg-faint">
+          Might be faster
+        </h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {elsewhere.map((item) => (
             <div key={item.title} className="card p-6">
               <item.icon className="h-5 w-5 text-accent" aria-hidden="true" />
-              <h2 className="mt-4 text-[15px] font-semibold tracking-tight">{item.title}</h2>
+              <h3 className="mt-4 text-[15px] font-semibold tracking-tight">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.body}</p>
               {item.external ? (
                 <a
@@ -142,7 +155,7 @@ export default function ContactPage() {
               )}
             </div>
           ))}
-        </aside>
+        </div>
       </div>
     </div>
   );

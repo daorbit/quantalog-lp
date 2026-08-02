@@ -115,6 +115,17 @@ body {
 *::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 6px; }
 *::-webkit-scrollbar-thumb:hover { background: var(--fg-faint); }
 
+/* Tailwind v4 dropped the preflight rule that gave buttons a pointer cursor,
+   so every button on the site was showing the default arrow. Restored here
+   rather than as a utility on each one — a control that does something on
+   click should say so, everywhere, without anyone remembering to add it. */
+:where(button, [role="button"], summary, select):not(:disabled) {
+  cursor: pointer;
+}
+:where(button, [role="button"], select):disabled {
+  cursor: not-allowed;
+}
+
 /* One consistent focus ring everywhere, instead of the browser default. */
 :where(a, button, summary, input, [tabindex]):focus-visible {
   outline: 2px solid var(--ring);
@@ -249,15 +260,28 @@ body {
   box-shadow: 0 0 0 3px var(--ring);
   outline: none;
 }
-/* The native arrow is drawn in the OS accent and ignores the dark theme, so the
-   select gets its own chevron and hides the built-in one. */
-select.q-input {
-  appearance: none;
-  padding-right: 2.25rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.7rem center;
-  background-size: 1rem;
+/* A message under the field says what is wrong; the border is what makes the
+   field findable in the first place. */
+.q-input[aria-invalid="true"] {
+  border-color: rgb(239 68 68 / 0.6);
+}
+.q-input[aria-invalid="true"]:focus {
+  border-color: rgb(239 68 68);
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.18);
+}
+/* Native `<select>` is not used anywhere: its option list is drawn by the OS
+   and no page styling reaches it, so `SelectField` renders a real listbox
+   instead. Its trigger reuses `.q-input` for the box, and overrides the block
+   display so the label and chevron sit on one row. */
+.q-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  /* Matches the line box an <input> gets from its own text, so the trigger is
+     exactly as tall as the fields beside it. */
+  line-height: 1.5;
+  text-align: left;
 }
 
 /* Cards: hairline top highlight + lift on hover. */
