@@ -113,7 +113,7 @@ export function ContactForm() {
       form.reset();
       // Stays "sending" through the navigation: flipping back to idle would
       // flash an empty form for the moment before the route changes.
-      router.push("/contact/thank-you");
+      router.push("/thank-you");
     } catch (err) {
       // A failed fetch throws TypeError with a message about the network that
       // means nothing to a visitor — say what it means for them instead.
