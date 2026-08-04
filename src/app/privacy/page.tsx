@@ -27,7 +27,12 @@ export default function PrivacyPage() {
 
       <h2>What the tracker does not collect</h2>
       <ul>
-        <li>No cookies are set, and nothing is written to localStorage.</li>
+        <li>
+          No cookies are set, and the tracker writes nothing to localStorage.
+          (This website — not the tracker — stores one flag to remember that you
+          closed the newsletter dialog, so it is not shown again. It identifies
+          nobody and is never sent anywhere.)
+        </li>
         <li>No cross-site identifier is created, so no browsing profile exists.</li>
         <li>No raw IP address is stored. It is hashed on receipt and discarded.</li>
         <li>No form input, keystrokes, session recordings or mouse movement.</li>
