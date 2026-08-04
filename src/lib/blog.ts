@@ -1,5 +1,8 @@
 import type { ComponentType } from "react";
 import { introducingQuantalog } from "@/content/posts/introducing-quantalog";
+import { cookieBannerAnalytics } from "@/content/posts/cookie-banner-analytics";
+import { whyAnalyticsUndercountsTraffic } from "@/content/posts/why-analytics-undercounts-traffic";
+import { coreWebVitals } from "@/content/posts/core-web-vitals-what-moves-the-score";
 
 export type PostMeta = {
   slug: string;
@@ -19,7 +22,12 @@ export type Post = PostMeta & {
 // The single registry of published posts. Adding a post = write a file under
 // src/content/posts and add it here. When a CMS lands, only this array's source
 // changes — every consumer below (and the pages) keeps working unchanged.
-const POSTS: Post[] = [introducingQuantalog];
+const POSTS: Post[] = [
+  introducingQuantalog,
+  cookieBannerAnalytics,
+  whyAnalyticsUndercountsTraffic,
+  coreWebVitals,
+];
 
 const sorted = () => [...POSTS].sort((a, b) => +new Date(b.date) - +new Date(a.date));
 

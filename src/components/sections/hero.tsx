@@ -41,27 +41,26 @@ export function Hero() {
             <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
 
-          {/* The visible headline is a hook and says nothing about what the
-              product is, which leaves a crawler with no topic for the page's
-              most important element. The screen-reader-only span gives the H1
-              that context without altering what a visitor sees. */}
+          {/* The H1 states the category in words a visitor actually sees.
+              An earlier version kept the hook visible and appended the
+              keywords in an `sr-only` span — text written for crawlers and
+              hidden from people, which is what Google's spam policy calls
+              hidden text, and it sat in the most important element on the
+              site. The hook survives in the second line; the first line now
+              does the work the hidden span was doing. */}
           <h1 className="rise rise-2 headline mt-8 text-balance text-[2.75rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-[4.25rem]">
-            Your analytics miss up to{" "}
-            <span className="underline-sketch text-accent">half</span>
-            <br className="hidden sm:block" /> your traffic.
-            <span className="sr-only">
-              {" "}
-              Quantalog is privacy-first, cookieless web analytics — a
-              GDPR-friendly Google Analytics alternative with a real-time
-              dashboard, built-in SEO audits and an embeddable multi-tenant API.
-            </span>
+            Cookieless web analytics
+            <br className="hidden sm:block" /> that counts the{" "}
+            <span className="underline-sketch text-accent">half</span> others
+            miss.
           </h1>
 
           <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
-            Cookie-based tools only measure the visitors who accept the banner.
-            The rest stay invisible. Quantalog sets no cookies and stores no
-            personal data — so there is no banner to decline, and nothing to
-            miss.
+            A privacy-first Google Analytics alternative with real-time
+            dashboards, built-in SEO audits and an embeddable API. Cookie-based
+            tools only measure the visitors who accept the banner — Quantalog
+            sets no cookies and stores no personal data, so there is no banner
+            to decline and nothing to miss.
           </p>
 
           <div className="rise rise-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
