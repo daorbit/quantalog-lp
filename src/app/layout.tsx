@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { NewsletterDialog } from "@/components/newsletter-dialog";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -87,6 +88,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          {/* Opens itself once per visitor, after a delay, and never again once
+              dismissed. It excludes the pages where asking would be tactless —
+              see the component. */}
+          <NewsletterDialog />
         </ThemeProvider>
 
         {/* Quantalog eats its own dog food: this landing page is tracked by Quantalog. */}

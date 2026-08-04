@@ -722,3 +722,52 @@ body {
   color: #ef4444;
   background: color-mix(in srgb, #ef4444 14%, transparent);
 }
+
+/* ----------------------------- newsletter dialog --------------------------- */
+
+/* The backdrop and the card animate separately: the backdrop only fades, while
+   the card also rises and scales a little. Moving both the same way reads as
+   one flat sheet sliding in; moving them differently gives the card depth
+   without a shadow doing the work. */
+@keyframes nl-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes nl-card-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes nl-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes nl-card-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(10px) scale(0.98); }
+}
+
+.nl-backdrop {
+  animation: nl-backdrop-in 0.25s ease both;
+}
+.nl-card {
+  /* The same easing the hero uses — a slight overshoot, so the card settles
+     rather than stopping dead. */
+  animation: nl-card-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Closing is faster than opening. A dismissal that takes as long as the
+   entrance feels like the dialog is arguing. */
+.nl-closing .nl-backdrop {
+  animation: nl-backdrop-out 0.18s ease both;
+}
+.nl-closing .nl-card {
+  animation: nl-card-out 0.18s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nl-backdrop,
+  .nl-card,
+  .nl-closing .nl-backdrop,
+  .nl-closing .nl-card {
+    animation: none;
+  }
+}
