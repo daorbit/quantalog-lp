@@ -18,6 +18,7 @@ import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
 import { privacy } from "@/content/docs/privacy";
 import { demo } from "@/content/docs/demo";
+import { billing } from "@/content/docs/billing";
 
 export type DocCategory = "Getting started" | "Tracking" | "Platform API";
 
@@ -40,6 +41,7 @@ export type Doc = DocMeta & {
 const DOCS: Doc[] = [
   overview,
   demo,
+  billing,
   tracking,
   scriptOptions,
   customEvents,
