@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { SectionHeading } from "../ui";
+import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "../plan-icons";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 
@@ -184,7 +185,18 @@ export function Pricing() {
                         style={{ background: "var(--glow)" }}
                         aria-hidden="true"
                       />
-                      <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full bg-accent px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-accent-fg shadow-soft">
+                      {/* Carries the plan's own tier gradient rather than the
+                          site accent, so the badge matches the diamond above
+                          it instead of reading as generic chrome. */}
+                      <span
+                        className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide shadow-soft"
+                        style={{
+                          background:
+                            PLAN_GRADIENTS[plan.slug] ?? PLAN_ACCENTS[plan.slug] ?? "#8b5cf6",
+                          // The gold ramp is too light for white text.
+                          color: PLAN_ON_ACCENT[plan.slug] ?? "#fff",
+                        }}
+                      >
                         Most popular
                       </span>
                     </>

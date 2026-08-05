@@ -21,6 +21,29 @@ export const PLAN_ACCENTS: Record<string, string> = {
   pro: "#d9a441",
 };
 
+/**
+ * The same ramps as the icons, as CSS gradients, for surfaces beside the mark.
+ *
+ * Free is absent on purpose — flat slate, so the free tier doesn't get emphasis
+ * it isn't meant to have. Callers fall back to `PLAN_ACCENTS`.
+ */
+export const PLAN_GRADIENTS: Record<string, string> = {
+  starter: `linear-gradient(135deg, ${STARTER_GRADIENT[0]}, ${STARTER_GRADIENT[1]})`,
+  pro: `linear-gradient(135deg, ${PRO_GRADIENT[0]} 0%, ${PRO_GRADIENT[1]} 45%, ${PRO_GRADIENT[2]} 100%)`,
+};
+
+/**
+ * Text colour to put on top of each tier's fill.
+ *
+ * Not always white: Pro's ramp runs through a bright band that white text
+ * disappears into, so the gold tier takes near-black instead.
+ */
+export const PLAN_ON_ACCENT: Record<string, string> = {
+  free: "#ffffff",
+  starter: "#ffffff",
+  pro: "#3b2503",
+};
+
 function DiamondPaths() {
   return (
     <>
