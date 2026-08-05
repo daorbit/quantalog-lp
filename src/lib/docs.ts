@@ -19,6 +19,7 @@ import { apiReference } from "@/content/docs/api-reference";
 import { privacy } from "@/content/docs/privacy";
 import { demo } from "@/content/docs/demo";
 import { billing } from "@/content/docs/billing";
+import { segmentsMarkers } from "@/content/docs/segments-markers";
 
 export type DocCategory = "Getting started" | "Tracking" | "Platform API";
 
@@ -56,6 +57,7 @@ const DOCS: Doc[] = [
   publicDashboards,
   seo,
   emailReports,
+  segmentsMarkers,
   platformApi,
   apiReference,
   privacy,
