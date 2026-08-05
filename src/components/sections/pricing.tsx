@@ -190,7 +190,10 @@ export function Pricing() {
                     </>
                   )}
 
-                  <h3 className="text-[15px] font-semibold tracking-tight">{plan.name}</h3>
+                  <div className="flex items-center gap-2.5">
+                    <PlanIcon slug={plan.slug} size={26} uid="pricing" />
+                    <h3 className="text-[15px] font-semibold tracking-tight">{plan.name}</h3>
+                  </div>
                   <p className="mt-1.5 min-h-10 text-sm leading-relaxed text-fg-muted">
                     {plan.description}
                   </p>
