@@ -29,7 +29,9 @@ export const PLAN_ACCENTS: Record<string, string> = {
  */
 export const PLAN_GRADIENTS: Record<string, string> = {
   starter: `linear-gradient(135deg, ${STARTER_GRADIENT[0]}, ${STARTER_GRADIENT[1]})`,
-  pro: `linear-gradient(135deg, ${PRO_GRADIENT[0]} 0%, ${PRO_GRADIENT[1]} 45%, ${PRO_GRADIENT[2]} 100%)`,
+  // Lighter than the icon's ramp on purpose: a ribbon carries a label, and
+  // dark text on the icon's deepest amber falls under the 3:1 contrast floor.
+  pro: "linear-gradient(135deg, #d97706 0%, #fcd34d 50%, #e59819 100%)",
 };
 
 /**
