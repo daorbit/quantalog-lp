@@ -19,8 +19,6 @@ type ResolvedPlan = {
   slug: string;
   name: string;
   description: string;
-  maxWorkspaces: number;
-  maxSitesPerWorkspace: number;
   monthlyAuditQuota: number;
   monthlyCrawlQuota: number;
   features: string[];
@@ -37,10 +35,18 @@ function plural(n: number, word: string) {
   return `${n} ${word}${n === 1 ? "" : "s"}`;
 }
 
+/**
+ * Sites one workspace holds, on every tier. Mirrors the API's constant of the
+ * same name — a workspace is what is priced, so this is a property of the
+ * product rather than a difference between plans.
+ */
+const MAX_SITES_PER_WORKSPACE = 2;
+
 function planFeatures(plan: ResolvedPlan): string[] {
   return [
-    plural(plan.maxWorkspaces, "workspace"),
-    `${plan.maxSitesPerWorkspace} sites per workspace`,
+    // Priced per workspace, so the tier does not cap how many an account can
+    // have — it decides what each one costs and what it can do.
+    `${MAX_SITES_PER_WORKSPACE} sites per workspace`,
     `${plan.monthlyAuditQuota} SEO audits / month`,
     `${plural(plan.monthlyCrawlQuota, "site crawl")} / month`,
     // Spelled out rather than left to `plan.features`: the recipient cap is the
