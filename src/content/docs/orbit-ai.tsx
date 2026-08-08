@@ -25,14 +25,25 @@ function Body() {
         you at <b>Help &amp; support</b> instead of guessing.
       </P>
 
-      <H2 id="what-it-cannot-see">What it cannot see</H2>
+      <H2 id="what-it-cannot-see">What it can and cannot see</H2>
       <P>
-        Orbit has no access to your account, your workspaces, or your analytics.
-        Ask it what your traffic was yesterday and it will tell you it cannot
-        read your data and send you to the Analytics page.
+        On <b>Orbit Free</b> and <b>Orbit Starter</b>, Orbit has no access to
+        your account, your workspaces, or your analytics. Ask it what your
+        traffic was yesterday and it will tell you it cannot read your data and
+        send you to the Analytics page.
+      </P>
+      <P>
+        On <b>Orbit Pro</b>, it can. A short summary of the workspace you are in
+        — the last seven days of visitors, pageviews, sessions and bounce rate,
+        each against the previous week, plus your top pages, referrers,
+        countries and devices — is sent with the question, so &quot;why is
+        traffic down?&quot; gets an answer rather than a link.
       </P>
       <Ul>
-        <Li>Your numbers are never sent to a model to answer a support question.</Li>
+        <Li>
+          Only that summary. Individual visitors, sessions and raw events are
+          never sent to a model, on any plan.
+        </Li>
         <Li>Conversations are not stored. They live in the browser tab and end with it.</Li>
         <Li>Nothing you type there is used for training.</Li>
       </Ul>
@@ -70,7 +81,8 @@ function Body() {
         </Li>
         <Li>
           <b>Orbit Pro</b> — 2,000 questions a month, every model including
-          Gemini Flash, and the longest conversation memory.
+          Gemini Flash, the longest conversation memory, and answers that read
+          your own analytics.
         </Li>
       </Ul>
       <P>
