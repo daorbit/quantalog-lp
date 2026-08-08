@@ -6,6 +6,7 @@ import { Features } from "@/components/sections/features";
 import { TryDemo } from "@/components/sections/try-demo";
 import { Seo } from "@/components/sections/seo";
 import { Reports } from "@/components/sections/reports";
+import { Orbit } from "@/components/sections/orbit";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Compare } from "@/components/sections/compare";
 import { Platform } from "@/components/sections/platform";
@@ -60,6 +61,7 @@ const jsonLd = graph(
       "Public shareable dashboards",
       "Shareable SEO audit reports",
       "Scheduled email reports with spreadsheet attachments",
+      "Orbit AI in-app support assistant",
     ],
   },
   {
@@ -95,6 +97,11 @@ export default function HomePage() {
           and this one closes with the deliverable a buyer hands to someone
           else. */}
       <Reports />
+      {/* Last of the "more than a counter" run, and placed here rather than
+          near the top on purpose: an AI section opening a landing page reads as
+          the product being sold on the model. It lands better once the visitor
+          knows what there is to ask about. */}
+      <Orbit />
       {/* After the case is made and before the comparison: the visitor now
           knows what is claimed, and looking is cheaper than reading on. */}
       <TryDemo />
