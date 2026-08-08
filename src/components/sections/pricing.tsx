@@ -86,16 +86,6 @@ function formatPrice(amountMinor: number, currency: Currency) {
   return `${symbol}${(amountMinor / 100).toLocaleString(CURRENCY_LOCALES[currency], { maximumFractionDigits: 0 })}`;
 }
 
-/** What one Orbit tier lists, in the order a buyer compares them. */
-function orbitFeatures(plan: ResolvedOrbitPlan): string[] {
-  return [
-    `${plan.monthlyQuota.toLocaleString()} questions / month`,
-    ORBIT_TIER_FEATURE[plan.modelTier],
-    `${plan.maxHistoryTurns} turns of conversation memory`,
-    ...plan.features.filter((f) => !f.startsWith("Everything in")),
-  ];
-}
-
 /** What each model tier actually gets you, in a buyer's words rather than ours. */
 const ORBIT_TIER_FEATURE: Record<ResolvedOrbitPlan["modelTier"], string> = {
   basic: "Open-weight models",
@@ -325,57 +315,45 @@ export function Pricing() {
             <SectionHeading
               centered
               eyebrow="Orbit AI"
-              title="Add the assistant to any plan."
-              body="Orbit answers questions about your setup and walks you through fixing what an audit flagged. Priced on its own, so a small site can still run the best model."
+              title="The assistant is included in every plan."
+              body="Orbit answers questions about your setup and walks you through fixing what an audit flagged. Every plan includes a tier of it — no separate subscription."
             />
 
-            <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
-              {orbitPlans.map((plan) => {
-                const featured = plan.slug === FEATURED_ORBIT_SLUG;
-                const price = (yearly ? plan.priceYearly : plan.priceMonthly)[currency];
-
-                return (
-                  <div
-                    key={plan.slug}
-                    className={`card relative flex flex-col p-7 ${
-                      featured ? "border-accent/60 shadow-float" : "card-hover"
-                    }`}
-                  >
-                    <h3 className="text-[15px] font-semibold tracking-tight">{plan.name}</h3>
-                    <p className="mt-1.5 min-h-10 text-sm leading-relaxed text-fg-muted">
-                      {plan.description}
-                    </p>
-
-                    <div className="mt-7 flex items-baseline gap-1.5">
-                      <span className="text-[2rem] font-bold leading-none tracking-[-0.03em]">
-                        {formatPrice(price, currency)}
-                      </span>
-                      <span className="text-sm text-fg-muted">
-                        {price === 0 ? "forever" : yearly ? "per year" : "per month"}
-                      </span>
-                    </div>
-
-                    <ul className="mt-7 space-y-3 border-t border-border pt-7">
-                      {orbitFeatures(plan).map((f) => (
-                        <li key={f} className="flex items-start gap-2.5 text-sm">
-                          <span
-                            className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/12"
-                            aria-hidden="true"
-                          >
-                            <Check className="h-2.5 w-2.5 text-accent" strokeWidth={3.5} />
-                          </span>
-                          <span className="text-fg-muted">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
+            {/* One row per tier rather than three price cards: Orbit is not
+                bought on its own, so a price on each would invite exactly the
+                question this section exists to answer. */}
+            <div className="mx-auto mt-10 max-w-3xl overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-border text-xs uppercase tracking-wide text-fg-faint">
+                    <th className="py-3 pr-4 font-semibold">Plan</th>
+                    <th className="py-3 pr-4 font-semibold">Questions / month</th>
+                    <th className="py-3 font-semibold">Models</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orbitPlans.map((plan) => (
+                    <tr key={plan.slug} className="border-b border-border/60">
+                      <td className="py-3.5 pr-4 font-medium">
+                        {plan.name.replace(/^Orbit /, "")}
+                      </td>
+                      <td className="py-3.5 pr-4 text-fg-muted">
+                        {plan.monthlyQuota.toLocaleString()}
+                      </td>
+                      <td className="py-3.5 text-fg-muted">
+                        {ORBIT_TIER_FEATURE[plan.modelTier]}
+                        {plan.dataAccess && ", and answers from your own analytics"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             <p className="mt-8 text-center text-xs text-fg-faint">
-              Bought per workspace, separately from the plans above. A question
-              only counts once Orbit has answered it.
+              A question only counts once Orbit has answered it. Need more than
+              your plan includes? Question packs are sold separately and never
+              expire.
             </p>
           </div>
         )}
