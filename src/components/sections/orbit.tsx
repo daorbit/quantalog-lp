@@ -6,31 +6,32 @@ import { Reveal } from "../reveal";
 /**
  * Orbit AI — the assistant built into the dashboard.
  *
- * Shown as a conversation rather than described, for the same reason the
- * reports section renders an email: the feature *is* the exchange, and a mock
- * of one explains it faster than a paragraph claiming it is helpful.
+ * The mark leads. An earlier version buried it at 20px inside a mock chat
+ * header, where the one piece of art that gives this feature a face was
+ * illegible — so it now opens the section at a size where it reads as a
+ * character rather than a favicon.
  *
  * The argument is deliberately narrow. Every product now claims an AI, and the
  * claim is worth nothing — so this section says what Orbit is grounded in, what
  * it cannot see, and that a person is still behind it. The honest limits are
- * the differentiator, because they are what the competing claims leave out.
+ * the differentiator, because they are what competing claims leave out.
  */
 
 const points = [
   {
     icon: Clock,
     title: "Answers at 2am",
-    body: "Installing the tracker, what a metric means, why a number moved — the questions that would otherwise wait for a support reply are answered while you are still on the page.",
+    body: "Installing the tracker, what a metric means, how to fix something an audit flagged — the questions that would otherwise wait for a support reply are answered while you are still on the page.",
   },
   {
     icon: BookOpen,
     title: "Grounded in the product",
-    body: "Orbit answers from Quantalog's own reference, not from whatever a general model half-remembers. If something is outside it, it says so and points you at a person.",
+    body: "Orbit answers from Quantalog's own reference and links to the exact documentation page. If something falls outside it, it says so rather than inventing a feature you would then go looking for.",
   },
   {
     icon: ShieldCheck,
     title: "It cannot read your data",
-    body: "Orbit knows how the product works, not what is in your account. Your analytics are never sent to a model to answer a support question.",
+    body: "Orbit knows how the product works, not what is in your account. Your analytics are never sent to a model to answer a support question, and conversations are not stored.",
   },
   {
     icon: MessageSquare,
@@ -39,28 +40,82 @@ const points = [
   },
 ];
 
+/**
+ * The models behind Orbit.
+ *
+ * Named rather than described as "advanced AI", because the names are the
+ * claim: a visitor who knows what these are learns more from the list than from
+ * any adjective, and one who doesn't still reads that there are several.
+ *
+ * The fallback line is the point of showing them at all — it is a reliability
+ * feature, not a spec sheet.
+ */
+const models = [
+  { name: "Gemini Flash", vendor: "Google" },
+  { name: "Nemotron Ultra", vendor: "NVIDIA" },
+  { name: "DeepSeek V4", vendor: "DeepSeek" },
+  { name: "GPT-OSS", vendor: "OpenAI" },
+  { name: "Gemma 4", vendor: "Google" },
+  { name: "North Mini", vendor: "Cohere" },
+];
+
+/**
+ * The mark, at a size where it is actually visible.
+ *
+ * Two files swapped by theme in CSS rather than by a hook: the artwork is not
+ * transparent, so the dark mark on a light page would be a black square — and
+ * doing it in CSS avoids the wrong one flashing before hydration.
+ *
+ * Displayed at 96px against a 128px source. The source is the constraint: it
+ * would want 192px to be crisp on a retina screen, and going larger than this
+ * would show the softness rather than the artwork.
+ */
+function OrbitMark() {
+  return (
+    <div className="relative shrink-0">
+      {/* A soft bloom behind the mark, so it sits on the page rather than being
+          pasted onto it. */}
+      <div
+        className="pointer-events-none absolute -inset-6 rounded-full blur-2xl"
+        style={{ background: "var(--glow)" }}
+        aria-hidden="true"
+      />
+      <Image
+        src="/da-ai-dark-mode.png"
+        alt="Orbit AI"
+        width={128}
+        height={128}
+        className="relative hidden h-24 w-24 rounded-2xl shadow-soft dark:block"
+      />
+      <Image
+        src="/da-ai-light-mode.png"
+        alt="Orbit AI"
+        width={128}
+        height={128}
+        className="relative h-24 w-24 rounded-2xl shadow-soft dark:hidden"
+      />
+    </div>
+  );
+}
+
 /** The mocked exchange. A real question, and an answer Orbit actually gives. */
 function ChatPreview() {
   return (
     <div className="card overflow-hidden p-0">
-      <div className="flex items-center gap-2 border-b border-border bg-bg-subtle px-4 py-2.5">
-        {/* Two files, swapped by theme in CSS rather than by a hook: the
-            artwork is not transparent, so the dark mark on a light page would
-            be a black square — and doing it in CSS avoids a wrong-mark flash
-            before hydration. */}
+      <div className="flex items-center gap-2.5 border-b border-border bg-bg-subtle px-4 py-3">
         <Image
           src="/da-ai-dark-mode.png"
           alt=""
-          width={20}
-          height={20}
-          className="hidden rounded-md dark:block"
+          width={26}
+          height={26}
+          className="hidden rounded-lg dark:block"
         />
         <Image
           src="/da-ai-light-mode.png"
           alt=""
-          width={20}
-          height={20}
-          className="rounded-md dark:hidden"
+          width={26}
+          height={26}
+          className="rounded-lg dark:hidden"
         />
         <div className="text-[13px] font-semibold tracking-tight">Orbit AI</div>
       </div>
@@ -105,17 +160,24 @@ export function Orbit() {
       />
 
       <div className="relative mx-auto max-w-6xl px-5 py-28">
-        <SectionHeading
-          eyebrow="Orbit AI"
-          title={
-            <>
-              Support that answers
-              <br className="hidden sm:block" />{" "}
-              <span className="text-accent">before you finish asking.</span>
-            </>
-          }
-          body="Orbit is built into the dashboard, on every page. It knows how Quantalog works — how to install the tracker, what a metric means, which role can do what — and answers in seconds. It cannot see your data, and it will tell you when a question needs a person."
-        />
+        {/* The mark beside the heading rather than above it: at this size it
+            would otherwise push the title most of a screen down. */}
+        <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
+          <Reveal>
+            <OrbitMark />
+          </Reveal>
+          <SectionHeading
+            eyebrow="Orbit AI"
+            title={
+              <>
+                Support that answers
+                <br className="hidden sm:block" />{" "}
+                <span className="text-accent">before you finish asking.</span>
+              </>
+            }
+            body="Orbit is built into the dashboard, on every page. It knows how Quantalog works — how to install the tracker, what a metric means, which role can do what — and answers in seconds. It cannot see your data, and it will tell you when a question needs a person."
+          />
+        </div>
 
         <div className="mt-16 grid items-start gap-10 lg:grid-cols-[1fr_380px]">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -140,6 +202,36 @@ export function Orbit() {
             <ChatPreview />
           </Reveal>
         </div>
+
+        {/* The model lineup. Placed after the argument, because it answers
+            "is this any good" for the reader who is already interested — and
+            the fallback sentence is the part that matters. */}
+        <Reveal delay={2} className="card mt-10 p-7 sm:p-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-md">
+              <h3 className="text-[15px] font-semibold tracking-tight">
+                Six models, so one being busy is never your problem
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+                Pick the one you prefer from the chat window. If it is rate-limited or
+                slow, Orbit answers with the next one automatically — you get an answer
+                either way.
+              </p>
+            </div>
+
+            <ul className="flex flex-wrap gap-2 lg:max-w-md lg:justify-end">
+              {models.map((m) => (
+                <li
+                  key={m.name}
+                  className="rounded-lg border border-border bg-bg-subtle px-3 py-2"
+                >
+                  <div className="text-[13px] font-medium leading-tight">{m.name}</div>
+                  <div className="text-[11px] leading-tight text-fg-faint">{m.vendor}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
