@@ -39,6 +39,8 @@ type ResolvedOrbitPlan = {
   description: string;
   monthlyQuota: number;
   modelTier: "basic" | "standard" | "advanced";
+  /** Whether answers may read the workspace's own analytics. */
+  dataAccess: boolean;
   maxHistoryTurns: number;
   features: string[];
   sortOrder: number;
