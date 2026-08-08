@@ -29,7 +29,25 @@ type ResolvedPlan = {
   priceYearly: CurrencyPrices;
 };
 
+/**
+ * An Orbit AI tier. Sold separately from the plans above and on its own ladder,
+ * so it gets its own shape and its own row rather than extra columns here.
+ */
+type ResolvedOrbitPlan = {
+  slug: string;
+  name: string;
+  description: string;
+  monthlyQuota: number;
+  modelTier: "basic" | "standard" | "advanced";
+  maxHistoryTurns: number;
+  features: string[];
+  sortOrder: number;
+  priceMonthly: CurrencyPrices;
+  priceYearly: CurrencyPrices;
+};
+
 const FEATURED_SLUG = "pro";
+const FEATURED_ORBIT_SLUG = "orbit-starter";
 
 function plural(n: number, word: string) {
   return `${n} ${word}${n === 1 ? "" : "s"}`;
@@ -68,8 +86,26 @@ function formatPrice(amountMinor: number, currency: Currency) {
   return `${symbol}${(amountMinor / 100).toLocaleString(CURRENCY_LOCALES[currency], { maximumFractionDigits: 0 })}`;
 }
 
+/** What one Orbit tier lists, in the order a buyer compares them. */
+function orbitFeatures(plan: ResolvedOrbitPlan): string[] {
+  return [
+    `${plan.monthlyQuota.toLocaleString()} questions / month`,
+    ORBIT_TIER_FEATURE[plan.modelTier],
+    `${plan.maxHistoryTurns} turns of conversation memory`,
+    ...plan.features.filter((f) => !f.startsWith("Everything in")),
+  ];
+}
+
+/** What each model tier actually gets you, in a buyer's words rather than ours. */
+const ORBIT_TIER_FEATURE: Record<ResolvedOrbitPlan["modelTier"], string> = {
+  basic: "Open-weight models",
+  standard: "Reasoning models",
+  advanced: "Every model, including Gemini Flash",
+};
+
 export function Pricing() {
   const [plans, setPlans] = useState<ResolvedPlan[] | null>(null);
+  const [orbitPlans, setOrbitPlans] = useState<ResolvedOrbitPlan[] | null>(null);
   const [error, setError] = useState(false);
   const [yearly, setYearly] = useState(false);
   const [currency, setCurrency] = useState<Currency>("USD");
@@ -90,6 +126,27 @@ export function Pricing() {
       })
       .catch(() => {
         if (!cancelled) setError(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Fetched separately, and its failure is deliberately not `setError`: the
+  // Orbit row is an addition to this page, so losing it should hide one section
+  // rather than replace the whole price list with an error.
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${site.api}/api/public/plans/orbit`)
+      .then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      })
+      .then((data: ResolvedOrbitPlan[]) => {
+        if (!cancelled) setOrbitPlans(data);
+      })
+      .catch(() => {
+        if (!cancelled) setOrbitPlans([]);
       });
     return () => {
       cancelled = true;
@@ -260,6 +317,66 @@ export function Pricing() {
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {orbitPlans && orbitPlans.length > 0 && (
+          <div className="mt-24 border-t border-border pt-20">
+            <SectionHeading
+              centered
+              eyebrow="Orbit AI"
+              title="Add the assistant to any plan."
+              body="Orbit answers questions about your setup and walks you through fixing what an audit flagged. Priced on its own, so a small site can still run the best model."
+            />
+
+            <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
+              {orbitPlans.map((plan) => {
+                const featured = plan.slug === FEATURED_ORBIT_SLUG;
+                const price = (yearly ? plan.priceYearly : plan.priceMonthly)[currency];
+
+                return (
+                  <div
+                    key={plan.slug}
+                    className={`card relative flex flex-col p-7 ${
+                      featured ? "border-accent/60 shadow-float" : "card-hover"
+                    }`}
+                  >
+                    <h3 className="text-[15px] font-semibold tracking-tight">{plan.name}</h3>
+                    <p className="mt-1.5 min-h-10 text-sm leading-relaxed text-fg-muted">
+                      {plan.description}
+                    </p>
+
+                    <div className="mt-7 flex items-baseline gap-1.5">
+                      <span className="text-[2rem] font-bold leading-none tracking-[-0.03em]">
+                        {formatPrice(price, currency)}
+                      </span>
+                      <span className="text-sm text-fg-muted">
+                        {price === 0 ? "forever" : yearly ? "per year" : "per month"}
+                      </span>
+                    </div>
+
+                    <ul className="mt-7 space-y-3 border-t border-border pt-7">
+                      {orbitFeatures(plan).map((f) => (
+                        <li key={f} className="flex items-start gap-2.5 text-sm">
+                          <span
+                            className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/12"
+                            aria-hidden="true"
+                          >
+                            <Check className="h-2.5 w-2.5 text-accent" strokeWidth={3.5} />
+                          </span>
+                          <span className="text-fg-muted">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="mt-8 text-center text-xs text-fg-faint">
+              Bought per workspace, separately from the plans above. A question
+              only counts once Orbit has answered it.
+            </p>
           </div>
         )}
 

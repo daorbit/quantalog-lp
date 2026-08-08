@@ -54,6 +54,37 @@ function Body() {
         assuming it did.
       </P>
 
+      <H2 id="plans">Questions and models</H2>
+      <P>
+        Orbit is bought per workspace, on its own ladder — separate from the
+        analytics plan. A workspace on analytics Free can run Orbit Pro, and the
+        other way round, because a small site can still be a heavy Orbit user.
+      </P>
+      <Ul>
+        <Li>
+          <b>Orbit Free</b> — 20 questions a month, open-weight models.
+        </Li>
+        <Li>
+          <b>Orbit Starter</b> — 300 questions a month, and the reasoning models
+          on top of those.
+        </Li>
+        <Li>
+          <b>Orbit Pro</b> — 2,000 questions a month, every model including
+          Gemini Flash, and the longest conversation memory.
+        </Li>
+      </Ul>
+      <P>
+        A question only counts once Orbit has actually answered it. A timeout, a
+        model that refused, or an error costs you nothing.
+      </P>
+      <P>
+        The model picker shows every model, including the ones your plan does not
+        reach — those are greyed out with the tier that unlocks them, so you can
+        see what an upgrade buys before you buy it. If you run out mid-month,
+        question packs are sold separately and never expire; they are used only
+        after the plan&apos;s own allowance is gone.
+      </P>
+
       <H2 id="follow-ups">Follow-up questions</H2>
       <P>
         Each answer comes with up to three suggested follow-ups — the next thing
