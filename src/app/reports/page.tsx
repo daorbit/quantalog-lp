@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   FileSpreadsheet,
   MessageCircle,
+  MessageSquareText,
   PauseCircle,
   Send,
   ShieldCheck,
@@ -27,9 +28,14 @@ import { site } from "@/lib/site";
  */
 
 const DESCRIPTION =
-  "Automated analytics reports by email and WhatsApp. Send a scheduled traffic and SEO summary to clients or your team — headline numbers in the body, the full breakdown attached as an XLSX spreadsheet, no dashboard login required.";
+  "Automated analytics reports by email and WhatsApp. Send a scheduled traffic and SEO summary to clients or your team — opening with a plain-language AI read of what changed and why, headline numbers in the body, the full breakdown attached as an XLSX spreadsheet, no dashboard login required.";
 
 const capabilities = [
+  {
+    icon: MessageSquareText,
+    title: "It reads the numbers for them",
+    body: "Every report opens with two or three sentences in plain language: what moved, the likely reason, and one thing worth doing about it. A client who would never interpret a bounce rate still learns their traffic spike came from Reddit and did not stick. Labelled as an AI summary, and switchable off per report.",
+  },
   {
     icon: Users,
     title: "For the people who never log in",
@@ -63,6 +69,7 @@ const capabilities = [
 ];
 
 const included = [
+  "A plain-language AI summary of what changed and why, above the numbers",
   "Visitors, pageviews, sessions and bounce rate, each against the previous period",
   "Top pages and entry pages",
   "Referrers, channels and UTM campaigns",
@@ -77,6 +84,14 @@ const faqs = [
   {
     q: "Can I send analytics reports to clients without giving them a login?",
     a: "Yes — that is what the feature is for. A recipient needs no account and occupies no seat. They receive the email, read the headline numbers and open the attached spreadsheet if they want the detail.",
+  },
+  {
+    q: "What is the AI summary in a report?",
+    a: "Two or three sentences at the top of the email explaining what changed over the period, the most likely reason for it, and one thing worth doing. It is written by a language model reading only your own figures from that report, and it is labelled as an AI summary so recipients know it is interpretation rather than measurement. It is on by default and can be switched off per report.",
+  },
+  {
+    q: "Is my analytics data sent anywhere to generate the summary?",
+    a: "Only the figures already in that report — the headline numbers and the top breakdowns — are sent to the model that writes the paragraph. No raw visitor records, nothing from other workspaces, and nothing that identifies an individual visitor. Turning the AI summary off for a report means nothing from it is sent at all.",
   },
   {
     q: "What format is the attachment?",
