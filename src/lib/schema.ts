@@ -39,7 +39,72 @@ export const website = {
   description: site.description,
   publisher: { "@id": ORG_ID },
   inLanguage: "en",
+  // The sitelinks search box: lets a result carry a search field that goes
+  // straight into the docs rather than sending people to the homepage first.
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${site.url}/docs?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
+
+/**
+ * The author node.
+ *
+ * A `Person` rather than the Organization: answer engines weigh a named human
+ * author when deciding whether a source is attributable, and reusing the
+ * company as its own author does not satisfy that.
+ */
+export const AUTHOR_ID = `${site.url}/#author`;
+
+export const author = {
+  "@type": "Person",
+  "@id": AUTHOR_ID,
+  name: site.author,
+  url: site.url,
+  worksFor: { "@id": ORG_ID },
+};
+
+/**
+ * An `Article` node for a content page.
+ *
+ * AI answer engines treat Article as the signal that a page is quotable
+ * editorial content, and they check `author` and `dateModified` before
+ * attributing a quote — so all three travel together rather than separately.
+ */
+export function article({
+  path,
+  headline,
+  description,
+  published,
+  modified,
+}: {
+  path: string;
+  headline: string;
+  description: string;
+  /** ISO date the page first went live. */
+  published: string;
+  /** ISO date of the last meaningful edit. Defaults to `published`. */
+  modified?: string;
+}): Record<string, unknown> {
+  return {
+    "@type": "Article",
+    "@id": `${site.url}${path}#article`,
+    headline,
+    description,
+    url: `${site.url}${path}`,
+    image: `${site.url}/OgImage.png`,
+    author: { "@id": AUTHOR_ID },
+    publisher: { "@id": ORG_ID },
+    isPartOf: { "@id": SITE_ID },
+    datePublished: published,
+    dateModified: modified ?? published,
+    inLanguage: "en",
+  };
+}
 
 /**
  * A breadcrumb trail. Google uses it to replace the bare URL under a result

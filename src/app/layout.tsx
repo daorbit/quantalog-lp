@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  // Emits <meta name="author">. Answer engines look for a named author before
+  // they will attribute a quote, and several read the meta tag rather than
+  // parsing JSON-LD for it.
+  authors: [{ name: site.author, url: site.url }],
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
     apple: [{ url: "/favicon.png", type: "image/png" }],

@@ -11,6 +11,9 @@ export const site = {
   // Docs now live on this landing page. Relative path works everywhere on the
   // marketing site; the dashboard app links to `${site.url}/docs` absolutely.
   docs: "/docs",
+  // The public byline. Answer engines check for a named author before they
+  // attribute a quote, and it appears in the page's Person schema.
+  author: "The Quantalog Team",
   twitter: "@quantalog",
   github: "https://github.com/quantalog",
   email: "daorbit2k25@gmail.com",

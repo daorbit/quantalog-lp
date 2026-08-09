@@ -16,17 +16,38 @@ import { Cta } from "@/components/sections/cta";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
-import { graph, organization, website, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, organization, website, author, article, ORG_ID, SITE_ID } from "@/lib/schema";
 
 // The homepage inherits title, description and social cards from the root
 // layout; only the canonical is page-specific.
+/** Kept beside the Article node so the tag and the schema can never disagree. */
+const PUBLISHED = "2025-11-01";
+const MODIFIED = "2026-08-09";
+
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+  // A machine-readable date, in the tag form crawlers read without having to
+  // parse the JSON-LD graph first.
+  other: {
+    "article:published_time": PUBLISHED,
+    "article:modified_time": MODIFIED,
+  },
 };
 
 const jsonLd = graph(
   organization,
   website,
+  author,
+  // The homepage doubles as the product explainer, so it carries an Article
+  // node: it is what lets an answer engine quote the page and attribute the
+  // quote to a named author and a date.
+  article({
+    path: "/",
+    headline: `${site.name} — ${site.tagline}`,
+    description: site.description,
+    published: PUBLISHED,
+    modified: MODIFIED,
+  }),
   {
     "@type": "SoftwareApplication",
     "@id": `${site.url}/#software`,
