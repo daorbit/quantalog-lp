@@ -2,8 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight, Braces, FileSearch, Gauge, Link2Off, Layers, TrendingUp,
 } from "lucide-react";
-import { SectionHeading } from "../ui";
-import { Reveal } from "../reveal";
+import { SectionHeading, GlowCard } from "../ui";
 
 /**
  * The SEO module.
@@ -49,16 +48,18 @@ const checks = [
 
 export function Seo() {
   return (
-    <section id="seo" className="relative overflow-hidden border-t border-border">
-      <div
-        className="pointer-events-none absolute left-0 top-1/4 h-96 w-96 rounded-full blur-[100px]"
-        style={{ background: "var(--glow)" }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-5 py-28">
+    // Full-bleed tinted band. This and the traffic section make the same
+    // argument, so putting one on a distinct surface stops the pair reading
+    // as one long undifferentiated scroll.
+    <section
+      id="seo"
+      className="relative overflow-hidden border-y border-border bg-bg-subtle"
+    >
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-32">
         <SectionHeading
           eyebrow="SEO audits"
+          align="center"
+          className="v-rise"
           title={
             <>
               Traffic tells you who came.
@@ -69,25 +70,29 @@ export function Seo() {
           body="Audit any page on a site you already track. Quantalog reads it the way a crawler would, runs it through Lighthouse, and reports what is holding it back — in the same dashboard as your traffic, not a separate tool with a separate bill."
         />
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {checks.map((c, i) => (
-            <Reveal
+            <GlowCard
               key={c.title}
-              delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="card card-hover group p-7"
+              className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-8`}
             >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <c.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{c.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{c.body}</p>
-            </Reveal>
+              <c.icon
+                className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+              <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+                {c.title}
+              </h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
+                {c.body}
+              </p>
+            </GlowCard>
           ))}
         </div>
 
         <Link
           href="/seo-audits"
-          className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent"
+          className="group mt-12 inline-flex items-center gap-2 text-sm font-medium text-accent"
         >
           Everything the SEO audit checks
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />

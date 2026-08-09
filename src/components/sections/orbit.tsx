@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { BookOpen, Clock, MessageSquare, ShieldCheck } from "lucide-react";
-import { SectionHeading } from "../ui";
-import { Reveal } from "../reveal";
+import { SectionHeading, GlowCard } from "../ui";
 
 /**
  * Orbit AI — the assistant built into the dashboard.
@@ -152,22 +151,21 @@ function ChatPreview() {
 
 export function Orbit() {
   return (
-    <section id="orbit" className="relative overflow-hidden border-t border-border">
-      <div
-        className="pointer-events-none absolute left-0 top-1/3 h-96 w-96 rounded-full blur-[100px]"
-        style={{ background: "var(--glow)" }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-5 py-28">
+    <section
+      id="orbit"
+      className="relative overflow-hidden border-y border-border bg-bg-subtle"
+    >
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-32">
         {/* The mark beside the heading rather than above it: at this size it
             would otherwise push the title most of a screen down. */}
         <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
-          <Reveal>
+          <div className="v-rise">
             <OrbitMark />
-          </Reveal>
+          </div>
           <SectionHeading
             eyebrow="Orbit AI"
+            align="left"
+            className="v-rise v-d2"
             title={
               <>
                 Support that answers
@@ -179,34 +177,38 @@ export function Orbit() {
           />
         </div>
 
-        <div className="mt-16 grid items-start gap-10 lg:grid-cols-[1fr_380px]">
-          <div className="grid gap-4 sm:grid-cols-2">
+        <div className="mt-16 grid items-start gap-8 lg:grid-cols-[1fr_380px]">
+          <div className="grid gap-3 sm:grid-cols-2">
             {points.map((p, i) => (
-              <Reveal
+              <GlowCard
                 key={p.title}
-                delay={((i % 3) + 1) as 1 | 2 | 3}
-                className="card card-hover group p-7"
+                className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-8`}
               >
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                  <p.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-fg-muted">{p.body}</p>
-              </Reveal>
+                <p.icon
+                  className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+                <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+                  {p.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
+                  {p.body}
+                </p>
+              </GlowCard>
             ))}
           </div>
 
           {/* Decorative: the copy beside it already states everything this
               shows, so a screen reader gains nothing from re-reading a mock. */}
-          <Reveal delay={2} aria-hidden="true">
+          <div className="v-rise v-d2" aria-hidden="true">
             <ChatPreview />
-          </Reveal>
+          </div>
         </div>
 
         {/* The model lineup. Placed after the argument, because it answers
             "is this any good" for the reader who is already interested — and
             the fallback sentence is the part that matters. */}
-        <Reveal delay={2} className="card mt-10 p-7 sm:p-8">
+        <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
               <h3 className="text-[15px] font-semibold tracking-tight">
@@ -231,7 +233,7 @@ export function Orbit() {
               ))}
             </ul>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

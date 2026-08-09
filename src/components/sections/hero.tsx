@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { Button } from "../ui";
+import { Words } from "../words";
 import { DashboardPreview } from "../dashboard-preview";
 
 /* Each claim is a number a visitor can check, not an adjective. */
@@ -15,26 +16,24 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
-      {/* Two offset glows rather than one centred blob — an asymmetric wash
-          reads as lighting, a single circle reads as a gradient. */}
+      {/* One slowly rotating conic sweep, in place of the pair of static
+          blurred blobs. A blob that never moves is a gradient; a sweep that
+          turns reads as light in the room. This is now the only ambient glow
+          on the page — it was on six sections, which made it a template
+          rather than a choice. */}
       <div
-        className="pointer-events-none absolute left-1/2 -top-24 h-[26rem] w-[60rem] -translate-x-1/2 rounded-full blur-[100px]"
-        style={{ background: "var(--glow)" }}
+        className="pointer-events-none absolute left-1/2 -top-112 h-184 w-184 -translate-x-1/2 rounded-full opacity-70"
         aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -left-40 top-40 h-88 w-136 rounded-full opacity-70 blur-[120px]"
-        style={{ background: "var(--glow)" }}
-        aria-hidden="true"
-      />
+      >
+        <div className="aurora h-full w-full rounded-full" /></div>
 
-      <div className="relative mx-auto max-w-6xl px-5 pb-24 pt-16 sm:pt-24">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 pb-24 pt-16 sm:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <a
             href="/blog/introducing-quantalog"
-            className="rise rise-1 group inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 py-1 pl-1 pr-3 text-xs text-fg-muted shadow-soft backdrop-blur transition hover:border-border-strong hover:text-fg"
+            className="rise rise-1 group inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 py-1 pl-1 pr-3 text-xs text-fg-muted backdrop-blur transition-all duration-200 hover:-translate-y-px hover:border-border-strong hover:text-fg"
           >
-            <span className="rounded-full bg-accent px-2 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-accent-fg">
+            <span className="rounded-full bg-accent/12 px-2 py-0.5 text-[10.5px] font-medium uppercase tracking-wide text-accent">
               New
             </span>
             <span>Introducing the Platform API</span>
@@ -48,14 +47,24 @@ export function Hero() {
               hidden text, and it sat in the most important element on the
               site. The hook survives in the second line; the first line now
               does the work the hidden span was doing. */}
-          <h1 className="rise rise-2 headline mt-8 text-balance text-[2.75rem] font-bold leading-[1.05] tracking-[-0.035em] sm:text-[4.25rem]">
-            Cookieless web analytics
-            <br className="hidden sm:block" /> that counts the{" "}
-            <span className="underline-sketch text-accent">half</span> others
-            miss.
+          {/* Words arrive in sequence rather than the whole block fading in
+              at once — the headline resolves the way it would be read. The
+              markup is still one plain sentence, so selection, wrapping and
+              crawlers are unaffected. */}
+          <h1 className="word-rise headline-live mt-9 text-balance text-display font-medium leading-[1.03] tracking-[-0.04em]">
+            <Words text="Cookieless web analytics" />
+            <br className="hidden sm:block" />{" "}
+            <Words text="that counts the" offset={3} />{" "}
+            <span
+              className="underline-sketch text-accent"
+              style={{ ["--i" as string]: 6 }}
+            >
+              half
+            </span>{" "}
+            <Words text="others miss." offset={7} />
           </h1>
 
-          <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
+          <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-lead leading-relaxed text-fg-muted">
             A privacy-first Google Analytics alternative with real-time
             dashboards, built-in SEO audits and an embeddable API. Cookie-based
             tools only measure the visitors who accept the banner — Quantalog
@@ -91,13 +100,22 @@ export function Hero() {
 
           {/* Read as a spec strip rather than a bullet list: on an analytics
               page the numbers are the argument, so they get the weight. */}
-          <ul className="rise rise-5 mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
-            {trustPoints.map((point) => (
-              <li key={point.label} className="text-center">
-                <p className="text-[1.5rem] font-semibold leading-none tracking-[-0.03em] text-accent">
+          {/* Divided rather than floating in space: hairlines between the
+              figures make it read as one spec strip instead of four loose
+              numbers. */}
+          <ul className="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-y-8 sm:grid-cols-4">
+            {trustPoints.map((point, i) => (
+              <li
+                key={point.label}
+                className={`stat-in text-center sm:border-l sm:border-border sm:first:border-l-0 ${
+                  i % 2 === 1 ? "border-l border-border sm:border-l" : ""
+                }`}
+                style={{ animationDelay: `${0.45 + i * 0.08}s` }}
+              >
+                <p className="text-[2rem] font-medium leading-none tracking-[-0.04em] tabular-nums">
                   {point.value}
                 </p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-[0.08em] text-fg-faint">
+                <p className="mt-2 text-[11px] uppercase tracking-[0.12em] text-fg-faint">
                   {point.label}
                 </p>
               </li>
@@ -105,18 +123,12 @@ export function Hero() {
           </ul>
         </div>
 
-        <div className="rise rise-5 relative mt-20">
-          {/* Grounding glow so the dashboard sits on the page instead of floating. */}
-          <div
-            className="pointer-events-none absolute -inset-x-8 -bottom-8 top-12 rounded-[2rem] blur-3xl"
-            style={{ background: "var(--glow)" }}
-            aria-hidden="true"
-          />
-          {/* The product shot is the proof — give it real elevation and an
-              inset hairline so it sits on the page rather than in it. */}
-          <div className="panel relative overflow-hidden">
-            <DashboardPreview />
-          </div>
+        {/* The product shot is the proof, so it gets the page's deepest
+            elevation and an inset hairline — it should sit on the page rather
+            than in it. The separate blurred glow underneath is gone; the
+            aurora above already lights this area. */}
+        <div className="rise rise-5 panel relative mt-24 overflow-hidden">
+          <DashboardPreview />
         </div>
       </div>
     </section>

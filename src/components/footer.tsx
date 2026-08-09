@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -36,7 +37,7 @@ const columns = [
 export function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Logo />
@@ -83,9 +84,14 @@ export function Footer() {
           <p className="text-xs text-fg-faint">
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <p className="text-xs text-fg-faint">
-            No cookies. No cross-site tracking. GDPR-ready.
-          </p>
+          <div className="flex items-center gap-5">
+            <p className="text-xs text-fg-faint">
+              No cookies. No cross-site tracking. GDPR-ready.
+            </p>
+            {/* Appearance is a preference you set once, not a primary action —
+                it belongs down here rather than beside the sign-up CTA. */}
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </footer>

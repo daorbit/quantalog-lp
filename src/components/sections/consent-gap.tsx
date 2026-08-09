@@ -53,12 +53,13 @@ export function ConsentGap() {
   }, []);
 
   return (
-    <section className="relative border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 py-28">
-        <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
-          <div>
+    <section className="relative">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-32">
+        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+          <div className="v-rise">
             <SectionHeading
               eyebrow="The consent gap"
+              align="left"
               title={
                 <>
                   Half your traffic never
@@ -76,7 +77,7 @@ export function ConsentGap() {
             </p>
           </div>
 
-          <div ref={ref} className="panel p-8">
+          <div ref={ref} className="v-rise v-d2 panel p-8">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-fg-faint">
               Share of visitors recorded
             </p>
@@ -87,7 +88,7 @@ export function ConsentGap() {
                   <div className="flex items-baseline justify-between gap-4">
                     <span className="text-sm font-medium">{bar.label}</span>
                     <span
-                      className={`text-[1.75rem] font-semibold leading-none tabular-nums tracking-[-0.02em] ${
+                      className={`text-[1.75rem] font-medium leading-none tabular-nums tracking-[-0.03em] ${
                         bar.tone === "accent" ? "text-accent" : "text-fg-faint"
                       }`}
                     >

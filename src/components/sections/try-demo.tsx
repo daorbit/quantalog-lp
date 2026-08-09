@@ -1,6 +1,5 @@
 import { ArrowRight, BarChart3, Search, Share2, Lock } from "lucide-react";
-import { Button, SectionHeading } from "../ui";
-import { Reveal } from "../reveal";
+import { Button, SectionHeading, GlowCard } from "../ui";
 import { site } from "@/lib/site";
 
 /**
@@ -32,10 +31,11 @@ const explore = [
 
 export function TryDemo() {
   return (
-    <section id="demo-account" className="relative border-t border-border bg-bg-subtle">
-      <div className="mx-auto max-w-6xl px-5 py-28">
+    <section id="demo-account" className="relative">
+      <div className="mx-auto max-w-5xl px-5 py-32">
         <SectionHeading
           eyebrow="Live demo"
+          dot
           title={
             <>
               Look around first.
@@ -43,26 +43,31 @@ export function TryDemo() {
             </>
           }
           body="Open a fully populated workspace in one click — real charts, a real SEO report, every page of the product. Nothing to install, nothing to sign up for, and nothing you can break."
-          centered
+          align="center"
+          className="v-rise"
         />
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-3">
+        <div className="mt-16 grid gap-3 sm:grid-cols-3">
           {explore.map((item, i) => (
-            <Reveal
+            <GlowCard
               key={item.title}
-              delay={(i + 1) as 1 | 2 | 3}
-              className="card card-hover group p-7"
+              className={`v-rise v-d${i + 1} group p-8`}
             >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <item.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.body}</p>
-            </Reveal>
+              <item.icon
+                className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+              <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+                {item.title}
+              </h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
+                {item.body}
+              </p>
+            </GlowCard>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4">
+        <div className="mt-14 flex flex-col items-center gap-4">
           <Button
             href={`${site.app}/login`}
             size="lg"

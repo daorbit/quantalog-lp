@@ -4,20 +4,24 @@ import { site } from "@/lib/site";
 
 export function Cta() {
   return (
+    // The page's last frame, so it gets the one piece of ambient motion the
+    // hero doesn't own — a slow aurora, echoing the opening without repeating
+    // the six static blobs the old page scattered across every section.
     <section className="relative overflow-hidden border-t border-border bg-bg-subtle">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"
-        style={{ background: "var(--glow)" }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-160 w-160 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60"
         aria-hidden="true"
-      />
+      >
+        <div className="aurora h-full w-full rounded-full" />
+      </div>
 
-      <div className="relative mx-auto max-w-3xl px-5 py-28 text-center">
-        <h2 className="headline text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.025em] sm:text-[2.75rem]">
+      <div className="relative mx-auto max-w-3xl px-5 py-36 text-center">
+        <h2 className="headline-live text-balance text-h2 font-medium leading-[1.08] tracking-[-0.035em]">
           Your first pageview is
           <br className="hidden sm:block" /> three minutes away.
         </h2>
-        <p className="mx-auto mt-5 max-w-lg text-pretty leading-relaxed text-fg-muted">
+        <p className="mx-auto mt-6 max-w-lg text-pretty text-lead leading-relaxed text-fg-muted">
           Free forever on the Hobby plan. No credit card, no sales call, no
           onboarding webinar.
         </p>

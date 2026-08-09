@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CodeCard } from "../code-card";
 import { SectionHeading } from "../ui";
-import { Reveal } from "../reveal";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 
@@ -45,16 +44,15 @@ const methodStyle: Record<string, string> = {
 
 export function Platform() {
   return (
-    <section id="platform" className="relative overflow-hidden border-t border-border">
-      <div
-        className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full blur-[100px]"
-        style={{ background: "var(--glow)" }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-5 py-28">
+    <section
+      id="platform"
+      className="relative overflow-hidden border-y border-border bg-bg-subtle"
+    >
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-32">
         <SectionHeading
           eyebrow="Platform API"
+          align="left"
+          className="v-rise"
           title={
             <>
               Give analytics to <span className="text-accent">your</span> users.
@@ -63,16 +61,16 @@ export function Platform() {
           body="If you run a site builder, an app platform, or an agency, one API key lets you provision a project per customer, inject the tracker into the apps you generate, and read their stats back into your own dashboard. Your users never see Quantalog unless you want them to."
         />
 
-        <div className="mt-16 grid gap-4 lg:grid-cols-2">
-          <Reveal delay={1}>
+        <div className="mt-16 grid gap-3 lg:grid-cols-2">
+          <div className="v-rise v-d1">
             <CodeCard filename="provision.sh" language="bash" code={createProject} />
-          </Reveal>
-          <Reveal delay={2}>
+          </div>
+          <div className="v-rise v-d2">
             <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
-          </Reveal>
+          </div>
         </div>
 
-        <Reveal className="card mt-4 overflow-hidden">
+        <div className="v-rise v-d3 mt-3 overflow-hidden rounded-2xl border border-border bg-surface">
           <div className="divide-y divide-border">
             {endpoints.map((e) => (
               <div
@@ -80,7 +78,7 @@ export function Platform() {
                 className="flex flex-col gap-1.5 px-5 py-3.5 transition-colors hover:bg-bg-subtle sm:flex-row sm:items-center sm:gap-4"
               >
                 <span
-                  className={`inline-flex w-fit shrink-0 justify-center rounded border px-1.5 py-0.5 font-mono text-[10.5px] font-bold tracking-wide sm:w-18 ${methodStyle[e.method]}`}
+                  className={`inline-flex w-fit shrink-0 justify-center rounded-md border px-1.5 py-0.5 font-mono text-[10.5px] font-semibold tracking-wide sm:w-18 ${methodStyle[e.method]}`}
                 >
                   {e.method}
                 </span>
@@ -89,7 +87,7 @@ export function Platform() {
               </div>
             ))}
           </div>
-        </Reveal>
+        </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
           <Link

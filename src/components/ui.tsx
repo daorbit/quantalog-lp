@@ -17,15 +17,15 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    "bg-accent text-accent-fg shadow-[0_1px_0_rgba(255,255,255,0.15)_inset,var(--shadow-md)] hover:brightness-110 active:brightness-95",
+    "bg-accent text-accent-fg shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,var(--shadow-md)] hover:brightness-110 hover:-translate-y-px active:translate-y-0 active:brightness-95",
   secondary:
-    "border border-border bg-surface text-fg shadow-soft hover:border-border-strong hover:bg-surface-raised",
+    "border border-border bg-surface/70 text-fg backdrop-blur hover:border-border-strong hover:bg-surface-raised hover:-translate-y-px active:translate-y-0",
   ghost: "text-fg-muted hover:text-fg",
 } as const;
 
 const sizes = {
   md: "px-4 py-2 text-sm",
-  lg: "px-6 py-3 text-sm",
+  lg: "px-6 py-3.5 text-[0.9375rem]",
 } as const;
 
 export function Button({
@@ -37,7 +37,7 @@ export function Button({
   track: event,
   trackProps,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-lg font-medium transition duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
+  const cls = `inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   const internal = href.startsWith("/") || href.startsWith("#");
 
   const onClick = event
@@ -55,37 +55,117 @@ export function Button({
   );
 }
 
-export function Eyebrow({ children }: { children: React.ReactNode }) {
+/**
+ * The eyebrow no longer carries the little accent dash on every instance —
+ * repeated 14 times down the page it became a period marker rather than a
+ * label. A live dot is available for the sections that genuinely describe
+ * something happening now.
+ */
+export function Eyebrow({
+  children,
+  dot = false,
+}: {
+  children: React.ReactNode;
+  dot?: boolean;
+}) {
   return (
-    <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
-      <span className="h-px w-6 bg-accent/40" aria-hidden="true" />
+    <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-fg-muted backdrop-blur">
+      {dot && (
+        <span
+          className="live-dot h-1.5 w-1.5 rounded-full bg-accent"
+          aria-hidden="true"
+        />
+      )}
       {children}
     </p>
   );
 }
 
+/**
+ * Section headings are deliberately no longer one fixed shape. `align` and
+ * `size` let a section pick a form that suits its content, so scrolling the
+ * page produces rhythm instead of the same eyebrow → centred H2 → body block
+ * fourteen times in a row.
+ */
 export function SectionHeading({
   eyebrow,
   title,
   body,
   centered = false,
+  align,
+  size = "md",
+  dot = false,
+  className = "",
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: React.ReactNode;
   body?: string;
+  /** @deprecated prefer `align` — kept so existing callers keep working. */
   centered?: boolean;
+  align?: "left" | "center";
+  size?: "md" | "lg";
+  dot?: boolean;
+  className?: string;
 }) {
+  const isCentered = align ? align === "center" : centered;
+
   return (
-    <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
-      <div className={centered ? "flex justify-center" : ""}>
-        <Eyebrow>{eyebrow}</Eyebrow>
-      </div>
-      <h2 className="mt-4 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.02em] sm:text-[2.5rem]">
+    <div
+      className={`${
+        isCentered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"
+      } ${className}`}
+    >
+      {eyebrow && (
+        <div className={isCentered ? "flex justify-center" : ""}>
+          <Eyebrow dot={dot}>{eyebrow}</Eyebrow>
+        </div>
+      )}
+      <h2
+        className={`mt-5 text-balance leading-[1.08] tracking-[-0.03em] ${
+          size === "lg" ? "text-display font-medium" : "text-h2 font-medium"
+        }`}
+      >
         {title}
       </h2>
       {body && (
-        <p className="mt-4 text-pretty leading-relaxed text-fg-muted">{body}</p>
+        <p
+          className={`mt-5 text-pretty text-lead leading-relaxed text-fg-muted ${
+            isCentered ? "mx-auto" : ""
+          }`}
+        >
+          {body}
+        </p>
       )}
     </div>
+  );
+}
+
+/**
+ * A card that tracks the pointer, feeding `--mx`/`--my` to the `.glow-card`
+ * highlight. Without a pointer it renders as a plain surface, so the effect is
+ * purely additive — nothing about the layout or legibility depends on it.
+ */
+export function GlowCard({
+  children,
+  className = "",
+  as: Tag = "div",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  as?: "div" | "li" | "article";
+}) {
+  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
+
+  return (
+    <Tag
+      onMouseMove={onMouseMove}
+      className={`glow-card edge-lit rounded-2xl border border-border bg-surface ${className}`}
+    >
+      {children}
+    </Tag>
   );
 }

@@ -33,41 +33,40 @@ const frameworks = [
 ];
 
 export function Logos() {
-  // Two identical sets: the track scrolls exactly one set's width and resets,
-  // so the loop has no visible seam.
-  const track = [...frameworks, ...frameworks];
-
   return (
-    <section className="overflow-hidden border-y border-border bg-bg-subtle py-10">
-      <p className="text-center text-xs uppercase tracking-[0.14em] text-fg-faint">
-        Verified against
-      </p>
+    // No border-t: this sits directly under the hero's dashboard frame, and a
+    // hairline there cuts the product shot off from its own proof.
+    <section className="border-b border-border py-14">
+      <div className="mx-auto max-w-5xl px-5">
+        <p className="text-center text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+          Verified against
+        </p>
 
-      <div className="marquee-mask mt-6">
-        <ul className="marquee-track flex items-center" aria-label="Supported frameworks">
-          {track.map((f, i) => (
+        {/* A static wrapped row, replacing the infinite marquee. The marquee
+            moved without being asked and read as a stock landing-page device;
+            wrapped, the same ten marks are scannable at a glance and each one
+            responds to the pointer individually. */}
+        <ul
+          className="mt-8 flex flex-wrap items-center justify-center gap-x-9 gap-y-6"
+          aria-label="Supported frameworks"
+        >
+          {frameworks.map((f, i) => (
             <li
-              key={`${f.name}-${i}`}
-              // The second set is decoration; a screen reader should hear the
-              // list once, not twice.
-              aria-hidden={i >= frameworks.length}
-              // Spacing lives on the item rather than as a flex gap. A gap adds
-              // one trailing space the duplicate set does not account for, so
-              // half the track is wider than one set — which is the visible
-              // blank stretch that appeared on every loop.
-              className="group flex shrink-0 items-center gap-2.5 px-6"
+              key={f.name}
+              className="v-rise lift-item group flex items-center gap-2.5 text-fg-faint hover:text-fg"
+              style={{ animationDelay: `${i * 35}ms` }}
             >
               <svg
                 viewBox="0 0 24 24"
-                width="20"
-                height="20"
+                width="19"
+                height="19"
                 aria-hidden="true"
-                className="shrink-0 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+                className="shrink-0 opacity-55 transition-opacity duration-300 group-hover:opacity-100"
                 fill={MONOCHROME.has(f.name) ? "currentColor" : `#${f.icon.hex}`}
               >
                 <path d={f.icon.path} />
               </svg>
-              <span className="whitespace-nowrap text-[15px] font-semibold tracking-tight text-fg-faint transition-colors duration-200 group-hover:text-fg">
+              <span className="whitespace-nowrap text-sm font-medium tracking-tight transition-colors duration-300">
                 {f.name}
               </span>
             </li>

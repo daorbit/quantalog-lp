@@ -1,4 +1,3 @@
-import { Reveal } from "../reveal";
 import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
 
@@ -18,24 +17,23 @@ const DEMO_SRC =
 
 export function Demo() {
   return (
-    <section id="demo" className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-5 py-28">
-        <Reveal>
-          <SectionHeading
-            centered
-            eyebrow="Product tour"
-            title={
-              <>
-                See it before
-                <br />
-                you sign up.
-              </>
-            }
-            body="Click through the real thing — landing page to live dashboard, in about a minute. No account needed."
-          />
-        </Reveal>
+    <section id="demo">
+      <div className="mx-auto max-w-7xl px-5 py-32">
+        <SectionHeading
+          align="center"
+          eyebrow="Product tour"
+          className="v-rise"
+          title={
+            <>
+              See it before
+              <br />
+              you sign up.
+            </>
+          }
+          body="Click through the real thing — landing page to live dashboard, in about a minute. No account needed."
+        />
 
-        <Reveal delay={1}>
+        <div className="v-rise v-d2">
           {/* Page Pilot's own embed markup, kept verbatim — the padding ratio,
               aspect-ratio and box-sizing all come from their viewer and the
               player mis-scales if any of them are swapped for utility classes. */}
@@ -68,9 +66,9 @@ export function Demo() {
               }}
             />
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal delay={2}>
+        <div className="v-rise v-d3">
           <p className="mt-5 text-center text-sm text-fg-faint">
             Prefer the real thing?{" "}
             <a
@@ -81,7 +79,7 @@ export function Demo() {
             </a>{" "}
             — no card, live in about three seconds.
           </p>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

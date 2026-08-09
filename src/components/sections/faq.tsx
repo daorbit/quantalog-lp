@@ -46,19 +46,30 @@ export const faqs = [
 
 export function Faq() {
   return (
-    <section className="border-t border-border">
-      <div className="mx-auto max-w-3xl px-5 py-28">
-        <SectionHeading centered eyebrow="FAQ" title="Questions people actually ask" />
+    <section>
+      <div className="mx-auto max-w-3xl px-5 py-32">
+        <SectionHeading
+          align="center"
+          eyebrow="FAQ"
+          title="Questions people actually ask"
+          className="v-rise"
+        />
 
-        <div className="card mt-14 divide-y divide-border overflow-hidden">
-          {faqs.map((item) => (
-            <details key={item.q} className="group px-6 py-5 transition-colors open:bg-bg-subtle">
+        {/* Open rows are separated by spacing rather than boxed in a single
+            bordered card — a list of ten inside one hard frame is what made
+            this read as a support page. */}
+        <div className="mt-14 divide-y divide-border border-y border-border">
+          {faqs.map((item, i) => (
+            <details
+              key={item.q}
+              className={`group v-rise v-d${(i % 3) + 1} px-1 py-5`}
+            >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                <span className="text-[14.5px] font-medium text-fg transition-colors group-hover:text-accent">
+                <span className="text-[15px] font-medium text-fg transition-colors group-hover:text-accent">
                   {item.q}
                 </span>
                 <span
-                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border text-fg-muted transition-all duration-200 group-open:rotate-45 group-open:border-accent/40 group-open:text-accent"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border text-fg-muted transition-all duration-300 group-hover:border-border-strong group-open:rotate-45 group-open:border-accent/40 group-open:text-accent"
                   aria-hidden="true"
                 >
                   <Plus className="h-3.5 w-3.5" />
@@ -71,7 +82,7 @@ export function Faq() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-fg-muted">
+        <p className="mt-10 text-center text-sm text-fg-muted">
           Still stuck?{" "}
           <a
             href="mailto:daorbit2k25@gmail.com"

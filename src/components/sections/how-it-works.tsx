@@ -35,12 +35,12 @@ const facts = [
 
 export function HowItWorks() {
   return (
-    <section className="border-t border-border bg-bg-subtle">
-      <div className="mx-auto max-w-6xl px-5 py-28">
+    <section className="border-y border-border bg-bg-subtle">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-32">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          <div>
+          <div className="v-rise">
             <Eyebrow>Setup</Eyebrow>
-            <h2 className="mt-4 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.02em] sm:text-[2.5rem]">
+            <h2 className="mt-5 text-balance text-h2 font-medium leading-[1.08] tracking-[-0.03em]">
               Three steps.
               <br />
               Roughly two minutes.
@@ -60,13 +60,16 @@ export function HowItWorks() {
                 className="absolute bottom-4 left-[15px] top-4 w-px bg-border"
                 aria-hidden="true"
               />
-              {steps.map((s) => (
-                <li key={s.n} className="relative flex gap-5">
-                  <span className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface font-mono text-[11px] font-semibold text-accent shadow-soft">
+              {steps.map((s, i) => (
+                <li
+                  key={s.n}
+                  className={`v-rise v-d${i + 1} group relative flex gap-5`}
+                >
+                  <span className="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-surface font-mono text-[11px] font-medium text-accent shadow-soft transition-all duration-300 group-hover:border-accent/40 group-hover:bg-accent/8">
                     {s.n}
                   </span>
-                  <div className="pt-1">
-                    <h3 className="text-[15px] font-semibold tracking-tight">{s.title}</h3>
+                  <div className="pt-1.5">
+                    <h3 className="text-[15px] font-medium tracking-tight">{s.title}</h3>
                     <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-fg-muted">
                       {s.body}
                     </p>
@@ -76,16 +79,19 @@ export function HowItWorks() {
             </ol>
           </div>
 
-          <div className="lg:pl-4">
+          <div className="v-rise v-d2 lg:pl-4">
             <CodeCard filename="app/layout.tsx" language="html" code={snippet} />
 
-            <div className="mt-4 grid grid-cols-3 gap-4">
+            <div className="mt-3 grid grid-cols-3 gap-3">
               {facts.map((x) => (
-                <div key={x.k} className="card px-4 py-4">
-                  <p className="text-[11px] uppercase tracking-[0.1em] text-fg-faint">
+                <div
+                  key={x.k}
+                  className="rounded-xl border border-border bg-surface px-4 py-4"
+                >
+                  <p className="text-[11px] uppercase tracking-[0.12em] text-fg-faint">
                     {x.k}
                   </p>
-                  <p className="mt-1.5 text-xl font-semibold tabular-nums tracking-tight">
+                  <p className="mt-2 text-xl font-medium tabular-nums tracking-[-0.03em]">
                     {x.v}
                   </p>
                 </div>

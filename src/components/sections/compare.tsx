@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import { SectionHeading } from "../ui";
-import { Reveal } from "../reveal";
 
 const namedComparisons = [
   { href: "/compare/google-analytics-alternative", label: "vs Google Analytics" },
@@ -62,28 +61,29 @@ function Cell({ value }: { value: Support }) {
 
 export function Compare() {
   return (
-    <section id="compare" className="relative border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 py-28">
+    <section id="compare" className="relative">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-32">
         <SectionHeading
           eyebrow="Comparison"
           title="Where Quantalog fits"
           body="Most teams are choosing between a heavyweight suite that needs a consent banner and a counter that only shows pageviews. Quantalog is the middle: product depth without the compliance surface."
-          centered
+          align="center"
+          className="v-rise"
         />
 
-        <Reveal className="panel mt-16 overflow-hidden">
+        <div className="v-rise v-d2 panel mt-16 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[36rem] border-collapse text-left">
               <thead>
                 <tr className="border-b border-border">
-                  <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.1em] text-fg-faint">
+                  <th scope="col" className="px-6 py-4 text-[11px] font-medium uppercase tracking-[0.14em] text-fg-faint">
                     Capability
                   </th>
                   {columns.map((col, i) => (
                     <th
                       key={col}
                       scope="col"
-                      className={`px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.1em] ${
+                      className={`px-6 py-4 text-center text-[11px] font-medium uppercase tracking-[0.14em] ${
                         i === 0 ? "bg-accent/6 text-accent" : "text-fg-faint"
                       }`}
                     >
@@ -117,7 +117,7 @@ export function Compare() {
               </tbody>
             </table>
           </div>
-        </Reveal>
+        </div>
 
         <p className="mt-5 text-center text-xs text-fg-faint">
           Categories, not specific products — capabilities vary between vendors
