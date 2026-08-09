@@ -16,7 +16,7 @@ export function Cta() {
         <div className="aurora h-full w-full rounded-full" />
       </div>
 
-      <div className="relative mx-auto max-w-3xl px-5 py-36 text-center">
+      <div className="relative mx-auto max-w-3xl px-5 py-20 text-center sm:py-28 lg:py-32">
         <h2 className="headline-live text-balance text-h2 font-medium leading-[1.08] tracking-[-0.035em]">
           Your first pageview is
           <br className="hidden sm:block" /> three minutes away.

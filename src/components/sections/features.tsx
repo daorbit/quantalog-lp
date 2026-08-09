@@ -76,7 +76,7 @@ const features = [
 export function Features() {
   return (
     <section id="features" className="relative">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           eyebrow="Features"
           align="left"
@@ -90,19 +90,19 @@ export function Features() {
           className="v-rise"
         />
 
-        <div className="mt-20 grid auto-rows-[minmax(0,auto)] gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid sm:mt-16 auto-rows-[minmax(0,auto)] gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <GlowCard
               key={f.title}
               // Stagger across the row, then restart — a uniform delay on a
               // 3-column grid makes the third column feel broken.
-              className={`v-rise v-d${(i % 3) + 1} group flex flex-col p-8 ${f.span}`}
+              className={`v-rise v-d${(i % 3) + 1} group flex flex-col p-6 sm:p-7 ${f.span}`}
             >
               <f.icon
                 className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
-              <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+              <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">
                 {f.title}
               </h3>
               <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">

@@ -104,12 +104,21 @@
    loudest "a few years ago" signal in the whole design.
    --------------------------------------------------------------------------- */
 @theme {
-  --text-display: clamp(2.75rem, 1.6rem + 5.1vw, 5.25rem);
-  --text-h2: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
-  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  /* The vw coefficients are deliberately small and the floors low. An earlier
+     version ramped much harder, which looked right at 1440px and left every
+     heading oversized on a phone and in any window under ~1000px — clamp()
+     measures the viewport, so it cannot know a heading sits in a narrow
+     column. Ceilings are reached around 1600px. */
+  --text-display: clamp(2.125rem, 1.5rem + 2.6vw, 4rem);
+  --text-h2: clamp(1.625rem, 1.3rem + 1.5vw, 2.625rem);
+  --text-h3: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
+  --text-lead: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
 }
 
+/* Note: no `overflow-x: hidden` on html or body. It makes the root a scroll
+   container, which silently kills `position: sticky` on every descendant —
+   that is what stopped the header appearing once the page scrolled. Sideways
+   overflow is contained at the element that causes it instead. */
 html {
   scroll-behavior: smooth;
   /* Sticky header height, so #anchor targets don't hide underneath it. The
@@ -120,6 +129,16 @@ html {
 body {
   background: var(--bg);
   color: var(--fg);
+  /* Glass only reads as glass when there is something behind it to refract.
+     Two very faint accent washes, fixed to the viewport, give every frosted
+     pane on the page something to pick up as it scrolls past — without them
+     the blur has only flat colour to sample and the panes look like plain
+     grey cards. */
+  background-image:
+    radial-gradient(60rem 40rem at 15% -10%, var(--glow), transparent 60%),
+    radial-gradient(50rem 35rem at 90% 20%, var(--glow), transparent 55%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -261,19 +280,24 @@ body {
   font: inherit;
   font-size: 0.9375rem;
   color: var(--fg);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.625rem;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 .q-input::placeholder {
   color: var(--fg-faint);
 }
 .q-input:hover {
   border-color: var(--border-strong);
+  background: var(--glass-bg-strong);
 }
 .q-input:focus {
-  border-color: var(--accent-2);
+  /* Was --accent-2, which is not defined anywhere — the focused border fell
+     back to the inherited colour instead of turning accent. */
+  border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--ring);
   outline: none;
 }
@@ -362,23 +386,16 @@ body {
   .tick-halo { opacity: 0; }
 }
 
-/* Cards: hairline top highlight + lift on hover. */
+/* Cards: frosted pane, hairline top highlight, lift on hover. */
 .card {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.875rem;
   box-shadow: var(--shadow-sm);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
-}
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 1px;
-  border-radius: inherit;
-  background: linear-gradient(90deg, transparent, var(--hairline) 30%, var(--hairline) 70%, transparent);
-  pointer-events: none;
 }
 .card-hover:hover {
   border-color: var(--border-strong);
@@ -391,11 +408,15 @@ body {
    should sit above the page — the dashboard frame, the consent-gap panel. */
 .panel {
   position: relative;
-  border-radius: 1rem;
-  background: var(--surface);
+  border-radius: 1.25rem;
+  /* The strong tint: a panel this large is usually holding readable content,
+     and the lighter glass leaves body text sitting on whatever scrolls
+     underneath it. */
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
   box-shadow:
-    inset 0 0 0 1px var(--hairline),
-    0 0 0 1px var(--border),
+    0 0 0 1px var(--glass-border),
     var(--shadow-lg);
 }
 
@@ -790,6 +811,53 @@ body {
 }
 
 /* ===========================================================================
+   Glass
+
+   Every raised surface on the site is frosted rather than filled: a
+   translucent tint, a blur that samples what is behind it, and a top-edge
+   highlight so the pane catches light along one edge the way real glass does.
+
+   The tints are deliberately close to the page background. Glass reads as
+   glass because of the blur and the edge, not because it is grey — a panel
+   tinted far from its backdrop just looks like a flat card with a border.
+   =========================================================================== */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(11, 12, 15, 0.08);
+  --glass-blur: 16px;
+}
+
+.dark {
+  --glass-bg: rgba(23, 26, 31, 0.55);
+  --glass-bg-strong: rgba(23, 26, 31, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.14);
+}
+
+.glass,
+.glass-strong {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+}
+
+/* backdrop-filter is expensive and, stacked many panes deep, muddies rather
+   than clarifies. Where a browser cannot do it, fall back to an opaque
+   surface — flat, but never a smear of unreadable text over content. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-strong {
+    background: var(--surface);
+  }
+}
+
+/* ===========================================================================
    Motion system
 
    One easing curve and one distance for the whole site. The old page animated
@@ -845,22 +913,23 @@ body {
   transition: transform 0.35s var(--ease-out-q), border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
-.glow-card::after {
-  content: "";
+/* The pointer highlight lives on a wrapper element rather than a pseudo, so it
+   does not fight `.glass::after` (the lit top edge) for the one ::after slot
+   that a card carrying both classes has. */
+.glow-card > .glow-layer {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
-  z-index: -1;
   background: radial-gradient(
     22rem circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--accent) 12%, transparent),
+    color-mix(in srgb, var(--accent) 14%, transparent),
     transparent 60%
   );
 }
-.glow-card:hover::after {
+.glow-card:hover > .glow-layer {
   opacity: 1;
 }
 .glow-card:hover {

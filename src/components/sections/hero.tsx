@@ -27,11 +27,11 @@ export function Hero() {
       >
         <div className="aurora h-full w-full rounded-full" /></div>
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 pb-24 pt-16 sm:pt-24">
+      <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
           <a
             href="/blog/introducing-quantalog"
-            className="rise rise-1 group inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 py-1 pl-1 pr-3 text-xs text-fg-muted backdrop-blur transition-all duration-200 hover:-translate-y-px hover:border-border-strong hover:text-fg"
+            className="glass rise rise-1 group inline-flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-xs text-fg-muted transition-all duration-200 hover:-translate-y-px hover:text-fg"
           >
             <span className="rounded-full bg-accent/12 px-2 py-0.5 text-[10.5px] font-medium uppercase tracking-wide text-accent">
               New
@@ -51,7 +51,7 @@ export function Hero() {
               at once — the headline resolves the way it would be read. The
               markup is still one plain sentence, so selection, wrapping and
               crawlers are unaffected. */}
-          <h1 className="word-rise headline-live mt-9 text-balance text-display font-medium leading-[1.03] tracking-[-0.04em]">
+          <h1 className="word-rise headline-live mt-7 text-balance text-display font-medium leading-[1.06] tracking-[-0.035em] sm:mt-9">
             <Words text="Cookieless web analytics" />
             <br className="hidden sm:block" />{" "}
             <Words text="that counts the" offset={3} />{" "}
@@ -103,7 +103,7 @@ export function Hero() {
           {/* Divided rather than floating in space: hairlines between the
               figures make it read as one spec strip instead of four loose
               numbers. */}
-          <ul className="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-y-8 sm:grid-cols-4">
+          <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-y-7 sm:mt-14 sm:grid-cols-4">
             {trustPoints.map((point, i) => (
               <li
                 key={point.label}
@@ -112,7 +112,7 @@ export function Hero() {
                 }`}
                 style={{ animationDelay: `${0.45 + i * 0.08}s` }}
               >
-                <p className="text-[2rem] font-medium leading-none tracking-[-0.04em] tabular-nums">
+                <p className="text-2xl font-medium leading-none tracking-[-0.04em] tabular-nums sm:text-[1.75rem]">
                   {point.value}
                 </p>
                 <p className="mt-2 text-[11px] uppercase tracking-[0.12em] text-fg-faint">

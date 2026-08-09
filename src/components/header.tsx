@@ -10,8 +10,6 @@ import { track } from "@/lib/track";
 export function Header() {
   const [open, setOpen] = useState(false);
 
-  // The scroll listener that used to drive a background swap is gone with the
-  // background itself — one less re-render on every scroll frame.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -34,18 +32,26 @@ export function Header() {
         aria-hidden="true"
       />
 
-      {/* Fully transparent — no fill, no hairline. The page shows straight
-          through the bar at every scroll position; the nav pill is the only
-          thing carrying a surface of its own. */}
+      {/* No background and no border, at any scroll position. The logo, the
+          nav pill and the buttons each carry their own surface; the bar
+          holding them stays invisible. */}
       <div>
-        <div className="relative flex h-16 items-center justify-between px-5 sm:px-8 lg:px-12">
-          <Logo />
+        {/* Three flex columns rather than an absolutely positioned centre.
+            Absolute took the nav out of flow, so it reserved no width and the
+            account buttons ran straight over the top of it on any viewport
+            narrow enough for the two to meet. The outer columns share the
+            leftover space equally, which keeps the pill optically centred
+            while every group still occupies real layout. */}
+        <div className="flex h-16 items-center gap-4 px-5 sm:px-8 lg:px-12">
+          <div className="flex flex-1 items-center">
+            <Logo />
+          </div>
 
           {/* The links sit in their own recessed pill, centred in the bar. It
               groups them as one object instead of three loose words floating
               between the logo and the buttons. */}
           <nav
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 rounded-full border border-border/70 bg-bg-subtle/60 p-1 backdrop-blur md:flex"
+            className="glass hidden shrink-0 items-center gap-0.5 rounded-full p-1 lg:flex"
             aria-label="Main"
           >
           {/* Hover and keyboard focus both open it, entirely in CSS —
@@ -72,7 +78,7 @@ export function Header() {
             {/* pt-2 rather than mt-2: the gap between trigger and panel has to
                 be inside the hover target, or crossing it reads as leaving. */}
             <div className="invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-              <div className="overflow-hidden rounded-xl border border-border bg-surface p-1.5 shadow-float">
+              <div className="glass-strong overflow-hidden rounded-2xl p-1.5 shadow-float">
                 {productNav.map((item) => (
                   <Link
                     key={item.href}
@@ -95,28 +101,28 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3.5 py-1.5 text-[13.5px] text-fg-muted transition-colors duration-200 hover:bg-surface hover:text-fg"
+              className="whitespace-nowrap rounded-full px-3 py-1.5 text-[13.5px] text-fg-muted transition-colors duration-200 hover:bg-surface hover:text-fg"
             >
               {item.label}
             </Link>
           ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-1 items-center justify-end gap-2">
             {/* Paired with the primary CTA as two adjacent chips, the way the
                 reference does it — a bare text link beside a solid button
                 reads as an afterthought rather than the second option. */}
             <a
               href={`${site.app}/login`}
               onClick={() => track("sign_in", { location: "header" })}
-              className="hidden rounded-full border border-border bg-surface/60 px-4 py-2 text-[13.5px] text-fg-muted backdrop-blur transition-all duration-200 hover:border-border-strong hover:text-fg md:inline-flex"
+              className="glass hidden whitespace-nowrap rounded-full px-4 py-2 text-[13.5px] text-fg-muted transition-all duration-200 hover:text-fg lg:inline-flex"
             >
               Sign in
             </a>
             <a
               href={`${site.app}/signup`}
               onClick={() => track("cta_start_free", { location: "header" })}
-              className="group hidden items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-[13.5px] font-medium text-accent-fg shadow-soft transition-all duration-200 hover:brightness-110 md:inline-flex"
+              className="group hidden shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-4 py-2 text-[13.5px] font-medium text-accent-fg shadow-soft transition-all duration-200 hover:brightness-110 lg:inline-flex"
             >
               Start free
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -126,7 +132,7 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-fg transition hover:border-border-strong md:hidden"
+              className="glass inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-fg transition lg:hidden"
             >
               {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
@@ -135,7 +141,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="bg-bg/95 backdrop-blur-xl md:hidden">
+        <div className="glass-strong lg:hidden">
           <nav
             className="flex flex-col px-5 py-2 sm:px-8"
             aria-label="Mobile"

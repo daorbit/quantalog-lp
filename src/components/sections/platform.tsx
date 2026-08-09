@@ -48,7 +48,7 @@ export function Platform() {
       id="platform"
       className="relative overflow-hidden border-y border-border bg-bg-subtle"
     >
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-32">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           eyebrow="Platform API"
           align="left"
@@ -61,11 +61,11 @@ export function Platform() {
           body="If you run a site builder, an app platform, or an agency, one API key lets you provision a project per customer, inject the tracker into the apps you generate, and read their stats back into your own dashboard. Your users never see Quantalog unless you want them to."
         />
 
-        <div className="mt-16 grid gap-3 lg:grid-cols-2">
-          <div className="v-rise v-d1">
+        <div className="mt-12 grid sm:mt-14 gap-3 lg:grid-cols-2">
+          <div className="v-rise v-d1 min-w-0">
             <CodeCard filename="provision.sh" language="bash" code={createProject} />
           </div>
-          <div className="v-rise v-d2">
+          <div className="v-rise v-d2 min-w-0">
             <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
           </div>
         </div>

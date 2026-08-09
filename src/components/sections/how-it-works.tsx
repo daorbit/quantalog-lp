@@ -36,7 +36,7 @@ const facts = [
 export function HowItWorks() {
   return (
     <section className="border-y border-border bg-bg-subtle">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <div className="v-rise">
             <Eyebrow>Setup</Eyebrow>
@@ -79,10 +79,12 @@ export function HowItWorks() {
             </ol>
           </div>
 
-          <div className="v-rise v-d2 lg:pl-4">
+          <div className="v-rise v-d2 min-w-0 lg:pl-4">
             <CodeCard filename="app/layout.tsx" language="html" code={snippet} />
 
-            <div className="mt-3 grid grid-cols-3 gap-3">
+            {/* Three across is too tight on a phone: the labels wrap to two
+                lines and the cards spill past the viewport. */}
+            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {facts.map((x) => (
                 <div
                   key={x.k}

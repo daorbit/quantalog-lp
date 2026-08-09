@@ -55,7 +55,7 @@ export function Seo() {
       id="seo"
       className="relative overflow-hidden border-y border-border bg-bg-subtle"
     >
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-32">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           eyebrow="SEO audits"
           align="center"
@@ -70,17 +70,17 @@ export function Seo() {
           body="Audit any page on a site you already track. Quantalog reads it the way a crawler would, runs it through Lighthouse, and reports what is holding it back — in the same dashboard as your traffic, not a separate tool with a separate bill."
         />
 
-        <div className="mt-20 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid sm:mt-16 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {checks.map((c, i) => (
             <GlowCard
               key={c.title}
-              className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-8`}
+              className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-6 sm:p-7`}
             >
               <c.icon
                 className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
-              <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+              <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">
                 {c.title}
               </h3>
               <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">

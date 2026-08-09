@@ -101,7 +101,7 @@ function EmailPreview() {
 export function Reports() {
   return (
     <section id="reports" className="relative overflow-hidden">
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-32">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           eyebrow="Reports"
           align="left"
@@ -116,18 +116,18 @@ export function Reports() {
           body="Send your traffic and SEO summary on a schedule — to yourself, your client, or whoever asked. Headline numbers up front, the full breakdown attached as a spreadsheet, and a copy on your own WhatsApp if you want one."
         />
 
-        <div className="mt-16 grid items-start gap-8 lg:grid-cols-[1fr_380px]">
+        <div className="mt-12 grid sm:mt-14 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="grid gap-3 sm:grid-cols-2">
             {points.map((p, i) => (
               <GlowCard
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group p-8`}
+                className={`v-rise v-d${(i % 3) + 1} group p-6 sm:p-7`}
               >
                 <p.icon
                   className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
                   aria-hidden="true"
                 />
-                <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+                <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">
                   {p.title}
                 </h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">

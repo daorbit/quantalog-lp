@@ -19,13 +19,13 @@ const variants = {
   primary:
     "bg-accent text-accent-fg shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,var(--shadow-md)] hover:brightness-110 hover:-translate-y-px active:translate-y-0 active:brightness-95",
   secondary:
-    "border border-border bg-surface/70 text-fg backdrop-blur hover:border-border-strong hover:bg-surface-raised hover:-translate-y-px active:translate-y-0",
+    "glass text-fg hover:-translate-y-px active:translate-y-0",
   ghost: "text-fg-muted hover:text-fg",
 } as const;
 
 const sizes = {
   md: "px-4 py-2 text-sm",
-  lg: "px-6 py-3.5 text-[0.9375rem]",
+  lg: "px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[0.9375rem]",
 } as const;
 
 export function Button({
@@ -69,7 +69,7 @@ export function Eyebrow({
   dot?: boolean;
 }) {
   return (
-    <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-fg-muted backdrop-blur">
+    <p className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-fg-muted">
       {dot && (
         <span
           className="live-dot h-1.5 w-1.5 rounded-full bg-accent"
@@ -163,8 +163,9 @@ export function GlowCard({
   return (
     <Tag
       onMouseMove={onMouseMove}
-      className={`glow-card edge-lit rounded-2xl border border-border bg-surface ${className}`}
+      className={`glow-card edge-lit glass rounded-2xl ${className}`}
     >
+      <span className="glow-layer" aria-hidden="true" />
       {children}
     </Tag>
   );

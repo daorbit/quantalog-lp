@@ -32,7 +32,7 @@ const explore = [
 export function TryDemo() {
   return (
     <section id="demo-account" className="relative">
-      <div className="mx-auto max-w-5xl px-5 py-32">
+      <div className="mx-auto max-w-5xl px-5 py-20 sm:py-24 lg:py-28">
         <SectionHeading
           eyebrow="Live demo"
           dot
@@ -47,17 +47,17 @@ export function TryDemo() {
           className="v-rise"
         />
 
-        <div className="mt-16 grid gap-3 sm:grid-cols-3">
+        <div className="mt-12 grid sm:mt-14 gap-3 sm:grid-cols-3">
           {explore.map((item, i) => (
             <GlowCard
               key={item.title}
-              className={`v-rise v-d${i + 1} group p-8`}
+              className={`v-rise v-d${i + 1} group p-6 sm:p-7`}
             >
               <item.icon
                 className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
                 aria-hidden="true"
               />
-              <h3 className="mt-6 text-h3 font-medium tracking-[-0.02em]">
+              <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">
                 {item.title}
               </h3>
               <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">

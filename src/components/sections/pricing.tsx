@@ -147,7 +147,7 @@ export function Pricing() {
 
   return (
     <section id="pricing" className="border-t border-border bg-bg-subtle">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-28">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           centered
           eyebrow="Pricing"
