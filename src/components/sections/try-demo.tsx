@@ -71,7 +71,7 @@ export function TryDemo() {
           <Button
             href={`${site.app}/login`}
             size="lg"
-            className="group w-full sm:w-auto"
+            className="group"
             track="try_demo"
             trackProps={{ location: "demo_section" }}
           >

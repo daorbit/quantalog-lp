@@ -5,12 +5,14 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`group inline-flex items-baseline text-[15px] font-semibold tracking-tight text-fg ${className}`}
+      className={`group inline-flex items-baseline text-[19px] font-semibold tracking-[-0.02em] text-fg ${className}`}
       aria-label={`${site.name} home`}
     >
       <span>{site.name}</span>
+      {/* The dot scales with the wordmark — at the old 1px it disappeared
+          entirely next to larger type. */}
       <span
-        className="ml-0.5 h-1 w-1 rounded-full bg-accent transition-opacity group-hover:opacity-60"
+        className="ml-1 h-1.5 w-1.5 rounded-full bg-accent transition-opacity group-hover:opacity-60"
         aria-hidden="true"
       />
     </Link>

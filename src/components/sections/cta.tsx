@@ -30,7 +30,7 @@ export function Cta() {
           <Button
             href={`${site.app}/signup`}
             size="lg"
-            className="group w-full sm:w-auto"
+            className="group"
             track="cta_start_free"
             trackProps={{ location: "footer_cta" }}
           >
@@ -41,7 +41,7 @@ export function Cta() {
             href={site.docs}
             variant="secondary"
             size="lg"
-            className="w-full sm:w-auto"
+            className=""
             track="read_docs"
             trackProps={{ location: "footer_cta" }}
           >

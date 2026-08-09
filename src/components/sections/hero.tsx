@@ -28,7 +28,7 @@ export function Hero() {
         <div className="aurora h-full w-full rounded-full" /></div>
 
       <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:px-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <a
             href="/blog/introducing-quantalog"
             className="glass rise rise-1 group inline-flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-xs text-fg-muted transition-all duration-200 hover:-translate-y-px hover:text-fg"
@@ -72,11 +72,14 @@ export function Hero() {
             to decline and nothing to miss.
           </p>
 
-          <div className="rise rise-4 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          {/* Side by side at every width, sized to their labels. Stacked and
+              stretched edge to edge, the pair read as two slabs rather than a
+              choice between two actions. */}
+          <div className="rise rise-4 mt-9 flex flex-row flex-wrap items-center justify-center gap-3 sm:mt-10">
             <Button
               href={`${site.app}/signup`}
               size="lg"
-              className="group w-full sm:w-auto"
+              className="group"
               track="cta_start_free"
               trackProps={{ location: "hero" }}
             >
@@ -90,7 +93,6 @@ export function Hero() {
               href={`${site.app}/login`}
               variant="secondary"
               size="lg"
-              className="w-full sm:w-auto"
               track="try_demo"
               trackProps={{ location: "hero" }}
             >
@@ -99,10 +101,8 @@ export function Hero() {
           </div>
 
           {/* Read as a spec strip rather than a bullet list: on an analytics
-              page the numbers are the argument, so they get the weight. */}
-          {/* Divided rather than floating in space: hairlines between the
-              figures make it read as one spec strip instead of four loose
-              numbers. */}
+              page the numbers are the argument, so they get the weight, and
+              hairlines between them bind the four figures into one object. */}
           <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-y-7 sm:mt-14 sm:grid-cols-4">
             {trustPoints.map((point, i) => (
               <li
@@ -127,7 +127,7 @@ export function Hero() {
             elevation and an inset hairline — it should sit on the page rather
             than in it. The separate blurred glow underneath is gone; the
             aurora above already lights this area. */}
-        <div className="rise rise-5 panel relative mt-24 overflow-hidden">
+        <div className="rise rise-5 panel relative mt-16 overflow-hidden sm:mt-24">
           <DashboardPreview />
         </div>
       </div>

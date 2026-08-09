@@ -149,7 +149,8 @@ export function Pricing() {
     <section id="pricing" className="border-t border-border bg-bg-subtle">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
-          centered
+          align="center"
+          className="v-rise"
           eyebrow="Pricing"
           title="Plans that scale with your sites."
           body="Every plan includes the full dashboard and SEO audit suite. No feature is held back to sell you an upgrade."
@@ -157,7 +158,7 @@ export function Pricing() {
 
         {plans && (
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface p-1">
+            <div className="glass inline-flex items-center gap-1 rounded-full p-1">
               <button
                 type="button"
                 onClick={() => setYearly(false)}
@@ -185,7 +186,7 @@ export function Pricing() {
               </button>
             </div>
 
-            <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface p-1">
+            <div className="glass inline-flex items-center gap-1 rounded-full p-1">
               {CURRENCIES.map((c) => (
                 <button
                   key={c}
@@ -229,8 +230,10 @@ export function Pricing() {
               return (
                 <div
                   key={plan.slug}
-                  className={`card relative flex flex-col p-7 ${
-                    featured ? "border-accent/60 shadow-float lg:scale-[1.03]" : "card-hover"
+                  className={`glass relative flex flex-col rounded-2xl p-6 transition-all duration-300 sm:p-7 ${
+                    featured
+                      ? "border-accent/50 shadow-float lg:scale-[1.03]"
+                      : "hover:-translate-y-1 hover:border-border-strong hover:shadow-card"
                   }`}
                 >
                   {featured && (
@@ -259,15 +262,15 @@ export function Pricing() {
 
                   <div className="flex items-center gap-2.5">
                     <PlanIcon slug={plan.slug} size={26} uid="pricing" />
-                    <h3 className="text-[15px] font-semibold tracking-tight">{plan.name}</h3>
+                    <h3 className="text-[15px] font-medium tracking-tight">{plan.name}</h3>
                   </div>
-                  <p className="mt-1.5 min-h-10 text-sm leading-relaxed text-fg-muted">
+                  <p className="mt-2 min-h-10 text-sm leading-relaxed text-fg-muted">
                     {plan.description}
                   </p>
 
                   <div className="mt-7">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-[2.75rem] font-bold leading-none tracking-[-0.03em]">
+                      <span className="text-[2.25rem] font-medium leading-none tracking-[-0.04em] tabular-nums sm:text-[2.5rem]">
                         {formatPrice(price, currency)}
                       </span>
                       <span className="text-sm text-fg-muted">
@@ -284,10 +287,10 @@ export function Pricing() {
                     onClick={() =>
                       track("pricing_plan_selected", { plan: plan.slug, cycle: yearly ? "yearly" : "monthly" })
                     }
-                    className={`mt-6 rounded-lg py-2.5 text-center text-sm font-medium transition duration-200 ${
+                    className={`mt-6 rounded-full py-2.5 text-center text-sm font-medium transition-all duration-200 ${
                       featured
                         ? "bg-accent text-accent-fg shadow-soft hover:brightness-110"
-                        : "border border-border bg-surface text-fg hover:border-border-strong hover:bg-surface-raised"
+                        : "border border-border bg-surface/60 text-fg backdrop-blur hover:border-border-strong hover:bg-surface-raised"
                     }`}
                   >
                     {price === 0 ? "Start free" : "Get started"}
@@ -313,9 +316,10 @@ export function Pricing() {
         )}
 
         {orbitPlans && orbitPlans.length > 0 && (
-          <div className="mt-24 border-t border-border pt-20">
+          <div className="mt-20 border-t border-border pt-16 sm:mt-24 sm:pt-20">
             <SectionHeading
-              centered
+              align="center"
+              className="v-rise"
               eyebrow="Orbit AI"
               title="The assistant is included in every plan."
               body="Orbit answers questions about your setup and walks you through fixing what an audit flagged. Every plan includes a tier of it — no separate subscription."
