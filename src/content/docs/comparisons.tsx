@@ -83,9 +83,9 @@ function Body() {
       <H2 id="plans">Plan availability</H2>
       <P>
         Comparison against the previous period is included on every plan, including
-        Free. Custom baselines are available from Starter, and year-over-year
-        comparison on Pro — a year-ago baseline needs a year of history behind it to
-        say anything.
+        Free — which covers ranges up to 7 days, so week-over-week reads work out of
+        the box. Custom baselines are available from Starter, and year-over-year
+        comparison on Pro, where a year-ago baseline has a year of history behind it.
       </P>
     </>
   );

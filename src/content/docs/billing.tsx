@@ -23,6 +23,34 @@ function Body() {
         <Li>The Free plan needs no payment at all and is assigned instantly.</Li>
       </Ul>
 
+      <H2 id="events">Event quota</H2>
+      <P>
+        Every plan includes a monthly allowance of tracked events — a pageview, a
+        custom event, a click, or any other beacon the tracker sends. This is the
+        allowance that reflects what a workspace actually costs to run, so it is
+        the one to watch.
+      </P>
+      <Ul>
+        <Li>
+          <b>Free</b> includes 10,000 events a month, <b>Starter</b> 250,000, and{" "}
+          <b>Pro</b> 2 million.
+        </Li>
+        <Li>
+          Current usage is shown on the Billing page, and resets when a new plan
+          period starts. Unused events do not roll over.
+        </Li>
+        <Li>
+          Events are not sold as add-on packs — the way past the line is a plan
+          change.
+        </Li>
+      </Ul>
+      <Callout>
+        Going over quota stops <i>new</i> events being recorded until the next
+        period. Your dashboard, your history, and everything already collected
+        stay exactly as they are — nothing you have already gathered is lost or
+        hidden.
+      </Callout>
+
       <H2 id="addons">Add-on credit packs</H2>
       <P>
         Used up your monthly SEO audits or crawls before the period ends? Add-on
@@ -61,11 +89,18 @@ function Body() {
 
       <H2 id="expiry">When a period ends</H2>
       <P>
-        Audits and crawls pause when a plan period expires; your data, sites, and
-        dashboards are untouched, and any unused add-on credits stay exactly
-        where they are. Buying the plan again — or a different one — starts a new
-        period immediately.
+        Audits, crawls, and event tracking all pause when a plan period expires.
+        Your data, sites, and dashboards are untouched, and any unused add-on
+        credits stay exactly where they are. Buying the plan again — or a
+        different one — starts a new period immediately, and tracking resumes as
+        soon as the payment clears.
       </P>
+      <Callout>
+        Events that arrive while a plan is expired are not recorded and cannot be
+        backfilled — the tracker is turned away rather than queued. If you are
+        letting a plan lapse deliberately, expect a gap in the data for that
+        stretch.
+      </Callout>
     </>
   );
 }
