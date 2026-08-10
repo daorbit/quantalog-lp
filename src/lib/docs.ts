@@ -4,6 +4,7 @@ import { tracking } from "@/content/docs/tracking";
 import { scriptOptions } from "@/content/docs/script-options";
 import { customEvents } from "@/content/docs/custom-events";
 import { filters } from "@/content/docs/filters";
+import { comparisons } from "@/content/docs/comparisons";
 import { funnels } from "@/content/docs/funnels";
 import { channels } from "@/content/docs/channels";
 import { conversions } from "@/content/docs/conversions";
@@ -48,6 +49,7 @@ const DOCS: Doc[] = [
   scriptOptions,
   customEvents,
   filters,
+  comparisons,
   funnels,
   retention,
   channels,
