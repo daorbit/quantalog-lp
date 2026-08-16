@@ -97,6 +97,37 @@ function Body() {
         after the plan&apos;s own allowance is gone.
       </P>
 
+      <H2 id="dictation">Asking by voice</H2>
+      <P>
+        The microphone beside the send button dictates a question instead of
+        typing it. Press it, speak, and the words appear in the box as you go;
+        press it again — it turns into a stop button while it is listening — and
+        the question stays there for you to edit before sending.
+      </P>
+      <Ul>
+        <Li>
+          It keeps listening across pauses, so several sentences in one go is
+          fine. Sending stops it.
+        </Li>
+        <Li>
+          Dictation adds to whatever is already in the box, so you can start
+          typing and finish out loud.
+        </Li>
+        <Li>
+          The first use asks the browser for microphone permission. If you blocked
+          it earlier, the button will say so — it is re-enabled in your
+          browser&apos;s site settings, not in Quantalog.
+        </Li>
+      </Ul>
+      <P>
+        This uses your browser&apos;s own speech recognition, so the microphone
+        button only appears where that exists — Chrome, Edge and Safari today,
+        not Firefox. Worth knowing before you use it: in Chrome that recognition
+        runs on Google&apos;s servers, which means the audio you dictate is sent
+        there to be transcribed. Nothing is recorded or stored by Quantalog, and
+        dictation costs no questions — only the answer does.
+      </P>
+
       <H2 id="follow-ups">Follow-up questions</H2>
       <P>
         Each answer comes with up to three suggested follow-ups — the next thing
