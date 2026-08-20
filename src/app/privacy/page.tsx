@@ -10,11 +10,12 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy" updated="July 13, 2026">
+    <LegalPage title="Privacy" updated="August 20, 2026">
       <p>
         This page describes what {site.name} collects on the sites that embed our
-        tracker, and what we collect from you as a customer of ours. It is written
-        to be read, not to be survived.
+        tracker, what we collect from you as a customer, and what happens when you
+        connect a third-party account or ask our AI assistant a question. It is
+        written to be read, not to be survived.
       </p>
 
       <h2>What the tracker collects</h2>
@@ -51,7 +52,41 @@ export default function PrivacyPage() {
       <p>
         Your name, your email address, a bcrypt hash of your password, and the
         workspaces and sites you create. If you subscribe to a paid plan, payment
-        is handled by our payment processor and we never see your card details.
+        is handled by our payment processor (Razorpay) and we never see your card
+        details.
+      </p>
+
+      <h2>Lead forms you build</h2>
+      <p>
+        Our forms feature lets you collect responses from your own site&apos;s
+        visitors — whatever fields you design the form to ask for. That response
+        data belongs to you, not to us: we store it so your form works, we do not
+        read it, sell it, or use it for anything of our own. You can set a
+        retention window per form so old responses are deleted automatically, and
+        you can delete a form&apos;s responses at any time.
+      </p>
+
+      <h2>Connecting a social account</h2>
+      <p>
+        If you connect LinkedIn (or another network we add support for) to
+        schedule posts, we store the access token that connection grants, the
+        account&apos;s name and profile picture, and a record of what was
+        published through it — never anything else from that account, and never
+        anything the network itself doesn&apos;t hand us. The token is encrypted
+        at rest and is used only to publish the posts you compose and schedule
+        yourself. We never post anything you didn&apos;t write, and disconnecting
+        the account deletes the stored token immediately.
+      </p>
+
+      <h2>Orbit, our AI assistant</h2>
+      <p>
+        Questions you ask Orbit are sent to a third-party AI model to generate an
+        answer — the specific provider (Google Gemini, or one of several models
+        reached through OpenRouter, depending on your plan and availability at the
+        time) is chosen automatically and is not something we can guarantee in
+        advance. We do not store your Orbit conversations on our servers beyond
+        what is needed to answer the question in front of you, and we do not use
+        anything you ask Orbit to train a model of our own.
       </p>
 
       <h2>Retention and deletion</h2>
@@ -59,13 +94,15 @@ export default function PrivacyPage() {
         Event data is retained according to your plan — 30 days on Hobby, 2 years on
         Pro. You can export or permanently delete a site&apos;s data at any time from
         the dashboard, and deleting your account removes everything associated with
-        it.
+        it, including any connected social accounts and stored form responses.
       </p>
 
       <h2>Sub-processors</h2>
       <p>
-        Data is stored in MongoDB Atlas and served from Vercel. We do not sell data,
-        share it with advertising networks, or use it to train anything.
+        Data is stored in MongoDB Atlas and served from Vercel and Cloudflare.
+        Images you upload (for scheduled posts or elsewhere in the product) are
+        stored with Cloudinary. Payments are processed by Razorpay. We do not sell
+        data, share it with advertising networks, or use it to train anything.
       </p>
 
       <h2>Contact</h2>
