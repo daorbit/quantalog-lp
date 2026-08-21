@@ -88,13 +88,6 @@ function formatPrice(amountMinor: number, currency: Currency) {
   return `${symbol}${(amountMinor / 100).toLocaleString(CURRENCY_LOCALES[currency], { maximumFractionDigits: 0 })}`;
 }
 
-/** What each model tier actually gets you, in a buyer's words rather than ours. */
-const ORBIT_TIER_FEATURE: Record<ResolvedOrbitPlan["modelTier"], string> = {
-  basic: "Open-weight models",
-  standard: "Reasoning models",
-  advanced: "Every model, including Gemini Flash",
-};
-
 export function Pricing() {
   const [plans, setPlans] = useState<ResolvedPlan[] | null>(null);
   const [orbitPlans, setOrbitPlans] = useState<ResolvedOrbitPlan[] | null>(null);
@@ -334,7 +327,7 @@ export function Pricing() {
                   <tr className="border-b border-border text-xs uppercase tracking-wide text-fg-faint">
                     <th className="py-3 pr-4 font-semibold">Plan</th>
                     <th className="py-3 pr-4 font-semibold">Questions / month</th>
-                    <th className="py-3 font-semibold">Models</th>
+                    <th className="py-3 font-semibold">Extras</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -347,8 +340,7 @@ export function Pricing() {
                         {plan.monthlyQuota.toLocaleString()}
                       </td>
                       <td className="py-3.5 text-fg-muted">
-                        {ORBIT_TIER_FEATURE[plan.modelTier]}
-                        {plan.dataAccess && ", and answers from your own analytics"}
+                        {plan.dataAccess ? "Answers from your own analytics" : "All models included"}
                       </td>
                     </tr>
                   ))}
