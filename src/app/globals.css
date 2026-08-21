@@ -7,10 +7,9 @@
   --font-sans: var(--font-sans-loaded), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Accent — teal rather than emerald. Emerald against a cool ground was the
-     green-on-white combination that made the page read as a default template;
-     teal shares the hue family of every surface here, so the accent belongs to
-     the palette instead of sitting on top of it. */
+  /* Accent — teal rather than emerald. The ground is neutral, so this is the
+     page's one colour: used on a call to action, a live figure, or the word
+     the headline turns on, and almost nowhere else. */
   --color-brand-50: #f0fdfa;
   --color-brand-100: #ccfbf1;
   --color-brand-200: #99f6e4;
@@ -37,24 +36,22 @@
 
 /* Semantic tokens: one set per theme, everything else references these. */
 :root {
-  /* Cool and slightly tinted rather than pure white. Flat #fff is what makes a
-     light theme read as unstyled — every surface here carries a trace of the
-     same teal the dark theme is built on, so the two are one design seen in
-     two lights rather than two palettes. */
-  --bg: #f4f8f8;
-  --bg-subtle: #eaf1f1;
+  /* Near-white with the faintest cool cast — enough that surfaces separate
+     from the ground, not so much that the page looks tinted. */
+  --bg: #fbfcfd;
+  --bg-subtle: #f4f6f8;
   --surface: #ffffff;
   --surface-raised: #ffffff;
-  --border: #dbe6e6;
-  --border-strong: #c3d3d4;
-  --fg: #0d1b1e;
-  --fg-muted: #55686b;
-  --fg-faint: #8ba0a3;
+  --border: #e4e8ec;
+  --border-strong: #cdd3da;
+  --fg: #0a0b0d;
+  --fg-muted: #5b6472;
+  --fg-faint: #949ca8;
   --accent: #0d9488;
   --accent-fg: #ffffff;
-  --grid-line: rgba(13, 27, 30, 0.04);
-  --tint: rgba(13, 148, 136, 0.05);
-  --glow: rgba(13, 148, 136, 0.1);
+  --grid-line: rgba(10, 11, 13, 0.04);
+  --tint: rgba(13, 148, 136, 0.04);
+  --glow: rgba(13, 148, 136, 0.09);
   --ring: rgba(13, 148, 136, 0.35);
   /* Layered, tight shadows — the thing that separates "styled" from "designed". */
   --shadow-sm: 0 1px 2px rgba(11, 12, 15, 0.04), 0 1px 1px rgba(11, 12, 15, 0.03);
@@ -63,29 +60,30 @@
   --hairline: rgba(11, 12, 15, 0.06);
 }
 
-/* Dark is the page's real theme.
+/* Dark: a near-black neutral, with the accent kept for things that are
+ * interactive or true.
  *
- * Not a neutral near-black with a green accent, which is what it was: every
- * surface has a trace of teal in it, so the ground reads as a considered
- * colour rather than as grey. The accent is desaturated to match — a pure
- * #10b981 against a cool ground is the combination that made the page look
- * like a template with the brand colour swapped in. */
+ * The previous pass tinted every surface teal, which flattened the page — one
+ * hue everywhere means nothing stands out, and the headline had no more
+ * contrast against the ground than a border did. This puts the contrast back:
+ * a genuinely dark ground, near-white text, and colour used sparingly enough
+ * that it reads as emphasis when it appears. */
 .dark {
-  --bg: #101a1c;
-  --bg-subtle: #162225;
-  --surface: #172427;
-  --surface-raised: #1c2b2f;
-  --border: #26383c;
-  --border-strong: #33484d;
-  --fg: #eef4f4;
-  --fg-muted: #93a8ab;
-  --fg-faint: #647c80;
-  --accent: #2dd4bf;
-  --accent-fg: #06201d;
-  --grid-line: rgba(255, 255, 255, 0.03);
-  --tint: rgba(45, 212, 191, 0.06);
-  --glow: rgba(45, 212, 191, 0.13);
-  --ring: rgba(45, 212, 191, 0.45);
+  --bg: #0a0b0d;
+  --bg-subtle: #0f1114;
+  --surface: #141619;
+  --surface-raised: #1a1d21;
+  --border: #24272c;
+  --border-strong: #34383f;
+  --fg: #f7f8f9;
+  --fg-muted: #9ba1ab;
+  --fg-faint: #6b7280;
+  --accent: #14b8a6;
+  --accent-fg: #04231f;
+  --grid-line: rgba(255, 255, 255, 0.028);
+  --tint: rgba(20, 184, 166, 0.05);
+  --glow: rgba(20, 184, 166, 0.12);
+  --ring: rgba(20, 184, 166, 0.45);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
@@ -262,7 +260,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   /* Two overlapping strokes — a single pass reads as a plain border. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M3 12c34-6 62-7 96-5s62 6 98 2' fill='none' stroke='%232dd4bf' stroke-width='4' stroke-linecap='round' opacity='.95'/%3E%3Cpath d='M8 15c40-4 74-5 108-3s52 4 80 1' fill='none' stroke='%232dd4bf' stroke-width='2.5' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'%3E%3Cpath d='M3 12c34-6 62-7 96-5s62 6 98 2' fill='none' stroke='%2314b8a6' stroke-width='4' stroke-linecap='round' opacity='.95'/%3E%3Cpath d='M8 15c40-4 74-5 108-3s52 4 80 1' fill='none' stroke='%2314b8a6' stroke-width='2.5' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E");
 }
 
 /* Reveal on scroll. Elements start shifted and are released by an observer
@@ -1017,6 +1015,12 @@ body {
   display: inline-block;
   animation: word-in 0.75s var(--ease-out-q) both;
   animation-delay: calc(var(--i, 0) * 55ms);
+  /* An inline-block is its own line box, so a transform on it clips against
+     that box rather than against the line — which cut the descenders off any
+     word with a `y` or `g` in it. The extra room is taken back with a matching
+     negative margin, so the headline's leading is unchanged. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 /* When the headline also clips a gradient to its text, the child spans must
    not paint their own background box — they inherit the clipped fill from the
@@ -1366,10 +1370,10 @@ body {
    surface with no join to align. Only its top colour is defined here. */
 
 :root {
-  /* A shade deeper than the page, in the same hue — the fold reads as having
-     weight without introducing a second colour. */
-  --hero-top: #e4eeee;
+  /* A shade deeper than the page, so the fold has weight without becoming a
+     second colour. */
+  --hero-top: #eef1f4;
 }
 .dark {
-  --hero-top: #16292c;
+  --hero-top: #12151a;
 }

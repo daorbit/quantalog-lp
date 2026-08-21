@@ -21,7 +21,8 @@ export function Hero() {
     // normal flow, so one surface can cover both without this section having to
     // reach up behind anything.
     <section className="relative isolate overflow-hidden">
-      <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
+      {/* No grid. It was drawn for a light ground; on a dark one the lines read
+          as scaffolding left in by mistake rather than as texture. */}
 
       <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:px-10">
         <div className="mx-auto max-w-4xl text-center">
@@ -54,7 +55,15 @@ export function Hero() {
               at once — the headline resolves the way it would be read. The
               markup is still one plain sentence, so selection, wrapping and
               crawlers are unaffected. */}
-          <h1 className="word-rise headline-live mt-7 text-balance text-display font-medium leading-[1.06] tracking-[-0.035em] sm:mt-9">
+          {/* No gradient clip and no `text-balance`.
+              `headline-live` clipped a gradient to the text, which needs the
+              spans to paint no background of their own — combined with the
+              per-word inline-blocks that `word-rise` needs, the descenders on
+              "analytics" were being cut off. `text-balance` then re-broke the
+              lines against the explicit `<br>`, so the same word could land
+              mid-clip. Plain text in a plain colour, wrapping where it is told
+              to. */}
+          <h1 className="word-rise mt-7 text-display font-medium leading-[1.08] tracking-[-0.03em] sm:mt-9">
             <Words text="Cookieless web analytics" />
             <br className="hidden sm:block" />{" "}
             <Words text="that counts the" offset={3} />{" "}
