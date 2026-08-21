@@ -31,6 +31,10 @@ export const faqs = [
     a: "Yes, two ways. Publish it at a link anyone can open — you choose section by section what is visible, and anything switched off is stripped on the server rather than hidden — or export the report as a print-ready page and save it as a PDF. Sharing is per report, so publishing one audit never exposes the rest of the site's history.",
   },
   {
+    q: "Can Quantalog post to LinkedIn for me?",
+    a: "Yes. Connect your LinkedIn account once, then write a post in the dashboard — or describe it to Orbit in a sentence and let it draft the words and work out the timing. Schedule it for a moment or on a repeating slot, and Quantalog publishes it unattended. Nothing goes out without you confirming it first, and every send is kept with a link to the post so you can see exactly what was published.",
+  },
+  {
     q: "Can I try it without signing up?",
     a: "Yes. The login page has a live demo that opens a fully populated workspace in one click — a month of sample traffic, a complete SEO audit with history, and every screen in the product. It is read-only, the data is generated in your browser, and no account or card is involved.",
   },

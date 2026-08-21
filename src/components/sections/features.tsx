@@ -1,5 +1,6 @@
 import {
   Activity,
+  CalendarClock,
   Code2,
   Globe2,
   Layers,
@@ -70,6 +71,12 @@ const features = [
     icon: Code2,
     title: "An API, not just a UI",
     body: "Every number in the dashboard is reachable over REST with an API key. Build your own views — or resell them.",
+  },
+  {
+    span: "lg:col-span-3",
+    icon: CalendarClock,
+    title: "Post to LinkedIn on a schedule",
+    body: "Write a post from a sentence with Orbit, pick when it goes out — once, or on a repeating slot — and Quantalog publishes it unattended. Every send is kept with the words and image as they went, and a link to the post.",
   },
 ];
 

@@ -7,6 +7,7 @@ import { TryDemo } from "@/components/sections/try-demo";
 import { Seo } from "@/components/sections/seo";
 import { Reports } from "@/components/sections/reports";
 import { Orbit } from "@/components/sections/orbit";
+import { Scheduling } from "@/components/sections/scheduling";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Compare } from "@/components/sections/compare";
 import { Platform } from "@/components/sections/platform";
@@ -83,6 +84,7 @@ const jsonLd = graph(
       "Shareable SEO audit reports",
       "Scheduled email reports with spreadsheet attachments",
       "Orbit AI in-app support assistant",
+      "Scheduled LinkedIn posts written with Orbit AI",
     ],
   },
   {
@@ -123,6 +125,10 @@ export default function HomePage() {
           the product being sold on the model. It lands better once the visitor
           knows what there is to ask about. */}
       <Orbit />
+      {/* Straight after Orbit, because it is Orbit put to work: the assistant
+          section explains what it is, and this one shows the thing it does
+          that no other analytics product does. */}
+      <Scheduling />
       {/* After the case is made and before the comparison: the visitor now
           knows what is claimed, and looking is cheaper than reading on. */}
       <TryDemo />
