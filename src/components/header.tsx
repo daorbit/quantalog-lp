@@ -32,10 +32,11 @@ export function Header() {
         aria-hidden="true"
       />
 
-      {/* No background and no border, at any scroll position. The logo, the
-          nav pill and the buttons each carry their own surface; the bar
-          holding them stays invisible. */}
-      <div>
+      {/* A real bar rather than a transparent strip with a floating pill in it.
+          The pill read as a widget hovering over the page; a plain surface with
+          a hairline under it reads as the site's own chrome, which is what a
+          product page wants at the top. */}
+      <div className="border-b border-border/70 bg-bg/80 backdrop-blur-xl">
         {/* Three flex columns rather than an absolutely positioned centre.
             Absolute took the nav out of flow, so it reserved no width and the
             account buttons ran straight over the top of it on any viewport
@@ -47,11 +48,11 @@ export function Header() {
             <Logo />
           </div>
 
-          {/* The links sit in their own recessed pill, centred in the bar. It
-              groups them as one object instead of three loose words floating
-              between the logo and the buttons. */}
+          {/* Plain links now that the bar itself carries a surface. The pill
+              they used to sit in was a second frosted layer on top of a
+              frosted bar, which read as two panes of glass rather than one. */}
           <nav
-            className="glass hidden shrink-0 items-center gap-0.5 rounded-full p-1 lg:flex"
+            className="hidden shrink-0 items-center gap-0.5 lg:flex"
             aria-label="Main"
           >
           {/* Hover and keyboard focus both open it, entirely in CSS —
