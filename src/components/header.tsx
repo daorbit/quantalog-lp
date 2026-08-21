@@ -23,15 +23,10 @@ export function Header() {
        collected into a pill floating in the middle. Boxing all three groups
        inside one narrow container is what made the earlier version read as a
        toolbar rather than as chrome belonging to the page. */
-    <header className="sticky top-0 z-40">
-      {/* Scroll position, drawn by CSS scroll-timeline. No listener, no state:
-          the previous `scrolled` boolean already costs a re-render on scroll,
-          and this is free by comparison. */}
-      <div
-        className="scroll-progress h-px origin-left bg-accent/60"
-        aria-hidden="true"
-      />
-
+    <header className="relative z-40">
+      {/* The scroll-progress hairline is gone with the sticky positioning it
+          depended on: a progress bar that scrolls off the top of the page
+          reports nothing after the first screen. */}
       {/* No surface and no border. The hero paints one continuous ground that
           starts behind this bar and runs down to the chart line at its foot —
           a header with its own background would cut a seam across it, which is

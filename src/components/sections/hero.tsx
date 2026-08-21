@@ -17,12 +17,10 @@ const trustPoints = [
 
 export function Hero() {
   return (
-    // `-mt-16 pt-16` pulls the section up behind the sticky header and pads the
-    // content back down: the ground then starts at the very top of the page
-    // rather than under a transparent strip, so there is no seam where the
-    // header ends. `isolate` keeps the ground below the content without a
-    // z-index on every child.
-    <section className="hero-ground relative isolate -mt-16 overflow-hidden pt-16">
+    // The ground is painted on <body> now rather than here — the header is in
+    // normal flow, so one surface can cover both without this section having to
+    // reach up behind anything.
+    <section className="relative isolate overflow-hidden">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:px-10">

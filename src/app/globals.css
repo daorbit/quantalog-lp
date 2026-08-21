@@ -7,17 +7,20 @@
   --font-sans: var(--font-sans-loaded), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Accent — same emerald ramp as the dashboard app. */
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
+  /* Accent — teal rather than emerald. Emerald against a cool ground was the
+     green-on-white combination that made the page read as a default template;
+     teal shares the hue family of every surface here, so the accent belongs to
+     the palette instead of sitting on top of it. */
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
 
   /* Neutral dark surfaces — no purple cast. */
   --color-ink-0: #c9ced6;
@@ -34,24 +37,25 @@
 
 /* Semantic tokens: one set per theme, everything else references these. */
 :root {
-  --bg: #ffffff;
-  --bg-subtle: #fafafa;
+  /* Cool and slightly tinted rather than pure white. Flat #fff is what makes a
+     light theme read as unstyled — every surface here carries a trace of the
+     same teal the dark theme is built on, so the two are one design seen in
+     two lights rather than two palettes. */
+  --bg: #f4f8f8;
+  --bg-subtle: #eaf1f1;
   --surface: #ffffff;
   --surface-raised: #ffffff;
-  --border: #e6e8eb;
-  --border-strong: #d0d4da;
-  --fg: #0b0c0f;
-  --fg-muted: #62697a;
-  --fg-faint: #9aa1ae;
-  --accent: #059669;
+  --border: #dbe6e6;
+  --border-strong: #c3d3d4;
+  --fg: #0d1b1e;
+  --fg-muted: #55686b;
+  --fg-faint: #8ba0a3;
+  --accent: #0d9488;
   --accent-fg: #ffffff;
-  --grid-line: rgba(11, 12, 15, 0.045);
-  /* The page's own ground tint. Cool and desaturated rather than a shade of
-     the accent — the accent is for things that are interactive or true, and a
-     page washed in it reads as one colour instead of a palette. */
-  --tint: rgba(226, 232, 240, 0.55);
-  --glow: rgba(16, 185, 129, 0.1);
-  --ring: rgba(5, 150, 105, 0.35);
+  --grid-line: rgba(13, 27, 30, 0.04);
+  --tint: rgba(13, 148, 136, 0.05);
+  --glow: rgba(13, 148, 136, 0.1);
+  --ring: rgba(13, 148, 136, 0.35);
   /* Layered, tight shadows — the thing that separates "styled" from "designed". */
   --shadow-sm: 0 1px 2px rgba(11, 12, 15, 0.04), 0 1px 1px rgba(11, 12, 15, 0.03);
   --shadow-md: 0 4px 12px -2px rgba(11, 12, 15, 0.06), 0 2px 4px -2px rgba(11, 12, 15, 0.04);
@@ -59,24 +63,29 @@
   --hairline: rgba(11, 12, 15, 0.06);
 }
 
+/* Dark is the page's real theme.
+ *
+ * Not a neutral near-black with a green accent, which is what it was: every
+ * surface has a trace of teal in it, so the ground reads as a considered
+ * colour rather than as grey. The accent is desaturated to match — a pure
+ * #10b981 against a cool ground is the combination that made the page look
+ * like a template with the brand colour swapped in. */
 .dark {
-  --bg: #0b0c0f;
-  --bg-subtle: #101216;
-  --surface: #131519;
-  --surface-raised: #171a1f;
-  --border: #23262d;
-  --border-strong: #32363f;
-  --fg: #f3f5f7;
-  --fg-muted: #8b929e;
-  --fg-faint: #5f6673;
-  --accent: #10b981;
-  --accent-fg: #04150e;
-  --grid-line: rgba(255, 255, 255, 0.035);
-  /* A slate lift at the top of a dark page, so it is not flat black — the same
-     job the light theme's tint does, in the other direction. */
-  --tint: rgba(51, 65, 85, 0.5);
-  --glow: rgba(16, 185, 129, 0.14);
-  --ring: rgba(16, 185, 129, 0.45);
+  --bg: #101a1c;
+  --bg-subtle: #162225;
+  --surface: #172427;
+  --surface-raised: #1c2b2f;
+  --border: #26383c;
+  --border-strong: #33484d;
+  --fg: #eef4f4;
+  --fg-muted: #93a8ab;
+  --fg-faint: #647c80;
+  --accent: #2dd4bf;
+  --accent-fg: #06201d;
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --tint: rgba(45, 212, 191, 0.06);
+  --glow: rgba(45, 212, 191, 0.13);
+  --ring: rgba(45, 212, 191, 0.45);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
@@ -137,10 +146,21 @@ html {
 body {
   background: var(--bg);
   color: var(--fg);
-  /* Flat. The top of the page is painted by `.hero-ground` on the hero itself,
-     which starts above the header and resolves into this — a second wash here
-     would paint over it and put the seam back. Pages without a hero simply get
-     the plain ground, which is correct for a docs or legal page. */
+  /* One ground for the whole top of the page, header included.
+   *
+   * Painted here rather than on the hero, because the header sits in normal
+   * flow above it: a gradient on <body> covers both with no join to align,
+   * which is the thing that kept making the fold read as two stacked boxes.
+   * It resolves into the flat background well before the first section ends,
+   * so pages with no hero are unaffected. */
+  background-image:
+    radial-gradient(
+      64rem 30rem at 50% 6%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(180deg, var(--hero-top) 0%, var(--bg) 58rem);
+  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -1342,41 +1362,14 @@ body {
 
 /* ---- Hero ground -------------------------------------------------------- */
 
-/* One continuous surface behind the header and the hero.
- *
- * The page previously stacked a transparent header on a separately-painted
- * hero, and the join read as two boxes however carefully the colours matched.
- * This paints both from a single gradient that starts at the very top of the
- * document and settles into the page ground before the section ends — so
- * there is nothing to align, because there is only one surface.
- *
- * Deeper at the top than the body's own tint, so the fold has weight. The
- * accent appears only as a faint bloom behind the headline; the ground itself
- * stays neutral, which is what keeps it from reading as a green page. */
-.hero-ground {
-  background:
-    /* A soft pool of accent light behind the headline, wide and very weak. */
-    radial-gradient(
-      70rem 34rem at 50% 12%,
-      color-mix(in srgb, var(--accent) 9%, transparent),
-      transparent 68%
-    ),
-    /* The ground: darker at the top, resolving into the page below. */
-    linear-gradient(
-      180deg,
-      var(--hero-top) 0%,
-      color-mix(in srgb, var(--hero-top) 45%, var(--bg)) 46%,
-      var(--bg) 100%
-    );
-}
+/* The gradient itself lives on <body>, so the header and the hero share one
+   surface with no join to align. Only its top colour is defined here. */
 
 :root {
-  /* Light theme: a cool slate that reads as depth rather than as grey. */
-  --hero-top: #eef2f6;
+  /* A shade deeper than the page, in the same hue — the fold reads as having
+     weight without introducing a second colour. */
+  --hero-top: #e4eeee;
 }
 .dark {
-  /* Dark theme: lifted off pure black, with a trace of blue so it does not
-     look like a flat dark grey. Their page does the same with teal — this
-     keeps the hue neutral so the emerald accent stays the only colour. */
-  --hero-top: #141922;
+  --hero-top: #16292c;
 }
