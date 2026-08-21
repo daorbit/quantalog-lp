@@ -1164,3 +1164,123 @@ body {
   .spring-hover:hover { transform: none; }
   .sheen::after { display: none; }
 }
+
+/* ============================================================================
+   Reader display preferences
+   ----------------------------------------------------------------------------
+   Driven by the panel in `components/display`. Every rule here is switched by
+   an attribute or a custom property on <html>, so the panel sets one value and
+   the cascade does the rest.
+
+   This is a preferences panel, not an accessibility overlay. It changes what a
+   reader asked to have changed; it does not claim to fix the page, because a
+   script cannot. The underlying markup has to be right on its own.
+   ========================================================================= */
+
+:root {
+  --reader-text-scale: 100%;
+  --reader-line-height: 1;
+  --reader-letter-spacing: 0em;
+}
+
+/* Scales the root font size, so every rem-based size in the page follows.
+   Applied to <html> rather than <body> for exactly that reason. */
+html {
+  font-size: calc(16px * (var(--reader-text-scale) / 100%));
+}
+
+/* Line height and letter spacing are multiplied into the body rather than set
+   outright, so the design's own rhythm is kept at the default setting. */
+body {
+  line-height: calc(1.6 * var(--reader-line-height));
+  letter-spacing: var(--reader-letter-spacing);
+}
+
+/* ---- High contrast ------------------------------------------------------ */
+
+/* Pushes text to the extremes of the palette and firms up every border. The
+   decorative washes go with it — an aurora behind body copy is exactly what a
+   reader turning this on is trying to get rid of. */
+[data-reader-contrast] {
+  --fg: #000;
+  --fg-muted: #1a1a1a;
+  --fg-faint: #333;
+  --border: #6b6b6b;
+}
+[data-reader-contrast].dark,
+.dark[data-reader-contrast] {
+  --fg: #fff;
+  --fg-muted: #f0f0f0;
+  --fg-faint: #d8d8d8;
+  --border: #9a9a9a;
+}
+[data-reader-contrast] .aurora,
+[data-reader-contrast] .glow-layer,
+[data-reader-contrast] .grid-fade {
+  display: none !important;
+}
+[data-reader-contrast] .card,
+[data-reader-contrast] .panel,
+[data-reader-contrast] .glow-card {
+  border-width: 2px;
+}
+
+/* ---- Readable font ------------------------------------------------------ */
+
+/* A wider, plainer face. Not branded as a dyslexia font: the research on
+   specialised faces is genuinely mixed, while "some readers find this easier"
+   is true and is all that needs claiming. */
+[data-reader-font],
+[data-reader-font] * {
+  font-family: Verdana, Tahoma, "DejaVu Sans", sans-serif !important;
+}
+
+/* ---- Link underlines ---------------------------------------------------- */
+
+/* Colour alone is not a reliable link signal. This makes every in-content link
+   carry an underline as well. */
+[data-reader-links] a {
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em;
+}
+
+/* ---- Reduced motion ----------------------------------------------------- */
+
+/* The same treatment the OS-level setting gets, offered separately — plenty of
+   people want motion off on one site without changing it system-wide. */
+[data-reader-motion] *,
+[data-reader-motion] *::before,
+[data-reader-motion] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ---- Images off --------------------------------------------------------- */
+
+/* Hides decorative imagery and leaves the alt text visible in its place, for
+   reading the page as text. Images with no alt are decorative by definition,
+   so they simply go. */
+[data-reader-images] img {
+  visibility: hidden;
+  position: relative;
+}
+[data-reader-images] img::after {
+  content: attr(alt);
+  visibility: visible;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--fg-muted);
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border);
+  border-radius: 0.5rem;
+}
+[data-reader-images] svg {
+  opacity: 0.35;
+}
