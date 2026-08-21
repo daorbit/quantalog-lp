@@ -56,16 +56,6 @@ export default function PrivacyPage() {
         details.
       </p>
 
-      <h2>Lead forms you build</h2>
-      <p>
-        Our forms feature lets you collect responses from your own site&apos;s
-        visitors — whatever fields you design the form to ask for. That response
-        data belongs to you, not to us: we store it so your form works, we do not
-        read it, sell it, or use it for anything of our own. You can set a
-        retention window per form so old responses are deleted automatically, and
-        you can delete a form&apos;s responses at any time.
-      </p>
-
       <h2>Connecting a social account</h2>
       <p>
         If you connect LinkedIn (or another network we add support for) to
@@ -94,7 +84,7 @@ export default function PrivacyPage() {
         Event data is retained according to your plan — 30 days on Hobby, 2 years on
         Pro. You can export or permanently delete a site&apos;s data at any time from
         the dashboard, and deleting your account removes everything associated with
-        it, including any connected social accounts and stored form responses.
+        it, including any connected social accounts.
       </p>
 
       <h2>Sub-processors</h2>
