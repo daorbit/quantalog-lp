@@ -5,29 +5,41 @@ function Body() {
   return (
     <>
       <P>
-        The post studio writes LinkedIn posts ahead of time and publishes them
-        for you. You write the text and pick the image once; Quantalog sends it
-        at the time you chose, whether or not you&apos;re at your desk.
+        The post studio writes LinkedIn and Instagram posts ahead of time and
+        publishes them for you. You write the text and pick the image once;
+        Quantalog sends it at the time you chose, whether or not you&apos;re at
+        your desk.
       </P>
 
-      <H2 id="connecting">Connecting LinkedIn</H2>
+      <H2 id="connecting">Connecting an account</H2>
       <P>
-        Before anything can publish, connect LinkedIn from the studio. This is a
-        separate permission from signing in with LinkedIn — signing in proves who
-        you are, but it does not let us post on your behalf, so LinkedIn asks
-        again the first time you schedule something.
+        Before anything can publish, connect the network from{" "}
+        <b>Settings → Connections</b>. Each is a separate permission from signing
+        in: signing in proves who you are, but it does not let us post on your
+        behalf, so the network asks again the first time you connect for
+        publishing.
       </P>
+      <Ul>
+        <Li>
+          <b>LinkedIn</b> — publishes to your own member feed.
+        </Li>
+        <Li>
+          <b>Instagram</b> — publishes to a Business or Creator account. Personal
+          Instagram accounts cannot publish through any app; switch the account
+          type in the Instagram app first.
+        </Li>
+      </Ul>
       <Callout>
-        A connection that expires, or one made for sign-in only, pauses every
-        schedule on your account until you reconnect. The studio says so at the
-        top of the page rather than letting posts fail quietly.
+        A connection that expires, or one made without posting permission, pauses
+        every schedule on that network until you reconnect. The studio says so at
+        the top of the page rather than letting posts fail quietly.
       </Callout>
 
       <H2 id="creating">Creating a post</H2>
       <P>
-        Choose <b>New post</b>. You write the caption on the left and see it laid
-        out as LinkedIn will render it on the right — where the text folds, how
-        the image crops.
+        Choose <b>New post</b>, then pick the network at the top — it decides the
+        caption limit and whether an image is required. You write the caption on
+        the left and see it laid out as it will render on the right.
       </P>
       <Ul>
         <Li>
@@ -35,15 +47,21 @@ function Body() {
           published.
         </Li>
         <Li>
-          <b>Post</b> — the caption, up to 3,000 characters. Bold and italic are
-          unicode letters rather than formatting, because LinkedIn&apos;s
-          composer accepts no markup.
+          <b>Post</b> — the caption, up to 3,000 characters on LinkedIn and 2,200
+          on Instagram. Bold and italic are unicode letters rather than
+          formatting, because neither composer accepts markup.
         </Li>
         <Li>
-          <b>Image</b> — optional. A caption on its own is a valid post, and
-          LinkedIn builds its own preview from any link inside it.
+          <b>Image</b> — optional on LinkedIn, where a caption on its own is a
+          valid post. <b>Required on Instagram</b>, which has no text-only post.
         </Li>
       </Ul>
+      <Callout>
+        The network is fixed once a post is created. A caption written to
+        Instagram&apos;s limit with an image attached is not the same post as a
+        LinkedIn one, so moving it across means writing it again rather than
+        flipping a switch.
+      </Callout>
 
       <H2 id="scheduling">Once, or on a repeat</H2>
       <P>
@@ -53,8 +71,8 @@ function Body() {
       <P>
         <b>Repeat</b> publishes daily, weekly, or monthly at an hour you pick, in
         your own timezone. A repeating post sends <b>the same text and image
-        every time</b>, so it suits evergreen content only — LinkedIn
-        deprioritises duplicate posts, and readers notice.
+        every time</b>, so it suits evergreen content only — both networks
+        deprioritise duplicate posts, and readers notice.
       </P>
 
       <H2 id="timing">When posts actually go out</H2>
@@ -82,15 +100,23 @@ function Body() {
       </Ul>
       <Callout>
         Quantalog cannot unpublish a post. Deleting a schedule stops future runs
-        and removes its image, but anything already on LinkedIn stays there —
-        remove it from LinkedIn itself.
+        and removes its image, but anything already published stays there —
+        remove it from LinkedIn or Instagram itself.
       </Callout>
+
+      <H2 id="stats">Engagement figures</H2>
+      <P>
+        The Sent tab shows engagement for LinkedIn posts where the permission is
+        available. Instagram figures are not shown: its insights are a separate
+        permission that Quantalog does not request, so those rows carry no
+        statistics rather than a row of zeroes.
+      </P>
 
       <H2 id="ownership">Who can see your schedules</H2>
       <P>
         Scheduled posts belong to you, not to the workspace. They publish under
-        your own LinkedIn account, so other members of the same workspace
-        cannot see or change them.
+        your own connected account, so other members of the same workspace cannot
+        see or change them.
       </P>
     </>
   );
@@ -100,7 +126,7 @@ export const scheduledPosts: Doc = {
   slug: "scheduled-posts",
   title: "Scheduled posts",
   description:
-    "Write LinkedIn posts ahead of time and let Quantalog publish them — once, or on a repeating cadence in your own timezone.",
+    "Write LinkedIn and Instagram posts ahead of time and let Quantalog publish them — once, or on a repeating cadence in your own timezone.",
   category: "Tracking",
   order: 16,
   Body,
