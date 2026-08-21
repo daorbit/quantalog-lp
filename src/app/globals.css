@@ -445,11 +445,31 @@ body {
   to { transform: translateX(-50%); }
 }
 .marquee-track {
-  animation: marquee 32s linear infinite;
+  animation: marquee 44s linear infinite;
   width: max-content;
+}
+/* Stops under the pointer, so a reader who wants to look at one mark can. A
+   marquee that keeps moving while someone is trying to read it is the reason
+   the device has the reputation it does. Focus counts too — a keyboard user
+   tabbing into a link inside the track needs it to hold still. */
+.marquee-mask:hover .marquee-track,
+.marquee-mask:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 .marquee-mask {
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Motion off: the track parks at its start and the row simply scrolls, which
+   keeps every mark reachable without anything animating. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-mask {
+    overflow-x: auto;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
 }
 
 @keyframes shimmer {
