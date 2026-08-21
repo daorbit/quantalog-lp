@@ -109,11 +109,10 @@ export default function HomePage() {
           any amount of copy below it can. */}
       <Demo />
       <Logos />
-      {/* The observed line runs into the consent-gap section and the reported
-          one runs out of it — the section's whole argument, drawn on its two
-          edges. Used sparingly: a divider between every section would be
-          wallpaper rather than a device. */}
-      <ChartDivider variant="observed" filled />
+      {/* The reported line runs out of the consent-gap section — the hero's
+          own line runs into it. The pair bracket the argument, and nothing
+          else on the page uses them, so they stay a device rather than
+          becoming wallpaper. */}
       {/* The argument, before the feature list: why cookie-based tools
           under-report, then what you get instead. */}
       <div className="band-deep">
@@ -140,7 +139,6 @@ export default function HomePage() {
       <div className="band">
         <Scheduling />
       </div>
-      <ChartDivider variant="observed" />
       {/* After the case is made and before the comparison: the visitor now
           knows what is claimed, and looking is cheaper than reading on. */}
       <TryDemo />

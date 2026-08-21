@@ -5,6 +5,7 @@ import { Words } from "../words";
 import { DashboardPreview } from "../dashboard-preview";
 import { TrustChips } from "../trust-chips";
 import { MockLabels } from "../mock-labels";
+import { ChartDivider } from "../chart-divider";
 
 /* Each claim is a number a visitor can check, not an adjective. */
 const trustPoints = [
@@ -16,18 +17,13 @@ const trustPoints = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    // `-mt-16 pt-16` pulls the section up behind the sticky header and pads the
+    // content back down: the ground then starts at the very top of the page
+    // rather than under a transparent strip, so there is no seam where the
+    // header ends. `isolate` keeps the ground below the content without a
+    // z-index on every child.
+    <section className="hero-ground relative isolate -mt-16 overflow-hidden pt-16">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
-      {/* One slowly rotating conic sweep, in place of the pair of static
-          blurred blobs. A blob that never moves is a gradient; a sweep that
-          turns reads as light in the room. This is now the only ambient glow
-          on the page — it was on six sections, which made it a template
-          rather than a choice. */}
-      <div
-        className="pointer-events-none absolute left-1/2 -top-112 h-184 w-184 -translate-x-1/2 rounded-full opacity-70"
-        aria-hidden="true"
-      >
-        <div className="aurora h-full w-full rounded-full" /></div>
 
       <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:px-10">
         <div className="mx-auto max-w-4xl text-center">
@@ -145,6 +141,12 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* The traffic line closes the hero, running the full width at the point
+          where the ground resolves into the page. It is the boundary between
+          the fold and everything below it — and the one piece of decoration on
+          the page that is also the thing being sold. */}
+      <ChartDivider variant="observed" filled className="-mb-px" />
     </section>
   );
 }

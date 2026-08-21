@@ -137,19 +137,10 @@ html {
 body {
   background: var(--bg);
   color: var(--fg);
-  /* One cool wash from the top, rather than two accent-coloured blooms.
-     The previous pair tinted the whole page green — every glass pane sampled
-     it, and a product page ends up looking like it has one colour rather than
-     a palette. This keeps something for the glass to refract while leaving the
-     ground neutral, so the accent only appears where it is actually used. */
-  background-image:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--tint) 55%, transparent) 0%,
-      transparent 42%
-    );
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  /* Flat. The top of the page is painted by `.hero-ground` on the hero itself,
+     which starts above the header and resolves into this — a second wash here
+     would paint over it and put the seam back. Pages without a hero simply get
+     the plain ground, which is correct for a docs or legal page. */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -1347,4 +1338,45 @@ body {
       color-mix(in srgb, var(--tint) 35%, transparent) 45%,
       transparent 100%
     );
+}
+
+/* ---- Hero ground -------------------------------------------------------- */
+
+/* One continuous surface behind the header and the hero.
+ *
+ * The page previously stacked a transparent header on a separately-painted
+ * hero, and the join read as two boxes however carefully the colours matched.
+ * This paints both from a single gradient that starts at the very top of the
+ * document and settles into the page ground before the section ends — so
+ * there is nothing to align, because there is only one surface.
+ *
+ * Deeper at the top than the body's own tint, so the fold has weight. The
+ * accent appears only as a faint bloom behind the headline; the ground itself
+ * stays neutral, which is what keeps it from reading as a green page. */
+.hero-ground {
+  background:
+    /* A soft pool of accent light behind the headline, wide and very weak. */
+    radial-gradient(
+      70rem 34rem at 50% 12%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 68%
+    ),
+    /* The ground: darker at the top, resolving into the page below. */
+    linear-gradient(
+      180deg,
+      var(--hero-top) 0%,
+      color-mix(in srgb, var(--hero-top) 45%, var(--bg)) 46%,
+      var(--bg) 100%
+    );
+}
+
+:root {
+  /* Light theme: a cool slate that reads as depth rather than as grey. */
+  --hero-top: #eef2f6;
+}
+.dark {
+  /* Dark theme: lifted off pure black, with a trace of blue so it does not
+     look like a flat dark grey. Their page does the same with teal — this
+     keeps the hue neutral so the emerald accent stays the only colour. */
+  --hero-top: #141922;
 }

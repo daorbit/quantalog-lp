@@ -45,9 +45,10 @@ const frameworks: Framework[] = [
 
 export function Logos() {
   return (
-    // No border-t: this sits directly under the hero's dashboard frame, and a
-    // hairline there cuts the product shot off from its own proof.
-    <section className="border-b border-border py-14">
+    // No borders at all. The hero's chart line is the boundary above this, and
+    // a hairline either side of the marquee would fence it in as a widget
+    // rather than letting it read as a band running under the page.
+    <section className="py-14">
       <p className="text-center text-[11px] uppercase tracking-[0.16em] text-fg-faint">
         Verified against
       </p>

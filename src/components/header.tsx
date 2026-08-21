@@ -32,11 +32,12 @@ export function Header() {
         aria-hidden="true"
       />
 
-      {/* A real bar rather than a transparent strip with a floating pill in it.
-          The pill read as a widget hovering over the page; a plain surface with
-          a hairline under it reads as the site's own chrome, which is what a
-          product page wants at the top. */}
-      <div className="border-b border-border/70 bg-bg/80 backdrop-blur-xl">
+      {/* No surface and no border. The hero paints one continuous ground that
+          starts behind this bar and runs down to the chart line at its foot —
+          a header with its own background would cut a seam across it, which is
+          exactly what made the top of the page read as two stacked boxes. The
+          logo and the buttons carry their own contrast. */}
+      <div>
         {/* Three flex columns rather than an absolutely positioned centre.
             Absolute took the nav out of flow, so it reserved no width and the
             account buttons ran straight over the top of it on any viewport
