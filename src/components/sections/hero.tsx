@@ -3,6 +3,8 @@ import { site } from "@/lib/site";
 import { Button } from "../ui";
 import { Words } from "../words";
 import { DashboardPreview } from "../dashboard-preview";
+import { TrustChips } from "../trust-chips";
+import { MockLabels } from "../mock-labels";
 
 /* Each claim is a number a visitor can check, not an adjective. */
 const trustPoints = [
@@ -39,6 +41,13 @@ export function Hero() {
             <span>Introducing the Platform API</span>
             <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
+
+          {/* Above the headline rather than below it: these are the facts that
+              decide whether the claim in the H1 is worth reading, and a reader
+              who needs them needs them first. */}
+          <div className="rise rise-2 mt-7">
+            <TrustChips />
+          </div>
 
           {/* The H1 states the category in words a visitor actually sees.
               An earlier version kept the hook visible and appended the
@@ -127,8 +136,13 @@ export function Hero() {
             elevation and an inset hairline — it should sit on the page rather
             than in it. The separate blurred glow underneath is gone; the
             aurora above already lights this area. */}
-        <div className="rise rise-5 panel relative mt-16 overflow-hidden sm:mt-24">
-          <DashboardPreview />
+        {/* The labels sit outside the panel's own overflow clip, so they can
+            hang past its edges into the page margin. */}
+        <div className="relative mt-16 sm:mt-24">
+          <MockLabels />
+          <div className="rise rise-5 panel relative overflow-hidden">
+            <DashboardPreview />
+          </div>
         </div>
       </div>
     </section>

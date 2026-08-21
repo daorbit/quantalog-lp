@@ -4,7 +4,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-sans-loaded), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Accent — same emerald ramp as the dashboard app. */
@@ -141,7 +141,6 @@ body {
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 /* Thin scrollbars, matching the dashboard app. */
@@ -1283,4 +1282,38 @@ body {
 }
 [data-reader-images] svg {
   opacity: 0.35;
+}
+
+/* ---- Section bands ------------------------------------------------------ */
+
+/* A wash that fades in from the top of a section and back out at its foot, so
+   consecutive sections alternate between the page ground and a tinted one
+   without a visible border between them. The tint is the accent at very low
+   alpha — enough to separate two sections, not enough to be read as a colour.
+
+   Paired with `<ChartDivider>`: the line runs along the edge where the wash
+   ends, which is what makes the two read as one device rather than a gradient
+   and a decoration that happen to be adjacent. */
+.band {
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 6%, transparent) 0%,
+      transparent 22%,
+      transparent 78%,
+      color-mix(in srgb, var(--accent) 6%, transparent) 100%
+    );
+}
+
+/* The heavier variant, for the one or two sections that should read as a slab
+   rather than a tint — the consent gap, where the argument is made. */
+.band-deep {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 11%, transparent) 0%,
+      color-mix(in srgb, var(--accent) 4%, transparent) 45%,
+      transparent 100%
+    );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { SectionHeading } from "../ui";
+import { ConsentFlow } from "../consent-flow";
 
 /**
  * The consent gap, shown rather than asserted.
@@ -75,6 +76,12 @@ export function ConsentGap() {
               stored, and no consent is required — so there is no gap to correct
               for.
             </p>
+
+            {/* The bars opposite say how big the gap is; this says where it
+                comes from. Together they are the whole argument. */}
+            <div className="mt-9 rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur sm:p-6">
+              <ConsentFlow />
+            </div>
           </div>
 
           <div ref={ref} className="v-rise v-d2 panel p-8">

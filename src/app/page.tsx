@@ -14,6 +14,7 @@ import { Platform } from "@/components/sections/platform";
 import { Pricing } from "@/components/sections/pricing";
 import { Faq, faqs } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
+import { ChartDivider } from "@/components/chart-divider";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
@@ -108,9 +109,17 @@ export default function HomePage() {
           any amount of copy below it can. */}
       <Demo />
       <Logos />
+      {/* The observed line runs into the consent-gap section and the reported
+          one runs out of it — the section's whole argument, drawn on its two
+          edges. Used sparingly: a divider between every section would be
+          wallpaper rather than a device. */}
+      <ChartDivider variant="observed" filled />
       {/* The argument, before the feature list: why cookie-based tools
           under-report, then what you get instead. */}
-      <ConsentGap />
+      <div className="band-deep">
+        <ConsentGap />
+      </div>
+      <ChartDivider variant="reported" />
       <Features />
       {/* SEO gets its own section rather than one card in the grid: it is the
           half of the product a pure counter cannot do, so it carries the
@@ -128,7 +137,10 @@ export default function HomePage() {
       {/* Straight after Orbit, because it is Orbit put to work: the assistant
           section explains what it is, and this one shows the thing it does
           that no other analytics product does. */}
-      <Scheduling />
+      <div className="band">
+        <Scheduling />
+      </div>
+      <ChartDivider variant="observed" />
       {/* After the case is made and before the comparison: the visitor now
           knows what is claimed, and looking is cheaper than reading on. */}
       <TryDemo />

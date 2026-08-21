@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -9,9 +9,18 @@ import { NewsletterDialog } from "@/components/newsletter-dialog";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({
+/**
+ * Plus Jakarta Sans, in place of Inter.
+ *
+ * Inter is the default of every SaaS page built since 2020 — excellent, and
+ * invisible for exactly that reason. This is a geometric grotesque with wider
+ * apertures and a little warmth in the terminals: it reads as chosen rather
+ * than defaulted, without giving up the neutrality a page full of numbers
+ * needs. Variable, so weight is a single axis rather than five files.
+ */
+const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans-loaded",
   display: "swap",
 });
 
@@ -81,7 +90,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html lang="en" suppressHydrationWarning className={sans.variable}>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <a
