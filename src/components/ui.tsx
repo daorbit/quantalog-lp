@@ -163,7 +163,7 @@ export function GlowCard({
   return (
     <Tag
       onMouseMove={onMouseMove}
-      className={`glow-card edge-lit glass rounded-2xl ${className}`}
+      className={`glow-card edge-lit glass spring-hover rounded-2xl ${className}`}
     >
       <span className="glow-layer" aria-hidden="true" />
       {children}

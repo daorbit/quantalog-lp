@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BookOpen, Clock, MessageSquare, ShieldCheck } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
+import { Reveal } from "../reveal";
 
 /**
  * Orbit AI — the assistant built into the dashboard.
@@ -200,9 +201,11 @@ export function Orbit() {
 
           {/* Decorative: the copy beside it already states everything this
               shows, so a screen reader gains nothing from re-reading a mock. */}
-          <div className="v-rise v-d2" aria-hidden="true">
-            <ChatPreview />
-          </div>
+          <Reveal delay={2} className="tilt-in">
+            <div aria-hidden="true">
+              <ChatPreview />
+            </div>
+          </Reveal>
         </div>
 
         {/* The model lineup. Placed after the argument, because it answers

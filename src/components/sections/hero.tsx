@@ -79,7 +79,7 @@ export function Hero() {
             <Button
               href={`${site.app}/signup`}
               size="lg"
-              className="group"
+              className="group sheen"
               track="cta_start_free"
               trackProps={{ location: "hero" }}
             >

@@ -1,5 +1,6 @@
 import { CalendarClock, Images, MessageSquareText, Repeat2 } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
+import { Reveal } from "../reveal";
 
 /**
  * Scheduled LinkedIn posts, written with Orbit.
@@ -106,9 +107,13 @@ export function Scheduling() {
 
           {/* Decorative: the copy beside it already states everything this
               shows, so a screen reader gains nothing from re-reading a mock. */}
-          <div className="v-rise v-d2" aria-hidden="true">
-            <ComposerPreview />
-          </div>
+          {/* Decorative: the copy beside it already states everything this
+              shows, so a screen reader gains nothing from re-reading a mock. */}
+          <Reveal delay={2} className="tilt-in">
+            <div aria-hidden="true">
+              <ComposerPreview />
+            </div>
+          </Reveal>
         </div>
 
         {/* The part people ask about after they are interested: what happens
