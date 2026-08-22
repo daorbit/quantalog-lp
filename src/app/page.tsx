@@ -3,6 +3,7 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
+import { Analytics } from "@/components/sections/analytics";
 import { TryDemo } from "@/components/sections/try-demo";
 import { Seo } from "@/components/sections/seo";
 import { Reports } from "@/components/sections/reports";
@@ -78,6 +79,8 @@ const jsonLd = graph(
       "Cookieless, consent-free tracking",
       "Funnels and conversion goals",
       "Retention cohorts",
+      "Device, browser and country breakdowns",
+      "Traffic by hour of day",
       "SEO audits with Lighthouse scores",
       "Broken link and structured data checks",
       "Multi-tenant Platform API",
@@ -120,6 +123,11 @@ export default function HomePage() {
       </div>
       <ChartDivider variant="reported" />
       <Features />
+      {/* The chart wall, straight after the feature grid: the grid claims the
+          product draws these things, this section shows them. */}
+      <div className="band">
+        <Analytics />
+      </div>
       {/* SEO gets its own section rather than one card in the grid: it is the
           half of the product a pure counter cannot do, so it carries the
           argument for choosing this over one. */}

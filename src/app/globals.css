@@ -557,16 +557,55 @@ body {
   color: var(--accent);
 }
 
+/* Donut arcs sweep in from their own start angle rather than fading, so a
+   split reads as being measured out. Rotation is around the ring centre, which
+   for a 130-box viewBox is 65,65. */
+@keyframes arc-in {
+  from { opacity: 0; transform: rotate(-14deg); }
+  to { opacity: 1; transform: rotate(0deg); }
+}
+.donut-arc {
+  transform-origin: 65px 65px;
+  animation: arc-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hourly columns grow from the baseline. Separate from `.bar-fill` because
+   these scale on Y from the bottom, not on X from the left. */
+@keyframes col-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.col-grow {
+  transform-origin: bottom center;
+  animation: col-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Cohort cells fade in on a diagonal, so the grid fills the way the cohorts
+   themselves accumulate. */
+@keyframes cell-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cohort-cell {
+  animation: cell-in 0.5s ease both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .chart-line,
   .chart-area,
   .chart-edge,
   .bar-fill,
+  .donut-arc,
+  .col-grow,
+  .cohort-cell,
   .stat-sweep::after {
     animation: none;
   }
   .chart-line { stroke-dashoffset: 0; }
   .bar-fill { transform: none; }
+  .donut-arc { opacity: 1; transform: none; }
+  .col-grow { transform: none; }
+  .cohort-cell { opacity: 1; }
 }
 
 /* Long-form article typography — the MDX body renders inside .prose-q. */
