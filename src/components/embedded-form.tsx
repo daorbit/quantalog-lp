@@ -27,7 +27,7 @@ export function EmbeddedForm({ src, title }: { src: string; title: string }) {
       title={title}
       scrolling="no"
       className="w-full rounded-xl border border-border"
-      style={{ height: 600, overflow: "hidden" }}
+      style={{ height: 630, overflow: "hidden" }}
       loading="lazy"
     />
   );
