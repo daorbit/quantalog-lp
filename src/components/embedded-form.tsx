@@ -26,7 +26,7 @@ export function EmbeddedForm({ src, title }: { src: string; title: string }) {
       src={src}
       title={title}
       scrolling="no"
-      className="w-full rounded-xl border border-border"
+      className="w-full rounded-[8px] border-none"
       style={{ height: 630, overflow: "hidden" }}
       loading="lazy"
     />
