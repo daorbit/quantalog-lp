@@ -73,6 +73,19 @@ export function Footer() {
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
               All systems operational
             </p>
+            <a
+              href="https://www.producthunt.com/products/quantalog?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-quantalog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-block transition-opacity hover:opacity-80"
+            >
+              <img
+                alt="Quantalog - Your analytics miss up to half your traffic. | Product Hunt"
+                width="250"
+                height="54"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212963&theme=light&t=1787486723092"
+              />
+            </a>
           </div>
 
           {columns.map((col) => (
