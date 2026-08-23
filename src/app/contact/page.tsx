@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, Clock, Mail, MessageSquare, ShieldCheck } from "lucide-react";
 import { Eyebrow } from "@/components/ui";
-import { ContactForm } from "@/components/contact-form";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -115,7 +114,12 @@ export default function ContactPage() {
       {/* The form is the page. It gets the full column and the sidebar becomes
           a footer, rather than two half-width columns where neither reads well. */}
       <div className="mx-auto mt-14 max-w-2xl">
-        <ContactForm />
+        <iframe
+          src="https://da-forms-ochre.vercel.app/from/6a89a4af44a2ed606590a54a/view"
+          title="Contact form"
+          className="h-180 w-full rounded-xl border border-border"
+          loading="lazy"
+        />
 
         <p className="mt-5 text-center text-sm text-fg-muted">
           Prefer your own mail client? Write to{" "}
