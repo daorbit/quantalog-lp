@@ -19,7 +19,7 @@ const chips = [
 
 export function TrustChips() {
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-2">
+    <ul className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
       {chips.map(({ icon: Icon, label, value }) => (
         <li
           key={label}

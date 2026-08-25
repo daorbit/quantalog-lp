@@ -1416,3 +1416,50 @@ body {
 .dark {
   --hero-top: #12151a;
 }
+
+/* ---- Hero flow diagram --------------------------------------------------- */
+
+/* React Flow paints its own ground and draws a border, focus ring and drop
+   shadow around every node. The hero's cards carry their own chrome, so the
+   library's is stripped back to nothing and only the layout is kept. */
+.react-flow {
+  background: transparent;
+}
+
+.react-flow__node {
+  cursor: grab;
+  font-family: inherit;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+.react-flow__node-card {
+  border: none;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.react-flow__handle {
+  border: none;
+}
+
+/* The dashed edges animate along their length — the graph reads as data
+   moving through it rather than as a static wiring diagram. */
+.react-flow__edge.animated path {
+  animation: hero-flow-dash 1.2s linear infinite;
+}
+
+@keyframes hero-flow-dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .react-flow__edge.animated path {
+    animation: none;
+  }
+}

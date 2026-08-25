@@ -2,10 +2,8 @@ import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { Button } from "../ui";
 import { Words } from "../words";
-import { DashboardPreview } from "../dashboard-preview";
+import { HeroFlow } from "../hero-flow";
 import { TrustChips } from "../trust-chips";
-import { MockLabels } from "../mock-labels";
-import { ChartDivider } from "../chart-divider";
 
 /* Each claim is a number a visitor can check, not an adjective. */
 const trustPoints = [
@@ -17,15 +15,14 @@ const trustPoints = [
 
 export function Hero() {
   return (
-    // The ground is painted on <body> now rather than here — the header is in
-    // normal flow, so one surface can cover both without this section having to
-    // reach up behind anything.
+ 
     <section className="relative isolate overflow-hidden">
-      {/* No grid. It was drawn for a light ground; on a dark one the lines read
-          as scaffolding left in by mistake rather than as texture. */}
+  
 
-      <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-20 lg:px-10">
-        <div className="mx-auto max-w-4xl text-center">
+      <div className="relative mx-auto max-w-[90rem] px-4 pb-16 pt-12 sm:px-5 sm:pb-24 sm:pt-20 lg:px-6">
+
+        <div className="flex flex-col items-start gap-10 lg:flex-row">
+        <div className="w-full flex-1 text-center lg:text-left">
           <a
             href="/blog/introducing-quantalog"
             className="glass rise rise-1 group inline-flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-xs text-fg-muted transition-all duration-200 hover:-translate-y-px hover:text-fg"
@@ -44,26 +41,8 @@ export function Hero() {
             <TrustChips />
           </div>
 
-          {/* The H1 states the category in words a visitor actually sees.
-              An earlier version kept the hook visible and appended the
-              keywords in an `sr-only` span — text written for crawlers and
-              hidden from people, which is what Google's spam policy calls
-              hidden text, and it sat in the most important element on the
-              site. The hook survives in the second line; the first line now
-              does the work the hidden span was doing. */}
-          {/* Words arrive in sequence rather than the whole block fading in
-              at once — the headline resolves the way it would be read. The
-              markup is still one plain sentence, so selection, wrapping and
-              crawlers are unaffected. */}
-          {/* No gradient clip and no `text-balance`.
-              `headline-live` clipped a gradient to the text, which needs the
-              spans to paint no background of their own — combined with the
-              per-word inline-blocks that `word-rise` needs, the descenders on
-              "analytics" were being cut off. `text-balance` then re-broke the
-              lines against the explicit `<br>`, so the same word could land
-              mid-clip. Plain text in a plain colour, wrapping where it is told
-              to. */}
-          <h1 className="word-rise mt-7 text-display font-medium leading-[1.08] tracking-[-0.03em] sm:mt-9">
+      
+          <h1 className="word-rise mt-6 text-[2rem] font-medium leading-[1.12] tracking-[-0.03em] sm:mt-8 sm:text-[2.25rem] lg:text-[2.25rem] xl:text-[2.6rem]">
             <Words text="Cookieless web analytics" />
             <br className="hidden sm:block" />{" "}
             <Words text="that counts the" offset={3} />{" "}
@@ -76,7 +55,7 @@ export function Hero() {
             <Words text="others miss." offset={7} />
           </h1>
 
-          <p className="rise rise-3 mx-auto mt-7 max-w-xl text-pretty text-lead leading-relaxed text-fg-muted">
+          <p className="rise rise-3 mx-auto mt-6 max-w-xl text-pretty text-[0.9375rem] leading-relaxed text-fg-muted lg:mx-0 lg:text-[0.9375rem]">
             A privacy-first Google Analytics alternative with real-time
             dashboards, built-in SEO audits and an embeddable API. Cookie-based
             tools only measure the visitors who accept the banner — Quantalog
@@ -87,7 +66,7 @@ export function Hero() {
           {/* Side by side at every width, sized to their labels. Stacked and
               stretched edge to edge, the pair read as two slabs rather than a
               choice between two actions. */}
-          <div className="rise rise-4 mt-9 flex flex-row flex-wrap items-center justify-center gap-3 sm:mt-10">
+          <div className="rise rise-4 mt-9 flex flex-row flex-wrap items-center justify-center gap-3 sm:mt-10 lg:justify-start">
             <Button
               href={`${site.app}/signup`}
               size="lg"
@@ -115,7 +94,7 @@ export function Hero() {
           {/* Read as a spec strip rather than a bullet list: on an analytics
               page the numbers are the argument, so they get the weight, and
               hairlines between them bind the four figures into one object. */}
-          <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-y-7 sm:mt-14 sm:grid-cols-4">
+          <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-y-7 sm:mt-14 sm:grid-cols-4 lg:mx-0">
             {trustPoints.map((point, i) => (
               <li
                 key={point.label}
@@ -135,25 +114,15 @@ export function Hero() {
           </ul>
         </div>
 
-        {/* The product shot is the proof, so it gets the page's deepest
-            elevation and an inset hairline — it should sit on the page rather
-            than in it. The separate blurred glow underneath is gone; the
-            aurora above already lights this area. */}
-        {/* The labels sit outside the panel's own overflow clip, so they can
-            hang past its edges into the page margin. */}
-        <div className="relative mt-16 sm:mt-24">
-          <MockLabels />
-          <div className="rise rise-5 panel relative overflow-hidden">
-            <DashboardPreview />
-          </div>
+     
+        <div className="hidden w-full flex-1 sm:block">
+          <HeroFlow />
+          <p className="mt-2 text-center text-[11px] text-fg-faint">
+            Drag any node — this is the whole pipeline.
+          </p>
+        </div>
         </div>
       </div>
-
-      {/* The traffic line closes the hero, running the full width at the point
-          where the ground resolves into the page. It is the boundary between
-          the fold and everything below it — and the one piece of decoration on
-          the page that is also the thing being sold. */}
-      <ChartDivider variant="observed" filled className="-mb-px" />
     </section>
   );
 }

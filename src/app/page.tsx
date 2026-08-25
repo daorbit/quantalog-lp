@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero";
+import { DashboardShowcase } from "@/components/sections/dashboard-showcase";
 import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
@@ -108,6 +109,7 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
+      <DashboardShowcase />
       {/* Straight after the hero: the tour answers "what is this" faster than
           any amount of copy below it can. */}
       <Demo />
