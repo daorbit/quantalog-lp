@@ -1446,6 +1446,44 @@ body {
   border: none;
 }
 
+/* The zoom/fit buttons ship with a light default skin, which reads as a white
+   chip dropped on the dark canvas. Repainted with the page's own tokens so
+   they belong to the diagram in either theme. */
+.react-flow .react-flow__controls {
+  display: flex;
+  flex-direction: row;
+  box-shadow: none;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+
+.react-flow .react-flow__controls-button {
+  width: 28px;
+  height: 26px;
+  border: none;
+  border-right: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg-muted);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.react-flow .react-flow__controls-button:last-child {
+  border-right: none;
+}
+
+.react-flow .react-flow__controls-button:hover {
+  background: var(--surface);
+  color: var(--fg);
+}
+
+.react-flow .react-flow__controls-button svg {
+  fill: currentColor;
+  max-width: 12px;
+  max-height: 12px;
+}
+
 /* The dashed edges animate along their length — the graph reads as data
    moving through it rather than as a static wiring diagram. */
 .react-flow__edge.animated path {

@@ -9,6 +9,16 @@ import { track } from "@/lib/track";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  /* The bar only earns a background once there is content behind it. At the
+     top of the page it stays transparent so the hero reads as one ground. */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -23,15 +33,14 @@ export function Header() {
        collected into a pill floating in the middle. Boxing all three groups
        inside one narrow container is what made the earlier version read as a
        toolbar rather than as chrome belonging to the page. */
-    <header className="relative z-40">
-      {/* The scroll-progress hairline is gone with the sticky positioning it
-          depended on: a progress bar that scrolls off the top of the page
-          reports nothing after the first screen. */}
-      {/* No surface and no border. The hero paints one continuous ground that
-          starts behind this bar and runs down to the chart line at its foot —
-          a header with its own background would cut a seam across it, which is
-          exactly what made the top of the page read as two stacked boxes. The
-          logo and the buttons carry their own contrast. */}
+    <header
+      className={`sticky top-0 z-40 transition-colors duration-200 ${
+        scrolled || open ? "border-b border-border bg-bg" : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      {/* Solid rather than frosted once scrolled: the bar passes over the
+          dashboard preview and the chart fills, and a translucent surface lets
+          those shapes slide through the nav links as the page moves. */}
       <div>
         {/* Three flex columns rather than an absolutely positioned centre.
             Absolute took the nav out of flow, so it reserved no width and the
@@ -39,7 +48,11 @@ export function Header() {
             narrow enough for the two to meet. The outer columns share the
             leftover space equally, which keeps the pill optically centred
             while every group still occupies real layout. */}
-        <div className="flex h-16 items-center gap-4 px-5 sm:px-8 lg:px-12">
+        <div
+          className={`flex items-center gap-4 px-5 transition-[height] duration-200 sm:px-8 lg:px-12 ${
+            scrolled ? "h-13" : "h-13"
+          }`}
+        >
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
@@ -138,7 +151,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="glass-strong lg:hidden">
+        <div className="max-h-[calc(100svh-3rem)] overflow-y-auto border-t border-border bg-bg lg:hidden">
           <nav
             className="flex flex-col px-5 py-2 sm:px-8"
             aria-label="Mobile"

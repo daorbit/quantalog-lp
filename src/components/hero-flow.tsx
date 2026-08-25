@@ -5,6 +5,7 @@ import {
   ReactFlow,
   Background,
   BackgroundVariant,
+  Controls,
   Handle,
   Position,
   useNodesState,
@@ -166,10 +167,9 @@ const initialEdges: Edge[] = [
 ];
 
 /**
- * The hero's interactive diagram. Panning and zooming are off: the canvas sits
- * inside a scrolling page, and a wheel that zooms the graph instead of moving
- * the page is the fastest way to make a marketing page feel broken. Dragging a
- * node is the only interaction, which is the one worth having.
+ * The hero's interactive diagram. Dragging a node is the headline interaction;
+ * zoom and fit-view are available through the control buttons, and panning
+ * stays off so a stray drag on empty canvas cannot strand the graph offscreen.
  */
 export function HeroFlow() {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
@@ -190,15 +190,25 @@ export function HeroFlow() {
         nodesConnectable={false}
         elementsSelectable={false}
         edgesFocusable={false}
+        minZoom={0.4}
+        maxZoom={1.6}
         panOnDrag={false}
         panOnScroll={false}
+        /* Wheel and double-click stay off — the canvas sits inside a scrolling
+           page, and a wheel that zooms the graph instead of moving the page is
+           the fastest way to make a marketing page feel broken. The buttons
+           are the deliberate way in, and pinch is unambiguous on a trackpad. */
         zoomOnScroll={false}
-        zoomOnPinch={false}
+        zoomOnPinch
         zoomOnDoubleClick={false}
         preventScrolling={false}
         proOptions={{ hideAttribution: true }}
       >
         <Background variant={BackgroundVariant.Dots} gap={22} size={1} color="var(--border)" />
+        {/* Zoom and fit only. The interactivity lock is left out: dragging a
+            node is the point of the graph, so a control that disables it has
+            nothing to offer here. */}
+        <Controls showInteractive={false} position="bottom-right" />
       </ReactFlow>
     </div>
   );
