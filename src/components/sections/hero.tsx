@@ -21,8 +21,11 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-[90rem] px-4 pb-16 pt-12 sm:px-5 sm:pb-24 sm:pt-20 lg:px-6">
 
-        <div className="flex flex-col items-start gap-10 lg:flex-row">
-        <div className="w-full flex-1 text-center lg:text-left">
+        <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-8">
+        {/* The copy column is the narrower of the two: it is text, so it stops
+            being readable past a certain measure, while the diagram only gets
+            better with the room. */}
+        <div className="w-full text-center lg:w-[42%] lg:shrink-0 lg:text-left">
           <a
             href="/blog/introducing-quantalog"
             className="glass rise rise-1 group inline-flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-xs text-fg-muted transition-all duration-200 hover:-translate-y-px hover:text-fg"
@@ -42,9 +45,8 @@ export function Hero() {
           </div>
 
       
-          <h1 className="word-rise mt-6 text-[2rem] font-medium leading-[1.12] tracking-[-0.03em] sm:mt-8 sm:text-[2.25rem] lg:text-[2.25rem] xl:text-[2.6rem]">
-            <Words text="Cookieless web analytics" />
-            <br className="hidden sm:block" />{" "}
+          <h1 className="word-rise mt-6 text-[1.875rem] font-medium leading-[1.14] tracking-[-0.03em] sm:mt-8 sm:text-[2.125rem] lg:text-[2rem] xl:text-[2.35rem]">
+            <Words text="Cookieless web analytics" />{" "}
             <Words text="that counts the" offset={3} />{" "}
             <span
               className="underline-sketch text-accent"
@@ -115,7 +117,7 @@ export function Hero() {
         </div>
 
      
-        <div className="hidden w-full flex-1 sm:block">
+        <div className="hidden w-full min-w-0 flex-1 sm:block">
           <HeroFlow />
           <p className="mt-2 text-center text-[11px] text-fg-faint">
             Drag any node — this is the whole pipeline.
