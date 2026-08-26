@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { overview } from "@/content/docs/overview";
 import { tracking } from "@/content/docs/tracking";
+import { mobileTracking } from "@/content/docs/mobile-tracking";
 import { scriptOptions } from "@/content/docs/script-options";
 import { customEvents } from "@/content/docs/custom-events";
 import { filters } from "@/content/docs/filters";
@@ -47,6 +48,7 @@ const DOCS: Doc[] = [
   demo,
   billing,
   tracking,
+  mobileTracking,
   scriptOptions,
   customEvents,
   filters,
