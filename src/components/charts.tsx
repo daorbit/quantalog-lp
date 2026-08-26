@@ -279,6 +279,86 @@ export function VerdictBar({
   );
 }
 
+/* ---- Field drop-off ------------------------------------------------------ */
+
+/**
+ * Where a form loses people, field by field.
+ *
+ * Two quantities per row: how many respondents reached the field, and how many
+ * of those abandoned at it. The abandonment is drawn as a second bar inset
+ * against the first rather than as a separate chart, because the question is
+ * always relative — twelve people abandoning a field four hundred reached is
+ * unremarkable, and twelve abandoning a field twenty reached is the bug.
+ *
+ * The worst row is marked rather than left for the reader to find by scanning,
+ * since that is the entire reason the chart exists.
+ */
+export function FieldDropOff({
+  rows,
+}: {
+  rows: { label: string; reached: number; abandoned: number }[];
+}) {
+  const top = rows[0]?.reached || 1;
+  // Rate, not count: the last field in a long form always has the fewest
+  // abandonments in absolute terms and is often the worst offender.
+  const rate = (r: { reached: number; abandoned: number }) =>
+    r.reached === 0 ? 0 : r.abandoned / r.reached;
+  const worst = rows.reduce(
+    (acc, r, i) => (rate(r) > rate(rows[acc]) ? i : acc),
+    0
+  );
+
+  return (
+    <ol className="space-y-3">
+      {rows.map((row, i) => {
+        const reachedPct = (row.reached / top) * 100;
+        const abandonedPct = (row.abandoned / top) * 100;
+        const dropRate = rate(row) * 100;
+
+        return (
+          <li key={row.label}>
+            <div className="flex items-baseline justify-between gap-3 text-xs">
+              <span className="font-medium text-fg">
+                {row.label}
+                {i === worst && (
+                  <span className="ml-2 rounded bg-fg-faint/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-fg-muted">
+                    Worst drop-off
+                  </span>
+                )}
+              </span>
+              <span className="shrink-0 tabular-nums text-fg-muted">
+                {row.reached.toLocaleString("en-US")} reached
+                <span className="ml-2 text-fg-faint">
+                  {dropRate.toFixed(0)}% left
+                </span>
+              </span>
+            </div>
+
+            <div className="relative mt-1.5 h-6 overflow-hidden rounded bg-fg-faint/[0.07]">
+              <div
+                className="bar-fill absolute inset-y-0 left-0 rounded bg-accent/[0.18] ring-1 ring-inset ring-accent/25"
+                style={{ width: `${reachedPct}%`, animationDelay: `${0.3 + i * 0.1}s` }}
+                aria-hidden="true"
+              />
+              {/* Anchored to the right edge of the reached bar: the people who
+                  got this far and then stopped. */}
+              <div
+                className="bar-fill absolute inset-y-0 rounded-r bg-fg-faint/30"
+                style={{
+                  left: `${reachedPct - abandonedPct}%`,
+                  width: `${abandonedPct}%`,
+                  animationDelay: `${0.4 + i * 0.1}s`,
+                }}
+                aria-hidden="true"
+              />
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 /* ---- Retention cohorts --------------------------------------------------- */
 
 /**

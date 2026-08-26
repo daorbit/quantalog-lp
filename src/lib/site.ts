@@ -42,6 +42,11 @@ export const productNav = [
     blurb: "Lighthouse scores, broken links and structured data",
   },
   {
+    href: "/forms",
+    label: "Forms",
+    blurb: "Drag-and-drop forms with per-field drop-off analytics",
+  },
+  {
     href: "/reports",
     label: "Reports",
     blurb: "Scheduled email and WhatsApp summaries for clients",
