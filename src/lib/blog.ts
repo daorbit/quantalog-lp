@@ -3,12 +3,22 @@ import { introducingQuantalog } from "@/content/posts/introducing-quantalog";
 import { cookieBannerAnalytics } from "@/content/posts/cookie-banner-analytics";
 import { whyAnalyticsUndercountsTraffic } from "@/content/posts/why-analytics-undercounts-traffic";
 import { coreWebVitals } from "@/content/posts/core-web-vitals-what-moves-the-score";
+import { serverSideVsClientSide } from "@/content/posts/server-side-vs-client-side-tracking";
+import { ga4Migration } from "@/content/posts/google-analytics-4-migration-guide";
+import { technicalSeoAudit } from "@/content/posts/technical-seo-audit-checklist";
+import { embeddedAnalyticsForSaas } from "@/content/posts/embedded-analytics-for-saas";
 
 export type PostMeta = {
   slug: string;
   title: string;
   description: string;
   date: string; // ISO
+  /**
+   * ISO date of the last meaningful revision. Search engines and answer engines
+   * both weigh `dateModified`, and a post edited long after publication looks
+   * stale without it. Omit until the post is actually revised.
+   */
+  updated?: string;
   tags: string[];
   author: { name: string; role: string };
   readingMinutes: number;
@@ -27,6 +37,10 @@ const POSTS: Post[] = [
   cookieBannerAnalytics,
   whyAnalyticsUndercountsTraffic,
   coreWebVitals,
+  serverSideVsClientSide,
+  ga4Migration,
+  technicalSeoAudit,
+  embeddedAnalyticsForSaas,
 ];
 
 const sorted = () => [...POSTS].sort((a, b) => +new Date(b.date) - +new Date(a.date));

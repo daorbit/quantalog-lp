@@ -44,13 +44,19 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       authors: [post.author.name],
       tags: post.tags,
+      // Next replaces the whole `openGraph` object rather than merging it key by
+      // key, so declaring one here drops the layout's image — every post was
+      // sharing with no preview card at all.
+      images: [{ url: "/OgImage.png", width: 1369, height: 1149, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: ["/OgImage.png"],
     },
   };
 }
@@ -74,7 +80,7 @@ export default async function BlogPostPage({
       headline: post.title,
       description: post.description,
       datePublished: post.date,
-      dateModified: post.date,
+      dateModified: post.updated ?? post.date,
       author: { "@type": "Person", name: post.author.name },
       publisher: { "@id": ORG_ID },
       isPartOf: { "@id": SITE_ID },

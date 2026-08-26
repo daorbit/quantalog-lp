@@ -82,7 +82,24 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/OgImage.png"],
   },
-  robots: { index: true, follow: true },
+  // The <link rel="alternate"> that makes the feed discoverable — a feed nothing
+  // points at is a feed nothing finds.
+  alternates: {
+    types: { "application/rss+xml": `${site.url}/feed.xml` },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    // Without these, Google truncates the snippet and suppresses large preview
+    // thumbnails on its own judgement. Both are worth asking for explicitly.
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   verification: {
     google: "x5mfmCb6H9n_bwTCRDWKN_WviRahTitCtiE9dZdovOo",
   },

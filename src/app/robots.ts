@@ -10,6 +10,9 @@ export default function robots(): MetadataRoute.Robots {
       // judging it, and the CSS and JS it needs to do that are served from
       // there. Blocking it saves no meaningful crawl budget and makes the
       // rendered page look broken to the crawler.
+      // /thank-you is deliberately left crawlable: it carries its own `noindex`
+      // meta tag, and a crawler blocked here would never read that tag — which
+      // is how a disallowed URL ends up indexed with no snippet anyway.
       disallow: ["/404"],
     },
     sitemap: `${site.url}/sitemap.xml`,
