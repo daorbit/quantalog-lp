@@ -10,6 +10,7 @@ import {
 } from "@/lib/comparisons";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui";
+import { HeadToHead, VerdictBar } from "@/components/charts";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
@@ -146,6 +147,16 @@ export default async function ComparisonPage({
         <p className="mt-4 text-pretty leading-relaxed text-fg-muted">
           {c.intro}
         </p>
+        <div className="mt-8 max-w-md">
+          <VerdictBar
+            ourName={site.name}
+            rival={c.rival}
+            ours={c.rows.filter((r) => r.verdict === "quantalog").length}
+            tied={c.rows.filter((r) => r.verdict === "both" || r.verdict === "neither").length}
+            theirs={c.rows.filter((r) => r.verdict === "rival").length}
+          />
+        </div>
+
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button href={`${site.app}/signup`}>Start free — 10k pageviews</Button>
           <Button href={`${site.app}/login`} variant="secondary">
@@ -153,6 +164,32 @@ export default async function ComparisonPage({
           </Button>
         </div>
       </header>
+
+      {/* The measurable claims, before the table of prose ones. Only quantities
+          both vendors publish appear here — see ComparisonMetric. */}
+      {c.metrics && c.metrics.length > 0 && (
+        <section className="mt-14">
+          <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
+            The numbers you can check yourself
+          </h2>
+          <div className="card mt-8 grid gap-8 p-7 sm:grid-cols-2">
+            {c.metrics.map((m, i) => (
+              <HeadToHead
+                key={m.label}
+                label={m.label}
+                ours={m.ours}
+                theirs={m.theirs}
+                ourName={site.name}
+                rivalName={c.rival}
+                format={m.format}
+                lowerIsBetter={m.lowerIsBetter}
+                source={m.source}
+                delay={0.2 + i * 0.15}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mt-14">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">

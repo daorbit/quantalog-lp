@@ -147,6 +147,138 @@ export function Funnel({ steps }: { steps: FunnelStep[] }) {
   );
 }
 
+/* ---- Head-to-head -------------------------------------------------------- */
+
+/**
+ * Two products, one measured quantity, drawn on a shared scale.
+ *
+ * Both bars are proportional to the larger of the two rather than each to its
+ * own row, which is the whole point — a 900-byte script beside a 50 KB one has
+ * to *look* like that ratio. Per-row normalisation would draw them the same
+ * length and quietly flatter whichever number is worse.
+ *
+ * The winning bar takes the accent, the other a neutral fill. Colour is not
+ * carrying the meaning alone: the values are printed, and the caption says
+ * which direction is better.
+ */
+export function HeadToHead({
+  label,
+  ours,
+  theirs,
+  ourName,
+  rivalName,
+  format,
+  lowerIsBetter,
+  source,
+  delay = 0,
+}: {
+  label: string;
+  ours: number;
+  theirs: number;
+  ourName: string;
+  rivalName: string;
+  format: (n: number) => string;
+  lowerIsBetter: boolean;
+  source: string;
+  delay?: number;
+}) {
+  const scale = Math.max(ours, theirs) || 1;
+  const weWin = lowerIsBetter ? ours <= theirs : ours >= theirs;
+
+  // A zero-valued bar still needs to be visible as a bar, or the row reads as
+  // missing data rather than as the best possible result.
+  const width = (n: number) => `${Math.max((n / scale) * 100, 2)}%`;
+
+  const bars = [
+    { name: ourName, value: ours, win: weWin },
+    { name: rivalName, value: theirs, win: !weWin },
+  ];
+
+  return (
+    <div>
+      <p className="text-xs font-medium text-fg">{label}</p>
+
+      <div className="mt-3 space-y-2">
+        {bars.map((bar, i) => (
+          <div key={bar.name} className="flex items-center gap-3">
+            <span className="w-24 shrink-0 truncate text-[11px] text-fg-muted">
+              {bar.name}
+            </span>
+            <div className="h-6 flex-1 overflow-hidden rounded bg-fg-faint/[0.07]">
+              <div
+                className={`bar-fill h-full rounded ${
+                  bar.win
+                    ? "bg-accent/[0.22] ring-1 ring-inset ring-accent/25"
+                    : "bg-fg-faint/[0.14] ring-1 ring-inset ring-fg-faint/15"
+                }`}
+                style={{ width: width(bar.value), animationDelay: `${delay + i * 0.12}s` }}
+                aria-hidden="true"
+              />
+            </div>
+            <span className="w-16 shrink-0 text-right text-[11px] font-semibold tabular-nums text-fg">
+              {format(bar.value)}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-2.5 text-[11px] leading-relaxed text-fg-faint">
+        {lowerIsBetter ? "Lower is better." : "Higher is better."} {source}
+      </p>
+    </div>
+  );
+}
+
+/**
+ * The shape of a comparison at a glance: how many points favour us, how many
+ * are a genuine tie, and how many go the other way.
+ *
+ * The third segment is the reason this is worth drawing. A summary that only
+ * counted wins would be a scoreboard nobody believes; showing the ties and the
+ * losses in the same bar is what makes the first number credible.
+ */
+export function VerdictBar({
+  ours,
+  tied,
+  theirs,
+  rival,
+  ourName,
+}: {
+  ours: number;
+  tied: number;
+  theirs: number;
+  rival: string;
+  ourName: string;
+}) {
+  const total = ours + tied + theirs || 1;
+  const segments = [
+    { n: ours, cls: "bg-accent/70", label: `${ours} favour ${ourName}` },
+    { n: tied, cls: "bg-fg-faint/25", label: `${tied} tied` },
+    { n: theirs, cls: "bg-fg-faint/45", label: `${theirs} favour ${rival}` },
+  ].filter((s) => s.n > 0);
+
+  return (
+    <div>
+      <div
+        className="flex h-1.5 gap-0.5 overflow-hidden rounded-full"
+        role="img"
+        aria-label={segments.map((s) => s.label).join(", ")}
+      >
+        {segments.map((s) => (
+          <div
+            key={s.cls}
+            className={`${s.cls} first:rounded-l-full last:rounded-r-full`}
+            style={{ width: `${(s.n / total) * 100}%` }}
+          />
+        ))}
+      </div>
+      <p className="mt-2 text-[11px] tabular-nums text-fg-faint">
+        {ours} favour {ourName} · {tied} tied · {theirs} favour {rival}
+      </p>
+    </div>
+  );
+}
+
 /* ---- Retention cohorts --------------------------------------------------- */
 
 /**

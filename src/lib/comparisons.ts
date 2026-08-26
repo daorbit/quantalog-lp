@@ -28,6 +28,28 @@ export type ComparisonRow = {
   verdict: Verdict;
 };
 
+/**
+ * A quantity where both products have a public, checkable number.
+ *
+ * Deliberately narrow. A chart makes a claim look authoritative, so only facts
+ * either vendor states publicly get one — script weight off a CDN response,
+ * reporting delay off the documentation. Nothing modelled, nothing benchmarked
+ * by us, and where a number would have to be estimated the row stays prose.
+ */
+export type ComparisonMetric = {
+  label: string;
+  /** Quantalog's value, and the rival's, in the unit named below. */
+  ours: number;
+  theirs: number;
+  unit: string;
+  /** Renders the value: 1024 as "1 KB", 48 as "48 h". */
+  format: (n: number) => string;
+  /** True when a smaller number is the better one, which most of these are. */
+  lowerIsBetter: boolean;
+  /** Where the numbers come from, shown under the chart. */
+  source: string;
+};
+
 export type Comparison = {
   slug: string;
   /** Product name as its makers write it. */
@@ -39,9 +61,15 @@ export type Comparison = {
   /** The honest case for staying put. Its absence is what makes the rest read as marketing. */
   whenTheirs: string;
   rows: ComparisonRow[];
+  /** Charted head-to-head numbers. Omitted where nothing is publicly checkable. */
+  metrics?: ComparisonMetric[];
   /** Long-tail queries this page should answer, rendered as an FAQ block. */
   faqs: { q: string; a: string }[];
 };
+
+const kb = (n: number) => (n >= 1024 ? `${(n / 1024).toFixed(0)} KB` : `${n} B`);
+const hours = (n: number) => (n === 0 ? "Live" : `${n} h`);
+const percent = (n: number) => `${n}%`;
 
 const COMPARISONS: Comparison[] = [
   {
@@ -114,6 +142,26 @@ const COMPARISONS: Comparison[] = [
         ours: "Free to 10k pageviews a month, then usage-based.",
         theirs: "Free, with GA360 for enterprise volume.",
         verdict: "both",
+      },
+    ],
+    metrics: [
+      {
+        label: "Tracking script, gzipped",
+        ours: 900,
+        theirs: 51200,
+        unit: "bytes",
+        format: kb,
+        lowerIsBetter: true,
+        source: "Measured from each vendor's own CDN response, gzipped transfer size.",
+      },
+      {
+        label: "Delay before a visit appears in standard reports",
+        ours: 0,
+        theirs: 24,
+        unit: "hours",
+        format: hours,
+        lowerIsBetter: true,
+        source: "Google documents 24-48 hours for standard report processing.",
       },
     ],
     faqs: [
@@ -207,6 +255,9 @@ const COMPARISONS: Comparison[] = [
         verdict: "quantalog",
       },
     ],
+    // Deliberately no `metrics` block. The two quantities worth charting —
+    // script weight and reporting delay — are a tie here, and a chart drawing
+    // two identical bars implies a difference that the table already denies.
     faqs: [
       {
         q: "Is Quantalog open source like Plausible?",

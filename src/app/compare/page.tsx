@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getAllComparisons } from "@/lib/comparisons";
 import { Eyebrow } from "@/components/ui";
+import { VerdictBar } from "@/components/charts";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -75,6 +76,15 @@ export default function ComparisonsIndexPage() {
               <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
                 {c.description}
               </p>
+              <div className="mt-5">
+                <VerdictBar
+                  ourName={site.name}
+                  rival={c.rival}
+                  ours={c.rows.filter((r) => r.verdict === "quantalog").length}
+                  tied={c.rows.filter((r) => r.verdict === "both" || r.verdict === "neither").length}
+                  theirs={c.rows.filter((r) => r.verdict === "rival").length}
+                />
+              </div>
               <span className="mt-4 inline-flex items-center gap-1 text-sm text-accent">
                 Read the comparison
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />

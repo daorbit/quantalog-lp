@@ -13,6 +13,7 @@ import {
   Users,
 } from "lucide-react";
 import { Button, Eyebrow } from "@/components/ui";
+import { SparkStat, GeoBars } from "@/components/charts";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -219,6 +220,68 @@ export default function ReportsPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* The list above says what a report contains; this shows it. Static
+          sample figures — the page is statically exported, so nothing here
+          fetches or randomises. */}
+      <section className="mt-16">
+        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+          What lands in the inbox
+        </h2>
+        <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
+          A monthly report for one site, with every number stated against the
+          period before it — so a client reads the direction, not just the total.
+        </p>
+
+        <div className="card mt-8 overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-6 py-4">
+            <p className="text-sm font-semibold tracking-tight">
+              Monthly summary — acme.com
+            </p>
+            <p className="text-[11px] text-fg-faint">1–31 August vs 1–31 July</p>
+          </div>
+
+          <div className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            <SparkStat
+              label="Visitors"
+              value="48,210"
+              delta="+12.4%"
+              series={[28, 31, 30, 34, 33, 38, 36, 41, 39, 44, 43, 46, 45, 48]}
+            />
+            <SparkStat
+              label="Pageviews"
+              value="121,880"
+              delta="+8.1%"
+              series={[70, 74, 72, 78, 77, 82, 80, 86, 84, 89, 88, 93, 91, 95]}
+              delay={0.1}
+            />
+            <SparkStat
+              label="Bounce rate"
+              value="41.3%"
+              delta="−3.2%"
+              up={false}
+              series={[52, 51, 51, 49, 50, 48, 47, 47, 45, 44, 44, 43, 42, 41]}
+              delay={0.2}
+            />
+          </div>
+
+          <div className="border-t border-border p-6">
+            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
+              Top countries
+            </p>
+            <div className="mt-4">
+              <GeoBars
+                rows={[
+                  { flag: "🇺🇸", label: "United States", views: 19420, pct: 40 },
+                  { flag: "🇩🇪", label: "Germany", views: 8630, pct: 18 },
+                  { flag: "🇬🇧", label: "United Kingdom", views: 6270, pct: 13 },
+                  { flag: "🇮🇳", label: "India", views: 4810, pct: 10 },
+                ]}
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="mt-16">
