@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button, Eyebrow } from "@/components/ui";
 import { FieldDropOff, SparkStat } from "@/components/charts";
+import { FormBuilderPreview } from "@/components/form-builder-preview";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -210,6 +211,13 @@ export default function FormsPage() {
         </div>
       </header>
 
+      {/* Shown before anything is claimed about it: the builder is the part a
+          reader wants to see, and a wall of text about drag-and-drop is a poor
+          substitute for a picture of it. */}
+      <section className="mt-14">
+        <FormBuilderPreview />
+      </section>
+
       {/* The argument, before the feature list. A reader who does not accept
           this section has no reason to care about the one after it. */}
       <section className="mt-16">
@@ -285,9 +293,14 @@ export default function FormsPage() {
           </div>
 
           <div className="border-t border-border p-6">
-            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
-              Drop-off by field
-            </p>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
+                Drop-off by field
+              </p>
+              <p className="text-[11px] text-fg-faint">
+                2,480 opened the form · 412 finished it
+              </p>
+            </div>
             <div className="mt-5">
               <FieldDropOff
                 rows={[
@@ -299,10 +312,13 @@ export default function FormsPage() {
                 ]}
               />
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-fg-muted">
-              The fix here is one setting, and it is only findable because the
-              chart exists: make the phone number optional, or hide it behind
-              conditional logic for the people who actually need a callback.
+            <p className="mt-6 border-t border-border pt-5 text-sm leading-relaxed text-fg-muted">
+              <span className="font-medium text-fg">
+                Phone number loses 48% of everyone who reaches it
+              </span>{" "}
+              — more than the other four fields combined. The fix is one setting,
+              and it is only findable because the chart exists: make it optional,
+              or show it conditionally to the people who actually want a callback.
             </p>
           </div>
         </div>

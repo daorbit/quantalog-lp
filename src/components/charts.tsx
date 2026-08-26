@@ -284,14 +284,16 @@ export function VerdictBar({
 /**
  * Where a form loses people, field by field.
  *
- * Two quantities per row: how many respondents reached the field, and how many
- * of those abandoned at it. The abandonment is drawn as a second bar inset
- * against the first rather than as a separate chart, because the question is
- * always relative — twelve people abandoning a field four hundred reached is
- * unremarkable, and twelve abandoning a field twenty reached is the bug.
+ * Each row's bar is the share of the original audience still present at that
+ * field, split into the part that continued (accent) and the part that stopped
+ * here (muted). Both segments sit side by side rather than one inside the
+ * other: overlapping them made a single muddy bar where the eye could not
+ * separate the two quantities.
  *
- * The worst row is marked rather than left for the reader to find by scanning,
- * since that is the entire reason the chart exists.
+ * The drop percentage is set in its own column at a readable size, because on
+ * a form that starts wide and ends narrow the late rows are too short to carry
+ * any meaning through length alone — by the last field the bar is a sliver, and
+ * a sliver is exactly where the worst rate usually is.
  */
 export function FieldDropOff({
   rows,
@@ -309,52 +311,67 @@ export function FieldDropOff({
   );
 
   return (
-    <ol className="space-y-3">
+    <ol className="space-y-2.5">
       {rows.map((row, i) => {
-        const reachedPct = (row.reached / top) * 100;
-        const abandonedPct = (row.abandoned / top) * 100;
+        const continued = row.reached - row.abandoned;
+        const continuedPct = (continued / top) * 100;
+        const lostPct = (row.abandoned / top) * 100;
         const dropRate = rate(row) * 100;
+        const isWorst = i === worst;
 
         return (
-          <li key={row.label}>
-            <div className="flex items-baseline justify-between gap-3 text-xs">
-              <span className="font-medium text-fg">
-                {row.label}
-                {i === worst && (
-                  <span className="ml-2 rounded bg-fg-faint/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-fg-muted">
-                    Worst drop-off
-                  </span>
-                )}
-              </span>
-              <span className="shrink-0 tabular-nums text-fg-muted">
-                {row.reached.toLocaleString("en-US")} reached
-                <span className="ml-2 text-fg-faint">
-                  {dropRate.toFixed(0)}% left
-                </span>
-              </span>
-            </div>
+          <li key={row.label} className="flex items-center gap-3">
+            <span className="w-28 shrink-0 truncate text-xs font-medium text-fg sm:w-32">
+              {row.label}
+            </span>
 
-            <div className="relative mt-1.5 h-6 overflow-hidden rounded bg-fg-faint/[0.07]">
+            <div className="flex h-7 flex-1 items-stretch gap-0.5 overflow-hidden rounded bg-fg-faint/[0.06]">
               <div
-                className="bar-fill absolute inset-y-0 left-0 rounded bg-accent/[0.18] ring-1 ring-inset ring-accent/25"
-                style={{ width: `${reachedPct}%`, animationDelay: `${0.3 + i * 0.1}s` }}
+                className="bar-fill rounded-l bg-accent/25 ring-1 ring-inset ring-accent/30"
+                style={{
+                  width: `${continuedPct}%`,
+                  animationDelay: `${0.25 + i * 0.09}s`,
+                }}
                 aria-hidden="true"
               />
-              {/* Anchored to the right edge of the reached bar: the people who
-                  got this far and then stopped. */}
+              {/* The people who reached this field and went no further. Given a
+                  visible minimum so a small-but-real loss is never invisible. */}
               <div
-                className="bar-fill absolute inset-y-0 rounded-r bg-fg-faint/30"
+                className={`bar-fill rounded-r ${
+                  isWorst
+                    ? "bg-fg-muted/55 ring-1 ring-inset ring-fg-muted/40"
+                    : "bg-fg-faint/25"
+                }`}
                 style={{
-                  left: `${reachedPct - abandonedPct}%`,
-                  width: `${abandonedPct}%`,
-                  animationDelay: `${0.4 + i * 0.1}s`,
+                  width: `${Math.max(lostPct, 0.8)}%`,
+                  animationDelay: `${0.32 + i * 0.09}s`,
                 }}
                 aria-hidden="true"
               />
             </div>
+
+            <span
+              className={`w-20 shrink-0 text-right text-xs tabular-nums ${
+                isWorst ? "font-semibold text-fg" : "text-fg-muted"
+              }`}
+            >
+              {dropRate.toFixed(0)}% left
+            </span>
           </li>
         );
       })}
+
+      <li className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1.5 text-[11px] text-fg-faint">
+        <span className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-sm bg-accent/40" aria-hidden="true" />
+          Continued
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-sm bg-fg-muted/50" aria-hidden="true" />
+          Stopped here
+        </span>
+        <span>Bar width is the share of everyone who opened the form.</span>
+      </li>
     </ol>
   );
 }
