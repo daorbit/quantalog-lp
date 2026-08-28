@@ -54,8 +54,11 @@ export function FeatureHero({
           </div>
         </div>
 
-        <div className="relative w-full">
-          <div className="card overflow-hidden p-5 sm:p-6">{visual}</div>
+        {/* The visual sits in a framed pane with an accent-tinted gradient
+            edge and a soft glow behind it, so it reads as a lit surface
+            floating above the page rather than a bordered box. */}
+        <div className="fhv-frame relative w-full">
+          <div className="fhv-frame__inner">{visual}</div>
         </div>
       </div>
     </header>

@@ -1664,3 +1664,66 @@ body {
   .fhv-rise, .fhv-line { opacity: 1; transform: none; }
   .fhv-type { max-height: none; opacity: 1; }
 }
+
+/* ---- Feature hero frame (components/feature-hero) --------------------- */
+
+/* The pane the animated visual sits in. A gradient hairline that goes from
+   accent-tinted at the top to plain at the bottom, a diffuse glow bleeding out
+   behind it, and a faint top-edge highlight — enough depth that it reads as a
+   screen, not a div with a border. */
+.fhv-frame {
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 32%, var(--border)) 0%,
+    var(--border) 45%,
+    color-mix(in srgb, var(--border) 60%, transparent) 100%
+  );
+  box-shadow:
+    0 24px 60px -24px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 8px 24px -12px rgba(0, 0, 0, 0.35);
+}
+.fhv-frame::before {
+  content: "";
+  position: absolute;
+  inset: -28% -12% auto -12%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 70%
+  );
+  filter: blur(28px);
+  z-index: -1;
+  pointer-events: none;
+}
+.fhv-frame__inner {
+  position: relative;
+  border-radius: calc(1rem - 1px);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface-raised) 92%, var(--accent)) 0%,
+      var(--surface-raised) 22%
+    );
+  padding: 1.1rem;
+  overflow: hidden;
+}
+/* The lit top edge. */
+.fhv-frame__inner::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 45%, transparent),
+    transparent
+  );
+}
+@media (min-width: 640px) {
+  .fhv-frame__inner { padding: 1.35rem; }
+}

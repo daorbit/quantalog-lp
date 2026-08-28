@@ -313,16 +313,24 @@ export function PlatformHeroVisual() {
     { t: "→ { visitors: 1284, live: 7 }", c: "text-accent" },
   ];
   return (
-    <div className="rounded-lg border border-border bg-bg-subtle p-4 font-mono text-[12px] leading-relaxed">
-      {lines.map((l, i) => (
-        <div
-          key={i}
-          className={`fhv-line ${l.c} ${l.t === "" ? "h-3" : ""}`}
-          style={{ animationDelay: `${i * 0.35}s` }}
-        >
-          {l.t || " "}
-        </div>
-      ))}
+    <div className="overflow-hidden rounded-lg border border-border bg-bg-subtle">
+      <div className="flex items-center gap-1.5 border-b border-border px-3 py-2">
+        <span className="h-2.5 w-2.5 rounded-full bg-fg-faint/40" />
+        <span className="h-2.5 w-2.5 rounded-full bg-fg-faint/40" />
+        <span className="h-2.5 w-2.5 rounded-full bg-fg-faint/40" />
+        <span className="ml-2 text-[10.5px] text-fg-faint">platform-api</span>
+      </div>
+      <div className="p-4 font-mono text-[11.5px] leading-relaxed">
+        {lines.map((l, i) => (
+          <div
+            key={i}
+            className={`fhv-line ${l.c} ${l.t === "" ? "h-3" : ""}`}
+            style={{ animationDelay: `${i * 0.35}s` }}
+          >
+            {l.t || " "}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
