@@ -32,8 +32,8 @@ export const site = {
  */
 export const productNav = [
   {
-    href: "/#features",
-    label: "Features",
+    href: "/analytics",
+    label: "Analytics",
     blurb: "Real-time traffic, funnels, goals and retention",
   },
   {
@@ -42,14 +42,19 @@ export const productNav = [
     blurb: "Lighthouse scores, broken links and structured data",
   },
   {
-    href: "/forms",
-    label: "Forms",
-    blurb: "Drag-and-drop forms with per-field drop-off analytics",
-  },
-  {
     href: "/reports",
     label: "Reports",
     blurb: "Scheduled email and WhatsApp summaries for clients",
+  },
+  {
+    href: "/social",
+    label: "Orbit AI & social",
+    blurb: "In-app assistant and scheduled LinkedIn posts",
+  },
+  {
+    href: "/forms",
+    label: "Forms",
+    blurb: "Drag-and-drop forms with per-field drop-off analytics",
   },
   {
     href: "/platform-api",

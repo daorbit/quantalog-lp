@@ -4,15 +4,9 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
-import { Analytics } from "@/components/sections/analytics";
+import { Explore } from "@/components/sections/explore";
 import { TryDemo } from "@/components/sections/try-demo";
-import { Seo } from "@/components/sections/seo";
-import { Reports } from "@/components/sections/reports";
-import { Orbit } from "@/components/sections/orbit";
-import { Scheduling } from "@/components/sections/scheduling";
 import { HowItWorks } from "@/components/sections/how-it-works";
-import { Compare } from "@/components/sections/compare";
-import { Platform } from "@/components/sections/platform";
 import { Pricing } from "@/components/sections/pricing";
 import { Faq, faqs } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
@@ -125,36 +119,14 @@ export default function HomePage() {
       </div>
       <ChartDivider variant="reported" />
       <Features />
-      {/* The chart wall, straight after the feature grid: the grid claims the
-          product draws these things, this section shows them. */}
-      <div className="band">
-        <Analytics />
-      </div>
-      {/* SEO gets its own section rather than one card in the grid: it is the
-          half of the product a pure counter cannot do, so it carries the
-          argument for choosing this over one. */}
-      <Seo />
-      {/* Directly after SEO: both answer "why not just a pageview counter",
-          and this one closes with the deliverable a buyer hands to someone
-          else. */}
-      <Reports />
-      {/* Last of the "more than a counter" run, and placed here rather than
-          near the top on purpose: an AI section opening a landing page reads as
-          the product being sold on the model. It lands better once the visitor
-          knows what there is to ask about. */}
-      <Orbit />
-      {/* Straight after Orbit, because it is Orbit put to work: the assistant
-          section explains what it is, and this one shows the thing it does
-          that no other analytics product does. */}
-      <div className="band">
-        <Scheduling />
-      </div>
-      {/* After the case is made and before the comparison: the visitor now
-          knows what is claimed, and looking is cheaper than reading on. */}
+      {/* One grid of links, in place of seven full-length sections. Each
+          capability now has its own page — better for search, and it keeps
+          this page to a length someone actually scrolls. */}
+      <Explore />
+      {/* After the case is made and before pricing: the visitor now knows what
+          is claimed, and looking is cheaper than reading on. */}
       <TryDemo />
       <HowItWorks />
-      <Compare />
-      <Platform />
       <Pricing />
       <Faq />
       <Cta />
