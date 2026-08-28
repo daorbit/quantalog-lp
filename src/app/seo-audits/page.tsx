@@ -12,7 +12,9 @@ import {
   Swords,
   TrendingUp,
 } from "lucide-react";
-import { Button, Eyebrow } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { FeatureHero } from "@/components/feature-hero";
+import { SeoHeroVisual } from "@/components/feature-hero-visuals";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -167,25 +169,20 @@ export default function SeoAuditsPage() {
     <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
-      <header className="max-w-3xl border-b border-border pb-12">
-        <Eyebrow>SEO audits</Eyebrow>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
-          Traffic tells you who came.
-          <br className="hidden sm:block" />{" "}
-          <span className="text-accent">SEO tells you who didn&apos;t.</span>
-        </h1>
-        <p className="mt-6 text-pretty text-lg leading-relaxed text-fg-muted">
-          {DESCRIPTION}
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`} size="lg">
-            Run a free audit
-          </Button>
-          <Button href={`${site.app}/login`} variant="secondary" size="lg">
-            See a sample report
-          </Button>
-        </div>
-      </header>
+      <FeatureHero
+        eyebrow="SEO audits"
+        title={
+          <>
+            Traffic tells you who came.
+            <br className="hidden sm:block" />{" "}
+            <span className="text-accent">SEO tells you who didn&apos;t.</span>
+          </>
+        }
+        description={DESCRIPTION}
+        primary={{ label: "Run a free audit" }}
+        secondary={{ label: "See a sample report" }}
+        visual={<SeoHeroVisual />}
+      />
 
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">

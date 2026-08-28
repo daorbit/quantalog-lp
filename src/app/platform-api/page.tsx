@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { ArrowRight, Boxes, Gauge, KeyRound, Palette, Plug, Webhook } from "lucide-react";
 import Link from "next/link";
-import { Button, Eyebrow } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { FeatureHero } from "@/components/feature-hero";
+import { PlatformHeroVisual } from "@/components/feature-hero-visuals";
 import { CodeCard } from "@/components/code-card";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
@@ -165,24 +167,19 @@ export default function PlatformApiPage() {
     <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
-      <header className="max-w-3xl border-b border-border pb-12">
-        <Eyebrow>Platform API</Eyebrow>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
-          Give analytics to{" "}
-          <span className="text-accent">your</span> customers.
-        </h1>
-        <p className="mt-6 text-pretty text-lg leading-relaxed text-fg-muted">
-          {DESCRIPTION}
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`} size="lg">
-            Get an API key
-          </Button>
-          <Button href="/docs/platform-api" variant="secondary" size="lg">
-            Read the API reference
-          </Button>
-        </div>
-      </header>
+      <FeatureHero
+        eyebrow="Platform API"
+        title={
+          <>
+            Give analytics to{" "}
+            <span className="text-accent">your</span> customers.
+          </>
+        }
+        description={DESCRIPTION}
+        primary={{ label: "Get an API key" }}
+        secondary={{ label: "Read the API reference", href: "/docs/platform-api" }}
+        visual={<PlatformHeroVisual />}
+      />
 
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">

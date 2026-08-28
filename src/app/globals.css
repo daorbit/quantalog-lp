@@ -1569,3 +1569,98 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-card__flare { animation: none; }
 }
+
+/* ---- Feature hero visuals (components/feature-hero-visuals) ------------- */
+
+/* Sparkline: draw the line, hold, wipe, repeat. */
+.fhv-spark {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: fhv-draw 4s ease-in-out infinite;
+}
+@keyframes fhv-draw {
+  0%   { stroke-dashoffset: 1; }
+  40%  { stroke-dashoffset: 0; }
+  75%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -1; }
+}
+
+/* Bars: grow to their width, hold, collapse, repeat. */
+.fhv-bar {
+  width: 0;
+  animation: fhv-bar 4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes fhv-bar {
+  0%   { width: 0; }
+  30%  { width: var(--w); }
+  80%  { width: var(--w); }
+  100% { width: 0; }
+}
+
+/* Gauge arc: same idea, but the resting fill is a fraction of the arc. */
+.fhv-gauge {
+  stroke-dasharray: var(--fill) 1;
+  stroke-dashoffset: var(--fill);
+  animation: fhv-gauge 4s ease-in-out infinite;
+}
+@keyframes fhv-gauge {
+  0%   { stroke-dashoffset: var(--fill); }
+  35%  { stroke-dashoffset: 0; }
+  80%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: var(--fill); }
+}
+
+/* A small element that lifts in and settles, on a loop. */
+.fhv-rise {
+  animation: fhv-rise 4s ease-in-out infinite;
+}
+@keyframes fhv-rise {
+  0%, 100% { opacity: 0; transform: translateY(6px); }
+  15%, 80% { opacity: 1; transform: translateY(0); }
+}
+
+/* The live dot / avatar pulse. */
+.fhv-dot {
+  animation: fhv-pulse 1.8s ease-in-out infinite;
+}
+@keyframes fhv-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent); }
+  50%      { opacity: 0.6; box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+
+/* Typing effect: a clipped line that widens to reveal its text, then resets. */
+.fhv-type {
+  display: block;
+  overflow: hidden;
+  white-space: normal;
+  animation: fhv-type 5s steps(1, end) infinite;
+}
+@keyframes fhv-type {
+  0%   { max-height: 0; opacity: 0; }
+  10%  { opacity: 1; }
+  35%  { max-height: 6rem; }
+  85%  { max-height: 6rem; opacity: 1; }
+  100% { max-height: 0; opacity: 0; }
+}
+
+/* API card lines: each fades up in sequence, whole block loops. */
+.fhv-line {
+  opacity: 0;
+  animation: fhv-line 5s ease-in-out infinite;
+}
+@keyframes fhv-line {
+  0%, 8%   { opacity: 0; transform: translateY(3px); }
+  16%, 82% { opacity: 1; transform: translateY(0); }
+  100%     { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fhv-spark, .fhv-bar, .fhv-gauge, .fhv-rise, .fhv-dot, .fhv-type, .fhv-line {
+    animation: none;
+  }
+  .fhv-bar { width: var(--w); }
+  .fhv-spark { stroke-dashoffset: 0; }
+  .fhv-gauge { stroke-dashoffset: 0; }
+  .fhv-rise, .fhv-line { opacity: 1; transform: none; }
+  .fhv-type { max-height: none; opacity: 1; }
+}

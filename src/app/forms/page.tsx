@@ -12,7 +12,9 @@ import {
   Table2,
   Workflow,
 } from "lucide-react";
-import { Button, Eyebrow } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { FeatureHero } from "@/components/feature-hero";
+import { FormsHeroVisual } from "@/components/feature-hero-visuals";
 import { FieldDropOff, SparkStat } from "@/components/charts";
 import { FormBuilderPreview } from "@/components/form-builder-preview";
 import { Reveal } from "@/components/reveal";
@@ -191,25 +193,20 @@ export default function FormsPage() {
     <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
-      <header className="max-w-3xl border-b border-border pb-12">
-        <Eyebrow>Forms</Eyebrow>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
-          Every form is a funnel.
-          <br className="hidden sm:block" />{" "}
-          <span className="text-accent">Most are invisible ones.</span>
-        </h1>
-        <p className="mt-6 text-pretty text-lg leading-relaxed text-fg-muted">
-          {DESCRIPTION}
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`} size="lg">
-            Build a form free
-          </Button>
-          <Button href="/docs" variant="secondary" size="lg">
-            Read the docs
-          </Button>
-        </div>
-      </header>
+      <FeatureHero
+        eyebrow="Forms"
+        title={
+          <>
+            Every form is a funnel.
+            <br className="hidden sm:block" />{" "}
+            <span className="text-accent">Most are invisible ones.</span>
+          </>
+        }
+        description={DESCRIPTION}
+        primary={{ label: "Build a form free" }}
+        secondary={{ label: "Read the docs", href: "/docs" }}
+        visual={<FormsHeroVisual />}
+      />
 
       {/* Shown before anything is claimed about it: the builder is the part a
           reader wants to see, and a wall of text about drag-and-drop is a poor

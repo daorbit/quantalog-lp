@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button, Eyebrow } from "@/components/ui";
+import { Button } from "@/components/ui";
+import { FeatureHero } from "@/components/feature-hero";
+import { SocialHeroVisual } from "@/components/feature-hero-visuals";
 import { Orbit } from "@/components/sections/orbit";
 import { Scheduling } from "@/components/sections/scheduling";
 import { JsonLd } from "@/components/json-ld";
@@ -87,25 +89,20 @@ export default function SocialPage() {
     <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
-      <header className="max-w-3xl border-b border-border pb-12">
-        <Eyebrow>Orbit AI &amp; social</Eyebrow>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
-          An assistant that knows the product,
-          <br className="hidden sm:block" />{" "}
-          <span className="text-accent">and says what it doesn&apos;t.</span>
-        </h1>
-        <p className="mt-6 text-pretty text-lg leading-relaxed text-fg-muted">
-          {DESCRIPTION}
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`} size="lg">
-            Start free
-          </Button>
-          <Button href={`${site.app}/login`} variant="secondary" size="lg">
-            See the live demo
-          </Button>
-        </div>
-      </header>
+      <FeatureHero
+        eyebrow="Orbit AI & social"
+        title={
+          <>
+            An assistant that knows the product,
+            <br className="hidden sm:block" />{" "}
+            <span className="text-accent">and says what it doesn&apos;t.</span>
+          </>
+        }
+        description={DESCRIPTION}
+        primary={{ label: "Start free" }}
+        secondary={{ label: "See the live demo" }}
+        visual={<SocialHeroVisual />}
+      />
 
       <Orbit />
       <div className="band mt-16 rounded-2xl">
