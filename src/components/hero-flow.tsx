@@ -3,19 +3,23 @@
 import { useCallback, useMemo } from "react";
 import {
   ReactFlow,
+  ReactFlowProvider,
   Background,
   BackgroundVariant,
   Controls,
+  ControlButton,
   Handle,
   Position,
   BaseEdge,
   getSmoothStepPath,
   useNodesState,
+  useReactFlow,
   type Node,
   type NodeProps,
   type Edge,
   type EdgeProps,
 } from "@xyflow/react";
+import { RotateCcw } from "lucide-react";
 import "@xyflow/react/dist/style.css";
 import { Activity, Code2, Gauge, Mail, Search, ShieldCheck } from "lucide-react";
 
@@ -34,6 +38,12 @@ type CardData = {
   /** Which sides carry edges, so unused handles are not rendered at all. */
   target?: boolean;
   source?: boolean;
+  /**
+   * When the pulse on this node's incoming edge reaches it, in seconds. The
+   * border flares on the same loop with this offset, so the light appears to
+   * run off the wire and around the card.
+   */
+  pulseAt?: number;
 };
 
 const ICONS = {
@@ -50,10 +60,20 @@ function FlowCard({ data }: NodeProps & { data: CardData }) {
 
   return (
     <div
-      className={`w-[212px] overflow-hidden rounded-xl border bg-bg-subtle/95 backdrop-blur transition-shadow duration-200 hover:shadow-lg ${
+      className={`hero-card relative w-[212px] overflow-hidden rounded-xl border bg-bg-subtle/95 backdrop-blur transition-shadow duration-200 hover:shadow-lg ${
         data.accent ? "border-accent/50" : "border-border"
       }`}
     >
+      {/* The border flare. A ring inset over the card edge that lights up on
+          the same loop as the incoming pulse, so the light seems to leave the
+          wire and travel around the card. */}
+      {typeof data.pulseAt === "number" && (
+        <span
+          aria-hidden
+          className="hero-card__flare"
+          style={{ animationDelay: `${data.pulseAt}s` }}
+        />
+      )}
       {data.target && (
         <Handle type="target" position={Position.Left} className="h-1.5! w-1.5! border-0! bg-border-strong!" />
       )}
@@ -159,6 +179,7 @@ const initialNodes: Node[] = [
       accent: true,
       target: true,
       source: true,
+      pulseAt: 1.0,
     } satisfies CardData,
   },
   {
@@ -173,6 +194,7 @@ const initialNodes: Node[] = [
         { label: "Views today", value: "12.4k" },
       ],
       target: true,
+      pulseAt: 1.5,
     } satisfies CardData,
   },
   {
@@ -187,6 +209,7 @@ const initialNodes: Node[] = [
         { label: "Issues open", value: "3" },
       ],
       target: true,
+      pulseAt: 2.0,
     } satisfies CardData,
   },
   {
@@ -201,6 +224,7 @@ const initialNodes: Node[] = [
         { label: "Recipients", value: "6" },
       ],
       target: true,
+      pulseAt: 2.5,
     } satisfies CardData,
   },
 ];
@@ -219,10 +243,32 @@ const NODE_EXTENT: [[number, number], [number, number]] = [
   [960, 480],
 ];
  
+/** Wraps the flow in the provider `useReactFlow` needs. */
 export function HeroFlow() {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  return (
+    <ReactFlowProvider>
+      <HeroFlowInner />
+    </ReactFlowProvider>
+  );
+}
+
+function HeroFlowInner() {
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const edges = useMemo(() => initialEdges, []);
   const noop = useCallback(() => {}, []);
+  const { fitView } = useReactFlow();
+
+  /**
+   * Put every card back where it started, then re-frame.
+   *
+   * `fitView` alone only re-centres the viewport — a node dragged off does not
+   * move. This snaps the positions back (React Flow tweens the change on its
+   * own) and fits the view a beat later, once the nodes have arrived.
+   */
+  const reset = useCallback(() => {
+    setNodes(initialNodes.map((n) => ({ ...n, position: { ...n.position } })));
+    window.setTimeout(() => fitView({ padding: 0.08, duration: 400 }), 60);
+  }, [setNodes, fitView]);
 
   return (
     <div className="h-[380px] w-full lg:h-[520px]" aria-hidden>
@@ -255,10 +301,13 @@ export function HeroFlow() {
         proOptions={{ hideAttribution: true }}
       >
         <Background variant={BackgroundVariant.Dots} gap={22} size={1} color="var(--border)" />
-        {/* Zoom and fit only. The interactivity lock is left out: dragging a
-            node is the point of the graph, so a control that disables it has
-            nothing to offer here. */}
-        <Controls showInteractive={false} position="bottom-right" />
+        {/* Zoom, fit, and a reset that returns every card to its starting
+            spot — the graph invites dragging, so it needs an undo. */}
+        <Controls showInteractive={false} position="bottom-right">
+          <ControlButton onClick={reset} title="Reset layout" aria-label="Reset layout">
+            <RotateCcw size={14} strokeWidth={2} />
+          </ControlButton>
+        </Controls>
       </ReactFlow>
     </div>
   );

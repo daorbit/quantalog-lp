@@ -1484,6 +1484,15 @@ body {
   max-height: 12px;
 }
 
+/* The reset button uses a lucide (stroke, not fill) icon — the blanket
+   `fill: currentColor` above turns it into a solid blob, so put it back. */
+.react-flow .react-flow__controls-button svg.lucide {
+  fill: none;
+  stroke: currentColor;
+  max-width: 14px;
+  max-height: 14px;
+}
+
 /* The dashed edges animate along their length — the graph reads as data
    moving through it rather than as a static wiring diagram. */
 .react-flow__edge.animated path {
@@ -1531,4 +1540,32 @@ body {
     animation: none;
     opacity: 0;
   }
+}
+
+/* The node border flare (components/hero-flow, FlowCard).
+
+   A ring laid exactly over the card's rounded border. It idles invisible and
+   flashes an accent glow once per pulse cycle, timed by `animationDelay` to
+   the moment the incoming edge pulse arrives — so the light reads as running
+   off the wire and around the card, then fading. Same 2.6s period as
+   `hero-edge-pulse`. */
+.hero-card__flare {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent);
+  animation: hero-card-flare 2.6s ease-out infinite;
+}
+
+@keyframes hero-card-flare {
+  0%, 100% { opacity: 0; box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  6%       { opacity: 0.9; box-shadow: 0 0 12px 2px color-mix(in srgb, var(--accent) 55%, transparent); }
+  30%      { opacity: 0; box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-card__flare { animation: none; }
 }
