@@ -84,7 +84,7 @@ export default function SocialPage() {
   );
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-16">
+    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
       <header className="max-w-3xl border-b border-border pb-12">
@@ -112,8 +112,8 @@ export default function SocialPage() {
         <Scheduling />
       </div>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+      <section className="mt-16 max-w-3xl">
+        <h2 className="text-[1.75rem] font-bold tracking-tight">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -128,7 +128,7 @@ export default function SocialPage() {
         </dl>
       </section>
 
-      <section className="mt-16">
+      <section className="mt-16 max-w-3xl">
         <p className="text-pretty leading-relaxed text-fg-muted">
           The reports Orbit helps write pull from the same place.
         </p>

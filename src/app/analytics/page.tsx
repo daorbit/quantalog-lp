@@ -83,7 +83,7 @@ export default function AnalyticsPage() {
   );
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-16">
+    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
       <header className="max-w-3xl border-b border-border pb-12">
@@ -106,10 +106,12 @@ export default function AnalyticsPage() {
         </div>
       </header>
 
+      {/* The chart wall — same component the homepage uses; it carries its own
+          inner max-width, so it sits inside the page column without a wrapper. */}
       <Analytics />
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-bold tracking-tight">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -125,7 +127,7 @@ export default function AnalyticsPage() {
       </section>
 
       <section className="mt-16">
-        <p className="text-pretty leading-relaxed text-fg-muted">
+        <p className="max-w-2xl text-pretty leading-relaxed text-fg-muted">
           Traffic is half the picture. The other half is whether search can find
           the site at all.
         </p>

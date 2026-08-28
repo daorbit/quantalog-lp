@@ -162,7 +162,7 @@ export default function PlatformApiPage() {
   );
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-16">
+    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <JsonLd data={jsonLd} />
 
       <header className="max-w-3xl border-b border-border pb-12">
