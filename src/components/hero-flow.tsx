@@ -8,10 +8,13 @@ import {
   Controls,
   Handle,
   Position,
+  BaseEdge,
+  getSmoothStepPath,
   useNodesState,
   type Node,
   type NodeProps,
   type Edge,
+  type EdgeProps,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { Activity, Code2, Gauge, Mail, Search, ShieldCheck } from "lucide-react";
@@ -80,6 +83,54 @@ function FlowCard({ data }: NodeProps & { data: CardData }) {
 }
 
 const nodeTypes = { card: FlowCard };
+
+ 
+function PulseEdge({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  markerEnd,
+  data,
+}: EdgeProps) {
+  const [path] = getSmoothStepPath({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    sourcePosition,
+    targetPosition,
+    borderRadius: 12,
+  });
+
+  const delay = typeof data?.delay === "number" ? data.delay : 0;
+
+  return (
+    <>
+      <BaseEdge
+        path={path}
+        markerEnd={markerEnd}
+        style={{
+          stroke: "var(--border-strong)",
+          strokeWidth: 1.5,
+          strokeDasharray: "4 5",
+        }}
+        className="hero-edge__base"
+      />
+      <path
+        d={path}
+        fill="none"
+        pathLength={1}
+        className="hero-edge__pulse"
+        style={{ animationDelay: `${delay}s` }}
+      />
+    </>
+  );
+}
+
+const edgeTypes = { pulse: PulseEdge };
 
 const initialNodes: Node[] = [
   {
@@ -154,23 +205,20 @@ const initialNodes: Node[] = [
   },
 ];
 
-const EDGE_BASE = {
-  type: "smoothstep" as const,
-  style: { stroke: "var(--border-strong)", strokeWidth: 1.5, strokeDasharray: "5 5" },
-};
-
+ 
 const initialEdges: Edge[] = [
-  { id: "e1", source: "script", target: "events", animated: true, ...EDGE_BASE },
-  { id: "e2", source: "events", target: "live", animated: true, ...EDGE_BASE },
-  { id: "e3", source: "events", target: "seo", ...EDGE_BASE },
-  { id: "e4", source: "events", target: "reports", ...EDGE_BASE },
+  { id: "e1", type: "pulse", source: "script", target: "events", data: { delay: 0 } },
+  { id: "e2", type: "pulse", source: "events", target: "live", data: { delay: 0.5 } },
+  { id: "e3", type: "pulse", source: "events", target: "seo", data: { delay: 1 } },
+  { id: "e4", type: "pulse", source: "events", target: "reports", data: { delay: 1.5 } },
 ];
 
-/**
- * The hero's interactive diagram. Dragging a node is the headline interaction;
- * zoom and fit-view are available through the control buttons, and panning
- * stays off so a stray drag on empty canvas cannot strand the graph offscreen.
- */
+ 
+const NODE_EXTENT: [[number, number], [number, number]] = [
+  [-160, -140],
+  [960, 480],
+];
+ 
 export function HeroFlow() {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const edges = useMemo(() => initialEdges, []);
@@ -182,10 +230,12 @@ export function HeroFlow() {
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         onNodesChange={onNodesChange}
         onConnect={noop}
         fitView
-        fitViewOptions={{ padding: 0.04 }}
+        fitViewOptions={{ padding: 0.08 }}
+        nodeExtent={NODE_EXTENT}
         nodesDraggable
         nodesConnectable={false}
         elementsSelectable={false}

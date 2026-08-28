@@ -1501,3 +1501,34 @@ body {
     animation: none;
   }
 }
+
+/* Hero pipeline edges (components/hero-flow, PulseEdge).
+
+   Each edge is two overlaid paths: `__base` is the static dotted line, and
+   `__pulse` is a short bright accent segment that runs the length of the same
+   curve on a loop, so the diagram reads as live data flowing from the script
+   tag out to the surfaces that consume it. The dash geometry is a tiny visible
+   run against a very long gap; animating `stroke-dashoffset` slides that run
+   from one end of the path to the other. `pathLength: 1` normalises every edge
+   to the same 0-1 space so one keyframe fits paths of any length. */
+.hero-edge__pulse {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.16 0.84;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 75%, transparent));
+  animation: hero-edge-pulse 2.6s linear infinite;
+}
+
+@keyframes hero-edge-pulse {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: -0.16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-edge__pulse {
+    animation: none;
+    opacity: 0;
+  }
+}
