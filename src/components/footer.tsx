@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  BookOpen, Bot, Building2, CalendarClock, Code2, EyeOff, FileText, Github,
+  BookOpen, Bot, Building2, CalendarClock, Code2, EyeOff, FileText,
   Lock, Mail, Newspaper, PlayCircle, Scale, Scroll, Search, Sparkle, Tag,
 } from "lucide-react";
 import { Logo } from "./logo";
@@ -45,7 +45,6 @@ const columns = [
     links: [
       { href: "/docs", label: "Documentation", icon: BookOpen },
       { href: "/blog", label: "Blog", icon: Newspaper },
-      { href: site.github, label: "GitHub", icon: Github, external: true },
     ],
   },
   {
