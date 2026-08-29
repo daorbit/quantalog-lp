@@ -10,6 +10,16 @@ import { track } from "@/lib/track";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // The product menu opens on hover and has no close state — after clicking an
+  // item the cursor is still on the panel, so it hangs over the new page until
+  // you move away. This dismisses it for a moment on click, long enough for the
+  // route to change and the pointer to leave.
+  const [menuDismissed, setMenuDismissed] = useState(false);
+
+  const dismissMenu = () => {
+    setMenuDismissed(true);
+    window.setTimeout(() => setMenuDismissed(false), 400);
+  };
 
   /* The bar only earns a background once there is content behind it. At the
      top of the page it stays transparent so the hero reads as one ground. */
@@ -87,12 +97,20 @@ export function Header() {
 
             {/* pt-2 rather than mt-2: the gap between trigger and panel has to
                 be inside the hover target, or crossing it reads as leaving. */}
-            <div className="invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            <div
+              className={`invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${
+                menuDismissed ? "invisible! opacity-0! pointer-events-none" : ""
+              }`}
+            >
               <div className="glass-strong overflow-hidden rounded-2xl p-1.5 shadow-float">
                 {productNav.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={(e) => {
+                      e.currentTarget.blur();
+                      dismissMenu();
+                    }}
                     className="block rounded-lg px-3 py-2.5 transition-colors hover:bg-bg-subtle"
                   >
                     <span className="block text-[13.5px] font-medium text-fg">
