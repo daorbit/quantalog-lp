@@ -22,6 +22,7 @@ import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { formatDate } from "@/lib/blog";
 
 /** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
@@ -463,6 +464,16 @@ export default function FormsPage() {
           ))}
         </dl>
       </section>
+
+      {/* The dates are already in this page's Article schema, but only as
+          JSON-LD. A `<time datetime>` element states them in the markup too,
+          which is what a crawler reading the page rather than its structured
+          data looks for — and what tells a reader how current this is. */}
+      <p className="mt-16 text-sm text-fg-muted">
+        Published{" "}
+        <time dateTime={PUBLISHED}>{formatDate(PUBLISHED)}</time>. Last updated{" "}
+        <time dateTime={MODIFIED}>{formatDate(MODIFIED)}</time>.
+      </p>
 
       <section className="card mt-16 p-8 text-center">
         <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
