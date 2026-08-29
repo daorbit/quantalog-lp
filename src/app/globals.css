@@ -2365,3 +2365,119 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .orbit-thinking { animation: none; }
 }
+
+/* ================================================================== *
+ * Mobile: app-shaped surfaces.
+ *
+ * Below the breakpoint the page stops presenting itself as a document of
+ * sections with generous margins and starts presenting itself the way a phone
+ * app does — grouped cards, tappable rows with a chevron, hairline dividers,
+ * and type sized for a hand rather than a monitor.
+ *
+ * Everything here is scoped to the media query. The desktop layout is
+ * deliberately untouched.
+ * ================================================================== */
+@media (max-width: 48em) {
+  /* A grid of link cards becomes one grouped list — the iOS settings pattern.
+     Each child loses its own border and shadow; the group carries them, and a
+     hairline separates the rows. */
+  .app-list {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .app-list > * {
+    margin: 0;
+  }
+  .app-list > * + * {
+    border-top: 1px solid var(--border);
+  }
+  /* The card inside a Reveal wrapper, or directly — both flatten. */
+  .app-list .card,
+  .app-list > * > .card {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  /* A row: icon, text, chevron. The "Learn more" affordance is redundant once
+     the whole row is a target with an arrow on the end, so it is hidden. */
+  .app-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: 0.85rem;
+    padding: 0.95rem 1rem;
+    min-height: 3.5rem;
+  }
+  .app-row:active {
+    background: var(--bg-subtle);
+  }
+  .app-row__more {
+    display: none;
+  }
+  .app-row__chevron {
+    display: block;
+    align-self: center;
+    color: var(--fg-faint);
+  }
+
+  /* Section headings sit closer to their content on a phone. */
+  .app-tight > * + * {
+    margin-top: 0.75rem;
+  }
+}
+
+/* The chevron is a mobile-only affordance — on desktop the card has its own
+   "Learn more" row and an arrow there would be a second one. */
+.app-row__chevron {
+  display: none;
+}
+
+/* Feature/content cards on a phone.
+ *
+ * The desktop padding (p-6/p-7, 1.5-1.75rem) is generous because a card there
+ * sits in a three-column grid with room around it. Stacked full-width on a
+ * phone the same padding wastes a third of the screen, and the type scale set
+ * for a monitor reads oversized in a hand. Tightened here rather than with a
+ * breakpoint on every section — the rule is the same everywhere. */
+@media (max-width: 48em) {
+  .glow-card {
+    border-radius: 0.875rem;
+  }
+  .glow-card.p-6,
+  .glow-card[class*="p-6"] {
+    padding: 1.1rem;
+  }
+  /* The type is already clamped by `--text-h3`; only the rhythm between the
+     icon, the heading and the body needs to close up at this width. */
+  .glow-card h3 {
+    margin-top: 0.85rem;
+    line-height: 1.3;
+  }
+  .glow-card p {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    margin-top: 0.45rem;
+  }
+}
+
+/* Stacked cards want a hairline gap, not the gutter a grid needs. Applied to
+   the grids the sections share rather than each one, so the rhythm is uniform
+   and a new section inherits it. */
+@media (max-width: 48em) {
+  /* Only grids whose children are cards — matching on `.grid` alone would also
+     catch the hero's stat strip and the setup facts row, both of which set
+     their own row gap deliberately. */
+  .grid:has(> .glow-card) {
+    gap: 0.6rem;
+  }
+  /* A grouped list carries its own dividers, so it takes no gap at all. */
+  .app-list {
+    gap: 0;
+  }
+}

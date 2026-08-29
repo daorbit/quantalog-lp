@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BarChart3,
   Bot,
+  ChevronRight,
   FileSearch,
   LayoutGrid,
   Mails,
@@ -12,14 +13,7 @@ import {
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
-/**
- * The one section that replaced seven.
- *
- * Every capability that used to have a full-length section on the homepage now
- * has its own page — better for search, and it keeps this page short. This grid
- * is the hand-off: a line each, and a link out to the page that makes the whole
- * argument.
- */
+ 
 const cards = [
   {
     href: "/analytics",
@@ -74,24 +68,29 @@ export function Explore() {
         body="The homepage is the overview. Each of these opens the full argument for one piece of the product."
       />
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* One grouped list on a phone, a card grid from `sm` up — see
+          `.app-list` / `.app-row` in globals.css. */}
+      <div className="app-list mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c, i) => (
           <Reveal key={c.href} delay={(Math.min(i, 4) as 0 | 1 | 2 | 3 | 4)}>
             <Link
               href={c.href}
-              className="group card flex h-full flex-col p-6 transition-colors hover:border-accent/40"
+              className="group card app-row flex h-full flex-col p-6 transition-colors hover:border-accent/40"
             >
-              <c.icon className="h-5 w-5 text-accent" />
-              <h3 className="mt-4 text-lg font-semibold tracking-tight">
-                {c.title}
-              </h3>
-              <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-fg-muted">
-                {c.body}
-              </p>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                Learn more
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              <c.icon className="h-5 w-5 shrink-0 text-accent" />
+              <span className="flex flex-1 flex-col">
+                <span className="block text-[15px] font-semibold tracking-tight sm:mt-4 sm:text-lg">
+                  {c.title}
+                </span>
+                <span className="mt-1 block flex-1 text-pretty text-[13px] leading-relaxed text-fg-muted sm:mt-2 sm:text-sm">
+                  {c.body}
+                </span>
+                <span className="app-row__more mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                  Learn more
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </span>
               </span>
+              <ChevronRight className="app-row__chevron h-4 w-4" aria-hidden="true" />
             </Link>
           </Reveal>
         ))}
