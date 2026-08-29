@@ -116,7 +116,7 @@ export default function ContactPage() {
           a footer, rather than two half-width columns where neither reads well. */}
       <div className="mx-auto mt-14 max-w-2xl">
         <EmbeddedForm
-          src="https://da-forms-ochre.vercel.app/from/6a89a4af44a2ed606590a54a/view"
+          src="https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view"
           title="Contact form"
         />
 
