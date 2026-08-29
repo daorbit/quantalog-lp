@@ -37,6 +37,18 @@ const MODIFIED = "2026-08-29";
  * cannot see the funnel is guessing.
  */
 
+/**
+ * The meta description, kept inside the ~160 characters search results show.
+ * Longer than that is not more information, it is a sentence cut off mid-word.
+ */
+const META_DESCRIPTION =
+  "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, Razorpay payments, and per-field drop-off you can actually see.";
+
+/**
+ * The fuller line, for structured data and the page's own copy — schema has no
+ * display limit to write against, so it carries the reasoning the meta tag has
+ * no room for.
+ */
 const DESCRIPTION =
   "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
 
@@ -150,7 +162,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: "Form builder with built-in form analytics",
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: "/forms" },
   keywords: [
     "form builder",
@@ -172,12 +184,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}/forms`,
     title: "Form builder with built-in form analytics",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "Form builder with built-in form analytics",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
