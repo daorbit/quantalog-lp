@@ -723,16 +723,41 @@ body {
 }
 
 /* ------------------------------------------------------------------ *
- * Docs — two-column layout with a sticky sidebar nav.
+ * Docs — a three-column shell: sidebar nav, article, on-this-page rail.
+ *
+ * Its own full-bleed container rather than the marketing `max-w-6xl`: a
+ * documentation set needs the width for three columns, and sitting it in the
+ * same frame as the landing page made it read as a page *about* docs rather
+ * than the docs themselves.
  * ------------------------------------------------------------------ */
+.docs-shell {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+}
+@media (min-width: 640px) {
+  .docs-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
 .docs-layout {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
 }
+/* Sidebar + article at the tablet breakpoint; the right rail joins on wide. */
 @media (min-width: 1024px) {
   .docs-layout {
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+@media (min-width: 1280px) {
+  .docs-layout {
+    grid-template-columns: 15rem minmax(0, 1fr) 13rem;
     gap: 3.5rem;
   }
 }
@@ -746,7 +771,12 @@ body {
   }
   .docs-nav {
     position: sticky;
-    top: 6rem;
+    top: 5.5rem;
+    max-height: calc(100dvh - 7rem);
+    overflow-y: auto;
+    /* The scrollbar only when it is needed, and quiet when it is. */
+    scrollbar-width: thin;
+    padding-right: 0.5rem;
   }
 }
 
@@ -754,12 +784,13 @@ body {
   margin-top: 1.5rem;
 }
 .docs-nav-heading {
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10.5px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--fg-muted);
+  letter-spacing: 0.13em;
+  color: var(--fg-faint);
   margin-bottom: 0.5rem;
+  padding-left: 0.75rem;
 }
 .docs-nav ul {
   list-style: none;
@@ -767,11 +798,12 @@ body {
   padding: 0;
 }
 .docs-nav-link {
+  position: relative;
   display: block;
-  padding: 0.35rem 0.6rem;
-  margin-left: -0.6rem;
-  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.45rem;
   font-size: 13.5px;
+  line-height: 1.4;
   color: var(--fg-muted);
   text-decoration: none;
   transition: color 0.15s, background 0.15s;
@@ -784,6 +816,280 @@ body {
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 10%, transparent);
   font-weight: 600;
+}
+/* The active-item bar, aligned to the group's left edge. */
+.docs-nav-link.is-active::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+/* ---- The article header: breadcrumb, title, summary ---- */
+.docs-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 12.5px;
+  color: var(--fg-faint);
+}
+.docs-breadcrumb a {
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+.docs-breadcrumb a:hover {
+  color: var(--fg);
+}
+
+/* ---- On this page (right rail) ---- */
+.docs-toc {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .docs-toc {
+    display: block;
+    position: sticky;
+    top: 5.5rem;
+    max-height: calc(100dvh - 7rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+.docs-toc-heading {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--fg-faint);
+  margin-bottom: 0.75rem;
+}
+.docs-toc a {
+  display: block;
+  padding: 0.28rem 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--fg-faint);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 0.75rem;
+  margin-left: -0.75rem;
+  transition: color 0.15s, border-color 0.15s;
+}
+.docs-toc a[data-depth="3"] {
+  padding-left: 1.5rem;
+}
+.docs-toc a:hover {
+  color: var(--fg-muted);
+}
+.docs-toc a.is-active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---- Heading anchors in the prose body ---- */
+.prose-q .heading-anchor {
+  position: relative;
+}
+.prose-q .heading-anchor > .anchor-link {
+  position: absolute;
+  left: -1.4rem;
+  top: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  color: var(--fg-faint);
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity 0.12s;
+}
+.prose-q .heading-anchor:hover > .anchor-link,
+.prose-q .heading-anchor > .anchor-link:focus-visible {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .prose-q .heading-anchor > .anchor-link {
+    display: none;
+  }
+}
+
+/* ---- Copy button on code blocks ---- */
+.doc-code {
+  position: relative;
+}
+.doc-code__copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg-muted);
+  font-size: 11px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s, color 0.12s, border-color 0.12s;
+}
+.doc-code:hover .doc-code__copy,
+.doc-code__copy:focus-visible {
+  opacity: 1;
+}
+.doc-code__copy:hover {
+  color: var(--fg);
+  border-color: var(--border-strong);
+}
+.doc-code__copy[data-copied="true"] {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  opacity: 1;
+}
+
+/* ---- Callout variants ---- */
+.doc-callout {
+  display: flex;
+  gap: 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid;
+  padding: 0.9rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.doc-callout__icon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+.doc-callout--note {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+.doc-callout--note .doc-callout__icon {
+  color: var(--accent);
+}
+.doc-callout--tip {
+  border-color: color-mix(in srgb, #10b981 32%, transparent);
+  background: color-mix(in srgb, #10b981 8%, transparent);
+}
+.doc-callout--tip .doc-callout__icon {
+  color: #10b981;
+}
+.doc-callout--warn {
+  border-color: color-mix(in srgb, #f59e0b 36%, transparent);
+  background: color-mix(in srgb, #f59e0b 10%, transparent);
+}
+.doc-callout--warn .doc-callout__icon {
+  color: #f59e0b;
+}
+
+/* ---- ⌘K command palette ---- */
+.docs-cmdk-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  color: var(--fg-faint);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.docs-cmdk-trigger:hover {
+  border-color: var(--border-strong);
+}
+.docs-cmdk-trigger kbd {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.3rem;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+}
+.docs-cmdk-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 1rem 1rem;
+  animation: orbit-scrim-in 120ms ease-out;
+}
+.docs-cmdk-panel {
+  width: 100%;
+  max-width: 40rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: orbit-panel-in 160ms ease-out;
+}
+.docs-cmdk-input {
+  width: 100%;
+  padding: 1rem 1.15rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  font-size: 15px;
+  outline: none;
+}
+.docs-cmdk-results {
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: 0.4rem;
+}
+.docs-cmdk-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--fg-muted);
+  text-decoration: none;
+  cursor: pointer;
+}
+.docs-cmdk-item[data-active="true"] {
+  background: var(--bg-subtle);
+  color: var(--fg);
+}
+.docs-cmdk-item__title {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.docs-cmdk-item__desc {
+  font-size: 12px;
+  color: var(--fg-faint);
+  margin-top: 0.1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.docs-cmdk-item__cat {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+}
+.docs-cmdk-empty {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 13px;
+  color: var(--fg-faint);
 }
 
 /* Reference tables inside a doc body. */

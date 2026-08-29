@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Suspense } from "react";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import {
   getDoc,
   getDocNav,
@@ -10,12 +11,13 @@ import {
 } from "@/lib/docs";
 import { site } from "@/lib/site";
 import { DocsNav } from "@/components/docs-nav";
+import { DocsToc } from "@/components/docs-toc";
+import { DocsCommand } from "@/components/docs-command";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
-// Every doc renders at build time; the whole /docs tree ships as static HTML.
 export function generateStaticParams(): Params[] {
   return getDocSlugs().map((slug) => ({ slug }));
 }
@@ -83,45 +85,50 @@ export default async function DocPage({
   );
 
   return (
-    <div className="mx-auto max-w-6xl px-5 py-16">
+    <div className="docs-shell">
       <JsonLd data={jsonLd} />
       <div className="docs-layout">
         <aside className="docs-sidebar">
+          <div className="mb-4">
+            <Suspense fallback={null}>
+              <DocsCommand groups={groups} />
+            </Suspense>
+          </div>
           <DocsNav groups={groups} />
         </aside>
 
         <article className="min-w-0">
-          <Link
-            href="/docs"
-            className="group inline-flex items-center gap-1.5 text-sm text-fg-muted transition hover:text-fg"
-          >
-            <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
-            All docs
-          </Link>
+          <nav className="docs-breadcrumb" aria-label="Breadcrumb">
+            <Link href="/docs">Docs</Link>
+            <ChevronRight className="h-3 w-3" aria-hidden="true" />
+            <span>{doc.category}</span>
+            <ChevronRight className="h-3 w-3" aria-hidden="true" />
+            <span className="text-fg-muted">{doc.title}</span>
+          </nav>
 
-          <header className="mt-6 border-b border-border pb-8">
-            <h1 className="text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.03em] sm:text-[2.5rem]">
+          <header className="mt-4 border-b border-border pb-6">
+            <h1 className="text-balance text-[1.875rem] font-bold leading-[1.15] tracking-[-0.03em] sm:text-[2.25rem]">
               {doc.title}
             </h1>
-            <p className="mt-4 text-pretty text-lg leading-relaxed text-fg-muted">
+            <p className="mt-3 text-pretty leading-relaxed text-fg-muted">
               {doc.description}
             </p>
           </header>
 
-          <div className="prose-q mt-10">
+          <div className="prose-q mt-8">
             <Body />
           </div>
 
-          <nav className="mt-16 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
+          <nav className="mt-14 grid gap-3 border-t border-border pt-6 sm:grid-cols-2">
             {prev ? (
               <Link
                 href={`/docs/${prev.slug}`}
-                className="card card-hover group p-5"
+                className="card card-hover group p-4"
               >
-                <span className="inline-flex items-center gap-1.5 text-xs text-fg-muted">
-                  <ArrowLeft className="h-3.5 w-3.5" /> Previous
+                <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-fg-faint">
+                  <ArrowLeft className="h-3 w-3" /> Previous
                 </span>
-                <p className="mt-1.5 font-semibold tracking-tight transition group-hover:text-accent">
+                <p className="mt-1 text-sm font-semibold tracking-tight transition group-hover:text-accent">
                   {prev.title}
                 </p>
               </Link>
@@ -131,18 +138,20 @@ export default async function DocPage({
             {next && (
               <Link
                 href={`/docs/${next.slug}`}
-                className="card card-hover group p-5 sm:text-right"
+                className="card card-hover group p-4 sm:text-right"
               >
-                <span className="inline-flex items-center gap-1.5 text-xs text-fg-muted sm:justify-end sm:w-full">
-                  Next <ArrowRight className="h-3.5 w-3.5" />
+                <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-fg-faint sm:w-full sm:justify-end">
+                  Next <ArrowRight className="h-3 w-3" />
                 </span>
-                <p className="mt-1.5 font-semibold tracking-tight transition group-hover:text-accent">
+                <p className="mt-1 text-sm font-semibold tracking-tight transition group-hover:text-accent">
                   {next.title}
                 </p>
               </Link>
             )}
           </nav>
         </article>
+
+        <DocsToc />
       </div>
     </div>
   );
