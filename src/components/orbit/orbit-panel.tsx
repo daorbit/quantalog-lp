@@ -66,7 +66,7 @@ function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts:
         </p>
         {prompts.map((q) => (
           <button key={q} type="button" className="orbit-suggestion" onClick={() => onPick(q)}>
-            <span className="text-xs leading-snug">{q}</span>
+            {q}
           </button>
         ))}
       </div>
@@ -143,7 +143,7 @@ export function OrbitPanel() {
                     className="orbit-suggestion"
                     onClick={() => send(q)}
                   >
-                    <span className="text-xs leading-snug">{q}</span>
+                    {q}
                   </button>
                 ))}
               </div>

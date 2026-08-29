@@ -1878,14 +1878,21 @@ body {
   color: var(--fg);
 }
 
-/* A suggestion. Quiet by default; only the border warms on hover. */
+/* A suggestion. Quiet by default; only the border warms on hover.
+   Fixed row height and centred text so a one-line prompt and a wrapped one
+   are the same size — the list has to read as a list, not as buttons of
+   varying weight. */
 .orbit-suggestion {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 38px;
   width: 100%;
   text-align: left;
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 8px 11px;
+  padding: 7px 11px;
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: var(--fg-muted);
   background: transparent;
   cursor: pointer;
