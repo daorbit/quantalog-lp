@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DisplayMenu } from "@/components/display/display-menu";
 import { NewsletterDialog } from "@/components/newsletter-dialog";
+import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -137,6 +138,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               dismissed. It excludes the pages where asking would be tactless —
               see the component. */}
           <NewsletterDialog />
+          {/* Bottom-right "Ask Orbit" chat. Talks to the public, unauthenticated
+              /api/public/orbit endpoint — Cloudflare-only models, rate-limited
+              per IP server-side. */}
+          <OrbitBubble />
         </ThemeProvider>
 
         {/* Quantalog eats its own dog food: this landing page is tracked by Quantalog. */}
