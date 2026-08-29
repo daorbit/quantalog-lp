@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   CircleSlash,
   Code2,
+  CreditCard,
   GitBranch,
   LayoutGrid,
   Palette,
@@ -24,7 +25,7 @@ import { site } from "@/lib/site";
 
 /** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-08-09";
+const MODIFIED = "2026-08-29";
 
 /**
  * Forms, as a page rather than a homepage section.
@@ -37,13 +38,18 @@ const MODIFIED = "2026-08-09";
  */
 
 const DESCRIPTION =
-  "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
+  "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
 
 const capabilities = [
   {
     icon: LayoutGrid,
-    title: "Thirty-three field types, dragged into place",
-    body: "Names, addresses, phones and emails with their own validation. Ratings, sliders, file uploads, date and time pickers, consent boxes and generated identifiers. Multi-column layouts, so a first and last name sit side by side instead of stacked down the page.",
+    title: "Forty-odd field types, dragged into place",
+    body: "Names, addresses, phones and emails with their own validation. Ratings, sliders, file uploads, date and time pickers, consent boxes, signature pads and generated identifiers. Multi-column layouts, so a first and last name sit side by side instead of stacked down the page.",
+  },
+  {
+    icon: CreditCard,
+    title: "Take payments, into your own account",
+    body: "A payment field turns a form into a checkout: registration fees, deposits, paid applications, donations. Charge a fixed amount, a price that follows an earlier answer, or whatever the respondent chooses to pay. Money moves through your own Razorpay account and lands with you, not with us — and a response is only recorded once the payment actually clears.",
   },
   {
     icon: GitBranch,
@@ -97,6 +103,7 @@ const included = [
   "Per-form views, submissions and completion rate",
   "Per-field drop-off, so you can see which question loses people",
   "Source URL on every submission",
+  "Payments through your own Razorpay account — fixed, priced by answer, or respondent-chosen",
   "Conditional logic — show or hide a field on an earlier answer",
   "Multi-step forms with per-step validation and a progress indicator",
   "Honeypot spam trap and per-IP rate limiting on every public form",
@@ -122,6 +129,14 @@ const faqs = [
   {
     q: "What stops spam submissions?",
     a: "Two things, both on by default: a honeypot field that is invisible to people and irresistible to bots, and per-IP rate limiting on the public submission endpoint. Neither shows a CAPTCHA to a real respondent, because a CAPTCHA is itself a drop-off point.",
+  },
+  {
+    q: "How do payments work, and do you take a cut?",
+    a: "You connect your own Razorpay account once per workspace, and every paid form in it charges through those keys. The money goes directly to you — it never passes through Quantalog, and we take nothing beyond your normal plan. Your Razorpay fees are between you and Razorpay.",
+  },
+  {
+    q: "What happens if someone abandons the payment?",
+    a: "Nothing is charged and no response is recorded. Their answers stay on screen so they can try again without retyping, and the abandoned attempt is cleared automatically rather than sitting in your entries as a lead that never paid. A response is only confirmed once Razorpay tells us the money arrived — not when the browser says so.",
   },
   {
     q: "Can respondents upload files?",
@@ -410,11 +425,13 @@ export default function FormsPage() {
         <div className="card mt-8 flex gap-5 p-7">
           <CircleSlash className="h-6 w-6 shrink-0 text-fg-muted" aria-hidden="true" />
           <p className="text-pretty leading-relaxed text-fg-muted">
-            There is no payment collection, no e-signature, and no approval
-            workflow with assignees and due dates. If you need a form that takes
-            money or routes a document for signing, a dedicated tool will serve
-            you better. Quantalog forms are for asking questions and
-            understanding the answers — including the ones nobody finished.
+            There is no approval workflow with assignees and due dates, no
+            recurring billing, and no legally binding e-signature — the
+            signature field captures a drawn signature, which is not the same as
+            a document routed for signing and audited. Payments are one-off, and
+            refunds are issued from your Razorpay dashboard rather than here. If
+            you need subscriptions or a document sent for countersigning, a
+            dedicated tool will serve you better.
           </p>
         </div>
       </section>

@@ -15,6 +15,7 @@ import { exporting } from "@/content/docs/exporting";
 import { publicDashboards } from "@/content/docs/public-dashboards";
 import { emailReports } from "@/content/docs/email-reports";
 import { scheduledPosts } from "@/content/docs/scheduled-posts";
+import { leadCapture } from "@/content/docs/lead-capture";
 import { seo } from "@/content/docs/seo";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
@@ -64,6 +65,7 @@ const DOCS: Doc[] = [
   seo,
   emailReports,
   scheduledPosts,
+  leadCapture,
   segmentsMarkers,
   orbitAi,
   platformApi,
