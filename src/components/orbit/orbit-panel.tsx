@@ -126,7 +126,13 @@ export function OrbitPanel() {
 
   return (
     <>
-      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">
+      {/* Centred while empty so the opening prompts sit in the middle of the
+          sheet rather than stranded at the top of a tall blank column. */}
+      <div
+        className={`min-h-0 flex-1 overflow-y-auto px-4 py-4 ${
+          !started ? "flex flex-col justify-center" : ""
+        }`}
+      >
         {!started ? (
           <EmptyState onPick={(q) => send(q)} prompts={suggestions} />
         ) : (

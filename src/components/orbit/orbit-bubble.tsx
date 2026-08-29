@@ -40,6 +40,26 @@ export function OrbitBubble() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  /**
+   * Hold the page still while the sheet is up.
+   *
+   * On a phone the panel is a near-full-screen sheet, and without this the page
+   * behind it scrolls under the thumb the moment a drag starts outside the
+   * thread — the scroll chaining that makes a web sheet feel unlike an app.
+   * Only below the breakpoint where it is a sheet: on desktop it is a side
+   * panel and locking the page would be wrong.
+   */
+  useEffect(() => {
+    if (!open) return;
+    if (!window.matchMedia("(max-width: 48em)").matches) return;
+
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [open]);
+
   if (HIDDEN_ON.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return null;
 
   const startOver = () => setSession((n) => n + 1);
@@ -52,28 +72,28 @@ export function OrbitBubble() {
         <div className="orbit-panel" role="dialog" aria-label="Ask Orbit">
           <div className="aurora-wash" aria-hidden />
 
-          <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+          <header className="orbit-panel__header flex items-center justify-between border-b border-border px-4 py-2.5">
             <div className="flex items-center gap-2">
               <OrbitMark size={22} />
               <span className="text-sm font-semibold">Orbit</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-0.5">
               <button
                 onClick={startOver}
                 aria-label="Start over"
-                className="flex h-7 w-7 items-center justify-center rounded-md text-fg-muted transition hover:bg-fg/5 hover:text-fg"
+                className="flex h-8 w-8 items-center justify-center rounded-md text-fg-muted transition hover:bg-fg/5 hover:text-fg"
               >
-                <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
+                <RotateCcw className="h-4 w-4" aria-hidden="true" />
               </button>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close Orbit"
-                className="flex h-7 w-7 items-center justify-center rounded-md text-fg-muted transition hover:bg-fg/5 hover:text-fg"
+                className="flex h-8 w-8 items-center justify-center rounded-md text-fg-muted transition hover:bg-fg/5 hover:text-fg"
               >
-                <X className="h-[15px] w-[15px]" aria-hidden="true" />
+                <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
-          </div>
+          </header>
 
           <OrbitPanel key={session} />
         </div>
