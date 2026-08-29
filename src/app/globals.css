@@ -611,8 +611,12 @@ body {
 /* Long-form article typography — the MDX body renders inside .prose-q. */
 .prose-q {
   color: var(--fg);
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-size: 1rem;
+  line-height: 1.72;
+  /* A readable measure regardless of how wide the column gets. On a docs page
+     with no right rail the article cell is ~900px; unbounded prose there runs
+     to 130 characters a line. */
+  max-width: 46rem;
 }
 .prose-q > * + * {
   margin-top: 1.25em;
@@ -732,33 +736,49 @@ body {
  * ------------------------------------------------------------------ */
 .docs-shell {
   width: 100%;
-  max-width: 90rem;
+  max-width: 100rem;
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 5rem;
+  padding: 2rem 1rem 5rem;
 }
 @media (min-width: 640px) {
   .docs-shell {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+@media (min-width: 1280px) {
+  .docs-shell {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
 .docs-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 /* Sidebar + article at the tablet breakpoint; the right rail joins on wide. */
 @media (min-width: 1024px) {
   .docs-layout {
-    grid-template-columns: 15rem minmax(0, 1fr);
-    gap: 3rem;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 2.5rem;
   }
 }
 @media (min-width: 1280px) {
   .docs-layout {
-    grid-template-columns: 15rem minmax(0, 1fr) 13rem;
-    gap: 3.5rem;
+    grid-template-columns: 14rem minmax(0, 1fr) 12rem;
+    gap: 3rem;
+  }
+}
+/* The article column should not sprawl on an ultrawide — cap the reading
+   measure and let the extra width fall into the gaps, not the line length. */
+.docs-layout > :nth-child(2) {
+  max-width: 52rem;
+}
+@media (min-width: 1280px) {
+  .docs-layout > :nth-child(2) {
+    max-width: none;
   }
 }
 
@@ -990,27 +1010,35 @@ body {
 
 /* ---- ⌘K command palette ---- */
 .docs-cmdk-trigger {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 0.55rem 0.75rem;
+  padding: 0.5rem 0.7rem;
   border-radius: 0.6rem;
   border: 1px solid var(--border);
   background: var(--bg-subtle);
   color: var(--fg-faint);
   font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
   transition: border-color 0.15s;
 }
 .docs-cmdk-trigger:hover {
   border-color: var(--border-strong);
 }
+.docs-cmdk-trigger > svg {
+  flex-shrink: 0;
+}
 .docs-cmdk-trigger kbd {
   margin-left: auto;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  padding: 0.1rem 0.35rem;
+  font-size: 10px;
+  line-height: 1;
+  padding: 0.2rem 0.35rem;
   border-radius: 0.3rem;
   border: 1px solid var(--border);
   color: var(--fg-muted);
