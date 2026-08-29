@@ -48,15 +48,29 @@ function Bubble({ message }: { message: OrbitMessage }) {
   );
 }
 
+/** The label for the summarise chip, when the current page has enough text to summarise. */
+const SUMMARISE_PROMPT = "Summarise this page for me";
+
+function hasSummarisablePage(): boolean {
+  if (typeof document === "undefined") return false;
+  const main = document.querySelector("main");
+  return (main?.innerText ?? "").trim().length >= 400;
+}
+
 function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts: string[] }) {
+  // Computed once on open. The panel only mounts on user action, so `document`
+  // is always ready by here, and the page does not change under an open panel.
+  const canSummarise = hasSummarisablePage();
+  const chips = canSummarise ? [SUMMARISE_PROMPT, ...prompts] : prompts;
+
   return (
     <div className="space-y-6 px-1 pt-1">
       <div className="flex flex-col items-center gap-1.5">
         <OrbitMark size={50} />
         <p className="text-center text-sm font-bold">Chat with Orbit</p>
         <p className="max-w-[280px] text-center text-xs leading-relaxed text-fg-muted">
-          Ask about the tracking, the plans, or how Quantalog compares to another
-          tool — and get a straight answer.
+          Ask about the tracking, the plans, how Quantalog compares to another
+          tool — or ask me to summarise the page you&apos;re on.
         </p>
       </div>
 
@@ -64,7 +78,7 @@ function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts:
         <p className="text-xs font-semibold uppercase tracking-[0.05em] text-fg-muted">
           Try asking
         </p>
-        {prompts.map((q) => (
+        {chips.map((q) => (
           <button key={q} type="button" className="orbit-suggestion" onClick={() => onPick(q)}>
             {q}
           </button>

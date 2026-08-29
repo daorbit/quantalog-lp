@@ -37,6 +37,30 @@ const nextId = () => `orbit-${Date.now()}-${counter++}`;
 
 type AskResponse = { reply: string; suggestions: string[] };
 
+/** Max page text sent for a "summarise this" question — matches the server cap. */
+const MAX_PAGE_CHARS = 12_000;
+
+/**
+ * The readable text of the page the visitor is on, so Orbit can summarise or
+ * explain it.
+ *
+ * `<main>` only — that is the article or the page body, without the header, the
+ * footer, or the chat panel itself. Read fresh on every send so it follows
+ * client-side navigation between blog posts. Returns null when there is nothing
+ * substantial, and the request then omits the field.
+ */
+function readPageContext() {
+  if (typeof document === "undefined") return null;
+  const main = document.querySelector("main");
+  const text = (main?.innerText ?? "").replace(/\n{3,}/g, "\n\n").trim();
+  if (text.length < 200) return null;
+  return {
+    title: document.title,
+    url: window.location.href,
+    text: text.slice(0, MAX_PAGE_CHARS),
+  };
+}
+
 export function useOrbitChat() {
   const [messages, setMessages] = useState<OrbitMessage[]>([]);
   const [input, setInput] = useState("");
@@ -93,7 +117,10 @@ export function useOrbitChat() {
         const res = await fetch(`${site.api}/api/public/orbit/ask`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question, history }),
+          // The current page's text rides along so "summarise this" works on
+          // any blog post or page. The server ignores it unless the question
+          // needs it.
+          body: JSON.stringify({ question, history, pageContext: readPageContext() }),
         });
 
         if (!res.ok) {
