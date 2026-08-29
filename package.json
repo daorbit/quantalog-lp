@@ -8,6 +8,14 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "//browserslist": "Next's default targets reach back far enough to ship polyfills and down-level syntax that every browser here supports natively — around 12KB of dead weight on first load. These targets cover the browsers our own analytics actually see, and nothing older.",
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4",
+    "not dead"
+  ],
   "dependencies": {
     "@xyflow/react": "^12.11.3",
     "lucide-react": "^0.469.0",
