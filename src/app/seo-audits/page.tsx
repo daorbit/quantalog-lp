@@ -17,8 +17,12 @@ import { FeatureHero } from "@/components/feature-hero";
 import { SeoHeroVisual } from "@/components/feature-hero-visuals";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
-import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+
+/** Kept beside the Article node so the tag and the schema can never disagree. */
+const PUBLISHED = "2025-11-01";
+const MODIFIED = "2026-08-09";
 
 /**
  * SEO audits, as a page rather than a homepage section.
@@ -122,6 +126,22 @@ export const metadata: Metadata = {
   title: "SEO audit tool with Lighthouse scores",
   description: DESCRIPTION,
   alternates: { canonical: "/seo-audits" },
+  other: {
+    "article:published_time": PUBLISHED,
+    "article:modified_time": MODIFIED,
+  },
+  keywords: [
+    "SEO audit tool",
+    "free SEO audit",
+    "Lighthouse SEO report",
+    "technical SEO audit",
+    "broken link checker",
+    "structured data validator",
+    "Core Web Vitals monitoring",
+    "on-page SEO checker",
+    "site crawl tool",
+    "competitor SEO comparison",
+  ],
   openGraph: {
     type: "website",
     url: `${site.url}/seo-audits`,
@@ -149,6 +169,19 @@ export default function SeoAuditsPage() {
       publisher: { "@id": ORG_ID },
       inLanguage: "en",
     },
+    service({
+      path: "/seo-audits",
+      name: "SEO audit tool with Lighthouse scores",
+      description: DESCRIPTION,
+      serviceType: "SEO audit",
+    }),
+    article({
+      path: "/seo-audits",
+      headline: "SEO audit tool with Lighthouse scores",
+      description: DESCRIPTION,
+      published: PUBLISHED,
+      modified: MODIFIED,
+    }),
     {
       "@type": "FAQPage",
       "@id": `${site.url}/seo-audits#faq`,

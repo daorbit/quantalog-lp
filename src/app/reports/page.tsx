@@ -18,8 +18,12 @@ import { ReportsHeroVisual } from "@/components/feature-hero-visuals";
 import { SparkStat, GeoBars } from "@/components/charts";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
-import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+
+/** Kept beside the Article node so the tag and the schema can never disagree. */
+const PUBLISHED = "2025-11-01";
+const MODIFIED = "2026-08-09";
 
 /**
  * Scheduled reports, as a page rather than a homepage section.
@@ -118,6 +122,22 @@ export const metadata: Metadata = {
   title: "Automated analytics reports by email and WhatsApp",
   description: DESCRIPTION,
   alternates: { canonical: "/reports" },
+  other: {
+    "article:published_time": PUBLISHED,
+    "article:modified_time": MODIFIED,
+  },
+  keywords: [
+    "automated analytics reports",
+    "scheduled analytics email",
+    "client reporting tool",
+    "white label client reporting",
+    "agency analytics reporting",
+    "WhatsApp analytics report",
+    "analytics report spreadsheet export",
+    "AI analytics summary",
+    "recurring traffic report",
+    "no-login client dashboard",
+  ],
   openGraph: {
     type: "website",
     url: `${site.url}/reports`,
@@ -146,6 +166,19 @@ export default function ReportsPage() {
       inLanguage: "en",
       primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/OgImage.png` },
     },
+    service({
+      path: "/reports",
+      name: "Automated analytics reports by email and WhatsApp",
+      description: DESCRIPTION,
+      serviceType: "Analytics reporting",
+    }),
+    article({
+      path: "/reports",
+      headline: "Automated analytics reports by email and WhatsApp",
+      description: DESCRIPTION,
+      published: PUBLISHED,
+      modified: MODIFIED,
+    }),
     {
       "@type": "FAQPage",
       "@id": `${site.url}/reports#faq`,

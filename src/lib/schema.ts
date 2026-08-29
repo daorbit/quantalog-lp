@@ -126,6 +126,87 @@ export function breadcrumbs(
   };
 }
 
+/**
+ * A `Service` node for one product capability.
+ *
+ * Feature pages sell a distinct capability — analytics, SEO audits, the
+ * Platform API — that a search engine will treat as its own offering if the
+ * page says so. `provider` reconciles to the shared Organization, and the free
+ * tier rides along as an `Offer` so a rich result can name what "$0" includes.
+ */
+export function service({
+  path,
+  name,
+  description,
+  serviceType,
+  offer,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  /** The searchable category, e.g. "Web analytics". */
+  serviceType: string;
+  /** Overrides the default free-tier offer when a feature has its own entry price. */
+  offer?: { name: string; price: string; description: string };
+}): Record<string, unknown> {
+  const o = offer ?? {
+    name: "Hobby",
+    price: "0",
+    description: "10k pageviews per month, free forever",
+  };
+  return {
+    "@type": "Service",
+    "@id": `${site.url}${path}#service`,
+    name,
+    description,
+    serviceType,
+    provider: { "@id": ORG_ID },
+    areaServed: "Worldwide",
+    url: `${site.url}${path}`,
+    isPartOf: { "@id": SITE_ID },
+    offers: {
+      "@type": "Offer",
+      name: o.name,
+      price: o.price,
+      priceCurrency: "USD",
+      description: o.description,
+      availability: "https://schema.org/InStock",
+      url: `${site.url}${path}`,
+    },
+  };
+}
+
+/**
+ * A `HowTo` node. Google renders these as a numbered step carousel, and answer
+ * engines lift them wholesale for "how do I …" queries.
+ *
+ * Steps are plain strings; each becomes a `HowToStep` with `position`.
+ */
+export function howTo({
+  path,
+  name,
+  description,
+  steps,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  steps: { name: string; text: string }[];
+}): Record<string, unknown> {
+  return {
+    "@type": "HowTo",
+    "@id": `${site.url}${path}#howto`,
+    name,
+    description,
+    step: steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
 /** Wraps nodes in the `@graph` envelope every page on this site emits. */
 export function graph(...nodes: Record<string, unknown>[]) {
   return {

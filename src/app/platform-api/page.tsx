@@ -7,8 +7,12 @@ import { PlatformHeroVisual } from "@/components/feature-hero-visuals";
 import { CodeCard } from "@/components/code-card";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
-import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+
+/** Kept beside the Article node so the tag and the schema can never disagree. */
+const PUBLISHED = "2025-11-01";
+const MODIFIED = "2026-08-09";
 
 /**
  * The Platform API, as a page rather than a homepage section.
@@ -120,6 +124,21 @@ export const metadata: Metadata = {
   title: "White label analytics API for your product",
   description: DESCRIPTION,
   alternates: { canonical: "/platform-api" },
+  other: {
+    "article:published_time": PUBLISHED,
+    "article:modified_time": MODIFIED,
+  },
+  keywords: [
+    "white label analytics API",
+    "embedded analytics",
+    "multi-tenant analytics API",
+    "analytics API for SaaS",
+    "embed analytics in my product",
+    "client dashboard analytics",
+    "analytics for site builders",
+    "reseller analytics platform",
+    "per-customer analytics provisioning",
+  ],
   openGraph: {
     type: "website",
     url: `${site.url}/platform-api`,
@@ -147,6 +166,19 @@ export default function PlatformApiPage() {
       publisher: { "@id": ORG_ID },
       inLanguage: "en",
     },
+    service({
+      path: "/platform-api",
+      name: "White label analytics API",
+      description: DESCRIPTION,
+      serviceType: "White label analytics API",
+    }),
+    article({
+      path: "/platform-api",
+      headline: "White label analytics API for your product",
+      description: DESCRIPTION,
+      published: PUBLISHED,
+      modified: MODIFIED,
+    }),
     {
       "@type": "FAQPage",
       "@id": `${site.url}/platform-api#faq`,

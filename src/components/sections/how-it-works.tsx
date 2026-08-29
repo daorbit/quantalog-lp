@@ -9,7 +9,8 @@ const snippet = `<script
   data-site="qs_7f3a9c21"
 ></script>`;
 
-const steps = [
+/** Exported so the homepage can emit these as a `HowTo` node without restating them. */
+export const steps = [
   {
     n: "01",
     title: "Create a site",

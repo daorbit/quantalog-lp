@@ -7,8 +7,12 @@ import { SocialHeroVisual } from "@/components/feature-hero-visuals";
 import { Orbit } from "@/components/sections/orbit";
 import { Scheduling } from "@/components/sections/scheduling";
 import { JsonLd } from "@/components/json-ld";
-import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+
+/** Kept beside the Article node so the tag and the schema can never disagree. */
+const PUBLISHED = "2025-11-01";
+const MODIFIED = "2026-08-09";
 
 /**
  * Orbit AI and scheduled social posts, as a page rather than two homepage
@@ -42,6 +46,21 @@ export const metadata: Metadata = {
   title: "AI analytics assistant and scheduled social posts",
   description: DESCRIPTION,
   alternates: { canonical: "/social" },
+  other: {
+    "article:published_time": PUBLISHED,
+    "article:modified_time": MODIFIED,
+  },
+  keywords: [
+    "AI analytics assistant",
+    "AI analytics chatbot",
+    "in-app support assistant",
+    "schedule LinkedIn posts",
+    "LinkedIn post scheduler",
+    "AI-written social posts",
+    "social media scheduling tool",
+    "analytics to social content",
+    "docs-grounded AI assistant",
+  ],
   openGraph: {
     type: "website",
     url: `${site.url}/social`,
@@ -69,6 +88,19 @@ export default function SocialPage() {
       publisher: { "@id": ORG_ID },
       inLanguage: "en",
     },
+    service({
+      path: "/social",
+      name: "Orbit AI assistant and scheduled social posts",
+      description: DESCRIPTION,
+      serviceType: "AI assistant and social scheduling",
+    }),
+    article({
+      path: "/social",
+      headline: "AI analytics assistant and scheduled social posts",
+      description: DESCRIPTION,
+      published: PUBLISHED,
+      modified: MODIFIED,
+    }),
     {
       "@type": "FAQPage",
       "@id": `${site.url}/social#faq`,

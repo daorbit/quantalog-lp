@@ -19,8 +19,12 @@ import { FieldDropOff, SparkStat } from "@/components/charts";
 import { FormBuilderPreview } from "@/components/form-builder-preview";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
-import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+
+/** Kept beside the Article node so the tag and the schema can never disagree. */
+const PUBLISHED = "2025-11-01";
+const MODIFIED = "2026-08-09";
 
 /**
  * Forms, as a page rather than a homepage section.
@@ -145,6 +149,10 @@ export const metadata: Metadata = {
     "Typeform alternative",
     "Google Forms alternative",
   ],
+  other: {
+    "article:published_time": PUBLISHED,
+    "article:modified_time": MODIFIED,
+  },
   openGraph: {
     type: "website",
     url: `${site.url}/forms`,
@@ -173,6 +181,19 @@ export default function FormsPage() {
       inLanguage: "en",
       primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/OgImage.png` },
     },
+    service({
+      path: "/forms",
+      name: "Form builder with built-in form analytics",
+      description: DESCRIPTION,
+      serviceType: "Form builder",
+    }),
+    article({
+      path: "/forms",
+      headline: "Form builder with built-in form analytics",
+      description: DESCRIPTION,
+      published: PUBLISHED,
+      modified: MODIFIED,
+    }),
     {
       "@type": "FAQPage",
       "@id": `${site.url}/forms#faq`,

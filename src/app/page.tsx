@@ -6,7 +6,7 @@ import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
 import { Explore } from "@/components/sections/explore";
 import { TryDemo } from "@/components/sections/try-demo";
-import { HowItWorks } from "@/components/sections/how-it-works";
+import { HowItWorks, steps as setupSteps } from "@/components/sections/how-it-works";
 import { Pricing } from "@/components/sections/pricing";
 import { Faq, faqs } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
@@ -14,7 +14,7 @@ import { ChartDivider } from "@/components/chart-divider";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
-import { graph, organization, website, author, article, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID } from "@/lib/schema";
 
 // The homepage inherits title, description and social cards from the root
 // layout; only the canonical is page-specific.
@@ -95,7 +95,16 @@ const jsonLd = graph(
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
-  }
+  },
+  // "How to add analytics without a cookie banner" is its own query, and the
+  // three-step setup on this page is the answer. Reuses the section's own steps.
+  howTo({
+    path: "/",
+    name: "How to add cookieless web analytics to your site",
+    description:
+      "Add real-time, consent-free analytics in about two minutes — no SDK, no build step, no cookie policy change.",
+    steps: setupSteps.map((s) => ({ name: s.title, text: s.body })),
+  })
 );
 
 export default function HomePage() {
