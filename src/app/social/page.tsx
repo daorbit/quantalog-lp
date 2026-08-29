@@ -66,13 +66,11 @@ export const metadata: Metadata = {
     url: `${site.url}/social`,
     title: "AI analytics assistant and scheduled social posts",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI analytics assistant and scheduled social posts",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
 };
 

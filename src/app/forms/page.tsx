@@ -158,13 +158,11 @@ export const metadata: Metadata = {
     url: `${site.url}/forms`,
     title: "Form builder with built-in form analytics",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Form builder with built-in form analytics",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
 };
 

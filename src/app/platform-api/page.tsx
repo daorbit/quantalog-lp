@@ -144,13 +144,11 @@ export const metadata: Metadata = {
     url: `${site.url}/platform-api`,
     title: "White label analytics API for your product",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "White label analytics API for your product",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
 };
 

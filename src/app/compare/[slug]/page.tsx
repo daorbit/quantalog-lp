@@ -50,13 +50,11 @@ export async function generateMetadata({
       url: `${site.url}/compare/${c.slug}`,
       title: c.title,
       description: c.description,
-      images: ["/OgImage.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: c.title,
       description: c.description,
-      images: ["/OgImage.png"],
     },
   };
 }

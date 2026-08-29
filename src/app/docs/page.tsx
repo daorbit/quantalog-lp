@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Suspense } from "react";
 import { getDocNav } from "@/lib/docs";
 import { DocsNav } from "@/components/docs-nav";
+import { DocsSearch } from "@/components/docs-search";
 import { Eyebrow } from "@/components/ui";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -77,32 +77,12 @@ export default function DocsIndexPage() {
             </p>
           </header>
 
-          <div className="mt-14 space-y-12">
-            {groups.map((group) => (
-              <section key={group.category}>
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-muted">
-                  {group.category}
-                </h2>
-                <div className="card mt-4 divide-y divide-border overflow-hidden">
-                  {group.docs.map((doc) => (
-                    <Link
-                      key={doc.slug}
-                      href={`/docs/${doc.slug}`}
-                      className="group block p-6 transition hover:bg-bg-subtle"
-                    >
-                      <h3 className="flex items-center gap-2 text-[15px] font-semibold tracking-tight transition group-hover:text-accent">
-                        {doc.title}
-                        <ArrowRight className="h-4 w-4 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">
-                        {doc.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
+          {/* The list, the search box, and the `?q=` handling. Suspense is
+              required around anything reading `useSearchParams` in the app
+              router. */}
+          <Suspense fallback={<div className="mt-14" />}>
+            <DocsSearch groups={groups} />
+          </Suspense>
         </main>
       </div>
     </div>

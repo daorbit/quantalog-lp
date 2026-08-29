@@ -47,16 +47,14 @@ export async function generateMetadata({
       modifiedTime: post.updated ?? post.date,
       authors: [post.author.name],
       tags: post.tags,
-      // Next replaces the whole `openGraph` object rather than merging it key by
-      // key, so declaring one here drops the layout's image — every post was
-      // sharing with no preview card at all.
-      images: [{ url: "/OgImage.png", width: 1369, height: 1149, alt: post.title }],
+      // No `images` here: the `opengraph-image.tsx` beside this file generates a
+      // per-post card and Next wires it in as long as this object does not
+      // override it.
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: ["/OgImage.png"],
     },
   };
 }

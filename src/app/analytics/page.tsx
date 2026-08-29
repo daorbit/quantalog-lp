@@ -66,13 +66,11 @@ export const metadata: Metadata = {
     url: `${site.url}/analytics`,
     title: "Real-time web analytics dashboard",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Real-time web analytics dashboard",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
 };
 

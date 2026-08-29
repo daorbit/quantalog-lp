@@ -90,8 +90,11 @@ export function getAllDocs(): DocMeta[] {
   return DOCS.map(({ Body: _Body, ...meta }) => meta);
 }
 
+/** One category and its pages, as `getDocNav` returns them. */
+export type DocNavGroup = { category: DocCategory; docs: DocMeta[] };
+
 /** Docs grouped by category, both categories and pages in display order. */
-export function getDocNav(): { category: DocCategory; docs: DocMeta[] }[] {
+export function getDocNav(): DocNavGroup[] {
   return CATEGORY_ORDER.map((category) => ({
     category,
     docs: getAllDocs()

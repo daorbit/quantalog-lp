@@ -143,13 +143,11 @@ export const metadata: Metadata = {
     url: `${site.url}/reports`,
     title: "Automated analytics reports by email and WhatsApp",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Automated analytics reports by email and WhatsApp",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
 };
 

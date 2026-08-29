@@ -147,13 +147,11 @@ export const metadata: Metadata = {
     url: `${site.url}/seo-audits`,
     title: "SEO audit tool with Lighthouse scores",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "SEO audit tool with Lighthouse scores",
     description: DESCRIPTION,
-    images: ["/OgImage.png"],
   },
 };
 
