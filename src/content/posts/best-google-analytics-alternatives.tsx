@@ -83,6 +83,16 @@ function Body() {
         .
       </P>
 
+      <H3 id="simple-analytics">Simple Analytics</H3>
+      <P>
+        Privacy-first, EU-hosted, a deliberately minimal dashboard. Paid only.
+        The right pick if EU-only data hosting is a hard requirement.{" "}
+        <A href="/compare/simple-analytics-alternative">
+          Quantalog vs Simple Analytics
+        </A>
+        .
+      </P>
+
       <H3 id="cloudflare">Cloudflare Web Analytics</H3>
       <P>
         Free, zero-configuration, privacy-first. A pageview and referrer counter

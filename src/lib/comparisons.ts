@@ -672,6 +672,87 @@ const COMPARISONS: Comparison[] = [
       },
     ],
   },
+  {
+    slug: "simple-analytics-alternative",
+    rival: "Simple Analytics",
+    title: "Quantalog vs Simple Analytics",
+    description:
+      "A Simple Analytics alternative that keeps the cookieless, no-banner model and the tidy dashboard, then adds funnels, retention cohorts, SEO audits and a multi-tenant API — with a free tier.",
+    intro:
+      "Simple Analytics is a privacy-first, EU-hosted pageview dashboard with a deliberately minimal interface. Quantalog shares the cookieless model and the clean dashboard, and does more with the data. This page is for teams who like Simple Analytics and have outgrown a counter.",
+    whenTheirs:
+      "Stay with Simple Analytics if EU-only data hosting is a hard requirement, or if the minimal dashboard is exactly the amount of product you want. It is a focused, well-run tool that does not try to be more.",
+    rows: [
+      {
+        point: "Cookieless, no consent banner",
+        ours: "Yes.",
+        theirs: "Yes. Both avoid cookies and browser storage by design.",
+        verdict: "both",
+      },
+      {
+        point: "Free tier",
+        ours: "Free to 10k pageviews a month, every feature included.",
+        theirs: "No free tier for the hosted product; paid plans after a trial.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Funnels, goals and retention cohorts",
+        ours: "Included on every plan.",
+        theirs: "Events and goals; funnels and retention cohorts are not part of the product.",
+        verdict: "quantalog",
+      },
+      {
+        point: "SEO audits and Lighthouse scores",
+        ours: "Built in — audit any tracked page, with broken-link and structured-data checks.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Scheduled email and WhatsApp reports",
+        ours: "Yes, with an AI plain-language summary and an XLSX attachment.",
+        theirs: "Email reports and CSV export; no WhatsApp, no AI summary.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Data hosting location",
+        ours: "Hosted by Quantalog; raw events exportable as CSV or XLSX any time.",
+        theirs: "EU-hosted, which is the point for teams that need it.",
+        verdict: "rival",
+      },
+      {
+        point: "Give analytics to your own customers",
+        ours: "Multi-tenant Platform API — a project per customer, stats read back into your product.",
+        theirs: "Not a packaged use case.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Script weight",
+        ours: "Under 1 KB, loaded async.",
+        theirs: "A small script in the same class; both are a fraction of a typical analytics bundle.",
+        verdict: "both",
+      },
+      {
+        point: "Price",
+        ours: "Free to 10k pageviews a month, then usage-based.",
+        theirs: "Paid from the first pageview, priced by monthly pageviews.",
+        verdict: "quantalog",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is Quantalog a drop-in replacement for Simple Analytics?",
+        a: "For traffic, referrers, events and goals, yes — swap the script tag and keep collecting. Quantalog then adds funnels, retention cohorts, SEO audits and scheduled reports.",
+      },
+      {
+        q: "Does Quantalog host data in the EU like Simple Analytics?",
+        a: "Simple Analytics is explicitly EU-hosted. If that is a hard requirement for you, it is the safer choice; Quantalog does not currently guarantee an EU-only data region.",
+      },
+      {
+        q: "Can I try Quantalog without paying?",
+        a: "Yes. The free tier covers 10k pageviews a month with every feature included, where Simple Analytics is paid-only after its trial.",
+      },
+    ],
+  },
 ];
 
 export function getComparisonSlugs(): string[] {
