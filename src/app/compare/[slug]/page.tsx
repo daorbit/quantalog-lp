@@ -36,6 +36,15 @@ export async function generateMetadata({
     title: c.title,
     description: c.description,
     alternates: { canonical: `/compare/${c.slug}` },
+    keywords: [
+      `${site.name} vs ${c.rival}`,
+      `${c.rival} alternative`,
+      `${c.rival} vs ${site.name}`,
+      `switch from ${c.rival}`,
+      `${c.rival} comparison`,
+      "privacy-first analytics",
+      "cookieless analytics",
+    ],
     openGraph: {
       type: "article",
       url: `${site.url}/compare/${c.slug}`,
