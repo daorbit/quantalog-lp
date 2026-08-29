@@ -67,7 +67,7 @@ const cards = [
 
 export function Explore() {
   return (
-    <section id="explore" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
+    <section id="explore" className="mx-auto max-w-6xl px-4 py-14 sm:py-28">
       <SectionHeading
         eyebrow="Explore"
         title="Every part, on its own page"

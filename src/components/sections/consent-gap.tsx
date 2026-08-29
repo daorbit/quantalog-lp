@@ -55,8 +55,8 @@ export function ConsentGap() {
 
   return (
     <section id="consent-gap" className="relative">
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="v-rise">
             <SectionHeading
               eyebrow="The consent gap"

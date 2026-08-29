@@ -37,8 +37,8 @@ const facts = [
 export function HowItWorks() {
   return (
     <section className="border-y border-border bg-bg-subtle">
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="v-rise">
             <Eyebrow>Setup</Eyebrow>
             <h2 className="mt-5 text-balance text-h2 font-medium leading-[1.08] tracking-[-0.03em]">

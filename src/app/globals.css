@@ -163,6 +163,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Sideways-overflow guard, scoped to page sections.
+ *
+ * `clip` rather than `hidden`: `hidden` turns the element into a scroll
+ * container and kills `position: sticky` on its descendants, which is the exact
+ * bug the note above `html` warns about. `clip` crops the overflow without any
+ * of that. A rogue wide child (a diagram, an animation mid-transform, a long
+ * unbroken string) is contained here instead of the whole document scrolling —
+ * the thing that makes a phone pinch-zoom the page out to fit. */
+section {
+  overflow-x: clip;
+}
+
 /* Thin scrollbars, matching the dashboard app. */
 * { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
 *::-webkit-scrollbar { width: 6px; height: 6px; }

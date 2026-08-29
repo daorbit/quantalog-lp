@@ -101,7 +101,7 @@ function EmailPreview() {
 export function Reports() {
   return (
     <section id="reports" className="relative overflow-hidden">
-      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           eyebrow="Reports"
           align="left"

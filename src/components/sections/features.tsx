@@ -83,7 +83,7 @@ const features = [
 export function Features() {
   return (
     <section id="features" className="relative">
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
         <SectionHeading
           eyebrow="Features"
           align="left"

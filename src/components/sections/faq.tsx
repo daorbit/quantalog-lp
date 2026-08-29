@@ -51,7 +51,7 @@ export const faqs = [
 export function Faq() {
   return (
     <section>
-      <div className="mx-auto max-w-3xl px-5 py-20 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-3xl px-4 py-14 sm:py-24 lg:py-28">
         <SectionHeading
           align="center"
           eyebrow="FAQ"
