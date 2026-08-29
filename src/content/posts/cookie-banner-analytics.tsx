@@ -213,7 +213,13 @@ function Body() {
         If you want measurement with no banner in the path,{" "}
         <A href="/docs/overview">Quantalog takes about three minutes to wire
         up</A>{" "}
-        and the free plan does not ask for a card.
+        and the free plan does not ask for a card. The{" "}
+        <A href="/analytics">analytics dashboard</A> shows what you get in
+        return, and the{" "}
+        <A href="/compare/google-analytics-alternative">
+          comparison with Google Analytics
+        </A>{" "}
+        covers how the no-banner model changes the numbers.
       </P>
     </>
   );

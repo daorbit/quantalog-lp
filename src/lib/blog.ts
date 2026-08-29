@@ -7,6 +7,10 @@ import { serverSideVsClientSide } from "@/content/posts/server-side-vs-client-si
 import { ga4Migration } from "@/content/posts/google-analytics-4-migration-guide";
 import { technicalSeoAudit } from "@/content/posts/technical-seo-audit-checklist";
 import { embeddedAnalyticsForSaas } from "@/content/posts/embedded-analytics-for-saas";
+import { bestGoogleAnalyticsAlternatives } from "@/content/posts/best-google-analytics-alternatives";
+import { addAnalyticsToNextjs } from "@/content/posts/add-analytics-to-nextjs";
+import { addAnalyticsToAstro } from "@/content/posts/add-analytics-to-astro";
+import { addAnalyticsToWordpress } from "@/content/posts/add-analytics-to-wordpress";
 
 export type PostMeta = {
   slug: string;
@@ -41,6 +45,10 @@ const POSTS: Post[] = [
   ga4Migration,
   technicalSeoAudit,
   embeddedAnalyticsForSaas,
+  bestGoogleAnalyticsAlternatives,
+  addAnalyticsToNextjs,
+  addAnalyticsToAstro,
+  addAnalyticsToWordpress,
 ];
 
 const sorted = () => [...POSTS].sort((a, b) => +new Date(b.date) - +new Date(a.date));

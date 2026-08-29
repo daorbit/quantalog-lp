@@ -354,6 +354,324 @@ const COMPARISONS: Comparison[] = [
       },
     ],
   },
+  {
+    slug: "fathom-analytics-alternative",
+    rival: "Fathom Analytics",
+    title: "Quantalog vs Fathom Analytics",
+    description:
+      "A Fathom Analytics alternative that keeps the cookieless, no-consent-banner model and adds built-in SEO audits, retention cohorts, funnels and a multi-tenant API — with a free tier Fathom does not offer.",
+    intro:
+      "Fathom and Quantalog start from the same place: no cookies, no personal data, no banner, a small script and a single-page dashboard. This page is for teams who want that model but need more than a traffic counter, or want to try it before paying.",
+    whenTheirs:
+      "Stay with Fathom if its dashboard is exactly the amount of product you want and you value its long track record and EU-isolated data option. Fathom is a mature, focused tool and does not try to be more than that.",
+    rows: [
+      {
+        point: "Cookieless, no consent banner",
+        ours: "Yes.",
+        theirs: "Yes. Both tools avoid cookies and browser storage by design.",
+        verdict: "both",
+      },
+      {
+        point: "Free tier",
+        ours: "Free to 10k pageviews a month, every feature included.",
+        theirs: "No free tier; paid plans only, after a trial.",
+        verdict: "quantalog",
+      },
+      {
+        point: "SEO audits and Lighthouse scores",
+        ours: "Built in — audit any tracked page, with broken-link and structured-data checks.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Funnels, goals and retention cohorts",
+        ours: "Included on every plan.",
+        theirs: "Event tracking and goals; funnels and retention cohorts are not part of the product.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Scheduled email and WhatsApp reports",
+        ours: "Yes, with an AI plain-language summary and an XLSX attachment.",
+        theirs: "Email reports; no WhatsApp, no AI summary.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Give analytics to your own customers",
+        ours: "Multi-tenant Platform API — a project per customer, stats read back into your product.",
+        theirs: "Not a supported use case.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Script weight",
+        ours: "Under 1 KB, loaded async.",
+        theirs: "A small script in the same class; both are a fraction of a typical analytics bundle.",
+        verdict: "both",
+      },
+      {
+        point: "Uptime monitoring and email reports as a bundle",
+        ours: "Reporting is bundled; uptime monitoring is not offered.",
+        theirs: "Includes email reports; no uptime monitoring.",
+        verdict: "both",
+      },
+      {
+        point: "Price",
+        ours: "Free to 10k pageviews a month, then usage-based.",
+        theirs: "Paid from the first pageview, priced by monthly pageviews.",
+        verdict: "quantalog",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is Quantalog a drop-in replacement for Fathom?",
+        a: "For traffic, referrers, events and goals, yes — swap the script tag and keep collecting. Quantalog then adds funnels, retention cohorts, SEO audits and scheduled reports on top.",
+      },
+      {
+        q: "Does Quantalog need a consent banner like Fathom does not?",
+        a: "Neither tool needs one. Both are cookieless and store nothing in the browser, so there is no identifier to ask permission for.",
+      },
+      {
+        q: "Can I try Quantalog without paying?",
+        a: "Yes. The free tier covers 10k pageviews a month with every feature included, where Fathom is paid-only after its trial.",
+      },
+    ],
+  },
+  {
+    slug: "umami-alternative",
+    rival: "Umami",
+    title: "Quantalog vs Umami",
+    description:
+      "A hosted Umami alternative: the same cookieless, no-banner tracking with no server to run, plus SEO audits, scheduled reports and a multi-tenant API built in.",
+    intro:
+      "Umami is a well-liked open-source analytics app you host yourself, or pay Umami Cloud to host. Quantalog is a hosted service only. This page is for teams deciding whether running the stack themselves is worth it.",
+    whenTheirs:
+      "Stay with Umami if self-hosting is a requirement — full data ownership on your own database, MIT-licensed code you can modify, and no per-event pricing because the cost is your own server. Quantalog does none of that.",
+    rows: [
+      {
+        point: "Server and database to maintain",
+        ours: "None. Hosted service, one script tag.",
+        theirs: "Self-hosted Umami needs a Node host and a Postgres or MySQL database. Umami Cloud removes this.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Cookieless, no consent banner",
+        ours: "Yes.",
+        theirs: "Yes. Umami is cookieless by design.",
+        verdict: "both",
+      },
+      {
+        point: "SEO audits and Lighthouse scores",
+        ours: "Built in.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Funnels and retention cohorts",
+        ours: "Included on every plan.",
+        theirs: "Funnels and retention are in recent versions; depth is more limited than a dedicated product analytics tool.",
+        verdict: "both",
+      },
+      {
+        point: "Scheduled email and WhatsApp reports",
+        ours: "Yes, with an AI summary and XLSX attachment.",
+        theirs: "Not part of the product.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Data ownership",
+        ours: "Hosted by Quantalog; raw events exportable as CSV or XLSX any time.",
+        theirs: "Complete, when self-hosted. The database is yours.",
+        verdict: "rival",
+      },
+      {
+        point: "Multi-tenant API for reselling analytics",
+        ours: "Yes, as a first-class product surface.",
+        theirs: "The API and multi-site support exist, but are not packaged for reselling to your own customers.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Cost model",
+        ours: "Free to 10k pageviews a month, then usage-based.",
+        theirs: "Free software; you pay for the server, or for Umami Cloud by event volume.",
+        verdict: "both",
+      },
+    ],
+    faqs: [
+      {
+        q: "Can Quantalog replace a self-hosted Umami?",
+        a: "For traffic, events, funnels, goals and SEO, yes, without a server to run. It cannot put the database on your own infrastructure, which is the main reason teams self-host Umami.",
+      },
+      {
+        q: "Is Quantalog open source like Umami?",
+        a: "No. Quantalog is a hosted service. If running MIT-licensed code you can fork is a hard requirement, Umami is the better fit.",
+      },
+      {
+        q: "Which is faster to get running?",
+        a: "Quantalog — one script tag, live in seconds, no database to provision. Umami Cloud is also quick; self-hosted Umami is a deployment task.",
+      },
+    ],
+  },
+  {
+    slug: "posthog-alternative",
+    rival: "PostHog",
+    title: "Quantalog vs PostHog",
+    description:
+      "A lighter, privacy-first PostHog alternative for teams who want traffic analytics, funnels and SEO audits without cookies, a consent banner or a heavy SDK.",
+    intro:
+      "PostHog is a full product-analytics platform — session replay, feature flags, experiments, a data warehouse. Quantalog is web analytics with SEO audits and reporting. This page is for teams who adopted PostHog for pageviews and funnels and found the rest was more than they needed.",
+    whenTheirs:
+      "Stay with PostHog if you use session replay, feature flags, A/B experiments or its SQL data warehouse. Quantalog does none of those and is not trying to; it is the smaller tool on purpose.",
+    rows: [
+      {
+        point: "Consent banner required",
+        ours: "No. Nothing is stored in the browser.",
+        theirs: "PostHog sets cookies by default and identifies users, so a consent banner is generally required.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Script weight",
+        ours: "Under 1 KB, loaded async.",
+        theirs: "The posthog-js SDK is substantially larger, more so with session replay and autocapture enabled.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Cookieless option",
+        ours: "The only mode. No configuration needed.",
+        theirs: "A cookieless / memory-persistence mode exists but is not the default and limits some features.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Funnels, cohorts and custom events",
+        ours: "Included on every plan.",
+        theirs: "Included, and deeper — path analysis, correlation, retention breakdowns.",
+        verdict: "both",
+      },
+      {
+        point: "Session replay, feature flags, experiments",
+        ours: "Not offered.",
+        theirs: "Core parts of the platform.",
+        verdict: "rival",
+      },
+      {
+        point: "SEO audits and Lighthouse scores",
+        ours: "Built in.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Scheduled email and WhatsApp client reports",
+        ours: "Yes, with an AI summary and XLSX attachment.",
+        theirs: "Dashboards can be subscribed to by email; no WhatsApp, no client-report packaging.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Give analytics to your own customers",
+        ours: "Multi-tenant Platform API — a project per customer.",
+        theirs: "Multiple projects exist, but reselling analytics is not a packaged use case.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Price",
+        ours: "Free to 10k pageviews a month, then usage-based.",
+        theirs: "Generous free tier by event volume, then usage-based across each product.",
+        verdict: "both",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is Quantalog a replacement for PostHog?",
+        a: "Only for the web-analytics part — traffic, referrers, funnels, goals and events. It does not replace session replay, feature flags or experiments, and it has no data warehouse.",
+      },
+      {
+        q: "Why would I move from PostHog to Quantalog?",
+        a: "Usually to drop the consent banner and the SDK weight when the team only ever used PostHog for pageviews and funnels, and the rest of the platform sat idle.",
+      },
+      {
+        q: "Does Quantalog need a cookie banner where PostHog does?",
+        a: "Quantalog never needs one; it is cookieless in its only mode. PostHog needs one in its default configuration because it sets cookies and identifies users.",
+      },
+    ],
+  },
+  {
+    slug: "cloudflare-web-analytics-alternative",
+    rival: "Cloudflare Web Analytics",
+    title: "Quantalog vs Cloudflare Web Analytics",
+    description:
+      "A Cloudflare Web Analytics alternative that keeps the cookieless, privacy-first model and adds real-time data, funnels, custom events, SEO audits and scheduled reports.",
+    intro:
+      "Cloudflare Web Analytics is a free, privacy-first pageview counter that needs no cookie banner. Quantalog shares that model and goes further. This page is for anyone who started with Cloudflare's free tier and hit its edges.",
+    whenTheirs:
+      "Stay with Cloudflare Web Analytics if a free, zero-configuration pageview and referrer summary is all you need — especially if your site already runs behind Cloudflare, where server-side collection needs no script at all.",
+    rows: [
+      {
+        point: "Cookieless, no consent banner",
+        ours: "Yes.",
+        theirs: "Yes. Both are privacy-first and need no banner.",
+        verdict: "both",
+      },
+      {
+        point: "Real-time data",
+        ours: "Live. Events appear as they happen.",
+        theirs: "Reporting is not real-time; data appears after a processing delay.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Custom events, funnels and goals",
+        ours: "Included on every plan.",
+        theirs: "Pageviews and core web vitals; no custom events, funnels or goals.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Retention cohorts",
+        ours: "Included.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "SEO audits and Lighthouse scores",
+        ours: "Built in.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Core Web Vitals",
+        ours: "Measured per audited page, with history.",
+        theirs: "Reported from real-user measurement, aggregated.",
+        verdict: "both",
+      },
+      {
+        point: "Scheduled email and WhatsApp reports",
+        ours: "Yes, with an AI summary and XLSX attachment.",
+        theirs: "Not offered.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Give analytics to your own customers",
+        ours: "Multi-tenant Platform API.",
+        theirs: "Not a supported use case.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Price",
+        ours: "Free to 10k pageviews a month, then usage-based.",
+        theirs: "Free.",
+        verdict: "both",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is Quantalog a replacement for Cloudflare Web Analytics?",
+        a: "Yes, and a superset for most needs — it covers the same pageviews and referrers without a banner, then adds real-time data, custom events, funnels, retention and SEO audits.",
+      },
+      {
+        q: "Do I need to use Cloudflare as my CDN to run Quantalog?",
+        a: "No. Quantalog is a single script tag and works on any host. Cloudflare Web Analytics is easiest when your site is already proxied through Cloudflare.",
+      },
+      {
+        q: "Is Quantalog free like Cloudflare Web Analytics?",
+        a: "There is a free tier to 10k pageviews a month with every feature included. Above that it is usage-based, where Cloudflare's offering is free at any volume but far narrower.",
+      },
+    ],
+  },
 ];
 
 export function getComparisonSlugs(): string[] {

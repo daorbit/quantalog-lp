@@ -136,7 +136,11 @@ function Body() {
       </P>
       <P>
         If you want to try it, the Hobby plan is free forever and takes about three
-        minutes to wire up. If you are a platform and want the API,{" "}
+        minutes to wire up — the <A href="/analytics">analytics</A>,{" "}
+        <A href="/seo-audits">SEO audit</A> and{" "}
+        <A href="/reports">scheduled report</A> pages go feature by feature. If
+        you are a platform and want the{" "}
+        <A href="/platform-api">multi-tenant API</A>,{" "}
         <A href="mailto:daorbit2k25@gmail.com">tell us what you are building</A>.
       </P>
     </>
