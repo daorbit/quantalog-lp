@@ -23,7 +23,7 @@ function renderInline(text: string, keyBase: string): ReactNode[] {
           key={key}
           href={href}
           {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="font-medium text-[var(--accent)] underline underline-offset-2 hover:opacity-80"
+          className="font-medium text-accent underline underline-offset-2 hover:opacity-80"
         >
           {label}
         </a>

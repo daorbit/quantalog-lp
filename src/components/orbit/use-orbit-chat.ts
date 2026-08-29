@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 
 /**
@@ -42,6 +42,7 @@ export function useOrbitChat() {
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>(FALLBACK_SUGGESTIONS);
+  const [available, setAvailable] = useState(true);
 
   /**
    * The transcript in the shape the server wants, kept in a ref so `send` can
@@ -49,6 +50,26 @@ export function useOrbitChat() {
    * turn before awaiting, so reading state there would miss it.
    */
   const historyRef = useRef<OrbitMessage[]>([]);
+
+  // The server owns the opening prompts and knows whether Cloudflare is
+  // configured. A failed status check leaves the fallbacks and assumes
+  // available — the first real send will report the truth either way.
+  useEffect(() => {
+    let live = true;
+    fetch(`${site.api}/api/public/orbit/status`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { available?: boolean; suggestions?: string[] } | null) => {
+        if (!live || !data) return;
+        if (typeof data.available === "boolean") setAvailable(data.available);
+        if (Array.isArray(data.suggestions) && data.suggestions.length) {
+          setSuggestions(data.suggestions);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, []);
 
   const send = useCallback(
     async (raw?: string) => {
@@ -122,7 +143,6 @@ export function useOrbitChat() {
   const reset = useCallback(() => {
     setMessages([]);
     setInput("");
-    setSuggestions(FALLBACK_SUGGESTIONS);
     historyRef.current = [];
   }, []);
 
@@ -133,6 +153,7 @@ export function useOrbitChat() {
     send,
     reset,
     thinking,
+    available,
     started: messages.length > 0,
     /** The follow-ups to show under the thread — server's opener before the first turn, last turn's after. */
     suggestions,

@@ -1727,3 +1727,187 @@ body {
 @media (min-width: 640px) {
   .fhv-frame__inner { padding: 1.35rem; }
 }
+
+/* ============ Orbit — the marketing-site assistant ============
+   Ported from the dashboard's Orbit panel (real-ana-fe App.css) so the two
+   read as one product. Mantine there, tokens here; the visuals match. */
+
+/* The launcher. A rounded square, not a circle — the mark is the whole
+   surface, and an accent bloom under the drop shadow so it reads as lit rather
+   than stuck on. */
+.orbit-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 190;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  line-height: 0;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 6px 18px color-mix(in srgb, var(--accent) 28%, transparent),
+    0 10px 30px rgba(0, 0, 0, 0.34);
+}
+.orbit-fab:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 42%, transparent),
+    0 8px 26px color-mix(in srgb, var(--accent) 45%, transparent),
+    0 14px 34px rgba(0, 0, 0, 0.4);
+}
+.orbit-fab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.orbit-fab[data-open] {
+  z-index: 320;
+}
+.orbit-fab[data-open]:hover {
+  transform: none;
+}
+.orbit-fab img {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: block;
+  object-fit: cover;
+}
+@media (max-width: 48em) {
+  .orbit-fab {
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    border-radius: 13px;
+  }
+  .orbit-fab img { width: 44px; height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-fab { transition: none; }
+  .orbit-fab:hover { transform: none; }
+}
+
+/* Softens the page while the panel is open. Light — this is a side panel, not
+   a modal. */
+.orbit-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: orbit-scrim-in 140ms ease-out;
+}
+@keyframes orbit-scrim-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-scrim { animation: none; }
+}
+
+/* The panel, directly above the launcher and matched to its insets. */
+.orbit-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 88px;
+  width: min(460px, calc(100vw - 48px));
+  height: min(560px, calc(100dvh - 128px));
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: orbit-panel-in 180ms ease-out;
+}
+@keyframes orbit-panel-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-panel { animation: none; }
+}
+.orbit-panel > .aurora-wash { z-index: 0; }
+.orbit-panel > *:not(.aurora-wash) { position: relative; z-index: 1; }
+@media (max-width: 48em) {
+  .orbit-panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+    height: min(70dvh, calc(100dvh - 120px));
+  }
+}
+
+/* The drifting wash behind the thread — the same one the feature-hero frames
+   use, so Orbit reads as part of the page. */
+.aurora-wash {
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  opacity: 0.5;
+  filter: blur(28px);
+  background:
+    radial-gradient(38% 38% at 25% 25%, color-mix(in srgb, var(--accent) 60%, transparent) 0%, transparent 70%),
+    radial-gradient(34% 34% at 75% 65%, color-mix(in srgb, var(--accent) 35%, transparent) 0%, transparent 70%);
+  animation: orbit-drift 9s ease-in-out infinite alternate;
+}
+@keyframes orbit-drift {
+  from { transform: translate(-3%, -2%) scale(1); }
+  to   { transform: translate(3%, 2%) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-wash { animation: none; }
+}
+
+/* The user's own turn. Opaque fill, because the wash sits behind it. */
+.orbit-bubble-user {
+  background: color-mix(in srgb, var(--accent) 92%, black);
+  color: #fff;
+}
+.dark .orbit-bubble-user {
+  background: color-mix(in srgb, var(--accent) 30%, #0a0b0d);
+  color: var(--fg);
+}
+
+/* A suggestion. Quiet by default; only the border warms on hover. */
+.orbit-suggestion {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 11px;
+  color: var(--fg-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.orbit-suggestion:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+.orbit-suggestion:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The "Thinking" label breathes while a reply is in flight. */
+.orbit-thinking {
+  animation: orbit-thinking-pulse 1.6s ease-in-out infinite;
+}
+@keyframes orbit-thinking-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.45; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-thinking { animation: none; }
+}
