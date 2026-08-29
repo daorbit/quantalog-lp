@@ -44,9 +44,8 @@ export function Header() {
        inside one narrow container is what made the earlier version read as a
        toolbar rather than as chrome belonging to the page. */
     <header
-      className={`sticky top-0 z-40 transition-colors duration-200 ${
-        scrolled || open ? "border-b border-border bg-bg" : "border-b border-transparent bg-transparent"
-      }`}
+      data-scrolled={scrolled || open || undefined}
+      className="site-header sticky top-0 z-50 transition-colors duration-200"
     >
       {/* Solid rather than frosted once scrolled: the bar passes over the
           dashboard preview and the chart fills, and a translucent surface lets
@@ -58,11 +57,7 @@ export function Header() {
             narrow enough for the two to meet. The outer columns share the
             leftover space equally, which keeps the pill optically centred
             while every group still occupies real layout. */}
-        <div
-          className={`flex items-center gap-4 px-5 transition-[height] duration-200 sm:px-8 lg:px-12 ${
-            scrolled ? "h-13" : "h-13"
-          }`}
-        >
+        <div className="flex h-13 items-center gap-4 px-4 sm:px-8 lg:px-12">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>

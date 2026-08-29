@@ -24,8 +24,10 @@ const variants = {
 } as const;
 
 const sizes = {
-  md: "px-4 py-2 text-sm",
-  lg: "px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[0.9375rem]",
+  md: "px-3.5 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-sm",
+  // The mobile step is deliberately much smaller than the desktop one: a
+  // full-width-ish pill at desktop padding reads as a slab on a phone.
+  lg: "px-4 py-2.5 text-[13.5px] sm:px-6 sm:py-3.5 sm:text-[0.9375rem]",
 } as const;
 
 export function Button({

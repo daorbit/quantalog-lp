@@ -263,7 +263,7 @@ export function Pricing() {
 
                   <div className="mt-7">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-[2.25rem] font-medium leading-none tracking-[-0.04em] tabular-nums sm:text-[2.5rem]">
+                      <span className="text-[1.875rem] font-medium leading-none tracking-[-0.04em] tabular-nums sm:text-[2.5rem]">
                         {formatPrice(price, currency)}
                       </span>
                       <span className="text-sm text-fg-muted">

@@ -40,12 +40,12 @@ export function Hero() {
           {/* Above the headline rather than below it: these are the facts that
               decide whether the claim in the H1 is worth reading, and a reader
               who needs them needs them first. */}
-          <div className="rise rise-2 mt-7">
+          <div className="rise rise-2 mt-5 sm:mt-7">
             <TrustChips />
           </div>
 
       
-          <h1 className="word-rise mt-6 text-[1.875rem] font-medium leading-[1.14] tracking-[-0.03em] sm:mt-8 sm:text-[2.125rem] lg:text-[2rem] xl:text-[2.35rem]">
+          <h1 className="word-rise mt-6 text-[1.625rem] font-medium leading-[1.18] tracking-[-0.03em] sm:mt-8 sm:text-[2.125rem] lg:text-[2rem] xl:text-[2.35rem]">
             <Words text="Cookieless web analytics" />{" "}
             <Words text="that counts the" offset={3} />{" "}
             <span
@@ -57,7 +57,7 @@ export function Hero() {
             <Words text="others miss." offset={7} />
           </h1>
 
-          <p className="rise rise-3 mx-auto mt-6 max-w-xl text-pretty text-[0.9375rem] leading-relaxed text-fg-muted lg:mx-0 lg:text-[0.9375rem]">
+          <p className="rise rise-3 mx-auto mt-4 max-w-xl text-pretty text-[0.875rem] leading-relaxed sm:mt-6 sm:text-[0.9375rem] text-fg-muted lg:mx-0 lg:text-[0.9375rem]">
             A privacy-first Google Analytics alternative with real-time
             dashboards, built-in SEO audits and an embeddable API. Cookie-based
             tools only measure the visitors who accept the banner — Quantalog
@@ -68,7 +68,7 @@ export function Hero() {
           {/* Side by side at every width, sized to their labels. Stacked and
               stretched edge to edge, the pair read as two slabs rather than a
               choice between two actions. */}
-          <div className="rise rise-4 mt-9 flex flex-row flex-wrap items-center justify-center gap-3 sm:mt-10 lg:justify-start">
+          <div className="rise rise-4 mt-6 flex flex-row flex-wrap items-center justify-center gap-2.5 sm:mt-10 sm:gap-3 lg:justify-start">
             <Button
               href={`${site.app}/signup`}
               size="lg"
@@ -96,7 +96,7 @@ export function Hero() {
           {/* Read as a spec strip rather than a bullet list: on an analytics
               page the numbers are the argument, so they get the weight, and
               hairlines between them bind the four figures into one object. */}
-          <ul className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-y-7 sm:mt-14 sm:grid-cols-4 lg:mx-0">
+          <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-y-5 sm:mt-14 sm:gap-y-7 sm:grid-cols-4 lg:mx-0">
             {trustPoints.map((point, i) => (
               <li
                 key={point.label}
@@ -105,7 +105,7 @@ export function Hero() {
                 }`}
                 style={{ animationDelay: `${0.45 + i * 0.08}s` }}
               >
-                <p className="text-2xl font-medium leading-none tracking-[-0.04em] tabular-nums sm:text-[1.75rem]">
+                <p className="text-xl font-medium leading-none tracking-[-0.04em] tabular-nums sm:text-[1.75rem]">
                   {point.value}
                 </p>
                 <p className="mt-2 text-[11px] uppercase tracking-[0.12em] text-fg-faint">
