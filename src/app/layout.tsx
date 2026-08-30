@@ -120,6 +120,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={sans.variable}>
+      <head>
+        {/* The contact form is a da-forms iframe on another origin. Warming DNS
+            and TLS on every page, and prefetching the form document in idle
+            time, means /contact opens with the form already in cache rather
+            than starting a cross-origin round trip on click. */}
+        <link rel="preconnect" href="https://forms.daorbit.in" />
+        <link
+          rel="prefetch"
+          as="document"
+          href="https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view"
+        />
+      </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <a

@@ -118,6 +118,7 @@ export default function ContactPage() {
         <EmbeddedForm
           src="https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view"
           title="Contact form"
+          eager
         />
 
         <p className="mt-5 text-center text-sm text-fg-muted">

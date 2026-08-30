@@ -8,7 +8,17 @@ import { useEffect, useRef } from "react";
  * without this the iframe keeps a fixed height and either clips the form or
  * leaves dead space beneath a short one.
  */
-export function EmbeddedForm({ src, title }: { src: string; title: string }) {
+export function EmbeddedForm({
+  src,
+  title,
+  eager = false,
+}: {
+  src: string;
+  title: string;
+  /** Skip `loading="lazy"` when the form is the reason the page was opened —
+   *  lazy only delays a fetch the visitor is already waiting on. */
+  eager?: boolean;
+}) {
   const ref = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -28,7 +38,7 @@ export function EmbeddedForm({ src, title }: { src: string; title: string }) {
       scrolling="no"
       className="w-full rounded-[8px] border-none"
       style={{ height: 630, overflow: "hidden" }}
-      loading="lazy"
+      loading={eager ? "eager" : "lazy"}
     />
   );
 }

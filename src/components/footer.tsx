@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   BookOpen, Bot, Building2, CalendarClock, Code2, EyeOff, FileText,
-  Lock, Mail, Newspaper, PlayCircle, Scale, Scroll, Search, Sparkle, Tag,
+  LayoutGrid, Lock, Mail, Newspaper, PlayCircle, Scale, Scroll, Search, Tag,
 } from "lucide-react";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
@@ -23,7 +23,7 @@ const columns = [
   {
     title: "Product",
     links: [
-      { href: "/#features", label: "Features", icon: Sparkle },
+      { href: "/#features", label: "Features", icon: LayoutGrid },
       { href: "/seo-audits", label: "SEO audits", icon: Search },
       { href: "/reports", label: "Reports", icon: FileText },
       { href: "/platform-api", label: "Platform API", icon: Code2 },
