@@ -1,7 +1,3 @@
-// Thin wrapper over the Quantalog tracker that this very site embeds.
-// window.rta is defined by tracker.js once it has loaded (see layout.tsx).
-// Calls before it loads are simply dropped — analytics must never break the page.
-
 declare global {
   interface Window {
     rta?: {

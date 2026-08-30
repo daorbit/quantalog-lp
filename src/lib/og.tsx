@@ -1,33 +1,13 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
- 
+
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
 
 export function ogImage({
   title,
   eyebrow,
-}: {
-  /** The page's headline — its H1 or meta title, not the site name. */
-  title: string;
-  /** A short kicker above it: the section, or "Blog", or "Comparison". */
-  eyebrow?: string;
-}) {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#0a0b0d",
-          padding: "72px 80px",
-          fontFamily: "sans-serif",
-        }}
-      >
-        {/* The lit accent bar, top-left — the one brand mark that reads at any size. */}
+}:
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{

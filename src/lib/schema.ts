@@ -1,15 +1,5 @@
 import { site } from "@/lib/site";
 
-/**
- * Structured data shared across the site.
- *
- * Search engines reconcile schema by `@id`, so the organisation and website
- * nodes are defined once here with stable ids and referenced from every page
- * rather than restated. That is what lets a docs page say "publisher: the same
- * organisation the homepage described" instead of describing it again and
- * risking the two drifting apart.
- */
-
 export const ORG_ID = `${site.url}/#organization`;
 export const SITE_ID = `${site.url}/#website`;
 
@@ -39,8 +29,7 @@ export const website = {
   description: site.description,
   publisher: { "@id": ORG_ID },
   inLanguage: "en",
-  // The sitelinks search box: lets a result carry a search field that goes
-  // straight into the docs rather than sending people to the homepage first.
+
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -51,13 +40,6 @@ export const website = {
   },
 };
 
-/**
- * The author node.
- *
- * A `Person` rather than the Organization: answer engines weigh a named human
- * author when deciding whether a source is attributable, and reusing the
- * company as its own author does not satisfy that.
- */
 export const AUTHOR_ID = `${site.url}/#author`;
 
 export const author = {
@@ -68,13 +50,6 @@ export const author = {
   worksFor: { "@id": ORG_ID },
 };
 
-/**
- * An `Article` node for a content page.
- *
- * AI answer engines treat Article as the signal that a page is quotable
- * editorial content, and they check `author` and `dateModified` before
- * attributing a quote — so all three travel together rather than separately.
- */
 export function article({
   path,
   headline,
@@ -85,9 +60,9 @@ export function article({
   path: string;
   headline: string;
   description: string;
-  /** ISO date the page first went live. */
+
   published: string;
-  /** ISO date of the last meaningful edit. Defaults to `published`. */
+
   modified?: string;
 }): Record<string, unknown> {
   return {
@@ -106,12 +81,6 @@ export function article({
   };
 }
 
-/**
- * A breadcrumb trail. Google uses it to replace the bare URL under a result
- * with a readable path, which is worth having on every nested page.
- *
- * Pass paths relative to the site root; the leaf is the current page.
- */
 export function breadcrumbs(
   trail: { name: string; path: string }[]
 ): Record<string, unknown> {
@@ -126,14 +95,6 @@ export function breadcrumbs(
   };
 }
 
-/**
- * A `Service` node for one product capability.
- *
- * Feature pages sell a distinct capability — analytics, SEO audits, the
- * Platform API — that a search engine will treat as its own offering if the
- * page says so. `provider` reconciles to the shared Organization, and the free
- * tier rides along as an `Offer` so a rich result can name what "$0" includes.
- */
 export function service({
   path,
   name,
@@ -144,9 +105,9 @@ export function service({
   path: string;
   name: string;
   description: string;
-  /** The searchable category, e.g. "Web analytics". */
+
   serviceType: string;
-  /** Overrides the default free-tier offer when a feature has its own entry price. */
+
   offer?: { name: string; price: string; description: string };
 }): Record<string, unknown> {
   const o = offer ?? {
@@ -176,12 +137,6 @@ export function service({
   };
 }
 
-/**
- * A `HowTo` node. Google renders these as a numbered step carousel, and answer
- * engines lift them wholesale for "how do I …" queries.
- *
- * Steps are plain strings; each becomes a `HowToStep` with `position`.
- */
 export function howTo({
   path,
   name,
@@ -207,7 +162,6 @@ export function howTo({
   };
 }
 
-/** Wraps nodes in the `@graph` envelope every page on this site emits. */
 export function graph(...nodes: Record<string, unknown>[]) {
   return {
     "@context": "https://schema.org",
