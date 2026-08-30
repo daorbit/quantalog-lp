@@ -9,6 +9,7 @@ import { NewsletterDialog } from "@/components/newsletter-dialog";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { ScrollRise } from "@/components/scroll-rise";
 import { PlansProvider } from "@/components/plans-provider";
+import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -128,11 +129,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             time, means /contact opens with the form already in cache rather
             than starting a cross-origin round trip on click. */}
         <link rel="preconnect" href="https://forms.daorbit.in" />
-        <link
-          rel="prefetch"
-          as="document"
-          href="https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view"
-        />
+        <link rel="prefetch" as="document" href={site.contactFormSrc} />
       </head>
       <body className="font-sans antialiased">
         {/* No-JS safety net: the scroll-reveal observer never runs, so force
@@ -170,6 +167,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* No-op in Chrome; on browsers without scroll-timeline it makes the
               existing `.v-rise` sections animate on scroll instead of on load. */}
           <ScrollRise />
+          {/* Background-loads the /contact form embed after the first
+              interaction, so the contact page opens with it already cached.
+              Renders nothing on /contact itself. */}
+          <ContactFormPrewarm />
         </ThemeProvider>
 
         {/* Quantalog eats its own dog food: this landing page is tracked by Quantalog. */}

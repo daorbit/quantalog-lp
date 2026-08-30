@@ -17,6 +17,10 @@ export const site = {
   twitter: "@quantalog",
   github: "https://github.com/quantalog",
   email: "daorbit2k25@gmail.com",
+  // The da-forms embed used on /contact. Kept here so the layout can warm it
+  // (preconnect + a hidden prewarm iframe) with the exact URL the page mounts.
+  contactFormSrc:
+    "https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view",
 } as const;
 
 /**
