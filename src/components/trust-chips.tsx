@@ -1,15 +1,5 @@
 import { Cookie, Feather, Gauge, ShieldCheck } from "lucide-react";
 
-/**
- * The credentials, above the headline.
- *
- * Every one is a fact about the product that can be checked from the page
- * itself — no review scores, no user counts, no compliance badges we have not
- * earned. A chip row is the most persuasive real estate on a landing page
- * precisely because it is read as fact rather than marketing, which is why
- * putting anything aspirational in it is a bad trade.
- */
-
 const chips = [
   { icon: Cookie, label: "Cookies", value: "None set" },
   { icon: ShieldCheck, label: "Personal data", value: "Never stored" },

@@ -1,24 +1,8 @@
 "use client";
 
-// A mock of the real dashboard. Not a chart library and not real data: every
-// figure below is a constant, so the server and the first client render agree
-// and the page stays statically exported.
-//
-// It does move, though. The product sells "real-time", and a frozen screenshot
-// captioned "polling 3s" argues against the pitch — so the counters drift and
-// the chart draws itself once the page is interactive. The drift starts after
-// mount, never on the server.
-
 import { useState } from "react";
 import { useLiveNumber } from "./use-live-number";
 
-/**
- * Three ranges the visitor can switch between. Still all constants — the mock
- * stays statically exportable — but the toggle in the window chrome is real, so
- * the shot reads as a thing you operate rather than a screenshot. `24h` is what
- * the server renders and the only range whose headline numbers drift live; the
- * longer ranges are settled totals, which is how a real dashboard behaves too.
- */
 type RangeKey = "24h" | "7d" | "30d";
 
 const RANGES: Record<
@@ -124,14 +108,6 @@ function linePath(values: number[]) {
   return d;
 }
 
-/**
- * One headline number.
- *
- * `seed` is what renders on the server. If `live` is set the digits drift after
- * mount and flash on change; the rest (bounce rate, session length) hold still,
- * because a metric that jitters every three seconds reads as noise rather than
- * as traffic arriving.
- */
 function Stat({
   label,
   seed,
@@ -182,8 +158,7 @@ function BarList({
   return (
     <div className="p-5">
       <div className="flex items-center justify-between">
-        {/* A widget caption in a decorative preview, not document structure —
-            a real <h3> here skips from the page <h1> with no <h2> between. */}
+
         <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
           {title}
         </p>
@@ -194,7 +169,7 @@ function BarList({
           <li key={row.label} className="relative overflow-hidden rounded">
             <div
               className="bar-fill absolute inset-y-0 left-0 bg-accent/[0.13]"
-              // Staggered so the list fills top-down, the way a query returns.
+
               style={{ width: `${row.pct}%`, animationDelay: `${0.5 + i * 0.09}s` }}
               aria-hidden="true"
             />
@@ -213,15 +188,13 @@ function BarList({
 }
 
 export function DashboardPreview() {
-  // `24h` is what the server renders — the only range whose numbers drift.
+
   const [range, setRange] = useState<RangeKey>("24h");
   const r = RANGES[range];
 
   const pts = points(r.series);
   const last = pts[pts.length - 1];
 
-  // Concurrent visitors move faster and swing wider than the daily totals —
-  // that contrast is what makes the number read as "right now".
   const { value: online, bumped: onlineBumped } = useLiveNumber(42, {
     every: 2400,
     drift: 3,
@@ -230,7 +203,7 @@ export function DashboardPreview() {
 
   return (
     <div className="card overflow-hidden shadow-float">
-      {/* Window chrome */}
+
       <div className="flex items-center gap-3 border-b border-border bg-bg-subtle px-4 py-3">
         <div className="flex gap-1.5" aria-hidden="true">
           <span className="h-2.5 w-2.5 rounded-full bg-border-strong" />
@@ -247,9 +220,7 @@ export function DashboardPreview() {
             visitors online
           </span>
         </div>
-        {/* Real toggle now: switching the range redraws the chart, re-seeds the
-            headline numbers and swaps both bar lists. Kept desktop-only — the
-            chrome is decoration on a phone-width mock. */}
+
         <div className="hidden items-center gap-1 sm:flex">
           {RANGE_KEYS.map((k) => (
             <button
@@ -269,8 +240,6 @@ export function DashboardPreview() {
         </div>
       </div>
 
-      {/* `key={range}` remounts each Stat when the range changes, so the live
-          counter re-seeds from the new figure instead of drifting off the old. */}
       <div className="stat-sweep relative grid overflow-hidden border-b border-border sm:grid-cols-4">
         <Stat
           key={`v-${range}`}
@@ -304,7 +273,6 @@ export function DashboardPreview() {
         />
       </div>
 
-      {/* Traffic area chart */}
       <div className="border-b border-border p-5">
         <div className="flex items-center justify-between">
           <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
@@ -331,7 +299,6 @@ export function DashboardPreview() {
             </linearGradient>
           </defs>
 
-          {/* Horizontal guides */}
           {[0.25, 0.5, 0.75].map((f) => (
             <line
               key={f}
@@ -351,9 +318,7 @@ export function DashboardPreview() {
             d={`${linePath(r.series)} L ${W},${H} L 0,${H} Z`}
             fill="url(#q-fill)"
           />
-          {/* Drawn with a dash offset equal to its own length, so it paints in
-              from the left instead of appearing all at once. The length is an
-              over-estimate of the path — exact is unnecessary, too short is not. */}
+
           <path
             className="chart-line"
             style={{ "--line-len": "1400" } as React.CSSProperties}
@@ -364,7 +329,7 @@ export function DashboardPreview() {
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
           />
-          {/* Leading edge marker — the "this is happening now" cue. */}
+
           <circle
             className="chart-edge"
             cx={last[0]}
@@ -394,7 +359,6 @@ export function DashboardPreview() {
         </div>
       </div>
 
-      {/* `key={range}` replays the bar-fill stagger on each switch. */}
       <div
         key={range}
         className="grid divide-y divide-border sm:grid-cols-2 sm:divide-x sm:divide-y-0"

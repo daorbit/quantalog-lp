@@ -2,16 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/**
- * The animated illustration in each feature page's hero — one per page.
- *
- * Everything runs on CSS keyframes or a lightweight rAF counter, so the pages
- * stay statically exportable and nothing is fetched. Each visual loops so the
- * hero has continuous motion the way the homepage's flow diagram does. The
- * shared keyframes live in globals.css under "Feature hero visuals".
- */
-
-/* --- a number that counts up to its target on a loop --------------------- */
 function Counter({
   to,
   suffix = "",
@@ -32,11 +22,11 @@ function Counter({
     const loop = (t: number) => {
       if (!start) start = t;
       const p = Math.min((t - start) / duration, 1);
-      // easeOutCubic
+
       setN(to * (1 - Math.pow(1 - p, 3)));
       if (p < 1) raf = requestAnimationFrame(loop);
       else {
-        // hold, then run again
+
         window.setTimeout(() => {
           start = 0;
           setN(0);
@@ -56,7 +46,6 @@ function Counter({
   );
 }
 
-/* --- a sparkline that redraws itself on a loop -------------------------- */
 function Spark({ points, className = "" }: { points: number[]; className?: string }) {
   const w = 120;
   const h = 32;
@@ -109,7 +98,6 @@ function StatCard({
   );
 }
 
-/* --- Analytics -------------------------------------------------------------- */
 export function AnalyticsHeroVisual() {
   const funnel = [
     { label: "Landing", pct: 100 },
@@ -161,7 +149,6 @@ export function AnalyticsHeroVisual() {
   );
 }
 
-/* --- SEO audits ---------------------------------------------------------- */
 export function SeoHeroVisual() {
   return (
     <div className="space-y-4">
@@ -215,7 +202,6 @@ export function SeoHeroVisual() {
   );
 }
 
-/* --- Reports ----------------------------------------------------------- */
 export function ReportsHeroVisual() {
   const line =
     "Traffic up 22%, mostly from a Reddit thread that didn't stick. Signups flat.";
@@ -259,7 +245,6 @@ export function ReportsHeroVisual() {
   );
 }
 
-/* --- Forms ----------------------------------------------------------- */
 export function FormsHeroVisual() {
   const rows = [
     { label: "Email", drop: 4, worst: false },
@@ -302,7 +287,6 @@ export function FormsHeroVisual() {
   );
 }
 
-/* --- Platform API ------------------------------------------------------- */
 export function PlatformHeroVisual() {
   const lines = [
     { t: "POST /v1/projects", c: "text-fg" },
@@ -335,7 +319,6 @@ export function PlatformHeroVisual() {
   );
 }
 
-/* --- Orbit AI & social ------------------------------------------------- */
 export function SocialHeroVisual() {
   const msg =
     "Your Tuesday post is drafted from last week's numbers — the 22% traffic jump and where it came from.";

@@ -1,15 +1,3 @@
-/**
- * Capability labels, pinned around the product shot.
- *
- * The same four or five facts a page usually lists as bullets under the
- * screenshot. Placed around it instead, they are read while the reader is
- * already looking at the picture rather than after they have stopped.
- *
- * Hidden below `lg`: on a narrow screen there is no margin to pin anything to,
- * and floating them over the shot would cover the thing they annotate. The
- * copy is repeated in the section body, so nothing is lost when they go.
- */
-
 const labels = [
   { title: "No cookie banner", note: "Nothing to decline", side: "left", top: "14%" },
   { title: "Live in 3 seconds", note: "One script tag", side: "left", top: "48%" },
@@ -29,8 +17,7 @@ export function MockLabels() {
           } v-rise`}
           style={{
             top: l.top,
-            // Staggered so they settle in sequence rather than appearing as a
-            // ring of boxes around the shot all at once.
+
             animationDelay: `${0.5 + i * 0.09}s`,
           }}
         >

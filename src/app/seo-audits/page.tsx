@@ -20,19 +20,8 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
-
-/**
- * SEO audits, as a page rather than a homepage section.
- *
- * "SEO audit tool", "free Lighthouse report" and "broken link checker" are
- * queries with their own intent, typed by people who are not yet shopping for
- * analytics. A #seo anchor on a homepage about privacy-first tracking cannot
- * answer them; this page can, and it is also the natural landing spot for
- * anyone comparing audit tools.
- */
 
 const DESCRIPTION =
   "A free SEO audit tool built into your analytics. Run Lighthouse scores, meta tag and heading checks, structured data validation, broken link detection and Core Web Vitals against any page you already track — with history, so a fix is provable.";

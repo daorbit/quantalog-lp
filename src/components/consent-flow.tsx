@@ -1,14 +1,3 @@
-/**
- * Where a cookie-based tool loses visibility, drawn.
- *
- * One picture of the whole argument: a visitor arrives, and the path to a
- * cookie-based tool passes through a banner and an ad-blocker, each taking a
- * cut, while the path to Quantalog passes through neither. The bars beside this
- * quantify the gap; this explains where it comes from.
- *
- * Inline SVG rather than an illustration file: it has to follow the theme, and
- * the labels have to be real text so they can be read out and translated.
- */
 export function ConsentFlow() {
   return (
     <svg
@@ -17,9 +6,7 @@ export function ConsentFlow() {
       role="img"
       aria-label="A visitor's path splits in two. The route to cookie-based analytics passes through a consent banner and an ad-blocker, losing visitors at each. The route to Quantalog passes through neither and arrives whole."
     >
-      {/* The degraded path. Drawn first so the accent path sits above it where
-          they cross, and dashed after the banner to show it is no longer a
-          complete count. */}
+
       <path
         d="M96 130 C 140 130, 150 62, 196 62"
         fill="none"
@@ -46,8 +33,6 @@ export function ConsentFlow() {
         opacity="0.3"
       />
 
-      {/* The intact path. Solid the whole way, and the only one that keeps its
-          full weight from end to end. */}
       <path
         d="M96 130 C 150 130, 160 198, 436 198"
         fill="none"
@@ -63,7 +48,6 @@ export function ConsentFlow() {
       <Node x={436} y={44} label="Cookie tool" muted />
       <Node x={436} y={180} label="Quantalog" accent />
 
-      {/* The loss, stated on the line rather than in a caption underneath. */}
       <text
         x={230}
         y={104}

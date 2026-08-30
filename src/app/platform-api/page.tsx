@@ -10,18 +10,8 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
-
-/**
- * The Platform API, as a page rather than a homepage section.
- *
- * The buyer here is not the buyer for the rest of the site. They run a site
- * builder, a hosting platform or an agency, and they search for "white label
- * analytics API" or "embed analytics in my SaaS" — queries a homepage about
- * privacy-first tracking will never answer. This page is written for them.
- */
 
 const DESCRIPTION =
   "Embed white label analytics in your own product. One API key provisions a project per customer, injects the tracker into the sites you generate, and reads their stats back into your dashboard — your branding, your UI, your customers.";
@@ -44,7 +34,6 @@ const res = await fetch(
 
 const { visitors, pageviews, live, topPages } = await res.json();`;
 
-// Mirrors src/routes/v1.ts — every route here exists.
 const endpoints = [
   { method: "POST", path: "/v1/projects", desc: "Create a project for an end-user" },
   { method: "GET", path: "/v1/projects", desc: "List projects, filter by your user id" },

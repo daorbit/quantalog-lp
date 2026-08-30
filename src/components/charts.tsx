@@ -1,17 +1,3 @@
-/**
- * Chart primitives for the analytics section.
- *
- * All of them are static inline SVG or CSS boxes over constant data, for the
- * same reason `<DashboardPreview>` is: the page is statically exported, so a
- * server render and the first client render have to agree exactly. Nothing
- * here fetches, samples or randomises at render time.
- *
- * Every shape is drawn from `var(--accent)` and the border tokens, so the set
- * reads as one system in both themes instead of a pile of chart widgets.
- */
-
-/* ---- Sparkline ----------------------------------------------------------- */
-
 const SPARK_W = 120;
 const SPARK_H = 32;
 
@@ -28,12 +14,6 @@ function sparkPath(values: number[]) {
     .join(" ");
 }
 
-/**
- * A KPI tile: number, delta, and the shape of the last fourteen days.
- *
- * The sparkline carries the trend the percentage only asserts — the pair is
- * what makes a stat tile worth more than a number in a box.
- */
 export function SparkStat({
   label,
   value,
@@ -95,18 +75,8 @@ export function SparkStat({
   );
 }
 
-/* ---- Funnel -------------------------------------------------------------- */
-
 export type FunnelStep = { label: string; count: number };
 
-/**
- * A conversion funnel as stacked proportional bars.
- *
- * Deliberately bars rather than the tapering trapezoid a funnel is usually
- * drawn as: the trapezoid distorts area against value, and the number that
- * matters here — the drop between two steps — is easier to read off two
- * left-aligned widths than off two slanted edges.
- */
 export function Funnel({ steps }: { steps: FunnelStep[] }) {
   const top = steps[0].count;
 
@@ -147,20 +117,6 @@ export function Funnel({ steps }: { steps: FunnelStep[] }) {
   );
 }
 
-/* ---- Head-to-head -------------------------------------------------------- */
-
-/**
- * Two products, one measured quantity, drawn on a shared scale.
- *
- * Both bars are proportional to the larger of the two rather than each to its
- * own row, which is the whole point — a 900-byte script beside a 50 KB one has
- * to *look* like that ratio. Per-row normalisation would draw them the same
- * length and quietly flatter whichever number is worse.
- *
- * The winning bar takes the accent, the other a neutral fill. Colour is not
- * carrying the meaning alone: the values are printed, and the caption says
- * which direction is better.
- */
 export function HeadToHead({
   label,
   ours,
@@ -185,8 +141,6 @@ export function HeadToHead({
   const scale = Math.max(ours, theirs) || 1;
   const weWin = lowerIsBetter ? ours <= theirs : ours >= theirs;
 
-  // A zero-valued bar still needs to be visible as a bar, or the row reads as
-  // missing data rather than as the best possible result.
   const width = (n: number) => `${Math.max((n / scale) * 100, 2)}%`;
 
   const bars = [
@@ -229,14 +183,6 @@ export function HeadToHead({
   );
 }
 
-/**
- * The shape of a comparison at a glance: how many points favour us, how many
- * are a genuine tie, and how many go the other way.
- *
- * The third segment is the reason this is worth drawing. A summary that only
- * counted wins would be a scoreboard nobody believes; showing the ties and the
- * losses in the same bar is what makes the first number credible.
- */
 export function VerdictBar({
   ours,
   tied,
@@ -279,30 +225,13 @@ export function VerdictBar({
   );
 }
 
-/* ---- Field drop-off ------------------------------------------------------ */
-
-/**
- * Where a form loses people, field by field.
- *
- * Each row's bar is the share of the original audience still present at that
- * field, split into the part that continued (accent) and the part that stopped
- * here (muted). Both segments sit side by side rather than one inside the
- * other: overlapping them made a single muddy bar where the eye could not
- * separate the two quantities.
- *
- * The drop percentage is set in its own column at a readable size, because on
- * a form that starts wide and ends narrow the late rows are too short to carry
- * any meaning through length alone — by the last field the bar is a sliver, and
- * a sliver is exactly where the worst rate usually is.
- */
 export function FieldDropOff({
   rows,
 }: {
   rows: { label: string; reached: number; abandoned: number }[];
 }) {
   const top = rows[0]?.reached || 1;
-  // Rate, not count: the last field in a long form always has the fewest
-  // abandonments in absolute terms and is often the worst offender.
+
   const rate = (r: { reached: number; abandoned: number }) =>
     r.reached === 0 ? 0 : r.abandoned / r.reached;
   const worst = rows.reduce(
@@ -334,8 +263,7 @@ export function FieldDropOff({
                 }}
                 aria-hidden="true"
               />
-              {/* The people who reached this field and went no further. Given a
-                  visible minimum so a small-but-real loss is never invisible. */}
+
               <div
                 className={`bar-fill rounded-r ${
                   isWorst
@@ -376,15 +304,6 @@ export function FieldDropOff({
   );
 }
 
-/* ---- Retention cohorts --------------------------------------------------- */
-
-/**
- * A cohort heatmap. `rows` is one cohort per row, each a list of retention
- * percentages by week, week 0 first.
- *
- * Opacity carries the value and the number is printed in the cell, so the
- * grid is still readable without relying on colour discrimination.
- */
 export function CohortGrid({
   rows,
   weeks,
@@ -424,8 +343,7 @@ export function CohortGrid({
                   key={c}
                   className="cohort-cell h-8 rounded text-center tabular-nums"
                   style={{
-                    // Floored so a low-but-nonzero week is still visibly a
-                    // cell rather than blank background.
+
                     background: `color-mix(in srgb, var(--accent) ${Math.max(6, v * 0.9).toFixed(0)}%, transparent)`,
                     animationDelay: `${0.3 + (r + c) * 0.05}s`,
                   }}
@@ -435,8 +353,7 @@ export function CohortGrid({
                   </span>
                 </td>
               ))}
-              {/* Weeks a young cohort has not reached yet stay empty rather
-                  than reading as zero retention. */}
+
               {Array.from({ length: weeks.length - row.values.length }).map((_, i) => (
                 <td key={`e${i}`} className="h-8 rounded bg-fg-faint/[0.04]" />
               ))}
@@ -448,16 +365,8 @@ export function CohortGrid({
   );
 }
 
-/* ---- Donut --------------------------------------------------------------- */
-
 export type Slice = { label: string; value: number };
 
-/**
- * A single-ring donut for a small categorical split (device, browser).
- *
- * Capped at a handful of slices by convention rather than by code: past about
- * five, arc lengths stop being comparable and a bar list is the honest chart.
- */
 export function Donut({
   slices,
   centerLabel,
@@ -500,8 +409,7 @@ export function Donut({
                 r={R}
                 fill="none"
                 stroke="var(--accent)"
-                // Each slice is the same hue at a different strength — the
-                // series is one quantity split up, not four unrelated ones.
+
                 strokeOpacity={1 - i * 0.22}
                 strokeWidth="14"
                 strokeDasharray={dash}
@@ -540,13 +448,6 @@ export function Donut({
   );
 }
 
-/* ---- Hourly columns ------------------------------------------------------ */
-
-/**
- * A 24-column bar chart of the day. Columns rather than a line because the
- * question it answers — "which hour should I ship at" — is about comparing
- * discrete buckets, not about a trend between them.
- */
 export function HourBars({
   values,
   peakHour,
@@ -585,8 +486,6 @@ export function HourBars({
   );
 }
 
-/* ---- Geo bars ------------------------------------------------------------ */
-
 export function GeoBars({
   rows,
 }: {
@@ -614,13 +513,6 @@ export function GeoBars({
   );
 }
 
-/* ---- Goal gauge ---------------------------------------------------------- */
-
-/**
- * A half-ring gauge for one goal against its target. The arc is 180°, so the
- * needle position maps to percentage without the viewer having to work out
- * where the scale wraps.
- */
 export function Gauge({
   pct,
   label,

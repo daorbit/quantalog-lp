@@ -2,20 +2,6 @@ import Link from "next/link";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, CalendarClock, FileSpreadsheet, MessageCircle, Users } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
 
-/**
- * Scheduled email reports.
- *
- * Shown rather than described. The feature is an email, and the fastest way to
- * explain an email is to render one — a mock of the real thing sits beside the
- * copy, so a visitor understands the deliverable before reading a word about
- * it.
- *
- * The argument this section makes is about a person, not a capability: the
- * client or manager who wants the numbers and will never log in to get them.
- * Every analytics tool has a dashboard; the reason a team pays is that this one
- * reaches the people who don't open dashboards.
- */
-
 const points = [
   {
     icon: Users,
@@ -39,20 +25,18 @@ const points = [
   },
 ];
 
-/** The mocked metrics in the preview. Deltas are what make a report worth opening. */
 const preview = [
   { label: "Visitors", value: "12,480", change: "+18%", up: true },
   { label: "Pageviews", value: "31,207", change: "+12%", up: true },
   { label: "Sessions", value: "15,932", change: "+9%", up: true },
-  // Bounce rate falling is an improvement, so this reads as good news despite
-  // being a negative number — the same inversion the real email applies.
+
   { label: "Bounce rate", value: "38%", change: "−4%", up: true },
 ];
 
 function EmailPreview() {
   return (
     <div className="card overflow-hidden p-0">
-      {/* Header bar, standing in for the branded email shell. */}
+
       <div className="flex items-center gap-2 border-b border-border bg-bg-subtle px-5 py-3">
         <div className="text-[13px] font-semibold tracking-tight">
           Quantalog<span className="text-accent">.</span>
@@ -137,8 +121,6 @@ export function Reports() {
             ))}
           </div>
 
-          {/* Decorative: the copy beside it already states everything this
-              shows, so a screen reader gains nothing from re-reading a mock. */}
           <div className="v-rise v-d2" aria-hidden="true">
             <EmailPreview />
           </div>

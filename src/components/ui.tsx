@@ -9,9 +9,9 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "ghost";
   size?: "md" | "lg";
   className?: string;
-  /** Fire a custom Quantalog event on click, e.g. "cta_start_free". */
+
   track?: string;
-  /** Optional properties sent with the tracked event. */
+
   trackProps?: Record<string, unknown>;
 };
 
@@ -25,8 +25,7 @@ const variants = {
 
 const sizes = {
   md: "px-3.5 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-sm",
-  // The mobile step is deliberately much smaller than the desktop one: a
-  // full-width-ish pill at desktop padding reads as a slab on a phone.
+
   lg: "px-4 py-2.5 text-[13.5px] sm:px-6 sm:py-3.5 sm:text-[0.9375rem]",
 } as const;
 
@@ -57,12 +56,6 @@ export function Button({
   );
 }
 
-/**
- * The eyebrow no longer carries the little accent dash on every instance —
- * repeated 14 times down the page it became a period marker rather than a
- * label. A live dot is available for the sections that genuinely describe
- * something happening now.
- */
 export function Eyebrow({
   children,
   dot = false,
@@ -83,12 +76,6 @@ export function Eyebrow({
   );
 }
 
-/**
- * Section headings are deliberately no longer one fixed shape. `align` and
- * `size` let a section pick a form that suits its content, so scrolling the
- * page produces rhythm instead of the same eyebrow → centred H2 → body block
- * fourteen times in a row.
- */
 export function SectionHeading({
   eyebrow,
   title,
@@ -102,7 +89,7 @@ export function SectionHeading({
   eyebrow?: string;
   title: React.ReactNode;
   body?: string;
-  /** @deprecated prefer `align` — kept so existing callers keep working. */
+
   centered?: boolean;
   align?: "left" | "center";
   size?: "md" | "lg";
@@ -142,11 +129,6 @@ export function SectionHeading({
   );
 }
 
-/**
- * A card that tracks the pointer, feeding `--mx`/`--my` to the `.glow-card`
- * highlight. Without a pointer it renders as a plain surface, so the effect is
- * purely additive — nothing about the layout or legibility depends on it.
- */
 export function GlowCard({
   children,
   className = "",

@@ -4,15 +4,6 @@ import {
 } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
 
-/**
- * The SEO module.
- *
- * Analytics tells you how many people arrived; this is the half that explains
- * why more of them didn't. It earns its own section because it is the reason a
- * team would pick Quantalog over a pure counter — and because "we also do SEO"
- * buried in a feature grid reads as an afterthought.
- */
-
 const checks = [
   {
     icon: Gauge,
@@ -48,9 +39,7 @@ const checks = [
 
 export function Seo() {
   return (
-    // Full-bleed tinted band. This and the traffic section make the same
-    // argument, so putting one on a distinct surface stops the pair reading
-    // as one long undifferentiated scroll.
+
     <section
       id="seo"
       className="relative overflow-hidden border-y border-border bg-bg-subtle"

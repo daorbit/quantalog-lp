@@ -1,17 +1,6 @@
 import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
 
-/**
- * Interactive product walkthrough, hosted by Page Pilot.
- *
- * The embed is a third-party iframe, so it is deliberately below the fold and
- * lazy-loaded: it must never sit in front of the hero's paint or block the
- * primary CTA.
- *
- * The frame markup below is Page Pilot's, copied as-is. Their viewer sizes
- * itself against those exact values, so it is left alone rather than rewritten
- * into utility classes — only the surrounding section is ours.
- */
 const DEMO_SRC =
   "https://pagepilot-demo-viewer-prod.web.app//?tid=6a5501b48fdeaf4af8705f6f&did=6a5cd02f6af3fd60a69b0bc8&type=demo&status=live";
 
@@ -34,9 +23,7 @@ export function Demo() {
         />
 
         <div className="v-rise v-d2">
-          {/* Page Pilot's own embed markup, kept verbatim — the padding ratio,
-              aspect-ratio and box-sizing all come from their viewer and the
-              player mis-scales if any of them are swapped for utility classes. */}
+
           <div
             style={{
               position: "relative",

@@ -9,17 +9,6 @@ import {
   Upload,
 } from "lucide-react";
 
-/**
- * A still of the form builder: the field palette on the left, the form being
- * assembled on the right.
- *
- * Static markup rather than a screenshot, for the same reason the charts are
- * inline SVG — it stays sharp at any density, inherits both themes from the
- * same tokens as the rest of the page, and does not go stale the next time the
- * real builder's chrome changes. It is a diagram of the idea, not a claim about
- * the exact pixels.
- */
-
 const palette = [
   { icon: Type, label: "Short text" },
   { icon: AtSign, label: "Email" },
@@ -29,7 +18,6 @@ const palette = [
   { icon: Upload, label: "File" },
 ];
 
-/** One field as it appears on the canvas, drawn as a real control would sit. */
 function CanvasField({
   label,
   children,
@@ -59,7 +47,6 @@ function CanvasField({
   );
 }
 
-/** The inert input shapes inside each field. Never focusable — this is a picture. */
 function InputShape({ text }: { text?: string }) {
   return (
     <div className="flex h-7 items-center rounded-md border border-border bg-bg-subtle px-2.5 text-[11px] text-fg-faint">
@@ -87,7 +74,7 @@ export function FormBuilderPreview() {
       </div>
 
       <div className="grid sm:grid-cols-[9.5rem_1fr]">
-        {/* Palette */}
+
         <div className="border-b border-border p-3 sm:border-b-0 sm:border-r">
           <p className="px-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
             Fields
@@ -110,7 +97,6 @@ export function FormBuilderPreview() {
           </div>
         </div>
 
-        {/* Canvas */}
         <div className="space-y-2.5 bg-bg-subtle/40 p-4">
           <CanvasField label="Full name">
             <InputShape text="Jane Doe" />
@@ -127,8 +113,6 @@ export function FormBuilderPreview() {
             </div>
           </CanvasField>
 
-          {/* The selected field, carrying the rule that is the product's
-              actual argument: this one only appears when it is needed. */}
           <CanvasField label="Phone number" active>
             <InputShape />
             <div className="mt-2 flex items-center gap-1.5 rounded-md bg-accent/10 px-2 py-1">

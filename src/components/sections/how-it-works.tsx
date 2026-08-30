@@ -2,14 +2,12 @@ import { CodeCard } from "../code-card";
 import { Eyebrow } from "../ui";
 import { site } from "@/lib/site";
 
-// The real tracker URL — someone will paste this straight into their <head>.
 const snippet = `<script
   async
   src="${site.api}/tracker.js"
   data-site="qs_7f3a9c21"
 ></script>`;
 
-/** Exported so the homepage can emit these as a `HowTo` node without restating them. */
 export const steps = [
   {
     n: "01",
@@ -56,7 +54,7 @@ export function HowItWorks() {
             </p>
 
             <ol className="relative mt-12 space-y-8">
-              {/* The rail that turns three list items into a sequence. */}
+
               <span
                 className="absolute bottom-4 left-[15px] top-4 w-px bg-border"
                 aria-hidden="true"
@@ -83,8 +81,6 @@ export function HowItWorks() {
           <div className="v-rise v-d2 min-w-0 lg:pl-4">
             <CodeCard filename="app/layout.tsx" language="html" code={snippet} />
 
-            {/* Three across is too tight on a phone: the labels wrap to two
-                lines and the cards spill past the viewport. */}
             <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {facts.map((x) => (
                 <div

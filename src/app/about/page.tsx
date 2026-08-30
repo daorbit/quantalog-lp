@@ -7,20 +7,6 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-/**
- * About.
- *
- * Two jobs. For a reader, it answers "who is behind this and why should I put
- * their script on my site" — the question that decides a purchase and that no
- * feature page addresses. For a search engine, it is the page an Organization
- * entity is expected to hang off, which is what an `AboutPage` node referencing
- * the shared org id gives it.
- *
- * Everything here is checkable: how the product works, what it does not do, and
- * how to reach a person. No team size, no funding story, no founding date —
- * an About page that invents those is worth less than one that omits them.
- */
-
 const DESCRIPTION =
   "Quantalog is privacy-first web analytics built on a simple bet: you should not have to choose between understanding your traffic and respecting the people in it. No cookies, no personal data, no consent banner — and SEO audits in the same dashboard.";
 
@@ -71,8 +57,7 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  // The root layout's template appends the brand, so naming it here would
-  // render "About Quantalog — Quantalog".
+
   title: "About",
   description: DESCRIPTION,
   alternates: { canonical: "/about" },
@@ -101,8 +86,7 @@ export default function AboutPage() {
       url: `${site.url}/about`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
-      // The point of this page, structurally: it is the node that describes the
-      // organisation the rest of the site keeps referencing by id.
+
       mainEntity: { "@id": ORG_ID },
       inLanguage: "en",
     },

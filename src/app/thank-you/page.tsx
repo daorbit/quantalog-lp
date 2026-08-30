@@ -3,21 +3,6 @@ import { ArrowLeft, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui";
 import { site } from "@/lib/site";
 
-/**
- * Where the contact form lands after a successful send.
- *
- * A real page rather than swapping the form for a success card: the visitor
- * gets a URL they can be sent back to, a back button that does something
- * sensible, and — the reason it matters commercially — a distinct page to
- * count. A conversion you cannot see in your own analytics is one you cannot
- * improve.
- *
- * Top-level rather than nested under `/contact`, because it is not about the
- * contact page: anything on the site that completes successfully lands here.
- *
- * Deliberately `noindex`. It is only meaningful immediately after a submission,
- * and a thank-you page in search results is a dead end for whoever clicks it.
- */
 export const metadata: Metadata = {
   title: "Thanks — your message is on its way",
   description: "Your message reached the Quantalog team. We reply within one working day.",
@@ -38,8 +23,6 @@ const next = [
   },
 ];
 
-/** Drawn rather than a static icon: the stroke animates, which is the whole
- *  point — it reads as "that just completed" instead of "here is a checkmark". */
 function AnimatedTick() {
   return (
     <div className="relative mx-auto h-20 w-20">
@@ -88,8 +71,6 @@ export default function ThankYouPage() {
         ))}
       </div>
 
-      {/* Someone who just asked a question is the most engaged visitor the site
-          will see today. Sending them straight back to the homepage wastes that. */}
       <div className="settle settle-4 card mt-8 p-8 text-center">
         <h2 className="text-[1.25rem] font-semibold tracking-tight">
           While you wait — try it

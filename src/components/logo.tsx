@@ -9,8 +9,7 @@ export function Logo({ className = "" }: { className?: string }) {
       aria-label={`${site.name} home`}
     >
       <span>{site.name}</span>
-      {/* The dot scales with the wordmark — at the old 1px it disappeared
-          entirely next to larger type. */}
+
       <span
         className="ml-1 h-1.5 w-1.5 rounded-full bg-accent transition-opacity group-hover:opacity-60"
         aria-hidden="true"

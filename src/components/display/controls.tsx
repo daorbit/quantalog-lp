@@ -2,7 +2,6 @@
 
 import { Minus, Plus } from "lucide-react";
 
-/** A labelled on/off tile. Pressed state is carried by aria-pressed, not colour alone. */
 export function Toggle({
   icon: Icon,
   label,
@@ -31,13 +30,6 @@ export function Toggle({
   );
 }
 
-/**
- * A stepped numeric control.
- *
- * Buttons rather than a slider: a slider is hard to hit precisely with a
- * trackpad or a shaky hand, which is exactly the audience most likely to be
- * using this panel.
- */
 export function Stepper({
   label,
   value,
@@ -49,7 +41,7 @@ export function Stepper({
 }: {
   label: string;
   value: number;
-  /** The value as the reader should read it — "110%", "+2". */
+
   display: string;
   min: number;
   max: number;

@@ -8,14 +8,6 @@ const namedComparisons = [
   { href: "/compare/matomo-alternative", label: "vs Matomo" },
 ];
 
-/**
- * How Quantalog sits against the two things it actually replaces.
- *
- * Deliberately no competitor names and no claims about their products —
- * "cookie-based suites" is the honest category, and every row here is a fact
- * about Quantalog that a reader can verify in the docs. A comparison table
- * that overstates is worse than none.
- */
 type Support = "yes" | "no" | "partial";
 
 const columns = ["Quantalog", "Cookie-based suites", "Simple page counters"];
@@ -101,8 +93,7 @@ export function Compare() {
                     {row.values.map((value, i) => (
                       <td
                         key={i}
-                        // Tint the whole Quantalog column, so the eye tracks
-                        // one line down the table instead of scanning rows.
+
                         className={`px-6 py-3.5 text-center ${
                           i === 0 ? "bg-accent/4" : ""
                         }`}
@@ -124,8 +115,6 @@ export function Compare() {
           in each column.
         </p>
 
-        {/* Named comparisons live on their own pages, where a claim about one
-            product can be specific enough to be checked. */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm">
           <span className="text-fg-muted">Comparing a specific tool?</span>
           {namedComparisons.map((c) => (

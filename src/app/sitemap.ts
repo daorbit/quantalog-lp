@@ -9,9 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const docs = getAllDocs();
   const comparisons = getAllComparisons();
 
-  // The site is statically exported, so "last modified" is build time. That is
-  // honest for pages without their own date, and it stops every URL from
-  // shipping with no lastmod at all.
   const built = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -19,8 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/docs`, lastModified: built, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/blog`, lastModified: built, changeFrequency: "weekly", priority: 0.8 },
     { url: `${site.url}/compare`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
-    // Feature pages carry their own queries — "automated analytics reports",
-    // "white label analytics API" — that the homepage cannot rank for.
+
     { url: `${site.url}/analytics`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/seo-audits`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/forms`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
@@ -40,8 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // High priority: "X alternative" is the highest-intent query the site can
-  // answer, and these are the only pages written for it.
   const comparisonRoutes: MetadataRoute.Sitemap = comparisons.map((c) => ({
     url: `${site.url}/compare/${c.slug}`,
     lastModified: built,

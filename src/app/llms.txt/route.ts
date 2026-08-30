@@ -3,22 +3,8 @@ import { getDocNav } from "@/lib/docs";
 import { getAllPosts } from "@/lib/blog";
 import { getAllComparisons } from "@/lib/comparisons";
 
-/**
- * `/llms.txt` — a curated map of the site for language models.
- *
- * The convention is a Markdown file of links telling an LLM which pages are
- * worth reading, so it can answer questions about the product from the real
- * documentation instead of from whatever it inferred off the marketing copy.
- *
- * Generated from the same registries that build the nav and the sitemap rather
- * than kept as a static file in `public/`: a hand-written copy would silently
- * fall out of date the first time a doc page was added, and a stale map is
- * worse than none — it points a model at a URL that no longer exists.
- */
-
 export const dynamic = "force-static";
 
-/** One Markdown link line. The description is what tells a model whether to follow it. */
 function link(title: string, path: string, description: string): string {
   return `- [${title}](${site.url}${path}): ${description}`;
 }
@@ -29,8 +15,7 @@ export function GET(): Response {
     "",
     `> ${site.description}`,
     "",
-    // Stated plainly because an LLM summarising the product tends to reach for
-    // the category cliché ("another Google Analytics clone") without it.
+
     `${site.name} is a privacy-first, cookieless web analytics platform with built-in ` +
       "SEO auditing and a multi-tenant API for embedding analytics into your own product. " +
       "It requires no cookie banner, and the tracking script is under 1 KB.",

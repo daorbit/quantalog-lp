@@ -2,25 +2,9 @@
 
 import { useEffect } from "react";
 
-/**
- * Makes `.v-rise` scroll-driven on browsers that lack `animation-timeline`.
- *
- * Chrome ties `.v-rise` to scroll position natively via `animation-timeline:
- * view()`. Where that is unsupported the CSS falls back to a load-fired
- * animation, which means a section far down the page finishes animating before
- * anyone scrolls to it. This component covers that gap and nothing else:
- *
- *  - it does nothing at all when scroll-timeline is supported;
- *  - it sets `.no-scroll-timeline` on <html>, which the stylesheet uses to
- *    pause `.v-rise` until `.in-view` is added here;
- *  - content is never removed from the DOM and only opacity/transform move,
- *    so crawlers and reduced-motion users are unaffected either way.
- *
- * Mounted once, near the root.
- */
 export function ScrollRise() {
   useEffect(() => {
-    // Native scroll-timeline handles it — leave every v-rise alone.
+
     if (
       typeof CSS !== "undefined" &&
       CSS.supports?.("animation-timeline: view()")

@@ -2,15 +2,6 @@ import { ArrowRight, BarChart3, Search, Share2, Lock } from "lucide-react";
 import { Button, SectionHeading, GlowCard } from "../ui";
 import { site } from "@/lib/site";
 
-/**
- * The read-only demo.
- *
- * Sits between the feature list and the comparison table: by that point a
- * visitor knows what the product claims to do, and the cheapest way to settle
- * it is to let them look. The section leads on the absence of friction — no
- * account, no card — because that is the actual offer.
- */
-
 const explore = [
   {
     icon: BarChart3,

@@ -1,16 +1,5 @@
-// Building blocks for article bodies. Posts and docs import these instead of
-// raw tags, so every article stays typographically consistent without an MDX
-// pipeline.
-
 import { CopyButton } from "./copy-button";
 
-/**
- * A section heading with a hover-reveal permalink.
- *
- * The `#` link is what lets someone deep-link to a step in a long doc — it
- * copies to the address bar on click and is picked up by the on-this-page rail,
- * which reads these ids straight out of the DOM.
- */
 export function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h2 id={id} className="heading-anchor scroll-mt-24 text-2xl font-bold tracking-tight">
@@ -61,13 +50,6 @@ export function A({ href, children }: { href: string; children: React.ReactNode 
   );
 }
 
-/**
- * A call-out box, in one of three tones.
- *
- * `note` (accent) for something worth knowing, `tip` (green) for a shortcut,
- * `warn` (amber) for a footgun. The icon and colour carry the tone so the
- * first word of the box does not have to.
- */
 export function Callout({
   children,
   variant = "note",
@@ -87,10 +69,6 @@ export function Callout({
   );
 }
 
-/**
- * A code block. `label` renders as the file/terminal chip above the snippet,
- * and a copy button sits in the corner on hover.
- */
 export function Pre({ label, children }: { label?: string; children: string }) {
   return (
     <figure className="card doc-code overflow-hidden">

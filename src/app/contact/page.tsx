@@ -10,16 +10,6 @@ import { site } from "@/lib/site";
 const DESCRIPTION =
   "Get in touch with the Quantalog team about pricing, the Platform API, privacy and compliance, or help with your account. Messages reach a person, usually answered within a working day.";
 
-/**
- * Contact.
- *
- * Structurally this is the `ContactPage` node a search engine expects to find
- * for an organisation, referencing the same org id the rest of the site uses.
- * For a reader it is the answer to "is there a human here" — which, for a tool
- * asking to sit in your page's critical path, is a fair question to have.
- */
-
-/** What someone can expect, stated before they spend effort on the form. */
 const promises = [
   { icon: Clock, text: "A reply within one working day" },
   { icon: Mail, text: "A receipt in your inbox straight away" },
@@ -99,9 +89,6 @@ export default function ContactPage() {
           API — send it over. No ticket queue, no chatbot in front of it.
         </p>
 
-        {/* Set expectations before the form, not after it: the cost of filling
-            this in is decided here, and "we'll reply in a day" is the thing
-            that makes it worth the effort. */}
         <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           {promises.map((p) => (
             <li key={p.text} className="flex items-center gap-2 text-sm text-fg-muted">
@@ -112,8 +99,6 @@ export default function ContactPage() {
         </ul>
       </header>
 
-      {/* The form is the page. It gets the full column and the sidebar becomes
-          a footer, rather than two half-width columns where neither reads well. */}
       <div className="mx-auto mt-14 max-w-2xl">
         <EmbeddedForm src={site.contactFormSrc} title="Contact form" eager />
 

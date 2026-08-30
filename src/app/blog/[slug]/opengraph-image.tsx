@@ -5,7 +5,6 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 export const alt = "Quantalog blog";
 
-/** One card per post, built at the same time as the post's HTML. */
 export function generateStaticParams() {
   return getSlugs().map((slug) => ({ slug }));
 }

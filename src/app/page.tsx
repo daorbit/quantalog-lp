@@ -17,16 +17,12 @@ import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
 import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID } from "@/lib/schema";
 
-// The homepage inherits title, description and social cards from the root
-// layout; only the canonical is page-specific.
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  // A machine-readable date, in the tag form crawlers read without having to
-  // parse the JSON-LD graph first.
+
   other: {
     "article:published_time": PUBLISHED,
     "article:modified_time": MODIFIED,
@@ -37,9 +33,7 @@ const jsonLd = graph(
   organization,
   website,
   author,
-  // The homepage doubles as the product explainer, so it carries an Article
-  // node: it is what lets an answer engine quote the page and attribute the
-  // quote to a named author and a date.
+
   article({
     path: "/",
     headline: `${site.name} — ${site.tagline}`,
@@ -59,8 +53,7 @@ const jsonLd = graph(
     image: `${site.url}/OgImage.png`,
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },
-    // Named so a rich result can say what the free tier actually includes
-    // rather than just "$0".
+
     offers: {
       "@type": "Offer",
       name: "Hobby",
@@ -97,8 +90,7 @@ const jsonLd = graph(
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   },
-  // "How to add analytics without a cookie banner" is its own query, and the
-  // three-step setup on this page is the answer. Reuses the section's own steps.
+
   howTo({
     path: "/",
     name: "How to add cookieless web analytics to your site",
@@ -114,35 +106,20 @@ export default function HomePage() {
       <JsonLd data={jsonLd} />
       <Hero />
       <DashboardShowcase />
-      {/* Most sections below carry their own `v-rise` — a scroll-timeline
-          animation in Chrome, a load-fired fallback elsewhere. The two that
-          have no internal motion (Logos, Cta) get a `Reveal` wrapper so they
-          also arrive on scroll rather than sitting static. `Reveal` keeps its
-          children in the DOM and only touches opacity/transform, so it stays
-          inert for crawlers and for reduced-motion. */}
-      {/* Straight after the hero: the tour answers "what is this" faster than
-          any amount of copy below it can. */}
+
       <Demo />
       <Reveal as="section">
         <Logos />
       </Reveal>
-      {/* The reported line runs out of the consent-gap section — the hero's
-          own line runs into it. The pair bracket the argument, and nothing
-          else on the page uses them, so they stay a device rather than
-          becoming wallpaper. */}
-      {/* The argument, before the feature list: why cookie-based tools
-          under-report, then what you get instead. */}
+
       <div className="band-deep">
         <ConsentGap />
       </div>
       <ChartDivider variant="reported" />
       <Features />
-      {/* One grid of links, in place of seven full-length sections. Each
-          capability now has its own page — better for search, and it keeps
-          this page to a length someone actually scrolls. */}
+
       <Explore />
-      {/* After the case is made and before pricing: the visitor now knows what
-          is claimed, and looking is cheaper than reading on. */}
+
       <TryDemo />
       <HowItWorks />
       <Pricing />

@@ -95,8 +95,7 @@ export const mobileTracking: Doc = {
   description:
     "Trace a signed-up user's journey — one call per action, no API key needed in the app itself.",
   category: "Tracking",
-  // Right after the web tracker install doc, before script options — the
-  // reader picking a platform should see both installs before the details.
+
   order: 1.5,
   Body,
 };

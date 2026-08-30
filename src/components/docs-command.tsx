@@ -5,18 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import type { DocNavGroup } from "@/lib/docs";
 
-/**
- * The docs search, as a ⌘K command palette.
- *
- * Replaces the inline filter box on the index. The site's JSON-LD points a
- * `SearchAction` at `/docs?q={term}`, so a `?q=` in the URL still opens the
- * palette pre-filled and jumps to the first match — the deep link keeps
- * working, it just lands somewhere better than a static list.
- *
- * The whole doc set is a few dozen short entries handed down from the server,
- * so this is a substring match in memory. No index, no request.
- */
-
 type Flat = { slug: string; title: string; description: string; category: string };
 
 export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
@@ -69,8 +57,6 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
     [close, router],
   );
 
-  // ⌘K / Ctrl+K anywhere on the docs opens it; "/" opens it unless the user is
-  // already typing in a field.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const typing =
@@ -87,7 +73,6 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [close]);
 
-  // Open pre-filled from ?q= so the sitelinks searchbox deep link works.
   useEffect(() => {
     const q = params.get("q");
     if (q) {
@@ -100,7 +85,6 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
     if (open) inputRef.current?.focus();
   }, [open]);
 
-  // Keep the highlighted row in range as results change.
   useEffect(() => {
     setActive((a) => Math.min(a, Math.max(0, results.length - 1)));
   }, [results.length]);

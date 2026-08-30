@@ -4,14 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { SectionHeading } from "../ui";
 import { ConsentFlow } from "../consent-flow";
 
-/**
- * The consent gap, shown rather than asserted.
- *
- * Two bars: what a cookie-based tool records versus what actually happened.
- * The numbers are illustrative of a well-known range, not a measurement of a
- * specific customer — the copy says so, because a made-up precise statistic is
- * the fastest way to lose a technical reader.
- */
 const bars = [
   {
     label: "Cookie-based analytics",
@@ -31,8 +23,6 @@ export function ConsentGap() {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
-  // The bars grow from zero the first time the panel is seen. A pre-filled
-  // bar is just a picture; watching the gap open is the whole argument.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -77,8 +67,6 @@ export function ConsentGap() {
               for.
             </p>
 
-            {/* The bars opposite say how big the gap is; this says where it
-                comes from. Together they are the whole argument. */}
             <div className="mt-9 rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur sm:p-6">
               <ConsentFlow />
             </div>
@@ -114,8 +102,7 @@ export function ConsentGap() {
                             : "var(--border-strong)",
                         transition:
                           "width 1.1s cubic-bezier(0.22, 1, 0.36, 1)",
-                        // The second bar trails the first, so the eye reads
-                        // them in order instead of as one block.
+
                         transitionDelay: `${i * 0.18}s`,
                       }}
                     />

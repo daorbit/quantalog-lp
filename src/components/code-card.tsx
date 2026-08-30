@@ -21,10 +21,7 @@ export function CodeCard({
   }
 
   return (
-    // `min-w-0` is what actually contains the code block. A grid or flex item
-    // defaults to `min-width: auto`, so it refuses to shrink below the widest
-    // unbroken line inside it — the `overflow-x-auto` on the <pre> never gets
-    // a chance to engage and the whole column is pushed past the viewport.
+
     <div className="card min-w-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-border bg-bg-subtle px-4 py-2.5">
         <div className="flex items-center gap-2">

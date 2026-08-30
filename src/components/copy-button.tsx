@@ -3,14 +3,6 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 
-/**
- * The copy control on a code block.
- *
- * Its own client component so `Pre` — used by both the blog and the docs — can
- * stay a server component. Falls back silently when the clipboard API is
- * unavailable (an insecure origin, a locked-down browser): the button still
- * renders, it just does nothing rather than throwing.
- */
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -20,7 +12,7 @@ export function CopyButton({ text }: { text: string }) {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
-      // No clipboard access — nothing sensible to do here.
+
     }
   };
 

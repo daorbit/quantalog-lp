@@ -1,27 +1,8 @@
 import { getAllPosts } from "@/lib/blog";
 import { site } from "@/lib/site";
 
-/**
- * `/feed.xml` — an RSS 2.0 feed of the blog.
- *
- * Worth having for two audiences that are easy to forget. Readers and
- * aggregators are the obvious one; the less obvious one is that several
- * crawlers, including the ones behind answer engines, use a feed as a discovery
- * hint and revisit it far more eagerly than they re-crawl a sitemap. A feed is
- * also the cheapest freshness signal a site can emit: it says what changed and
- * when, in the order it changed.
- *
- * Generated from the post registry rather than maintained by hand, for the same
- * reason `/llms.txt` is — a static copy goes stale the first time a post lands.
- */
-
 export const dynamic = "force-static";
 
-/**
- * XML has five predefined entities and no tolerance for a stray `&`. Titles and
- * descriptions are author-written prose, so they go through this before being
- * interpolated — an unescaped ampersand in a title invalidates the whole feed.
- */
 function escapeXml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -57,7 +38,7 @@ export function GET(): Response {
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
+    '<rss version="2.0" xmlns:atom="http:
     "  <channel>",
     `    <title>${escapeXml(`${site.name} Blog`)}</title>`,
     `    <link>${site.url}/blog</link>`,

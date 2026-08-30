@@ -16,12 +16,8 @@ export type PostMeta = {
   slug: string;
   title: string;
   description: string;
-  date: string; // ISO
-  /**
-   * ISO date of the last meaningful revision. Search engines and answer engines
-   * both weigh `dateModified`, and a post edited long after publication looks
-   * stale without it. Omit until the post is actually revised.
-   */
+  date: string;
+
   updated?: string;
   tags: string[];
   author: { name: string; role: string };
@@ -29,13 +25,10 @@ export type PostMeta = {
 };
 
 export type Post = PostMeta & {
-  /** The article body, authored as plain JSX. */
+
   Body: ComponentType;
 };
 
-// The single registry of published posts. Adding a post = write a file under
-// src/content/posts and add it here. When a CMS lands, only this array's source
-// changes — every consumer below (and the pages) keeps working unchanged.
 const POSTS: Post[] = [
   introducingQuantalog,
   cookieBannerAnalytics,
@@ -70,7 +63,6 @@ export function getRelatedPosts(slug: string, limit = 2): PostMeta[] {
   const others = getAllPosts().filter((p) => p.slug !== slug);
   if (!current) return others.slice(0, limit);
 
-  // Rank by shared tags; the recency sort from getAllPosts breaks ties.
   return others
     .map((post) => ({
       post,

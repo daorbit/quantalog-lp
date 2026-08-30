@@ -1,45 +1,19 @@
-/**
- * Plan tier marks for the pricing section.
- *
- * A faceted diamond, recoloured per tier: slate for Free, a violet gradient for
- * Starter, gold for Pro. Colour alone carries the ranking, so the three badges
- * read as one scale rather than three unrelated glyphs.
- *
- * Generated from real-ana-fe/src/components/PlanIcons.tsx — the dashboard and
- * this site are separate builds with no shared package. If the mark changes,
- * change it there and regenerate rather than editing the paths below.
- */
-
 const FREE_COLOR = "#64748b";
 const STARTER_GRADIENT = ["#a855f7", "#6366f1"] as const;
 const PRO_GRADIENT = ["#b45309", "#fcd34d", "#d97706"] as const;
 
-/** One solid colour per tier, for borders and ribbons that sit beside the icon. */
 export const PLAN_ACCENTS: Record<string, string> = {
   free: "#64748b",
   starter: "#8b5cf6",
   pro: "#d9a441",
 };
 
-/**
- * The same ramps as the icons, as CSS gradients, for surfaces beside the mark.
- *
- * Free is absent on purpose — flat slate, so the free tier doesn't get emphasis
- * it isn't meant to have. Callers fall back to `PLAN_ACCENTS`.
- */
 export const PLAN_GRADIENTS: Record<string, string> = {
   starter: `linear-gradient(135deg, ${STARTER_GRADIENT[0]}, ${STARTER_GRADIENT[1]})`,
-  // Lighter than the icon's ramp on purpose: a ribbon carries a label, and
-  // dark text on the icon's deepest amber falls under the 3:1 contrast floor.
+
   pro: "linear-gradient(135deg, #d97706 0%, #fcd34d 50%, #e59819 100%)",
 };
 
-/**
- * Text colour to put on top of each tier's fill.
- *
- * Not always white: Pro's ramp runs through a bright band that white text
- * disappears into, so the gold tier takes near-black instead.
- */
 export const PLAN_ON_ACCENT: Record<string, string> = {
   free: "#ffffff",
   starter: "#ffffff",
@@ -61,13 +35,6 @@ function DiamondPaths() {
   );
 }
 
-/**
- * The mark at a given size, filled flat or with a gradient.
- *
- * SVG gradient ids are document-global, so each instance needs its own — two
- * cards rendering the same id would leave the second pointing at the first's
- * definition.
- */
 function Diamond({
   size,
   color,
@@ -114,7 +81,6 @@ function Diamond({
   );
 }
 
-/** Pick the mark for a plan slug; anything unrecognised gets the Starter one. */
 export function PlanIcon({
   slug,
   size = 28,

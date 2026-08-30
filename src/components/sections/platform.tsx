@@ -25,7 +25,6 @@ const res = await fetch(
 
 const { visitors, pageviews, live, topPages } = await res.json();`;
 
-// Mirrors src/routes/v1.ts — every route here exists.
 const endpoints = [
   { method: "POST", path: "/v1/projects", desc: "Create a project for an end-user" },
   { method: "GET", path: "/v1/projects", desc: "List projects, filter by your user id" },

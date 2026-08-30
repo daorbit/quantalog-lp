@@ -33,7 +33,7 @@ export type DocMeta = {
   title: string;
   description: string;
   category: DocCategory;
-  /** Sort order within a category (lower first). */
+
   order: number;
 };
 
@@ -41,9 +41,6 @@ export type Doc = DocMeta & {
   Body: ComponentType;
 };
 
-// The single registry of documentation pages. Add a page = write a file under
-// src/content/docs and list it here. Order in this array is irrelevant; the
-// nav sorts by category then `order`.
 const DOCS: Doc[] = [
   overview,
   demo,
@@ -73,7 +70,6 @@ const DOCS: Doc[] = [
   privacy,
 ];
 
-// The order categories appear in the sidebar.
 const CATEGORY_ORDER: DocCategory[] = [
   "Getting started",
   "Tracking",
@@ -92,10 +88,8 @@ export function getAllDocs(): DocMeta[] {
   return DOCS.map(({ Body: _Body, ...meta }) => meta);
 }
 
-/** One category and its pages, as `getDocNav` returns them. */
 export type DocNavGroup = { category: DocCategory; docs: DocMeta[] };
 
-/** Docs grouped by category, both categories and pages in display order. */
 export function getDocNav(): DocNavGroup[] {
   return CATEGORY_ORDER.map((category) => ({
     category,
@@ -105,7 +99,6 @@ export function getDocNav(): DocNavGroup[] {
   })).filter((group) => group.docs.length > 0);
 }
 
-/** Previous / next page in a flat walk of the nav, for footer pager links. */
 export function getDocSiblings(slug: string): {
   prev: DocMeta | null;
   next: DocMeta | null;

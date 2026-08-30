@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * An iframe that grows or shrinks to match the embedded da-forms page's own
- * height, via the `da-forms:height` message it posts on every resize —
- * without this the iframe keeps a fixed height and either clips the form or
- * leaves dead space beneath a short one.
- */
 export function EmbeddedForm({
   src,
   title,
@@ -15,8 +9,7 @@ export function EmbeddedForm({
 }: {
   src: string;
   title: string;
-  /** Skip `loading="lazy"` when the form is the reason the page was opened —
-   *  lazy only delays a fetch the visitor is already waiting on. */
+
   eager?: boolean;
 }) {
   const ref = useRef<HTMLIFrameElement>(null);

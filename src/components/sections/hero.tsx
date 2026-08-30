@@ -5,7 +5,6 @@ import { Words } from "../words";
 import { HeroFlowLazy } from "../hero-flow-lazy";
 import { TrustChips } from "../trust-chips";
 
-/* Each claim is a number a visitor can check, not an adjective. */
 const trustPoints = [
   { value: "<1 KB", label: "tracker size" },
   { value: "0", label: "cookies set" },
@@ -15,16 +14,13 @@ const trustPoints = [
 
 export function Hero() {
   return (
- 
+
     <section className="relative isolate overflow-hidden">
-  
 
       <div className="relative mx-auto max-w-[90rem] px-4 pb-16 pt-12 sm:px-5 sm:pb-24 sm:pt-20 lg:px-6">
 
         <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-8">
-        {/* The copy column is the narrower of the two: it is text, so it stops
-            being readable past a certain measure, while the diagram only gets
-            better with the room. */}
+
         <div className="w-full text-center lg:w-[42%] lg:shrink-0 lg:text-left">
           <a
             href="/blog/introducing-quantalog"
@@ -37,14 +33,10 @@ export function Hero() {
             <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
 
-          {/* Above the headline rather than below it: these are the facts that
-              decide whether the claim in the H1 is worth reading, and a reader
-              who needs them needs them first. */}
           <div className="rise rise-2 mt-5 sm:mt-7">
             <TrustChips />
           </div>
 
-      
           <h1 className="word-rise mt-6 text-[1.625rem] font-medium leading-[1.18] tracking-[-0.03em] sm:mt-8 sm:text-[2.125rem] lg:text-[2rem] xl:text-[2.35rem]">
             <Words text="Cookieless web analytics" />{" "}
             <Words text="that counts the" offset={3} />{" "}
@@ -65,9 +57,6 @@ export function Hero() {
             to decline and nothing to miss.
           </p>
 
-          {/* Side by side at every width, sized to their labels. Stacked and
-              stretched edge to edge, the pair read as two slabs rather than a
-              choice between two actions. */}
           <div className="rise rise-4 mt-6 flex flex-row flex-wrap items-center justify-center gap-2.5 sm:mt-10 sm:gap-3 lg:justify-start">
             <Button
               href={`${site.app}/signup`}
@@ -79,9 +68,7 @@ export function Hero() {
               Start free — no card
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Button>
-            {/* The demo asks for nothing, so it earns the second slot ahead of
-                the API tour — a visitor who wants the API will find it in the
-                Platform section either way. */}
+
             <Button
               href={`${site.app}/login`}
               variant="secondary"
@@ -93,9 +80,6 @@ export function Hero() {
             </Button>
           </div>
 
-          {/* Read as a spec strip rather than a bullet list: on an analytics
-              page the numbers are the argument, so they get the weight, and
-              hairlines between them bind the four figures into one object. */}
           <ul className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-y-5 sm:mt-14 sm:gap-y-7 sm:grid-cols-4 lg:mx-0">
             {trustPoints.map((point, i) => (
               <li
@@ -116,10 +100,6 @@ export function Hero() {
           </ul>
         </div>
 
-     
-        {/* Desktop: the full draggable graph. Lazy-loaded on scroll-in so React
-            Flow stays off the initial critical path — the reserved height
-            matches the graph so the swap-in shifts nothing. */}
         <div className="hidden w-full min-w-0 flex-1 sm:block">
           <HeroFlowLazy className="h-[380px] w-full lg:h-[520px]" />
           <p className="mt-2 text-center text-[11px] text-fg-faint">
@@ -127,7 +107,6 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Mobile: the same graph, drag-free and lazy-loaded. */}
         <div className="w-full sm:hidden">
           <HeroFlowLazy compact />
           <p className="mt-2 text-center text-[11px] text-fg-faint">

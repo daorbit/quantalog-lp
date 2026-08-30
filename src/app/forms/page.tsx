@@ -24,32 +24,12 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 import { formatDate } from "@/lib/blog";
 
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-29";
 
-/**
- * Forms, as a page rather than a homepage section.
- *
- * "Form builder", "Typeform alternative" and "form analytics" are queries typed
- * by people who have not heard of this product and are not shopping for
- * analytics yet. The argument this page has to make is the one no standalone
- * form builder can make back: a form is a funnel, and a form builder that
- * cannot see the funnel is guessing.
- */
-
-/**
- * The meta description, kept inside the ~160 characters search results show.
- * Longer than that is not more information, it is a sentence cut off mid-word.
- */
 const META_DESCRIPTION =
   "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, Razorpay payments, and per-field drop-off you can actually see.";
 
-/**
- * The fuller line, for structured data and the page's own copy — schema has no
- * display limit to write against, so it carries the reasoning the meta tag has
- * no room for.
- */
 const DESCRIPTION =
   "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
 
@@ -91,12 +71,6 @@ const capabilities = [
   },
 ];
 
-/**
- * The argument the page exists to make. Kept as its own list rather than folded
- * into the capabilities above, because "why measure a form at all" is the part
- * a reader has usually never considered — every form builder shows a submission
- * count and stops there.
- */
 const whyMeasured = [
   {
     stat: "Views, not just submissions",
@@ -255,15 +229,10 @@ export default function FormsPage() {
         visual={<FormsHeroVisual />}
       />
 
-      {/* Shown before anything is claimed about it: the builder is the part a
-          reader wants to see, and a wall of text about drag-and-drop is a poor
-          substitute for a picture of it. */}
       <section className="mt-14">
         <FormBuilderPreview />
       </section>
 
-      {/* The argument, before the feature list. A reader who does not accept
-          this section has no reason to care about the one after it. */}
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
           Why a form needs measuring at all
@@ -292,8 +261,6 @@ export default function FormsPage() {
         </div>
       </section>
 
-      {/* Sample figures, static — the page is statically exported, so nothing
-          here fetches or randomises at render time. */}
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
           What form analytics actually shows you
@@ -429,8 +396,6 @@ export default function FormsPage() {
         </div>
       </section>
 
-      {/* The honest limit. Stated for the same reason the comparison pages
-          carry a "when the other tool wins" section. */}
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
           What forms do not do
@@ -465,10 +430,6 @@ export default function FormsPage() {
         </dl>
       </section>
 
-      {/* The dates are already in this page's Article schema, but only as
-          JSON-LD. A `<time datetime>` element states them in the markup too,
-          which is what a crawler reading the page rather than its structured
-          data looks for — and what tells a reader how current this is. */}
       <p className="mt-16 text-sm text-fg-muted">
         Published{" "}
         <time dateTime={PUBLISHED}>{formatDate(PUBLISHED)}</time>. Last updated{" "}

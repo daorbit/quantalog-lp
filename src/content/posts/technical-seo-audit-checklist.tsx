@@ -110,7 +110,7 @@ function Body() {
       <Ul>
         <Li>
           <strong>Protocol and subdomain.</strong>{" "}
-          <Code>http://</Code>, <Code>https://</Code>, <Code>www.</Code> and
+          <Code>http:
           bare should resolve to one canonical form with a single redirect.
         </Li>
         <Li>

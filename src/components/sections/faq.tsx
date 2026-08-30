@@ -59,9 +59,6 @@ export function Faq() {
           className="v-rise"
         />
 
-        {/* Open rows are separated by spacing rather than boxed in a single
-            bordered card — a list of ten inside one hard frame is what made
-            this read as a support page. */}
         <div className="mt-14 divide-y divide-border border-y border-border">
           {faqs.map((item, i) => (
             <details

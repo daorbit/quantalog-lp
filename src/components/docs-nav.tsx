@@ -4,11 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { DocCategory, DocMeta } from "@/lib/docs";
 
-/**
- * Sidebar navigation for the docs. Groups pages by category and highlights the
- * page currently open. Rendered client-side only for the active-link state; the
- * nav data itself is passed in from the server component.
- */
 export function DocsNav({
   groups,
 }: {

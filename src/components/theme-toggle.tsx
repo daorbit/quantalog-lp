@@ -12,21 +12,13 @@ export function ThemeToggle() {
 
   const isDark = resolvedTheme === "dark";
 
-  /**
-   * A two-position segmented control rather than one button whose icon swaps.
-   * An icon that changes on click has to be read to know what it now means;
-   * both options visible with a thumb behind the active one shows the current
-   * state and the alternative at the same time.
-   */
   return (
     <div
       className="glass relative inline-flex items-center rounded-full p-0.5"
       role="radiogroup"
       aria-label="Color theme"
     >
-      {/* The sliding thumb. Rendered only once mounted — before that the
-          server has no idea which theme wins, and a thumb parked under the
-          wrong option would visibly jump on hydration. */}
+
       {mounted && (
         <span
           className="absolute h-7 w-7 rounded-full bg-surface shadow-soft transition-transform duration-300 ease-[cubic-bezier(0.34,1.4,0.64,1)]"

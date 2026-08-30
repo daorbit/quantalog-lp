@@ -16,13 +16,10 @@ import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
-// Every post is rendered at build time. Nothing is fetched at request time, so
-// the whole /blog tree ships as static HTML.
 export function generateStaticParams(): Params[] {
   return getSlugs().map((slug) => ({ slug }));
 }
 
-// A slug outside generateStaticParams 404s instead of rendering on demand.
 export const dynamicParams = false;
 
 export async function generateMetadata({
@@ -47,9 +44,7 @@ export async function generateMetadata({
       modifiedTime: post.updated ?? post.date,
       authors: [post.author.name],
       tags: post.tags,
-      // No `images` here: the `opengraph-image.tsx` beside this file generates a
-      // per-post card and Next wires it in as long as this object does not
-      // override it.
+
     },
     twitter: {
       card: "summary_large_image",

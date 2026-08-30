@@ -7,18 +7,6 @@ import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 import { site } from "@/lib/site";
 
-/**
- * The footer's columns.
- *
- * Four narrow ones rather than three wide: a footer is where someone goes when
- * the page has not answered their question, and a column per intent — what it
- * does, how it compares, what to read, who we are — is faster to scan than the
- * same links pooled under two headings.
- *
- * Each link carries an icon for the same reason the header's menu does: at this
- * size the icons are the thing the eye lands on, and a column of bare text is
- * read as a list rather than as a set of choices.
- */
 const columns = [
   {
     title: "Product",
@@ -134,8 +122,7 @@ export function Footer() {
             <p className="text-xs text-fg-faint">
               No cookies. No cross-site tracking. GDPR-ready.
             </p>
-            {/* Appearance is a preference you set once, not a primary action —
-                it belongs down here rather than beside the sign-up CTA. */}
+
             <ThemeToggle />
           </div>
         </div>

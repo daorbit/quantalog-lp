@@ -21,18 +21,8 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
-
-/**
- * Scheduled reports, as a page rather than a homepage section.
- *
- * "Automated analytics reports" and "white label client reporting" are queries
- * an agency types before it has heard of this product, and a section anchor on
- * a homepage about something else cannot rank for them. This page carries the
- * feature on its own title, description and H1.
- */
 
 const DESCRIPTION =
   "Automated analytics reports by email and WhatsApp. Send a scheduled traffic and SEO summary to clients or your team — opening with a plain-language AI read of what changed and why, headline numbers in the body, the full breakdown attached as an XLSX spreadsheet, no dashboard login required.";
@@ -250,9 +240,6 @@ export default function ReportsPage() {
         </ul>
       </section>
 
-      {/* The list above says what a report contains; this shows it. Static
-          sample figures — the page is statically exported, so nothing here
-          fetches or randomises. */}
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
           What lands in the inbox

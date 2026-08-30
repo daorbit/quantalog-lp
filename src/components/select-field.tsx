@@ -3,17 +3,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Check, ChevronDown } from "lucide-react";
 
-/**
- * A styled select.
- *
- * A native `<select>` renders its option list through the operating system, so
- * none of the page's styling reaches it — on a dark page it opens as a bright
- * white OS menu in a system font. That is the one part of a form no CSS can
- * touch, which is why this is a button and a listbox instead.
- *
- * The chosen value is mirrored into a hidden input so the surrounding form
- * still submits it with `FormData` exactly as the native element would.
- */
 export function SelectField({
   name,
   options,
@@ -51,8 +40,6 @@ export function SelectField({
     setOpen(false);
   }
 
-  // Arrow keys move through the list, Enter commits, Escape abandons — the
-  // behaviour the native control has and the reason people trust a select.
   function onKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Escape") {
       setOpen(false);

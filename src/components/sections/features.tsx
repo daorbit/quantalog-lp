@@ -12,13 +12,6 @@ import {
 } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
 
-/**
- * `span` drives the bento layout: the three features that carry the argument
- * get width, the rest fill in around them. Nine equally sized cards read as a
- * checklist — the point of a feature grid is that some features matter more.
- */
-/** `fx` picks the icon's hover animation — see `.fx-*` in globals.css. One per
- *  card so the grid does not pulse in unison. */
 const features = [
   {
     span: "lg:col-span-2",
@@ -113,8 +106,7 @@ export function Features() {
           {features.map((f, i) => (
             <GlowCard
               key={f.title}
-              // Stagger across the row, then restart — a uniform delay on a
-              // 3-column grid makes the third column feel broken.
+
               className={`v-rise v-d${(i % 3) + 1} group flex flex-col p-6 sm:p-7 ${f.span}`}
             >
               <f.icon

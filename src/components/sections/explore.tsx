@@ -13,7 +13,6 @@ import {
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
- 
 const cards = [
   {
     href: "/analytics",
@@ -68,8 +67,6 @@ export function Explore() {
         body="The homepage is the overview. Each of these opens the full argument for one piece of the product."
       />
 
-      {/* One grouped list on a phone, a card grid from `sm` up — see
-          `.app-list` / `.app-row` in globals.css. */}
       <div className="app-list mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c, i) => (
           <Reveal key={c.href} delay={(Math.min(i, 4) as 0 | 1 | 2 | 3 | 4)}>

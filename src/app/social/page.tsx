@@ -10,19 +10,8 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
-
-/**
- * Orbit AI and scheduled social posts, as a page rather than two homepage
- * sections.
- *
- * Both answer "what does the AI do here", and putting an AI pitch at the top
- * of a landing page reads as the product being sold on the model. Lifted onto
- * their own route, they get a title that can rank for "AI analytics assistant"
- * and "schedule LinkedIn posts from analytics", and the homepage gets shorter.
- */
 
 const DESCRIPTION =
   "Orbit AI is the assistant built into your dashboard — grounded in the product's own docs, honest about what it can't see. It also writes your scheduled LinkedIn posts from the numbers that are already there.";

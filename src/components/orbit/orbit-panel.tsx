@@ -7,15 +7,6 @@ import { OrbitMarkdown } from "./orbit-markdown";
 import type { OrbitMessage } from "./use-orbit-chat";
 import { useOrbitChat } from "./use-orbit-chat";
 
-/**
- * The conversation — thread, composer, empty state.
- *
- * Ported from the dashboard's OrbitChat, minus the model picker and the
- * dictation button: the public endpoint has no model choice, and a marketing
- * page does not need speech input. The layout is otherwise the same, so the two
- * Orbits read as one.
- */
-
 function Bubble({ message }: { message: OrbitMessage }) {
   if (message.role === "user") {
     return (
@@ -48,7 +39,6 @@ function Bubble({ message }: { message: OrbitMessage }) {
   );
 }
 
-/** The label for the summarise chip, when the current page has enough text to summarise. */
 const SUMMARISE_PROMPT = "Summarise this page for me";
 
 function hasSummarisablePage(): boolean {
@@ -58,8 +48,7 @@ function hasSummarisablePage(): boolean {
 }
 
 function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts: string[] }) {
-  // Computed once on open. The panel only mounts on user action, so `document`
-  // is always ready by here, and the page does not change under an open panel.
+
   const canSummarise = hasSummarisablePage();
   const chips = canSummarise ? [SUMMARISE_PROMPT, ...prompts] : prompts;
 
@@ -126,8 +115,7 @@ export function OrbitPanel() {
 
   return (
     <>
-      {/* Centred while empty so the opening prompts sit in the middle of the
-          sheet rather than stranded at the top of a tall blank column. */}
+
       <div
         className={`min-h-0 flex-1 overflow-y-auto px-4 py-4 ${
           !started ? "flex flex-col justify-center" : ""

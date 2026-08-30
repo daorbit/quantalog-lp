@@ -1,10 +1,5 @@
 import type { SimpleIcon } from "simple-icons";
 
-/**
- * Brands whose official colour is pure black, which vanishes on a dark
- * surface. They inherit the current text colour instead, so the mark stays
- * legible in both themes.
- */
 const MONOCHROME = new Set(["Next.js", "Remix", "Express", "Flask"]);
 
 export type Framework = { name: string; icon: SimpleIcon };

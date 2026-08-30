@@ -2,20 +2,6 @@ import { CalendarClock, Images, MessageSquareText, Repeat2 } from "lucide-react"
 import { SectionHeading, GlowCard } from "../ui";
 import { Reveal } from "../reveal";
 
-/**
- * Scheduled LinkedIn posts, written with Orbit.
- *
- * The argument this section has to win is not "we can schedule posts" — plenty
- * of tools do — but why an analytics product is the right place to write them
- * from. So the copy leads on what only we have: the numbers are already here,
- * and the post that reports them is written where they live.
- *
- * Instagram is deliberately absent. It ships, but the App Review that lets
- * anyone other than us publish through it does not, and a landing page that
- * promises a network a new signup cannot actually connect is a support ticket
- * on day one.
- */
-
 const points = [
   {
     icon: MessageSquareText,
@@ -39,7 +25,6 @@ const points = [
   },
 ];
 
-/** The composer, in miniature. A real instruction and the plan it produces. */
 function ComposerPreview() {
   return (
     <div className="card overflow-hidden p-0">
@@ -105,10 +90,6 @@ export function Scheduling() {
             ))}
           </div>
 
-          {/* Decorative: the copy beside it already states everything this
-              shows, so a screen reader gains nothing from re-reading a mock. */}
-          {/* Decorative: the copy beside it already states everything this
-              shows, so a screen reader gains nothing from re-reading a mock. */}
           <Reveal delay={2} className="tilt-in">
             <div aria-hidden="true">
               <ComposerPreview />
@@ -116,8 +97,6 @@ export function Scheduling() {
           </Reveal>
         </div>
 
-        {/* The part people ask about after they are interested: what happens
-            when a post is out of sight. */}
         <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">

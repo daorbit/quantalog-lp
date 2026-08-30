@@ -9,19 +9,8 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
-/** Kept beside the Article node so the tag and the schema can never disagree. */
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
-
-/**
- * The analytics deep-dive, as a page rather than a homepage section.
- *
- * "Real-time analytics", "funnel analysis tool" and "retention cohort report"
- * are their own searches, and the homepage — which has to make the
- * privacy-first argument first — cannot rank for all of them at once. This
- * page carries the dashboard on its own title and H1, and keeps the homepage
- * short by lifting the chart wall out of it.
- */
 
 const DESCRIPTION =
   "Real-time, cookieless web analytics: a live visitor dashboard, funnels and conversion goals, retention cohorts, and breakdowns by device, browser, country and hour of day — no consent banner, no sampling.";
@@ -134,8 +123,6 @@ export default function AnalyticsPage() {
         visual={<AnalyticsHeroVisual />}
       />
 
-      {/* The chart wall — same component the homepage uses; it carries its own
-          inner max-width, so it sits inside the page column without a wrapper. */}
       <Analytics />
 
       <section className="mt-16">

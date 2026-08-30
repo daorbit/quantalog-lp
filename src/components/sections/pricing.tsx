@@ -23,24 +23,20 @@ type ResolvedPlan = {
   monthlyAuditQuota: number;
   monthlyCrawlQuota: number;
   features: string[];
-  /** Report recipients per schedule, including the owner. */
+
   maxReportRecipients: number;
   sortOrder: number;
   priceMonthly: CurrencyPrices;
   priceYearly: CurrencyPrices;
 };
 
-/**
- * An Orbit AI tier. Sold separately from the plans above and on its own ladder,
- * so it gets its own shape and its own row rather than extra columns here.
- */
 type ResolvedOrbitPlan = {
   slug: string;
   name: string;
   description: string;
   monthlyQuota: number;
   modelTier: "basic" | "standard" | "advanced";
-  /** Whether answers may read the workspace's own analytics. */
+
   dataAccess: boolean;
   maxHistoryTurns: number;
   features: string[];
@@ -56,22 +52,15 @@ function plural(n: number, word: string) {
   return `${n} ${word}${n === 1 ? "" : "s"}`;
 }
 
-/**
- * Sites one workspace holds, on every tier. Mirrors the API's constant of the
- * same name — a workspace is what is priced, so this is a property of the
- * product rather than a difference between plans.
- */
 const MAX_SITES_PER_WORKSPACE = 2;
 
 function planFeatures(plan: ResolvedPlan): string[] {
   return [
-    // Priced per workspace, so the tier does not cap how many an account can
-    // have — it decides what each one costs and what it can do.
+
     `${MAX_SITES_PER_WORKSPACE} sites per workspace`,
     `${plan.monthlyAuditQuota} SEO audits / month`,
     `${plural(plan.monthlyCrawlQuota, "site crawl")} / month`,
-    // Spelled out rather than left to `plan.features`: the recipient cap is the
-    // line a buyer comparing tiers actually reads.
+
     `${plural(plan.maxReportRecipients, "report recipient")} per report`,
     ...plan.features,
   ];
@@ -90,9 +79,7 @@ function formatPrice(amountMinor: number, currency: Currency) {
 }
 
 export function Pricing() {
-  // The fetch now lives in `PlansProvider` in the root layout, so leaving the
-  // homepage and returning does not refetch — this section just reads the
-  // session-wide result. The typed views stay here.
+
   const shared = usePlans();
   const plans = shared.plans as ResolvedPlan[] | null;
   const orbitPlans = shared.orbitPlans as ResolvedOrbitPlan[] | null;
@@ -203,15 +190,13 @@ export function Pricing() {
                         style={{ background: "var(--glow)" }}
                         aria-hidden="true"
                       />
-                      {/* Carries the plan's own tier gradient rather than the
-                          site accent, so the badge matches the diamond above
-                          it instead of reading as generic chrome. */}
+
                       <span
                         className="absolute -top-2.5 left-1/2 -translate-x-1/2 rounded-full px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-wide shadow-soft"
                         style={{
                           background:
                             PLAN_GRADIENTS[plan.slug] ?? PLAN_ACCENTS[plan.slug] ?? "#8b5cf6",
-                          // The gold ramp is too light for white text.
+
                           color: PLAN_ON_ACCENT[plan.slug] ?? "#fff",
                         }}
                       >
@@ -285,9 +270,6 @@ export function Pricing() {
               body="Orbit answers questions about your setup and walks you through fixing what an audit flagged. Every plan includes a tier of it — no separate subscription."
             />
 
-            {/* One row per tier rather than three price cards: Orbit is not
-                bought on its own, so a price on each would invite exactly the
-                question this section exists to answer. */}
             <div className="mx-auto mt-10 max-w-3xl overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>

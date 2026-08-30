@@ -1,69 +1,45 @@
 import { site } from "@/lib/site";
 
-/**
- * Head-to-head comparison pages.
- *
- * "X alternative" is the highest-intent query this product can rank for — the
- * person searching it has already decided to switch and is picking a
- * destination. The homepage comparison table deliberately names nobody, which
- * is right for a table a customer reads after arriving; it is useless for a
- * query that names one product.
- *
- * The rule for every claim here: facts about Quantalog are stated plainly, and
- * facts about the other product are limited to what its own pricing page or
- * documentation says publicly. Nothing is characterised, no benchmark is
- * invented, and where the honest answer is "both do this", the row says so.
- * A comparison page that overstates gets one visit and no trust.
- */
-
 export type Verdict = "quantalog" | "rival" | "both" | "neither";
 
 export type ComparisonRow = {
-  /** The question a switcher is actually asking. */
+
   point: string;
-  /** What Quantalog does. */
+
   ours: string;
-  /** What the other product does, per its public docs or pricing page. */
+
   theirs: string;
   verdict: Verdict;
 };
 
-/**
- * A quantity where both products have a public, checkable number.
- *
- * Deliberately narrow. A chart makes a claim look authoritative, so only facts
- * either vendor states publicly get one — script weight off a CDN response,
- * reporting delay off the documentation. Nothing modelled, nothing benchmarked
- * by us, and where a number would have to be estimated the row stays prose.
- */
 export type ComparisonMetric = {
   label: string;
-  /** Quantalog's value, and the rival's, in the unit named below. */
+
   ours: number;
   theirs: number;
   unit: string;
-  /** Renders the value: 1024 as "1 KB", 48 as "48 h". */
+
   format: (n: number) => string;
-  /** True when a smaller number is the better one, which most of these are. */
+
   lowerIsBetter: boolean;
-  /** Where the numbers come from, shown under the chart. */
+
   source: string;
 };
 
 export type Comparison = {
   slug: string;
-  /** Product name as its makers write it. */
+
   rival: string;
   title: string;
   description: string;
-  /** One paragraph under the H1: who the page is for. */
+
   intro: string;
-  /** The honest case for staying put. Its absence is what makes the rest read as marketing. */
+
   whenTheirs: string;
   rows: ComparisonRow[];
-  /** Charted head-to-head numbers. Omitted where nothing is publicly checkable. */
+
   metrics?: ComparisonMetric[];
-  /** Long-tail queries this page should answer, rendered as an FAQ block. */
+
   faqs: { q: string; a: string }[];
 };
 
@@ -255,9 +231,7 @@ const COMPARISONS: Comparison[] = [
         verdict: "quantalog",
       },
     ],
-    // Deliberately no `metrics` block. The two quantities worth charting —
-    // script weight and reporting delay — are a tie here, and a chart drawing
-    // two identical bars implies a difference that the table already denies.
+
     faqs: [
       {
         q: "Is Quantalog open source like Plausible?",

@@ -2,19 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * The "On this page" rail.
- *
- * Reads the headings straight out of the rendered article rather than taking a
- * table of contents as a prop — the doc bodies are hand-authored JSX with
- * `<H2 id>` / `<H3 id>`, and asking every one of them to also export a TOC
- * array is a second copy to keep in sync. The DOM is the source of truth.
- *
- * Scroll position drives the active item: an IntersectionObserver marks a
- * heading active once it crosses into the top of the viewport, so the rail
- * tracks where the reader actually is.
- */
-
 type Heading = { id: string; text: string; depth: 2 | 3 };
 
 export function DocsToc() {
@@ -38,14 +25,13 @@ export function DocsToc() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // The topmost heading currently intersecting the trigger band wins.
+
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible[0]) setActiveId(visible[0].target.id);
       },
-      // A thin band near the top: a heading is "current" from when it reaches
-      // roughly a quarter down the viewport until the next one does.
+
       { rootMargin: "-80px 0px -70% 0px", threshold: 0 },
     );
 

@@ -4,9 +4,7 @@ import { site } from "@/lib/site";
 
 export function Cta() {
   return (
-    // The page's last frame, so it gets the one piece of ambient motion the
-    // hero doesn't own — a slow aurora, echoing the opening without repeating
-    // the six static blobs the old page scattered across every section.
+
     <section className="relative overflow-hidden border-t border-border bg-bg-subtle">
       <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
       <div

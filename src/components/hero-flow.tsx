@@ -23,26 +23,17 @@ import { RotateCcw } from "lucide-react";
 import "@xyflow/react/dist/style.css";
 import { Activity, Code2, Gauge, Mail, Search, ShieldCheck } from "lucide-react";
 
-/* The hero graph is the product's own pipeline: one script tag, cookieless
-   events, and the three surfaces that read from them. It is draggable because
-   a visitor who moves a node has touched the product's central metaphor before
-   reading a word of copy. */
-
 type CardData = {
   title: string;
   icon: "code" | "shield" | "gauge" | "search" | "mail" | "activity";
-  /** Rendered inside the card body — a small proof, not a paragraph. */
+
   rows?: { label: string; value: string }[];
   note?: string;
   accent?: boolean;
-  /** Which sides carry edges, so unused handles are not rendered at all. */
+
   target?: boolean;
   source?: boolean;
-  /**
-   * When the pulse on this node's incoming edge reaches it, in seconds. The
-   * border flares on the same loop with this offset, so the light appears to
-   * run off the wire and around the card.
-   */
+
   pulseAt?: number;
 };
 
@@ -64,9 +55,7 @@ function FlowCard({ data }: NodeProps & { data: CardData }) {
         data.accent ? "border-accent/50" : "border-border"
       }`}
     >
-      {/* The border flare. A ring inset over the card edge that lights up on
-          the same loop as the incoming pulse, so the light seems to leave the
-          wire and travel around the card. */}
+
       {typeof data.pulseAt === "number" && (
         <span
           aria-hidden
@@ -104,7 +93,6 @@ function FlowCard({ data }: NodeProps & { data: CardData }) {
 
 const nodeTypes = { card: FlowCard };
 
- 
 function PulseEdge({
   sourceX,
   sourceY,
@@ -229,7 +217,6 @@ const initialNodes: Node[] = [
   },
 ];
 
- 
 const initialEdges: Edge[] = [
   { id: "e1", type: "pulse", source: "script", target: "events", data: { delay: 0 } },
   { id: "e2", type: "pulse", source: "events", target: "live", data: { delay: 0.5 } },
@@ -237,21 +224,11 @@ const initialEdges: Edge[] = [
   { id: "e4", type: "pulse", source: "events", target: "reports", data: { delay: 1.5 } },
 ];
 
- 
 const NODE_EXTENT: [[number, number], [number, number]] = [
   [-160, -140],
   [960, 480],
 ];
- 
-/**
- * Wraps the flow in the provider `useReactFlow` needs.
- *
- * `compact` is the phone rendering: same graph, but drag and the control panel
- * are off and the canvas is shorter. React Flow is not a light dependency, so
- * on mobile the hero renders this lazily (see `HeroFlowLazy` in the hero) —
- * it is decorative (`aria-hidden`) and never the LCP element, which stays the
- * headline text, so keeping it off the critical path costs nothing in SEO.
- */
+
 export function HeroFlow({ compact = false }: { compact?: boolean }) {
   return (
     <ReactFlowProvider>
@@ -266,13 +243,6 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
   const noop = useCallback(() => {}, []);
   const { fitView } = useReactFlow();
 
-  /**
-   * Put every card back where it started, then re-frame.
-   *
-   * `fitView` alone only re-centres the viewport — a node dragged off does not
-   * move. This snaps the positions back (React Flow tweens the change on its
-   * own) and fits the view a beat later, once the nodes have arrived.
-   */
   const reset = useCallback(() => {
     setNodes(initialNodes.map((n) => ({ ...n, position: { ...n.position } })));
     window.setTimeout(() => fitView({ padding: 0.08, duration: 400 }), 60);
@@ -296,9 +266,7 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
         nodesDraggable={!compact}
         nodesConnectable={false}
         elementsSelectable={false}
-        /* The whole canvas is decorative (`aria-hidden` on the wrapper), so
-           nothing inside it may be tab-reachable — an aria-hidden subtree with
-           focusable descendants traps assistive-tech users on invisible stops. */
+
         nodesFocusable={false}
         edgesFocusable={false}
         disableKeyboardA11y
@@ -306,10 +274,7 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
         maxZoom={1.6}
         panOnDrag={false}
         panOnScroll={false}
-        /* Wheel and double-click stay off — the canvas sits inside a scrolling
-           page, and a wheel that zooms the graph instead of moving the page is
-           the fastest way to make a marketing page feel broken. The buttons
-           are the deliberate way in, and pinch is unambiguous on a trackpad. */
+
         zoomOnScroll={false}
         zoomOnPinch
         zoomOnDoubleClick={false}
@@ -317,12 +282,10 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
         proOptions={{ hideAttribution: true }}
       >
         <Background variant={BackgroundVariant.Dots} gap={22} size={1} color="var(--border)" />
-        {/* Controls only where dragging is on — on the compact mobile canvas
-            there is nothing to reset or zoom, so the panel is dropped. */}
+
         {!compact && (
           <Controls showInteractive={false} position="bottom-right">
-            {/* tabIndex -1: the canvas is aria-hidden, so this control must not
-                be a tab stop. It stays mouse/pointer usable. */}
+
             <ControlButton
               onClick={reset}
               tabIndex={-1}

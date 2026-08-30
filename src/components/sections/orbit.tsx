@@ -3,20 +3,6 @@ import { BookOpen, Clock, MessageSquare, ShieldCheck } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
 import { Reveal } from "../reveal";
 
-/**
- * Orbit AI — the assistant built into the dashboard.
- *
- * The mark leads. An earlier version buried it at 20px inside a mock chat
- * header, where the one piece of art that gives this feature a face was
- * illegible — so it now opens the section at a size where it reads as a
- * character rather than a favicon.
- *
- * The argument is deliberately narrow. Every product now claims an AI, and the
- * claim is worth nothing — so this section says what Orbit is grounded in, what
- * it cannot see, and that a person is still behind it. The honest limits are
- * the differentiator, because they are what competing claims leave out.
- */
-
 const points = [
   {
     icon: Clock,
@@ -40,16 +26,6 @@ const points = [
   },
 ];
 
-/**
- * The models behind Orbit.
- *
- * Named rather than described as "advanced AI", because the names are the
- * claim: a visitor who knows what these are learns more from the list than from
- * any adjective, and one who doesn't still reads that there are several.
- *
- * The fallback line is the point of showing them at all — it is a reliability
- * feature, not a spec sheet.
- */
 const models = [
   { name: "Gemini Flash", vendor: "Google" },
   { name: "Nemotron Ultra", vendor: "NVIDIA" },
@@ -59,22 +35,10 @@ const models = [
   { name: "North Mini", vendor: "Cohere" },
 ];
 
-/**
- * The mark, at a size where it is actually visible.
- *
- * Two files swapped by theme in CSS rather than by a hook: the artwork is not
- * transparent, so the dark mark on a light page would be a black square — and
- * doing it in CSS avoids the wrong one flashing before hydration.
- *
- * Displayed at 96px against a 128px source. The source is the constraint: it
- * would want 192px to be crisp on a retina screen, and going larger than this
- * would show the softness rather than the artwork.
- */
 function OrbitMark() {
   return (
     <div className="relative shrink-0">
-      {/* A soft bloom behind the mark, so it sits on the page rather than being
-          pasted onto it. */}
+
       <div
         className="pointer-events-none absolute -inset-6 rounded-full blur-2xl"
         style={{ background: "var(--glow)" }}
@@ -98,7 +62,6 @@ function OrbitMark() {
   );
 }
 
-/** The mocked exchange. A real question, and an answer Orbit actually gives. */
 function ChatPreview() {
   return (
     <div className="card overflow-hidden p-0">
@@ -133,8 +96,6 @@ function ChatPreview() {
           Workspaces page reports what the server has actually received.
         </p>
 
-        {/* The follow-ups are part of the feature, not decoration — Orbit
-            offers the next question rather than leaving a blank input. */}
         <div className="space-y-1.5 pt-1">
           {["How do I verify the tracker?", "Does it work with Next.js?"].map((q) => (
             <div
@@ -157,8 +118,7 @@ export function Orbit() {
       className="relative overflow-hidden border-y border-border bg-bg-subtle"
     >
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        {/* The mark beside the heading rather than above it: at this size it
-            would otherwise push the title most of a screen down. */}
+
         <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
           <div className="v-rise">
             <OrbitMark />
@@ -199,8 +159,6 @@ export function Orbit() {
             ))}
           </div>
 
-          {/* Decorative: the copy beside it already states everything this
-              shows, so a screen reader gains nothing from re-reading a mock. */}
           <Reveal delay={2} className="tilt-in">
             <div aria-hidden="true">
               <ChatPreview />
@@ -208,9 +166,6 @@ export function Orbit() {
           </Reveal>
         </div>
 
-        {/* The model lineup. Placed after the argument, because it answers
-            "is this any good" for the reader who is already interested — and
-            the fallback sentence is the part that matters. */}
         <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">

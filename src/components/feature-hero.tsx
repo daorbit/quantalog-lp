@@ -2,17 +2,6 @@ import type { ReactNode } from "react";
 import { Button, Eyebrow } from "@/components/ui";
 import { site } from "@/lib/site";
 
-/**
- * The header every feature page wears.
- *
- * A two-column split that mirrors the homepage hero: the argument on the left,
- * a small piece of the product on the right so the page has something to look
- * at above the fold instead of a wall of text against empty space. The visual
- * is passed in — each page shows the part of the dashboard it is about.
- *
- * On a narrow screen the visual drops below the copy rather than shrinking to
- * an unreadable thumbnail beside it.
- */
 export function FeatureHero({
   eyebrow,
   title,
@@ -26,7 +15,7 @@ export function FeatureHero({
   description: string;
   primary: { label: string; href?: string };
   secondary: { label: string; href?: string };
-  /** The right-hand illustration — a chart cluster, a gauge, a code card. */
+
   visual: ReactNode;
 }) {
   return (
@@ -54,9 +43,6 @@ export function FeatureHero({
           </div>
         </div>
 
-        {/* The visual sits in a framed pane with an accent-tinted gradient
-            edge and a soft glow behind it, so it reads as a lit surface
-            floating above the page rather than a bordered box. */}
         <div className="fhv-frame relative w-full">
           <div className="fhv-frame__inner">{visual}</div>
         </div>

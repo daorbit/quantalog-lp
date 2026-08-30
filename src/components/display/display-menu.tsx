@@ -9,26 +9,12 @@ import {
   DEFAULT_PREFS, applyPrefs, isModified, readPrefs, savePrefs, type DisplayPrefs,
 } from "./prefs";
 
-/**
- * Reader display preferences.
- *
- * Deliberately not called an accessibility menu. Widgets that claim to make a
- * page accessible do not, and saying so invites both a false sense of security
- * and, in the US, litigation — the page itself has to be right. What this is
- * honest about doing is letting someone read this page the way they prefer:
- * bigger, looser, plainer, or without the motion.
- *
- * Everything is a CSS switch on <html>, saved per browser. Nothing is sent
- * anywhere, and the page works identically if the script never loads.
- */
 export function DisplayMenu() {
   const [open, setOpen] = useState(false);
   const [prefs, setPrefs] = useState<DisplayPrefs>(DEFAULT_PREFS);
   const panel = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
 
-  // Applied on mount so a returning visitor keeps their settings before they
-  // touch anything.
   useEffect(() => {
     const stored = readPrefs();
     setPrefs(stored);
@@ -48,8 +34,6 @@ export function DisplayMenu() {
     savePrefs(DEFAULT_PREFS);
   };
 
-  // Escape closes and returns focus to the button that opened it, which is
-  // where a keyboard user expects to land.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -189,9 +173,6 @@ export function DisplayMenu() {
               </button>
             )}
 
-            {/* The honest footnote. A panel like this is often the only thing a
-                site offers and is presented as compliance; saying plainly what
-                it is and is not is the difference. */}
             <p className="text-[11px] leading-relaxed text-fg-faint">
               These change how this site looks for you. For screen readers,
               keyboard navigation and system-wide settings, your browser and

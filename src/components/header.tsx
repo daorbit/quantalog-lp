@@ -10,10 +10,7 @@ import { track } from "@/lib/track";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  // The product menu opens on hover and has no close state — after clicking an
-  // item the cursor is still on the panel, so it hangs over the new page until
-  // you move away. This dismisses it for a moment on click, long enough for the
-  // route to change and the pointer to leave.
+
   const [menuDismissed, setMenuDismissed] = useState(false);
 
   const dismissMenu = () => {
@@ -21,8 +18,6 @@ export function Header() {
     window.setTimeout(() => setMenuDismissed(false), 400);
   };
 
-  /* The bar only earns a background once there is content behind it. At the
-     top of the page it stays transparent so the hero reads as one ground. */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -38,45 +33,24 @@ export function Header() {
   }, [open]);
 
   return (
-    /* The bar itself runs nearly edge to edge: the logo sits at the far left
-       and the account controls at the far right, with only the nav links
-       collected into a pill floating in the middle. Boxing all three groups
-       inside one narrow container is what made the earlier version read as a
-       toolbar rather than as chrome belonging to the page. */
+
     <header
       data-scrolled={scrolled || open || undefined}
       className="site-header sticky top-0 z-50 transition-colors duration-200"
     >
-      {/* Solid rather than frosted once scrolled: the bar passes over the
-          dashboard preview and the chart fills, and a translucent surface lets
-          those shapes slide through the nav links as the page moves. */}
+
       <div>
-        {/* Three flex columns rather than an absolutely positioned centre.
-            Absolute took the nav out of flow, so it reserved no width and the
-            account buttons ran straight over the top of it on any viewport
-            narrow enough for the two to meet. The outer columns share the
-            leftover space equally, which keeps the pill optically centred
-            while every group still occupies real layout. */}
+
         <div className="flex h-13 items-center gap-4 px-4 sm:px-8 lg:px-12">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
 
-          {/* Plain links now that the bar itself carries a surface. The pill
-              they used to sit in was a second frosted layer on top of a
-              frosted bar, which read as two panes of glass rather than one. */}
           <nav
             className="hidden shrink-0 items-center gap-0.5 lg:flex"
             aria-label="Main"
           >
-          {/* Hover and keyboard focus both open it, entirely in CSS —
-              group-hover for the pointer, focus-within for Tab. No state, no
-              outside-click listener, no close timer: the panel stays open
-              because the cursor is still inside the group, which is the same
-              condition that opened it.
 
-              The panel is always mounted and hidden with opacity, so the links
-              are in the DOM for a crawler whether or not anyone hovers. */}
           <div className="group relative">
             <button
               type="button"
@@ -90,8 +64,6 @@ export function Header() {
               />
             </button>
 
-            {/* pt-2 rather than mt-2: the gap between trigger and panel has to
-                be inside the hover target, or crossing it reads as leaving. */}
             <div
               className={`invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${
                 menuDismissed ? "invisible! opacity-0! pointer-events-none" : ""
@@ -132,9 +104,7 @@ export function Header() {
           </nav>
 
           <div className="flex flex-1 items-center justify-end gap-2">
-            {/* Paired with the primary CTA as two adjacent chips, the way the
-                reference does it — a bare text link beside a solid button
-                reads as an afterthought rather than the second option. */}
+
             <a
               href={`${site.app}/login`}
               onClick={() => track("sign_in", { location: "header" })}
@@ -169,8 +139,7 @@ export function Header() {
             className="flex flex-col px-5 py-2 sm:px-8"
             aria-label="Mobile"
           >
-            {/* No dropdown on a touch screen — the whole menu is already a
-                vertical list, so the group just gets a heading. */}
+
             <span className="pt-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
               Product
             </span>

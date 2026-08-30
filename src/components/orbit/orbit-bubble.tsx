@@ -6,24 +6,6 @@ import { RotateCcw, X } from "lucide-react";
 import { OrbitMark } from "./orbit-mark";
 import { OrbitPanel } from "./orbit-panel";
 
-/**
- * The floating "Ask Orbit" launcher and the panel it opens.
- *
- * Same shape as the dashboard's OrbitBubble: a mark that is always on screen, a
- * light scrim while the panel is up, and the panel sitting directly above the
- * launcher. What is dropped is everything the public endpoint has no use for —
- * no shared provider (there is one conversation, this component owns it), no
- * model picker.
- *
- * Closed by default. Hidden on the pages where a chat widget would be tactless:
- * contact is already a conversation with a person, and the legal pages are
- * where someone goes to read exactly what we collect.
- *
- * The panel mounts only while open, and each open starts a fresh conversation —
- * the right default for a pre-sales chat nobody returns to. Remounting
- * OrbitPanel via the `key` is what resets the hook's state.
- */
-
 const HIDDEN_ON = ["/contact", "/privacy", "/terms", "/thank-you"];
 
 export function OrbitBubble() {
@@ -40,15 +22,6 @@ export function OrbitBubble() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  /**
-   * Hold the page still while the sheet is up.
-   *
-   * On a phone the panel is a near-full-screen sheet, and without this the page
-   * behind it scrolls under the thumb the moment a drag starts outside the
-   * thread — the scroll chaining that makes a web sheet feel unlike an app.
-   * Only below the breakpoint where it is a sheet: on desktop it is a side
-   * panel and locking the page would be wrong.
-   */
   useEffect(() => {
     if (!open) return;
     if (!window.matchMedia("(max-width: 48em)").matches) return;

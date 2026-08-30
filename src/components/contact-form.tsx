@@ -6,22 +6,6 @@ import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
 import { SelectField } from "./select-field";
 import { site } from "@/lib/site";
 
-/**
- * The contact form.
- *
- * Posts to the public, unauthenticated endpoint on the API — the rest of the
- * marketing site is static, and this is the only thing on it that talks back.
- *
- * Validation runs here so the message is useful when it arrives, but it is a
- * convenience and not a guard: the server re-checks every field, because
- * anything a browser enforces is advisory.
- *
- * `noValidate` is deliberate. The browser's own validation renders an OS-drawn
- * bubble that no page styling can reach — a grey system tooltip on a dark page
- * — and it stops at the first bad field instead of showing everything that
- * needs fixing. Doing it here costs a function and gets both back.
- */
-
 const SUBJECTS = [
   { value: "general", label: "General enquiry" },
   { value: "sales", label: "Pricing and plans" },
@@ -34,8 +18,6 @@ const SUBJECTS = [
 type State = "idle" | "sending" | "error";
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
-/** Permissive on purpose: the only thing worth rejecting is a value that
- *  cannot possibly be an address. A false negative loses a real message. */
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 function validate(data: FormData): Errors {
@@ -74,8 +56,7 @@ export function ContactForm() {
       setErrors(found);
       setFormError("");
       setState("idle");
-      // Put the cursor on the first problem rather than making someone hunt
-      // for which of five fields the message refers to.
+
       const first = Object.keys(found)[0];
       form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       return;
@@ -95,7 +76,7 @@ export function ContactForm() {
           company: data.get("company"),
           subject: data.get("subject"),
           message: data.get("message"),
-          website: data.get("website"), // honeypot
+          website: data.get("website"),
           pageUrl: typeof window !== "undefined" ? window.location.href : "",
         }),
       });
@@ -111,12 +92,10 @@ export function ContactForm() {
       }
 
       form.reset();
-      // Stays "sending" through the navigation: flipping back to idle would
-      // flash an empty form for the moment before the route changes.
+
       router.push("/thank-you");
     } catch (err) {
-      // A failed fetch throws TypeError with a message about the network that
-      // means nothing to a visitor — say what it means for them instead.
+
       const network = err instanceof TypeError;
       setFormError(
         network
@@ -129,7 +108,6 @@ export function ContactForm() {
     }
   }
 
-  /** Clear a field's error as soon as the person starts fixing it. */
   const clear = (field: keyof Errors) => () =>
     setErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
 
@@ -202,8 +180,6 @@ export function ContactForm() {
         </Field>
       </div>
 
-      {/* Honeypot: hidden from people, irresistible to bots. Not `display:none`
-          — some bots skip those — and never focusable or announced. */}
       <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
         <label htmlFor="contact-website">Do not fill this in</label>
         <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -219,8 +195,6 @@ export function ContactForm() {
         </p>
       )}
 
-      {/* Full-width submit, with the reassurance below rather than squeezed
-          beside it — at the old width the label wrapped onto two lines. */}
       <button
         type="submit"
         disabled={state === "sending"}

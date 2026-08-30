@@ -5,52 +5,19 @@ import { usePathname } from "next/navigation";
 import { AlertCircle, ArrowRight, Check, Loader2, X } from "lucide-react";
 import { site } from "@/lib/site";
 
-/**
- * The newsletter dialog that opens itself on a first visit.
- *
- * An uninvited modal is the most intrusive thing on a marketing site, so
- * everything here is about it happening exactly once and being trivially
- * escapable: it waits before appearing, closes on Escape, on a backdrop click
- * and on an explicit button, and it records the outcome so a second visit is
- * left alone. A visitor who dismisses it must never see it again — that is the
- * whole contract, and localStorage is what keeps it across sessions.
- *
- * Deliberately not rendered until the delay elapses. Mounting it hidden would
- * put a dialog in the accessibility tree of every page for anyone using a
- * screen reader, on a page they may never have wanted it on.
- */
-
-/**
- * What we remember, and why the two are separate keys.
- *
- * A dismissal is a "not now" that could reasonably be asked again after a long
- * gap; a subscription is permanent. Keeping them apart means a future change to
- * re-prompt dismissers cannot accidentally re-prompt subscribers.
- */
 const DISMISSED_KEY = "quantalog_newsletter_dismissed";
 const SUBSCRIBED_KEY = "quantalog_newsletter_subscribed";
 
-/** How long to wait before opening. Long enough to read the hero first. */
 const OPEN_DELAY_MS = 12_000;
 
-/** Matches the closing animation in globals.css, so the node leaves when it finishes. */
 const CLOSE_ANIM_MS = 180;
 
-/**
- * Pages the dialog stays off.
- *
- * `/thank-you` and `/contact` already have the visitor's address or are asking
- * for it — a second, uninvited ask reads as not having noticed. The legal pages
- * are where someone goes specifically to check what we collect, and popping a
- * form over that answer undercuts it.
- */
 const EXCLUDED = ["/thank-you", "/contact", "/privacy", "/terms"];
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 type State = "idle" | "sending" | "done" | "error";
 
-/** Reading localStorage throws in some privacy modes — treat that as "not seen". */
 function seen(): boolean {
   try {
     return (
@@ -66,8 +33,7 @@ function remember(key: string) {
   try {
     localStorage.setItem(key, "1");
   } catch {
-    // Storage denied. The dialog will open again next visit, which is the
-    // right failure: showing it twice is better than a crash on a landing page.
+
   }
 }
 
@@ -81,12 +47,9 @@ export function NewsletterDialog() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  /** What had focus before the dialog took it, so it can be handed back. */
+
   const restoreRef = useRef<HTMLElement | null>(null);
 
-  // The timer starts over on navigation rather than carrying across it: the
-  // delay is meant to be time spent reading, and someone who moved pages has
-  // been reading, not idling on the one page the timer began on.
   useEffect(() => {
     if (seen()) return;
     if (EXCLUDED.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return;
@@ -105,16 +68,13 @@ export function NewsletterDialog() {
       setTimeout(() => {
         setOpen(false);
         setClosing(false);
-        // Hand focus back where it was, or the next Tab starts from the top of
-        // the document rather than where the visitor was reading.
+
         restoreRef.current?.focus?.();
       }, CLOSE_ANIM_MS);
     },
     [],
   );
 
-  // Escape closes, and focus is kept inside while it is open. A modal that can
-  // be tabbed out of leaves a keyboard user typing into a page they cannot see.
   useEffect(() => {
     if (!open) return;
 
@@ -145,13 +105,10 @@ export function NewsletterDialog() {
     };
 
     document.addEventListener("keydown", onKey);
-    // The page behind must not scroll under the dialog.
+
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Focus the close button rather than the input: opening straight into a
-    // text field on a page nobody asked to fill in is presumptuous, and it
-    // hides the way out from a screen reader until they tab backwards.
     const t = setTimeout(() => closeRef.current?.focus(), 60);
 
     return () => {
@@ -187,7 +144,7 @@ export function NewsletterDialog() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: value,
-          website: new FormData(form).get("website"), // honeypot
+          website: new FormData(form).get("website"),
           pageUrl: typeof window !== "undefined" ? window.location.href : "",
         }),
       });
@@ -203,7 +160,7 @@ export function NewsletterDialog() {
       }
 
       setState("done");
-      // Let the confirmation be read before the dialog leaves.
+
       setTimeout(() => close("subscribed"), 2200);
     } catch (err) {
       const network = err instanceof TypeError;
@@ -313,8 +270,6 @@ export function NewsletterDialog() {
                 </button>
               </div>
 
-              {/* Hidden from people, irresistible to bots. Not display:none —
-                  some bots skip those — and never focusable or announced. */}
               <div
                 aria-hidden="true"
                 className="absolute left-[-9999px] h-0 w-0 overflow-hidden"

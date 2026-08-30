@@ -1,14 +1,11 @@
 import { Fragment, type ReactNode } from "react";
 
- 
-
 const INLINE = /(\[[^\]]+\]\([^)]+\)|`[^`]+`|\*\*[^*]+\*\*)/g;
 const LINK = /^\[([^\]]+)\]\(([^)]+)\)$/;
 const CODE = /^`([^`]+)`$/;
 const BOLD = /^\*\*([^*]+)\*\*$/;
 const SAFE_HREF = /^(https?:\/\/|mailto:)/i;
 
-/** Split one line into text, links, code and bold runs. */
 function renderInline(text: string, keyBase: string): ReactNode[] {
   return text.split(INLINE).map((part, i) => {
     const key = `${keyBase}-${i}`;
@@ -55,12 +52,6 @@ function renderInline(text: string, keyBase: string): ReactNode[] {
   });
 }
 
-/**
- * Render a reply.
- *
- * Blank lines separate paragraphs. A run of lines that each open with `N.` is
- * grouped into one ordered list; everything else is a paragraph.
- */
 export function OrbitMarkdown({ text }: { text: string }) {
   const blocks = text.trim().split(/\n{2,}/);
 

@@ -16,7 +16,6 @@ import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
-// Every comparison renders at build time; /compare ships entirely as static HTML.
 export function generateStaticParams(): Params[] {
   return getComparisonSlugs().map((slug) => ({ slug }));
 }
@@ -59,8 +58,6 @@ export async function generateMetadata({
   };
 }
 
-/** Which side a row favours. `both` and `neither` are load-bearing: a table
- *  where every row points one way reads as marketing and gets believed less. */
 function Badge({ verdict, rival }: { verdict: Verdict; rival: string }) {
   if (verdict === "quantalog") {
     return (
@@ -109,9 +106,7 @@ export default async function ComparisonPage({
       publisher: { "@id": ORG_ID },
       author: { "@id": ORG_ID },
       image: `${site.url}/OgImage.png`,
-      // The rival is a real entity with its own knowledge-graph node. Saying so
-      // is what tells a search engine this page is about that comparison rather
-      // than one that merely mentions the name.
+
       about: [
         { "@type": "SoftwareApplication", name: site.name },
         { "@type": "SoftwareApplication", name: c.rival },
@@ -172,8 +167,6 @@ export default async function ComparisonPage({
         </div>
       </header>
 
-      {/* The measurable claims, before the table of prose ones. Only quantities
-          both vendors publish appear here — see ComparisonMetric. */}
       {c.metrics && c.metrics.length > 0 && (
         <section className="mt-14">
           <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
@@ -247,8 +240,6 @@ export default async function ComparisonPage({
         </div>
       </section>
 
-      {/* Stated plainly rather than buried: a comparison page that cannot say
-          when the other product wins is not a comparison. */}
       <section className="mt-14">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
           When {c.rival} is the better choice
