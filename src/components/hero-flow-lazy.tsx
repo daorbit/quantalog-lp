@@ -9,32 +9,47 @@ const HeroFlow = dynamic(
 );
 
 /**
- * The hero diagram for phone widths.
+ * Lazy wrapper for the hero diagram.
  *
- * React Flow is a heavy dependency and the diagram is decoration, so on mobile
- * it is not worth putting on the critical path: this mounts nothing until the
- * placeholder scrolls near the viewport, then loads the chunk and renders the
- * compact (drag-free) graph. On desktop the hero renders `HeroFlow` directly
- * instead — there the diagram is a headline element and worth the weight up
- * front.
+ * React Flow (`@xyflow/react`) is a heavy dependency and the diagram is
+ * decoration, so it is kept off the critical path at every width: nothing
+ * mounts until the reserved-height placeholder scrolls near the viewport,
+ * then the chunk loads and the graph renders. The placeholder means the
+ * swap-in causes no layout shift.
  *
- * The reserved-height placeholder means the swap-in causes no layout shift.
+ * `compact` renders the drag-free graph (used on phones). Desktop passes
+ * `compact={false}` for the full draggable graph but still defers the load.
  */
-export function HeroFlowLazy() {
+export function HeroFlowLazy({
+  compact = false,
+  className = "h-[300px] w-full",
+}: {
+  compact?: boolean;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // The diagram is decoration. Even when it is in view on load (desktop), the
+    // React Flow chunk must not compete with hydration and first input — so the
+    // load is pushed to idle time. Off-screen, the observer gates it further.
+    const ric =
+      typeof requestIdleCallback === "function"
+        ? requestIdleCallback
+        : (cb: () => void) => setTimeout(cb, 200);
+
     if (typeof IntersectionObserver === "undefined") {
-      setShow(true);
+      ric(() => setShow(true));
       return;
     }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShow(true);
+          ric(() => setShow(true));
           io.disconnect();
         }
       },
@@ -45,8 +60,8 @@ export function HeroFlowLazy() {
   }, []);
 
   return (
-    <div ref={ref} className="h-[300px] w-full" aria-hidden>
-      {show && <HeroFlow compact />}
+    <div ref={ref} className={className} aria-hidden>
+      {show && <HeroFlow compact={compact} />}
     </div>
   );
 }

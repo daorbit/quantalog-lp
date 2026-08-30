@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { Button } from "../ui";
 import { Words } from "../words";
-import { HeroFlow } from "../hero-flow";
 import { HeroFlowLazy } from "../hero-flow-lazy";
 import { TrustChips } from "../trust-chips";
 
@@ -118,19 +117,19 @@ export function Hero() {
         </div>
 
      
-        {/* Desktop: the full draggable graph, loaded up front — here it is a
-            headline element. */}
+        {/* Desktop: the full draggable graph. Lazy-loaded on scroll-in so React
+            Flow stays off the initial critical path — the reserved height
+            matches the graph so the swap-in shifts nothing. */}
         <div className="hidden w-full min-w-0 flex-1 sm:block">
-          <HeroFlow />
+          <HeroFlowLazy className="h-[380px] w-full lg:h-[520px]" />
           <p className="mt-2 text-center text-[11px] text-fg-faint">
             Drag any node — this is the whole pipeline.
           </p>
         </div>
 
-        {/* Mobile: the same graph, drag-free and lazy-loaded so React Flow
-            stays off the phone's critical path. */}
+        {/* Mobile: the same graph, drag-free and lazy-loaded. */}
         <div className="w-full sm:hidden">
-          <HeroFlowLazy />
+          <HeroFlowLazy compact />
           <p className="mt-2 text-center text-[11px] text-fg-faint">
             The whole pipeline — one script tag in, three surfaces out.
           </p>
