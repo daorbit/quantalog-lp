@@ -296,7 +296,12 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
         nodesDraggable={!compact}
         nodesConnectable={false}
         elementsSelectable={false}
+        /* The whole canvas is decorative (`aria-hidden` on the wrapper), so
+           nothing inside it may be tab-reachable — an aria-hidden subtree with
+           focusable descendants traps assistive-tech users on invisible stops. */
+        nodesFocusable={false}
         edgesFocusable={false}
+        disableKeyboardA11y
         minZoom={0.4}
         maxZoom={1.6}
         panOnDrag={false}
@@ -316,7 +321,14 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
             there is nothing to reset or zoom, so the panel is dropped. */}
         {!compact && (
           <Controls showInteractive={false} position="bottom-right">
-            <ControlButton onClick={reset} title="Reset layout" aria-label="Reset layout">
+            {/* tabIndex -1: the canvas is aria-hidden, so this control must not
+                be a tab stop. It stays mouse/pointer usable. */}
+            <ControlButton
+              onClick={reset}
+              tabIndex={-1}
+              title="Reset layout"
+              aria-label="Reset layout"
+            >
               <RotateCcw size={14} strokeWidth={2} />
             </ControlButton>
           </Controls>

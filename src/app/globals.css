@@ -46,7 +46,8 @@
   --border-strong: #cdd3da;
   --fg: #0a0b0d;
   --fg-muted: #5b6472;
-  --fg-faint: #949ca8;
+  /* AA body contrast (>=4.5:1) against --bg — the old #949ca8 sat at ~2.6:1. */
+  --fg-faint: #6a7280;
   --accent: #0d9488;
   --accent-fg: #ffffff;
   --grid-line: rgba(10, 11, 13, 0.04);
@@ -77,7 +78,8 @@
   --border-strong: #34383f;
   --fg: #f7f8f9;
   --fg-muted: #9ba1ab;
-  --fg-faint: #6b7280;
+  /* AA body contrast (>=4.5:1) against --bg — the old #6b7280 sat at ~4.0:1. */
+  --fg-faint: #868d99;
   --accent: #14b8a6;
   --accent-fg: #04231f;
   --grid-line: rgba(255, 255, 255, 0.028);

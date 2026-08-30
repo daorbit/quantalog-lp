@@ -182,9 +182,11 @@ function BarList({
   return (
     <div className="p-5">
       <div className="flex items-center justify-between">
-        <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+        {/* A widget caption in a decorative preview, not document structure —
+            a real <h3> here skips from the page <h1> with no <h2> between. */}
+        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
           {title}
-        </h3>
+        </p>
         <span className="text-[11px] uppercase tracking-wide text-fg-faint">{unit}</span>
       </div>
       <ul className="mt-4 space-y-1.5">
@@ -305,9 +307,9 @@ export function DashboardPreview() {
       {/* Traffic area chart */}
       <div className="border-b border-border p-5">
         <div className="flex items-center justify-between">
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
             {r.chartLabel}
-          </h3>
+          </p>
           <span className="flex items-center gap-1.5 rounded border border-border px-2 py-0.5 font-mono text-[11px] text-fg-muted">
             <span className="live-dot h-1 w-1 rounded-full bg-accent" />
             {r.live ? "polling 3s" : "settled"}
