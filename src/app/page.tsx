@@ -11,6 +11,7 @@ import { Pricing } from "@/components/sections/pricing";
 import { Faq, faqs } from "@/components/sections/faq";
 import { Cta } from "@/components/sections/cta";
 import { ChartDivider } from "@/components/chart-divider";
+import { Reveal } from "@/components/reveal";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
@@ -113,10 +114,18 @@ export default function HomePage() {
       <JsonLd data={jsonLd} />
       <Hero />
       <DashboardShowcase />
+      {/* Most sections below carry their own `v-rise` — a scroll-timeline
+          animation in Chrome, a load-fired fallback elsewhere. The two that
+          have no internal motion (Logos, Cta) get a `Reveal` wrapper so they
+          also arrive on scroll rather than sitting static. `Reveal` keeps its
+          children in the DOM and only touches opacity/transform, so it stays
+          inert for crawlers and for reduced-motion. */}
       {/* Straight after the hero: the tour answers "what is this" faster than
           any amount of copy below it can. */}
       <Demo />
-      <Logos />
+      <Reveal as="section">
+        <Logos />
+      </Reveal>
       {/* The reported line runs out of the consent-gap section — the hero's
           own line runs into it. The pair bracket the argument, and nothing
           else on the page uses them, so they stay a device rather than
@@ -138,7 +147,9 @@ export default function HomePage() {
       <HowItWorks />
       <Pricing />
       <Faq />
-      <Cta />
+      <Reveal as="section">
+        <Cta />
+      </Reveal>
     </>
   );
 }

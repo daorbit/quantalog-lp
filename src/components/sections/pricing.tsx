@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "../plan-icons";
+import { usePlans } from "../plans-provider";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 
@@ -89,53 +90,19 @@ function formatPrice(amountMinor: number, currency: Currency) {
 }
 
 export function Pricing() {
-  const [plans, setPlans] = useState<ResolvedPlan[] | null>(null);
-  const [orbitPlans, setOrbitPlans] = useState<ResolvedOrbitPlan[] | null>(null);
-  const [error, setError] = useState(false);
+  // The fetch now lives in `PlansProvider` in the root layout, so leaving the
+  // homepage and returning does not refetch — this section just reads the
+  // session-wide result. The typed views stay here.
+  const shared = usePlans();
+  const plans = shared.plans as ResolvedPlan[] | null;
+  const orbitPlans = shared.orbitPlans as ResolvedOrbitPlan[] | null;
+  const error = shared.error;
+
   const [yearly, setYearly] = useState(false);
   const [currency, setCurrency] = useState<Currency>("USD");
 
   useEffect(() => {
     setCurrency(detectCurrency());
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(`${site.api}/api/public/plans`)
-      .then((r) => {
-        if (!r.ok) throw new Error(String(r.status));
-        return r.json();
-      })
-      .then((data: ResolvedPlan[]) => {
-        if (!cancelled) setPlans(data);
-      })
-      .catch(() => {
-        if (!cancelled) setError(true);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  // Fetched separately, and its failure is deliberately not `setError`: the
-  // Orbit row is an addition to this page, so losing it should hide one section
-  // rather than replace the whole price list with an error.
-  useEffect(() => {
-    let cancelled = false;
-    fetch(`${site.api}/api/public/plans/orbit`)
-      .then((r) => {
-        if (!r.ok) throw new Error(String(r.status));
-        return r.json();
-      })
-      .then((data: ResolvedOrbitPlan[]) => {
-        if (!cancelled) setOrbitPlans(data);
-      })
-      .catch(() => {
-        if (!cancelled) setOrbitPlans([]);
-      });
-    return () => {
-      cancelled = true;
-    };
   }, []);
 
   return (

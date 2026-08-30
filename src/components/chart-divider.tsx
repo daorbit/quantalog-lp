@@ -9,6 +9,12 @@
  *
  * Pure inline SVG on a fixed path. No canvas, no animation loop, no data
  * fetch — it renders identically on the server and costs nothing to paint.
+ *
+ * The `observed` line draws itself in as it scrolls past, via CSS
+ * `animation-timeline: view()` (see `.divider-draw` in globals.css). Where
+ * scroll-timeline is unsupported the keyframe still runs once on load, so the
+ * line is never left half-drawn — and the component stays a server component
+ * either way, since none of this needs JavaScript.
  */
 
 /**
@@ -88,8 +94,10 @@ export function ChartDivider({
           strokeLinecap="round"
           opacity={variant === "observed" ? 0.75 : 0.4}
           // Dashed for the reported line, the way a chart marks a modelled
-          // series rather than a measured one.
+          // series rather than a measured one. The observed line instead uses
+          // its dash array to paint in on scroll — see `.divider-draw`.
           strokeDasharray={variant === "reported" ? "5 5" : undefined}
+          className={variant === "observed" ? "divider-draw" : undefined}
           vectorEffect="non-scaling-stroke"
         />
       </svg>

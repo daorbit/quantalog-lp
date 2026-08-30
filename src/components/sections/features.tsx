@@ -17,64 +17,76 @@ import { SectionHeading, GlowCard } from "../ui";
  * get width, the rest fill in around them. Nine equally sized cards read as a
  * checklist — the point of a feature grid is that some features matter more.
  */
+/** `fx` picks the icon's hover animation — see `.fx-*` in globals.css. One per
+ *  card so the grid does not pulse in unison. */
 const features = [
   {
     span: "lg:col-span-2",
     icon: Activity,
+    fx: "fx-pulse",
     title: "Live in 3 seconds",
     body: "Visitors, pageviews and active sessions stream in as they happen. No overnight batch job, no stale numbers, no sampling.",
   },
   {
     span: "lg:col-span-1 lg:row-span-2",
     icon: ShieldCheck,
+    fx: "fx-bob",
     title: "Cookieless by design",
     body: "Visitors are a rotating daily hash of IP and user agent. Nothing persists in the browser, so no consent banner is required.",
   },
   {
     span: "lg:col-span-1",
     icon: Zap,
+    fx: "fx-pulse",
     title: "Sub-kilobyte tracker",
     body: "One async script tag. It patches history.pushState, so React and Next apps report route changes with zero extra code.",
   },
   {
     span: "lg:col-span-1",
     icon: Globe2,
+    fx: "fx-spin",
     title: "The dimensions that matter",
     body: "Pages, referrers, UTM campaigns, devices, browsers and countries — derived server-side from the request, not the client.",
   },
   {
     span: "lg:col-span-1",
     icon: MousePointerClick,
+    fx: "fx-tick",
     title: "Custom events and goals",
     body: "One line — rta.track(\"signup\", { plan: \"pro\" }) — turns any action into a tracked event with its own conversion rate. No dashboards to wire up.",
   },
   {
     span: "lg:col-span-2",
     icon: Search,
+    fx: "fx-nudge",
     title: "SEO audits built in",
     body: "Run a Lighthouse-backed audit on any page you track: meta tags, content, structured data, broken links and Core Web Vitals, scored and kept over time so you can prove a fix worked.",
   },
   {
     span: "lg:col-span-1",
     icon: Layers,
+    fx: "fx-bob",
     title: "Workspaces and sites",
     body: "Group properties under a workspace, invite the team, and keep every site's data cleanly scoped and isolated.",
   },
   {
     span: "lg:col-span-1",
     icon: Share2,
+    fx: "fx-nudge",
     title: "Dashboards you can share",
     body: "Publish a read-only view at a link anyone can open — no account needed. You pick which panels are visible, and everything else never leaves the server.",
   },
   {
     span: "lg:col-span-2",
     icon: Code2,
+    fx: "fx-tick",
     title: "An API, not just a UI",
     body: "Every number in the dashboard is reachable over REST with an API key. Build your own views — or resell them.",
   },
   {
     span: "lg:col-span-3",
     icon: CalendarClock,
+    fx: "fx-bob",
     title: "Post to LinkedIn on a schedule",
     body: "Write a post from a sentence with Orbit, pick when it goes out — once, or on a repeating slot — and Quantalog publishes it unattended. Every send is kept with the words and image as they went, and a link to the post.",
   },
@@ -106,7 +118,7 @@ export function Features() {
               className={`v-rise v-d${(i % 3) + 1} group flex flex-col p-6 sm:p-7 ${f.span}`}
             >
               <f.icon
-                className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+                className={`feature-icon ${f.fx} h-5 w-5 text-accent`}
                 aria-hidden="true"
               />
               <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">

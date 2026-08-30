@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer";
 import { DisplayMenu } from "@/components/display/display-menu";
 import { NewsletterDialog } from "@/components/newsletter-dialog";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
+import { ScrollRise } from "@/components/scroll-rise";
+import { PlansProvider } from "@/components/plans-provider";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -133,6 +135,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-sans antialiased">
+        {/* No-JS safety net: the scroll-reveal observer never runs, so force
+            every `.reveal` visible. Keeps sections readable for a crawler that
+            does not execute scripts. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <ThemeProvider>
           <a
             href="#main"
@@ -141,7 +149,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Skip to content
           </a>
           <Header />
-          <main id="main">{children}</main>
+          {/* One session-wide fetch of the public plan data, shared with the
+              homepage's Pricing section — it remounts on every return to `/`,
+              and this stops it refetching each time. */}
+          <PlansProvider>
+            <main id="main">{children}</main>
+          </PlansProvider>
           <Footer />
           {/* Bottom-left, opposite the theme toggle and clear of anything that
               would cover the footer's own links. */}
@@ -154,6 +167,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               /api/public/orbit endpoint — Cloudflare-only models, rate-limited
               per IP server-side. */}
           <OrbitBubble />
+          {/* No-op in Chrome; on browsers without scroll-timeline it makes the
+              existing `.v-rise` sections animate on scroll instead of on load. */}
+          <ScrollRise />
         </ThemeProvider>
 
         {/* Quantalog eats its own dog food: this landing page is tracked by Quantalog. */}

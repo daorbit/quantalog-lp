@@ -243,16 +243,24 @@ const NODE_EXTENT: [[number, number], [number, number]] = [
   [960, 480],
 ];
  
-/** Wraps the flow in the provider `useReactFlow` needs. */
-export function HeroFlow() {
+/**
+ * Wraps the flow in the provider `useReactFlow` needs.
+ *
+ * `compact` is the phone rendering: same graph, but drag and the control panel
+ * are off and the canvas is shorter. React Flow is not a light dependency, so
+ * on mobile the hero renders this lazily (see `HeroFlowLazy` in the hero) —
+ * it is decorative (`aria-hidden`) and never the LCP element, which stays the
+ * headline text, so keeping it off the critical path costs nothing in SEO.
+ */
+export function HeroFlow({ compact = false }: { compact?: boolean }) {
   return (
     <ReactFlowProvider>
-      <HeroFlowInner />
+      <HeroFlowInner compact={compact} />
     </ReactFlowProvider>
   );
 }
 
-function HeroFlowInner() {
+function HeroFlowInner({ compact }: { compact: boolean }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const edges = useMemo(() => initialEdges, []);
   const noop = useCallback(() => {}, []);
@@ -271,7 +279,10 @@ function HeroFlowInner() {
   }, [setNodes, fitView]);
 
   return (
-    <div className="h-[380px] w-full lg:h-[520px]" aria-hidden>
+    <div
+      className={compact ? "h-[300px] w-full" : "h-[380px] w-full lg:h-[520px]"}
+      aria-hidden
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -282,7 +293,7 @@ function HeroFlowInner() {
         fitView
         fitViewOptions={{ padding: 0.08 }}
         nodeExtent={NODE_EXTENT}
-        nodesDraggable
+        nodesDraggable={!compact}
         nodesConnectable={false}
         elementsSelectable={false}
         edgesFocusable={false}
@@ -301,13 +312,15 @@ function HeroFlowInner() {
         proOptions={{ hideAttribution: true }}
       >
         <Background variant={BackgroundVariant.Dots} gap={22} size={1} color="var(--border)" />
-        {/* Zoom, fit, and a reset that returns every card to its starting
-            spot — the graph invites dragging, so it needs an undo. */}
-        <Controls showInteractive={false} position="bottom-right">
-          <ControlButton onClick={reset} title="Reset layout" aria-label="Reset layout">
-            <RotateCcw size={14} strokeWidth={2} />
-          </ControlButton>
-        </Controls>
+        {/* Controls only where dragging is on — on the compact mobile canvas
+            there is nothing to reset or zoom, so the panel is dropped. */}
+        {!compact && (
+          <Controls showInteractive={false} position="bottom-right">
+            <ControlButton onClick={reset} title="Reset layout" aria-label="Reset layout">
+              <RotateCcw size={14} strokeWidth={2} />
+            </ControlButton>
+          </Controls>
+        )}
       </ReactFlow>
     </div>
   );
