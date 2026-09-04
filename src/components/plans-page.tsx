@@ -142,7 +142,7 @@ export function PlansPage() {
           layout does not jump when the plans land, and the page reads as
           loading rather than as broken. */}
       {!plans && !error && (
-        <div className="mt-10 grid items-start gap-5 lg:grid-cols-3" aria-hidden="true">
+        <div className="mt-10 grid gap-5 lg:grid-cols-3" aria-hidden="true">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
@@ -178,7 +178,7 @@ export function PlansPage() {
       {/* The same cards as the home page, but with no row cap — this is the
           page someone lands on to actually decide. */}
       {plans && (
-        <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {sorted.map((plan) => (
             <PlanCard
               key={plan.slug}

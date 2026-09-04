@@ -66,7 +66,11 @@ export function PlanCard({
           </span>
         )}
       </div>
-      <p className="relative mt-1.5 min-h-10 text-[13px] leading-relaxed text-fg-muted">
+      {/* Two lines reserved. The descriptions run one or two lines depending on
+          the plan, and without a floor the price row below starts at a
+          different height on each card — visible as a stagger across the row
+          even once the cards themselves are equal height. */}
+      <p className="relative mt-1.5 min-h-11 text-[13px] leading-relaxed text-fg-muted">
         {plan.description}
       </p>
 
@@ -121,7 +125,12 @@ export function PlanCard({
         </span>
       </div>
 
-      <ul className="relative mt-5 space-y-2.5 border-t border-border pt-5">
+      {/* grow: the cards are equal height from the grid, and the plans carry
+          different numbers of features, so the surplus has to land somewhere.
+          Putting it on the list keeps every row above it — price, CTA, quota —
+          on a shared baseline, and leaves the gap under the features where it
+          reads as breathing room rather than as a card that failed to fill. */}
+      <ul className="relative mt-5 grow space-y-2.5 border-t border-border pt-5">
         {quotas.map((f) => (
           <li key={f} className="flex items-start gap-2 text-[13px]">
             <Check

@@ -97,7 +97,7 @@ export function Pricing() {
         {/* Card-shaped skeleton rather than a spinner, so the section does not
             jump when the plans land. */}
         {!plans && !error && (
-          <div className="mt-10 grid items-start gap-5 lg:grid-cols-3" aria-hidden="true">
+          <div className="mt-10 grid gap-5 lg:grid-cols-3" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
@@ -131,7 +131,7 @@ export function Pricing() {
         )}
 
         {plans && (
-          <div className="mt-10 grid items-start gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {plans.map((plan) => (
               <PlanCard
                 key={plan.slug}
