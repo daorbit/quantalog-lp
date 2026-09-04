@@ -109,7 +109,7 @@ export const addAnalyticsToWordpress: Post = {
     "The three places to put the tag ranked by how well they survive updates, why page caching is not a problem, and how to track form submissions — no consent banner for the analytics itself.",
   date: "2026-08-23",
   tags: ["Analytics", "WordPress", "Guide"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 5,
   Body,
 };

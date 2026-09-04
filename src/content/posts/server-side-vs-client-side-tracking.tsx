@@ -208,7 +208,7 @@ export const serverSideVsClientSide: Post = {
     "Not a reliability contest. Server-side overcounts bots, client-side undercounts humans, and they observe different things — how to split events between them by consequence.",
   date: "2026-08-12",
   tags: ["Analytics", "Engineering", "Privacy"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 9,
   Body,
 };

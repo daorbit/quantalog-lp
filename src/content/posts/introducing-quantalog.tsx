@@ -154,7 +154,7 @@ export const introducingQuantalog: Post = {
     "Why we built a cookieless analytics engine with a multi-tenant API — and how to ship analytics to your own users in an afternoon.",
   date: "2026-07-13",
   tags: ["Product", "Privacy", "API"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 5,
   Body,
 };

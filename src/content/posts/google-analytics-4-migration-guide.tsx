@@ -215,7 +215,7 @@ export const ga4Migration: Post = {
     "Why your new numbers will never match GA4, what happens to your history, and the order to run a migration in so you find the expensive surprises early.",
   date: "2026-08-18",
   tags: ["Analytics", "Migration", "Google Analytics"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 10,
   Body,
 };

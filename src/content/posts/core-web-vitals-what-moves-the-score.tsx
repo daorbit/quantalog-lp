@@ -242,7 +242,7 @@ export const coreWebVitals: Post = {
     "LCP, INP and CLS explained by cause rather than by definition — why lab scores mislead, why INP is harder than FID was, and the fixes worth an afternoon.",
   date: "2026-08-04",
   tags: ["SEO", "Performance", "Engineering"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 10,
   Body,
 };

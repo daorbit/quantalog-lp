@@ -232,7 +232,7 @@ export const cookieBannerAnalytics: Post = {
     "ePrivacy governs storage, the GDPR governs data, and the two get confused constantly. A practical test for whether your analytics needs consent — and how to check your own site.",
   date: "2026-08-04",
   tags: ["Privacy", "GDPR", "Analytics"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 8,
   Body,
 };

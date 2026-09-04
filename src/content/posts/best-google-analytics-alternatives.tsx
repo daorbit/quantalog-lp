@@ -165,7 +165,7 @@ export const bestGoogleAnalyticsAlternatives: Post = {
     "Cookieless, self-hosted and product-analytics options compared honestly — which fits which team, and the one migration rule that applies to all of them.",
   date: "2026-08-29",
   tags: ["Analytics", "Google Analytics", "Comparison"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 8,
   Body,
 };

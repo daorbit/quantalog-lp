@@ -202,7 +202,7 @@ export const whyAnalyticsUndercountsTraffic: Post = {
     "Consent declines, content blockers, sampling, thresholding and beacons that never fire — the five mechanisms that remove visitors from your reports, and how to measure your own gap against server logs.",
   date: "2026-08-04",
   tags: ["Analytics", "Privacy", "Engineering"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 9,
   Body,
 };

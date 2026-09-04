@@ -233,7 +233,7 @@ export const technicalSeoAudit: Post = {
     "Most checklists are alphabetical. This one is ranked by damage: indexability failures first, duplication second, rendering third — and Core Web Vitals last, on purpose.",
   date: "2026-08-22",
   tags: ["SEO", "Engineering", "Performance"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 11,
   Body,
 };

@@ -111,7 +111,7 @@ export const addAnalyticsToAstro: Post = {
     "One inline tag in your base layout, what to do about view transitions, and how to fire events from an island — keeping Astro's near-zero JavaScript promise intact.",
   date: "2026-08-25",
   tags: ["Analytics", "Astro", "Guide"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 4,
   Body,
 };

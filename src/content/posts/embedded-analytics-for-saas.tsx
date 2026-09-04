@@ -233,7 +233,7 @@ export const embeddedAnalyticsForSaas: Post = {
     "When your users have users, analytics becomes a multi-tenant data problem. Isolation, embed tokens, why to expose aggregates instead of raw events, and when building it yourself is a mistake.",
   date: "2026-08-25",
   tags: ["API", "Engineering", "Product"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 10,
   Body,
 };

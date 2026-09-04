@@ -11,6 +11,9 @@ import { bestGoogleAnalyticsAlternatives } from "@/content/posts/best-google-ana
 import { addAnalyticsToNextjs } from "@/content/posts/add-analytics-to-nextjs";
 import { addAnalyticsToAstro } from "@/content/posts/add-analytics-to-astro";
 import { addAnalyticsToWordpress } from "@/content/posts/add-analytics-to-wordpress";
+import { measuringAiSearchTraffic } from "@/content/posts/measuring-ai-search-traffic";
+import { ga4DataThresholding } from "@/content/posts/ga4-data-thresholding";
+import { cookielessTracking2026 } from "@/content/posts/cookieless-tracking-2026";
 
 export type PostMeta = {
   slug: string;
@@ -42,6 +45,9 @@ const POSTS: Post[] = [
   addAnalyticsToNextjs,
   addAnalyticsToAstro,
   addAnalyticsToWordpress,
+  measuringAiSearchTraffic,
+  ga4DataThresholding,
+  cookielessTracking2026,
 ];
 
 const sorted = () => [...POSTS].sort((a, b) => +new Date(b.date) - +new Date(a.date));

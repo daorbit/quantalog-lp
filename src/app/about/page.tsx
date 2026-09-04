@@ -36,7 +36,7 @@ const principles = [
 const faqs = [
   {
     q: "Who is behind Quantalog?",
-    a: "Quantalog is built and run by a small independent team led by Ajay Goswami. It is a self-funded product, not a venture-backed one, which is why the roadmap answers to customers rather than to a growth target.",
+    a: "Quantalog is built and run by a small independent team led by DA Orbit. It is a self-funded product, not a venture-backed one, which is why the roadmap answers to customers rather than to a growth target.",
   },
   {
     q: "Is Quantalog GDPR compliant?",

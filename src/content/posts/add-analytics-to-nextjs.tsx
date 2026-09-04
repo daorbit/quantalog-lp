@@ -133,7 +133,7 @@ export const addAnalyticsToNextjs: Post = {
     "One script tag for the App Router and the Pages Router, why route changes are the only catch, and how to fire custom events — no npm package, no consent banner.",
   date: "2026-08-27",
   tags: ["Analytics", "Next.js", "Guide"],
-  author: { name: "Ajay Goswami", role: "Founder" },
+  author: { name: "DA Orbit", role: "Founder" },
   readingMinutes: 5,
   Body,
 };
