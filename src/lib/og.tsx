@@ -7,7 +7,24 @@ export const OG_CONTENT_TYPE = "image/png";
 export function ogImage({
   title,
   eyebrow,
-}:
+}: {
+  title: string;
+  eyebrow?: string;
+}) {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: 80,
+          background: "#0a0b0d",
+          fontFamily: "sans-serif",
+        }}
+      >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{
