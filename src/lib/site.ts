@@ -54,7 +54,7 @@ export const productNav = [
 ] as const;
 
 export const nav = [
-  { href: "/#pricing", label: "Pricing" },
+  { href: "/plans", label: "Pricing" },
   { href: "/docs", label: "Docs" },
   { href: "/blog", label: "Blog" },
   { href: "/compare", label: "Compare" },

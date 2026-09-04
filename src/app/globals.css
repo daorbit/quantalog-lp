@@ -121,6 +121,89 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* ============ Pricing ============ */
+/* Second line of the pricing heading, in the display serif and the accent —
+   the one coloured element in a section whose CTAs are monochrome. */
+.pricing-display-accent {
+  /* No display face is loaded on this site, so this is the system serif stack
+     rather than a webfont — one italic line does not justify the request. */
+  font-family: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+.pricing-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+/* The featured card is lit from above by a soft beam rather than scaled up —
+   scaling it pushed its baseline out of line with the cards beside it. */
+.pricing-card--featured {
+  box-shadow: var(--shadow-lg);
+}
+.pricing-card__beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 78%;
+  height: 190px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 100% at 50% 0%,
+    color-mix(in srgb, var(--accent) 26%, transparent) 0%,
+    transparent 72%
+  );
+}
+/* A bright hairline where the beam meets the card's top edge. */
+.pricing-card--featured::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 22%;
+  right: 22%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 70%, transparent),
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card:hover { transform: none; }
+}
+
+/* The featured column in the comparison matrix. A tinted channel running the
+   height of the table, so the eye can follow one plan down a long list of rows
+   without losing its place. */
+.pricing-col--featured {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+}
+thead .pricing-col--featured {
+  border-top: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 12px 12px 0 0;
+}
+tbody tr:last-child .pricing-col--featured {
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 0 0 12px 12px;
+}
+
 /* ============ Starfield ============ */
 /* A fixed field of drifting dots behind the page. Fixed rather than absolute
    so it never lengthens the document, and behind everything via a negative

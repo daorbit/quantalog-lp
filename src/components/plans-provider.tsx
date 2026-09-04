@@ -71,16 +71,23 @@ function getPlans(): Promise<Cache> {
 }
 
 export function PlansProvider({ children }: { children: React.ReactNode }) {
-  const [state, setState] = useState<PlansState>(() => {
-
-    const cached = typeof window !== "undefined" ? readSession() : null;
-    return cached
-      ? { plans: cached.plans, orbitPlans: cached.orbitPlans, error: false }
-      : EMPTY;
-  });
+  // Always starts empty, on both sides. Seeding this from sessionStorage in
+  // the initializer made the first client render disagree with the server's
+  // (which has no session storage and always rendered the loading state), and
+  // React threw that away as a hydration mismatch. The cache is adopted in the
+  // effect below instead, which runs after hydration has matched.
+  const [state, setState] = useState<PlansState>(EMPTY);
 
   useEffect(() => {
     let cancelled = false;
+
+    // Paint from the cache immediately if this session already has it, so the
+    // spinner does not flash on every navigation; the fetch below still runs
+    // and refreshes it.
+    const cached = readSession();
+    if (cached) {
+      setState({ plans: cached.plans, orbitPlans: cached.orbitPlans, error: false });
+    }
 
     getPlans()
       .then((cache) => {
