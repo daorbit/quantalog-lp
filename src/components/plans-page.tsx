@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Loader2, Minus } from "lucide-react";
+import { Check, Minus } from "lucide-react";
 import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "./plan-icons";
 import { PlanCard } from "./plan-card";
 import { usePlans } from "./plans-provider";
@@ -138,11 +138,32 @@ export function PlansPage() {
         </div>
       </div>
 
+      {/* A skeleton in the shape of the cards rather than a spinner: the
+          layout does not jump when the plans land, and the page reads as
+          loading rather than as broken. */}
       {!plans && !error && (
-        <div className="mt-16 flex justify-center">
-          <Loader2 className="h-5 w-5 animate-spin text-fg-faint" />
+        <div className="mt-10 grid items-start gap-5 lg:grid-cols-3" aria-hidden="true">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur sm:p-7"
+            >
+              <div className="skeleton h-5 w-24 rounded" />
+              <div className="skeleton mt-3 h-3.5 w-full rounded" />
+              <div className="skeleton mt-1.5 h-3.5 w-2/3 rounded" />
+              <div className="skeleton mt-6 h-11 w-32 rounded-lg" />
+              <div className="skeleton mt-7 h-10 w-full rounded-full" />
+              <div className="skeleton mt-6 h-4 w-40 rounded" />
+              <div className="mt-5 space-y-2.5 border-t border-border pt-5">
+                {[0, 1, 2, 3, 4, 5].map((r) => (
+                  <div key={r} className="skeleton h-3.5 w-full rounded" />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       )}
+      {!plans && !error && <span className="sr-only">Loading plans…</span>}
 
       {error && (
         <p className="mt-16 text-sm text-fg-muted">
