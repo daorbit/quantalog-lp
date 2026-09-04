@@ -1,6 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import {
+  BarChart3,
+  FileSearch,
+  Globe,
+  LayoutGrid,
+  Mail,
+  Search,
+  SlidersHorizontal,
+  Users,
+} from "lucide-react";
 import { useLiveNumber } from "./use-live-number";
 
 type RangeKey = "24h" | "7d" | "30d";
@@ -9,12 +19,14 @@ const RANGES: Record<
   RangeKey,
   {
     series: number[];
+    prev: number[];
     axis: string[];
     chartLabel: string;
     live: boolean;
     stats: { visitors: number; pageviews: number; bounce: number; session: number };
     topPages: { label: string; views: number; pct: number }[];
     sources: { label: string; views: number; pct: number }[];
+    countries: { label: string; flag: string; views: number; pct: number }[];
   }
 > = {
   "24h": {
@@ -22,8 +34,12 @@ const RANGES: Record<
       18, 24, 21, 30, 27, 36, 33, 44, 39, 52, 47, 61, 55, 72, 66, 84, 78, 96, 88,
       74, 81, 92, 86, 99,
     ],
+    prev: [
+      15, 19, 18, 24, 22, 28, 27, 34, 31, 39, 37, 45, 42, 52, 49, 58, 56, 64, 61,
+      55, 58, 63, 60, 66,
+    ],
     axis: ["00:00", "06:00", "12:00", "18:00", "now"],
-    chartLabel: "Visitors · last 24 hours",
+    chartLabel: "Visitors",
     live: true,
     stats: { visitors: 12847, pageviews: 41203, bounce: 34, session: 161 },
     topPages: [
@@ -31,12 +47,21 @@ const RANGES: Record<
       { label: "/", views: 3271, pct: 79 },
       { label: "/blog/introducing-quantalog", views: 1904, pct: 46 },
       { label: "/docs/quickstart", views: 1140, pct: 28 },
+      { label: "/seo-audits", views: 892, pct: 22 },
     ],
     sources: [
       { label: "Direct", views: 3902, pct: 100 },
       { label: "google.com", views: 2410, pct: 62 },
       { label: "news.ycombinator.com", views: 1288, pct: 33 },
       { label: "x.com", views: 640, pct: 16 },
+      { label: "linkedin.com", views: 412, pct: 11 },
+    ],
+    countries: [
+      { label: "United States", flag: "🇺🇸", views: 4820, pct: 100 },
+      { label: "India", flag: "🇮🇳", views: 2140, pct: 44 },
+      { label: "Germany", flag: "🇩🇪", views: 1388, pct: 29 },
+      { label: "United Kingdom", flag: "🇬🇧", views: 1002, pct: 21 },
+      { label: "Canada", flag: "🇨🇦", views: 744, pct: 15 },
     ],
   },
   "7d": {
@@ -44,8 +69,12 @@ const RANGES: Record<
       210, 264, 248, 305, 331, 420, 468, 402, 455, 512, 498, 540, 588, 611, 574,
       629, 665, 703, 741, 688, 720,
     ],
+    prev: [
+      180, 214, 205, 249, 268, 330, 361, 322, 358, 396, 388, 412, 447, 462, 441,
+      475, 498, 521, 544, 512, 530,
+    ],
     axis: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    chartLabel: "Visitors · last 7 days",
+    chartLabel: "Visitors",
     live: false,
     stats: { visitors: 78420, pageviews: 254877, bounce: 31, session: 174 },
     topPages: [
@@ -53,12 +82,21 @@ const RANGES: Record<
       { label: "/", views: 18022, pct: 83 },
       { label: "/blog/introducing-quantalog", views: 9611, pct: 44 },
       { label: "/seo-audits", views: 6740, pct: 31 },
+      { label: "/docs/quickstart", views: 4980, pct: 23 },
     ],
     sources: [
       { label: "Direct", views: 19204, pct: 100 },
       { label: "google.com", views: 15880, pct: 83 },
       { label: "news.ycombinator.com", views: 6120, pct: 32 },
       { label: "linkedin.com", views: 3410, pct: 18 },
+      { label: "x.com", views: 2180, pct: 12 },
+    ],
+    countries: [
+      { label: "United States", flag: "🇺🇸", views: 29410, pct: 100 },
+      { label: "India", flag: "🇮🇳", views: 13220, pct: 45 },
+      { label: "Germany", flag: "🇩🇪", views: 8140, pct: 28 },
+      { label: "United Kingdom", flag: "🇬🇧", views: 6280, pct: 22 },
+      { label: "Netherlands", flag: "🇳🇱", views: 4110, pct: 14 },
     ],
   },
   "30d": {
@@ -67,8 +105,13 @@ const RANGES: Record<
       1533, 1590, 1622, 1701, 1688, 1774, 1846, 1902, 1958, 2010, 2087, 2140,
       2205, 2260, 2318, 2377, 2431,
     ],
+    prev: [
+      540, 602, 688, 754, 812, 878, 918, 890, 972, 1044, 1030, 1108, 1160, 1198,
+      1240, 1262, 1318, 1305, 1366, 1414, 1452, 1490, 1526, 1578, 1614, 1660,
+      1698, 1740, 1782, 1820,
+    ],
     axis: ["Wk 1", "Wk 2", "Wk 3", "Wk 4"],
-    chartLabel: "Visitors · last 30 days",
+    chartLabel: "Visitors",
     live: false,
     stats: { visitors: 341902, pageviews: 1128440, bounce: 29, session: 188 },
     topPages: [
@@ -76,29 +119,52 @@ const RANGES: Record<
       { label: "/", views: 81007, pct: 86 },
       { label: "/blog/introducing-quantalog", views: 40118, pct: 43 },
       { label: "/platform-api", views: 28640, pct: 30 },
+      { label: "/seo-audits", views: 21400, pct: 23 },
     ],
     sources: [
       { label: "google.com", views: 88420, pct: 100 },
       { label: "Direct", views: 79950, pct: 90 },
       { label: "news.ycombinator.com", views: 24110, pct: 27 },
       { label: "linkedin.com", views: 15980, pct: 18 },
+      { label: "x.com", views: 9240, pct: 11 },
+    ],
+    countries: [
+      { label: "United States", flag: "🇺🇸", views: 128400, pct: 100 },
+      { label: "India", flag: "🇮🇳", views: 57200, pct: 45 },
+      { label: "Germany", flag: "🇩🇪", views: 35100, pct: 27 },
+      { label: "United Kingdom", flag: "🇬🇧", views: 27400, pct: 21 },
+      { label: "Brazil", flag: "🇧🇷", views: 18900, pct: 15 },
     ],
   },
 };
 
 const RANGE_KEYS: RangeKey[] = ["24h", "7d", "30d"];
 
-const W = 600;
-const H = 130;
+/** Sidebar entries. Only the active one needs to look interactive. */
+const NAV = [
+  { icon: LayoutGrid, label: "Overview", active: true },
+  { icon: Users, label: "Audience", active: false },
+  { icon: Globe, label: "Sources", active: false },
+  { icon: FileSearch, label: "SEO", active: false },
+  { icon: Mail, label: "Reports", active: false },
+];
 
-function points(values: number[]) {
-  const max = Math.max(...values);
-  const step = W / (values.length - 1);
-  return values.map((v, i) => [i * step, H - (v / max) * (H - 10) - 4] as const);
+const W = 640;
+const H = 190;
+/** Room for the y-axis labels drawn inside the same viewBox. */
+const PAD_L = 34;
+const PAD_B = 22;
+const PAD_T = 8;
+
+function scale(values: number[], max: number) {
+  const step = (W - PAD_L) / (values.length - 1);
+  const plotH = H - PAD_B - PAD_T;
+  return values.map(
+    (v, i) => [PAD_L + i * step, PAD_T + plotH - (v / max) * plotH] as const
+  );
 }
 
-function linePath(values: number[]) {
-  const pts = points(values);
+function linePath(pts: readonly (readonly [number, number])[]) {
   let d = `M ${pts[0][0]},${pts[0][1]}`;
   for (let i = 1; i < pts.length; i++) {
     const [px, py] = pts[i - 1];
@@ -108,18 +174,38 @@ function linePath(values: number[]) {
   return d;
 }
 
+/** Axis ticks as round-ish numbers rather than raw maxima. */
+function ticks(max: number): number[] {
+  const step = max / 3;
+  const mag = 10 ** Math.floor(Math.log10(step));
+  const nice = Math.ceil(step / mag) * mag;
+  return [0, nice, nice * 2, nice * 3];
+}
+
+function compact(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(n >= 10_000 ? 0 : 1)}k`;
+  return String(n);
+}
+
 function Stat({
   label,
   seed,
   delta,
+  good = true,
   live = false,
+  active = false,
   format = (n: number) => n.toLocaleString("en-US"),
   every,
 }: {
   label: string;
   seed: number;
   delta: string;
+  /** Whether the movement is an improvement. Bounce rate falling is good. */
+  good?: boolean;
   live?: boolean;
+  /** The metric the chart below is plotting. Gets the accent underline. */
+  active?: boolean;
   format?: (n: number) => string;
   every?: number;
 }) {
@@ -127,18 +213,34 @@ function Stat({
   const shown = live ? value : seed;
 
   return (
-    <div className="border-border px-5 py-4 not-last:border-b sm:not-last:border-b-0 sm:not-last:border-r">
-      <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
+    <div
+      className={`relative border-border px-4 py-3.5 not-last:border-b sm:not-last:border-b-0 sm:not-last:border-r ${
+        active ? "bg-fg/[0.015]" : ""
+      }`}
+    >
+      {/* Real dashboards make the plotted metric obvious in the stat row.
+          A 2px accent rule on the active tile does that in one element. */}
+      {active && (
+        <span
+          className="absolute inset-x-0 top-0 h-0.5 bg-accent"
+          aria-hidden="true"
+        />
+      )}
+      <p className="text-[10.5px] font-medium uppercase tracking-[0.09em] text-fg-faint">
         {label}
       </p>
-      <div className="mt-2 flex items-baseline gap-2">
+      <div className="mt-1.5 flex items-baseline gap-2">
         <p
-          className="tick-num text-[1.75rem] font-semibold leading-none tracking-[-0.02em]"
+          className="tick-num text-[1.4rem] font-semibold leading-none tracking-[-0.03em] tabular-nums sm:text-[1.55rem]"
           data-bumped={live && bumped}
         >
           {format(shown)}
         </p>
-        <span className="rounded bg-accent/10 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-accent">
+        <span
+          className={`text-[11px] font-medium tabular-nums ${
+            good ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
+          }`}
+        >
           {delta}
         </span>
       </div>
@@ -148,36 +250,63 @@ function Stat({
 
 function BarList({
   title,
-  unit,
   rows,
+  flags = false,
 }: {
   title: string;
-  unit: string;
-  rows: { label: string; views: number; pct: number }[];
+  rows: { label: string; flag?: string; views: number; pct: number }[];
+  flags?: boolean;
 }) {
-  return (
-    <div className="p-5">
-      <div className="flex items-center justify-between">
+  const total = rows.reduce((sum, r) => sum + r.views, 0);
 
-        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+  return (
+    <div className="min-w-0 p-4">
+      <div className="flex items-center justify-between">
+        <p className="text-[10.5px] font-semibold uppercase tracking-[0.09em] text-fg-faint">
           {title}
         </p>
-        <span className="text-[11px] uppercase tracking-wide text-fg-faint">{unit}</span>
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.08em] text-fg-faint">
+          <span>Views</span>
+          <span className="hidden w-9 text-right sm:inline">Share</span>
+        </div>
       </div>
-      <ul className="mt-4 space-y-1.5">
-        {rows.map((row, i) => (
-          <li key={row.label} className="relative overflow-hidden rounded">
-            <div
-              className="bar-fill absolute inset-y-0 left-0 bg-accent/[0.13]"
 
-              style={{ width: `${row.pct}%`, animationDelay: `${0.5 + i * 0.09}s` }}
+      <ul className="mt-3">
+        {rows.map((row, i) => (
+          <li
+            key={row.label}
+            className="group relative overflow-hidden border-b border-hairline last:border-b-0"
+          >
+            {/* The fill is the row's magnitude, kept low-contrast so the label
+                stays readable across it — this is a ranked table with a bar in
+                the background, not a bar chart with labels on top. */}
+            <div
+              className="bar-fill absolute inset-y-px left-0 rounded-sm bg-accent/[0.09] transition-colors duration-200 group-hover:bg-accent/[0.16]"
+              style={{ width: `${row.pct}%`, animationDelay: `${0.45 + i * 0.07}s` }}
               aria-hidden="true"
             />
-            <div className="absolute inset-y-0 left-0 w-0.5 bg-accent/50" aria-hidden="true" />
-            <div className="relative flex items-center justify-between py-2 pl-2.5 pr-2">
-              <span className="truncate pr-3 font-mono text-xs text-fg">{row.label}</span>
-              <span className="shrink-0 text-xs font-medium tabular-nums text-fg-muted">
-                {row.views.toLocaleString()}
+            <div className="relative flex items-center justify-between py-[7px] pl-2 pr-2">
+              <span className="flex min-w-0 items-center gap-2">
+                {flags && (
+                  <span className="shrink-0 text-[13px] leading-none" aria-hidden="true">
+                    {row.flag}
+                  </span>
+                )}
+                <span
+                  className={`truncate text-[12px] text-fg ${
+                    flags ? "" : "font-mono"
+                  }`}
+                >
+                  {row.label}
+                </span>
+              </span>
+              <span className="flex shrink-0 items-center gap-3">
+                <span className="text-[12px] font-medium tabular-nums text-fg">
+                  {row.views.toLocaleString()}
+                </span>
+                <span className="hidden w-9 text-right text-[11px] tabular-nums text-fg-faint sm:inline">
+                  {Math.round((row.views / total) * 100)}%
+                </span>
               </span>
             </div>
           </li>
@@ -188,11 +317,16 @@ function BarList({
 }
 
 export function DashboardPreview() {
-
   const [range, setRange] = useState<RangeKey>("24h");
   const r = RANGES[range];
 
-  const pts = points(r.series);
+  // Both series share one scale, or the comparison line would lie.
+  const max = Math.max(...r.series, ...r.prev);
+  const axisTicks = ticks(max);
+  const top = axisTicks[axisTicks.length - 1];
+
+  const pts = scale(r.series, top);
+  const prevPts = scale(r.prev, top);
   const last = pts[pts.length - 1];
 
   const { value: online, bumped: onlineBumped } = useLiveNumber(42, {
@@ -201,10 +335,12 @@ export function DashboardPreview() {
     band: 0.22,
   });
 
+  const plotH = H - PAD_B - PAD_T;
+
   return (
     <div className="card overflow-hidden shadow-float">
-
-      <div className="flex items-center gap-3 border-b border-border bg-bg-subtle px-4 py-3">
+      {/* ---- Window chrome ---- */}
+      <div className="flex items-center gap-3 border-b border-border bg-bg-subtle px-3.5 py-2.5">
         <div className="flex gap-1.5" aria-hidden="true">
           <span className="h-2.5 w-2.5 rounded-full bg-border-strong" />
           <span className="h-2.5 w-2.5 rounded-full bg-border-strong" />
@@ -217,154 +353,259 @@ export function DashboardPreview() {
             <span className="tick-num text-fg" data-bumped={onlineBumped}>
               {online}
             </span>{" "}
-            visitors online
+            online
           </span>
         </div>
-
-        <div className="hidden items-center gap-1 sm:flex">
-          {RANGE_KEYS.map((k) => (
-            <button
-              key={k}
-              type="button"
-              onClick={() => setRange(k)}
-              aria-pressed={range === k}
-              className={`rounded px-1.5 py-0.5 text-[11px] transition-colors ${
-                range === k
-                  ? "bg-accent/10 font-medium text-accent"
-                  : "text-fg-faint hover:text-fg-muted"
-              }`}
-            >
-              {k}
-            </button>
-          ))}
-        </div>
+        <div className="w-[52px]" aria-hidden="true" />
       </div>
 
-      <div className="stat-sweep relative grid overflow-hidden border-b border-border sm:grid-cols-4">
-        <Stat
-          key={`v-${range}`}
-          label="Visitors"
-          seed={r.stats.visitors}
-          delta="+18.2%"
-          live={r.live}
-          every={3000}
-        />
-        <Stat
-          key={`p-${range}`}
-          label="Pageviews"
-          seed={r.stats.pageviews}
-          delta="+11.4%"
-          live={r.live}
-          every={2100}
-        />
-        <Stat
-          key={`b-${range}`}
-          label="Bounce rate"
-          seed={r.stats.bounce}
-          delta="−6.1%"
-          format={(n) => `${n}%`}
-        />
-        <Stat
-          key={`s-${range}`}
-          label="Avg. session"
-          seed={r.stats.session}
-          delta="+9.8%"
-          format={(n) => `${Math.floor(n / 60)}m ${n % 60}s`}
-        />
-      </div>
-
-      <div className="border-b border-border p-5">
-        <div className="flex items-center justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
-            {r.chartLabel}
-          </p>
-          <span className="flex items-center gap-1.5 rounded border border-border px-2 py-0.5 font-mono text-[11px] text-fg-muted">
-            <span className="live-dot h-1 w-1 rounded-full bg-accent" />
-            {r.live ? "polling 3s" : "settled"}
-          </span>
-        </div>
-
-        <svg
-          key={range}
-          viewBox={`0 0 ${W} ${H}`}
-          className="mt-5 h-32 w-full overflow-visible"
-          preserveAspectRatio="none"
-          role="img"
-          aria-label={`${r.chartLabel}, trending upward`}
-        >
-          <defs>
-            <linearGradient id="q-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
-          {[0.25, 0.5, 0.75].map((f) => (
-            <line
-              key={f}
-              x1="0"
-              x2={W}
-              y1={H * f}
-              y2={H * f}
-              stroke="var(--border)"
-              strokeWidth="1"
-              strokeDasharray="3 5"
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-
-          <path
-            className="chart-area"
-            d={`${linePath(r.series)} L ${W},${H} L 0,${H} Z`}
-            fill="url(#q-fill)"
-          />
-
-          <path
-            className="chart-line"
-            style={{ "--line-len": "1400" } as React.CSSProperties}
-            d={linePath(r.series)}
-            fill="none"
-            stroke="var(--accent)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
-
-          <circle
-            className="chart-edge"
-            cx={last[0]}
-            cy={last[1]}
-            r="7"
-            fill="var(--accent)"
-            opacity="0.18"
-          />
-          <circle
-            cx={last[0]}
-            cy={last[1]}
-            r="3"
-            fill="var(--accent)"
-            stroke="var(--surface)"
-            strokeWidth="2"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-
-        <div
-          className="mt-2 flex justify-between font-mono text-[10px] text-fg-faint"
+      {/* ---- App body: sidebar + main ---- */}
+      <div className="flex">
+        {/* The sidebar is what separates "a chart in a box" from "a product".
+            Icon-only below lg so it never crowds the data. */}
+        <aside
+          className="hidden shrink-0 flex-col gap-0.5 border-r border-border bg-bg-subtle/60 p-2 sm:flex lg:w-[148px] lg:p-2.5"
           aria-hidden="true"
         >
-          {r.axis.map((t) => (
-            <span key={t}>{t}</span>
-          ))}
-        </div>
-      </div>
+          <div className="mb-2 flex items-center gap-2 px-1.5 pt-1">
+            <span className="flex h-5 w-5 items-center justify-center rounded bg-accent/15">
+              <BarChart3 className="h-3 w-3 text-accent" />
+            </span>
+            <span className="hidden text-[12px] font-semibold tracking-tight lg:inline">
+              Quantalog
+            </span>
+          </div>
 
-      <div
-        key={range}
-        className="grid divide-y divide-border sm:grid-cols-2 sm:divide-x sm:divide-y-0"
-      >
-        <BarList title="Top pages" unit="Views" rows={r.topPages} />
-        <BarList title="Top sources" unit="Views" rows={r.sources} />
+          {NAV.map(({ icon: Icon, label, active }) => (
+            <span
+              key={label}
+              className={`flex items-center gap-2 rounded-md px-1.5 py-1.5 text-[12px] transition-colors lg:px-2 ${
+                active
+                  ? "bg-fg/[0.07] font-medium text-fg"
+                  : "text-fg-faint"
+              }`}
+            >
+              <Icon className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden lg:inline">{label}</span>
+            </span>
+          ))}
+        </aside>
+
+        <div className="min-w-0 flex-1">
+          {/* ---- Filter bar ---- */}
+          <div className="flex items-center gap-2 border-b border-border px-3.5 py-2">
+            <div className="flex min-w-0 items-center gap-1.5 rounded-md border border-border bg-bg-subtle px-2 py-1 text-fg-faint">
+              <Search className="h-3 w-3 shrink-0" />
+              <span className="truncate text-[11px]">Filter…</span>
+            </div>
+            <span className="hidden items-center gap-1.5 rounded-md border border-border px-2 py-1 text-[11px] text-fg-muted md:inline-flex">
+              <SlidersHorizontal className="h-3 w-3" />
+              All sites
+            </span>
+
+            <div className="ml-auto flex items-center gap-1 rounded-md border border-border bg-bg-subtle p-0.5">
+              {RANGE_KEYS.map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  onClick={() => setRange(k)}
+                  aria-pressed={range === k}
+                  className={`rounded px-2 py-[3px] text-[11px] transition-colors ${
+                    range === k
+                      ? "bg-surface font-medium text-fg shadow-soft"
+                      : "text-fg-faint hover:text-fg-muted"
+                  }`}
+                >
+                  {k}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ---- Stat row ---- */}
+          <div className="stat-sweep relative grid overflow-hidden border-b border-border sm:grid-cols-4">
+            <Stat
+              key={`v-${range}`}
+              label="Visitors"
+              seed={r.stats.visitors}
+              delta="+18.2%"
+              live={r.live}
+              every={3000}
+              active
+            />
+            <Stat
+              key={`p-${range}`}
+              label="Pageviews"
+              seed={r.stats.pageviews}
+              delta="+11.4%"
+              live={r.live}
+              every={2100}
+            />
+            <Stat
+              key={`b-${range}`}
+              label="Bounce rate"
+              seed={r.stats.bounce}
+              delta="−6.1%"
+              format={(n) => `${n}%`}
+              good
+            />
+            <Stat
+              key={`s-${range}`}
+              label="Avg. session"
+              seed={r.stats.session}
+              delta="+9.8%"
+              format={(n) => `${Math.floor(n / 60)}m ${n % 60}s`}
+            />
+          </div>
+
+          {/* ---- Chart ---- */}
+          <div className="border-b border-border px-4 pb-3 pt-3.5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <p className="text-[10.5px] font-semibold uppercase tracking-[0.09em] text-fg-faint">
+                  {r.chartLabel}
+                </p>
+                {/* A legend, because there are now two series. Without it the
+                    dashed line is unexplained decoration. */}
+                <span className="flex items-center gap-1.5 text-[10.5px] text-fg-faint">
+                  <span className="h-[2px] w-3 rounded-full bg-accent" />
+                  Current
+                </span>
+                <span className="hidden items-center gap-1.5 text-[10.5px] text-fg-faint sm:flex">
+                  <span className="h-0 w-3 border-t border-dashed border-fg-faint" />
+                  Previous
+                </span>
+              </div>
+              <span className="flex items-center gap-1.5 rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-fg-muted">
+                <span className="live-dot h-1 w-1 rounded-full bg-accent" />
+                {r.live ? "live" : "settled"}
+              </span>
+            </div>
+
+            <svg
+              key={range}
+              viewBox={`0 0 ${W} ${H}`}
+              className="mt-2 h-44 w-full sm:h-48"
+              /* Not "none": the axis labels live inside this viewBox now, and
+                 non-uniform scaling would stretch the glyphs. */
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              aria-label={`${r.chartLabel}, trending upward against the previous period`}
+            >
+              <defs>
+                <linearGradient id="q-fill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.22" />
+                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.01" />
+                </linearGradient>
+              </defs>
+
+              {/* Gridlines with real value labels. An unlabelled axis is the
+                  clearest tell that a dashboard screenshot is fake. */}
+              {axisTicks.map((t) => {
+                const y = PAD_T + plotH - (t / top) * plotH;
+                return (
+                  <g key={t}>
+                    <line
+                      x1={PAD_L}
+                      x2={W}
+                      y1={y}
+                      y2={y}
+                      stroke="var(--border)"
+                      strokeWidth="1"
+                      strokeOpacity={t === 0 ? 1 : 0.5}
+                      vectorEffect="non-scaling-stroke"
+                    />
+                    <text
+                      x={PAD_L - 7}
+                      y={y + 3}
+                      textAnchor="end"
+                      className="fill-fg-faint"
+                      style={{ fontSize: 9, fontVariantNumeric: "tabular-nums" }}
+                    >
+                      {compact(t)}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <path
+                className="chart-area"
+                d={`${linePath(pts)} L ${W},${PAD_T + plotH} L ${PAD_L},${PAD_T + plotH} Z`}
+                fill="url(#q-fill)"
+              />
+
+              {/* Previous period, dashed and unfilled — the comparison every
+                  real analytics view carries, and the thing that makes the
+                  "+18.2%" above it verifiable rather than asserted. */}
+              <path
+                d={linePath(prevPts)}
+                fill="none"
+                stroke="var(--fg-faint)"
+                strokeWidth="1.25"
+                strokeDasharray="4 4"
+                strokeOpacity="0.5"
+                vectorEffect="non-scaling-stroke"
+              />
+
+              <path
+                className="chart-line"
+                style={{ "--line-len": "1600" } as React.CSSProperties}
+                d={linePath(pts)}
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
+              />
+
+              <circle
+                className="chart-edge"
+                cx={last[0]}
+                cy={last[1]}
+                r="7"
+                fill="var(--accent)"
+                opacity="0.18"
+              />
+              <circle
+                cx={last[0]}
+                cy={last[1]}
+                r="3.5"
+                fill="var(--accent)"
+                stroke="var(--surface)"
+                strokeWidth="2"
+                vectorEffect="non-scaling-stroke"
+              />
+
+              {r.axis.map((t, i) => {
+                const x =
+                  PAD_L + (i / (r.axis.length - 1)) * (W - PAD_L);
+                return (
+                  <text
+                    key={t}
+                    x={Math.min(Math.max(x, PAD_L), W - 2)}
+                    y={H - 6}
+                    textAnchor={i === 0 ? "start" : i === r.axis.length - 1 ? "end" : "middle"}
+                    className="fill-fg-faint"
+                    style={{ fontSize: 9 }}
+                  >
+                    {t}
+                  </text>
+                );
+              })}
+            </svg>
+          </div>
+
+          {/* ---- Breakdown tables ---- */}
+          <div className="grid divide-y divide-border lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+            <BarList title="Top pages" rows={r.topPages} />
+            <BarList title="Top sources" rows={r.sources} />
+            {/* Third column only where there is room for it to stay legible. */}
+            <div className="hidden lg:block">
+              <BarList title="Countries" rows={r.countries} flags />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
