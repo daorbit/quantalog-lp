@@ -140,13 +140,44 @@ const RANGES: Record<
 
 const RANGE_KEYS: RangeKey[] = ["24h", "7d", "30d"];
 
-/** Sidebar entries. Only the active one needs to look interactive. */
-const NAV = [
-  { icon: LayoutGrid, label: "Overview", active: true },
-  { icon: Users, label: "Audience", active: false },
-  { icon: Globe, label: "Sources", active: false },
-  { icon: FileSearch, label: "SEO", active: false },
-  { icon: Mail, label: "Reports", active: false },
+type ViewKey = "overview" | "audience" | "sources";
+
+/**
+ * Sidebar entries.
+ *
+ * The three that carry their own data are real buttons — the panel is the
+ * product's main sales argument, and a sidebar that does nothing when clicked
+ * undercuts it. `soon` marks the two with no mock data behind them; they stay
+ * visible for the shape of the product but do not pretend to be clickable.
+ */
+const NAV: {
+  key: ViewKey | string;
+  icon: typeof LayoutGrid;
+  label: string;
+  soon?: boolean;
+}[] = [
+  { key: "overview", icon: LayoutGrid, label: "Overview" },
+  { key: "audience", icon: Users, label: "Audience" },
+  { key: "sources", icon: Globe, label: "Sources" },
+  { key: "seo", icon: FileSearch, label: "SEO", soon: true },
+  { key: "reports", icon: Mail, label: "Reports", soon: true },
+];
+
+/** Which tables each view shows, and what the chart is plotting. */
+const VIEWS: Record<
+  ViewKey,
+  { metric: "visitors" | "pageviews"; tables: ("pages" | "sources" | "countries")[] }
+> = {
+  overview: { metric: "visitors", tables: ["pages", "sources", "countries"] },
+  audience: { metric: "visitors", tables: ["countries", "pages"] },
+  sources: { metric: "pageviews", tables: ["sources", "pages"] },
+};
+
+/** Site filter. Selecting one scales the numbers so the change is visible. */
+const SITES = [
+  { label: "All sites", factor: 1 },
+  { label: "quantalog.daorbit.in", factor: 0.62 },
+  { label: "docs.quantalog.io", factor: 0.38 },
 ];
 
 const W = 640;
@@ -318,15 +349,33 @@ function BarList({
 
 export function DashboardPreview() {
   const [range, setRange] = useState<RangeKey>("24h");
-  const r = RANGES[range];
+  const [view, setView] = useState<ViewKey>("overview");
+  const [siteIdx, setSiteIdx] = useState(0);
+
+  const base = RANGES[range];
+  const conf = VIEWS[view];
+  const site = SITES[siteIdx];
+  const f = site.factor;
+
+  /** Scale a mock number by the active site filter. */
+  const s = (n: number) => Math.round(n * f);
+  const scaleRows = <T extends { views: number }>(rows: T[]): T[] =>
+    rows.map((row) => ({ ...row, views: s(row.views) }));
+
+  // Sources plots pageviews, which run ~3.2x visitors in this data — without
+  // the multiplier the chart would not move when the view changes, and the
+  // y-axis would contradict the stat tile above it.
+  const seriesMul = conf.metric === "pageviews" ? 3.2 : 1;
+  const series = base.series.map((v) => v * seriesMul * f);
+  const prev = base.prev.map((v) => v * seriesMul * f);
 
   // Both series share one scale, or the comparison line would lie.
-  const max = Math.max(...r.series, ...r.prev);
+  const max = Math.max(...series, ...prev);
   const axisTicks = ticks(max);
   const top = axisTicks[axisTicks.length - 1];
 
-  const pts = scale(r.series, top);
-  const prevPts = scale(r.prev, top);
+  const pts = scale(series, top);
+  const prevPts = scale(prev, top);
   const last = pts[pts.length - 1];
 
   const { value: online, bumped: onlineBumped } = useLiveNumber(42, {
@@ -336,6 +385,16 @@ export function DashboardPreview() {
   });
 
   const plotH = H - PAD_B - PAD_T;
+
+  const tables = {
+    pages: { title: "Top pages", rows: scaleRows(base.topPages), flags: false },
+    sources: { title: "Top sources", rows: scaleRows(base.sources), flags: false },
+    countries: { title: "Countries", rows: scaleRows(base.countries), flags: true },
+  } as const;
+
+  // Re-keys the animated children so switching view or filter replays the
+  // bar and line draw-in rather than snapping to the new values.
+  const dataKey = `${range}-${view}-${siteIdx}`;
 
   return (
     <div className="card overflow-hidden shadow-float">
@@ -361,11 +420,13 @@ export function DashboardPreview() {
 
       {/* ---- App body: sidebar + main ---- */}
       <div className="flex">
-        {/* The sidebar is what separates "a chart in a box" from "a product".
-            Icon-only below lg so it never crowds the data. */}
-        <aside
+        {/* The sidebar is what separates "a chart in a box" from "a product",
+            and it only earns that if it works — the three data-backed entries
+            switch the view below. Icon-only below lg so it never crowds the
+            data. */}
+        <nav
           className="hidden shrink-0 flex-col gap-0.5 border-r border-border bg-bg-subtle/60 p-2 sm:flex lg:w-[148px] lg:p-2.5"
-          aria-hidden="true"
+          aria-label="Dashboard sections"
         >
           <div className="mb-2 flex items-center gap-2 px-1.5 pt-1">
             <span className="flex h-5 w-5 items-center justify-center rounded bg-accent/15">
@@ -376,34 +437,57 @@ export function DashboardPreview() {
             </span>
           </div>
 
-          {NAV.map(({ icon: Icon, label, active }) => (
-            <span
-              key={label}
-              className={`flex items-center gap-2 rounded-md px-1.5 py-1.5 text-[12px] transition-colors lg:px-2 ${
-                active
-                  ? "bg-fg/[0.07] font-medium text-fg"
-                  : "text-fg-faint"
-              }`}
-            >
-              <Icon className="h-3.5 w-3.5 shrink-0" />
-              <span className="hidden lg:inline">{label}</span>
-            </span>
-          ))}
-        </aside>
+          {NAV.map(({ key, icon: Icon, label, soon }) =>
+            soon ? (
+              <span
+                key={key}
+                className="flex cursor-default items-center gap-2 rounded-md px-1.5 py-1.5 text-[12px] text-fg-faint/60 lg:px-2"
+                title={`${label} — not in this preview`}
+              >
+                <Icon className="h-3.5 w-3.5 shrink-0" />
+                <span className="hidden lg:inline">{label}</span>
+              </span>
+            ) : (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setView(key as ViewKey)}
+                aria-current={view === key ? "page" : undefined}
+                className={`flex items-center gap-2 rounded-md px-1.5 py-1.5 text-left text-[12px] transition-colors lg:px-2 ${
+                  view === key
+                    ? "bg-fg/[0.07] font-medium text-fg"
+                    : "text-fg-faint hover:bg-fg/[0.04] hover:text-fg-muted"
+                }`}
+              >
+                <Icon className="h-3.5 w-3.5 shrink-0" />
+                <span className="hidden lg:inline">{label}</span>
+              </button>
+            )
+          )}
+        </nav>
 
         <div className="min-w-0 flex-1">
           {/* ---- Filter bar ---- */}
           <div className="flex items-center gap-2 border-b border-border px-3.5 py-2">
-            <div className="flex min-w-0 items-center gap-1.5 rounded-md border border-border bg-bg-subtle px-2 py-1 text-fg-faint">
+            {/* Cycles through the mock sites. A dropdown would be the real
+                control, but it would open a menu nobody can act on — the
+                click still has to change the numbers, and this does. */}
+            <button
+              type="button"
+              onClick={() => setSiteIdx((i) => (i + 1) % SITES.length)}
+              className="flex min-w-0 items-center gap-1.5 rounded-md border border-border bg-bg-subtle px-2 py-1 text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
+              title="Switch site"
+            >
+              <SlidersHorizontal className="h-3 w-3 shrink-0" />
+              <span className="max-w-[9rem] truncate text-[11px]">{site.label}</span>
+            </button>
+
+            <span className="hidden min-w-0 items-center gap-1.5 rounded-md border border-border px-2 py-1 text-fg-faint md:inline-flex">
               <Search className="h-3 w-3 shrink-0" />
               <span className="truncate text-[11px]">Filter…</span>
-            </div>
-            <span className="hidden items-center gap-1.5 rounded-md border border-border px-2 py-1 text-[11px] text-fg-muted md:inline-flex">
-              <SlidersHorizontal className="h-3 w-3" />
-              All sites
             </span>
 
-            <div className="ml-auto flex items-center gap-1 rounded-md border border-border bg-bg-subtle p-0.5">
+            <div className="ml-auto flex shrink-0 items-center gap-1 rounded-md border border-border bg-bg-subtle p-0.5">
               {RANGE_KEYS.map((k) => (
                 <button
                   key={k}
@@ -425,34 +509,35 @@ export function DashboardPreview() {
           {/* ---- Stat row ---- */}
           <div className="stat-sweep relative grid overflow-hidden border-b border-border sm:grid-cols-4">
             <Stat
-              key={`v-${range}`}
+              key={`v-${dataKey}`}
               label="Visitors"
-              seed={r.stats.visitors}
+              seed={s(base.stats.visitors)}
               delta="+18.2%"
-              live={r.live}
+              live={base.live}
               every={3000}
-              active
+              active={conf.metric === "visitors"}
             />
             <Stat
-              key={`p-${range}`}
+              key={`p-${dataKey}`}
               label="Pageviews"
-              seed={r.stats.pageviews}
+              seed={s(base.stats.pageviews)}
               delta="+11.4%"
-              live={r.live}
+              live={base.live}
               every={2100}
+              active={conf.metric === "pageviews"}
             />
             <Stat
-              key={`b-${range}`}
+              key={`b-${dataKey}`}
               label="Bounce rate"
-              seed={r.stats.bounce}
+              seed={base.stats.bounce}
               delta="−6.1%"
               format={(n) => `${n}%`}
               good
             />
             <Stat
-              key={`s-${range}`}
+              key={`s-${dataKey}`}
               label="Avg. session"
-              seed={r.stats.session}
+              seed={base.stats.session}
               delta="+9.8%"
               format={(n) => `${Math.floor(n / 60)}m ${n % 60}s`}
             />
@@ -463,7 +548,7 @@ export function DashboardPreview() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <p className="text-[10.5px] font-semibold uppercase tracking-[0.09em] text-fg-faint">
-                  {r.chartLabel}
+                  {conf.metric === "pageviews" ? "Pageviews" : "Visitors"}
                 </p>
                 {/* A legend, because there are now two series. Without it the
                     dashed line is unexplained decoration. */}
@@ -478,19 +563,19 @@ export function DashboardPreview() {
               </div>
               <span className="flex items-center gap-1.5 rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-fg-muted">
                 <span className="live-dot h-1 w-1 rounded-full bg-accent" />
-                {r.live ? "live" : "settled"}
+                {base.live ? "live" : "settled"}
               </span>
             </div>
 
             <svg
-              key={range}
+              key={dataKey}
               viewBox={`0 0 ${W} ${H}`}
               className="mt-2 h-44 w-full sm:h-48"
               /* Not "none": the axis labels live inside this viewBox now, and
                  non-uniform scaling would stretch the glyphs. */
               preserveAspectRatio="xMidYMid meet"
               role="img"
-              aria-label={`${r.chartLabel}, trending upward against the previous period`}
+              aria-label={`${conf.metric === "pageviews" ? "Pageviews" : "Visitors"}, trending upward against the previous period`}
             >
               <defs>
                 <linearGradient id="q-fill" x1="0" y1="0" x2="0" y2="1">
@@ -577,15 +662,15 @@ export function DashboardPreview() {
                 vectorEffect="non-scaling-stroke"
               />
 
-              {r.axis.map((t, i) => {
+              {base.axis.map((t, i) => {
                 const x =
-                  PAD_L + (i / (r.axis.length - 1)) * (W - PAD_L);
+                  PAD_L + (i / (base.axis.length - 1)) * (W - PAD_L);
                 return (
                   <text
                     key={t}
                     x={Math.min(Math.max(x, PAD_L), W - 2)}
                     y={H - 6}
-                    textAnchor={i === 0 ? "start" : i === r.axis.length - 1 ? "end" : "middle"}
+                    textAnchor={i === 0 ? "start" : i === base.axis.length - 1 ? "end" : "middle"}
                     className="fill-fg-faint"
                     style={{ fontSize: 9 }}
                   >
@@ -597,13 +682,26 @@ export function DashboardPreview() {
           </div>
 
           {/* ---- Breakdown tables ---- */}
-          <div className="grid divide-y divide-border lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-            <BarList title="Top pages" rows={r.topPages} />
-            <BarList title="Top sources" rows={r.sources} />
-            {/* Third column only where there is room for it to stay legible. */}
-            <div className="hidden lg:block">
-              <BarList title="Countries" rows={r.countries} flags />
-            </div>
+          {/* Which tables appear is the view's decision: Overview shows all
+              three, Audience leads with countries, Sources leads with
+              referrers. Switching the sidebar has to change what is on screen
+              or the nav is theatre. */}
+          <div
+            key={dataKey}
+            className={`grid divide-y divide-border lg:divide-x lg:divide-y-0 ${
+              conf.tables.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"
+            }`}
+          >
+            {conf.tables.map((t, i) => {
+              const table = tables[t];
+              return (
+                // The third column is the first to become unreadable when the
+                // panel narrows, so it is the one that drops.
+                <div key={t} className={i === 2 ? "hidden lg:block" : undefined}>
+                  <BarList title={table.title} rows={table.rows} flags={table.flags} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
