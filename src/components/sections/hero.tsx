@@ -55,10 +55,11 @@ export function Hero() {
 
           <p className="rise rise-3 mx-auto mt-4 max-w-xl text-pretty text-[0.875rem] leading-relaxed sm:mt-5 sm:text-[0.9375rem] text-fg-muted lg:mx-0 lg:text-[0.9375rem]">
             A privacy-first Google Analytics alternative with real-time
-            dashboards, built-in SEO audits and an embeddable API. Cookie-based
-            tools only measure the visitors who accept the banner — Quantalog
-            sets no cookies and stores no personal data, so there is no banner
-            to decline and nothing to miss.
+            dashboards, built-in SEO audits and an embeddable API — plus Orbit,
+            an AI assistant that explains what changed and writes the posts.
+            Cookie-based tools only measure the visitors who accept the banner —
+            Quantalog sets no cookies and stores no personal data, so there is
+            no banner to decline and nothing to miss.
           </p>
 
           <div className="rise rise-4 mt-6 flex flex-row flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-3 lg:justify-start">

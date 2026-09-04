@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
+import { OrbitStrip } from "@/components/orbit-strip";
 import { SeoHeroVisual } from "@/components/feature-hero-visuals";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
@@ -292,6 +293,15 @@ export default function SeoAuditsPage() {
           ))}
         </dl>
       </section>
+
+      <OrbitStrip
+        body="An audit tells you what is wrong. Orbit tells you what to do about it — what a flagged issue actually costs, which fix is worth doing first, and what the corrected markup should look like."
+        examples={[
+          "Which of these issues matters most?",
+          "Write the meta description for this page",
+          "Why is my LCP failing on mobile?",
+        ]}
+      />
 
       <section className="card mt-16 p-8 text-center">
         <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">

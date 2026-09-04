@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
+import { OrbitStrip } from "@/components/orbit-strip";
 import { AnalyticsHeroVisual } from "@/components/feature-hero-visuals";
 import { Analytics } from "@/components/sections/analytics";
 import { JsonLd } from "@/components/json-ld";
@@ -124,6 +125,15 @@ export default function AnalyticsPage() {
       />
 
       <Analytics />
+
+      <OrbitStrip
+        body="Orbit is in the dashboard on every page. It explains what a metric means, why a number moved, and which breakdown answers the question you are actually asking — without you learning where each report lives first."
+        examples={[
+          "Why did traffic drop on Tuesday?",
+          "Which page loses the most visitors?",
+          "What counts as a bounce here?",
+        ]}
+      />
 
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-tight">

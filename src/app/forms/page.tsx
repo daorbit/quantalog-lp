@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
+import { OrbitStrip } from "@/components/orbit-strip";
 import { FormsHeroVisual } from "@/components/feature-hero-visuals";
 import { FieldDropOff, SparkStat } from "@/components/charts";
 import { FormBuilderPreview } from "@/components/form-builder-preview";
@@ -435,6 +436,15 @@ export default function FormsPage() {
         <time dateTime={PUBLISHED}>{formatDate(PUBLISHED)}</time>. Last updated{" "}
         <time dateTime={MODIFIED}>{formatDate(MODIFIED)}</time>.
       </p>
+
+      <OrbitStrip
+        body="Describe the form and Orbit drafts it — fields, validation and the multi-step split. Once responses arrive it reads the free-text answers back to you as themes rather than a spreadsheet you have to sit and skim."
+        examples={[
+          "Build a three-step onboarding form",
+          "What are people complaining about?",
+          "Which field loses the most people?",
+        ]}
+      />
 
       <section className="card mt-16 p-8 text-center">
         <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">

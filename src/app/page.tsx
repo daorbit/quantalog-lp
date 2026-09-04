@@ -4,6 +4,7 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
+import { Orbit } from "@/components/sections/orbit";
 import { Explore } from "@/components/sections/explore";
 import { TryDemo } from "@/components/sections/try-demo";
 import { HowItWorks, steps as setupSteps } from "@/components/sections/how-it-works";
@@ -117,6 +118,9 @@ export default function HomePage() {
       </div>
       <ChartDivider variant="reported" />
       <Features />
+
+  
+      <Orbit />
 
       <Explore />
 

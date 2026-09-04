@@ -3,6 +3,7 @@ import { ArrowRight, Boxes, Gauge, KeyRound, Palette, Plug, Webhook } from "luci
 import Link from "next/link";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
+import { OrbitStrip } from "@/components/orbit-strip";
 import { PlatformHeroVisual } from "@/components/feature-hero-visuals";
 import { CodeCard } from "@/components/code-card";
 import { Reveal } from "@/components/reveal";
@@ -296,6 +297,15 @@ export default function PlatformApiPage() {
           ))}
         </dl>
       </section>
+
+      <OrbitStrip
+        body="Orbit answers from the API reference itself — the exact endpoint, the parameters it takes, and why a call came back the way it did. It is the same assistant your own customers get if you surface it in your product."
+        examples={[
+          "Which endpoint returns per-project stats?",
+          "Why am I getting a 403 on this key?",
+          "Show me the pagination parameters",
+        ]}
+      />
 
       <section className="card mt-16 p-8 text-center">
         <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">

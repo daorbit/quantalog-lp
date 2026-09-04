@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { BookOpen, Clock, MessageSquare, ShieldCheck } from "lucide-react";
-import { SectionHeading, GlowCard } from "../ui";
+import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
 const points = [
@@ -139,23 +139,29 @@ export function Orbit() {
         </div>
 
         <div className="mt-12 grid sm:mt-14 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
-          <div className="grid gap-3 sm:grid-cols-2">
+          {/* Same hairline grid the features section uses, so the two read as
+              one page rather than two designs. The icon carries the accent on
+              hover only — four accent icons in a block competed with the
+              chat preview beside them, which is the thing worth looking at. */}
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
             {points.map((p, i) => (
-              <GlowCard
+              <div
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-6 sm:p-7`}
+                className={`v-rise v-d${(i % 3) + 1} group flex flex-col bg-surface p-5 transition-colors duration-200 hover:bg-surface-raised sm:p-6`}
               >
-                <p.icon
-                  className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
-                  aria-hidden="true"
-                />
-                <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">
-                  {p.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
+                <div className="flex items-center gap-2.5">
+                  <p.icon
+                    className="h-4 w-4 shrink-0 text-fg-faint transition-colors duration-200 group-hover:text-accent"
+                    aria-hidden="true"
+                  />
+                  <h3 className="text-[14px] font-medium tracking-[-0.01em]">
+                    {p.title}
+                  </h3>
+                </div>
+                <p className="mt-2 text-[13px] leading-relaxed text-fg-muted">
                   {p.body}
                 </p>
-              </GlowCard>
+              </div>
             ))}
           </div>
 
