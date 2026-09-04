@@ -108,14 +108,14 @@ export function Header() {
             <a
               href={`${site.app}/login`}
               onClick={() => track("sign_in", { location: "header" })}
-              className="glass hidden whitespace-nowrap rounded-full px-4 py-2 text-[13.5px] text-fg-muted transition-all duration-200 hover:text-fg lg:inline-flex"
+              className="glass hidden whitespace-nowrap rounded-lg px-3 py-1.5 text-[13px] text-fg-muted transition-all duration-200 hover:text-fg lg:inline-flex"
             >
               Sign in
             </a>
             <a
               href={`${site.app}/signup`}
               onClick={() => track("cta_start_free", { location: "header" })}
-              className="group hidden shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-4 py-2 text-[13.5px] font-medium text-accent-fg shadow-soft transition-all duration-200 hover:brightness-110 lg:inline-flex"
+              className="group hidden shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg bg-cta px-3 py-1.5 text-[13px] font-medium text-cta-fg shadow-soft transition-all duration-200 hover:bg-cta-hover lg:inline-flex"
             >
               Start free
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -171,14 +171,14 @@ export function Header() {
               <a
                 href={`${site.app}/login`}
                 onClick={() => track("sign_in", { location: "mobile_menu" })}
-                className="flex-1 rounded-full border border-border py-2.5 text-center text-sm text-fg"
+                className="flex-1 rounded-lg border border-border py-2 text-center text-[13px] text-fg"
               >
                 Sign in
               </a>
               <a
                 href={`${site.app}/signup`}
                 onClick={() => track("cta_start_free", { location: "mobile_menu" })}
-                className="flex-1 rounded-full bg-accent py-2.5 text-center text-sm font-medium text-accent-fg"
+                className="flex-1 rounded-lg bg-cta py-2 text-center text-[13px] font-medium text-cta-fg"
               >
                 Start free
               </a>

@@ -232,9 +232,9 @@ export function Pricing() {
                     onClick={() =>
                       track("pricing_plan_selected", { plan: plan.slug, cycle: yearly ? "yearly" : "monthly" })
                     }
-                    className={`mt-6 rounded-full py-2.5 text-center text-sm font-medium transition-all duration-200 ${
+                    className={`mt-6 rounded-lg py-2 text-center text-[13px] font-medium transition-all duration-200 ${
                       featured
-                        ? "bg-accent text-accent-fg shadow-soft hover:brightness-110"
+                        ? "bg-cta text-cta-fg shadow-soft hover:bg-cta-hover"
                         : "border border-border bg-surface/60 text-fg backdrop-blur hover:border-border-strong hover:bg-surface-raised"
                     }`}
                   >

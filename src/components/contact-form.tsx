@@ -198,7 +198,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state === "sending"}
-        className="group mt-7 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-accent px-6 py-3.5 text-sm font-semibold text-accent-fg shadow-soft transition duration-200 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+        className="group mt-7 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-cta px-5 py-2.5 text-sm font-semibold text-cta-fg shadow-soft transition duration-200 hover:bg-cta-hover disabled:cursor-not-allowed disabled:opacity-60"
       >
         {state === "sending" ? (
           <>

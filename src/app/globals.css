@@ -43,6 +43,12 @@
   --fg-faint: #6a7280;
   --accent: #0d9488;
   --accent-fg: #ffffff;
+  /* Primary CTA is monochrome, matching the app's sign-in button: the accent
+     is kept for data, marks and links rather than spent on the main action.
+     On a light page that inverts to near-black. */
+  --cta: #14161a;
+  --cta-hover: #2a2e35;
+  --cta-fg: #ffffff;
   --grid-line: rgba(10, 11, 13, 0.04);
   --tint: rgba(13, 148, 136, 0.04);
   --glow: rgba(13, 148, 136, 0.09);
@@ -67,6 +73,9 @@
   --fg-faint: #868d99;
   --accent: #14b8a6;
   --accent-fg: #04231f;
+  --cta: #ffffff;
+  --cta-hover: rgba(255, 255, 255, 0.88);
+  --cta-fg: #0a0b0d;
   --grid-line: rgba(255, 255, 255, 0.028);
   --tint: rgba(20, 184, 166, 0.05);
   --glow: rgba(20, 184, 166, 0.12);
@@ -89,6 +98,9 @@
   --color-fg-faint: var(--fg-faint);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-cta-fg: var(--cta-fg);
 
   --shadow-soft: var(--shadow-sm);
   --shadow-card: var(--shadow-md);
@@ -107,6 +119,53 @@ html {
   scroll-behavior: smooth;
 
   scroll-padding-top: 5rem;
+}
+
+/* ============ Starfield ============ */
+/* A fixed field of drifting dots behind the page. Fixed rather than absolute
+   so it never lengthens the document, and behind everything via a negative
+   z-index — the body paints its gradient on itself, so a layer at -1 sits
+   between that and the content. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  --scroll-y: 0;
+  --pointer-x: 0;
+  --pointer-y: 0;
+}
+
+.starfield span {
+  position: absolute;
+  border-radius: 50%;
+  /* White vanishes on the light theme, so the field inverts to ink. */
+  background: #ffffff;
+  will-change: transform;
+  /* `translate` carries the parallax and `transform` the idle drift, so the
+     two never overwrite each other. Depth scales both: near dots travel
+     furthest, which is what sells the layering. */
+  translate:
+    calc(var(--pointer-x) * -14px * var(--depth, 0.5))
+    calc(
+      var(--scroll-y) * -0.06px * var(--depth, 0.5) +
+      var(--pointer-y) * -14px * var(--depth, 0.5)
+    );
+  transition: translate 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: starfield-drift ease-in-out infinite;
+}
+:root:not(.dark) .starfield span { background: #1f2430; }
+
+@keyframes starfield-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25%      { transform: translate3d(6px, -14px, 0); }
+  50%      { transform: translate3d(-4px, -24px, 0); }
+  75%      { transform: translate3d(-9px, -10px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield span { animation: none; translate: none; transition: none; }
 }
 
 body {

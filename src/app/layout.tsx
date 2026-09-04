@@ -8,6 +8,7 @@ import { DisplayMenu } from "@/components/display/display-menu";
 import { NewsletterDialog } from "@/components/newsletter-dialog";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { ScrollRise } from "@/components/scroll-rise";
+import { Starfield } from "@/components/starfield";
 import { PlansProvider } from "@/components/plans-provider";
 import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { site } from "@/lib/site";
@@ -119,6 +120,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <ThemeProvider>
+          {/* Behind every page, at z-index -1. Client-only: the positions are
+              random per visit, so rendering it on the server would guarantee a
+              hydration mismatch. */}
+          <Starfield />
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-fg"

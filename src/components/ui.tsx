@@ -16,17 +16,20 @@ type ButtonProps = {
 };
 
 const variants = {
+  // Monochrome rather than accent-filled, matching the app's sign-in button.
+  // `brightness` is no use on a white fill (it cannot get brighter), so the
+  // hover moves the colour itself.
   primary:
-    "bg-accent text-accent-fg shadow-[0_1px_0_rgba(255,255,255,0.2)_inset,var(--shadow-md)] hover:brightness-110 hover:-translate-y-px active:translate-y-0 active:brightness-95",
+    "bg-cta text-cta-fg shadow-[var(--shadow-md)] hover:bg-cta-hover hover:-translate-y-px active:translate-y-0",
   secondary:
     "glass text-fg hover:-translate-y-px active:translate-y-0",
   ghost: "text-fg-muted hover:text-fg",
 } as const;
 
 const sizes = {
-  md: "px-3.5 py-1.5 text-[13px] sm:px-4 sm:py-2 sm:text-sm",
+  md: "px-3 py-1.5 text-[13px] sm:px-3.5 sm:py-1.5 sm:text-[13px]",
 
-  lg: "px-4 py-2.5 text-[13.5px] sm:px-6 sm:py-3.5 sm:text-[0.9375rem]",
+  lg: "px-4 py-2 text-[13px] sm:px-5 sm:py-2.5 sm:text-sm",
 } as const;
 
 export function Button({
@@ -38,7 +41,7 @@ export function Button({
   track: event,
   trackProps,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
+  const cls = `inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   const internal = href.startsWith("/") || href.startsWith("#");
 
   const onClick = event
