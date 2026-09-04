@@ -10,20 +10,32 @@ type Review = {
   role: string;
   quote: string;
   /**
-   * DiceBear seed. Any string works and the same seed always renders the same
-   * face, so these stay stable across builds. Deliberately an illustrated
-   * avatar rather than a photo: these are real people who did not supply a
-   * portrait, and a stock headshot beside a real name would imply one.
+   * DiceBear seed. The same seed always renders the same face, so these stay
+   * stable across builds. Deliberately an illustrated avatar rather than a
+   * photo: these are real people who did not supply a portrait, and a stock
+   * headshot beside a real name would imply one.
    */
   seed: string;
+
+  top: string;
+  facialHair?: string;
   /** Ring colour behind the avatar. Literal Tailwind class names — composing
       them at runtime would get the utilities purged from the build. */
   ring: string;
 };
 
 /** DiceBear, seeded by name. Free for commercial use, no attribution needed. */
-const avatarUrl = (seed: string) =>
-  `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(seed)}&backgroundColor=transparent`;
+function avatarUrl(r: Pick<Review, "seed" | "top" | "facialHair">): string {
+  const params = new URLSearchParams({
+    seed: r.seed,
+    backgroundColor: "transparent",
+    top: r.top,
+    // Without this, facial hair is applied at random on top of the pinned set.
+    facialHairProbability: r.facialHair ? "100" : "0",
+  });
+  if (r.facialHair) params.set("facialHair", r.facialHair);
+  return `https://api.dicebear.com/9.x/avataaars/svg?${params.toString()}`;
+}
 
 /**
  * Real reviews, quoted rather than paraphrased.
@@ -38,6 +50,7 @@ const reviews: Review[] = [
     quote:
       "This tool has been incredibly helpful for me. I've integrated it with my clients' websites, and before using it, it was difficult to keep track of what was happening across each site. The integration process was simple and straightforward, and my clients have been really happy with the results. It makes it easy to understand website traffic and provides useful SEO improvement tips, all in one place.",
     seed: "Divya",
+    top: "straight01",
     ring: "ring-teal-400/40",
   },
   {
@@ -46,6 +59,8 @@ const reviews: Review[] = [
     quote:
       "A refreshing analytics platform that keeps things simple without sacrificing useful insights. The dashboard is clean, fast, and easy to understand, while the privacy-first approach is a huge plus. I also like that it combines analytics with SEO insights, making it more practical than many traditional tools.",
     seed: "Devesh",
+    top: "shortFlat",
+    facialHair: "beardLight",
     ring: "ring-violet-400/40",
   },
   {
@@ -54,6 +69,7 @@ const reviews: Review[] = [
     quote:
       "A refreshing take on privacy-first analytics — real-time tracking, built-in SEO audits, and a multi-tenant API. Clean, focused, and developer-friendly, and a real alternative to the heavy analytics platforms.",
     seed: "Deepak",
+    top: "shortWaved",
     ring: "ring-amber-400/40",
   },
 ];
@@ -83,7 +99,7 @@ export function Testimonials() {
   useEffect(() => {
     reviews.forEach((r) => {
       const img = new Image();
-      img.src = avatarUrl(r.seed);
+      img.src = avatarUrl(r);
     });
   }, []);
 
@@ -169,7 +185,7 @@ export function Testimonials() {
                       fallback if DiceBear is unreachable. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={avatarUrl(active.seed)}
+                    src={avatarUrl(active)}
                     alt=""
                     width={44}
                     height={44}
