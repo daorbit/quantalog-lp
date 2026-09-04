@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "./plan-icons";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
@@ -13,15 +13,12 @@ import type { Currency, ResolvedPlan } from "@/lib/plans";
  */
 export function PlanCard({
   plan,
-  features,
   currency,
   yearly,
   maxRows,
   location,
 }: {
   plan: ResolvedPlan;
-  /** The union of every plan's features, so this card can mark what it lacks. */
-  features: string[];
   currency: Currency;
   yearly: boolean;
   /** Feature rows to show, quotas included. Omit for the full list. */
@@ -31,10 +28,13 @@ export function PlanCard({
 }) {
   const featured = plan.slug === FEATURED_SLUG;
   const quotas = planQuotas(plan);
+  // Only what this plan includes. Crossing out what it lacks belonged here
+  // when the card was the only comparison available; the matrix on /plans does
+  // that job now, and a card full of struck-through rows sells nothing.
   const shown =
     maxRows === undefined
-      ? features
-      : features.slice(0, Math.max(0, maxRows - quotas.length));
+      ? plan.features
+      : plan.features.slice(0, Math.max(0, maxRows - quotas.length));
 
   const price = (yearly ? plan.priceYearly : plan.priceMonthly)[currency];
   const yearlyPrice = plan.priceYearly[currency];
@@ -132,33 +132,16 @@ export function PlanCard({
             <span className="text-fg-muted">{f}</span>
           </li>
         ))}
-        {shown.map((f) => {
-          const included = plan.features.includes(f);
-          return (
-            <li
-              key={f}
-              className={`flex items-start gap-2 text-[13px] ${included ? "" : "opacity-45"}`}
-            >
-              {included ? (
-                <Check
-                  className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent"
-                  strokeWidth={3}
-                  aria-hidden="true"
-                />
-              ) : (
-                <X
-                  className="mt-0.5 h-3.5 w-3.5 shrink-0 text-fg-faint"
-                  strokeWidth={3}
-                  aria-hidden="true"
-                />
-              )}
-              <span className="text-fg-muted">
-                {f}
-                <span className="sr-only">{included ? " — included" : " — not included"}</span>
-              </span>
-            </li>
-          );
-        })}
+        {shown.map((f) => (
+          <li key={f} className="flex items-start gap-2 text-[13px]">
+            <Check
+              className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent"
+              strokeWidth={3}
+              aria-hidden="true"
+            />
+            <span className="text-fg-muted">{f}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

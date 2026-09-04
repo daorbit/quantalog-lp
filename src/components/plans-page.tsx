@@ -183,7 +183,6 @@ export function PlansPage() {
             <PlanCard
               key={plan.slug}
               plan={plan}
-              features={features}
               currency={currency}
               yearly={yearly}
               location="plans"

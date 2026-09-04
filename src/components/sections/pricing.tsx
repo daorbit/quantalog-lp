@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PlanIcon } from "../plan-icons";
 import { PlanCard } from "../plan-card";
 import { usePlans } from "../plans-provider";
 import { site } from "@/lib/site";
 import {
-  CURRENCIES, allFeatures, detectCurrency,
+  CURRENCIES, detectCurrency,
 } from "@/lib/plans";
 import type { Currency, ResolvedPlan } from "@/lib/plans";
 
@@ -22,11 +22,6 @@ export function Pricing() {
 
   const [yearly, setYearly] = useState(false);
   const [currency, setCurrency] = useState<Currency>("USD");
-
-  // The union of every plan's named features, so each card can show what it
-  // does not include rather than only what it does. Capped on the card: the
-  // full matrix is its own page, linked below the grid.
-  const features = plans ? allFeatures(plans) : [];
 
   useEffect(() => {
     setCurrency(detectCurrency());
@@ -99,11 +94,31 @@ export function Pricing() {
           </div>
         )}
 
+        {/* Card-shaped skeleton rather than a spinner, so the section does not
+            jump when the plans land. */}
         {!plans && !error && (
-          <div className="mt-16 flex justify-center">
-            <Loader2 className="h-5 w-5 animate-spin text-fg-faint" />
+          <div className="mt-10 grid items-start gap-5 lg:grid-cols-3" aria-hidden="true">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur sm:p-7"
+              >
+                <div className="skeleton h-5 w-24 rounded" />
+                <div className="skeleton mt-3 h-3.5 w-full rounded" />
+                <div className="skeleton mt-1.5 h-3.5 w-2/3 rounded" />
+                <div className="skeleton mt-6 h-11 w-32 rounded-lg" />
+                <div className="skeleton mt-7 h-10 w-full rounded-full" />
+                <div className="skeleton mt-6 h-4 w-40 rounded" />
+                <div className="mt-5 space-y-2.5 border-t border-border pt-5">
+                  {[0, 1, 2, 3, 4].map((r) => (
+                    <div key={r} className="skeleton h-3.5 w-full rounded" />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
+        {!plans && !error && <span className="sr-only">Loading plans…</span>}
 
         {error && (
           <p className="mt-16 text-center text-sm text-fg-muted">
@@ -121,7 +136,6 @@ export function Pricing() {
               <PlanCard
                 key={plan.slug}
                 plan={plan}
-                features={features}
                 currency={currency}
                 yearly={yearly}
                 maxRows={CARD_FEATURE_ROWS}
