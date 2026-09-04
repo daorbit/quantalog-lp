@@ -6,6 +6,7 @@ import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
 import { Orbit } from "@/components/sections/orbit";
 import { Explore } from "@/components/sections/explore";
+import { Testimonials } from "@/components/sections/testimonials";
 import { TryDemo } from "@/components/sections/try-demo";
 import { HowItWorks, steps as setupSteps } from "@/components/sections/how-it-works";
 import { Pricing } from "@/components/sections/pricing";
@@ -63,6 +64,12 @@ const jsonLd = graph(
       description: "10k pageviews per month, free forever",
       availability: "https://schema.org/InStock",
       url: site.url,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      bestRating: "5",
+      ratingCount: "6",
     },
     featureList: [
       "Real-time visitor dashboard",
@@ -126,6 +133,9 @@ export default function HomePage() {
 
       <TryDemo />
       <HowItWorks />
+      {/* Social proof immediately before the price: the last thing read before
+          a cost is weighed should be someone else saying it was worth it. */}
+      <Testimonials />
       <Pricing />
       <Faq />
       <Reveal as="section">
