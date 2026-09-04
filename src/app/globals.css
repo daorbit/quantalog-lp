@@ -54,9 +54,24 @@
   --glow: rgba(13, 148, 136, 0.09);
   --ring: rgba(13, 148, 136, 0.35);
 
-  --shadow-sm: 0 1px 2px rgba(11, 12, 15, 0.04), 0 1px 1px rgba(11, 12, 15, 0.03);
-  --shadow-md: 0 4px 12px -2px rgba(11, 12, 15, 0.06), 0 2px 4px -2px rgba(11, 12, 15, 0.04);
-  --shadow-lg: 0 24px 48px -12px rgba(11, 12, 15, 0.12), 0 8px 16px -8px rgba(11, 12, 15, 0.06);
+  /* The accent's quiet register. A near-monochrome page still needs the
+     accent present in supporting furniture — chip icons, small marks, rules —
+     or the one place it appears at full strength reads as an accident. These
+     carry it at a weight that registers as "considered" rather than "coloured",
+     leaving saturation to data and a single CTA state. */
+  --accent-muted: #55606b;
+  --accent-quiet: rgba(13, 148, 136, 0.18);
+  --hairline-accent: rgba(13, 148, 136, 0.22);
+
+  --shadow-sm: 0 1px 2px rgba(11, 12, 15, 0.05), 0 1px 1px rgba(11, 12, 15, 0.03);
+  --shadow-md:
+    0 1px 2px rgba(11, 12, 15, 0.05),
+    0 4px 12px -2px rgba(11, 12, 15, 0.07),
+    0 2px 4px -2px rgba(11, 12, 15, 0.04);
+  --shadow-lg:
+    0 1px 3px rgba(11, 12, 15, 0.05),
+    0 12px 28px -8px rgba(11, 12, 15, 0.1),
+    0 32px 64px -16px rgba(11, 12, 15, 0.14);
   --hairline: rgba(11, 12, 15, 0.06);
 }
 
@@ -80,9 +95,20 @@
   --tint: rgba(20, 184, 166, 0.05);
   --glow: rgba(20, 184, 166, 0.12);
   --ring: rgba(20, 184, 166, 0.45);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --accent-muted: #99a1ac;
+  --accent-quiet: rgba(20, 184, 166, 0.22);
+  --hairline-accent: rgba(20, 184, 166, 0.26);
+  /* Layered rather than single-cast: a tight contact shadow plus a wide
+     ambient one is what separates a card from the page at this darkness.
+     One blur at one opacity reads flat no matter how large it is. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.44), 0 0 0 1px rgba(255, 255, 255, 0.02);
+  --shadow-md:
+    0 2px 4px -1px rgba(0, 0, 0, 0.4),
+    0 8px 24px -6px rgba(0, 0, 0, 0.55);
+  --shadow-lg:
+    0 2px 6px -1px rgba(0, 0, 0, 0.45),
+    0 12px 32px -8px rgba(0, 0, 0, 0.6),
+    0 40px 80px -20px rgba(0, 0, 0, 0.75);
   --hairline: rgba(255, 255, 255, 0.06);
 }
 
@@ -101,6 +127,9 @@
   --color-cta: var(--cta);
   --color-cta-hover: var(--cta-hover);
   --color-cta-fg: var(--cta-fg);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-quiet: var(--accent-quiet);
+  --color-hairline: var(--hairline);
 
   --shadow-soft: var(--shadow-sm);
   --shadow-card: var(--shadow-md);
@@ -109,10 +138,22 @@
 
 @theme {
 
-  --text-display: clamp(1.75rem, 0.95rem + 3.4vw, 5rem);
-  --text-h2: clamp(1.375rem, 1.02rem + 1.5vw, 3rem);
+  /* Ceilings pulled in from 5rem/3rem. At the old maximum the display line
+     outgrew its 42% hero column on a wide viewport and turned the supporting
+     rows into an afterthought under a poster — the same failure mode the app's
+     auth screens hit. The floors are unchanged; this only affects large
+     viewports, where the restraint reads as confidence rather than shouting. */
+  --text-display: clamp(1.75rem, 0.95rem + 2.9vw, 4.05rem);
+  --text-h2: clamp(1.375rem, 1.05rem + 1.25vw, 2.5rem);
   --text-h3: clamp(0.9375rem, 0.9rem + 0.2vw, 1.1875rem);
   --text-lead: clamp(0.9375rem, 0.92rem + 0.12vw, 1.125rem);
+
+  /* Optical tracking. Large type needs negative tracking to avoid looking
+     loose; small uppercase needs positive to stay legible. Naming them keeps
+     the pairing consistent instead of re-guessed per component. */
+  --tracking-display: -0.035em;
+  --tracking-tight: -0.02em;
+  --tracking-eyebrow: 0.11em;
 }
 
 html {
@@ -518,6 +559,27 @@ section {
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+/* A one-pixel lit edge along the top. This is the single cheapest thing that
+   makes a card read as a raised surface rather than a filled rectangle — the
+   eye takes it as light landing on a physical edge. Inset so it follows the
+   radius, and pointer-events-none so it never eats a click. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding-top: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--glass-highlight, rgba(255, 255, 255, 0.5)),
+    transparent 1px
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 .card-hover:hover {
   border-color: var(--border-strong);
@@ -1304,6 +1366,9 @@ section {
   --glass-bg-strong: rgba(255, 255, 255, 0.78);
   --glass-border: rgba(11, 12, 15, 0.08);
   --glass-blur: 16px;
+  /* On a light ground the lit edge is white at near-full strength: the card is
+     already near-white, so anything less does not register. */
+  --glass-highlight: rgba(255, 255, 255, 0.9);
 }
 
 .dark {
