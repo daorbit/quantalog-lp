@@ -12,12 +12,13 @@ import {
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui";
 import { JsonLd } from "@/components/json-ld";
+import { PostImage } from "@/components/post-image";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
 
-export function generateStaticParams(): Params[] {
-  return getSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams(): Promise<Params[]> {
+  return (await getSlugs()).map((slug) => ({ slug }));
 }
 
 export const dynamicParams = false;
@@ -28,7 +29,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) return { title: "Post not found" };
 
   return {
@@ -60,11 +61,10 @@ export default async function BlogPostPage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   if (!post) notFound();
 
-  const related = getRelatedPosts(slug);
-  const { Body } = post;
+  const related = await getRelatedPosts(slug);
 
   const jsonLd = graph(
     {
@@ -139,9 +139,17 @@ export default async function BlogPostPage({
           </div>
         </header>
 
-        <div className="prose-q mt-10">
-          <Body />
-        </div>
+      
+        {post.image.url && (
+          <div className="mt-10 aspect-[2/1] w-full overflow-hidden rounded-xl bg-bg-subtle">
+            <PostImage post={post} sizes="(min-width: 768px) 768px, 100vw" />
+          </div>
+        )}
+
+        <div
+          className="prose-q mt-10"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
 
         <div className="card mt-16 p-8 text-center">
           <p className="text-base font-semibold tracking-tight">

@@ -9,7 +9,7 @@ function link(title: string, path: string, description: string): string {
   return `- [${title}](${site.url}${path}): ${description}`;
 }
 
-export function GET(): Response {
+export async function GET(): Promise<Response> {
   const sections: string[] = [
     `# ${site.name}`,
     "",
@@ -36,7 +36,7 @@ export function GET(): Response {
     sections.push("");
   }
 
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   if (posts.length) {
     sections.push("## Blog", "");
     sections.push(

@@ -1,72 +1,99 @@
-import type { ComponentType } from "react";
-import { introducingQuantalog } from "@/content/posts/introducing-quantalog";
-import { cookieBannerAnalytics } from "@/content/posts/cookie-banner-analytics";
-import { whyAnalyticsUndercountsTraffic } from "@/content/posts/why-analytics-undercounts-traffic";
-import { coreWebVitals } from "@/content/posts/core-web-vitals-what-moves-the-score";
-import { serverSideVsClientSide } from "@/content/posts/server-side-vs-client-side-tracking";
-import { ga4Migration } from "@/content/posts/google-analytics-4-migration-guide";
-import { technicalSeoAudit } from "@/content/posts/technical-seo-audit-checklist";
-import { embeddedAnalyticsForSaas } from "@/content/posts/embedded-analytics-for-saas";
-import { bestGoogleAnalyticsAlternatives } from "@/content/posts/best-google-analytics-alternatives";
-import { addAnalyticsToNextjs } from "@/content/posts/add-analytics-to-nextjs";
-import { addAnalyticsToAstro } from "@/content/posts/add-analytics-to-astro";
-import { addAnalyticsToWordpress } from "@/content/posts/add-analytics-to-wordpress";
-import { measuringAiSearchTraffic } from "@/content/posts/measuring-ai-search-traffic";
-import { ga4DataThresholding } from "@/content/posts/ga4-data-thresholding";
-import { cookielessTracking2026 } from "@/content/posts/cookieless-tracking-2026";
+import { getCmsPage, listCmsPages, type CmsPage } from "@/lib/cms";
+
+ 
+const BLOG_GROUP = "blogs";
+
+const SUMMARY_FIELDS = [
+  "title",
+  "slug",
+  "description",
+  "tags",
+  "author",
+  "readingMinutes",
+  "publishedAt",
+  "updatedAt",
+  "heroImage",
+  "thumbnailImage",
+] as const satisfies readonly (keyof CmsPage)[];
 
 export type PostMeta = {
   slug: string;
   title: string;
   description: string;
   date: string;
-
   updated?: string;
   tags: string[];
   author: { name: string; role: string };
   readingMinutes: number;
+  /** Empty until a post is given artwork in the CMS; the card falls back. */
+  image: { url: string; alt: string };
 };
 
 export type Post = PostMeta & {
-
-  Body: ComponentType;
+  html: string;
 };
 
-const POSTS: Post[] = [
-  introducingQuantalog,
-  cookieBannerAnalytics,
-  whyAnalyticsUndercountsTraffic,
-  coreWebVitals,
-  serverSideVsClientSide,
-  ga4Migration,
-  technicalSeoAudit,
-  embeddedAnalyticsForSaas,
-  bestGoogleAnalyticsAlternatives,
-  addAnalyticsToNextjs,
-  addAnalyticsToAstro,
-  addAnalyticsToWordpress,
-  measuringAiSearchTraffic,
-  ga4DataThresholding,
-  cookielessTracking2026,
-];
-
-const sorted = () => [...POSTS].sort((a, b) => +new Date(b.date) - +new Date(a.date));
-
-export function getSlugs(): string[] {
-  return POSTS.map((p) => p.slug);
+function estimateMinutes(html: string): number {
+  const words = html
+    .replace(/<[^>]+>/g, " ")
+    .trim()
+    .split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
 }
 
-export function getPost(slug: string): Post | undefined {
-  return POSTS.find((p) => p.slug === slug);
+function toMeta(page: CmsPage): PostMeta {
+  return {
+    slug: page.slug,
+    title: page.title,
+    description: page.description ?? "",
+    date: page.publishedAt ?? page.updatedAt,
+    updated: page.updatedAt,
+    tags: page.tags ?? [],
+    author: page.author?.name ? page.author : { name: "Quantalog", role: "" },
+    readingMinutes: page.readingMinutes || 0,
+    // A listing card wants the thumbnail; the hero is the wider crop, and is
+    // the better of the two to fall back on when no thumbnail is set.
+    image: page.thumbnailImage?.url
+      ? page.thumbnailImage
+      : (page.heroImage ?? { url: "", alt: "" }),
+  };
 }
 
-export function getAllPosts(): PostMeta[] {
-  return sorted().map(({ Body: _Body, ...meta }) => meta);
+export async function getAllPosts(): Promise<PostMeta[]> {
+  const pages = await listCmsPages({
+    group: BLOG_GROUP,
+    fields: [...SUMMARY_FIELDS],
+  });
+  // The CMS already sorts by publication date, newest first.
+  return pages.map(toMeta);
 }
 
-export function getRelatedPosts(slug: string, limit = 2): PostMeta[] {
-  const current = getPost(slug);
-  const others = getAllPosts().filter((p) => p.slug !== slug);
+export async function getSlugs(): Promise<string[]> {
+  const pages = await listCmsPages({ group: BLOG_GROUP, fields: ["slug"] });
+  return pages.map((p) => p.slug);
+}
+
+export async function getPost(slug: string): Promise<Post | undefined> {
+  const page = await getCmsPage(slug);
+  // A page outside the blog group is not a post, even if the slug matches.
+  if (!page || page.group !== BLOG_GROUP) return undefined;
+
+  const meta = toMeta(page);
+  return {
+    ...meta,
+    readingMinutes: meta.readingMinutes || estimateMinutes(page.content ?? ""),
+    html: page.content ?? "",
+  };
+}
+
+/** Posts sharing the most tags with this one, for the "read next" links. */
+export async function getRelatedPosts(
+  slug: string,
+  limit = 2,
+): Promise<PostMeta[]> {
+  const all = await getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  const others = all.filter((p) => p.slug !== slug);
   if (!current) return others.slice(0, limit);
 
   return others

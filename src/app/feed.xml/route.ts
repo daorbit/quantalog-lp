@@ -12,8 +12,8 @@ function escapeXml(value: string): string {
     .replace(/'/g, "&apos;");
 }
 
-export function GET(): Response {
-  const posts = getAllPosts();
+export async function GET(): Promise<Response> {
+  const posts = await getAllPosts();
   // getAllPosts is sorted newest-first, so the head of the list is the feed's
   // own last-build date.
   const updated = posts[0]?.updated ?? posts[0]?.date;

@@ -2423,3 +2423,113 @@ body {
   -webkit-backdrop-filter: none;
   box-shadow: 0 1px 0 0 var(--hairline);
 }
+
+/* ---------------------------------------------------------- CMS content -- */
+
+/*
+ * Posts come from the CMS as HTML with the editor's styling inlined on every
+ * element, so the body renders correctly in any consumer that knows nothing
+ * about the editor. That portability is the point, but it also bakes in a
+ * light palette — and an inline `color` outranks any stylesheet rule.
+ *
+ * `!important` is the only thing that outranks it. These rules hand the colours
+ * back to the theme tokens, which already flip for dark mode, while leaving the
+ * editor's spacing and layout alone.
+ */
+.prose-q .da-p,
+.prose-q .da-li,
+.prose-q .da-h1,
+.prose-q .da-h2,
+.prose-q .da-h3,
+.prose-q .da-h4,
+.prose-q .da-h5,
+.prose-q .da-h6,
+.prose-q .da-ul,
+.prose-q .da-ol {
+  color: var(--fg) !important;
+  font-family: inherit !important;
+}
+
+.prose-q .da-h6 {
+  color: var(--fg-muted) !important;
+}
+
+.prose-q .da-link {
+  color: var(--accent) !important;
+}
+
+/* Code: the editor's pale surface is unreadable on a dark ground. */
+.prose-q .da-inline-code,
+.prose-q .da-code-block,
+.prose-q .da-code {
+  background: var(--bg-subtle) !important;
+  color: var(--fg) !important;
+}
+
+.prose-q .da-code-block {
+  border-color: var(--border) !important;
+}
+
+.prose-q .da-blockquote {
+  border-left-color: var(--accent) !important;
+  color: var(--fg-muted) !important;
+}
+
+.prose-q .da-hr {
+  border-color: var(--border) !important;
+}
+
+.prose-q .da-table,
+.prose-q .da-td,
+.prose-q .da-th {
+  color: var(--fg) !important;
+  border-color: var(--border) !important;
+}
+
+.prose-q .da-th {
+  background: var(--bg-subtle) !important;
+}
+
+/*
+ * Callouts keep their variant colour, which carries the meaning — a warning
+ * has to stay warning-coloured. Only the tint is rebuilt for dark: the light
+ * fill is mixed down against the page rather than replaced, so the hue
+ * survives and the text on it stays legible.
+ */
+.prose-q .da-callout {
+  color: var(--fg) !important;
+}
+
+/* Each variant keeps its hue but is mixed down against the page, so a warning
+   still reads as a warning without a pale block of light. */
+.dark .prose-q .da-callout--info {
+  background: color-mix(in srgb, #3b5bfd 12%, var(--bg-subtle)) !important;
+  border-color: color-mix(in srgb, #3b5bfd 35%, var(--border)) !important;
+}
+.dark .prose-q .da-callout--warning {
+  background: color-mix(in srgb, #f8d48b 12%, var(--bg-subtle)) !important;
+  border-color: color-mix(in srgb, #f8d48b 35%, var(--border)) !important;
+}
+.dark .prose-q .da-callout--success {
+  background: color-mix(in srgb, #8ee0c4 12%, var(--bg-subtle)) !important;
+  border-color: color-mix(in srgb, #8ee0c4 35%, var(--border)) !important;
+}
+.dark .prose-q .da-callout--danger {
+  background: color-mix(in srgb, #f8b4b4 12%, var(--bg-subtle)) !important;
+  border-color: color-mix(in srgb, #f8b4b4 35%, var(--border)) !important;
+}
+
+.prose-q .da-callout__body {
+  color: var(--fg) !important;
+}
+
+/* Media the editor sized for its own frame. */
+.prose-q .da-image,
+.prose-q .da-video {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose-q .da-figcaption {
+  color: var(--fg-muted) !important;
+}

@@ -5,15 +5,15 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 export const alt = "Quantalog blog";
 
-export function generateStaticParams() {
-  return getSlugs().map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getSlugs()).map((slug) => ({ slug }));
 }
 
 export const dynamicParams = false;
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = await getPost(slug);
   return ogImage({
     eyebrow: "Blog",
     title: post?.title ?? "Quantalog blog",

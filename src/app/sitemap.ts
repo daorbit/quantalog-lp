@@ -4,8 +4,8 @@ import { getAllDocs } from "@/lib/docs";
 import { getAllComparisons } from "@/lib/comparisons";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getAllPosts();
   const docs = getAllDocs();
   const comparisons = getAllComparisons();
 
