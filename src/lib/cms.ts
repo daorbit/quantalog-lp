@@ -1,6 +1,6 @@
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_CMS_API_URL ?? "https://da-cms.vercel.app/api";
+  process.env.NEXT_PUBLIC_CMS_API_URL ?? "https://cms.daorbit.in/api";
 
 const WORKSPACE_ID =
   process.env.NEXT_PUBLIC_CMS_WORKSPACE_ID ?? "6a9cfdb839090e083196fcaa";
