@@ -222,13 +222,20 @@ function Body() {
 
       <H2 id="webhook">Sending submissions to a webhook</H2>
       <P>
-        A form can POST every submission to a URL you supply, from{" "}
-        <b>Webhook</b> on the icon rail. This is deliberately generic rather
-        than a list of named integrations: point it at a Zapier or Make
-        webhook trigger and you can reach Slack, Google Sheets, Airtable,
-        Notion or a CRM without waiting on us to build a connector for each
-        one, or point it at your own server and handle the submission however
-        you like.
+        A form can POST every submission to a URL you supply. Open{" "}
+        <b>Integrations</b> on the icon rail and connect <b>Webhook</b>{" "}
+        from the Automation section, alongside your email and payment apps
+        — it opens the same way any of those do. Unlike those, though, it
+        belongs to the one form you had open when you connected it, not the
+        whole workspace: a different form's submissions go nowhere until you
+        connect a webhook on that one too.
+      </P>
+      <P>
+        This is deliberately generic rather than a list of named
+        integrations: point it at a Zapier or Make webhook trigger and you
+        can reach Slack, Google Sheets, Airtable, Notion or a CRM without
+        waiting on us to build a connector for each one, or point it at your
+        own server and handle the submission however you like.
       </P>
       <Ul>
         <Li>
