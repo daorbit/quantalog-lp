@@ -1,5 +1,5 @@
 import type { Doc } from "@/lib/docs";
-import { H2, H3, P, Ul, Li, Callout, Code } from "@/components/prose";
+import { H2, H3, P, Ul, Li, Callout, Code, Pre } from "@/components/prose";
 
 function Body() {
   return (
@@ -44,12 +44,23 @@ function Body() {
           <b>Page elements</b> — headings, rich text, dividers, and page breaks
           that split a long form into steps.
         </Li>
+        <Li>
+          <b>Repeating groups, calculated fields, a matrix and rating
+          scales</b> — covered on their own in{" "}
+          <a href="/docs/forms-advanced-fields">Advanced field types</a>.
+        </Li>
       </Ul>
       <P>
         Any field can be shown conditionally: under <b>Show this field only if</b>,
         pick another field and a condition. A hidden field is never required and
         its answer is never submitted, so a branch nobody took leaves nothing
         behind.
+      </P>
+      <P>
+        Rather than build every field yourself, describe the form to Orbit
+        and it drafts one — fields, wording and a starting theme — which you
+        can then revise the same way. See{" "}
+        <a href="/docs/forms-ai-and-theming">AI building &amp; theming</a>.
       </P>
 
       <H2 id="payments">Taking payments</H2>
@@ -191,7 +202,10 @@ function Body() {
       <P>
         Every form records where its submissions came from, so the entries
         screen can break responses down by referring site alongside the view and
-        completion-rate figures.
+        completion-rate figures. For triaging what comes in, and for letting
+        a respondent edit what they already sent, see{" "}
+        <a href="/docs/forms-entries-and-links">Entries, resume &amp; edit
+        links</a>.
       </P>
 
       <H2 id="notifications">Notification emails</H2>
@@ -206,12 +220,63 @@ function Body() {
         for a payment that failed would be worse than no confirmation at all.
       </P>
 
+      <H2 id="webhook">Sending submissions to a webhook</H2>
+      <P>
+        A form can POST every submission to a URL you supply, from{" "}
+        <b>Webhook</b> on the icon rail. This is deliberately generic rather
+        than a list of named integrations: point it at a Zapier or Make
+        webhook trigger and you can reach Slack, Google Sheets, Airtable,
+        Notion or a CRM without waiting on us to build a connector for each
+        one, or point it at your own server and handle the submission however
+        you like.
+      </P>
+      <Ul>
+        <Li>
+          <b>URL</b> — where the POST goes. Any endpoint that accepts JSON
+          works, including a Zapier "Catch Hook" trigger.
+        </Li>
+        <Li>
+          <b>Signing secret</b> — optional, but worth setting if the endpoint
+          is your own server rather than Zapier or Make. Every delivery
+          carries an <Code>X-Da-Forms-Signature</Code> header: an HMAC-SHA256
+          of the request body, keyed with this secret. Recompute it on
+          receipt and compare before trusting the payload — otherwise anyone
+          who finds the URL can post to it.
+        </Li>
+      </Ul>
+      <P>Each delivery is a single POST shaped like this:</P>
+      <Pre label="POST body">{`{
+  "formId": "…",
+  "submissionId": "…",
+  "submittedAt": "2026-09-12T10:15:00.000Z",
+  "data": { "Name": "Ada Lovelace", "Email": "ada@example.com" },
+  "payment": { "amount": 50000, "currency": "INR", "status": "paid" }
+}`}</Pre>
+      <P>
+        <Code>data</Code> keys are field labels, matching the CSV export and
+        the notification emails. <Code>payment</Code> is present only on a
+        paid form, and only once the payment has actually cleared — the same
+        rule the notification emails and the Entries table follow.
+      </P>
+      <Callout>
+        Delivery is fire-and-forget: it never delays or blocks the
+        respondent&apos;s submit, and a slow or unreachable endpoint never
+        fails their submission. There is no retry queue behind it — the
+        settings panel shows the outcome of the most recent attempt, which is
+        enough to notice an endpoint that has gone stale, but treat it as a
+        live notification rather than a guaranteed-delivery log.
+      </Callout>
+
       <H2 id="drafts">Drafts and abandoned responses</H2>
       <P>
         A respondent&apos;s answers are saved in their own browser as they type,
         so a stray refresh or a closed tab doesn&apos;t cost them a
         half-finished application. The draft never leaves their device and is
-        cleared the moment they submit.
+        cleared the moment they submit. Turning on <b>collect partial
+        responses</b> saves the same draft to your workspace too, which is
+        what lets a respondent email themselves a link back to it — see{" "}
+        <a href="/docs/forms-entries-and-links">Entries, resume &amp; edit
+        links</a>.
       </P>
       <P>
         Files uploaded to a form that was never submitted are swept away
@@ -232,7 +297,7 @@ export const leadCapture: Doc = {
   slug: "lead-capture",
   title: "Lead capture",
   description:
-    "Build forms, embed them anywhere, and take payments through your own Razorpay account — with responses landing beside the analytics that produced them.",
+    "Build forms, embed them anywhere, take payments through your own Razorpay account, and send every submission to a webhook — with responses landing beside the analytics that produced them.",
   category: "Tracking",
   order: 17,
   Body,

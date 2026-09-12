@@ -16,6 +16,9 @@ import { publicDashboards } from "@/content/docs/public-dashboards";
 import { emailReports } from "@/content/docs/email-reports";
 import { scheduledPosts } from "@/content/docs/scheduled-posts";
 import { leadCapture } from "@/content/docs/lead-capture";
+import { formsAiAndTheming } from "@/content/docs/forms-ai-and-theming";
+import { formsEntriesAndLinks } from "@/content/docs/forms-entries-and-links";
+import { formsAdvancedFields } from "@/content/docs/forms-advanced-fields";
 import { seo } from "@/content/docs/seo";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
@@ -63,6 +66,9 @@ const DOCS: Doc[] = [
   emailReports,
   scheduledPosts,
   leadCapture,
+  formsAiAndTheming,
+  formsEntriesAndLinks,
+  formsAdvancedFields,
   segmentsMarkers,
   orbitAi,
   platformApi,
