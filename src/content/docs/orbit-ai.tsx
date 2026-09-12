@@ -73,16 +73,15 @@ function Body() {
       </P>
       <Ul>
         <Li>
-          <b>Orbit Free</b> — 20 questions a month, open-weight models.
+          <b>Orbit Free</b> — 20 questions a month.
         </Li>
         <Li>
-          <b>Orbit Starter</b> — 300 questions a month, and the reasoning models
-          on top of those.
+          <b>Orbit Starter</b> — 300 questions a month, and a longer conversation
+          memory.
         </Li>
         <Li>
-          <b>Orbit Pro</b> — 2,000 questions a month, every model including
-          Gemini Flash, the longest conversation memory, and answers that read
-          your own analytics.
+          <b>Orbit Pro</b> — 2,000 questions a month, the longest conversation
+          memory, and answers that read your own analytics.
         </Li>
       </Ul>
       <P>
@@ -90,11 +89,12 @@ function Body() {
         model that refused, or an error costs you nothing.
       </P>
       <P>
-        The model picker shows every model, including the ones your plan does not
-        reach — those are greyed out with the tier that unlocks them, so you can
-        see what an upgrade buys before you buy it. If you run out mid-month,
-        question packs are sold separately and never expire; they are used only
-        after the plan&apos;s own allowance is gone.
+        Every plan reaches every model — the plan decides how many questions you
+        get and how much of the conversation Orbit carries, not which model
+        answers. Pick whichever you prefer from the chat window; if it is busy,
+        Orbit falls through to another and tells you which one answered. If you
+        run out mid-month, question packs are sold separately and never expire;
+        they are used only after the plan&apos;s own allowance is gone.
       </P>
 
       <H2 id="dictation">Asking by voice</H2>

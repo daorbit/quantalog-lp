@@ -71,12 +71,20 @@ export default function PrivacyPage() {
       <h2>Orbit, our AI assistant</h2>
       <p>
         Questions you ask Orbit are sent to a third-party AI model to generate an
-        answer — the specific provider (Google Gemini, or one of several models
-        reached through OpenRouter, depending on your plan and availability at the
-        time) is chosen automatically and is not something we can guarantee in
-        advance. We do not store your Orbit conversations on our servers beyond
-        what is needed to answer the question in front of you, and we do not use
-        anything you ask Orbit to train a model of our own.
+        answer. Orbit currently runs on Meta&apos;s Llama models hosted by
+        Cloudflare Workers AI. If more than one model is available, the one that
+        answers is chosen automatically — you can express a preference in the
+        chat window, but we cannot guarantee it in advance, because Orbit falls
+        through to another model when one is busy.
+      </p>
+      <p>
+        Conversations you have with Orbit while signed in are saved to your
+        workspace so you can return to them, and so we can see which questions
+        our documentation fails to answer. They are visible to members of that
+        workspace, and you can delete any conversation from the chat window.
+        Conversations with the assistant on this public website are not saved at
+        all — they exist only in your browser and are gone when you close the
+        tab. We do not use anything you ask Orbit to train a model of our own.
       </p>
 
       <h2>Retention and deletion</h2>

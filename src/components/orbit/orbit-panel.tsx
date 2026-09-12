@@ -102,10 +102,10 @@ export function OrbitPanel() {
         <p className="text-center text-sm leading-relaxed text-fg-muted">
           The assistant isn&apos;t available right now. Email{" "}
           <a
-            href="mailto:daorbit2k25@gmail.com"
+            href="mailto:goswamiajay526@gmail.com"
             className="font-medium text-accent underline underline-offset-2"
           >
-            daorbit2k25@gmail.com
+            goswamiajay526@gmail.com
           </a>{" "}
           and a person will answer.
         </p>

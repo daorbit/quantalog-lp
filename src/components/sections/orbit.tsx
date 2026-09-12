@@ -17,7 +17,7 @@ const points = [
   {
     icon: ShieldCheck,
     title: "It cannot read your data",
-    body: "Orbit knows how the product works, not what is in your account. Your analytics are never sent to a model to answer a support question, and conversations are not stored.",
+    body: "Orbit knows how the product works, not what is in your account. Your analytics are never sent to a model to answer a support question. Conversations are saved to your workspace so you can come back to them, and you can delete any of them.",
   },
   {
     icon: MessageSquare,
@@ -26,13 +26,23 @@ const points = [
   },
 ];
 
+/**
+ * The models the chat window actually offers.
+ *
+ * Must match the server's catalogue in `real-ana-be`'s `modules/orbit/models.ts`
+ * — this is marketing copy, so a model listed here that the picker does not
+ * show is a promise the product does not keep. The others are commented out
+ * rather than deleted so the two lists come back together.
+ */
 const models = [
-  { name: "Gemini Flash", vendor: "Google" },
-  { name: "Nemotron Ultra", vendor: "NVIDIA" },
-  { name: "DeepSeek V4", vendor: "DeepSeek" },
-  { name: "GPT-OSS", vendor: "OpenAI" },
-  { name: "Gemma 4", vendor: "Google" },
-  { name: "North Mini", vendor: "Cohere" },
+  { name: "Llama 3.3 70B", vendor: "Meta" },
+  { name: "Llama 3.1 8B", vendor: "Meta" },
+  // { name: "Gemini Flash", vendor: "Google" },
+  // { name: "Nemotron Ultra", vendor: "NVIDIA" },
+  // { name: "DeepSeek V4", vendor: "DeepSeek" },
+  // { name: "GPT-OSS", vendor: "OpenAI" },
+  // { name: "Gemma 4", vendor: "Google" },
+  // { name: "North Mini", vendor: "Cohere" },
 ];
 
 function OrbitMark() {
@@ -175,8 +185,11 @@ export function Orbit() {
         <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
+              {/* No count in the headline. It was "Six models", which is one
+                  more thing to remember to change every time the catalogue
+                  does — and it was wrong the moment the list shrank. */}
               <h3 className="text-[15px] font-semibold tracking-tight">
-                Six models, so one being busy is never your problem
+                More than one model, so one being busy is never your problem
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-fg-muted">
                 Pick the one you prefer from the chat window. If it is rate-limited or

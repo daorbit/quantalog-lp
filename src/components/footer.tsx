@@ -116,7 +116,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-border pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-fg-faint">
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+            © {new Date().getFullYear()} {site.name}, operated by {site.legalName}. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             <p className="text-xs text-fg-faint">

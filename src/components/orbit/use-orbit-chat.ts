@@ -120,7 +120,7 @@ export function useOrbitChat() {
               content:
                 e instanceof Error
                   ? e.message
-                  : "Orbit could not answer that. Try again, or email daorbit2k25@gmail.com.",
+                  : "Orbit could not answer that. Try again, or email goswamiajay526@gmail.com.",
               failed: true,
             },
           ];

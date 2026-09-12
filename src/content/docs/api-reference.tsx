@@ -11,7 +11,7 @@ const ENDPOINTS: { m: string; p: string; d: string }[] = [
   { m: "GET", p: "/v1/sites/:siteId/snippet", d: "Fetch the tracking snippet again for a site." },
   { m: "DELETE", p: "/v1/sites/:siteId", d: "Delete a site and every event collected for it." },
 ];
-
+ 
 const CODES: { code: string; meaning: string }[] = [
   { code: "201", meaning: "Resource created." },
   { code: "204", meaning: "Success, no body (deletes, event collection)." },
