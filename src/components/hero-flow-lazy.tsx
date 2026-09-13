@@ -45,7 +45,11 @@ export function HeroFlowLazy({
   }, []);
 
   return (
-    <div ref={ref} className={className} aria-hidden>
+    /* `aria-hidden` here used to swallow React Flow's own focusable controls,
+       which strands them for keyboard and screen reader users. `inert` hides
+       the subtree from assistive tech *and* removes it from the tab order, so
+       the two stay consistent. */
+    <div ref={ref} className={className} inert>
       {show && <HeroFlow compact={compact} />}
     </div>
   );

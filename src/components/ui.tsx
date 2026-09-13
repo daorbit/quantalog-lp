@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import { track } from "@/lib/track";
 
@@ -141,14 +142,36 @@ export function GlowCard({
   className?: string;
   as?: "div" | "li" | "article";
 }) {
+  // Reading getBoundingClientRect on every mousemove and then writing a style
+  // in the same handler forces a synchronous layout each time the pointer
+  // moves. The rect is cached on enter (it cannot change mid-hover) and the
+  // writes are batched into one frame, so the hover does no layout work.
+  const rect = useRef<DOMRect | null>(null);
+  const frame = useRef(0);
+
+  const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    rect.current = e.currentTarget.getBoundingClientRect();
+  };
+
   const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
-    e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+    const el = e.currentTarget;
+    const r = rect.current;
+    if (!r) return;
+
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+
+    if (frame.current) return;
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      el.style.setProperty("--mx", `${x}px`);
+      el.style.setProperty("--my", `${y}px`);
+    });
   };
 
   return (
     <Tag
+      onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       className={`glow-card edge-lit glass spring-hover rounded-2xl ${className}`}
     >

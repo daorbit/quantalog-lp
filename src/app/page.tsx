@@ -17,7 +17,7 @@ import { Reveal } from "@/components/reveal";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
-import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID } from "@/lib/schema";
+import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
 
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
@@ -55,6 +55,9 @@ const jsonLd = graph(
     image: `${site.url}/OgImage.png`,
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },
+    author: { "@id": AUTHOR_ID },
+    datePublished: PUBLISHED,
+    dateModified: MODIFIED,
 
     offers: {
       "@type": "Offer",

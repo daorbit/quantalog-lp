@@ -9,40 +9,24 @@ type Review = {
   name: string;
   role: string;
   quote: string;
-  /**
-   * DiceBear seed. The same seed always renders the same face, so these stay
-   * stable across builds. Deliberately an illustrated avatar rather than a
-   * photo: these are real people who did not supply a portrait, and a stock
-   * headshot beside a real name would imply one.
-   */
   seed: string;
-
   top: string;
   facialHair?: string;
-  /** Ring colour behind the avatar. Literal Tailwind class names — composing
-      them at runtime would get the utilities purged from the build. */
   ring: string;
 };
 
-/** DiceBear, seeded by name. Free for commercial use, no attribution needed. */
 function avatarUrl(r: Pick<Review, "seed" | "top" | "facialHair">): string {
   const params = new URLSearchParams({
     seed: r.seed,
     backgroundColor: "transparent",
     top: r.top,
-    // Without this, facial hair is applied at random on top of the pinned set.
     facialHairProbability: r.facialHair ? "100" : "0",
   });
   if (r.facialHair) params.set("facialHair", r.facialHair);
   return `https://api.dicebear.com/9.x/avataaars/svg?${params.toString()}`;
 }
 
-/**
- * Real reviews, quoted rather than paraphrased.
- *
- * Every quote is genuine and attributed to a named person with a public
- * profile. Nothing here is written for them.
- */
+
 const reviews: Review[] = [
   {
     name: "Divya Mishra",
@@ -83,8 +67,7 @@ export function Testimonials() {
     [count]
   );
 
-  // Arrow keys work whenever the deck has focus — the buttons are real
-  // buttons, so this is the only part not already handled.
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") go(-1);
@@ -94,8 +77,7 @@ export function Testimonials() {
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
-  // Warm every avatar once on mount. Without this the first step to a card
-  // shows an empty circle while its SVG is fetched.
+
   useEffect(() => {
     reviews.forEach((r) => {
       const img = new Image();
@@ -107,9 +89,7 @@ export function Testimonials() {
 
   return (
     <section id="testimonials" className="relative isolate overflow-hidden">
-      {/* A single soft bloom behind the deck. The card is light-on-dark and
-          needs something to sit against, or it reads as a slide pasted onto a
-          flat ground. */}
+
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-3xl"
         style={{ background: "var(--glow)" }}
@@ -130,7 +110,6 @@ export function Testimonials() {
           their clients&apos;.
         </p>
 
-        {/* ---- The deck ---- */}
         <div className="v-rise v-d3 relative mt-12 sm:mt-16">
           <div className="flex items-center justify-center gap-3 sm:gap-6">
             <button
@@ -142,10 +121,6 @@ export function Testimonials() {
               <ChevronLeft className="h-4 w-4" />
             </button>
 
-            {/* Two offset shells behind the live card do the stacking. They
-                are pure decoration, hence aria-hidden — the deck reads as a
-                pile of cards without duplicating the quote to a screen
-                reader. */}
             <div className="relative min-w-0 flex-1 sm:max-w-4xl">
               <div
                 className="absolute inset-x-4 -bottom-3 h-full rounded-2xl border border-border bg-surface/30"
@@ -161,7 +136,8 @@ export function Testimonials() {
                 className="card relative rounded-2xl p-6 text-left shadow-float sm:p-8"
                 style={{ animation: "rise 0.4s var(--ease-out-q) both" }}
               >
-                <div className="flex gap-0.5" aria-label="Rated 5 out of 5">
+
+                <div className="flex gap-0.5" role="img" aria-label="Rated 5 out of 5">
                   {Array.from({ length: 5 }, (_, s) => (
                     <Star
                       key={s}
@@ -171,18 +147,13 @@ export function Testimonials() {
                   ))}
                 </div>
 
-                {/* Fixed minimum height, so stepping between a long quote and
-                    a short one does not resize the card and shift the arrows
-                    under the cursor. */}
+
                 <blockquote className="mt-4 min-h-[7.5rem] text-pretty text-[14.5px] leading-relaxed text-fg sm:min-h-[6.5rem] sm:text-[15.5px]">
                   &ldquo;{active.quote}&rdquo;
                 </blockquote>
 
                 <figcaption className="mt-6 flex items-center gap-3 border-t border-hairline pt-5">
-                  {/* Plain <img>: the app is a static export with image
-                      optimisation off, so next/image would add a wrapper and
-                      no benefit. The initials stay underneath as the alt-text
-                      fallback if DiceBear is unreachable. */}
+
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={avatarUrl(active)}

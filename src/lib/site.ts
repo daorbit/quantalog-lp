@@ -1,8 +1,10 @@
 export const site = {
   name: "Quantalog",
   tagline: "Real-time analytics you can embed.",
+  // Kept under 160 characters so search results show it in full rather than
+  // truncating mid-sentence. The longer pitch lives in the footer copy.
   description:
-    "Privacy-first web analytics with real-time dashboards, built-in SEO audits and a multi-tenant API. See who visits, find what's holding your pages back, and ship it all to your own users.",
+    "Privacy-first web analytics with real-time dashboards, built-in SEO audits and a multi-tenant API you can embed for your own users.",
   url: "https://quantalog.daorbit.in",
   app: "https://studio-quantalog.daorbit.in",
   api: "https://quantalog-be.daorbit.in",

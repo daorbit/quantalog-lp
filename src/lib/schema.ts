@@ -3,6 +3,12 @@ import { site } from "@/lib/site";
 export const ORG_ID = `${site.url}/#organization`;
 export const SITE_ID = `${site.url}/#website`;
 
+// Answer engines want a date they can attribute and check without parsing prose.
+// SITE_PUBLISHED is the launch date and is fixed; SITE_MODIFIED is bumped with
+// each meaningful content release.
+export const SITE_PUBLISHED = "2025-11-01";
+export const SITE_MODIFIED = "2026-08-09";
+
 export const organization = {
   "@type": "Organization",
   "@id": ORG_ID,
@@ -29,6 +35,8 @@ export const website = {
   description: site.description,
   publisher: { "@id": ORG_ID },
   inLanguage: "en",
+  datePublished: SITE_PUBLISHED,
+  dateModified: SITE_MODIFIED,
 
   potentialAction: {
     "@type": "SearchAction",
@@ -48,6 +56,16 @@ export const author = {
   name: site.author,
   url: site.url,
   worksFor: { "@id": ORG_ID },
+
+  // image, jobTitle and sameAs are all optional, but without them the Person
+  // node carries nothing an answer engine can attribute or cross-check, and
+  // the article rich result renders without a byline avatar.
+  image: {
+    "@type": "ImageObject",
+    url: `${site.url}/favicon.png`,
+  },
+  jobTitle: "Product Team",
+  sameAs: [site.github, `https://x.com/${site.twitter.replace(/^@/, "")}`],
 };
 
 export function article({

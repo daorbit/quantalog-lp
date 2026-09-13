@@ -60,10 +60,13 @@ export function Footer() {
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
               All systems operational
             </p>
+            {/* `embed=true` is only valid for Product Hunt's iframe widget; on
+                a plain link it answers 403 and reads as a broken outbound link
+                to crawlers. The canonical product URL is what we want. */}
             <a
-              href="https://www.producthunt.com/products/quantalog?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-quantalog"
+              href="https://www.producthunt.com/products/quantalog?utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-quantalog"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="mt-5 inline-block transition-opacity hover:opacity-80"
             >
               <img

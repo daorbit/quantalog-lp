@@ -40,7 +40,11 @@ export function ThemeToggle() {
             aria-checked={active}
             aria-label={label}
             onClick={() => setTheme(key)}
-            className={`relative z-10 inline-flex h-7 w-7 items-center justify-center rounded-full transition-colors duration-200 ${
+            /* The visible pill stays 28px so the sliding thumb still lines up,
+               but a bare 28px control is below the 44px touch target guideline.
+               The ::after pseudo-element grows the hit area past the button box
+               without affecting layout. */
+            className={`relative z-10 inline-flex h-7 w-7 items-center justify-center rounded-full transition-colors duration-200 after:absolute after:left-1/2 after:top-1/2 after:h-11 after:w-11 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[''] ${
               active ? "text-accent" : "text-fg-faint hover:text-fg-muted"
             }`}
           >

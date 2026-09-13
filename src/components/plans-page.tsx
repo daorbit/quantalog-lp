@@ -123,7 +123,10 @@ export function PlansPage() {
             aria-checked={yearly}
             aria-label="Bill yearly"
             onClick={() => setYearly((v) => !v)}
-            className={`relative h-5 w-9 shrink-0 rounded-full border transition-colors duration-200 ${
+            /* 20px tall is well under the 44px touch target guideline; the
+               ::after pseudo-element grows the hit area without disturbing the
+               switch's own dimensions. */
+            className={`relative h-5 w-9 shrink-0 rounded-full border transition-colors duration-200 after:absolute after:left-1/2 after:top-1/2 after:h-11 after:w-11 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[''] ${
               yearly ? "border-accent/50 bg-accent/25" : "border-border bg-surface"
             }`}
           >
