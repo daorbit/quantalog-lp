@@ -107,6 +107,42 @@ function Body() {
         </Li>
       </Ul>
 
+      <H2 id="whose-crawler">This is our crawler, not Google&apos;s</H2>
+      <P>
+        Everything in an audit — the scores, the Crawl tab, the link checks — is
+        Quantalog requesting your pages itself. None of it is Googlebot, and none
+        of it reflects what Google has actually crawled or indexed. An audit tells
+        you what a search engine <i>would</i> find today; it cannot tell you what
+        Google already did.
+      </P>
+      <P>
+        For real Googlebot activity — which URLs are indexed, when they were last
+        crawled, what Google chose to skip — use Google Search Console. The two
+        answer different questions and are worth reading side by side.
+      </P>
+      <Callout>
+        A crawl is a snapshot from when it ran, and the timestamp above the table
+        says when that was. After you deploy a fix, re-run it: until you do, the
+        page is scoring your previous deploy and the numbers will disagree with
+        what is live.
+      </Callout>
+
+      <H2 id="crawl-limits">What a crawl covers</H2>
+      <P>
+        One crawl visits at most 30 pages. On a larger site the summary says how
+        many of your sitemap URLs that covered, and the findings describe only the
+        pages actually checked — a clean result across 30 of 60 pages is not a
+        clean result for the site. This cap is ours; search engines crawl as much
+        of your site as they choose to.
+      </P>
+      <P>
+        Some findings are also worth reading with judgement rather than fixing
+        outright. A broken outbound link is the common case: sites behind bot
+        protection answer <code>403</code> to any automated request, ours
+        included, while resolving normally in a browser. Open the URL yourself
+        before treating it as broken.
+      </P>
+
       <H2 id="sharing">Sharing a report</H2>
       <P>
         <b>Share</b> publishes one audit at a link anyone can open — no account
