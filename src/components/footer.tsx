@@ -60,22 +60,17 @@ export function Footer() {
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
               All systems operational
             </p>
-            {/* `embed=true` is only valid for Product Hunt's iframe widget; on
-                a plain link it answers 403 and reads as a broken outbound link
-                to crawlers. The canonical product URL is what we want. */}
-            <a
-              href="https://www.producthunt.com/products/quantalog?utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-quantalog"
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="mt-5 inline-block transition-opacity hover:opacity-80"
-            >
-              <img
-                alt="Quantalog - Your analytics miss up to half your traffic. | Product Hunt"
-                width="250"
-                height="54"
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212963&theme=light&t=1787486723092"
-              />
-            </a>
+            {/* Badge only, deliberately not a link. Product Hunt's Cloudflare
+                rules answer 403 to crawlers whatever the URL shape, so any
+                anchor here gets reported as a broken outbound link even though
+                it resolves fine in a real browser. */}
+            <img
+              alt="Quantalog - Your analytics miss up to half your traffic. | Product Hunt"
+              width="250"
+              height="54"
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212963&theme=light&t=1787486723092"
+              className="mt-5 inline-block"
+            />
           </div>
 
           {columns.map((col) => (
