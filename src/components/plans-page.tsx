@@ -5,6 +5,7 @@ import { Check, Minus } from "lucide-react";
 import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "./plan-icons";
 import { PlanCard } from "./plan-card";
 import { usePlans } from "./plans-provider";
+import { IntegrationLogo } from "./integration-logos";
 import { site } from "@/lib/site";
 import {
   CURRENCIES, FEATURED_SLUG, MAX_SITES_PER_WORKSPACE,
@@ -357,8 +358,30 @@ export function PlansPage() {
         </dl>
       </div>
 
-      <p className="mt-12 text-xs text-fg-faint">
+      {/* Cashfree collects INR only for now, so on a USD price it is named as
+          coming rather than offered. */}
+      <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 text-fg-muted">
+        <span className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+          Pay through
+        </span>
+        <IntegrationLogo id="razorpay" height={17} />
+        <span
+          className={`flex items-center gap-2 ${currency === "INR" ? "" : "opacity-50"}`}
+        >
+          <IntegrationLogo id="cashfree" height={15} />
+          {currency !== "INR" && (
+            <span className="rounded-full border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.06em]">
+              Soon
+            </span>
+          )}
+        </span>
+      </div>
+
+      <p className="mt-4 text-xs text-fg-faint">
         Prices in {currency}. Cancel any time — no exit interview.
+        {currency === "INR"
+          ? " Pick your gateway at checkout."
+          : " Cashfree does not take USD payments yet."}
       </p>
     </div>
   );

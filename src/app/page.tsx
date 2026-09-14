@@ -6,6 +6,7 @@ import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
 import { Orbit } from "@/components/sections/orbit";
 import { Explore } from "@/components/sections/explore";
+import { Integrations } from "@/components/sections/integrations";
 import { Testimonials } from "@/components/sections/testimonials";
 import { TryDemo } from "@/components/sections/try-demo";
 import { HowItWorks, steps as setupSteps } from "@/components/sections/how-it-works";
@@ -89,6 +90,9 @@ const jsonLd = graph(
       "Scheduled email reports with spreadsheet attachments",
       "Orbit AI in-app support assistant",
       "Scheduled LinkedIn posts written with Orbit AI",
+      "Form payments through Razorpay, Cashfree and PayU",
+      "Form notification email through Brevo or your own SMTP server",
+      "Submission webhooks for Zapier, Make and custom endpoints",
     ],
   },
   {
@@ -133,6 +137,8 @@ export default function HomePage() {
       <Orbit />
 
       <Explore />
+
+      <Integrations />
 
       <TryDemo />
       <HowItWorks />

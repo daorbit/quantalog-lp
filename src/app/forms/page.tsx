@@ -11,9 +11,11 @@ import {
   Palette,
   ShieldCheck,
   Table2,
+  Webhook,
   Workflow,
 } from "lucide-react";
 import { Button } from "@/components/ui";
+import { IntegrationLogo } from "@/components/integration-logos";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
 import { FormsHeroVisual } from "@/components/feature-hero-visuals";
@@ -29,10 +31,10 @@ const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-29";
 
 const META_DESCRIPTION =
-  "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, Razorpay payments, and per-field drop-off you can actually see.";
+  "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, Razorpay, Cashfree and PayU payments, and per-field drop-off you can actually see.";
 
 const DESCRIPTION =
-  "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
+  "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay, Cashfree or PayU account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
 
 const capabilities = [
   {
@@ -43,7 +45,7 @@ const capabilities = [
   {
     icon: CreditCard,
     title: "Take payments, into your own account",
-    body: "A payment field turns a form into a checkout: registration fees, deposits, paid applications, donations. Charge a fixed amount, a price that follows an earlier answer, or whatever the respondent chooses to pay. Money moves through your own Razorpay account and lands with you, not with us — and a response is only recorded once the payment actually clears.",
+    body: "A payment field turns a form into a checkout: registration fees, deposits, paid applications, donations. Charge a fixed amount, a price that follows an earlier answer, or whatever the respondent chooses to pay. Money moves through your own Razorpay, Cashfree or PayU account and lands with you, not with us — and a response is only recorded once the payment actually clears.",
   },
   {
     icon: GitBranch,
@@ -91,7 +93,8 @@ const included = [
   "Per-form views, submissions and completion rate",
   "Per-field drop-off, so you can see which question loses people",
   "Source URL on every submission",
-  "Payments through your own Razorpay account — fixed, priced by answer, or respondent-chosen",
+  "Payments through your own Razorpay, Cashfree or PayU account — fixed, priced by answer, or respondent-chosen",
+  "Notification email through Brevo or your own SMTP server, plus submission webhooks",
   "Conditional logic — show or hide a field on an earlier answer",
   "Multi-step forms with per-step validation and a progress indicator",
   "Honeypot spam trap and per-IP rate limiting on every public form",
@@ -120,11 +123,11 @@ const faqs = [
   },
   {
     q: "How do payments work, and do you take a cut?",
-    a: "You connect your own Razorpay account once per workspace, and every paid form in it charges through those keys. The money goes directly to you — it never passes through Quantalog, and we take nothing beyond your normal plan. Your Razorpay fees are between you and Razorpay.",
+    a: "You connect your own gateway account once per workspace — Razorpay, Cashfree or PayU — and every paid form in it charges through those keys. The money goes directly to you: it never passes through Quantalog, and we take nothing beyond your normal plan. The gateway's fees are between you and them.",
   },
   {
     q: "What happens if someone abandons the payment?",
-    a: "Nothing is charged and no response is recorded. Their answers stay on screen so they can try again without retyping, and the abandoned attempt is cleared automatically rather than sitting in your entries as a lead that never paid. A response is only confirmed once Razorpay tells us the money arrived — not when the browser says so.",
+    a: "Nothing is charged and no response is recorded. Their answers stay on screen so they can try again without retyping, and the abandoned attempt is cleared automatically rather than sitting in your entries as a lead that never paid. A response is only confirmed once the gateway tells us the money arrived — not when the browser says so.",
   },
   {
     q: "Can respondents upload files?",
@@ -358,6 +361,60 @@ export default function FormsPage() {
               </p>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* The apps a form connects to, named with their own marks — "payments"
+          and "email" in the abstract answer less than the logo of the account
+          someone already holds. */}
+      <section className="mt-16">
+        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+          Connects to what you already pay for
+        </h2>
+        <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
+          Keys live in your workspace. We hold no merchant account and send no
+          mail on your behalf — a form charges through your gateway and
+          notifies through your mailer.
+        </p>
+
+        <div className="card mt-8 grid gap-8 p-7 sm:grid-cols-2">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+              Payment gateways
+            </p>
+            <ul className="mt-4 space-y-4">
+              {[
+                { id: "razorpay" as const, name: "Razorpay" },
+                { id: "cashfree" as const, name: "Cashfree" },
+                { id: "payu" as const, name: "PayU" },
+              ].map((g) => (
+                <li key={g.id} className="flex h-6 items-center text-fg">
+                  <IntegrationLogo id={g.id} height={18} />
+                  <span className="sr-only">{g.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+              Email and forwarding
+            </p>
+            <ul className="mt-4 space-y-4 text-sm text-fg-muted">
+              <li className="flex items-center gap-2.5">
+                <IntegrationLogo id="brevo" height={18} />
+                Brevo
+              </li>
+              <li className="flex items-center gap-2.5">
+                <IntegrationLogo id="smtp" height={18} />
+                Custom SMTP
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Webhook className="h-4.5 w-4.5" aria-hidden="true" />
+                Webhook — Zapier, Make, or your own endpoint
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 
