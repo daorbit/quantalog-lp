@@ -21,6 +21,7 @@ import { OrbitStrip } from "@/components/orbit-strip";
 import { FormsHeroVisual } from "@/components/feature-hero-visuals";
 import { FieldDropOff, SparkStat } from "@/components/charts";
 import { FormBuilderPreview } from "@/components/form-builder-preview";
+import { BuildFlowShowcase } from "@/components/build-flow-showcase";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -236,6 +237,8 @@ export default function FormsPage() {
       <section className="mt-14">
         <FormBuilderPreview />
       </section>
+
+      <BuildFlowShowcase />
 
       <section className="mt-16">
         <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
