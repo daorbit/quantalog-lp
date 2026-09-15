@@ -1,6 +1,5 @@
 
 
-import { renderToStaticMarkup } from "react-dom/server";
 import type { ComponentType } from "react";
 
 /** Tags whose entire subtree is dropped: controls, not content. */
@@ -85,12 +84,19 @@ export type DocSection = {
  * on `## `, so one page is one selectable section, and the `H2`s within a page
  * become `###` to sit beneath it.
  */
-export function renderDocMarkdown(doc: {
+export async function renderDocMarkdown(doc: {
   slug: string;
   title: string;
   description: string;
   Body: ComponentType;
-}): DocSection {
+}): Promise<DocSection> {
+  // Imported here rather than at the top of the file. Next.js rejects a module
+  // that pulls in `react-dom/server` at build time — the warning exists because
+  // rendering a component to a string inside another component defeats
+  // streaming — but this is a route handler producing a text file, not a page,
+  // and the import has to stay out of the bundler's static graph to say so.
+  const { renderToStaticMarkup } = await import("react-dom/server");
+
   const { Body } = doc;
   const body = htmlToMarkdown(renderToStaticMarkup(<Body />));
 

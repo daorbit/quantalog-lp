@@ -24,10 +24,13 @@ import { renderDocMarkdown } from "@/lib/docs-corpus";
 export const dynamic = "force-static";
 
 export async function GET(): Promise<Response> {
-  const sections = getDocSlugs()
+  const docs = getDocSlugs()
     .map((slug) => getDoc(slug))
-    .filter((doc): doc is NonNullable<typeof doc> => Boolean(doc))
-    .map((doc) => renderDocMarkdown(doc).body);
+    .filter((doc): doc is NonNullable<typeof doc> => Boolean(doc));
+
+  const sections = (await Promise.all(docs.map(renderDocMarkdown))).map(
+    (section) => section.body,
+  );
 
   return new Response(sections.join("\n\n"), {
     headers: {
