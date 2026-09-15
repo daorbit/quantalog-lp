@@ -16,8 +16,8 @@ export const site = {
   author: "The Quantalog Team",
   twitter: "@quantalog",
   github: "https://github.com/quantalog",
-  email: "goswamiajay526@gmail.com",
-  legalName: "Ajay Goswami",
+  email: "daorbit2k25@gmail.com",
+  legalName: "DA Orbit",
   phone: "+91 7082072347",
 
   contactFormSrc:
