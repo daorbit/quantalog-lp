@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -13,6 +14,7 @@ import { site } from "@/lib/site";
 import { Button } from "@/components/ui";
 import { JsonLd } from "@/components/json-ld";
 import { PostImage } from "@/components/post-image";
+import { SummariseButton } from "@/components/orbit/summarise-button";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
@@ -21,13 +23,9 @@ export async function generateStaticParams(): Promise<Params[]> {
   return (await getSlugs()).map((slug) => ({ slug }));
 }
 
-// Posts live in the CMS, so slugs can appear between builds. Prerendering the
-// known ones keeps them fast, and rendering an unknown slug on demand is what
-// stops a post published after the last deploy from serving a 404 — a 404 on a
-// URL our own sitemap advertises costs us the crawl.
+ 
 export const dynamicParams = true;
 
-/** Matches the CMS revalidate window in lib/cms.ts. */
 export const revalidate = 60;
 
 export async function generateMetadata({
@@ -130,19 +128,25 @@ export default async function BlogPostPage({
             {post.description}
           </p>
 
-          <div className="mt-8 flex items-center gap-3">
-            <div
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 text-xs font-semibold text-accent"
-              aria-hidden="true"
-            >
-              {post.author.name.charAt(0)}
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/favicon.png"
+                alt=""
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-full"
+                aria-hidden="true"
+              />
+              <div className="text-xs">
+                <p className="font-medium text-fg">{post.author.name}</p>
+                <p className="text-fg-muted">
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </p>
+              </div>
             </div>
-            <div className="text-xs">
-              <p className="font-medium text-fg">{post.author.name}</p>
-              <p className="text-fg-muted">
-                <time dateTime={post.date}>{formatDate(post.date)}</time>
-              </p>
-            </div>
+
+            <SummariseButton />
           </div>
         </header>
 

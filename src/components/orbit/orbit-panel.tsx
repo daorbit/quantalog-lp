@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { ArrowUp, TriangleAlert } from "lucide-react";
 import { OrbitMark } from "./orbit-mark";
 import { OrbitMarkdown } from "./orbit-markdown";
+import { SUMMARISE_PROMPT } from "./orbit-open";
 import type { OrbitMessage } from "./use-orbit-chat";
 import { useOrbitChat } from "./use-orbit-chat";
 
@@ -38,8 +39,6 @@ function Bubble({ message }: { message: OrbitMessage }) {
     </div>
   );
 }
-
-const SUMMARISE_PROMPT = "Summarise this page for me";
 
 function hasSummarisablePage(): boolean {
   if (typeof document === "undefined") return false;
@@ -77,12 +76,19 @@ function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts:
   );
 }
 
-export function OrbitPanel() {
+export function OrbitPanel({ ask }: { ask?: string }) {
   const { messages, input, setInput, send, thinking, started, suggestions, available } =
     useOrbitChat();
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const asked = useRef(false);
+
+  useEffect(() => {
+    if (!ask || !available || asked.current) return;
+    asked.current = true;
+    void send(ask);
+  }, [ask, available, send]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });

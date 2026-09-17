@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { RotateCcw, X } from "lucide-react";
 import { OrbitMark } from "./orbit-mark";
 import { OrbitPanel } from "./orbit-panel";
+import { onOrbitOpen } from "./orbit-open";
 
 const HIDDEN_ON = ["/contact", "/privacy", "/terms", "/thank-you"];
 
@@ -12,6 +13,17 @@ export function OrbitBubble() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [session, setSession] = useState(0);
+  const [ask, setAsk] = useState<string | undefined>(undefined);
+
+  useEffect(
+    () =>
+      onOrbitOpen(({ ask: question }) => {
+        setAsk(question);
+        setSession((n) => n + 1);
+        setOpen(true);
+      }),
+    [],
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -35,7 +47,10 @@ export function OrbitBubble() {
 
   if (HIDDEN_ON.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return null;
 
-  const startOver = () => setSession((n) => n + 1);
+  const startOver = () => {
+    setAsk(undefined);
+    setSession((n) => n + 1);
+  };
 
   return (
     <>
@@ -68,7 +83,7 @@ export function OrbitBubble() {
             </div>
           </header>
 
-          <OrbitPanel key={session} />
+          <OrbitPanel key={session} ask={ask} />
         </div>
       )}
 
