@@ -120,9 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <ThemeProvider>
-          {/* Behind every page, at z-index -1. Client-only: the positions are
-              random per visit, so rendering it on the server would guarantee a
-              hydration mismatch. */}
+
           <Starfield />
           <a
             href="#main"
