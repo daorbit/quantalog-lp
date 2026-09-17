@@ -60,17 +60,14 @@ export function Footer() {
               <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
               All systems operational
             </p>
-            {/* Badge only, deliberately not a link. Product Hunt's Cloudflare
-                rules answer 403 to crawlers whatever the URL shape, so any
-                anchor here gets reported as a broken outbound link even though
-                it resolves fine in a real browser. */}
-            <img
+          
+            {/* <img
               alt="Quantalog - Your analytics miss up to half your traffic. | Product Hunt"
               width="250"
               height="54"
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212963&theme=light&t=1787486723092"
               className="mt-5 inline-block"
-            />
+            /> */}
           </div>
 
           {columns.map((col) => (
