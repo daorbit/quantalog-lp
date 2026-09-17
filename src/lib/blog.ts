@@ -9,11 +9,13 @@ const SUMMARY_FIELDS = [
   "description",
   "tags",
   "author",
-  "readingMinutes",
   "publishedAt",
   "updatedAt",
   "heroImage",
   "thumbnailImage",
+  // Needed in the summary too: the sitemap is built from the listing, and a
+  // post marked noindex in the CMS should never be submitted for crawling.
+  "seo",
 ] as const satisfies readonly (keyof CmsPage)[];
 
 export type PostMeta = {
@@ -24,22 +26,15 @@ export type PostMeta = {
   updated?: string;
   tags: string[];
   author: { name: string; role: string };
-  readingMinutes: number;
   /** Empty until a post is given artwork in the CMS; the card falls back. */
   image: { url: string; alt: string };
+  /** Set from the CMS SEO panel. Keeps the post off the sitemap and out of the index. */
+  noIndex: boolean;
 };
 
 export type Post = PostMeta & {
   html: string;
 };
-
-function estimateMinutes(html: string): number {
-  const words = html
-    .replace(/<[^>]+>/g, " ")
-    .trim()
-    .split(/\s+/).length;
-  return Math.max(1, Math.round(words / 200));
-}
 
 function toMeta(page: CmsPage): PostMeta {
   return {
@@ -50,12 +45,12 @@ function toMeta(page: CmsPage): PostMeta {
     updated: page.updatedAt,
     tags: page.tags ?? [],
     author: page.author?.name ? page.author : { name: "Quantalog", role: "" },
-    readingMinutes: page.readingMinutes || 0,
     // A listing card wants the thumbnail; the hero is the wider crop, and is
     // the better of the two to fall back on when no thumbnail is set.
     image: page.thumbnailImage?.url
       ? page.thumbnailImage
       : (page.heroImage ?? { url: "", alt: "" }),
+    noIndex: page.seo?.noIndex ?? false,
   };
 }
 
@@ -78,10 +73,8 @@ export async function getPost(slug: string): Promise<Post | undefined> {
   // A page outside the blog group is not a post, even if the slug matches.
   if (!page || page.group !== BLOG_GROUP) return undefined;
 
-  const meta = toMeta(page);
   return {
-    ...meta,
-    readingMinutes: meta.readingMinutes || estimateMinutes(page.content ?? ""),
+    ...toMeta(page),
     html: page.content ?? "",
   };
 }

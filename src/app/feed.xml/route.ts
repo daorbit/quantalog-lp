@@ -1,7 +1,9 @@
 import { getAllPosts } from "@/lib/blog";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-static";
+// Revalidated rather than frozen at build time, so a post published between
+// deploys reaches subscribers without waiting for one.
+export const revalidate = 60;
 
 function escapeXml(value: string): string {
   return value
@@ -13,7 +15,7 @@ function escapeXml(value: string): string {
 }
 
 export async function GET(): Promise<Response> {
-  const posts = await getAllPosts();
+  const posts = (await getAllPosts()).filter((post) => !post.noIndex);
   // getAllPosts is sorted newest-first, so the head of the list is the feed's
   // own last-build date.
   const updated = posts[0]?.updated ?? posts[0]?.date;
@@ -38,7 +40,10 @@ export async function GET(): Promise<Response> {
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+    // The dc prefix is declared here because the items use dc:creator; without
+    // it the feed is not well-formed XML.
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" ' +
+      'xmlns:dc="http://purl.org/dc/elements/1.1/">',
     "  <channel>",
     `    <title>${escapeXml(`${site.name} Blog`)}</title>`,
     `    <link>${site.url}/blog</link>`,

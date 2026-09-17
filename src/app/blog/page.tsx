@@ -24,7 +24,9 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogIndexPage() {
-  const posts = await getAllPosts();
+  // A noindex post is left off the archive as well as the sitemap — linking it
+  // from an indexable page is the thing the flag is trying to prevent.
+  const posts = (await getAllPosts()).filter((post) => !post.noIndex);
   // The newest post is highlighted alongside the archive, not removed from it —
   // a reader scanning the list should still find it in date order.
   const [featured] = posts;
@@ -109,8 +111,6 @@ export default async function BlogIndexPage() {
                     Latest
                   </span>
                   <time dateTime={featured.date}>{formatDate(featured.date)}</time>
-                  <span aria-hidden="true">·</span>
-                  <span>{featured.readingMinutes} min read</span>
                 </div>
                 <h3 className="mt-2.5 text-balance text-lg font-bold leading-snug tracking-tight transition group-hover:text-accent">
                   {featured.title}

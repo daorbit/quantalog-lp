@@ -21,7 +21,14 @@ export async function generateStaticParams(): Promise<Params[]> {
   return (await getSlugs()).map((slug) => ({ slug }));
 }
 
-export const dynamicParams = false;
+// Posts live in the CMS, so slugs can appear between builds. Prerendering the
+// known ones keeps them fast, and rendering an unknown slug on demand is what
+// stops a post published after the last deploy from serving a 404 — a 404 on a
+// URL our own sitemap advertises costs us the crawl.
+export const dynamicParams = true;
+
+/** Matches the CMS revalidate window in lib/cms.ts. */
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -36,6 +43,8 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
+    // Honours the CMS SEO panel; the sitemap leaves these out to match.
+    ...(post.noIndex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       type: "article",
       url: `${site.url}/blog/${post.slug}`,
@@ -132,8 +141,6 @@ export default async function BlogPostPage({
               <p className="font-medium text-fg">{post.author.name}</p>
               <p className="text-fg-muted">
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
-                {" · "}
-                {post.readingMinutes} min read
               </p>
             </div>
           </div>

@@ -9,7 +9,10 @@ export async function generateStaticParams() {
   return (await getSlugs()).map((slug) => ({ slug }));
 }
 
-export const dynamicParams = false;
+// Follows the post route: a slug added to the CMS since the last build still
+// gets an image rather than a 404 in the social card.
+export const dynamicParams = true;
+export const revalidate = 60;
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

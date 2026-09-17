@@ -43,12 +43,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${site.url}/blog/${post.slug}`,
-    lastModified: post.updated ?? post.date,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  // A noindex post is asking not to be crawled, so submitting it here would
+  // only earn a "blocked by robots" report against our own sitemap.
+  const postRoutes: MetadataRoute.Sitemap = posts
+    .filter((post) => !post.noIndex)
+    .map((post) => ({
+      url: `${site.url}/blog/${post.slug}`,
+      lastModified: post.updated ?? post.date,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
 
   return [...staticRoutes, ...comparisonRoutes, ...docRoutes, ...postRoutes];
 }
