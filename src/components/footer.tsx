@@ -61,13 +61,13 @@ export function Footer() {
               All systems operational
             </p>
           
-            {/* <img
+            <img
               alt="Quantalog - Your analytics miss up to half your traffic. | Product Hunt"
               width="250"
               height="54"
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212963&theme=light&t=1787486723092"
               className="mt-5 inline-block"
-            /> */}
+            />
           </div>
 
           {columns.map((col) => (
