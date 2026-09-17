@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { BookOpen, Clock, MessageSquare, ShieldCheck } from "lucide-react";
+import {
+  BookOpen, Clock, MessageSquare, ShieldCheck,
+  BarChart3, ImageIcon, Swords,
+} from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
 
@@ -23,6 +26,31 @@ const points = [
     icon: MessageSquare,
     title: "A person is still there",
     body: "Every plan keeps human support. Orbit handles the questions that have an answer already and hands over the ones that don't.",
+  },
+];
+
+/**
+ * What Orbit can do once a plan grants data access — a different contract
+ * from the four points above, which is why it is its own block rather than a
+ * fifth tile in that grid: those are true on every plan, unconditionally.
+ * These are opt-in and metered, and say so in their own copy rather than
+ * blurring into "it cannot read your data."
+ */
+const dataPoints = [
+  {
+    icon: BarChart3,
+    title: "Ask it about your traffic",
+    body: "“How many visitors did I get last month?” gets real numbers for that exact range — not a fixed weekly snapshot. Ask about yesterday, this quarter, or the last 30 days and Orbit pulls the matching figures.",
+  },
+  {
+    icon: ImageIcon,
+    title: "Reads and draws images",
+    body: "Attach a screenshot and ask what's wrong with it, or ask Orbit to draw something for a post. Same chat window, no separate tool.",
+  },
+  {
+    icon: Swords,
+    title: "Knows your competitors",
+    body: "Track a competitor's site and Orbit can tell you where you're actually behind — missing schema, thinner content, keywords they rank for that you don't — not generic SEO advice.",
   },
 ];
 
@@ -180,6 +208,33 @@ export function Orbit() {
               <ChatPreview />
             </div>
           </Reveal>
+        </div>
+
+        <div className="mt-10">
+          <h3 className="v-rise text-[13px] font-medium text-fg-muted">
+            On a plan with data access, Orbit does more than answer support questions
+          </h3>
+          <div className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
+            {dataPoints.map((p, i) => (
+              <div
+                key={p.title}
+                className={`v-rise v-d${(i % 3) + 1} group flex flex-col bg-surface p-5 transition-colors duration-200 hover:bg-surface-raised sm:p-6`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <p.icon
+                    className="h-4 w-4 shrink-0 text-fg-faint transition-colors duration-200 group-hover:text-accent"
+                    aria-hidden="true"
+                  />
+                  <h3 className="text-[14px] font-medium tracking-[-0.01em]">
+                    {p.title}
+                  </h3>
+                </div>
+                <p className="mt-2 text-[13px] leading-relaxed text-fg-muted">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
