@@ -73,7 +73,7 @@ function Body() {
       </P>
       <Ul>
         <Li>
-          <b>Orbit Free</b> — 20 questions a month.
+          <b>Orbit Free</b> — 10 questions a month.
         </Li>
         <Li>
           <b>Orbit Starter</b> — 300 questions a month, and a longer conversation
