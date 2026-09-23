@@ -1,10 +1,15 @@
+"use client";
+
+import { useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { site } from "@/lib/site";
 
-const DEMO_SRC =
-  "https://pagepilot-demo-viewer-prod.web.app//?tid=6a5501b48fdeaf4af8705f6f&did=6a5cd02f6af3fd60a69b0bc8&type=demo&status=live";
+const VIDEO_SRC = "/videos/onboarding.mp4";
 
 export function Demo() {
+  const [muted, setMuted] = useState(true);
+
   return (
     <section id="demo">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:py-24 lg:py-28">
@@ -19,39 +24,37 @@ export function Demo() {
               you sign up.
             </>
           }
-          body="Click through the real thing — landing page to live dashboard, in about a minute. No account needed."
+          body="Watch how Quantalog goes from a blank workspace to a live dashboard, in about a minute. No account needed."
         />
 
-        <div className="v-rise v-d2">
+        <div className="v-rise v-d2 mx-auto mt-10 max-w-5xl">
+          <div className="panel overflow-hidden">
+            <div className="flex items-center gap-1.5 border-b border-(--glass-border) bg-bg-subtle px-4 py-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#4ade80]" />
+              <span className="ml-3 text-xs text-fg-faint">quantalog.in/app</span>
+            </div>
 
-          <div
-            style={{
-              position: "relative",
-              paddingBottom: "calc(54.75% + 25px)",
-              width: "100%",
-              height: 0,
-              marginTop: 40,
-            }}
-          >
-            <iframe
-              loading="lazy"
-              src={DEMO_SRC}
-              title="Quantalog interactive product tour"
-              allow="fullscreen"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: "1px solid rgba(63,95,172,0.35)",
-                boxShadow: "0px 0px 18px rgba(26, 19, 72, 0.15)",
-                borderRadius: 10,
-                boxSizing: "border-box",
-                aspectRatio: "16/9",
-                margin: "0 auto",
-              }}
-            />
+            <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+              <video
+                className="h-full w-full object-cover"
+                src={VIDEO_SRC}
+                autoPlay
+                loop
+                muted={muted}
+                preload="auto"
+                playsInline
+              />
+              <button
+                type="button"
+                onClick={() => setMuted((m) => !m)}
+                aria-label={muted ? "Unmute video" : "Mute video"}
+                className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur transition-colors hover:bg-black/70"
+              >
+                {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
         </div>
 

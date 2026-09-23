@@ -43,8 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // A noindex post is asking not to be crawled, so submitting it here would
-  // only earn a "blocked by robots" report against our own sitemap.
   const postRoutes: MetadataRoute.Sitemap = posts
     .filter((post) => !post.noIndex)
     .map((post) => ({
