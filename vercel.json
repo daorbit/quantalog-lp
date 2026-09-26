@@ -20,6 +20,36 @@
       "source": "/vs",
       "destination": "/compare",
       "permanent": true
+    },
+    {
+      "source": "/docs/analytics",
+      "destination": "/docs/overview",
+      "permanent": true
+    },
+    {
+      "source": "/docs/seo-audits",
+      "destination": "/docs/seo",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/plans",
+      "permanent": true
+    },
+    {
+      "source": "/features",
+      "destination": "/analytics",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "https://studio-quantalog.daorbit.in/login",
+      "permanent": false
+    },
+    {
+      "source": "/signup",
+      "destination": "https://studio-quantalog.daorbit.in/signup",
+      "permanent": false
     }
   ],
   "headers": [

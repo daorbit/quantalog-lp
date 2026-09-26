@@ -4,6 +4,8 @@ import { getAllDocs } from "@/lib/docs";
 import { getAllComparisons } from "@/lib/comparisons";
 import { site } from "@/lib/site";
 
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
   const docs = getAllDocs();
@@ -16,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.url}/docs`, lastModified: built, changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.url}/blog`, lastModified: built, changeFrequency: "weekly", priority: 0.8 },
     { url: `${site.url}/compare`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/plans`, lastModified: built, changeFrequency: "monthly", priority: 0.9 },
 
     { url: `${site.url}/analytics`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/seo-audits`, lastModified: built, changeFrequency: "monthly", priority: 0.8 },
