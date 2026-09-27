@@ -93,7 +93,7 @@ export function Pricing() {
                 />
               </button>
               <span className={yearly ? "text-fg" : "text-fg-muted"}>Yearly</span>
-              <span className="text-fg-faint">Save 20% with annual</span>
+              <span className="text-fg-faint">2 months free with annual</span>
             </div>
           </div>
         )}
