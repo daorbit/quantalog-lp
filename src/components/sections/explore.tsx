@@ -10,6 +10,7 @@ import {
   Mails,
   Plug,
   Swords,
+  TrendingUp,
 } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
@@ -40,6 +41,12 @@ const primary = [
 
 /** The rest: one line each, in a compact list. */
 const secondary = [
+  {
+    href: "/search-visibility",
+    icon: TrendingUp,
+    title: "Search visibility",
+    body: "Google Search Console inside your analytics — clicks, rankings, what to fix next and whether each page is indexed.",
+  },
   {
     href: "/reports",
     icon: Mails,

@@ -202,6 +202,61 @@ export function SeoHeroVisual() {
   );
 }
 
+export function SearchVisibilityHeroVisual() {
+  const queries = [
+    { q: "real time analytics", pos: 2.1, w: 100 },
+    { q: "privacy friendly analytics", pos: 4.8, w: 64 },
+    { q: "website visitor tracking", pos: 7.2, w: 41 },
+  ];
+  return (
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-2">
+        <StatCard label="Clicks from Google">
+          <p className="mt-1.5 text-[1.35rem] font-semibold leading-none">
+            <Counter to={12480} />
+          </p>
+          <Spark points={[18, 20, 19, 24, 27, 26, 31, 35, 34, 40, 44, 47, 53]} className="mt-2.5" />
+        </StatCard>
+        <StatCard label="Avg. position">
+          <p className="mt-1.5 text-[1.35rem] font-semibold leading-none">
+            <Counter to={8.4} format={(n) => n.toFixed(1)} />
+          </p>
+          <p className="fhv-rise mt-2.5 text-[11px] font-medium text-accent">▲ 2.1 places this month</p>
+        </StatCard>
+      </div>
+
+      <div className="rounded-lg border border-border bg-bg-subtle p-4">
+        <p className="text-[10.5px] font-medium uppercase tracking-widest text-fg-faint">Top queries</p>
+        <div className="mt-2.5 space-y-1.5">
+          {queries.map((r, i) => (
+            <div key={r.q} className="relative overflow-hidden rounded">
+              <div
+                className="fhv-bar absolute inset-y-0 left-0 bg-accent/[0.14]"
+                style={{ ["--w" as string]: `${r.w}%`, animationDelay: `${0.3 + i * 0.1}s` }}
+              />
+              <div className="relative flex items-center justify-between gap-2 py-1 pl-1.5 pr-1 text-[11px]">
+                <span className="truncate text-fg">{r.q}</span>
+                <span className="shrink-0 rounded-full bg-bg px-1.5 font-semibold tabular-nums text-fg-muted">
+                  {r.pos.toFixed(1)}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        className="fhv-rise flex items-center gap-2 rounded-lg border border-border bg-bg-subtle px-3 py-2.5 text-[11px]"
+        style={{ animationDelay: "0.4s" }}
+      >
+        <span className="fhv-dot h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden />
+        <span className="font-medium text-fg">/pricing is on Google</span>
+        <span className="ml-auto text-fg-faint">Submitted and indexed</span>
+      </div>
+    </div>
+  );
+}
+
 export function ReportsHeroVisual() {
   const line =
     "Traffic up 22%, mostly from a Reddit thread that didn't stick. Signups flat.";

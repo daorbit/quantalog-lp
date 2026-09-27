@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  BookOpen, Bot, Building2, CalendarClock, Code2, EyeOff, FileText,
+  BookOpen, Bot, Building2, CalendarClock, Code2, EyeOff, FileText, TrendingUp,
   LayoutGrid, Lock, Mail, Newspaper, PlayCircle, Scale, Scroll, Search, Tag,
 } from "lucide-react";
 import { Logo } from "./logo";
@@ -13,6 +13,7 @@ const columns = [
     links: [
       { href: "/#features", label: "Features", icon: LayoutGrid },
       { href: "/seo-audits", label: "SEO audits", icon: Search },
+      { href: "/search-visibility", label: "Search visibility", icon: TrendingUp },
       { href: "/reports", label: "Reports", icon: FileText },
       { href: "/platform-api", label: "Platform API", icon: Code2 },
       { href: "/#scheduling", label: "Scheduled posts", icon: CalendarClock },

@@ -36,6 +36,11 @@ export const productNav = [
     blurb: "Lighthouse scores, broken links and structured data",
   },
   {
+    href: "/search-visibility",
+    label: "Search visibility",
+    blurb: "Google Search Console clicks, rankings and index status",
+  },
+  {
     href: "/reports",
     label: "Reports",
     blurb: "Scheduled email and WhatsApp summaries for clients",

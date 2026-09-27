@@ -20,6 +20,7 @@ import { formsAiAndTheming } from "@/content/docs/forms-ai-and-theming";
 import { formsEntriesAndLinks } from "@/content/docs/forms-entries-and-links";
 import { formsAdvancedFields } from "@/content/docs/forms-advanced-fields";
 import { seo } from "@/content/docs/seo";
+import { searchVisibility } from "@/content/docs/search-visibility";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
 import { apiReference } from "@/content/docs/api-reference";
@@ -63,6 +64,7 @@ const DOCS: Doc[] = [
   exporting,
   publicDashboards,
   seo,
+  searchVisibility,
   emailReports,
   scheduledPosts,
   leadCapture,

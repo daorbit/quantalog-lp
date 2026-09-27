@@ -1,5 +1,5 @@
 import type { Doc } from "@/lib/docs";
-import { H2, P, Ul, Li, Callout } from "@/components/prose";
+import { H2, P, Ul, Li, Callout, A } from "@/components/prose";
 
 function Body() {
   return (
@@ -117,8 +117,9 @@ function Body() {
       </P>
       <P>
         For real Googlebot activity — which URLs are indexed, when they were last
-        crawled, what Google chose to skip — use Google Search Console. The two
-        answer different questions and are worth reading side by side.
+        crawled, what Google chose to skip — connect Google Search Console in{" "}
+        <A href="/docs/search-visibility">Search visibility</A>. The two answer
+        different questions and are worth reading side by side.
       </P>
       <Callout>
         A crawl is a snapshot from when it ran, and the timestamp above the table

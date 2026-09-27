@@ -96,7 +96,7 @@ const faqs = [
   },
   {
     q: "How is this different from Google Search Console?",
-    a: "Search Console reports what Google already observed about pages it has crawled, on Google's schedule. Quantalog audits a page on demand, right now, and puts the result next to the traffic that page is getting — which is what lets you connect a technical problem to the visitors it is costing you.",
+    a: "Search Console reports what Google already observed about pages it has crawled, on Google's schedule. Quantalog audits a page on demand, right now, and puts the result next to the traffic that page is getting. You can also connect Search Console itself in Search visibility, so what Google recorded and what the audit found sit in the same dashboard.",
   },
   {
     q: "Can I audit a site I do not own?",
