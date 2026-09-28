@@ -129,7 +129,7 @@ export function service({
   offer?: { name: string; price: string; description: string };
 }): Record<string, unknown> {
   const o = offer ?? {
-    name: "Hobby",
+    name: "Free",
     price: "0",
     description: "10k pageviews per month, free forever",
   };

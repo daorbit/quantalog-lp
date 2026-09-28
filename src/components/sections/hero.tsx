@@ -23,7 +23,7 @@ export function Hero() {
 
         <div className="w-full text-center lg:w-[42%] lg:shrink-0 lg:text-left">
           <a
-            href="/blog/introducing-quantalog"
+            href="/platform-api"
             className="glass rise rise-1 group inline-flex items-center gap-2 rounded-full py-1 pl-1 pr-3 text-xs text-fg-muted transition-all duration-200 hover:-translate-y-px hover:text-fg"
           >
             {/* The one place the accent stays at strength above the fold

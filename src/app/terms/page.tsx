@@ -31,7 +31,7 @@ export default function TermsPage() {
           or to circumvent the privacy design described in our privacy policy.
         </li>
         <li>Do not attempt to read data belonging to another workspace.</li>
-        <li>Do not resell raw access to the API outside the terms of a Platform plan.</li>
+        <li>Do not resell raw access to the API without a written agreement with us.</li>
         <li>
           Only connect a social account you are authorised to post from, and only
           schedule content you have the right to publish.
@@ -71,8 +71,8 @@ export default function TermsPage() {
 
       <h2>Availability</h2>
       <p>
-        We aim for high availability and publish an SLA on Platform plans. On free
-        plans the service is provided as-is, without a uptime guarantee. Features
+        We aim for high availability, but the service is provided as-is, without
+        an uptime guarantee, unless a separate written agreement says otherwise. Features
         that depend on a third party — social publishing, Orbit, SEO audits — are
         also subject to that third party&apos;s own availability.
       </p>

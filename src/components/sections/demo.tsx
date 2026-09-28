@@ -33,7 +33,7 @@ export function Demo() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#4ade80]" />
-              <span className="ml-3 text-xs text-fg-faint">quantalog.in/app</span>
+              <span className="ml-3 text-xs text-fg-faint">{new URL(site.app).host}</span>
             </div>
 
             <div className="relative w-full" style={{ aspectRatio: "16/9" }}>

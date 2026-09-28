@@ -167,8 +167,8 @@ export default async function BlogPostPage({
             Try {site.name} on your own site
           </p>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-fg-muted">
-            One script tag, no cookies, live numbers in about three seconds. Free
-            forever on the Hobby plan.
+            One script tag, no cookies, live numbers in about three seconds. The
+            Free plan stays free forever.
           </p>
           <Button
             href={`${site.app}/signup`}

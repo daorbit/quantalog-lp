@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: "/plans",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `Plans and pricing — ${site.name}`,
+    description: DESCRIPTION,
+  },
 };
 
 const jsonLd = graph(

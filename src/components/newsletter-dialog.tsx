@@ -10,6 +10,8 @@ const SUBSCRIBED_KEY = "quantalog_newsletter_subscribed";
 
 const OPEN_DELAY_MS = 12_000;
 
+const SCROLL_DEPTH = 0.6;
+
 const CLOSE_ANIM_MS = 180;
 
 const EXCLUDED = ["/thank-you", "/contact", "/privacy", "/terms"];
@@ -54,11 +56,31 @@ export function NewsletterDialog() {
     if (seen()) return;
     if (EXCLUDED.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return;
 
-    const t = setTimeout(() => {
+    const show = () => {
+      disarm();
       restoreRef.current = document.activeElement as HTMLElement | null;
       setOpen(true);
+    };
+    const onLeave = (e: MouseEvent) => {
+      if (!e.relatedTarget && e.clientY <= 0) show();
+    };
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max >= SCROLL_DEPTH) show();
+    };
+    const disarm = () => {
+      document.removeEventListener("mouseout", onLeave);
+      window.removeEventListener("scroll", onScroll);
+    };
+
+    const t = setTimeout(() => {
+      document.addEventListener("mouseout", onLeave);
+      window.addEventListener("scroll", onScroll, { passive: true });
     }, OPEN_DELAY_MS);
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      disarm();
+    };
   }, [pathname]);
 
   const close = useCallback(

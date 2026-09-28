@@ -14,7 +14,7 @@ function Body() {
       <P>
         Alongside the <b>1h / 24h / 7d / 30d</b> presets, the <b>Custom</b> button
         opens a calendar where you pick a start and end date. Every number on the
-        page â€” headline metrics, breakdowns, goals â€” re-scopes to that window, and
+        page — headline metrics, breakdowns, goals — re-scopes to that window, and
         the comparison automatically uses the equal-length period just before it.
       </P>
       <Ul>

@@ -62,7 +62,7 @@ const jsonLd = graph(
 
     offers: {
       "@type": "Offer",
-      name: "Hobby",
+      name: "Free",
       price: "0",
       priceCurrency: "USD",
       description: "10k pageviews per month, free forever",

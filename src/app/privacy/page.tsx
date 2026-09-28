@@ -89,10 +89,11 @@ export default function PrivacyPage() {
 
       <h2>Retention and deletion</h2>
       <p>
-        Event data is retained according to your plan — 30 days on Hobby, 2 years on
-        Pro. You can export or permanently delete a site&apos;s data at any time from
-        the dashboard, and deleting your account removes everything associated with
-        it, including any connected social accounts.
+        Your plan sets how far back the dashboard lets you look — the last 7 days
+        on Free, any range on Starter and Pro. Event data itself is kept until you
+        delete it. You can export or permanently delete a site&apos;s data at any
+        time from the dashboard, and deleting your account removes everything
+        associated with it, including any connected social accounts.
       </p>
 
       <h2>Sub-processors</h2>

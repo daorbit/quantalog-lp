@@ -20,7 +20,7 @@ export function Cta() {
           <br className="hidden sm:block" /> three minutes away.
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-pretty text-lead leading-relaxed text-fg-muted">
-          Free forever on the Hobby plan. No credit card, no sales call, no
+          The Free plan stays free forever. No credit card, no sales call, no
           onboarding webinar.
         </p>
 

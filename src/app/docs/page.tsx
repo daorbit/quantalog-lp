@@ -69,7 +69,7 @@ export default function DocsIndexPage() {
           <DocsNav groups={groups} />
         </aside>
 
-        <main className="min-w-0">
+        <div className="min-w-0">
           <header className="max-w-2xl">
             <Eyebrow>Documentation</Eyebrow>
             <h1 className="mt-3 text-balance text-[2rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]">
@@ -109,7 +109,7 @@ export default function DocsIndexPage() {
               </section>
             ))}
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );

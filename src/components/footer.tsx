@@ -73,9 +73,9 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg">
                 {col.title}
-              </h3>
+              </h2>
               <ul className="mt-4 space-y-3">
                 {col.links.map((link) => {
                   const Icon = link.icon;
