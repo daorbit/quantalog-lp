@@ -27,6 +27,7 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
+  const [isMac, setIsMac] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -74,6 +75,10 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
   }, [close]);
 
   useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad/.test(navigator.userAgent));
+  }, []);
+
+  useEffect(() => {
     const q = params.get("q");
     if (q) {
       setQuery(q);
@@ -111,8 +116,8 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
         aria-label="Search the documentation"
       >
         <Search className="h-4 w-4" aria-hidden="true" />
-        Search docs
-        <kbd aria-hidden="true">⌘K</kbd>
+        Search docs…
+        <kbd aria-hidden="true">{isMac ? "⌘ K" : "Ctrl K"}</kbd>
       </button>
 
       {open && (

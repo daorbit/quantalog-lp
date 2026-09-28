@@ -1,18 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import {
-  getDoc,
-  getDocNav,
-  getDocSiblings,
-  getDocSlugs,
-} from "@/lib/docs";
+import { getDoc, getDocSiblings, getDocSlugs } from "@/lib/docs";
 import { site } from "@/lib/site";
-import { DocsNav } from "@/components/docs-nav";
 import { DocsToc } from "@/components/docs-toc";
-import { DocsCommand } from "@/components/docs-command";
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb";
+import { DocsPager } from "@/components/docs-pager";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
@@ -60,7 +52,6 @@ export default async function DocPage({
   const doc = getDoc(slug);
   if (!doc) notFound();
 
-  const groups = getDocNav();
   const { prev, next } = getDocSiblings(slug);
   const { Body } = doc;
 
@@ -85,74 +76,24 @@ export default async function DocPage({
   );
 
   return (
-    <div className="docs-shell">
+    <div className="docs-page">
       <JsonLd data={jsonLd} />
-      <div className="docs-layout">
-        <aside className="docs-sidebar">
-          <div className="mb-4">
-            <Suspense fallback={null}>
-              <DocsCommand groups={groups} />
-            </Suspense>
-          </div>
-          <DocsNav groups={groups} />
-        </aside>
+      <article className="docs-article">
+        <DocsBreadcrumb trail={[doc.category, doc.title]} />
 
-        <article className="min-w-0">
-          <nav className="docs-breadcrumb" aria-label="Breadcrumb">
-            <Link href="/docs">Docs</Link>
-            <ChevronRight className="h-3 w-3" aria-hidden="true" />
-            <span>{doc.category}</span>
-            <ChevronRight className="h-3 w-3" aria-hidden="true" />
-            <span className="text-fg-muted">{doc.title}</span>
-          </nav>
+        <header>
+          <h1 className="docs-title">{doc.title}</h1>
+          <p className="docs-lead">{doc.description}</p>
+        </header>
 
-          <header className="mt-4 border-b border-border pb-6">
-            <h1 className="text-balance text-[1.875rem] font-bold leading-[1.15] tracking-[-0.03em] sm:text-[2.25rem]">
-              {doc.title}
-            </h1>
-            <p className="mt-3 text-pretty leading-relaxed text-fg-muted">
-              {doc.description}
-            </p>
-          </header>
+        <div className="prose-q">
+          <Body />
+        </div>
 
-          <div className="prose-q mt-8">
-            <Body />
-          </div>
+        <DocsPager prev={prev} next={next} />
+      </article>
 
-          <nav className="mt-14 grid gap-3 border-t border-border pt-6 sm:grid-cols-2">
-            {prev ? (
-              <Link
-                href={`/docs/${prev.slug}`}
-                className="card card-hover group p-4"
-              >
-                <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-fg-faint">
-                  <ArrowLeft className="h-3 w-3" /> Previous
-                </span>
-                <p className="mt-1 text-sm font-semibold tracking-tight transition group-hover:text-accent">
-                  {prev.title}
-                </p>
-              </Link>
-            ) : (
-              <span />
-            )}
-            {next && (
-              <Link
-                href={`/docs/${next.slug}`}
-                className="card card-hover group p-4 sm:text-right"
-              >
-                <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-fg-faint sm:w-full sm:justify-end">
-                  Next <ArrowRight className="h-3 w-3" />
-                </span>
-                <p className="mt-1 text-sm font-semibold tracking-tight transition group-hover:text-accent">
-                  {next.title}
-                </p>
-              </Link>
-            )}
-          </nav>
-        </article>
-
-        <DocsToc />
-      </div>
+      <DocsToc />
     </div>
   );
 }

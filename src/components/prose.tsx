@@ -1,3 +1,4 @@
+import { Info, Lightbulb, TriangleAlert } from "lucide-react";
 import { CopyButton } from "./copy-button";
 
 export function H2({ id, children }: { id: string; children: React.ReactNode }) {
@@ -50,21 +51,29 @@ export function A({ href, children }: { href: string; children: React.ReactNode 
   );
 }
 
+const CALLOUT_ICONS = {
+  note: Info,
+  tip: Lightbulb,
+  warn: TriangleAlert,
+} as const;
+
 export function Callout({
   children,
+  title,
   variant = "note",
 }: {
   children: React.ReactNode;
-  variant?: "note" | "tip" | "warn";
+  title?: string;
+  variant?: keyof typeof CALLOUT_ICONS;
 }) {
-  const icon =
-    variant === "warn" ? "!" : variant === "tip" ? "★" : "i";
+  const Icon = CALLOUT_ICONS[variant];
   return (
     <aside className={`doc-callout doc-callout--${variant}`}>
-      <span className="doc-callout__icon" aria-hidden="true">
-        {icon}
-      </span>
-      <div>{children}</div>
+      <Icon className="doc-callout__icon" aria-hidden="true" />
+      <div className="min-w-0">
+        {title && <p className="doc-callout__title">{title}</p>}
+        <div className="doc-callout__body">{children}</div>
+      </div>
     </aside>
   );
 }
