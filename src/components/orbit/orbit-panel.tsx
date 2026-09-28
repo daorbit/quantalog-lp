@@ -54,7 +54,7 @@ function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts:
   return (
     <div className="space-y-6 px-1 pt-1">
       <div className="flex flex-col items-center gap-1.5">
-        <OrbitMark size={50} />
+        <OrbitMark size={72} />
         <p className="text-center text-sm font-bold">Chat with Orbit</p>
         <p className="max-w-[280px] text-center text-xs leading-relaxed text-fg-muted">
           Ask about the tracking, the plans, how Quantalog compares to another

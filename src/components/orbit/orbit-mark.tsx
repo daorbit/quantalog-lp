@@ -1,30 +1,36 @@
-"use client";
+import Image from "next/image";
 
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+const LIGHT_SRC = "/orbit-ai-light.webp";
+const DARK_SRC = "/orbit-ai-dark.webp";
 
-export function OrbitMark({ size = 20 }: { size?: number }) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  const dark = !mounted || resolvedTheme !== "light";
-
+export function OrbitMark({
+  size = 20,
+  alt = "",
+  className = "",
+}: {
+  size?: number;
+  alt?: string;
+  className?: string;
+}) {
+  const hidden = alt ? undefined : true;
   return (
-    <img
-      src={dark ? "/da-ai-dark-mode.png" : "/da-ai-light-mode.png"}
-      alt=""
-      aria-hidden="true"
-      width={size}
-      height={size}
-      style={{
-        width: size,
-        height: size,
-        borderRadius: Math.round(size * 0.28),
-        display: "block",
-        flexShrink: 0,
-        objectFit: "cover",
-      }}
-    />
+    <>
+      <Image
+        src={LIGHT_SRC}
+        alt={alt}
+        aria-hidden={hidden}
+        width={size}
+        height={size}
+        className={`block shrink-0 object-contain dark:hidden ${className}`}
+      />
+      <Image
+        src={DARK_SRC}
+        alt={alt}
+        aria-hidden={hidden}
+        width={size}
+        height={size}
+        className={`hidden shrink-0 object-contain dark:block ${className}`}
+      />
+    </>
   );
 }

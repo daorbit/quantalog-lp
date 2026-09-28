@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { OrbitMark } from "./orbit/orbit-mark";
 
 /**
  * A compact Orbit mention for the product pages.
@@ -26,20 +26,7 @@ export function OrbitStrip({
         <div className="flex flex-col gap-6 p-6 sm:p-7 lg:flex-row lg:items-center lg:gap-10">
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2.5">
-              <Image
-                src="/da-ai-dark-mode.png"
-                alt=""
-                width={28}
-                height={28}
-                className="hidden rounded-lg dark:block"
-              />
-              <Image
-                src="/da-ai-light-mode.png"
-                alt=""
-                width={28}
-                height={28}
-                className="rounded-lg dark:hidden"
-              />
+              <OrbitMark size={32} />
               <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.09em] text-fg-faint">
                 Orbit AI
               </span>

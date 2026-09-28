@@ -62,7 +62,7 @@ export function OrbitBubble() {
 
           <header className="orbit-panel__header flex items-center justify-between border-b border-border px-4 py-2.5">
             <div className="flex items-center gap-2">
-              <OrbitMark size={22} />
+              <OrbitMark size={28} />
               <span className="text-sm font-semibold">Orbit</span>
             </div>
             <div className="flex items-center gap-0.5">
@@ -94,7 +94,7 @@ export function OrbitBubble() {
         aria-label={open ? "Hide Orbit" : "Ask Orbit"}
         aria-expanded={open}
       >
-        <OrbitMark size={52} />
+        <OrbitMark size={64} />
       </button>
     </>
   );

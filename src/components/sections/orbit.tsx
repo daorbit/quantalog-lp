@@ -1,10 +1,10 @@
-import Image from "next/image";
 import {
   BookOpen, Clock, MessageSquare, ShieldCheck,
   BarChart3, ImageIcon, Swords,
 } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { Reveal } from "../reveal";
+import { OrbitMark } from "../orbit/orbit-mark";
 
 const points = [
   {
@@ -73,7 +73,7 @@ const models = [
   // { name: "North Mini", vendor: "Cohere" },
 ];
 
-function OrbitMark() {
+function OrbitBadge() {
   return (
     <div className="relative shrink-0">
 
@@ -82,20 +82,7 @@ function OrbitMark() {
         style={{ background: "var(--glow)" }}
         aria-hidden="true"
       />
-      <Image
-        src="/da-ai-dark-mode.png"
-        alt="Orbit AI"
-        width={128}
-        height={128}
-        className="relative hidden h-24 w-24 rounded-2xl shadow-soft dark:block"
-      />
-      <Image
-        src="/da-ai-light-mode.png"
-        alt="Orbit AI"
-        width={128}
-        height={128}
-        className="relative h-24 w-24 rounded-2xl shadow-soft dark:hidden"
-      />
+      <OrbitMark size={120} alt="Orbit AI" className="relative" />
     </div>
   );
 }
@@ -104,20 +91,7 @@ function ChatPreview() {
   return (
     <div className="card overflow-hidden p-0">
       <div className="flex items-center gap-2.5 border-b border-border bg-bg-subtle px-4 py-3">
-        <Image
-          src="/da-ai-dark-mode.png"
-          alt=""
-          width={26}
-          height={26}
-          className="hidden rounded-lg dark:block"
-        />
-        <Image
-          src="/da-ai-light-mode.png"
-          alt=""
-          width={26}
-          height={26}
-          className="rounded-lg dark:hidden"
-        />
+        <OrbitMark size={30} />
         <div className="text-[13px] font-semibold tracking-tight">Orbit AI</div>
       </div>
 
@@ -159,7 +133,7 @@ export function Orbit() {
 
         <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
           <div className="v-rise">
-            <OrbitMark />
+            <OrbitBadge />
           </div>
           <SectionHeading
             eyebrow="Orbit AI"
