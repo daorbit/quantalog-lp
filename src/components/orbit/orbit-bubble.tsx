@@ -36,7 +36,6 @@ export function OrbitBubble() {
 
   useEffect(() => {
     if (!open) return;
-    if (!window.matchMedia("(max-width: 48em)").matches) return;
 
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
@@ -58,8 +57,6 @@ export function OrbitBubble() {
 
       {open && (
         <div className="orbit-panel" role="dialog" aria-label="Ask Orbit">
-          <div className="aurora-wash" aria-hidden />
-
           <header className="orbit-panel__header flex items-center justify-between border-b border-border px-4 py-2.5">
             <div className="flex items-center gap-2">
               <OrbitMark size={28} />

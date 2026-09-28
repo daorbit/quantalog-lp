@@ -39,10 +39,6 @@ export const faqs = [
     a: "Yes. The login page has a live demo that opens a fully populated workspace in one click — a month of sample traffic, a complete SEO audit with history, and every screen in the product. It is read-only, the data is generated in your browser, and no account or card is involved.",
   },
   {
-    q: "Where is the data stored?",
-    a: "In MongoDB Atlas. Raw IP addresses are never persisted; they are hashed on receipt and discarded. You can export or delete a site's data at any time from the dashboard.",
-  },
-  {
     q: "Does the script slow my site down?",
     a: "It is under a kilobyte, loads with the async attribute, and sends events with navigator.sendBeacon, so it never blocks rendering or delays navigation.",
   },

@@ -43,10 +43,6 @@ const faqs = [
     a: "Quantalog stores no cookies and no personal data. Visitors are counted using a rotating daily hash of IP address and user agent that is never persisted in reversible form, which is why no consent banner is required for it. Your own obligations still depend on everything else running on your site, so treat this as one fewer disclosure to make rather than legal advice.",
   },
   {
-    q: "Where is the data stored?",
-    a: "In MongoDB Atlas. Raw IP addresses are hashed on receipt and discarded rather than persisted. You can export or delete a site's data at any time from the dashboard.",
-  },
-  {
     q: "What does Quantalog deliberately not do?",
     a: "No session recording, no heatmaps, no cross-site tracking, no ad-platform attribution and no user-level profiles. Some of those are useful; all of them require following an individual around, which is the thing this product exists not to do.",
   },
