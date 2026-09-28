@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUp, Sparkles } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { openOrbit, SUMMARISE_PROMPT } from "./orbit/orbit-open";
+import { OrbitMark } from "./orbit/orbit-mark";
 
 type Heading = { id: string; text: string; depth: 2 | 3 };
 
@@ -72,7 +73,7 @@ export function DocsToc() {
           className="docs-toc-action"
           onClick={() => openOrbit({ ask: SUMMARISE_PROMPT })}
         >
-          <Sparkles aria-hidden="true" />
+          <OrbitMark size={14} />
           Summarize with Orbit AI
         </button>
         <button

@@ -197,7 +197,7 @@ function Body() {
       <H2 id="freshness">How fresh the data is</H2>
       <P>
         Google publishes performance data with a delay of about two to three days, and the most recent days can still
-        rise as Google finalises them. Quantalog caches each report for a few hours; the refresh button in the toolbar
+        rise as Google finalises them. Quantalog caches each report for a few hours; <b>Refresh</b> in the toolbar
         fetches the latest from Google. Google keeps 16 months of performance history, which is the longest range
         available.
       </P>
@@ -216,6 +216,12 @@ function Body() {
       </Ul>
 
       <H2 id="troubleshooting">Troubleshooting</H2>
+      <H3 id="not-configured">Search visibility isn&apos;t available</H3>
+      <P>
+        If the page shows that Google Search Console isn&apos;t set up on this deployment, the integration hasn&apos;t
+        been enabled yet — check with your Quantalog administrator. This is separate from connecting your own Google
+        account, which is the next step once it is enabled.
+      </P>
       <H3 id="no-property">No property matches my site</H3>
       <P>
         The signed-in Google account cannot see a property for your domain. Verify the site in Search Console, or use{" "}

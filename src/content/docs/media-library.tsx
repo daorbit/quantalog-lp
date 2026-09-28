@@ -22,13 +22,16 @@ function Body() {
       <Ul>
         <Li>Search by file name.</Li>
         <Li>Filter by kind — All, Images, Video, or Files.</Li>
-        <Li>Click a tile to preview it, rename it, or delete it.</Li>
+        <Li>Click a tile to preview it, rename it, or delete it. Images, video, PDFs, common Office documents, and text files under 200KB preview inline.</Li>
+        <Li>Results are paginated, 40 files per page.</Li>
       </Ul>
 
       <H2 id="bulk">Selecting and deleting multiple files</H2>
       <P>
-        Switch into selection mode to check multiple tiles at once, then use
-        the bulk delete action that appears in the bar above the grid.
+        Use the select icon on a tile to start selecting — it turns into a
+        checkbox you can tick on other tiles too. With one or more selected,
+        <b> Clear</b> and <b>Delete</b> appear above the grid; <b>Delete</b>{" "}
+        removes every selected file at once.
       </P>
 
       <Callout>

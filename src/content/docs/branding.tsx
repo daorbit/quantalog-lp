@@ -13,14 +13,15 @@ function Body() {
 
       <H2 id="your-brand">Your brand</H2>
       <Ul>
-        <Li><b>Business name</b> — shown in the form header and respondent emails.</Li>
-        <Li><b>Logo</b> — upload a file or pick one from the Media Library.</Li>
+        <Li><b>Business name</b> — shown in the form header and respondent emails, up to 60 characters.</Li>
+        <Li><b>Logo</b> — choose one from the Media Library, which also lets you upload a new file from there.</Li>
         <Li><b>Brand color</b> — the accent used for buttons and highlights on public forms and payment windows.</Li>
       </Ul>
       <P>
         A live preview next to the settings shows a mocked form and payment
         window updating as you change these fields, so you can check the look
-        before saving.
+        before saving. If a logo fails to load, Quantalog shows a notice and
+        lets you pick another one or remove it.
       </P>
 
       <H2 id="credits">Credits</H2>
@@ -31,7 +32,9 @@ function Body() {
 
       <Callout>
         Full customization, including turning off the powered-by footer, is a
-        Pro feature. Free workspaces see a read-only preview of these settings.
+        Pro feature — free workspaces see a read-only preview of these
+        settings. On any plan, only a workspace admin can change branding;
+        other members see the same page in view-only mode.
       </Callout>
 
       <H2 id="saving">Saving changes</H2>
