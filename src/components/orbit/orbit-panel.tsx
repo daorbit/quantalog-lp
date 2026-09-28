@@ -1,12 +1,67 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { ArrowUp, TriangleAlert } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import {
+  ArrowUp,
+  ArrowUpRight,
+  Check,
+  Copy,
+  CornerDownRight,
+  MessageSquareText,
+  TriangleAlert,
+} from "lucide-react";
 import { OrbitMark } from "./orbit-mark";
 import { OrbitMarkdown } from "./orbit-markdown";
 import { SUMMARISE_PROMPT } from "./orbit-open";
 import type { OrbitMessage } from "./use-orbit-chat";
 import { useOrbitChat } from "./use-orbit-chat";
+
+function Suggestion({
+  question,
+  onPick,
+  variant = "starter",
+}: {
+  question: string;
+  onPick: (q: string) => void;
+  variant?: "starter" | "follow-up";
+}) {
+  const Icon = variant === "starter" ? MessageSquareText : CornerDownRight;
+  return (
+    <button type="button" className="orbit-suggestion" onClick={() => onPick(question)}>
+      <Icon size={14} className="orbit-suggestion__icon" aria-hidden="true" />
+      <span className="orbit-suggestion__text">{question}</span>
+      <ArrowUpRight size={14} className="orbit-suggestion__arrow" aria-hidden="true" />
+    </button>
+  );
+}
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const id = window.setTimeout(() => setCopied(false), 1500);
+    return () => window.clearTimeout(id);
+  }, [copied]);
+
+  return (
+    <button
+      type="button"
+      className="orbit-copy-btn"
+      onClick={() => {
+        void navigator.clipboard.writeText(text).then(() => setCopied(true));
+      }}
+      aria-label={copied ? "Copied" : "Copy answer"}
+    >
+      {copied ? (
+        <Check size={13} aria-hidden="true" />
+      ) : (
+        <Copy size={13} aria-hidden="true" />
+      )}
+      {copied ? "Copied" : "Copy"}
+    </button>
+  );
+}
 
 function Bubble({ message }: { message: OrbitMessage }) {
   if (message.role === "user") {
@@ -20,7 +75,7 @@ function Bubble({ message }: { message: OrbitMessage }) {
   }
 
   return (
-    <div className="flex items-start gap-[7px]">
+    <div className="orbit-answer flex items-start gap-[7px]">
       {message.failed && (
         <TriangleAlert
           className="mt-[3px] h-3.5 w-3.5 shrink-0 text-amber-500"
@@ -31,9 +86,14 @@ function Bubble({ message }: { message: OrbitMessage }) {
         {message.failed ? (
           <p className="text-sm leading-relaxed text-fg-muted">{message.content}</p>
         ) : (
-          <div className="text-sm leading-relaxed text-fg">
-            <OrbitMarkdown text={message.content} />
-          </div>
+          <>
+            <div className="text-sm leading-relaxed text-fg">
+              <OrbitMarkdown text={message.content} />
+            </div>
+            <div className="orbit-turn-actions">
+              <CopyButton text={message.content} />
+            </div>
+          </>
         )}
       </div>
     </div>
@@ -67,9 +127,7 @@ function EmptyState({ onPick, prompts }: { onPick: (q: string) => void; prompts:
           Try asking
         </p>
         {chips.map((q) => (
-          <button key={q} type="button" className="orbit-suggestion" onClick={() => onPick(q)}>
-            {q}
-          </button>
+          <Suggestion key={q} question={q} onPick={onPick} />
         ))}
       </div>
     </div>
@@ -150,15 +208,16 @@ export function OrbitPanel({ ask }: { ask?: string }) {
 
             {!thinking && followUps.length > 0 && (
               <div className="space-y-1.5">
+                <p className="text-xs font-semibold uppercase tracking-[0.05em] text-fg-muted">
+                  Related
+                </p>
                 {followUps.map((q) => (
-                  <button
+                  <Suggestion
                     key={q}
-                    type="button"
-                    className="orbit-suggestion"
-                    onClick={() => send(q)}
-                  >
-                    {q}
-                  </button>
+                    question={q}
+                    onPick={(v) => send(v)}
+                    variant="follow-up"
+                  />
                 ))}
               </div>
             )}
@@ -168,13 +227,13 @@ export function OrbitPanel({ ask }: { ask?: string }) {
         )}
       </div>
 
-      <div className="px-4 pb-3 pt-1">
+      <div className="orbit-composer-wrap px-4 pb-3 pt-1">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             send();
           }}
-          className="flex items-end gap-1.5 rounded-xl border border-border bg-bg-subtle px-2.5 py-1.5 focus-within:border-accent"
+          className="orbit-composer flex items-end gap-1.5 px-2.5 py-1.5"
         >
           <textarea
             ref={inputRef}

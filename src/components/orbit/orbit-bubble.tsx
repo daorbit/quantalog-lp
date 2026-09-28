@@ -36,6 +36,16 @@ export function OrbitBubble() {
 
   useEffect(() => {
     if (!open) return;
+    const root = document.documentElement;
+    root.dataset.orbitOpen = "";
+    return () => {
+      delete root.dataset.orbitOpen;
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    if (!window.matchMedia("(max-width: 63.99em)").matches) return;
 
     const { overflow } = document.body.style;
     document.body.style.overflow = "hidden";
@@ -91,7 +101,7 @@ export function OrbitBubble() {
         aria-label={open ? "Hide Orbit" : "Ask Orbit"}
         aria-expanded={open}
       >
-        <OrbitMark size={64} />
+        <OrbitMark size={52} />
       </button>
     </>
   );
