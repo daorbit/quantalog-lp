@@ -10,15 +10,36 @@ function Body() {
         traffic you already track. It is read-only: Quantalog never changes anything in your Search Console account.
       </P>
 
-      <H2 id="before-you-start">Before you start</H2>
+      <H2 id="before-you-start">Before you start: add and verify your site in Search Console</H2>
+      <P>
+        Quantalog only reads data that already exists in Google Search Console — it does not create a property for
+        you. If your site is not there yet, add it first:
+      </P>
       <Ul>
         <Li>
-          Your site must be verified in{" "}
-          <A href="https://search.google.com/search-console">Google Search Console</A>. Google only collects data from
-          the day a property is verified, so a new property shows little for the first few days.
+          Open <A href="https://search.google.com/search-console">Google Search Console</A> and press{" "}
+          <b>Add property</b>.
         </Li>
+        <Li>
+          Choose <b>Domain</b> and enter your bare domain (<code>example.com</code>), then verify it with a DNS TXT
+          record through your domain registrar. This covers every subdomain and both http and https, and is what
+          Quantalog expects when it looks for a matching property. If you cannot edit DNS, use <b>URL prefix</b>{" "}
+          instead and verify with the HTML file, meta tag, or Google Analytics option Search Console offers —
+          this only covers the exact address you enter.
+        </Li>
+        <Li>
+          Once verification succeeds, submit your sitemap under <b>Sitemaps</b> in Search Console so Google starts
+          crawling and reporting on your pages.
+        </Li>
+      </Ul>
+      <Callout>
+        Google only collects data from the day a property is verified, so a brand-new property shows little to
+        nothing for the first few days — this is expected, not a connection problem.
+      </Callout>
+      <P>Two more things to have ready before connecting:</P>
+      <Ul>
         <Li>You need admin access to the Quantalog workspace to connect Google or change a property.</Li>
-        <Li>The Google account you sign in with must be an owner or full user of the property.</Li>
+        <Li>The Google account you sign in with must be an owner or full user of the property you just verified.</Li>
       </Ul>
 
       <H2 id="connecting">Connecting Google</H2>

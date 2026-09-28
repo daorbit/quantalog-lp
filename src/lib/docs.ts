@@ -29,8 +29,12 @@ import { demo } from "@/content/docs/demo";
 import { billing } from "@/content/docs/billing";
 import { orbitAi } from "@/content/docs/orbit-ai";
 import { segmentsMarkers } from "@/content/docs/segments-markers";
+import { branding } from "@/content/docs/branding";
+import { mediaLibrary } from "@/content/docs/media-library";
+import { reviews } from "@/content/docs/reviews";
+import { workspaceMembers } from "@/content/docs/workspace-members";
 
-export type DocCategory = "Getting started" | "Tracking" | "Platform API";
+export type DocCategory = "Getting started" | "Tracking" | "Workspace" | "Platform API";
 
 export type DocMeta = {
   slug: string;
@@ -73,6 +77,10 @@ const DOCS: Doc[] = [
   formsAdvancedFields,
   segmentsMarkers,
   orbitAi,
+  workspaceMembers,
+  branding,
+  mediaLibrary,
+  reviews,
   platformApi,
   apiReference,
   privacy,
@@ -81,6 +89,7 @@ const DOCS: Doc[] = [
 const CATEGORY_ORDER: DocCategory[] = [
   "Getting started",
   "Tracking",
+  "Workspace",
   "Platform API",
 ];
 
