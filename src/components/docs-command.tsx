@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import type { DocNavGroup } from "@/lib/docs";
@@ -28,6 +29,7 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const [isMac, setIsMac] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -76,6 +78,7 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
 
   useEffect(() => {
     setIsMac(/Mac|iPhone|iPad/.test(navigator.userAgent));
+    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -120,58 +123,61 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
         <kbd aria-hidden="true">{isMac ? "⌘ K" : "Ctrl K"}</kbd>
       </button>
 
-      {open && (
-        <div
-          className="docs-cmdk-backdrop"
-          onClick={close}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Search documentation"
-        >
+      {open &&
+        mounted &&
+        createPortal(
           <div
-            className="docs-cmdk-panel"
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={onListKey}
+            className="docs-cmdk-backdrop"
+            onClick={close}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search documentation"
           >
-            <input
-              ref={inputRef}
-              className="docs-cmdk-input"
-              value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                setActive(0);
-              }}
-              placeholder="Search the docs…"
-              aria-label="Search the docs"
-            />
-            <div className="docs-cmdk-results" ref={listRef}>
-              {results.length === 0 ? (
-                <p className="docs-cmdk-empty">
-                  Nothing matches “{query.trim()}”. Try a feature name.
-                </p>
-              ) : (
-                results.map((d, i) => (
-                  <a
-                    key={d.slug}
-                    href={`/docs/${d.slug}`}
-                    className="docs-cmdk-item"
-                    data-active={i === active}
-                    onMouseEnter={() => setActive(i)}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      go(d.slug);
-                    }}
-                  >
-                    <span className="docs-cmdk-item__cat">{d.category}</span>
-                    <span className="docs-cmdk-item__title">{d.title}</span>
-                    <span className="docs-cmdk-item__desc">{d.description}</span>
-                  </a>
-                ))
-              )}
+            <div
+              className="docs-cmdk-panel"
+              onClick={(e) => e.stopPropagation()}
+              onKeyDown={onListKey}
+            >
+              <input
+                ref={inputRef}
+                className="docs-cmdk-input"
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setActive(0);
+                }}
+                placeholder="Search the docs…"
+                aria-label="Search the docs"
+              />
+              <div className="docs-cmdk-results" ref={listRef}>
+                {results.length === 0 ? (
+                  <p className="docs-cmdk-empty">
+                    Nothing matches “{query.trim()}”. Try a feature name.
+                  </p>
+                ) : (
+                  results.map((d, i) => (
+                    <a
+                      key={d.slug}
+                      href={`/docs/${d.slug}`}
+                      className="docs-cmdk-item"
+                      data-active={i === active}
+                      onMouseEnter={() => setActive(i)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        go(d.slug);
+                      }}
+                    >
+                      <span className="docs-cmdk-item__cat">{d.category}</span>
+                      <span className="docs-cmdk-item__title">{d.title}</span>
+                      <span className="docs-cmdk-item__desc">{d.description}</span>
+                    </a>
+                  ))
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
