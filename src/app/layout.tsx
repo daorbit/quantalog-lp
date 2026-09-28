@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DisplayMenu } from "@/components/display/display-menu";
-import { NewsletterDialog } from "@/components/newsletter-dialog";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { ScrollRise } from "@/components/scroll-rise";
 import { Starfield } from "@/components/starfield";
@@ -136,8 +135,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
 
           <DisplayMenu />
-
-          <NewsletterDialog />
 
           <OrbitBubble />
 

@@ -1327,47 +1327,6 @@ section {
   background: color-mix(in srgb, #ef4444 14%, transparent);
 }
 
-@keyframes nl-backdrop-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes nl-card-in {
-  from { opacity: 0; transform: translateY(16px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes nl-backdrop-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-@keyframes nl-card-out {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(10px) scale(0.98); }
-}
-
-.nl-backdrop {
-  animation: nl-backdrop-in 0.25s ease both;
-}
-.nl-card {
-
-  animation: nl-card-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.nl-closing .nl-backdrop {
-  animation: nl-backdrop-out 0.18s ease both;
-}
-.nl-closing .nl-card {
-  animation: nl-card-out 0.18s ease both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nl-backdrop,
-  .nl-card,
-  .nl-closing .nl-backdrop,
-  .nl-closing .nl-card {
-    animation: none;
-  }
-}
-
 :root {
   --glass-bg: rgba(255, 255, 255, 0.62);
   --glass-bg-strong: rgba(255, 255, 255, 0.78);
