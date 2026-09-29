@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/hero";
-import { DashboardShowcase } from "@/components/sections/dashboard-showcase";
 import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
@@ -11,9 +10,9 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { TryDemo } from "@/components/sections/try-demo";
 import { HowItWorks, steps as setupSteps } from "@/components/sections/how-it-works";
 import { Pricing } from "@/components/sections/pricing";
-import { Faq, faqs } from "@/components/sections/faq";
+import { Faq } from "@/components/sections/faq";
+import { faqs } from "@/lib/faqs";
 import { Cta } from "@/components/sections/cta";
-import { ChartDivider } from "@/components/chart-divider";
 import { Reveal } from "@/components/reveal";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
@@ -123,7 +122,6 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
-      <DashboardShowcase />
 
       <Demo />
       <Reveal as="section">
@@ -133,7 +131,6 @@ export default function HomePage() {
       <div className="band-deep">
         <ConsentGap />
       </div>
-      <ChartDivider variant="reported" />
       <Features />
 
   

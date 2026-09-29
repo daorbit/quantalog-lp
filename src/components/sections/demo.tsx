@@ -27,16 +27,16 @@ export function Demo() {
           body="Watch how Quantalog goes from a blank workspace to a live dashboard, in about a minute. No account needed."
         />
 
-        <div className="v-rise v-d2 mx-auto mt-10 max-w-5xl">
+        <div className="v-rise v-d2 stage mx-auto mt-12 max-w-6xl">
           <div className="panel overflow-hidden">
-            <div className="flex items-center gap-1.5 border-b border-(--glass-border) bg-bg-subtle px-4 py-3">
+            <div className="flex items-center gap-1.5 border-b border-border bg-surface px-4 py-3">
               <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#4ade80]" />
               <span className="ml-3 text-xs text-fg-faint">{new URL(site.app).host}</span>
             </div>
 
-            <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+            <div className="relative aspect-video w-full">
               <video
                 className="h-full w-full object-cover"
                 src={VIDEO_SRC}

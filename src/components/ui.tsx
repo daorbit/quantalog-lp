@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
 import { track } from "@/lib/track";
 
@@ -17,20 +16,15 @@ type ButtonProps = {
 };
 
 const variants = {
-  // Monochrome rather than accent-filled, matching the app's sign-in button.
-  // `brightness` is no use on a white fill (it cannot get brighter), so the
-  // hover moves the colour itself.
-  primary:
-    "bg-cta text-cta-fg shadow-[var(--shadow-md)] hover:bg-cta-hover hover:-translate-y-px active:translate-y-0",
+  primary: "bg-cta text-cta-fg hover:bg-cta-hover active:scale-[0.99]",
   secondary:
-    "glass text-fg hover:-translate-y-px active:translate-y-0",
+    "border border-border bg-surface text-fg hover:border-border-strong hover:bg-bg-subtle active:scale-[0.99]",
   ghost: "text-fg-muted hover:text-fg",
 } as const;
 
 const sizes = {
-  md: "px-3 py-1.5 text-[13px] sm:px-3.5 sm:py-1.5 sm:text-[13px]",
-
-  lg: "px-4 py-2 text-[13px] sm:px-5 sm:py-2.5 sm:text-sm",
+  md: "h-9 px-4 text-[14px]",
+  lg: "h-11 px-5 text-[14px] sm:h-12 sm:px-6 sm:text-[15px]",
 } as const;
 
 export function Button({
@@ -42,7 +36,7 @@ export function Button({
   track: event,
   trackProps,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
+  const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   const internal = href.startsWith("/") || href.startsWith("#");
 
   const onClick = event
@@ -68,7 +62,7 @@ export function Eyebrow({
   dot?: boolean;
 }) {
   return (
-    <p className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-fg-muted">
+    <p className="inline-flex items-center gap-2 rounded-full border border-border-warm bg-surface px-3 py-1 text-[12px] font-medium text-fg-muted">
       {dot && (
         <span
           className="live-dot h-1.5 w-1.5 rounded-full bg-accent"
@@ -114,15 +108,15 @@ export function SectionHeading({
         </div>
       )}
       <h2
-        className={`mt-5 text-balance leading-[1.08] tracking-[-0.03em] ${
-          size === "lg" ? "text-display font-medium" : "text-h2 font-medium"
+        className={`mt-5 text-balance font-medium leading-[1.06] tracking-display ${
+          size === "lg" ? "text-display" : "text-h2"
         }`}
       >
         {title}
       </h2>
       {body && (
         <p
-          className={`mt-5 text-pretty text-lead leading-relaxed text-fg-muted ${
+          className={`mt-5 text-pretty text-lead leading-normal text-fg-muted ${
             isCentered ? "mx-auto" : ""
           }`}
         >
@@ -142,41 +136,5 @@ export function GlowCard({
   className?: string;
   as?: "div" | "li" | "article";
 }) {
-  // Reading getBoundingClientRect on every mousemove and then writing a style
-  // in the same handler forces a synchronous layout each time the pointer
-  // moves. The rect is cached on enter (it cannot change mid-hover) and the
-  // writes are batched into one frame, so the hover does no layout work.
-  const rect = useRef<DOMRect | null>(null);
-  const frame = useRef(0);
-
-  const onMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    rect.current = e.currentTarget.getBoundingClientRect();
-  };
-
-  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const el = e.currentTarget;
-    const r = rect.current;
-    if (!r) return;
-
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-
-    if (frame.current) return;
-    frame.current = requestAnimationFrame(() => {
-      frame.current = 0;
-      el.style.setProperty("--mx", `${x}px`);
-      el.style.setProperty("--my", `${y}px`);
-    });
-  };
-
-  return (
-    <Tag
-      onMouseEnter={onMouseEnter}
-      onMouseMove={onMouseMove}
-      className={`glow-card edge-lit glass spring-hover rounded-2xl ${className}`}
-    >
-      <span className="glow-layer" aria-hidden="true" />
-      {children}
-    </Tag>
-  );
+  return <Tag className={`glow-card soft-card ${className}`}>{children}</Tag>;
 }

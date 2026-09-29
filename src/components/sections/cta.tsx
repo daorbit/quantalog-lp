@@ -4,27 +4,18 @@ import { site } from "@/lib/site";
 
 export function Cta() {
   return (
-
-    <section className="relative overflow-hidden border-t border-border bg-bg-subtle">
-      <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-160 w-160 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60"
-        aria-hidden="true"
-      >
-        <div className="aurora h-full w-full rounded-full" />
-      </div>
-
-      <div className="relative mx-auto max-w-3xl px-4 py-16 text-center sm:py-28 lg:py-32">
-        <h2 className="headline-live text-balance text-h2 font-medium leading-[1.08] tracking-[-0.035em]">
+    <section className="px-3 pb-16 sm:px-6 sm:pb-24">
+      <div className="stage mx-auto max-w-7xl px-4 py-16 text-center sm:py-24 lg:py-28">
+        <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
           Your first pageview is
           <br className="hidden sm:block" /> three minutes away.
         </h2>
-        <p className="mx-auto mt-6 max-w-lg text-pretty text-lead leading-relaxed text-fg-muted">
+        <p className="mx-auto mt-5 max-w-lg text-pretty text-lead leading-normal text-fg-muted">
           The Free plan stays free forever. No credit card, no sales call, no
           onboarding webinar.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button
             href={`${site.app}/signup`}
             size="lg"
@@ -39,7 +30,6 @@ export function Cta() {
             href={site.docs}
             variant="secondary"
             size="lg"
-            className=""
             track="read_docs"
             trackProps={{ location: "footer_cta" }}
           >

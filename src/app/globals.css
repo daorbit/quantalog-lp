@@ -30,88 +30,68 @@
 }
 
 :root {
-
-  /* Neutral rather than blue-grey. The cool cast these carried put a faint
-     blue over every panel, which fought the teal accent and made white cards
-     on the page background look tinted rather than clean. */
-  --bg: #fcfcfc;
-  --bg-subtle: #f5f5f6;
+  --bg: #ffffff;
+  --bg-subtle: #f5f5f7;
   --surface: #ffffff;
   --surface-raised: #ffffff;
-  --border: #e6e6e8;
-  --border-strong: #d0d0d4;
-  --fg: #0c0c0d;
-  --fg-muted: #5c5f66;
+  --border: #e8e8ed;
+  --border-strong: #d2d2d7;
+  --border-warm: #e8e8ed;
+  --fg: #1d1d1f;
+  --fg-muted: #6e6e73;
 
-  --fg-faint: #75787f;
+  --fg-faint: #7a7a7f;
   --accent: #0d9488;
   --accent-fg: #ffffff;
-  /* Primary CTA is monochrome, matching the app's sign-in button: the accent
-     is kept for data, marks and links rather than spent on the main action.
-     On a light page that inverts to near-black. */
-  --cta: #14161a;
-  --cta-hover: #2a2e35;
+  --cta: #1d1d1f;
+  --cta-hover: #3a3a3c;
   --cta-fg: #ffffff;
-  --grid-line: rgba(12, 12, 13, 0.045);
+  --grid-line: rgba(10, 10, 10, 0.04);
   --tint: rgba(13, 148, 136, 0.04);
-  --glow: rgba(13, 148, 136, 0.09);
+  --glow: rgba(13, 148, 136, 0.12);
   --ring: rgba(13, 148, 136, 0.35);
 
-  /* The accent's quiet register. A near-monochrome page still needs the
-     accent present in supporting furniture — chip icons, small marks, rules —
-     or the one place it appears at full strength reads as an accident. These
-     carry it at a weight that registers as "considered" rather than "coloured",
-     leaving saturation to data and a single CTA state. */
   --accent-muted: #5f6166;
-  --accent-quiet: rgba(13, 148, 136, 0.18);
-  --hairline-accent: rgba(13, 148, 136, 0.22);
+  --accent-quiet: rgba(13, 148, 136, 0.16);
+  --hairline-accent: rgba(13, 148, 136, 0.2);
 
-  --shadow-sm: 0 1px 2px rgba(11, 12, 15, 0.05), 0 1px 1px rgba(11, 12, 15, 0.03);
-  --shadow-md:
-    0 1px 2px rgba(11, 12, 15, 0.05),
-    0 4px 12px -2px rgba(11, 12, 15, 0.07),
-    0 2px 4px -2px rgba(11, 12, 15, 0.04);
-  --shadow-lg:
-    0 1px 3px rgba(11, 12, 15, 0.05),
-    0 12px 28px -8px rgba(11, 12, 15, 0.1),
-    0 32px 64px -16px rgba(11, 12, 15, 0.14);
-  --hairline: rgba(11, 12, 15, 0.06);
+  --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.04);
+  --shadow-md: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px -12px rgba(10, 10, 10, 0.08);
+  --shadow-lg: 0 1px 2px rgba(10, 10, 10, 0.04), 0 24px 48px -24px rgba(10, 10, 10, 0.12);
+  --hairline: rgba(10, 10, 10, 0.06);
+
+  --radius-card: 1.375rem;
+  --radius-panel: 1.875rem;
+  --radius-stage: 2.75rem;
 }
 
 .dark {
-  --bg: #0a0b0d;
-  --bg-subtle: #0f1114;
-  --surface: #141619;
-  --surface-raised: #1a1d21;
-  --border: #24272c;
-  --border-strong: #34383f;
-  --fg: #f7f8f9;
-  --fg-muted: #9ba1ab;
+  --bg: #000000;
+  --bg-subtle: #111113;
+  --surface: #161617;
+  --surface-raised: #1d1d1f;
+  --border: #2a2a2d;
+  --border-strong: #3a3a3c;
+  --border-warm: #2a2a2d;
+  --fg: #f5f5f7;
+  --fg-muted: #a1a1a6;
 
-  --fg-faint: #868d99;
+  --fg-faint: #8e8e93;
   --accent: #14b8a6;
   --accent-fg: #04231f;
-  --cta: #ffffff;
-  --cta-hover: rgba(255, 255, 255, 0.88);
-  --cta-fg: #0a0b0d;
+  --cta: #fafafa;
+  --cta-hover: #e5e5e5;
+  --cta-fg: #0a0a0a;
   --grid-line: rgba(255, 255, 255, 0.028);
   --tint: rgba(20, 184, 166, 0.05);
-  --glow: rgba(20, 184, 166, 0.12);
+  --glow: rgba(20, 184, 166, 0.14);
   --ring: rgba(20, 184, 166, 0.45);
   --accent-muted: #99a1ac;
-  --accent-quiet: rgba(20, 184, 166, 0.22);
-  --hairline-accent: rgba(20, 184, 166, 0.26);
-  /* Layered rather than single-cast: a tight contact shadow plus a wide
-     ambient one is what separates a card from the page at this darkness.
-     One blur at one opacity reads flat no matter how large it is. */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.44), 0 0 0 1px rgba(255, 255, 255, 0.02);
-  --shadow-md:
-    0 2px 4px -1px rgba(0, 0, 0, 0.4),
-    0 8px 24px -6px rgba(0, 0, 0, 0.55);
-  --shadow-lg:
-    0 2px 6px -1px rgba(0, 0, 0, 0.45),
-    0 12px 32px -8px rgba(0, 0, 0, 0.6),
-    0 40px 80px -20px rgba(0, 0, 0, 0.75);
+  --accent-quiet: rgba(20, 184, 166, 0.2);
+  --hairline-accent: rgba(20, 184, 166, 0.24);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -24px rgba(0, 0, 0, 0.7);
   --hairline: rgba(255, 255, 255, 0.06);
 }
 
@@ -133,6 +113,7 @@
   --color-accent-muted: var(--accent-muted);
   --color-accent-quiet: var(--accent-quiet);
   --color-hairline: var(--hairline);
+  --color-border-warm: var(--border-warm);
 
   --shadow-soft: var(--shadow-sm);
   --shadow-card: var(--shadow-md);
@@ -140,23 +121,14 @@
 }
 
 @theme {
+  --text-display: clamp(2.375rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-h2: clamp(1.875rem, 1.35rem + 1.6vw, 3rem);
+  --text-h3: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+  --text-lead: clamp(1rem, 0.94rem + 0.25vw, 1.25rem);
 
-  /* Ceilings pulled in from 5rem/3rem. At the old maximum the display line
-     outgrew its 42% hero column on a wide viewport and turned the supporting
-     rows into an afterthought under a poster — the same failure mode the app's
-     auth screens hit. The floors are unchanged; this only affects large
-     viewports, where the restraint reads as confidence rather than shouting. */
-  --text-display: clamp(1.75rem, 0.95rem + 2.9vw, 4.05rem);
-  --text-h2: clamp(1.375rem, 1.05rem + 1.25vw, 2.5rem);
-  --text-h3: clamp(0.9375rem, 0.9rem + 0.2vw, 1.1875rem);
-  --text-lead: clamp(0.9375rem, 0.92rem + 0.12vw, 1.125rem);
-
-  /* Optical tracking. Large type needs negative tracking to avoid looking
-     loose; small uppercase needs positive to stay legible. Naming them keeps
-     the pairing consistent instead of re-guessed per component. */
-  --tracking-display: -0.035em;
-  --tracking-tight: -0.02em;
-  --tracking-eyebrow: 0.11em;
+  --tracking-display: -0.022em;
+  --tracking-tight: -0.015em;
+  --tracking-eyebrow: 0.08em;
 }
 
 html {
@@ -330,15 +302,6 @@ tbody tr:last-child .pricing-col--featured {
 body {
   background: var(--bg);
   color: var(--fg);
-
-  background-image:
-    radial-gradient(
-      64rem 30rem at 50% 6%,
-      color-mix(in srgb, var(--accent) var(--hero-glow), transparent),
-      transparent 70%
-    ),
-    linear-gradient(180deg, var(--hero-top) 0%, var(--bg) 58rem);
-  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -559,51 +522,50 @@ section {
 
 .card {
   position: relative;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 0.875rem;
-  box-shadow: var(--shadow-sm);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
   transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
-}
-/* A one-pixel lit edge along the top. This is the single cheapest thing that
-   makes a card read as a raised surface rather than a filled rectangle — the
-   eye takes it as light landing on a physical edge. Inset so it follows the
-   radius, and pointer-events-none so it never eats a click. */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding-top: 1px;
-  background: linear-gradient(
-    to bottom,
-    var(--glass-highlight, rgba(255, 255, 255, 0.5)),
-    transparent 1px
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 .card-hover:hover {
   border-color: var(--border-strong);
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .panel {
   position: relative;
-  border-radius: 1.25rem;
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
 
-  background: var(--glass-bg-strong);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  box-shadow:
-    0 0 0 1px var(--glass-border),
-    var(--shadow-lg);
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s var(--ease-out-q, ease);
+}
+.faq-answer[data-open] {
+  grid-template-rows: 1fr;
+}
+
+.stage {
+  position: relative;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-stage);
+  padding: clamp(0.75rem, 0.2rem + 2.6vw, 3rem);
+}
+
+.soft-card {
+  position: relative;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-warm);
+  border-radius: var(--radius-card);
+  transition: border-color 0.2s ease, transform 0.25s ease;
+}
+.soft-card:hover {
+  border-color: var(--border-strong);
 }
 
 .spotlight {
@@ -1592,20 +1554,11 @@ section {
 }
 
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.62);
-  --glass-bg-strong: rgba(255, 255, 255, 0.78);
-  --glass-border: rgba(11, 12, 15, 0.08);
-  --glass-blur: 16px;
-  /* On a light ground the lit edge is white at near-full strength: the card is
-     already near-white, so anything less does not register. */
-  --glass-highlight: rgba(255, 255, 255, 0.9);
-}
-
-.dark {
-  --glass-bg: rgba(23, 26, 31, 0.55);
-  --glass-bg-strong: rgba(23, 26, 31, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --glass-highlight: rgba(255, 255, 255, 0.14);
+  --glass-bg: var(--surface);
+  --glass-bg-strong: var(--surface);
+  --glass-border: var(--border);
+  --glass-blur: 0px;
+  --glass-highlight: transparent;
 }
 
 .glass,
@@ -1613,18 +1566,9 @@ section {
   position: relative;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
 }
 .glass-strong {
   background: var(--glass-bg-strong);
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass,
-  .glass-strong {
-    background: var(--surface);
-  }
 }
 
 :root {
@@ -1673,60 +1617,6 @@ section {
 .v-d4 { animation-delay: 0.2s; }
 .v-d5 { animation-delay: 0.25s; }
 .v-d6 { animation-delay: 0.3s; }
-
-.glow-card {
-  position: relative;
-  isolation: isolate;
-  transition: transform 0.35s var(--ease-out-q), border-color 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.glow-card > .glow-layer {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-  background: radial-gradient(
-    22rem circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--accent) 14%, transparent),
-    transparent 60%
-  );
-}
-.glow-card:hover > .glow-layer {
-  opacity: 1;
-}
-.glow-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
-}
-
-.edge-lit {
-  position: relative;
-}
-.edge-lit::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    140deg,
-    color-mix(in srgb, var(--accent) 45%, transparent),
-    transparent 40%
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-}
-.edge-lit:hover::before {
-  opacity: 1;
-}
 
 .feature-icon {
   transition: transform 0.3s var(--ease-out-q), color 0.3s ease;
@@ -1963,7 +1853,6 @@ body {
   --border: #9a9a9a;
 }
 [data-reader-contrast] .aurora,
-[data-reader-contrast] .glow-layer,
 [data-reader-contrast] .grid-fade {
   display: none !important;
 }
@@ -2017,38 +1906,13 @@ body {
 
 .band {
   position: relative;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--tint) 45%, transparent) 0%,
-      transparent 22%,
-      transparent 78%,
-      color-mix(in srgb, var(--tint) 45%, transparent) 100%
-    );
+  background: var(--bg-subtle);
 }
 
 .band-deep {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--tint) 90%, transparent) 0%,
-      color-mix(in srgb, var(--tint) 35%, transparent) 45%,
-      transparent 100%
-    );
-}
-
-:root {
-  /* Only a shade off --bg. A darker cap read as a grey slab with a visible
-     seam where the fade ended, because on a near-white page the eye picks up a
-     band the same step would hide on a dark one. */
-  --hero-top: #f8f8f9;
-  /* Teal over white turns milky long before it turns luminous, so the light
-     theme takes about a third of the dark theme's wash. */
-  --hero-glow: 3%;
-}
-.dark {
-  --hero-top: #12151a;
-  --hero-glow: 8%;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-stage);
+  margin-inline: clamp(0.5rem, 0.2rem + 1.2vw, 1.5rem);
 }
 
 .react-flow {
@@ -2705,7 +2569,7 @@ body {
 
 @media (max-width: 48em) {
   .glow-card {
-    border-radius: 0.875rem;
+    border-radius: 1.125rem;
   }
   .glow-card.p-6,
   .glow-card[class*="p-6"] {
@@ -2735,17 +2599,92 @@ body {
 }
 
 .site-header {
-  background-color: transparent;
-  border-bottom: 1px solid transparent;
-}
-.site-header[data-scrolled],
-body:has(.docs-shell) .site-header {
   background-color: var(--bg);
-  border-bottom-color: var(--border);
+}
 
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: 0 1px 0 0 var(--hairline);
+.mega__panel {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  z-index: 50;
+  background: var(--bg);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.32s var(--ease-out-q), visibility 0s linear 0.32s;
+}
+.mega__scrim {
+  position: fixed;
+  inset: 4rem 0 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  transition: opacity 0.32s ease;
+}
+.menu-reveal {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.mega:hover .mega__panel,
+.mega:focus-within .mega__panel {
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.36s var(--ease-out-q), visibility 0s;
+}
+.mega:hover .mega__scrim,
+.mega:focus-within .mega__scrim {
+  opacity: 1;
+}
+.mega:hover .menu-reveal,
+.mega:focus-within .menu-reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s ease 0.08s, transform 0.3s var(--ease-out-q) 0.08s;
+}
+.mega--dismissed .mega__panel {
+  visibility: hidden !important;
+  clip-path: inset(0 0 100% 0) !important;
+}
+.mega--dismissed .mega__scrim {
+  opacity: 0 !important;
+}
+
+.site-footer {
+  max-width: 90rem;
+  margin-inline: auto;
+  border-top: 1px solid var(--border);
+  border-radius: 2.5rem 2.5rem 0 0;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+  container-type: inline-size;
+}
+
+.footer-wordmark {
+  font-size: 19.5cqi;
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  padding-bottom: 0.08em;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--fg) 88%, transparent) 0%,
+    color-mix(in srgb, var(--fg) 45%, transparent) 50%,
+    transparent 92%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (min-width: 80rem) {
+  .footer-wordmark {
+    font-size: min(19.5cqi, 15rem);
+  }
 }
 
 /* ---------------------------------------------------------- CMS content -- */

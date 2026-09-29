@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DisplayMenu } from "@/components/display/display-menu";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { ScrollRise } from "@/components/scroll-rise";
-import { Starfield } from "@/components/starfield";
 import { PlansProvider } from "@/components/plans-provider";
 import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const sans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
+const sans = localFont({
+  src: "../fonts/GoogleSansFlex-latin.woff2",
+  weight: "400 700",
   variable: "--font-sans-loaded",
   display: "swap",
 });
@@ -119,8 +119,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <ThemeProvider>
-
-          <Starfield />
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-fg"
