@@ -14,40 +14,29 @@ export function FaqBrowser({ intro }: { intro: React.ReactNode }) {
   };
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
-      <div>
+    <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
+      <div className="min-w-0">
         {intro}
 
-        <div
-          role="tablist"
-          aria-label="FAQ categories"
-          className="-mx-4 mt-8 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:mt-10 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0"
-        >
-          {faqCategories.map((c) => {
-            const selected = c.id === active;
-            return (
-              <button
-                key={c.id}
-                type="button"
-                role="tab"
-                id={`faq-tab-${c.id}`}
-                aria-selected={selected}
-                aria-controls={`faq-panel-${c.id}`}
-                onClick={() => selectCategory(c.id)}
-                className={`shrink-0 whitespace-nowrap rounded-xl px-4 py-2.5 text-left text-[15px] transition-colors lg:py-3 lg:text-[16px] ${
-                  selected
-                    ? "bg-bg-subtle font-medium text-fg"
-                    : "text-fg-muted hover:text-fg"
-                }`}
-              >
-                {c.label}
-              </button>
-            );
-          })}
+        <div role="tablist" aria-label="FAQ categories" className="faq-tabs">
+          {faqCategories.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              role="tab"
+              id={`faq-tab-${c.id}`}
+              aria-selected={c.id === active}
+              aria-controls={`faq-panel-${c.id}`}
+              onClick={() => selectCategory(c.id)}
+              className="faq-tab"
+            >
+              {c.label}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div>
+      <div className="min-w-0">
         {faqCategories.map((c) => (
           <ul
             key={c.id}

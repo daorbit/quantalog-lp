@@ -1,103 +1,59 @@
-import { CodeCard } from "../code-card";
-import { Eyebrow } from "../ui";
-import { site } from "@/lib/site";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { SetupFacts } from "../setup/setup-facts";
+import { SetupStepTile } from "../setup/setup-step-tile";
+import { LiveVisual, SiteVisual, TagVisual } from "../setup/setup-visuals";
+import { steps } from "../setup/setup-steps";
 
-const snippet = `<script
-  async
-  src="${site.api}/tracker.js"
-  data-site="qs_7f3a9c21"
-></script>`;
-
-export const steps = [
-  {
-    n: "01",
-    title: "Create a site",
-    body: "Sign up, name your workspace, add a domain. You get a public site key immediately.",
-  },
-  {
-    n: "02",
-    title: "Drop in the tag",
-    body: "Paste one async script into your <head>. It is under a kilobyte and blocks nothing.",
-  },
-  {
-    n: "03",
-    title: "Watch it live",
-    body: "Open the dashboard. The first pageview lands in about three seconds — including yours.",
-  },
-];
-
-const facts = [
-  { k: "Tracker size", v: "0.9 KB" },
-  { k: "Cookies set", v: "0" },
-  { k: "First data", v: "~3s" },
-];
+const visuals = [SiteVisual, TagVisual, LiveVisual];
 
 export function HowItWorks() {
   return (
-    <section className="border-y border-border bg-bg-subtle">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="v-rise">
-            <Eyebrow>Setup</Eyebrow>
-            <h2 className="mt-5 text-balance text-h2 font-medium leading-[1.08] tracking-[-0.03em]">
-              Three steps.
-              <br />
-              Roughly two minutes.
-            </h2>
-            <p className="mt-4 max-w-md leading-relaxed text-fg-muted">
-              No SDK to install, no build step to change, no cookie policy to
-              rewrite. The tracker patches{" "}
-              <code className="rounded border border-border bg-surface px-1.5 py-0.5 font-mono text-[0.85em] text-fg">
-                history.pushState
-              </code>
-              , so single-page apps report route changes on their own.
-            </p>
-
-            <ol className="relative mt-12 space-y-8">
-
-              <span
-                className="absolute bottom-4 left-[15px] top-4 w-px bg-border"
-                aria-hidden="true"
-              />
-              {steps.map((s, i) => (
-                <li
-                  key={s.n}
-                  className={`v-rise v-d${i + 1} group relative flex gap-5`}
-                >
-                  <span className="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-surface font-mono text-[11px] font-medium text-accent shadow-soft transition-all duration-300 group-hover:border-accent/40 group-hover:bg-accent/8">
-                    {s.n}
-                  </span>
-                  <div className="pt-1.5">
-                    <h3 className="text-[15px] font-medium tracking-tight">{s.title}</h3>
-                    <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-fg-muted">
-                      {s.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="v-rise v-d2 min-w-0 lg:pl-4">
-            <CodeCard filename="app/layout.tsx" language="html" code={snippet} />
-
-            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {facts.map((x) => (
-                <div
-                  key={x.k}
-                  className="rounded-xl border border-border bg-surface px-4 py-4"
-                >
-                  <p className="text-[13px] text-fg-faint">
-                    {x.k}
-                  </p>
-                  <p className="mt-2 text-xl font-medium tabular-nums tracking-[-0.03em]">
-                    {x.v}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+    <section id="setup">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28 lg:py-32">
+        <div className="v-rise mx-auto max-w-3xl text-center">
+          <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Setup</p>
+          <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
+            Three steps.
+            <br />
+            Roughly two minutes.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
+            No SDK to install, no build step to change, no cookie policy to rewrite.
+          </p>
         </div>
+
+        <ol className="mt-10 grid gap-3 sm:mt-16 sm:gap-4 lg:grid-cols-3">
+          {steps.map((s, i) => {
+            const Visual = visuals[i];
+            return (
+              <li key={s.n} className={`v-rise v-d${i + 1}`}>
+                <SetupStepTile n={s.n} title={s.title} body={s.body}>
+                  <Visual />
+                </SetupStepTile>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/docs/tracking"
+            className="group inline-flex items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
+          >
+            Read the install guide
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+
+        <div className="mt-14 border-t border-border pt-10 sm:mt-20 sm:pt-14">
+          <SetupFacts />
+        </div>
+
+        <p className="mx-auto mt-12 max-w-2xl text-center text-[12px] leading-relaxed text-fg-faint sm:mt-16">
+          The tracker patches history.pushState, so single-page apps built with React, Next.js or
+          Vue report route changes on their own.
+        </p>
       </div>
     </section>
   );

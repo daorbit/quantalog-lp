@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { ProductMenu } from "./product-menu";
@@ -10,6 +11,8 @@ import { track } from "@/lib/track";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isDocs = pathname === "/docs" || pathname.startsWith("/docs/");
 
   const [menuDismissed, setMenuDismissed] = useState(false);
 
@@ -27,11 +30,11 @@ export function Header() {
 
   return (
 
-    <header className="site-header sticky top-0 z-50">
+    <header className="site-header sticky top-0 z-50" data-docs={isDocs || undefined}>
 
       <div>
 
-        <div className="mx-auto flex h-12 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
+        <div className="site-header__bar mx-auto flex h-12 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
