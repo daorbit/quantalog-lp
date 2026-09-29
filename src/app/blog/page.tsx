@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { Eyebrow } from "@/components/ui";
-import { FeaturedPost } from "@/components/blog/featured-post";
 import { PostGrid } from "@/components/blog/post-grid";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -25,7 +24,6 @@ export default async function BlogIndexPage() {
   // A noindex post is left off the archive as well as the sitemap — linking it
   // from an indexable page is the thing the flag is trying to prevent.
   const posts = (await getAllPosts()).filter((post) => !post.noIndex);
-  const [featured, ...rest] = posts;
 
   const jsonLd = graph(
     {
@@ -73,15 +71,9 @@ export default async function BlogIndexPage() {
         </p>
       )}
 
-      {featured && (
-        <section className="rise mt-14 sm:mt-20" aria-label="Latest article">
-          <FeaturedPost post={featured} />
-        </section>
-      )}
-
-      {rest.length > 0 && (
-        <section className="mt-24 sm:mt-32">
-          <PostGrid posts={rest} />
+      {posts.length > 0 && (
+        <section className="rise mt-16 sm:mt-24">
+          <PostGrid posts={posts} />
         </section>
       )}
     </div>

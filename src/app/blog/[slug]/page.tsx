@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { formatDate, getPost, getRelatedPosts, getSlugs } from "@/lib/blog";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
 import { PostImage } from "@/components/post-image";
-import { DocsToc } from "@/components/docs-toc";
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb";
 import { SummariseButton } from "@/components/orbit/summarise-button";
 import { PostCard } from "@/components/blog/post-card";
 import { PostCta } from "@/components/blog/post-cta";
-import { ShareLinks } from "@/components/blog/share-links";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
@@ -93,36 +92,28 @@ export default async function BlogPostPage({
     ])
   );
 
-  const url = `${site.url}/blog/${post.slug}`;
-  const [topic] = post.tags;
-
   return (
-    <div className="blog-post">
+    <div>
       <JsonLd data={jsonLd} />
       <div className="blog-progress scroll-progress" aria-hidden="true" />
 
-      <article>
-        <header className="rise mx-auto max-w-3xl px-5 pt-12 text-center sm:pt-20">
-          <Link href="/blog" className="blog-back group">
-            <ChevronLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
-            Blog
-          </Link>
+      <article className="mx-auto max-w-5xl px-4 sm:px-6">
+        <header className="rise pt-10 sm:pt-14">
+          <DocsBreadcrumb
+            root={{ label: "Blog", href: "/blog" }}
+            trail={[post.title]}
+            className="blog-breadcrumb"
+          />
 
-          <p className="blog-kicker mt-8 justify-center">
-            {topic && <span>{topic}</span>}
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <span>{post.readingMinutes} min read</span>
-          </p>
-
-          <h1 className="mt-5 text-balance text-display font-semibold leading-[1.06] tracking-display">
+          <h1 className="mt-8 text-balance text-display font-semibold leading-[1.06] tracking-display sm:mt-10">
             {post.title}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
+          <p className="mt-5 max-w-3xl text-pretty text-lead leading-normal text-fg-muted">
             {post.description}
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
-            <div className="flex items-center gap-3 text-left">
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-border py-4">
+            <div className="flex items-center gap-3">
               <Image
                 src="/favicon.png"
                 alt=""
@@ -133,9 +124,10 @@ export default async function BlogPostPage({
               />
               <div className="text-[13px] leading-tight">
                 <p className="font-semibold text-fg">{post.author.name}</p>
-                {post.author.role && (
-                  <p className="mt-0.5 text-fg-muted">{post.author.role}</p>
-                )}
+                <p className="blog-kicker mt-1">
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <span>{post.readingMinutes} min read</span>
+                </p>
               </div>
             </div>
             <SummariseButton />
@@ -143,43 +135,28 @@ export default async function BlogPostPage({
         </header>
 
         {post.image.url && (
-          <figure className="rise rise-2 mx-auto mt-12 max-w-5xl px-4 sm:mt-16 sm:px-6">
+          <figure className="rise rise-2 mt-10 sm:mt-12">
             <div className="blog-hero">
               <PostImage post={post} sizes="(min-width: 1024px) 64rem, 100vw" />
             </div>
           </figure>
         )}
 
-        <div className="blog-layout mt-12 px-5 sm:mt-16">
-          <aside className="blog-layout__rail" aria-label="Share this article">
-            <ShareLinks url={url} title={post.title} vertical />
-          </aside>
-
-          <div className="min-w-0">
-            <div
-              className="prose-q blog-prose"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
-
-            <footer className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-border pt-8">
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <span key={tag} className="blog-tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-[13px] text-fg-muted">Share</span>
-                <ShareLinks url={url} title={post.title} />
-              </div>
-            </footer>
-          </div>
-
-          <DocsToc
-            contentSelector=".blog-prose"
-            headingSelector="h1, h2, h3"
+        <div className="mt-10 max-w-3xl sm:mt-14">
+          <div
+            className="prose-q"
+            dangerouslySetInnerHTML={{ __html: post.html }}
           />
+
+          {post.tags.length > 0 && (
+            <div className="mt-14 flex flex-wrap gap-2 border-t border-border pt-8">
+              {post.tags.map((tag) => (
+                <span key={tag} className="blog-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </article>
 

@@ -1,13 +1,23 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-export function DocsBreadcrumb({ trail }: { trail: string[] }) {
+type Crumb = { label: string; href: string };
+
+export function DocsBreadcrumb({
+  trail,
+  root = { label: "Docs", href: "/docs" },
+  className = "",
+}: {
+  trail: string[];
+  root?: Crumb;
+  className?: string;
+}) {
   return (
-    <nav className="docs-breadcrumb" aria-label="Breadcrumb">
+    <nav className={`docs-breadcrumb ${className}`} aria-label="Breadcrumb">
       {trail.length ? (
-        <Link href="/docs">Docs</Link>
+        <Link href={root.href}>{root.label}</Link>
       ) : (
-        <span aria-current="page">Docs</span>
+        <span aria-current="page">{root.label}</span>
       )}
       {trail.map((item, i) => (
         <span key={item} className="docs-breadcrumb__item">
