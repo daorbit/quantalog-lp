@@ -121,7 +121,7 @@ export default async function BlogPostPage({
             ))}
           </div>
 
-          <h1 className="mt-5 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.03em] sm:text-[2.5rem]">
+          <h1 className="mt-5 text-balance text-[2rem] font-semibold leading-[1.15] tracking-[-0.03em] sm:text-[2.5rem]">
             {post.title}
           </h1>
           <p className="mt-4 text-pretty text-lg leading-relaxed text-fg-muted">
@@ -162,7 +162,7 @@ export default async function BlogPostPage({
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
 
-        <div className="card mt-16 p-8 text-center">
+        <div className="tile tile--static mt-16 p-10 text-center sm:p-14">
           <p className="text-base font-semibold tracking-tight">
             Try {site.name} on your own site
           </p>
@@ -183,7 +183,7 @@ export default async function BlogPostPage({
 
         {related.length > 0 && (
           <section className="mt-16 border-t border-border pt-10">
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-fg-faint">
+            <h2 className="text-[13px] font-semibold text-fg-faint">
               Keep reading
             </h2>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -191,7 +191,7 @@ export default async function BlogPostPage({
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="card card-hover group p-5"
+                  className="tile group p-5"
                 >
                   <p className="text-sm font-semibold tracking-tight transition-colors group-hover:text-accent">
                     {p.title}

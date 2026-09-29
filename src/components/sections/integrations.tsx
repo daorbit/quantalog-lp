@@ -89,7 +89,7 @@ export function Integrations() {
 
         <div className="mt-12 space-y-10">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+            <p className="text-[13px] text-fg-faint">
               Take payments on a form
             </p>
             <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -100,7 +100,7 @@ export function Integrations() {
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+            <p className="text-[13px] text-fg-faint">
               Deliver and forward responses
             </p>
             <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

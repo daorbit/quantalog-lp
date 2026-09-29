@@ -58,14 +58,14 @@ export default async function BlogIndexPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-14">
+    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
       <JsonLd data={jsonLd} />
       <header className="max-w-2xl">
         <Eyebrow>Blog</Eyebrow>
-        <h1 className="mt-3 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em]">
+        <h1 className="mt-3 text-balance text-display font-semibold leading-[1.04] tracking-display">
           Notes from the build
         </h1>
-        <p className="mt-3 text-pretty leading-relaxed text-fg-muted">
+        <p className="mt-4 text-pretty text-lead leading-normal text-fg-muted">
           How we think about privacy, real-time data pipelines, and shipping
           analytics that other products can build on.
         </p>
@@ -79,9 +79,9 @@ export default async function BlogIndexPage() {
 
       {/* Two columns: the archive pages down the left, the lead post sits to
           the right where it stays put while the list is paged. */}
-      <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
+      <div className="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
         <div className="order-2 lg:order-1">
-          <h2 className="mb-2.5 text-[11px] font-semibold uppercase tracking-wider text-fg-muted">
+          <h2 className="mb-2.5 text-[13px] font-semibold text-fg-muted">
             All posts
           </h2>
           <PostList posts={posts} />
@@ -89,13 +89,13 @@ export default async function BlogIndexPage() {
 
         {featured && (
           <aside className="order-1 lg:order-2 lg:sticky lg:top-20">
-            <h2 className="mb-2.5 text-[11px] font-semibold uppercase tracking-wider text-fg-muted">
+            <h2 className="mb-2.5 text-[13px] font-semibold text-fg-muted">
               Highlighted
             </h2>
 
             <Link
               href={`/blog/${featured.slug}`}
-              className="card card-hover group block overflow-hidden"
+              className="tile group block overflow-hidden"
             >
               <div className="aspect-[16/10] w-full overflow-hidden bg-bg-subtle">
                 <PostImage
@@ -105,14 +105,14 @@ export default async function BlogIndexPage() {
                 />
               </div>
 
-              <div className="p-5">
+              <div className="p-6">
                 <div className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
                   <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 font-medium text-accent">
                     Latest
                   </span>
                   <time dateTime={featured.date}>{formatDate(featured.date)}</time>
                 </div>
-                <h3 className="mt-2.5 text-balance text-lg font-bold leading-snug tracking-tight transition group-hover:text-accent">
+                <h3 className="mt-2.5 text-balance text-lg font-semibold leading-snug tracking-tight transition group-hover:text-accent">
                   {featured.title}
                 </h3>
                 <p className="mt-2 text-pretty text-sm leading-relaxed text-fg-muted">

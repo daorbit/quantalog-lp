@@ -68,14 +68,14 @@ export function Compare() {
             <table className="w-full min-w-[36rem] border-collapse text-left">
               <thead>
                 <tr className="border-b border-border">
-                  <th scope="col" className="px-6 py-4 text-[11px] font-medium uppercase tracking-[0.14em] text-fg-faint">
+                  <th scope="col" className="px-6 py-4 text-[13px] font-medium text-fg-faint">
                     Capability
                   </th>
                   {columns.map((col, i) => (
                     <th
                       key={col}
                       scope="col"
-                      className={`px-6 py-4 text-center text-[11px] font-medium uppercase tracking-[0.14em] ${
+                      className={`px-6 py-4 text-center text-[13px] font-medium ${
                         i === 0 ? "bg-accent/6 text-accent" : "text-fg-faint"
                       }`}
                     >

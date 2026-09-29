@@ -21,7 +21,7 @@ const scopes = [
 export function BuildFlowShowcase() {
   return (
     <section className="mt-16">
-      <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+      <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
         However you start it, however it lives
       </h2>
       <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">

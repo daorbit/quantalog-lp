@@ -50,7 +50,7 @@ export function Demo() {
                 type="button"
                 onClick={() => setMuted((m) => !m)}
                 aria-label={muted ? "Unmute video" : "Mute video"}
-                className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur transition-colors hover:bg-black/70"
+                className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
               >
                 {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
               </button>

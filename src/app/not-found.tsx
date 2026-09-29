@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <div className="mx-auto flex min-h-[60vh] max-w-md flex-col items-center justify-center px-5 text-center">
       <p className="font-mono text-sm text-accent">404</p>
-      <h1 className="mt-3 text-2xl font-bold tracking-tight">Page not found</h1>
+      <h1 className="mt-3 text-2xl font-semibold tracking-tight">Page not found</h1>
       <p className="mt-3 text-sm leading-relaxed text-fg-muted">
         That URL does not exist. It may have moved, or it may never have been here.
       </p>

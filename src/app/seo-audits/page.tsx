@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
-import { SeoHeroVisual } from "@/components/feature-hero-visuals";
+import { ScoreVisual } from "@/components/explore/visuals/score-visual";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -202,11 +202,12 @@ export default function SeoAuditsPage() {
         description={DESCRIPTION}
         primary={{ label: "Run a free audit" }}
         secondary={{ label: "See a sample report" }}
-        visual={<SeoHeroVisual />}
+        visual={<ScoreVisual />}
+        tone="blue"
       />
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What the audit does
         </h2>
         <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
@@ -220,7 +221,7 @@ export default function SeoAuditsPage() {
             <Reveal
               key={c.title}
               delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="card card-hover group p-7"
+              className="tile group p-7"
             >
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
                 <c.icon className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -233,10 +234,10 @@ export default function SeoAuditsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Everything checked on a single run
         </h2>
-        <ul className="card mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
+        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
           {audited.map((item) => (
             <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-fg-muted">
               <CheckCircle2
@@ -250,7 +251,7 @@ export default function SeoAuditsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Why it lives next to your traffic
         </h2>
         <div className="mt-6 space-y-5 text-pretty leading-relaxed text-fg-muted">
@@ -279,7 +280,7 @@ export default function SeoAuditsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -303,8 +304,8 @@ export default function SeoAuditsPage() {
         ]}
       />
 
-      <section className="card mt-16 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
+      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
           Audit your first page in about a minute
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">

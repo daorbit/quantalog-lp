@@ -53,24 +53,24 @@ export default function ComparisonsIndexPage() {
   );
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-16">
+    <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
       <JsonLd data={jsonLd} />
 
-      <header className="border-b border-border pb-10">
+      <header className="mx-auto max-w-3xl text-center">
         <Eyebrow>Comparisons</Eyebrow>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
+        <h1 className="mt-4 text-balance text-display font-semibold leading-[1.04] tracking-display">
           How Quantalog compares
         </h1>
-        <p className="mt-5 text-pretty text-lg leading-relaxed text-fg-muted">
+        <p className="mt-5 text-pretty text-lead leading-normal text-fg-muted">
           {DESCRIPTION}
         </p>
       </header>
 
-      <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+      <ul className="mt-12 grid gap-3 sm:mt-16 sm:grid-cols-2">
         {comparisons.map((c) => (
           <li key={c.slug}>
-            <Link href={`/compare/${c.slug}`} className="card card-hover group block h-full p-6">
-              <h2 className="font-semibold tracking-tight transition group-hover:text-accent">
+            <Link href={`/compare/${c.slug}`} className="tile group block h-full p-7 sm:p-8">
+              <h2 className="text-[1.25rem] font-semibold tracking-tight transition group-hover:text-accent">
                 {c.title}
               </h2>
               <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
-import { AnalyticsHeroVisual } from "@/components/feature-hero-visuals";
+import { LiveVisual } from "@/components/explore/visuals/live-visual";
 import { Analytics } from "@/components/sections/analytics";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -121,7 +121,8 @@ export default function AnalyticsPage() {
         description={DESCRIPTION}
         primary={{ label: "Start free" }}
         secondary={{ label: "See the live demo" }}
-        visual={<AnalyticsHeroVisual />}
+        visual={<LiveVisual />}
+        tone="teal"
       />
 
       <Analytics />
@@ -136,7 +137,7 @@ export default function AnalyticsPage() {
       />
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-tight">
+        <h2 className="text-[1.75rem] font-semibold tracking-tight">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -165,8 +166,8 @@ export default function AnalyticsPage() {
         </Link>
       </section>
 
-      <section className="card mt-16 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
+      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
           One script tag, live in a minute
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">

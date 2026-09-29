@@ -108,7 +108,7 @@ export default function AboutPage() {
 
       <header className="border-b border-border pb-12">
         <Eyebrow>About</Eyebrow>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
+        <h1 className="mt-4 text-balance text-display font-semibold leading-[1.04] tracking-display">
           Analytics that counts everyone,
           <br className="hidden sm:block" />{" "}
           <span className="text-accent">and follows no one.</span>
@@ -119,7 +119,7 @@ export default function AboutPage() {
       </header>
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">Why we built it</h2>
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Why we built it</h2>
         <div className="mt-6 space-y-5 text-pretty leading-relaxed text-fg-muted">
           <p>
             Cookie-based analytics has a problem it cannot solve from the
@@ -156,7 +156,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What we hold to
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -164,7 +164,7 @@ export default function AboutPage() {
             <Reveal
               key={p.title}
               delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="card card-hover group p-7"
+              className="tile group p-7"
             >
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
                 <p.icon className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -177,7 +177,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What we deliberately do not build
         </h2>
         <p className="mt-6 text-pretty leading-relaxed text-fg-muted">
@@ -199,7 +199,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -214,10 +214,10 @@ export default function AboutPage() {
         </dl>
       </section>
 
-      <section className="card mt-14 flex flex-col items-center gap-5 p-8 text-center">
+      <section className="tile tile--static mt-14 flex flex-col items-center gap-5 p-8 text-center">
         <Mail className="h-6 w-6 text-accent" aria-hidden="true" />
         <div>
-          <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">Talk to us</h2>
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">Talk to us</h2>
           <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
             Questions about how the tracking works, whether it fits your
             compliance position, or what you are trying to build on the Platform

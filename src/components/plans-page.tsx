@@ -150,7 +150,7 @@ export function PlansPage() {
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur sm:p-7"
+              className="rounded-2xl border border-border bg-surface p-6 sm:p-7"
             >
               <div className="skeleton h-5 w-24 rounded" />
               <div className="skeleton mt-3 h-3.5 w-full rounded" />
@@ -209,7 +209,7 @@ export function PlansPage() {
               <thead>
                 <tr>
                   <th className="w-[34%] py-4 pr-4 align-bottom">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-fg-faint">
+                    <span className="text-[13px] font-semibold text-fg-faint">
                       Features
                     </span>
                   </th>
@@ -257,7 +257,7 @@ export function PlansPage() {
               <tbody>
                 <tr>
                   <td colSpan={sorted.length + 1} className="pt-7 pb-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-fg-faint">
+                    <span className="text-[13px] font-semibold text-fg-faint">
                       Limits
                     </span>
                   </td>
@@ -280,7 +280,7 @@ export function PlansPage() {
 
                 <tr>
                   <td colSpan={sorted.length + 1} className="pt-7 pb-2">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-fg-faint">
+                    <span className="text-[13px] font-semibold text-fg-faint">
                       Features
                     </span>
                   </td>
@@ -323,7 +323,7 @@ export function PlansPage() {
               .map((plan) => (
                 <div
                   key={plan.slug}
-                  className="rounded-xl border border-border bg-surface/60 p-4 backdrop-blur"
+                  className="rounded-xl border border-border bg-surface p-4"
                 >
                   <div className="text-sm font-semibold">
                     {plan.name.replace(/^Orbit /, "")}
@@ -361,7 +361,7 @@ export function PlansPage() {
       {/* Cashfree collects INR only for now, so on a USD price it is named as
           coming rather than offered. */}
       <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 text-fg-muted">
-        <span className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+        <span className="text-[13px] text-fg-faint">
           Pay through
         </span>
         <IntegrationLogo id="razorpay" height={17} />
@@ -370,7 +370,7 @@ export function PlansPage() {
         >
           <IntegrationLogo id="cashfree" height={15} />
           {currency !== "INR" && (
-            <span className="rounded-full border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.06em]">
+            <span className="rounded-full border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase">
               Soon
             </span>
           )}

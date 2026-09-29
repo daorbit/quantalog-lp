@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
-import { SearchVisibilityHeroVisual } from "@/components/feature-hero-visuals";
+import { RankVisual } from "@/components/explore/visuals/rank-visual";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -217,18 +217,19 @@ export default function SearchVisibilityPage() {
         description={DESCRIPTION}
         primary={{ label: "Connect Search Console" }}
         secondary={{ label: "Read the docs", href: "/docs/search-visibility" }}
-        visual={<SearchVisibilityHeroVisual />}
+        visual={<RankVisual />}
+        tone="violet"
       />
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">What you get</h2>
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">What you get</h2>
         <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
           Everything Search Console knows about your site, in the same dashboard as your traffic — organised around the
           questions you actually ask: where do my clicks come from, what changed, and what should I do about it?
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {features.map((f, i) => (
-            <Reveal key={f.title} delay={((i % 3) + 1) as 1 | 2 | 3} className="card card-hover group p-7">
+            <Reveal key={f.title} delay={((i % 3) + 1) as 1 | 2 | 3} className="tile group p-7">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
                 <f.icon className="h-[18px] w-[18px]" aria-hidden="true" />
               </div>
@@ -240,11 +241,11 @@ export default function SearchVisibilityPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">Connected in under a minute</h2>
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Connected in under a minute</h2>
         <ol className="mt-8 grid gap-4 sm:grid-cols-3">
           {steps.map((s, i) => (
-            <li key={s.title} className="card p-6">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-sm font-bold text-accent">
+            <li key={s.title} className="tile tile--static p-6">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-sm font-semibold text-accent">
                 {i + 1}
               </span>
               <h3 className="mt-4 text-[15px] font-semibold tracking-tight">{s.title}</h3>
@@ -255,7 +256,7 @@ export default function SearchVisibilityPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">Why it belongs next to your analytics</h2>
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Why it belongs next to your analytics</h2>
         <div className="mt-6 space-y-5 text-pretty leading-relaxed text-fg-muted">
           <p>
             Search Console tells you a page earned 40 clicks last week. It cannot tell you that the same page had 900
@@ -278,12 +279,12 @@ export default function SearchVisibilityPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">What each plan includes</h2>
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">What each plan includes</h2>
         <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
           Search visibility is part of every Quantalog plan — no separate add-on. Higher plans go further back and deeper
           into the data.
         </p>
-        <div className="card mt-8 overflow-x-auto">
+        <div className="tile tile--static mt-8 overflow-x-auto">
           <table className="w-full min-w-[560px] text-left text-sm">
             <thead>
               <tr className="border-b border-border text-fg-faint">
@@ -312,8 +313,8 @@ export default function SearchVisibilityPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">Your data, your account</h2>
-        <ul className="card mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Your data, your account</h2>
+        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
           {[
             "Read-only Google permission — nothing in Search Console can be changed",
             "Google tokens are encrypted at rest and never shown in the dashboard",
@@ -331,7 +332,7 @@ export default function SearchVisibilityPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">Common questions</h2>
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Common questions</h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
           {faqs.map((f) => (
             <div key={f.q} className="py-6">
@@ -351,8 +352,8 @@ export default function SearchVisibilityPage() {
         ]}
       />
 
-      <section className="card mt-16 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">See your Google search data in a minute</h2>
+      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">See your Google search data in a minute</h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
           Add your site, connect Search Console with read-only access, and read your clicks, queries and index status
           next to your traffic. Included on the free plan.

@@ -18,7 +18,7 @@ import { Button } from "@/components/ui";
 import { IntegrationLogo } from "@/components/integration-logos";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
-import { FormsHeroVisual } from "@/components/feature-hero-visuals";
+import { FieldVisual } from "@/components/explore/visuals/field-visual";
 import { FieldDropOff, SparkStat } from "@/components/charts";
 import { FormBuilderPreview } from "@/components/form-builder-preview";
 import { BuildFlowShowcase } from "@/components/build-flow-showcase";
@@ -231,7 +231,8 @@ export default function FormsPage() {
         description={DESCRIPTION}
         primary={{ label: "Build a form free" }}
         secondary={{ label: "Read the docs", href: "/docs" }}
-        visual={<FormsHeroVisual />}
+        visual={<FieldVisual />}
+        tone="amber"
       />
 
       <section className="mt-14">
@@ -241,7 +242,7 @@ export default function FormsPage() {
       <BuildFlowShowcase />
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Why a form needs measuring at all
         </h2>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
@@ -255,7 +256,7 @@ export default function FormsPage() {
             <Reveal
               key={w.stat}
               delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="card p-6"
+              className="tile tile--static p-6"
             >
               <h3 className="text-[15px] font-semibold tracking-tight">
                 {w.stat}
@@ -269,7 +270,7 @@ export default function FormsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What form analytics actually shows you
         </h2>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
@@ -278,7 +279,7 @@ export default function FormsPage() {
           phone number field leaves at it.
         </p>
 
-        <div className="card mt-8 overflow-hidden">
+        <div className="tile tile--static mt-8 overflow-hidden">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-6 py-4">
             <p className="text-sm font-semibold tracking-tight">
               Contact form — last 30 days
@@ -312,7 +313,7 @@ export default function FormsPage() {
 
           <div className="border-t border-border p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
+              <p className="text-[13px] font-medium text-fg-faint">
                 Drop-off by field
               </p>
               <p className="text-[11px] text-fg-faint">
@@ -343,7 +344,7 @@ export default function FormsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What you can build
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -351,7 +352,7 @@ export default function FormsPage() {
             <Reveal
               key={c.title}
               delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="card card-hover group p-7"
+              className="tile group p-7"
             >
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
                 <c.icon className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -371,7 +372,7 @@ export default function FormsPage() {
           and "email" in the abstract answer less than the logo of the account
           someone already holds. */}
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Connects to what you already pay for
         </h2>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
@@ -380,9 +381,9 @@ export default function FormsPage() {
           notifies through your mailer.
         </p>
 
-        <div className="card mt-8 grid gap-8 p-7 sm:grid-cols-2">
+        <div className="tile tile--static mt-8 grid gap-8 p-7 sm:grid-cols-2">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+            <p className="text-[13px] text-fg-faint">
               Payment gateways
             </p>
             <ul className="mt-4 space-y-4">
@@ -400,7 +401,7 @@ export default function FormsPage() {
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
+            <p className="text-[13px] text-fg-faint">
               Email and forwarding
             </p>
             <ul className="mt-4 space-y-4 text-sm text-fg-muted">
@@ -422,10 +423,10 @@ export default function FormsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What comes with every form
         </h2>
-        <ul className="card mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
+        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
           {included.map((item) => (
             <li
               key={item}
@@ -442,10 +443,10 @@ export default function FormsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Spam handled without a CAPTCHA
         </h2>
-        <div className="card mt-8 flex gap-5 p-7">
+        <div className="tile tile--static mt-8 flex gap-5 p-7">
           <ShieldCheck className="h-6 w-6 shrink-0 text-accent" aria-hidden="true" />
           <p className="text-pretty leading-relaxed text-fg-muted">
             Every public form carries a honeypot field that people never see and
@@ -458,10 +459,10 @@ export default function FormsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What forms do not do
         </h2>
-        <div className="card mt-8 flex gap-5 p-7">
+        <div className="tile tile--static mt-8 flex gap-5 p-7">
           <CircleSlash className="h-6 w-6 shrink-0 text-fg-muted" aria-hidden="true" />
           <p className="text-pretty leading-relaxed text-fg-muted">
             There is no approval workflow with assignees and due dates, no
@@ -476,7 +477,7 @@ export default function FormsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -506,8 +507,8 @@ export default function FormsPage() {
         ]}
       />
 
-      <section className="card mt-16 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
+      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
           Build one and watch what happens
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">

@@ -63,7 +63,7 @@ export function Seo() {
           {checks.map((c, i) => (
             <GlowCard
               key={c.title}
-              className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-6 sm:p-7`}
+              className={`v-rise v-d${(i % 3) + 1} group bg-surface p-6 sm:p-7`}
             >
               <c.icon
                 className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"

@@ -52,7 +52,7 @@ export default function ThankYouPage() {
       <div className="text-center">
         <AnimatedTick />
 
-        <h1 className="settle settle-1 mt-8 text-balance text-[2rem] font-bold leading-[1.15] tracking-[-0.03em] sm:text-[2.75rem]">
+        <h1 className="settle settle-1 mt-8 text-balance text-[2rem] font-semibold leading-[1.15] tracking-[-0.03em] sm:text-[2.75rem]">
           Thanks — that reached us.
         </h1>
         <p className="settle settle-2 mx-auto mt-5 max-w-md text-pretty text-lg leading-relaxed text-fg-muted">
@@ -63,7 +63,7 @@ export default function ThankYouPage() {
 
       <div className="settle settle-3 mt-12 grid gap-4 sm:grid-cols-2">
         {next.map((item) => (
-          <div key={item.title} className="card p-6">
+          <div key={item.title} className="tile tile--static p-6">
             <item.icon className="h-5 w-5 text-accent" aria-hidden="true" />
             <h2 className="mt-4 text-[15px] font-semibold tracking-tight">{item.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.body}</p>
@@ -71,7 +71,7 @@ export default function ThankYouPage() {
         ))}
       </div>
 
-      <div className="settle settle-4 card mt-8 p-8 text-center">
+      <div className="settle settle-4 tile tile--static mt-8 p-8 text-center">
         <h2 className="text-[1.25rem] font-semibold tracking-tight">
           While you wait — try it
         </h2>

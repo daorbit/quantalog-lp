@@ -76,7 +76,7 @@ const GEO = [
 function PanelHead({ title, note }: { title: string; note?: string }) {
   return (
     <div className="mb-5 flex items-baseline justify-between gap-3">
-      <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+      <h3 className="text-[13px] font-semibold text-fg-faint">
         {title}
       </h3>
       {note && (

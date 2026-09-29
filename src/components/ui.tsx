@@ -62,7 +62,7 @@ export function Eyebrow({
   dot?: boolean;
 }) {
   return (
-    <p className="inline-flex items-center gap-2 rounded-full border border-border-warm bg-surface px-3 py-1 text-[12px] font-medium text-fg-muted">
+    <p className="inline-flex items-center gap-2 text-[15px] font-semibold text-accent sm:text-[17px]">
       {dot && (
         <span
           className="live-dot h-1.5 w-1.5 rounded-full bg-accent"
@@ -108,7 +108,7 @@ export function SectionHeading({
         </div>
       )}
       <h2
-        className={`mt-5 text-balance font-medium leading-[1.06] tracking-display ${
+        className={`mt-3 text-balance font-medium leading-[1.06] tracking-display ${
           size === "lg" ? "text-display" : "text-h2"
         }`}
       >

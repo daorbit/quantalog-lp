@@ -32,7 +32,7 @@ export function SparkStat({
   return (
     <div className="flex flex-col justify-between gap-4 p-5">
       <div>
-        <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
+        <p className="text-[13px] font-medium text-fg-faint">
           {label}
         </p>
         <div className="mt-2 flex items-baseline gap-2">
@@ -316,13 +316,13 @@ export function CohortGrid({
       <table className="w-full min-w-[26rem] border-separate border-spacing-[3px] text-[11px]">
         <thead>
           <tr>
-            <th className="text-left font-medium uppercase tracking-[0.1em] text-fg-faint">
+            <th className="text-left font-medium text-fg-faint">
               Cohort
             </th>
             {weeks.map((w) => (
               <th
                 key={w}
-                className="px-1 text-center font-medium uppercase tracking-[0.1em] text-fg-faint"
+                className="px-1 text-center font-medium text-fg-faint"
               >
                 {w}
               </th>
@@ -423,7 +423,7 @@ export function Donut({
           <span className="text-lg font-semibold leading-none tabular-nums">
             {centerValue}
           </span>
-          <span className="mt-1 text-[10px] uppercase tracking-[0.1em] text-fg-faint">
+          <span className="mt-1 text-[12px] text-fg-faint">
             {centerLabel}
           </span>
         </div>

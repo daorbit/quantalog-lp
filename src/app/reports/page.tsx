@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
-import { ReportsHeroVisual } from "@/components/feature-hero-visuals";
+import { ReportVisual } from "@/components/more/report-visual";
 import { SparkStat, GeoBars } from "@/components/charts";
 import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
@@ -199,11 +199,12 @@ export default function ReportsPage() {
         description={DESCRIPTION}
         primary={{ label: "Start free — no card" }}
         secondary={{ label: "Read the docs", href: "/docs/email-reports" }}
-        visual={<ReportsHeroVisual />}
+        visual={<ReportVisual />}
+        tone="slate"
       />
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What a scheduled report does
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -211,7 +212,7 @@ export default function ReportsPage() {
             <Reveal
               key={c.title}
               delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="card card-hover group p-7"
+              className="tile group p-7"
             >
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
                 <c.icon className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -224,10 +225,10 @@ export default function ReportsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What is in every report
         </h2>
-        <ul className="card mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
+        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
           {included.map((item) => (
             <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-fg-muted">
               <CheckCircle2
@@ -241,7 +242,7 @@ export default function ReportsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           What lands in the inbox
         </h2>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
@@ -249,7 +250,7 @@ export default function ReportsPage() {
           period before it — so a client reads the direction, not just the total.
         </p>
 
-        <div className="card mt-8 overflow-hidden">
+        <div className="tile tile--static mt-8 overflow-hidden">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-6 py-4">
             <p className="text-sm font-semibold tracking-tight">
               Monthly summary — acme.com
@@ -282,7 +283,7 @@ export default function ReportsPage() {
           </div>
 
           <div className="border-t border-border p-6">
-            <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-fg-faint">
+            <p className="text-[13px] font-medium text-fg-faint">
               Top countries
             </p>
             <div className="mt-4">
@@ -300,10 +301,10 @@ export default function ReportsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Sharing without oversharing
         </h2>
-        <div className="card mt-8 flex gap-5 p-7">
+        <div className="tile tile--static mt-8 flex gap-5 p-7">
           <ShieldCheck className="h-6 w-6 shrink-0 text-accent" aria-hidden="true" />
           <p className="text-pretty leading-relaxed text-fg-muted">
             A report contains what you chose to put in it and nothing else. Your
@@ -316,7 +317,7 @@ export default function ReportsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Traffic and SEO in one send
         </h2>
         <p className="mt-6 text-pretty leading-relaxed text-fg-muted">
@@ -335,7 +336,7 @@ export default function ReportsPage() {
       </section>
 
       <section className="mt-16">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.025em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -350,8 +351,8 @@ export default function ReportsPage() {
         </dl>
       </section>
 
-      <section className="card mt-16 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
+      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
           Set one up in a couple of minutes
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">

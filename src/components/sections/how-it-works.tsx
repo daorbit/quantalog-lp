@@ -87,7 +87,7 @@ export function HowItWorks() {
                   key={x.k}
                   className="rounded-xl border border-border bg-surface px-4 py-4"
                 >
-                  <p className="text-[11px] uppercase tracking-[0.12em] text-fg-faint">
+                  <p className="text-[13px] text-fg-faint">
                     {x.k}
                   </p>
                   <p className="mt-2 text-xl font-medium tabular-nums tracking-[-0.03em]">

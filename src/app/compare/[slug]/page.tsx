@@ -140,7 +140,7 @@ export default async function ComparisonPage({
         >
           All comparisons
         </Link>
-        <h1 className="mt-6 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
+        <h1 className="mt-6 text-balance text-display font-semibold leading-[1.04] tracking-display">
           {c.title}
         </h1>
         <p className="mt-5 text-pretty text-lg leading-relaxed text-fg-muted">
@@ -169,10 +169,10 @@ export default async function ComparisonPage({
 
       {c.metrics && c.metrics.length > 0 && (
         <section className="mt-14">
-          <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
+          <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
             The numbers you can check yourself
           </h2>
-          <div className="card mt-8 grid gap-8 p-7 sm:grid-cols-2">
+          <div className="tile tile--static mt-8 grid gap-8 p-7 sm:grid-cols-2">
             {c.metrics.map((m, i) => (
               <HeadToHead
                 key={m.label}
@@ -192,10 +192,10 @@ export default async function ComparisonPage({
       )}
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
           {site.name} vs {c.rival}, point by point
         </h2>
-        <div className="card mt-8 overflow-hidden">
+        <div className="tile tile--static mt-8 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
               <caption className="sr-only">
@@ -241,7 +241,7 @@ export default async function ComparisonPage({
       </section>
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
           When {c.rival} is the better choice
         </h2>
         <p className="mt-5 text-pretty leading-relaxed text-fg-muted">
@@ -250,7 +250,7 @@ export default async function ComparisonPage({
       </section>
 
       <section className="mt-14">
-        <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">
+        <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -265,8 +265,8 @@ export default async function ComparisonPage({
         </dl>
       </section>
 
-      <section className="card mt-14 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
+      <section className="tile tile--static mt-14 p-8 text-center">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
           Try it against your own traffic
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
@@ -290,7 +290,7 @@ export default async function ComparisonPage({
           <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {others.map((o) => (
               <li key={o.slug}>
-                <Link href={`/compare/${o.slug}`} className="card card-hover group block p-5">
+                <Link href={`/compare/${o.slug}`} className="tile group block p-5">
                   <span className="font-semibold tracking-tight transition group-hover:text-accent">
                     {o.title}
                   </span>

@@ -51,8 +51,8 @@ function EmailPreview() {
         <div className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border">
           {preview.map((m) => (
             <div key={m.label} className="bg-bg p-3.5">
-              <div className="text-[10px] uppercase tracking-wide text-fg-muted">{m.label}</div>
-              <div className="mt-1 text-xl font-bold tracking-tight">{m.value}</div>
+              <div className="text-[12px] text-fg-muted">{m.label}</div>
+              <div className="mt-1 text-xl font-semibold tracking-tight">{m.value}</div>
               <div
                 className={`mt-0.5 flex items-center gap-1 text-[11px] ${
                   m.up ? "text-accent" : "text-red-400"

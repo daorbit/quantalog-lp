@@ -257,7 +257,7 @@ function Stat({
           aria-hidden="true"
         />
       )}
-      <p className="text-[10.5px] font-medium uppercase tracking-[0.09em] text-fg-faint">
+      <p className="text-[12px] font-medium text-fg-faint">
         {label}
       </p>
       <div className="mt-1.5 flex items-baseline gap-2">
@@ -293,10 +293,10 @@ function BarList({
   return (
     <div className="min-w-0 p-4">
       <div className="flex items-center justify-between">
-        <p className="text-[10.5px] font-semibold uppercase tracking-[0.09em] text-fg-faint">
+        <p className="text-[12px] font-semibold text-fg-faint">
           {title}
         </p>
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.08em] text-fg-faint">
+        <div className="flex items-center gap-3 text-[12px] text-fg-faint">
           <span>Views</span>
           <span className="hidden w-9 text-right sm:inline">Share</span>
         </div>
@@ -547,7 +547,7 @@ export function DashboardPreview() {
           <div className="border-b border-border px-4 pb-3 pt-3.5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <p className="text-[10.5px] font-semibold uppercase tracking-[0.09em] text-fg-faint">
+                <p className="text-[12px] font-semibold text-fg-faint">
                   {conf.metric === "pageviews" ? "Pageviews" : "Visitors"}
                 </p>
                 {/* A legend, because there are now two series. Without it the

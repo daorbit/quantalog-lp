@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
-import { SocialHeroVisual } from "@/components/feature-hero-visuals";
+import { OrbitVisual } from "@/components/explore/visuals/orbit-visual";
 import { Orbit } from "@/components/sections/orbit";
 import { Scheduling } from "@/components/sections/scheduling";
 import { JsonLd } from "@/components/json-ld";
@@ -120,7 +120,8 @@ export default function SocialPage() {
         description={DESCRIPTION}
         primary={{ label: "Start free" }}
         secondary={{ label: "See the live demo" }}
-        visual={<SocialHeroVisual />}
+        visual={<OrbitVisual />}
+        tone="rose"
       />
 
       <Orbit />
@@ -129,7 +130,7 @@ export default function SocialPage() {
       </div>
 
       <section className="mt-16 max-w-3xl">
-        <h2 className="text-[1.75rem] font-bold tracking-tight">
+        <h2 className="text-[1.75rem] font-semibold tracking-tight">
           Common questions
         </h2>
         <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -157,8 +158,8 @@ export default function SocialPage() {
         </Link>
       </section>
 
-      <section className="card mt-16 p-8 text-center">
-        <h2 className="text-[1.5rem] font-bold tracking-[-0.02em]">
+      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
+        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
           Ask it anything after you sign up
         </h2>
         <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">

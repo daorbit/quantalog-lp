@@ -45,7 +45,7 @@ function ComposerPreview() {
         </p>
 
         <div className="rounded-lg border border-border bg-bg-subtle p-3">
-          <div className="text-[11px] uppercase tracking-[0.04em] text-fg-faint">
+          <div className="text-[13px] text-fg-faint">
             Publishes
           </div>
           <div className="mt-1 text-[13px] font-semibold">Tue 26 Aug at 09:00</div>
@@ -78,7 +78,7 @@ export function Scheduling() {
             {points.map((p, i) => (
               <GlowCard
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group bg-surface/60 p-6 sm:p-7`}
+                className={`v-rise v-d${(i % 3) + 1} group bg-surface p-6 sm:p-7`}
               >
                 <p.icon
                   className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"

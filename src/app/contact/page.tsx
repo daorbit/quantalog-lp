@@ -73,17 +73,17 @@ export default function ContactPage() {
   );
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-16">
+    <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
       <JsonLd data={jsonLd} />
 
       <header className="mx-auto max-w-2xl text-center">
         <div className="flex justify-center">
           <Eyebrow>Contact</Eyebrow>
         </div>
-        <h1 className="mt-4 text-balance text-[2.25rem] font-bold leading-[1.1] tracking-[-0.03em] sm:text-[3rem]">
+        <h1 className="mt-4 text-balance text-display font-semibold leading-[1.04] tracking-display">
           Talk to a <span className="text-accent">person</span>.
         </h1>
-        <p className="mt-6 text-pretty text-lg leading-relaxed text-fg-muted">
+        <p className="mt-5 text-pretty text-lead leading-normal text-fg-muted">
           Questions about pricing, whether the tracking model fits your
           compliance position, or what you are trying to build on the Platform
           API — send it over. No ticket queue, no chatbot in front of it.
@@ -124,12 +124,12 @@ export default function ContactPage() {
       </div>
 
       <div className="mx-auto mt-20 max-w-3xl border-t border-border pt-12">
-        <h2 className="text-center text-sm font-semibold uppercase tracking-[0.1em] text-fg-faint">
+        <h2 className="text-center text-[1.5rem] font-semibold tracking-tight text-fg">
           Might be faster
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {elsewhere.map((item) => (
-            <div key={item.title} className="card p-6">
+            <div key={item.title} className="tile tile--static p-6">
               <item.icon className="h-5 w-5 text-accent" aria-hidden="true" />
               <h3 className="mt-4 text-[15px] font-semibold tracking-tight">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.body}</p>

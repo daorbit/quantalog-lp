@@ -1,66 +1,48 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageSquareText } from "lucide-react";
 import { OrbitMark } from "./orbit/orbit-mark";
 
-/**
- * A compact Orbit mention for the product pages.
- *
- * The full `sections/orbit` block is the home page's argument for the
- * assistant; this is the one-paragraph version that belongs at the foot of a
- * page about something else. Each page passes the sentence that connects Orbit
- * to what that page is actually about — a generic "we have AI" strip repeated
- * six times reads as filler, and says nothing a buyer can act on.
- */
 export function OrbitStrip({
   body,
   examples,
 }: {
-  /** What Orbit does for this page's subject, in one sentence. */
   body: string;
-  /** Two or three questions a visitor to this page would plausibly ask. */
   examples: string[];
 }) {
   return (
     <section className="mt-16">
-      <div className="card overflow-hidden">
-        <div className="flex flex-col gap-6 p-6 sm:p-7 lg:flex-row lg:items-center lg:gap-10">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2.5">
-              <OrbitMark size={32} />
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.09em] text-fg-faint">
-                Orbit AI
-              </span>
-            </div>
-
-            <h2 className="mt-4 text-[1.0625rem] font-semibold tracking-tight">
-              Ask instead of hunting for it
-            </h2>
-            <p className="mt-2 max-w-xl text-pretty text-sm leading-relaxed text-fg-muted">
-              {body}
-            </p>
-
-            <Link
-              href="/social"
-              className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-fg"
-            >
-              How Orbit works
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
+      <div className="explore-tile tone-rose grid gap-8 p-7 sm:p-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:gap-12">
+        <div className="min-w-0">
+          <div className="flex items-center gap-3">
+            <OrbitMark size={40} />
+            <span className="text-[15px] font-semibold text-accent">Orbit AI</span>
           </div>
-
-          {/* The questions do the selling: an assistant is abstract until you
-              see the shape of what it answers. */}
-          <ul className="w-full shrink-0 space-y-1.5 lg:max-w-xs">
-            {examples.map((q) => (
-              <li
-                key={q}
-                className="rounded-lg border border-border bg-bg-subtle px-3 py-2 text-[12.5px] leading-snug text-fg-muted"
-              >
-                {q}
-              </li>
-            ))}
-          </ul>
+          <h2 className="mt-4 text-balance text-[1.5rem] font-semibold leading-tight tracking-tight sm:text-[1.875rem]">
+            Ask instead of hunting for it.
+          </h2>
+          <p className="mt-3 max-w-xl text-pretty text-[15px] leading-relaxed text-fg-muted sm:text-[16px]">
+            {body}
+          </p>
+          <Link
+            href="/social"
+            className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-medium text-fg hover:text-fg-muted"
+          >
+            How Orbit works
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
         </div>
+
+        <ul className="space-y-2">
+          {examples.map((q) => (
+            <li
+              key={q}
+              className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3 text-[14px] leading-snug text-fg shadow-soft ring-1 ring-border dark:bg-bg-subtle"
+            >
+              <MessageSquareText className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+              {q}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

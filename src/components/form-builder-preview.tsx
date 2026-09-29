@@ -76,7 +76,7 @@ export function FormBuilderPreview() {
       <div className="grid sm:grid-cols-[9.5rem_1fr]">
 
         <div className="border-b border-border p-3 sm:border-b-0 sm:border-r">
-          <p className="px-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+          <p className="px-1 text-[12px] font-semibold text-fg-faint">
             Fields
           </p>
           <div className="mt-2.5 grid grid-cols-3 gap-1.5 sm:grid-cols-2">

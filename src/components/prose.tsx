@@ -3,7 +3,7 @@ import { CopyButton } from "./copy-button";
 
 export function H2({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className="heading-anchor scroll-mt-24 text-2xl font-bold tracking-tight">
+    <h2 id={id} className="heading-anchor scroll-mt-24 text-2xl font-semibold tracking-tight">
       <a href={`#${id}`} className="anchor-link" aria-label="Link to this section">
         #
       </a>

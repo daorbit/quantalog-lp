@@ -30,7 +30,7 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
 
   return (
     <div>
-      <div className="card divide-y divide-border overflow-hidden">
+      <div className="tile tile--static divide-y divide-hairline overflow-hidden">
         {posts.map((post, index) => (
           <Link
             key={post.slug}
@@ -41,19 +41,19 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
             hidden={!onPage(index)}
             aria-hidden={!onPage(index) || undefined}
             tabIndex={onPage(index) ? undefined : -1}
-            className={`group gap-3.5 p-3.5 transition hover:bg-bg-subtle ${
+            className={`group gap-4 p-4 transition-colors hover:bg-fg/[0.03] sm:p-5 ${
               onPage(index) ? "flex" : "hidden"
             }`}
           >
-            <div className="h-14 w-20 shrink-0 overflow-hidden rounded-md bg-bg-subtle">
+            <div className="h-16 w-24 shrink-0 overflow-hidden rounded-xl bg-bg">
               <PostImage post={post} sizes="5rem" />
             </div>
 
             <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-fg-muted">
+              <div className="flex flex-wrap items-center gap-1.5 text-[12px] text-fg-muted">
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
               </div>
-              <h3 className="mt-1 text-pretty text-[15px] font-semibold leading-snug tracking-tight transition group-hover:text-accent">
+              <h3 className="mt-1 text-pretty text-[16px] font-semibold leading-snug tracking-tight transition group-hover:text-accent">
                 {post.title}
               </h3>
               <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-fg-muted">
@@ -89,10 +89,10 @@ export function PostList({ posts }: { posts: PostMeta[] }) {
                 type="button"
                 aria-current={n === current ? "page" : undefined}
                 onClick={() => setPage(n)}
-                className={`h-8 min-w-8 rounded-md border px-2 text-xs font-medium transition ${
+                className={`h-9 min-w-9 rounded-full px-3 text-[13px] font-medium transition ${
                   n === current
-                    ? "border-accent/40 bg-accent/10 text-accent"
-                    : "border-border text-fg-muted hover:bg-bg-subtle"
+                    ? "bg-cta text-cta-fg"
+                    : "text-fg-muted hover:bg-bg-subtle"
                 }`}
               >
                 {n}
@@ -130,7 +130,7 @@ function PageButton({
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-fg-muted transition hover:bg-bg-subtle disabled:pointer-events-none disabled:opacity-40"
+      className="flex h-9 w-9 items-center justify-center rounded-full bg-bg-subtle text-fg-muted transition hover:bg-border disabled:pointer-events-none disabled:opacity-40"
     >
       {children}
     </button>

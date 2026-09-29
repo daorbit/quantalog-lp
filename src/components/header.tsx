@@ -31,7 +31,7 @@ export function Header() {
 
       <div>
 
-        <div className="mx-auto flex h-16 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
+        <div className="mx-auto flex h-12 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
@@ -45,11 +45,11 @@ export function Header() {
             <button
               type="button"
               aria-haspopup="true"
-              className="inline-flex items-center gap-1 px-4 py-2 text-[15px] text-fg transition-colors duration-200 group-hover:text-fg-muted group-focus-within:text-fg-muted"
+              className="inline-flex items-center gap-1 px-3.5 py-1.5 text-[13px] text-fg transition-colors duration-200 group-hover:text-fg-muted group-focus-within:text-fg-muted"
             >
               Product
               <ChevronDown
-                className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
                 aria-hidden="true"
               />
             </button>
@@ -69,7 +69,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap px-4 py-2 text-[15px] text-fg transition-colors duration-200 hover:text-fg-muted"
+              className="whitespace-nowrap px-3.5 py-1.5 text-[13px] text-fg transition-colors duration-200 hover:text-fg-muted"
             >
               {item.label}
             </Link>
@@ -81,24 +81,24 @@ export function Header() {
             <a
               href={`${site.app}/login`}
               onClick={() => track("sign_in", { location: "header" })}
-              className="hidden h-9 items-center whitespace-nowrap rounded-full px-4 text-[14px] font-medium text-fg transition-colors duration-200 hover:bg-bg-subtle lg:inline-flex"
+              className="hidden h-8 items-center whitespace-nowrap rounded-full px-3.5 text-[13px] font-medium text-fg transition-colors duration-200 hover:bg-bg-subtle lg:inline-flex"
             >
               Sign in
             </a>
             <a
               href={`${site.app}/signup`}
               onClick={() => track("cta_start_free", { location: "header" })}
-              className="group hidden h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-cta px-4 text-[14px] font-semibold text-cta-fg transition-colors duration-200 hover:bg-cta-hover lg:inline-flex"
+              className="group hidden h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-cta px-3.5 text-[13px] font-semibold text-cta-fg transition-colors duration-200 hover:bg-cta-hover lg:inline-flex"
             >
               Start free
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-fg transition lg:hidden"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-fg transition lg:hidden"
             >
               {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
@@ -107,13 +107,13 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-border bg-bg lg:hidden">
+        <div className="max-h-[calc(100svh-3rem)] overflow-y-auto border-t border-border bg-bg lg:hidden">
           <nav
             className="flex flex-col px-5 py-2 sm:px-8"
             aria-label="Mobile"
           >
 
-            <span className="pt-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+            <span className="pt-3 pb-1 text-[13px] font-semibold text-fg-faint">
               Product
             </span>
             {productNav.map((item) => (
@@ -127,7 +127,7 @@ export function Header() {
               </Link>
             ))}
 
-            <span className="pt-5 pb-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-fg-faint">
+            <span className="pt-5 pb-1 text-[13px] font-semibold text-fg-faint">
               More
             </span>
             {nav.map((item) => (

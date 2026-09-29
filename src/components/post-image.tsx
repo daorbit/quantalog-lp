@@ -63,7 +63,7 @@ export function PostImage({
       className={`flex h-full w-full items-center justify-center ${className}`}
       style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}
     >
-      <span className="select-none text-4xl font-bold text-white/25">
+      <span className="select-none text-4xl font-semibold text-white/25">
         {initial}
       </span>
     </div>

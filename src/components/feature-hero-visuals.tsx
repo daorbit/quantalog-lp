@@ -90,7 +90,7 @@ function StatCard({
 }) {
   return (
     <div className="rounded-lg border border-border bg-bg-subtle p-4">
-      <p className="text-[10.5px] font-medium uppercase tracking-widest text-fg-faint">
+      <p className="text-[12px] font-medium text-fg-faint">
         {label}
       </p>
       {children}
@@ -125,7 +125,7 @@ export function AnalyticsHeroVisual() {
       </div>
 
       <div className="rounded-lg border border-border bg-bg-subtle p-4">
-        <p className="mb-3 text-[10.5px] font-medium uppercase tracking-widest text-fg-faint">
+        <p className="mb-3 text-[12px] font-medium text-fg-faint">
           Signup funnel
         </p>
         <div className="space-y-2">
@@ -226,7 +226,7 @@ export function SearchVisibilityHeroVisual() {
       </div>
 
       <div className="rounded-lg border border-border bg-bg-subtle p-4">
-        <p className="text-[10.5px] font-medium uppercase tracking-widest text-fg-faint">Top queries</p>
+        <p className="text-[12px] font-medium text-fg-faint">Top queries</p>
         <div className="mt-2.5 space-y-1.5">
           {queries.map((r, i) => (
             <div key={r.q} className="relative overflow-hidden rounded">
@@ -263,7 +263,7 @@ export function ReportsHeroVisual() {
   return (
     <div className="space-y-3">
       <div className="rounded-lg border border-border bg-bg-subtle p-4">
-        <p className="text-[10.5px] font-medium uppercase tracking-widest text-fg-faint">
+        <p className="text-[12px] font-medium text-fg-faint">
           This week&apos;s read
         </p>
         <p className="fhv-type mt-2 text-sm leading-relaxed text-fg-muted">{line}</p>
@@ -309,7 +309,7 @@ export function FormsHeroVisual() {
   ];
   return (
     <div className="rounded-lg border border-border bg-bg-subtle p-4">
-      <p className="mb-3 text-[10.5px] font-medium uppercase tracking-widest text-fg-faint">
+      <p className="mb-3 text-[12px] font-medium text-fg-faint">
         Where people drop
       </p>
       <div className="space-y-2.5">
