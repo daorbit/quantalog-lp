@@ -42,7 +42,7 @@ export function PlanCard({
 
   return (
     <div
-      className={`relative flex flex-col rounded-(--radius-panel) bg-surface p-7 sm:p-8 dark:bg-surface-raised ${
+      className={`relative flex flex-col rounded-(--radius-panel) bg-surface p-6 sm:p-8 dark:bg-surface-raised ${
         featured ? "ring-2 ring-accent" : "ring-1 ring-border"
       }`}
     >
@@ -63,7 +63,7 @@ export function PlanCard({
       </p>
 
       <div className="relative mt-6 flex items-baseline gap-1.5">
-        <span className="text-[2.75rem] font-semibold leading-none tracking-[-0.04em] tabular-nums">
+        <span className="text-[2.25rem] font-semibold sm:text-[2.75rem] leading-none tracking-[-0.04em] tabular-nums">
           {price === 0 ? "Free" : formatPrice(price, currency)}
         </span>
         {price > 0 && (

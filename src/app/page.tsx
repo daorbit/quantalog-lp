@@ -1,8 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
-import { Demo } from "@/components/sections/demo";
-import { Features } from "@/components/sections/features";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
 import { Testimonials } from "@/components/sections/testimonials";
@@ -120,14 +118,10 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
-      <Reveal as="section">
-        <Logos />
-      </Reveal>
-      <Demo />
-      <ConsentGap />
-      <Features />
-      <MoreFeatures />
+      <Logos />
       <Explore />
+      <ConsentGap />
+      <MoreFeatures />
       <HowItWorks />
       {/* Social proof immediately before the price: the last thing read before
           a cost is weighed should be someone else saying it was worth it. */}

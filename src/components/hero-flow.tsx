@@ -22,6 +22,7 @@ import {
 import { RotateCcw } from "lucide-react";
 import "@xyflow/react/dist/style.css";
 import { Activity, Code2, Gauge, Mail, Search, ShieldCheck } from "lucide-react";
+import { useReducedMotion } from "./use-reduced-motion";
 
 type CardData = {
   title: string;
@@ -34,7 +35,7 @@ type CardData = {
   target?: boolean;
   source?: boolean;
 
-  pulseAt?: number;
+  flare?: "events" | "output";
 };
 
 const ICONS = {
@@ -51,17 +52,12 @@ function FlowCard({ data }: NodeProps & { data: CardData }) {
 
   return (
     <div
-      className={`hero-card relative w-[212px] overflow-hidden rounded-xl border bg-bg-subtle/95 backdrop-blur transition-shadow duration-200 hover:shadow-lg ${
-        data.accent ? "border-accent/50" : "border-border"
+      className={`hero-card relative w-[212px] overflow-hidden rounded-xl border bg-surface shadow-soft transition-shadow duration-200 hover:shadow-md dark:bg-surface-raised ${
+        data.accent ? "border-accent/40" : "border-border"
       }`}
     >
-
-      {typeof data.pulseAt === "number" && (
-        <span
-          aria-hidden
-          className="hero-card__flare"
-          style={{ animationDelay: `${data.pulseAt}s` }}
-        />
+      {data.flare && (
+        <span aria-hidden className={`hero-card__flare hero-card__flare--${data.flare}`} />
       )}
       {data.target && (
         <Handle type="target" position={Position.Left} className="h-1.5! w-1.5! border-0! bg-border-strong!" />
@@ -93,6 +89,21 @@ function FlowCard({ data }: NodeProps & { data: CardData }) {
 
 const nodeTypes = { card: FlowCard };
 
+const STAGES = {
+  0: {
+    points: "0;1;1",
+    times: "0;0.32;1",
+    opacity: "0;1;1;0;0",
+    opacityTimes: "0;0.03;0.3;0.33;1",
+  },
+  1: {
+    points: "0;0;1;1",
+    times: "0;0.34;0.64;1",
+    opacity: "0;0;1;1;0;0",
+    opacityTimes: "0;0.33;0.36;0.62;0.66;1",
+  },
+} as const;
+
 function PulseEdge({
   sourceX,
   sourceY,
@@ -103,6 +114,7 @@ function PulseEdge({
   markerEnd,
   data,
 }: EdgeProps) {
+  const reduced = useReducedMotion();
   const [path] = getSmoothStepPath({
     sourceX,
     sourceY,
@@ -113,27 +125,30 @@ function PulseEdge({
     borderRadius: 12,
   });
 
-  const delay = typeof data?.delay === "number" ? data.delay : 0;
+  const stage = STAGES[data?.stage === 1 ? 1 : 0];
 
   return (
     <>
-      <BaseEdge
-        path={path}
-        markerEnd={markerEnd}
-        style={{
-          stroke: "var(--border-strong)",
-          strokeWidth: 1.5,
-          strokeDasharray: "4 5",
-        }}
-        className="hero-edge__base"
-      />
-      <path
-        d={path}
-        fill="none"
-        pathLength={1}
-        className="hero-edge__pulse"
-        style={{ animationDelay: `${delay}s` }}
-      />
+      <BaseEdge path={path} markerEnd={markerEnd} className="hero-edge__base" />
+      {!reduced && (
+        <circle r="3.5" fill="var(--accent)" stroke="var(--surface)" strokeWidth="1.5" opacity="0">
+          <animateMotion
+            dur="3s"
+            repeatCount="indefinite"
+            path={path}
+            calcMode="linear"
+            keyPoints={stage.points}
+            keyTimes={stage.times}
+          />
+          <animate
+            attributeName="opacity"
+            dur="3s"
+            repeatCount="indefinite"
+            values={stage.opacity}
+            keyTimes={stage.opacityTimes}
+          />
+        </circle>
+      )}
     </>
   );
 }
@@ -167,7 +182,7 @@ const initialNodes: Node[] = [
       accent: true,
       target: true,
       source: true,
-      pulseAt: 1.0,
+      flare: "events",
     } satisfies CardData,
   },
   {
@@ -182,7 +197,7 @@ const initialNodes: Node[] = [
         { label: "Views today", value: "12.4k" },
       ],
       target: true,
-      pulseAt: 1.5,
+      flare: "output",
     } satisfies CardData,
   },
   {
@@ -197,7 +212,7 @@ const initialNodes: Node[] = [
         { label: "Issues open", value: "3" },
       ],
       target: true,
-      pulseAt: 2.0,
+      flare: "output",
     } satisfies CardData,
   },
   {
@@ -212,16 +227,16 @@ const initialNodes: Node[] = [
         { label: "Recipients", value: "6" },
       ],
       target: true,
-      pulseAt: 2.5,
+      flare: "output",
     } satisfies CardData,
   },
 ];
 
 const initialEdges: Edge[] = [
-  { id: "e1", type: "pulse", source: "script", target: "events", data: { delay: 0 } },
-  { id: "e2", type: "pulse", source: "events", target: "live", data: { delay: 0.5 } },
-  { id: "e3", type: "pulse", source: "events", target: "seo", data: { delay: 1 } },
-  { id: "e4", type: "pulse", source: "events", target: "reports", data: { delay: 1.5 } },
+  { id: "e1", type: "pulse", source: "script", target: "events", data: { stage: 0 } },
+  { id: "e2", type: "pulse", source: "events", target: "live", data: { stage: 1 } },
+  { id: "e3", type: "pulse", source: "events", target: "seo", data: { stage: 1 } },
+  { id: "e4", type: "pulse", source: "events", target: "reports", data: { stage: 1 } },
 ];
 
 const NODE_EXTENT: [[number, number], [number, number]] = [

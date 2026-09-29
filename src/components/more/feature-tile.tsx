@@ -15,9 +15,9 @@ export function FeatureTile({
   children: React.ReactNode;
 }) {
   return (
-    <Link href={href} className="tile group flex h-full flex-col p-7 sm:p-9">
+    <Link href={href} className="tile group flex h-full flex-col p-6 sm:p-9">
       <span className="text-[14px] font-semibold text-accent">{label}</span>
-      <span className="mt-2 block text-balance text-[1.625rem] font-semibold leading-[1.15] tracking-tight text-fg sm:text-[2rem]">
+      <span className="mt-2 block text-balance text-[1.375rem] font-semibold leading-[1.18] tracking-tight text-fg sm:text-[2rem]">
         {title}
       </span>
       <span className="mt-3 block max-w-md text-pretty text-[15px] leading-relaxed text-fg-muted">

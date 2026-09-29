@@ -8,7 +8,7 @@ import { TrustChips } from "../trust-chips";
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      <div className="relative mx-auto max-w-360 px-4 pb-16 pt-12 sm:px-5 sm:pb-24 sm:pt-20 lg:px-6">
+      <div className="relative mx-auto max-w-360 px-4 pb-12 pt-10 sm:px-5 sm:pb-24 sm:pt-20 lg:px-6">
         <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-8">
           <div className="w-full text-center lg:w-[44%] lg:shrink-0 lg:text-left">
             <a
@@ -22,7 +22,7 @@ export function Hero() {
               <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
 
-            <h1 className="word-rise mt-7 text-[2.125rem] font-medium leading-[1.02] tracking-display sm:text-[2.75rem] lg:text-[2.875rem] xl:text-[3.375rem]">
+            <h1 className="word-rise mt-7 text-[1.875rem] font-medium leading-[1.05] tracking-display sm:text-[2.75rem] lg:text-[2.875rem] xl:text-[3.375rem]">
               <Words text="Cookieless web analytics" />{" "}
               <Words text="that counts the" offset={3} />{" "}
               <span

@@ -7,7 +7,7 @@ import { moreItems } from "../more/more-items";
 export function MoreFeatures() {
   return (
     <section id="more">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
         <div className="v-rise mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
             And a lot more, built in.
@@ -18,7 +18,7 @@ export function MoreFeatures() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 lg:grid-flow-dense lg:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:mt-16 sm:gap-4 sm:grid-cols-2 lg:grid-flow-dense lg:grid-cols-4">
           <div className="v-rise sm:col-span-2 lg:row-span-2">
             <FeatureTile
               href="/docs/public-dashboards"

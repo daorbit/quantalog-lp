@@ -1,236 +1,56 @@
-"use client";
-
-import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "../ui";
+import { ReviewAuthor } from "../testimonials/review-author";
+import { featured, reviews } from "../testimonials/reviews";
 import { site } from "@/lib/site";
 
-type Review = {
-  name: string;
-  role: string;
-  quote: string;
-  seed: string;
-  top: string;
-  facialHair?: string;
-  ring: string;
-};
-
-function avatarUrl(r: Pick<Review, "seed" | "top" | "facialHair">): string {
-  const params = new URLSearchParams({
-    seed: r.seed,
-    backgroundColor: "transparent",
-    top: r.top,
-    facialHairProbability: r.facialHair ? "100" : "0",
-  });
-  if (r.facialHair) params.set("facialHair", r.facialHair);
-  return `https://api.dicebear.com/9.x/avataaars/svg?${params.toString()}`;
-}
-
-
-const reviews: Review[] = [
-  {
-    name: "Divya Mishra",
-    role: "Manages client websites",
-    quote:
-      "This tool has been incredibly helpful for me. I've integrated it with my clients' websites, and before using it, it was difficult to keep track of what was happening across each site. The integration process was simple and straightforward, and my clients have been really happy with the results. It makes it easy to understand website traffic and provides useful SEO improvement tips, all in one place.",
-    seed: "Divya",
-    top: "straight01",
-    ring: "ring-teal-400/40",
-  },
-  {
-    name: "Devesh Mani Chaturvedi",
-    role: "Reviewer",
-    quote:
-      "A refreshing analytics platform that keeps things simple without sacrificing useful insights. The dashboard is clean, fast, and easy to understand, while the privacy-first approach is a huge plus. I also like that it combines analytics with SEO insights, making it more practical than many traditional tools.",
-    seed: "Devesh",
-    top: "shortFlat",
-    facialHair: "beardLight",
-    ring: "ring-violet-400/40",
-  },
-  {
-    name: "Deepak Gupta",
-    role: "Reviewer",
-    quote:
-      "A refreshing take on privacy-first analytics — real-time tracking, built-in SEO audits, and a multi-tenant API. Clean, focused, and developer-friendly, and a real alternative to the heavy analytics platforms.",
-    seed: "Deepak",
-    top: "shortWaved",
-    ring: "ring-amber-400/40",
-  },
-];
-
 export function Testimonials() {
-  const [i, setI] = useState(0);
-  const count = reviews.length;
-
-  const go = useCallback(
-    (d: number) => setI((n) => (n + d + count) % count),
-    [count]
-  );
-
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") go(-1);
-      if (e.key === "ArrowRight") go(1);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [go]);
-
-
-  useEffect(() => {
-    reviews.forEach((r) => {
-      const img = new Image();
-      img.src = avatarUrl(r);
-    });
-  }, []);
-
-  const active = reviews[i];
-
   return (
-    <section id="testimonials" className="relative isolate overflow-hidden">
-
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[38rem] w-[38rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-3xl"
-        style={{ background: "var(--glow)" }}
-        aria-hidden="true"
-      />
-
-      <div className="mx-auto max-w-5xl px-4 py-14 text-center sm:px-6 sm:py-24 lg:py-28">
-        <span className="v-rise inline-flex items-center rounded-full border border-border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-fg-muted">
-          Testimonials
-        </span>
-
-        <h2 className="v-rise v-d1 mt-6 text-h2 font-medium tracking-display">
-          Loved by makers
-          <br className="hidden sm:block" /> and teams worldwide.
+    <section id="testimonials">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+        <h2 className="v-rise mx-auto max-w-3xl text-balance text-center text-h2 font-medium leading-[1.06] tracking-display">
+          In their words.
         </h2>
-        <p className="v-rise v-d2 mx-auto mt-4 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          Real feedback from people running Quantalog across their own sites and
-          their clients&apos;.
-        </p>
 
-        <div className="v-rise v-d3 relative mt-12 sm:mt-16">
-          <div className="flex items-center justify-center gap-3 sm:gap-6">
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              aria-label="Previous testimonial"
-              className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface/70 text-fg-muted backdrop-blur transition-colors hover:border-border-strong hover:text-fg sm:flex"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-
-            <div className="relative min-w-0 flex-1 sm:max-w-4xl">
-              <div
-                className="absolute inset-x-4 -bottom-3 h-full rounded-2xl border border-border bg-surface/30"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute inset-x-2 -bottom-1.5 h-full rounded-2xl border border-border bg-surface/50"
-                aria-hidden="true"
-              />
-
-              <figure
-                key={i}
-                className="card relative rounded-2xl p-6 text-left shadow-float sm:p-8"
-                style={{ animation: "rise 0.4s var(--ease-out-q) both" }}
-              >
-
-                <div className="flex gap-0.5" role="img" aria-label="Rated 5 out of 5">
-                  {Array.from({ length: 5 }, (_, s) => (
-                    <Star
-                      key={s}
-                      className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
-                      aria-hidden="true"
-                    />
-                  ))}
-                </div>
-
-
-                <blockquote className="mt-4 min-h-[7.5rem] text-pretty text-[14.5px] leading-relaxed text-fg sm:min-h-[6.5rem] sm:text-[15.5px]">
-                  &ldquo;{active.quote}&rdquo;
-                </blockquote>
-
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-hairline pt-5">
-
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={avatarUrl(active)}
-                    alt=""
-                    width={44}
-                    height={44}
-                    loading="lazy"
-                    className={`h-11 w-11 shrink-0 rounded-full bg-bg-subtle object-cover ring-2 ${active.ring}`}
-                  />
-                  <span className="min-w-0">
-                    <span className="block truncate text-[13.5px] font-medium">
-                      {active.name}
-                    </span>
-                    <span className="block truncate text-[11.5px] text-fg-faint">
-                      {active.role}
-                    </span>
-                  </span>
-                </figcaption>
-              </figure>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => go(1)}
-              aria-label="Next testimonial"
-              className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface/70 text-fg-muted backdrop-blur transition-colors hover:border-border-strong hover:text-fg sm:flex"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+        <figure className="v-rise v-d1 tile tile--static mt-8 p-6 sm:mt-16 sm:p-14">
+          <blockquote>
+            <p className="text-balance text-[1.3125rem] font-medium leading-[1.25] tracking-tight text-fg sm:text-[2.25rem]">
+              &ldquo;{featured.pull}&rdquo;
+            </p>
+            <p className="mt-5 max-w-3xl text-pretty text-[15px] leading-relaxed text-fg-muted sm:mt-6 sm:text-[17px]">
+              {featured.quote}
+            </p>
+          </blockquote>
+          <div className="mt-8">
+            <ReviewAuthor review={featured} />
           </div>
+        </figure>
 
-          {/* Dots double as the mobile control, where the side arrows would
-              crowd the card off the screen. */}
-          <div className="mt-8 flex items-center justify-center gap-2">
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              aria-label="Previous testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-fg-muted transition-colors hover:text-fg sm:hidden"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-
-            {reviews.map((r, n) => (
-              <button
-                key={r.name}
-                type="button"
-                onClick={() => setI(n)}
-                aria-label={`Show testimonial from ${r.name}`}
-                aria-current={n === i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  n === i ? "w-6 bg-accent" : "w-1.5 bg-border-strong hover:bg-fg-faint"
-                }`}
-              />
-            ))}
-
-            <button
-              type="button"
-              onClick={() => go(1)}
-              aria-label="Next testimonial"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-fg-muted transition-colors hover:text-fg sm:hidden"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
+        <div className="mt-3 grid gap-3 md:grid-cols-2">
+          {reviews.map((r, i) => (
+            <figure key={r.name} className={`v-rise v-d${i + 2} tile tile--static flex flex-col p-6 sm:p-10`}>
+              <blockquote className="flex-1 text-pretty text-[15px] leading-relaxed text-fg sm:text-[18px]">
+                &ldquo;{r.quote}&rdquo;
+              </blockquote>
+              <div className="mt-8">
+                <ReviewAuthor review={r} />
+              </div>
+            </figure>
+          ))}
         </div>
 
-        <p className="v-rise v-d4 mt-12 text-sm text-fg-muted">
-          Join the teams measuring their traffic without a consent banner.
-        </p>
-        <div className="v-rise v-d4 mt-5 flex justify-center">
+        <div className="v-rise mt-10 flex flex-col items-center sm:mt-12 gap-4 text-center">
+          <p className="text-[15px] text-fg-muted">
+            Join the teams measuring their traffic without a consent banner.
+          </p>
           <Button
             href={`${site.app}/signup`}
+            className="group"
             track="cta_start_free"
             trackProps={{ location: "testimonials" }}
           >
             Get started free
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Button>
         </div>
       </div>

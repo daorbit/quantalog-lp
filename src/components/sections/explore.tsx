@@ -1,25 +1,27 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { ExploreCarousel } from "../explore/explore-carousel";
+import { ExploreTile } from "../explore/explore-tile";
+import { exploreItems } from "../explore/explore-items";
 
 export function Explore() {
   return (
-    <section id="explore" className="py-20 sm:py-28 lg:py-32">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 sm:flex-row sm:items-end sm:justify-between sm:px-6">
-        <h2 className="v-rise text-balance text-h2 font-medium leading-[1.06] tracking-display">
-          Get to know every part.
+    <section id="features" className="py-14 sm:py-28">
+      <div className="v-rise mx-auto max-w-3xl px-4 text-center">
+        <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
+          One place for every number that matters.
         </h2>
-        <Link
-          href="/docs"
-          className="v-rise group inline-flex shrink-0 items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
-        >
-          Read the docs
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-        </Link>
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
+          Analytics, search, SEO, forms and AI built on the same data, so nothing has to be copied between tools.
+        </p>
       </div>
 
-      <div className="v-rise v-d2 mt-10 sm:mt-12">
-        <ExploreCarousel />
+      <div className="mt-8 grid gap-2 sm:mt-16 lg:grid-cols-2">
+        {exploreItems.map((item, i) => (
+          <div
+            key={item.label}
+            className={`v-rise ${i % 2 ? "v-d2" : "v-d1"} ${item.wide ? "lg:col-span-2" : ""}`}
+          >
+            <ExploreTile item={item} />
+          </div>
+        ))}
       </div>
     </section>
   );

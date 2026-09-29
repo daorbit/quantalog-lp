@@ -63,7 +63,7 @@ export function Pricing() {
 
   return (
     <section id="pricing">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28 lg:py-32">
         <div className="v-rise mx-auto max-w-2xl text-center">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Pricing</p>
           <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
@@ -88,7 +88,7 @@ export function Pricing() {
           </div>
         </div>
 
-        <div id="pricing-panel" role="tabpanel" aria-labelledby={`pricing-tab-${ladder}`} className="mt-12">
+        <div id="pricing-panel" role="tabpanel" aria-labelledby={`pricing-tab-${ladder}`} className="mt-8 sm:mt-12">
           {shared.error ? (
             <p className="text-center text-[15px] text-fg-muted">
               Couldn&apos;t load plans right now.{" "}
@@ -142,7 +142,7 @@ export function Pricing() {
           </a>
         </div>
 
-        <div className="mt-20 border-t border-border pt-14">
+        <div className="mt-14 border-t border-border pt-10 sm:mt-20 sm:pt-14">
           <BillingFacts />
         </div>
       </div>
