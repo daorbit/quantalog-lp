@@ -41,7 +41,7 @@ export function FaqItem({
         role="region"
         aria-labelledby={`${id}-q`}
         data-open={open || undefined}
-        className="faq-answer"
+        className="expand"
       >
         <div className="overflow-hidden">
           <p className="px-5 pb-6 text-pretty text-[15px] leading-relaxed text-fg-muted sm:px-6">

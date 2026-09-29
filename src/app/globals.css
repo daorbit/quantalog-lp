@@ -541,14 +541,51 @@ section {
   box-shadow: var(--shadow-md);
 }
 
-.faq-answer {
+.expand {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.3s var(--ease-out-q, ease);
 }
-.faq-answer[data-open] {
+.expand[data-open] {
   grid-template-rows: 1fr;
 }
+
+.visitor-grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: clamp(0.4rem, 0.25rem + 0.8vw, 0.75rem);
+}
+.visitor-dot {
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background: var(--accent);
+  opacity: 0;
+  transform: scale(0.3);
+  transition:
+    opacity 0.5s var(--ease-out-q),
+    transform 0.6s var(--ease-spring),
+    background-color 0.45s ease,
+    border-color 0.45s ease;
+}
+.visitor-grid[data-active] .visitor-dot {
+  opacity: 1;
+  transform: none;
+}
+.visitor-grid[data-active] .visitor-dot[data-lost] {
+  background: transparent;
+  border-color: var(--border-strong);
+  transform: scale(0.78);
+}
+.visitor-dot:nth-child(10n + 2) { transition-delay: 30ms; }
+.visitor-dot:nth-child(10n + 3) { transition-delay: 60ms; }
+.visitor-dot:nth-child(10n + 4) { transition-delay: 90ms; }
+.visitor-dot:nth-child(10n + 5) { transition-delay: 120ms; }
+.visitor-dot:nth-child(10n + 6) { transition-delay: 150ms; }
+.visitor-dot:nth-child(10n + 7) { transition-delay: 180ms; }
+.visitor-dot:nth-child(10n + 8) { transition-delay: 210ms; }
+.visitor-dot:nth-child(10n + 9) { transition-delay: 240ms; }
+.visitor-dot:nth-child(10n + 10) { transition-delay: 270ms; }
 
 .stage {
   position: relative;
@@ -1907,12 +1944,6 @@ body {
 .band {
   position: relative;
   background: var(--bg-subtle);
-}
-
-.band-deep {
-  background: var(--bg-subtle);
-  border-radius: var(--radius-stage);
-  margin-inline: clamp(0.5rem, 0.2rem + 1.2vw, 1.5rem);
 }
 
 .react-flow {

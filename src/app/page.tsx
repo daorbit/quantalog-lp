@@ -128,9 +128,7 @@ export default function HomePage() {
         <Logos />
       </Reveal>
 
-      <div className="band-deep">
-        <ConsentGap />
-      </div>
+      <ConsentGap />
       <Features />
 
   

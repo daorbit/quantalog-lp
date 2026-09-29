@@ -1,126 +1,35 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import { SectionHeading } from "../ui";
-import { ConsentFlow } from "../consent-flow";
-
-const bars = [
-  {
-    label: "Cookie-based analytics",
-    caption: "Only visitors who accept the banner",
-    pct: 55,
-    tone: "muted" as const,
-  },
-  {
-    label: "Quantalog",
-    caption: "Every visitor — no banner to accept",
-    pct: 100,
-    tone: "accent" as const,
-  },
-];
+import { ConsentShowcase } from "../consent/consent-showcase";
+import { ConsentFacts } from "../consent/consent-facts";
 
 export function ConsentGap() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(true);
-          io.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.35 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <section id="consent-gap" className="relative">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div className="v-rise">
-            <SectionHeading
-              eyebrow="The consent gap"
-              align="left"
-              title={
-                <>
-                  Half your traffic never
-                  <br className="hidden sm:block" /> makes it into the report.
-                </>
-              }
-              body="Analytics that rely on cookies need permission before they can record anything. Everyone who ignores the banner, declines it, or runs a blocker becomes invisible — and the gap is not random. It skews toward exactly the privacy-conscious, technical audience most products care about."
-            />
-
-            <p className="mt-6 text-sm leading-relaxed text-fg-muted">
-              Quantalog identifies visitors with a rotating daily hash of IP and
-              user agent. Nothing is written to the browser, nothing personal is
-              stored, and no consent is required — so there is no gap to correct
-              for.
-            </p>
-
-            <div className="mt-9 rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur sm:p-6">
-              <ConsentFlow />
-            </div>
-          </div>
-
-          <div ref={ref} className="v-rise v-d2 panel p-8">
-            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-fg-faint">
-              Share of visitors recorded
-            </p>
-
-            <div className="mt-8 space-y-8">
-              {bars.map((bar, i) => (
-                <div key={bar.label}>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span className="text-sm font-medium">{bar.label}</span>
-                    <span
-                      className={`text-[1.75rem] font-medium leading-none tabular-nums tracking-[-0.03em] ${
-                        bar.tone === "accent" ? "text-accent" : "text-fg-faint"
-                      }`}
-                    >
-                      {bar.pct}%
-                    </span>
-                  </div>
-
-                  <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-bg-subtle">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: shown ? `${bar.pct}%` : "0%",
-                        background:
-                          bar.tone === "accent"
-                            ? "var(--accent)"
-                            : "var(--border-strong)",
-                        transition:
-                          "width 1.1s cubic-bezier(0.22, 1, 0.36, 1)",
-
-                        transitionDelay: `${i * 0.18}s`,
-                      }}
-                    />
-                  </div>
-
-                  <p className="mt-2 text-xs text-fg-faint">{bar.caption}</p>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-8 border-t border-border pt-5 text-xs leading-relaxed text-fg-faint">
-              Consent rates vary widely by region and audience; published figures
-              commonly land between 40% and 80%. The point is not the exact
-              number — it is that one of these tools is guessing and the other
-              is not.
-            </p>
-          </div>
+    <section id="consent-gap">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
+        <div className="v-rise mx-auto max-w-3xl text-center">
+          <p className="text-[15px] font-semibold text-accent sm:text-[17px]">The consent gap</p>
+          <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
+            Half your traffic never makes it into the report.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
+            Cookie-based analytics need permission before they record anything.
+            The people who say no aren&apos;t random — they&apos;re the
+            privacy-conscious, technical audience most products care about.
+          </p>
         </div>
+
+        <div className="v-rise v-d2 mt-14 sm:mt-20">
+          <ConsentShowcase />
+        </div>
+
+        <div className="mt-16 sm:mt-24">
+          <ConsentFacts />
+        </div>
+
+        <p className="mx-auto mt-16 max-w-2xl text-center text-[12px] leading-relaxed text-fg-faint">
+          Consent rates vary widely by region and audience; published figures
+          commonly land between 40% and 80%. The exact number matters less than
+          the fact that one of these tools is guessing and the other is not.
+        </p>
       </div>
     </section>
   );
