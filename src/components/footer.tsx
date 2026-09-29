@@ -13,7 +13,7 @@ const columns = [
       { href: "/search-visibility", label: "Search visibility" },
       { href: "/reports", label: "Reports" },
       { href: "/platform-api", label: "Platform API" },
-      { href: "/#scheduling", label: "Scheduled posts" },
+      { href: "/social", label: "Scheduled posts" },
       { href: "/#pricing", label: "Pricing" },
     ],
   },
@@ -21,7 +21,7 @@ const columns = [
     title: "Why Quantalog",
     links: [
       { href: "/#consent-gap", label: "The consent gap" },
-      { href: "/#orbit", label: "Orbit AI" },
+      { href: "/social", label: "Orbit AI" },
       { href: "/compare", label: "Comparisons" },
       { href: "/#demo", label: "Live demo" },
     ],

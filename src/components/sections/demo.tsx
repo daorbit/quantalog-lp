@@ -62,12 +62,12 @@ export function Demo() {
           <p className="mt-5 text-center text-sm text-fg-faint">
             Prefer the real thing?{" "}
             <a
-              href={`${site.app}/signup`}
+              href={`${site.app}/login`}
               className="font-medium text-accent underline-offset-4 hover:underline"
             >
-              Start free
+              Open the live demo
             </a>{" "}
-            — no card, live in about three seconds.
+            — a fully populated workspace, no account needed.
           </p>
         </div>
       </div>

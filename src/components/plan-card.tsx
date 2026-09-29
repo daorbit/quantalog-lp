@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, Check } from "lucide-react";
-import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "./plan-icons";
+import { PlanIcon } from "./plan-icons";
 import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 import { FEATURED_SLUG, formatPrice, planQuotas } from "@/lib/plans";
@@ -42,26 +42,14 @@ export function PlanCard({
 
   return (
     <div
-      className={`pricing-card relative flex flex-col rounded-2xl border p-6 sm:p-7 ${
-        featured
-          ? "pricing-card--featured border-border-strong bg-surface"
-          : "border-border bg-surface/60 backdrop-blur"
+      className={`relative flex flex-col rounded-(--radius-panel) bg-surface p-7 sm:p-8 dark:bg-surface-raised ${
+        featured ? "ring-2 ring-accent" : "ring-1 ring-border"
       }`}
     >
-      {/* The featured card is lit from above rather than scaled up: scaling it
-          broke the shared baseline across the row. */}
-      {featured && <span className="pricing-card__beam" aria-hidden="true" />}
-
       <div className="relative flex items-center gap-2">
-        <h3 className="text-lg font-medium tracking-tight">{plan.name}</h3>
+        <h3 className="text-[1.25rem] font-semibold tracking-tight">{plan.name}</h3>
         {featured && (
-          <span
-            className="rounded-full px-2 py-0.5 text-[9.5px] font-semibold uppercase tracking-wide"
-            style={{
-              background: PLAN_GRADIENTS[plan.slug] ?? PLAN_ACCENTS[plan.slug] ?? "#8b5cf6",
-              color: PLAN_ON_ACCENT[plan.slug] ?? "#fff",
-            }}
-          >
+          <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-[12px] font-semibold text-accent">
             Most popular
           </span>
         )}
@@ -70,12 +58,12 @@ export function PlanCard({
           the plan, and without a floor the price row below starts at a
           different height on each card — visible as a stagger across the row
           even once the cards themselves are equal height. */}
-      <p className="relative mt-1.5 min-h-11 text-[13px] leading-relaxed text-fg-muted">
+      <p className="relative mt-2 min-h-11 text-[14px] leading-relaxed text-fg-muted">
         {plan.description}
       </p>
 
       <div className="relative mt-6 flex items-baseline gap-1.5">
-        <span className="text-[2.75rem] font-medium leading-none tracking-[-0.045em] tabular-nums">
+        <span className="text-[2.75rem] font-semibold leading-none tracking-[-0.04em] tabular-nums">
           {price === 0 ? "Free" : formatPrice(price, currency)}
         </span>
         {price > 0 && (
@@ -97,10 +85,10 @@ export function PlanCard({
             location,
           })
         }
-        className={`group relative mt-6 flex items-center justify-center rounded-full py-2.5 pl-5 pr-2.5 text-[13px] font-medium transition-all duration-200 ${
+        className={`group relative mt-6 flex h-11 items-center justify-center rounded-full pl-5 pr-2.5 text-[14px] font-semibold transition-colors duration-200 ${
           featured
-            ? "bg-cta text-cta-fg shadow-soft hover:bg-cta-hover"
-            : "border border-border bg-surface-raised/60 text-fg hover:border-border-strong hover:bg-surface-raised"
+            ? "bg-cta text-cta-fg hover:bg-cta-hover"
+            : "border border-border text-fg hover:bg-bg-subtle"
         }`}
       >
         <span className="flex-1 text-center">
@@ -132,7 +120,7 @@ export function PlanCard({
           reads as breathing room rather than as a card that failed to fill. */}
       <ul className="relative mt-5 grow space-y-2.5 border-t border-border pt-5">
         {quotas.map((f) => (
-          <li key={f} className="flex items-start gap-2 text-[13px]">
+          <li key={f} className="flex items-start gap-2.5 text-[14px]">
             <Check
               className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent"
               strokeWidth={3}
@@ -142,7 +130,7 @@ export function PlanCard({
           </li>
         ))}
         {shown.map((f) => (
-          <li key={f} className="flex items-start gap-2 text-[13px]">
+          <li key={f} className="flex items-start gap-2.5 text-[14px]">
             <Check
               className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent"
               strokeWidth={3}

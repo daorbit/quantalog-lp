@@ -1,21 +1,17 @@
-import { BarChart3, FileSearch, Mails, Plug } from "lucide-react";
-import { OrbitMark } from "../orbit/orbit-mark";
+import { BarChart3, FileSearch, LayoutGrid, Plug, TrendingUp } from "lucide-react";
+import { OrbitIcon } from "../orbit/orbit-icon";
+import type { SegmentOption } from "../segmented-control";
 import { AnalyticsPreview } from "./previews/analytics-preview";
 import { SeoPreview } from "./previews/seo-preview";
+import { SearchPreview } from "./previews/search-preview";
+import { FormsPreview } from "./previews/forms-preview";
 import { OrbitPreview } from "./previews/orbit-preview";
-import { ReportsPreview } from "./previews/reports-preview";
 import { ApiPreview } from "./previews/api-preview";
-
-type TabIcon = (props: { className?: string }) => React.ReactNode;
-
-function OrbitTabIcon({ className = "" }: { className?: string }) {
-  return <OrbitMark size={18} className={className} />;
-}
 
 export type Product = {
   id: string;
   label: string;
-  icon: TabIcon;
+  icon: NonNullable<SegmentOption["icon"]>;
   title: string;
   body: string;
   points: string[];
@@ -29,14 +25,28 @@ export const products: Product[] = [
     label: "Analytics",
     icon: BarChart3,
     title: "See every visitor the moment they arrive.",
-    body: "Real-time traffic, funnels, goals and retention — counted without cookies, so the numbers include people who would have declined a banner.",
+    body: "Real-time traffic counted without cookies, so the numbers include the people who would have declined a banner.",
     points: [
       "Live dashboard, updated in about three seconds",
-      "Funnels, goals and retention cohorts",
-      "Referrer, UTM, device and country breakdowns",
+      "Funnels, goals, retention cohorts and custom events",
+      "Saved segments, markers and spreadsheet export",
     ],
     cta: { label: "Explore analytics", href: "/analytics" },
     Preview: AnalyticsPreview,
+  },
+  {
+    id: "search",
+    label: "Search visibility",
+    icon: TrendingUp,
+    title: "What Google sends you, beside what it becomes.",
+    body: "Connect Google Search Console and see searches, clicks, impressions and rankings next to the traffic you already track. Read-only — nothing in Search Console is changed.",
+    points: [
+      "Clicks, impressions, CTR and average position",
+      "Insights on queries close to page one",
+      "Index status for every page",
+    ],
+    cta: { label: "Explore search visibility", href: "/search-visibility" },
+    Preview: SearchPreview,
   },
   {
     id: "seo",
@@ -53,32 +63,32 @@ export const products: Product[] = [
     Preview: SeoPreview,
   },
   {
+    id: "forms",
+    label: "Forms",
+    icon: LayoutGrid,
+    title: "Forms that know what brought people in.",
+    body: "Drag-and-drop forms — or describe one and let Orbit draft it. Entries land next to the analytics for the traffic that produced them.",
+    points: [
+      "Build a form from a sentence with Orbit",
+      "Per-field drop-off, not just per form",
+      "Payments, webhooks and your own branding",
+    ],
+    cta: { label: "Explore forms", href: "/forms" },
+    Preview: FormsPreview,
+  },
+  {
     id: "orbit",
     label: "Orbit AI",
-    icon: OrbitTabIcon,
-    title: "Ask your analytics a question in plain English.",
-    body: "Orbit reads your dashboard and answers with your numbers, not guesses — then offers to write the post about it.",
+    icon: OrbitIcon,
+    title: "An assistant that knows the product — and, on Pro, your numbers.",
+    body: "Orbit answers how-to questions from Quantalog's own reference and walks you through fixing what an audit flagged. On Orbit Pro it also reads a summary of your last seven days.",
     points: [
-      "Explains what changed and why",
-      "Competitor analysis and SEO briefs",
-      "Scheduled LinkedIn posts you approve first",
+      "Step-by-step fixes for SEO audit issues",
+      "Answers from your own analytics on Orbit Pro",
+      "Every model on every plan — pick your favourite",
     ],
     cta: { label: "Explore Orbit", href: "/social" },
     Preview: OrbitPreview,
-  },
-  {
-    id: "reports",
-    label: "Reports",
-    icon: Mails,
-    title: "A weekly summary people actually read.",
-    body: "Scheduled email and WhatsApp reports with a plain-English read of the week, and a spreadsheet for anyone who wants the detail.",
-    points: [
-      "Daily, weekly or monthly schedules",
-      "Delivered by email or WhatsApp",
-      "Spreadsheet attached to every send",
-    ],
-    cta: { label: "Explore reports", href: "/reports" },
-    Preview: ReportsPreview,
   },
   {
     id: "api",

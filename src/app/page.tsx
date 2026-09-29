@@ -3,11 +3,9 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Demo } from "@/components/sections/demo";
 import { Features } from "@/components/sections/features";
-import { Orbit } from "@/components/sections/orbit";
+import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
-import { Integrations } from "@/components/sections/integrations";
 import { Testimonials } from "@/components/sections/testimonials";
-import { TryDemo } from "@/components/sections/try-demo";
 import { HowItWorks, steps as setupSteps } from "@/components/sections/how-it-works";
 import { Pricing } from "@/components/sections/pricing";
 import { Faq } from "@/components/sections/faq";
@@ -122,23 +120,14 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
-
-      <Demo />
       <Reveal as="section">
         <Logos />
       </Reveal>
-
+      <Demo />
       <ConsentGap />
       <Features />
-
-  
-      <Orbit />
-
+      <MoreFeatures />
       <Explore />
-
-      <Integrations />
-
-      <TryDemo />
       <HowItWorks />
       {/* Social proof immediately before the price: the last thing read before
           a cost is weighed should be someone else saying it was worth it. */}

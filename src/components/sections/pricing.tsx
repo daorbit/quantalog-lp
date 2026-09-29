@@ -1,26 +1,56 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { PlanIcon } from "../plan-icons";
+import { ArrowRight, BarChart3 } from "lucide-react";
 import { PlanCard } from "../plan-card";
 import { usePlans } from "../plans-provider";
-import { IntegrationLogo } from "../integration-logos";
+import { SegmentedControl } from "../segmented-control";
+import { OrbitIcon } from "../orbit/orbit-icon";
+import { BillingControls } from "../pricing/billing-controls";
+import { OrbitPlanCard } from "../pricing/orbit-plan-card";
+import { BillingFacts } from "../pricing/billing-facts";
 import { site } from "@/lib/site";
-import {
-  CURRENCIES, detectCurrency,
-} from "@/lib/plans";
-import type { Currency, ResolvedPlan } from "@/lib/plans";
+import { detectCurrency } from "@/lib/plans";
+import type { Currency, ResolvedOrbitPlan, ResolvedPlan } from "@/lib/plans";
 
-/** Feature rows shown on a pricing card, quotas included. */
 const CARD_FEATURE_ROWS = 8;
 
-export function Pricing() {
+const ladders = [
+  { id: "analytics", label: "Analytics plans", icon: BarChart3 },
+  { id: "orbit", label: "Orbit AI", icon: OrbitIcon },
+];
 
+const blurbs: Record<string, string> = {
+  analytics: "Every plan includes the full dashboard and the SEO audit suite. Start on Free and move up as your sites grow.",
+  orbit: "Orbit is bought per workspace, on its own ladder — a small site can still be a heavy Orbit user. A question only counts once it's answered.",
+};
+
+function Skeleton() {
+  return (
+    <div className="grid gap-5 lg:grid-cols-3" aria-hidden="true">
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="rounded-(--radius-panel) p-7 ring-1 ring-border">
+          <div className="skeleton h-5 w-24 rounded" />
+          <div className="skeleton mt-3 h-3.5 w-full rounded" />
+          <div className="skeleton mt-6 h-11 w-32 rounded-lg" />
+          <div className="skeleton mt-7 h-11 w-full rounded-full" />
+          <div className="mt-7 space-y-3 border-t border-border pt-6">
+            {[0, 1, 2, 3].map((r) => (
+              <div key={r} className="skeleton h-3.5 w-full rounded" />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function Pricing() {
   const shared = usePlans();
   const plans = shared.plans as ResolvedPlan[] | null;
-  const error = shared.error;
+  const orbitPlans = shared.orbitPlans as ResolvedOrbitPlan[] | null;
 
+  const [ladder, setLadder] = useState("analytics");
   const [yearly, setYearly] = useState(false);
   const [currency, setCurrency] = useState<Currency>("USD");
 
@@ -28,175 +58,93 @@ export function Pricing() {
     setCurrency(detectCurrency());
   }, []);
 
+  const sortedOrbit = orbitPlans ? [...orbitPlans].sort((a, b) => a.sortOrder - b.sortOrder) : null;
+  const loading = ladder === "analytics" ? !plans : !sortedOrbit;
+
   return (
     <section id="pricing">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        {/* Eyebrow, then a two-line display heading whose second line carries
-            the accent — the section's one coloured element besides the plan
-            marks, now that the CTAs are monochrome. */}
-        <div className="v-rise">
-          <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11.5px] font-medium text-fg-muted">
-            <PlanIcon slug="pro" size={13} uid="pricing-eyebrow" />
-            Pricing
-          </span>
-          <h2 className="mt-5 max-w-3xl text-h2 font-medium leading-[1.08] tracking-[-0.03em]">
-            Plans that scale
-            <br />
-            <span className="pricing-display-accent">with your sites.</span>
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
+        <div className="v-rise mx-auto max-w-2xl text-center">
+          <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Pricing</p>
+          <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
+            Start free. Pay when it&apos;s worth it.
           </h2>
-          <p className="mt-4 max-w-xl text-lead leading-relaxed text-fg-muted">
-            Every plan includes the full dashboard and SEO audit suite. No
-            feature is held back to sell you an upgrade.
-          </p>
         </div>
 
-        {plans && (
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <div className="glass inline-flex items-center gap-1 rounded-full p-1">
-              {CURRENCIES.map((c) => (
-                <button
-                  key={c}
-                  type="button"
-                  onClick={() => setCurrency(c)}
-                  className={`rounded-full px-3.5 py-1.5 text-[13px] font-medium transition ${
-                    currency === c
-                      ? "bg-surface-raised text-fg shadow-soft"
-                      : "text-fg-muted hover:text-fg"
-                  }`}
-                >
-                  {c}
-                </button>
+        <div className="v-rise v-d2 mt-10">
+          <SegmentedControl
+            options={ladders}
+            value={ladder}
+            onChange={setLadder}
+            label="Pricing"
+            idPrefix="pricing-tab"
+            controls="pricing-panel"
+          />
+          <p key={ladder} className="rise mx-auto mt-5 max-w-xl text-center text-[15px] leading-relaxed text-fg-muted">
+            {blurbs[ladder]}
+          </p>
+          <div className="mt-6">
+            <BillingControls currency={currency} onCurrency={setCurrency} yearly={yearly} onYearly={setYearly} />
+          </div>
+        </div>
+
+        <div id="pricing-panel" role="tabpanel" aria-labelledby={`pricing-tab-${ladder}`} className="mt-12">
+          {shared.error ? (
+            <p className="text-center text-[15px] text-fg-muted">
+              Couldn&apos;t load plans right now.{" "}
+              <a href={`mailto:${site.email}`} className="font-medium text-fg underline underline-offset-4">
+                Contact us
+              </a>{" "}
+              for pricing.
+            </p>
+          ) : loading ? (
+            <>
+              <Skeleton />
+              <span className="sr-only">Loading plans…</span>
+            </>
+          ) : ladder === "analytics" && plans ? (
+            <div key="analytics" className="rise grid gap-5 lg:grid-cols-3">
+              {plans.map((plan) => (
+                <PlanCard
+                  key={plan.slug}
+                  plan={plan}
+                  currency={currency}
+                  yearly={yearly}
+                  maxRows={CARD_FEATURE_ROWS}
+                  location="home"
+                />
               ))}
             </div>
-
-            {/* A real switch rather than a second pill pair: two segmented
-                controls side by side read as one four-way choice. */}
-            <div className="flex items-center gap-2.5 text-[13px]">
-              <span className={yearly ? "text-fg-muted" : "text-fg"}>Monthly</span>
-              <button
-                type="button"
-                role="switch"
-                aria-checked={yearly}
-                aria-label="Bill yearly"
-                onClick={() => setYearly((v) => !v)}
-                /* 20px tall is well under the 44px touch target guideline; the
-                   ::after pseudo-element grows the hit area without disturbing
-                   the switch's own dimensions. */
-                className={`relative h-5 w-9 shrink-0 rounded-full border transition-colors duration-200 after:absolute after:left-1/2 after:top-1/2 after:h-11 after:w-11 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[''] ${
-                  yearly ? "border-accent/50 bg-accent/25" : "border-border bg-surface"
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 h-3.5 w-3.5 rounded-full transition-all duration-200 ${
-                    yearly ? "left-4.5 bg-accent" : "left-0.5 bg-fg-faint"
-                  }`}
+          ) : sortedOrbit && sortedOrbit.length > 0 ? (
+            <div key="orbit" className="rise grid gap-5 lg:grid-cols-3">
+              {sortedOrbit.map((plan, i) => (
+                <OrbitPlanCard
+                  key={plan.slug}
+                  plan={plan}
+                  currency={currency}
+                  yearly={yearly}
+                  featured={i === sortedOrbit.length - 1}
                 />
-              </button>
-              <span className={yearly ? "text-fg" : "text-fg-muted"}>Yearly</span>
-              <span className="text-fg-faint">2 months free with annual</span>
+              ))}
             </div>
-          </div>
-        )}
-
-        {/* Card-shaped skeleton rather than a spinner, so the section does not
-            jump when the plans land. */}
-        {!plans && !error && (
-          <div className="mt-10 grid gap-5 lg:grid-cols-3" aria-hidden="true">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur sm:p-7"
-              >
-                <div className="skeleton h-5 w-24 rounded" />
-                <div className="skeleton mt-3 h-3.5 w-full rounded" />
-                <div className="skeleton mt-1.5 h-3.5 w-2/3 rounded" />
-                <div className="skeleton mt-6 h-11 w-32 rounded-lg" />
-                <div className="skeleton mt-7 h-10 w-full rounded-full" />
-                <div className="skeleton mt-6 h-4 w-40 rounded" />
-                <div className="mt-5 space-y-2.5 border-t border-border pt-5">
-                  {[0, 1, 2, 3, 4].map((r) => (
-                    <div key={r} className="skeleton h-3.5 w-full rounded" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {!plans && !error && <span className="sr-only">Loading plans…</span>}
-
-        {error && (
-          <p className="mt-16 text-center text-sm text-fg-muted">
-            Couldn&apos;t load plans right now.{" "}
-            <a href={`mailto:${site.email}`} className="text-accent underline underline-offset-2">
-              Contact us
-            </a>{" "}
-            for pricing.
-          </p>
-        )}
-
-        {plans && (
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {plans.map((plan) => (
-              <PlanCard
-                key={plan.slug}
-                plan={plan}
-                currency={currency}
-                yearly={yearly}
-                maxRows={CARD_FEATURE_ROWS}
-                location="home"
-              />
-            ))}
-          </div>
-        )}
-
-        {/* The cards show the first few features only; the full matrix lives
-            on its own page rather than making this section scroll past the
-            fold. */}
-        {plans && (
-          <div className="mt-10 text-center">
-            <a
-              href="/plans"
-              className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-fg transition hover:text-accent"
-            >
-              Compare every feature
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </a>
-          </div>
-        )}
-
-        {/* Which gateway takes the money is a question people ask before they
-            click, not after. Cashfree collects INR only for now, so on a USD
-            price it is named as coming rather than offered. */}
-        <div className="mt-10 flex flex-col items-center gap-3">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-fg-faint">
-            Pay through
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-fg-muted">
-            <IntegrationLogo id="razorpay" height={17} />
-            <span
-              className={`flex items-center gap-2 ${
-                currency === "INR" ? "" : "opacity-50"
-              }`}
-            >
-              <IntegrationLogo id="cashfree" height={15} />
-              {currency !== "INR" && (
-                <span className="rounded-full border border-border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.06em]">
-                  Soon
-                </span>
-              )}
-            </span>
-          </div>
-          <p className="text-center text-xs text-fg-faint">
-            Cards, UPI, netbanking and wallets.
-            {currency === "INR"
-              ? " Pick your gateway at checkout."
-              : " Cashfree does not take USD payments yet."}
-          </p>
+          ) : (
+            <p className="text-center text-[15px] text-fg-muted">Orbit plans are shown in the dashboard.</p>
+          )}
         </div>
 
-        <p className="mt-6 text-center text-xs text-fg-faint">
-          Prices in {currency}. Cancel any time — no exit interview.
-        </p>
+        <div className="mt-10 text-center">
+          <a
+            href="/plans"
+            className="group inline-flex items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
+          >
+            Compare every feature
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </a>
+        </div>
+
+        <div className="mt-20 border-t border-border pt-14">
+          <BillingFacts />
+        </div>
       </div>
     </section>
   );
