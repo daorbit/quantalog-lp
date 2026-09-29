@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { DisplayMenu } from "@/components/display/display-menu";
+// import { DisplayMenu } from "@/components/display/display-menu";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { ScrollRise } from "@/components/scroll-rise";
 import { PlansProvider } from "@/components/plans-provider";
@@ -132,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </PlansProvider>
           <Footer />
 
-          <DisplayMenu />
+          {/* <DisplayMenu /> */}
 
           <OrbitBubble />
 
