@@ -266,7 +266,7 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
   return (
     <div
       className={compact ? "h-[300px] w-full" : "h-[380px] w-full lg:h-[520px]"}
-      aria-hidden
+      aria-hidden={compact || undefined}
     >
       <ReactFlow
         nodes={nodes}
