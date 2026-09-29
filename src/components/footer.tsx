@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
-import { SocialLinks } from "./social-links";
+// import { SocialLinks } from "./social-links";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -109,7 +109,7 @@ export function Footer() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <SocialLinks />
+            {/* <SocialLinks /> */}
             <ThemeToggle />
           </div>
         </div>
