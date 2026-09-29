@@ -7,20 +7,46 @@ import { OrbitMark } from "./orbit/orbit-mark";
 
 type Heading = { id: string; text: string; depth: 2 | 3 };
 
-export function DocsToc() {
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function DocsToc({
+  contentSelector = "article .prose-q",
+  headingSelector = "h2[id], h3[id]",
+}: {
+  contentSelector?: string;
+  headingSelector?: string;
+}) {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
-    const article = document.querySelector("article .prose-q");
+    const article = document.querySelector(contentSelector);
     if (!article) return;
 
-    const found: Heading[] = Array.from(article.querySelectorAll("h2[id], h3[id]"))
-      .map((el) => ({
-        id: el.id,
-        text: el.textContent?.replace(/^#\s*|\s*#$/g, "").trim() ?? "",
-        depth: el.tagName === "H2" ? (2 as const) : (3 as const),
-      }))
+    const used = new Set<string>();
+    const found: Heading[] = Array.from(article.querySelectorAll(headingSelector))
+      .map((el) => {
+        const text = el.textContent?.replace(/^#\s*|\s*#$/g, "").trim() ?? "";
+        if (!el.id && text) {
+          const base = slugify(text) || "section";
+          let id = base;
+          for (let n = 2; used.has(id) || document.getElementById(id); n += 1) {
+            id = `${base}-${n}`;
+          }
+          el.id = id;
+        }
+        used.add(el.id);
+        return {
+          id: el.id,
+          text,
+          depth: el.tagName === "H3" ? (3 as const) : (2 as const),
+        };
+      })
       .filter((h) => h.id && h.text);
 
     setHeadings(found);
@@ -44,7 +70,7 @@ export function DocsToc() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [contentSelector, headingSelector]);
 
   return (
     <nav className="docs-toc" aria-label="On this page">

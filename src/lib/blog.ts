@@ -34,7 +34,15 @@ export type PostMeta = {
 
 export type Post = PostMeta & {
   html: string;
+  readingMinutes: number;
 };
+
+const WORDS_PER_MINUTE = 225;
+
+function toReadingMinutes(html: string): number {
+  const words = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean);
+  return Math.max(1, Math.round(words.length / WORDS_PER_MINUTE));
+}
 
 function toMeta(page: CmsPage): PostMeta {
   return {
@@ -73,16 +81,18 @@ export async function getPost(slug: string): Promise<Post | undefined> {
   // A page outside the blog group is not a post, even if the slug matches.
   if (!page || page.group !== BLOG_GROUP) return undefined;
 
+  const html = page.content ?? "";
   return {
     ...toMeta(page),
-    html: page.content ?? "",
+    html,
+    readingMinutes: toReadingMinutes(html),
   };
 }
 
 /** Posts sharing the most tags with this one, for the "read next" links. */
 export async function getRelatedPosts(
   slug: string,
-  limit = 2,
+  limit = 3,
 ): Promise<PostMeta[]> {
   const all = await getAllPosts();
   const current = all.find((p) => p.slug === slug);

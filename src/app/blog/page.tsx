@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { getAllPosts, formatDate } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog";
 import { Eyebrow } from "@/components/ui";
-import { PostImage } from "@/components/post-image";
-import { PostList } from "@/components/post-list";
+import { FeaturedPost } from "@/components/blog/featured-post";
+import { PostGrid } from "@/components/blog/post-grid";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -27,9 +25,7 @@ export default async function BlogIndexPage() {
   // A noindex post is left off the archive as well as the sitemap — linking it
   // from an indexable page is the thing the flag is trying to prevent.
   const posts = (await getAllPosts()).filter((post) => !post.noIndex);
-  // The newest post is highlighted alongside the archive, not removed from it —
-  // a reader scanning the list should still find it in date order.
-  const [featured] = posts;
+  const [featured, ...rest] = posts;
 
   const jsonLd = graph(
     {
@@ -58,76 +54,36 @@ export default async function BlogIndexPage() {
   );
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+    <div className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 sm:pb-32">
       <JsonLd data={jsonLd} />
-      <header className="max-w-2xl">
+      <header className="mx-auto max-w-3xl pt-16 text-center sm:pt-24">
         <Eyebrow>Blog</Eyebrow>
-        <h1 className="mt-3 text-balance text-display font-semibold leading-[1.04] tracking-display">
+        <h1 className="headline mt-4 text-balance text-display font-semibold leading-[1.04] tracking-display">
           Notes from the build
         </h1>
-        <p className="mt-4 text-pretty text-lead leading-normal text-fg-muted">
+        <p className="mx-auto mt-5 max-w-xl text-pretty text-lead leading-normal text-fg-muted">
           How we think about privacy, real-time data pipelines, and shipping
           analytics that other products can build on.
         </p>
       </header>
 
       {posts.length === 0 && (
-        <p className="mt-12 text-sm text-fg-muted">
+        <p className="mt-16 text-center text-sm text-fg-muted">
           Nothing published yet. Check back shortly.
         </p>
       )}
 
-      {/* Two columns: the archive pages down the left, the lead post sits to
-          the right where it stays put while the list is paged. */}
-      <div className="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
-        <div className="order-2 lg:order-1">
-          <h2 className="mb-2.5 text-[13px] font-semibold text-fg-muted">
-            All posts
-          </h2>
-          <PostList posts={posts} />
-        </div>
+      {featured && (
+        <section className="rise mt-14 sm:mt-20" aria-label="Latest article">
+          <FeaturedPost post={featured} />
+        </section>
+      )}
 
-        {featured && (
-          <aside className="order-1 lg:order-2 lg:sticky lg:top-20">
-            <h2 className="mb-2.5 text-[13px] font-semibold text-fg-muted">
-              Highlighted
-            </h2>
-
-            <Link
-              href={`/blog/${featured.slug}`}
-              className="tile group block overflow-hidden"
-            >
-              <div className="aspect-[16/10] w-full overflow-hidden bg-bg-subtle">
-                <PostImage
-                  post={featured}
-                  sizes="(min-width: 1024px) 24rem, 100vw"
-                  className="transition duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
-                  <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 font-medium text-accent">
-                    Latest
-                  </span>
-                  <time dateTime={featured.date}>{formatDate(featured.date)}</time>
-                </div>
-                <h3 className="mt-2.5 text-balance text-lg font-semibold leading-snug tracking-tight transition group-hover:text-accent">
-                  {featured.title}
-                </h3>
-                <p className="mt-2 text-pretty text-sm leading-relaxed text-fg-muted">
-                  {featured.description}
-                </p>
-                <span className="mt-3.5 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                  Read post
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                </span>
-              </div>
-            </Link>
-          </aside>
-        )}
-      </div>
-
+      {rest.length > 0 && (
+        <section className="mt-24 sm:mt-32">
+          <PostGrid posts={rest} />
+        </section>
+      )}
     </div>
   );
 }
