@@ -1,28 +1,32 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
-  ArrowRight,
-  CheckCircle2,
-  CircleSlash,
   Code2,
   CreditCard,
+  Eye,
   GitBranch,
   LayoutGrid,
+  Link2,
   Palette,
   ShieldCheck,
   Table2,
-  Webhook,
+  TrendingDown,
   Workflow,
 } from "lucide-react";
-import { Button } from "@/components/ui";
-import { IntegrationLogo } from "@/components/integration-logos";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
+import { BigStats } from "@/components/big-stats";
+import { SplitStory } from "@/components/split-story";
+import { Cta } from "@/components/sections/cta";
 import { FieldVisual } from "@/components/explore/visuals/field-visual";
-import { FieldDropOff, SparkStat } from "@/components/charts";
 import { FormBuilderPreview } from "@/components/form-builder-preview";
 import { BuildFlowShowcase } from "@/components/build-flow-showcase";
-import { Reveal } from "@/components/reveal";
+import { ProductSection } from "@/components/product/product-section";
+import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
+import { ProductChecklist } from "@/components/product/product-checklist";
+import { ProductFaq } from "@/components/product/product-faq";
+import { RelatedProducts } from "@/components/product/related-products";
+import { FormDropoffPreview } from "@/components/product/form-dropoff-preview";
+import { FormIntegrations } from "@/components/product/form-integrations";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -73,22 +77,37 @@ const capabilities = [
     title: "Entries as a board or a spreadsheet",
     body: "Responses land in a kanban board you can move through review stages, export as CSV, or open individually and save as PDF for the person who needs a copy.",
   },
+  {
+    icon: ShieldCheck,
+    title: "Spam handled without a CAPTCHA",
+    body: "A honeypot field bots fill and people never see, plus per-IP rate limiting — both on by default, because a CAPTCHA is itself a field people abandon at.",
+  },
 ];
 
 const whyMeasured = [
   {
-    stat: "Views, not just submissions",
+    icon: Eye,
+    title: "Views, not just submissions",
     body: "Every form load is recorded, so a completion rate is a real ratio rather than a number divided by a guess. A form with 40 submissions means nothing until you know whether 60 people saw it or 6,000.",
   },
   {
-    stat: "Where people stop",
+    icon: TrendingDown,
+    title: "Where people stop",
     body: "Per-field drop-off shows which question ends the session. It is almost never the one you would guess — phone numbers, salary ranges and anything asking for an ID are the usual culprits.",
   },
   {
-    stat: "Where they came from",
+    icon: Link2,
+    title: "Where they came from",
     body: "Every submission records the page it came from, so you can tell which landing page, campaign or blog post actually produces responses rather than traffic.",
   },
 ];
+
+const stats = [
+  { value: "40+", label: "Field types" },
+  { value: "3", label: "Payment gateways" },
+  { value: "0", unit: "%", label: "Commission on payments" },
+  { value: "0", label: "CAPTCHAs shown" },
+] as const;
 
 const included = [
   "Per-form views, submissions and completion rate",
@@ -216,7 +235,7 @@ export default function FormsPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+    <>
       <JsonLd data={jsonLd} />
 
       <FeatureHero
@@ -230,273 +249,81 @@ export default function FormsPage() {
         }
         description={DESCRIPTION}
         primary={{ label: "Build a form free" }}
-        secondary={{ label: "Read the docs", href: "/docs" }}
+        secondary={{ label: "Read the docs", href: "/docs/lead-capture" }}
         visual={<FieldVisual />}
         tone="amber"
       />
 
-      <section className="mt-14">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-y border-border py-12 sm:py-16">
+          <BigStats stats={stats} />
+        </div>
+      </div>
+
+      <ProductSection
+        eyebrow="The builder"
+        title="Drag it together in minutes."
+        body="A palette of field types on the left, your form taking shape on the right — with validation, layout and logic set as you go."
+      >
         <FormBuilderPreview />
-      </section>
+      </ProductSection>
 
-      <BuildFlowShowcase />
+      <ProductSection
+        eyebrow="Start anywhere"
+        title="However you start it, however it lives."
+        body="Describe it to Orbit, pick a template, or paste a config copied from another form. Then decide where it lives — a page of its own, or a card embedded in one you already have."
+        bordered
+      >
+        <BuildFlowShowcase />
+      </ProductSection>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Why a form needs measuring at all
-        </h2>
-        <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          A form builder tells you how many people submitted. That number cannot
-          tell you whether the form is working, because it is missing the
-          denominator and everything in between.
+      <ProductSection
+        eyebrow="Why measure"
+        title="A submission count is half a number."
+        body="A form builder tells you how many people submitted. That cannot tell you whether the form is working, because it is missing the denominator and everything in between."
+        bordered
+      >
+        <ProductFeatureGrid features={whyMeasured} columns={3} />
+        <div className="mt-3 sm:mt-4">
+          <FormDropoffPreview />
+        </div>
+      </ProductSection>
+
+      <ProductSection
+        eyebrow="What you can build"
+        title="Everything a form needs."
+        body="From a two-field contact form to a paid, multi-step application — themed to your site and embedded anywhere."
+        link={{ label: "Read the forms docs", href: "/docs/lead-capture" }}
+        bordered
+      >
+        <ProductFeatureGrid features={capabilities} columns={4} />
+      </ProductSection>
+
+      <ProductSection
+        eyebrow="Integrations"
+        title="Connects to what you already pay for."
+        body="Keys live in your workspace. We hold no merchant account and send no mail on your behalf — a form charges through your gateway and notifies through your mailer."
+        bordered
+      >
+        <FormIntegrations />
+      </ProductSection>
+
+      <ProductSection eyebrow="Included" title="What comes with every form." bordered>
+        <ProductChecklist items={included} />
+      </ProductSection>
+
+      <SplitStory eyebrow="In fairness" title="What forms don't do.">
+        <p>
+          There is no approval workflow with assignees and due dates, no recurring billing, and no legally
+          binding e-signature — the signature field captures a drawn signature, which is not the same as a
+          document routed for signing and audited.
         </p>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {whyMeasured.map((w, i) => (
-            <Reveal
-              key={w.stat}
-              delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="tile tile--static p-6"
-            >
-              <h3 className="text-[15px] font-semibold tracking-tight">
-                {w.stat}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                {w.body}
-              </p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          What form analytics actually shows you
-        </h2>
-        <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          A contact form that looks healthy on submissions alone. The drop-off
-          chart is where the problem is: almost half of everyone who reaches the
-          phone number field leaves at it.
+        <p>
+          Payments are one-off, and refunds are issued from your payment gateway&apos;s dashboard rather
+          than here. If you need subscriptions or a document sent for countersigning, a dedicated tool will
+          serve you better.
         </p>
-
-        <div className="tile tile--static mt-8 overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-6 py-4">
-            <p className="text-sm font-semibold tracking-tight">
-              Contact form — last 30 days
-            </p>
-            <p className="text-[11px] text-fg-faint">Sample data</p>
-          </div>
-
-          <div className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            <SparkStat
-              label="Views"
-              value="2,480"
-              delta="+9.2%"
-              series={[62, 66, 64, 71, 69, 74, 72, 78, 76, 81, 79, 84, 83, 87]}
-            />
-            <SparkStat
-              label="Submissions"
-              value="412"
-              delta="+4.1%"
-              series={[11, 12, 12, 13, 12, 14, 13, 15, 14, 15, 15, 16, 16, 17]}
-              delay={0.1}
-            />
-            <SparkStat
-              label="Completion rate"
-              value="16.6%"
-              delta="−2.8%"
-              up={false}
-              series={[21, 21, 20, 20, 19, 19, 18, 18, 18, 17, 17, 17, 17, 16]}
-              delay={0.2}
-            />
-          </div>
-
-          <div className="border-t border-border p-6">
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <p className="text-[13px] font-medium text-fg-faint">
-                Drop-off by field
-              </p>
-              <p className="text-[11px] text-fg-faint">
-                2,480 opened the form · 412 finished it
-              </p>
-            </div>
-            <div className="mt-5">
-              <FieldDropOff
-                rows={[
-                  { label: "Name", reached: 2480, abandoned: 190 },
-                  { label: "Email", reached: 2290, abandoned: 240 },
-                  { label: "Phone number", reached: 2050, abandoned: 980 },
-                  { label: "Company size", reached: 1070, abandoned: 310 },
-                  { label: "Message", reached: 760, abandoned: 348 },
-                ]}
-              />
-            </div>
-            <p className="mt-6 border-t border-border pt-5 text-sm leading-relaxed text-fg-muted">
-              <span className="font-medium text-fg">
-                Phone number loses 48% of everyone who reaches it
-              </span>{" "}
-              — more than the other four fields combined. The fix is one setting,
-              and it is only findable because the chart exists: make it optional,
-              or show it conditionally to the people who actually want a callback.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          What you can build
-        </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {capabilities.map((c, i) => (
-            <Reveal
-              key={c.title}
-              delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="tile group p-7"
-            >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <c.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">
-                {c.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                {c.body}
-              </p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* The apps a form connects to, named with their own marks — "payments"
-          and "email" in the abstract answer less than the logo of the account
-          someone already holds. */}
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Connects to what you already pay for
-        </h2>
-        <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          Keys live in your workspace. We hold no merchant account and send no
-          mail on your behalf — a form charges through your gateway and
-          notifies through your mailer.
-        </p>
-
-        <div className="tile tile--static mt-8 grid gap-8 p-7 sm:grid-cols-2">
-          <div>
-            <p className="text-[13px] text-fg-faint">
-              Payment gateways
-            </p>
-            <ul className="mt-4 space-y-4">
-              {[
-                { id: "razorpay" as const, name: "Razorpay" },
-                { id: "cashfree" as const, name: "Cashfree" },
-                { id: "payu" as const, name: "PayU" },
-              ].map((g) => (
-                <li key={g.id} className="flex h-6 items-center text-fg">
-                  <IntegrationLogo id={g.id} height={18} />
-                  <span className="sr-only">{g.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-[13px] text-fg-faint">
-              Email and forwarding
-            </p>
-            <ul className="mt-4 space-y-4 text-sm text-fg-muted">
-              <li className="flex items-center gap-2.5">
-                <IntegrationLogo id="brevo" height={18} />
-                Brevo
-              </li>
-              <li className="flex items-center gap-2.5">
-                <IntegrationLogo id="smtp" height={18} />
-                Custom SMTP
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Webhook className="h-4.5 w-4.5" aria-hidden="true" />
-                Webhook — Zapier, Make, or your own endpoint
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          What comes with every form
-        </h2>
-        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
-          {included.map((item) => (
-            <li
-              key={item}
-              className="flex gap-2.5 text-sm leading-relaxed text-fg-muted"
-            >
-              <CheckCircle2
-                className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                aria-hidden="true"
-              />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Spam handled without a CAPTCHA
-        </h2>
-        <div className="tile tile--static mt-8 flex gap-5 p-7">
-          <ShieldCheck className="h-6 w-6 shrink-0 text-accent" aria-hidden="true" />
-          <p className="text-pretty leading-relaxed text-fg-muted">
-            Every public form carries a honeypot field that people never see and
-            bots reliably fill, plus per-IP rate limiting on the submission
-            endpoint. Both are on by default and invisible to a real respondent
-            — which is the point, because a CAPTCHA is itself a field people
-            abandon at.
-          </p>
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          What forms do not do
-        </h2>
-        <div className="tile tile--static mt-8 flex gap-5 p-7">
-          <CircleSlash className="h-6 w-6 shrink-0 text-fg-muted" aria-hidden="true" />
-          <p className="text-pretty leading-relaxed text-fg-muted">
-            There is no approval workflow with assignees and due dates, no
-            recurring billing, and no legally binding e-signature — the
-            signature field captures a drawn signature, which is not the same as
-            a document routed for signing and audited. Payments are one-off, and
-            refunds are issued from your Razorpay dashboard rather than here. If
-            you need subscriptions or a document sent for countersigning, a
-            dedicated tool will serve you better.
-          </p>
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Common questions
-        </h2>
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {faqs.map((f) => (
-            <div key={f.q} className="py-6">
-              <dt className="font-semibold tracking-tight">{f.q}</dt>
-              <dd className="mt-2.5 text-pretty leading-relaxed text-fg-muted">
-                {f.a}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <p className="mt-16 text-sm text-fg-muted">
-        Published{" "}
-        <time dateTime={PUBLISHED}>{formatDate(PUBLISHED)}</time>. Last updated{" "}
-        <time dateTime={MODIFIED}>{formatDate(MODIFIED)}</time>.
-      </p>
+      </SplitStory>
 
       <OrbitStrip
         body="Describe the form and Orbit drafts it — fields, validation and the multi-step split. Once responses arrive it reads the free-text answers back to you as themes rather than a spreadsheet you have to sit and skim."
@@ -507,28 +334,21 @@ export default function FormsPage() {
         ]}
       />
 
-      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
-        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
-          Build one and watch what happens
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          The free tier includes forms, their analytics and everything on this
-          page. No card, and no separate subscription from your analytics.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Start free</Button>
-          <Button href="/docs" variant="secondary">
-            Read the docs
-          </Button>
-        </div>
-        <p className="mt-6 text-sm text-fg-muted">
-          Already measuring your traffic?{" "}
-          <Link href="/seo-audits" className="text-accent hover:underline">
-            See what else is in the same dashboard
-          </Link>
-          <ArrowRight className="ml-1 inline h-3.5 w-3.5" aria-hidden="true" />
-        </p>
-      </section>
-    </div>
+      <ProductFaq faqs={faqs} idPrefix="forms-faq" />
+
+      <RelatedProducts hrefs={["/analytics", "/reports", "/social"]} />
+
+      <Cta
+        title="Build one and watch what happens."
+        body="The free tier includes forms, their analytics and everything on this page. No card, and no separate subscription from your analytics."
+        secondary={{ label: "Read the docs", href: "/docs/lead-capture" }}
+        location="forms_cta"
+      />
+
+      <p className="mx-auto max-w-6xl px-4 pb-10 text-center text-[13px] text-fg-faint sm:px-6">
+        Published <time dateTime={PUBLISHED}>{formatDate(PUBLISHED)}</time>. Last updated{" "}
+        <time dateTime={MODIFIED}>{formatDate(MODIFIED)}</time>.
+      </p>
+    </>
   );
 }

@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { Logo } from "./logo";
 import { ProductMenu } from "./product-menu";
-import { nav, productNav, site } from "@/lib/site";
+import { MenuToggle } from "./mobile-nav/menu-toggle";
+import { MobileMenu } from "./mobile-nav/mobile-menu";
+import { nav, site } from "@/lib/site";
 import { track } from "@/lib/track";
 
 export function Header() {
@@ -23,14 +25,28 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
 
-    <header className="site-header sticky top-0 z-50" data-docs={isDocs || undefined}>
+    <header
+      className="site-header sticky top-0 z-50"
+      data-docs={isDocs || undefined}
+      data-menu-open={open || undefined}
+    >
 
       <div>
 
@@ -96,72 +112,21 @@ export function Header() {
               Start free
               <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-fg transition lg:hidden"
-            >
-              {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            </button>
+            {!open && (
+              <a
+                href={`${site.app}/signup`}
+                onClick={() => track("cta_start_free", { location: "mobile_header" })}
+                className="inline-flex h-8 shrink-0 items-center whitespace-nowrap rounded-full bg-cta px-3.5 text-[13px] font-semibold text-cta-fg transition-colors duration-200 hover:bg-cta-hover lg:hidden"
+              >
+                Start free
+              </a>
+            )}
+            <MenuToggle open={open} onToggle={() => setOpen((v) => !v)} />
           </div>
         </div>
       </div>
 
-      {open && (
-        <div className="max-h-[calc(100svh-3rem)] overflow-y-auto border-t border-border bg-bg lg:hidden">
-          <nav
-            className="flex flex-col px-5 py-2 sm:px-8"
-            aria-label="Mobile"
-          >
-
-            <span className="pt-3 pb-1 text-[13px] font-semibold text-fg-faint">
-              Product
-            </span>
-            {productNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-3.5 text-[15px] font-medium text-fg transition last:border-b-0 hover:text-fg-muted"
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <span className="pt-5 pb-1 text-[13px] font-semibold text-fg-faint">
-              More
-            </span>
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-3.5 text-[15px] font-medium text-fg transition last:border-b-0 hover:text-fg-muted"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="flex gap-3 py-4">
-              <a
-                href={`${site.app}/login`}
-                onClick={() => track("sign_in", { location: "mobile_menu" })}
-                className="flex-1 rounded-full border border-border py-2.5 text-center text-[14px] font-medium text-fg"
-              >
-                Sign in
-              </a>
-              <a
-                href={`${site.app}/signup`}
-                onClick={() => track("cta_start_free", { location: "mobile_menu" })}
-                className="flex-1 rounded-full bg-cta py-2.5 text-center text-[14px] font-semibold text-cta-fg"
-              >
-                Start free
-              </a>
-            </div>
-          </nav>
-        </div>
-      )}
+      {open && <MobileMenu onClose={() => setOpen(false)} />}
     </header>
   );
 }

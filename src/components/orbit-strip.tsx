@@ -10,8 +10,8 @@ export function OrbitStrip({
   examples: string[];
 }) {
   return (
-    <section className="mt-16">
-      <div className="explore-tile tone-rose grid gap-8 p-7 sm:p-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:gap-12">
+    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+      <div className="v-rise explore-tile tone-rose grid gap-8 p-7 sm:p-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:gap-12">
         <div className="min-w-0">
           <div className="flex items-center gap-3">
             <OrbitMark size={40} />

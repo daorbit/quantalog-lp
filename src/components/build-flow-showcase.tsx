@@ -20,17 +20,8 @@ const scopes = [
 
 export function BuildFlowShowcase() {
   return (
-    <section className="mt-16">
-      <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-        However you start it, however it lives
-      </h2>
-      <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-        Describe it to Orbit, pick a template, or paste a config copied from
-        another form. Then decide where it lives — a page of its own, or a
-        card embedded in one you already have.
-      </p>
-
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+    <div>
+      <div className="grid gap-4 sm:grid-cols-3">
         {startMethods.map((m, i) => (
           <Reveal
             key={m.label}
@@ -80,6 +71,6 @@ export function BuildFlowShowcase() {
           </Reveal>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,15 +1,11 @@
 import type { SimpleIcon } from "simple-icons";
+import { isDarkHex } from "@/lib/brand-color";
 
 export type Framework = { name: string; icon: SimpleIcon };
 
-function isDark(hex: string) {
-  const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 0.18;
-}
-
 export function FrameworkMark({ framework }: { framework: Framework }) {
   const { icon } = framework;
-  const branded = !isDark(icon.hex);
+  const branded = !isDarkHex(icon.hex);
 
   return (
     <span className="logo-mark group flex shrink-0 items-center gap-3 text-fg-faint transition-colors duration-300 hover:text-fg">

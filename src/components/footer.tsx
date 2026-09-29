@@ -52,9 +52,9 @@ const legal = [
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="mx-auto max-w-7xl px-6 pt-16 lg:px-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
-          <div className="lg:col-span-2">
+      <div className="mx-auto max-w-7xl px-5 pt-12 sm:px-6 sm:pt-16 lg:px-10">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-6">
+          <div className="col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-fg-muted">
               {site.description}
@@ -84,22 +84,18 @@ export function Footer() {
           ))}
         </div>
 
-        <p className="footer-wordmark mt-16 sm:mt-20" aria-hidden="true">
+        <p className="footer-wordmark mt-12 sm:mt-20" aria-hidden="true">
           {site.name}
         </p>
 
-        <div className="flex flex-col items-center gap-6 border-t border-border py-8 lg:flex-row lg:justify-between">
-          <p className="text-[14px] text-fg-muted">
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
-
-          <nav aria-label="Legal">
-            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+        <div className="flex flex-col gap-5 border-t border-border py-6 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-8">
+          <nav aria-label="Legal" className="lg:order-2">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 lg:justify-center lg:gap-x-8">
               {legal.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-[14px] text-fg transition-colors hover:text-fg-muted"
+                    className="text-[13px] text-fg transition-colors hover:text-fg-muted lg:text-[14px]"
                   >
                     {link.label}
                   </Link>
@@ -108,13 +104,18 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
-            {/* <SocialLinks /> */}
-            <ThemeToggle />
+          <div className="flex items-center justify-between gap-4 lg:contents">
+            <p className="text-[13px] text-fg-muted lg:order-1 lg:text-[14px]">
+              © {new Date().getFullYear()} {site.name}. All rights reserved.
+            </p>
+            <div className="flex items-center gap-3 lg:order-3">
+              {/* <SocialLinks /> */}
+              <ThemeToggle />
+            </div>
           </div>
         </div>
 
-        <p className="mx-auto max-w-4xl pb-10 text-center text-[11px] leading-relaxed text-fg-faint">
+        <p className="mx-auto max-w-4xl pb-8 text-[11px] leading-relaxed text-fg-faint sm:pb-10 sm:text-center">
           {site.name} is operated by {site.legalName}. No cookies, no
           cross-site tracking and no personal data stored — GDPR-ready by
           design. For questions about the company or the service, contact{" "}

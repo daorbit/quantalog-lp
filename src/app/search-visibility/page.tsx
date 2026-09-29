@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
-  ArrowRight,
   BarChart3,
-  CheckCircle2,
   FileSearch,
   Globe2,
   ListChecks,
@@ -12,11 +9,19 @@ import {
   Search,
   ListTree,
 } from "lucide-react";
-import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
+import { BigStats } from "@/components/big-stats";
+import { SplitStory } from "@/components/split-story";
+import { Cta } from "@/components/sections/cta";
 import { RankVisual } from "@/components/explore/visuals/rank-visual";
-import { Reveal } from "@/components/reveal";
+import { ProductSection } from "@/components/product/product-section";
+import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
+import { ProductChecklist } from "@/components/product/product-checklist";
+import { ProductSteps } from "@/components/product/product-steps";
+import { ProductPlanTable } from "@/components/product/product-plan-table";
+import { ProductFaq } from "@/components/product/product-faq";
+import { RelatedProducts } from "@/components/product/related-products";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -94,6 +99,22 @@ const plans = [
   { row: "Search insights", free: "—", starter: "Top 5 per insight", pro: "Full" },
   { row: "Google clicks vs. Quantalog visits", free: "—", starter: "Yes", pro: "Yes" },
   { row: "Google index checks", free: "—", starter: "100 / month", pro: "1,000 / month" },
+];
+
+const stats = [
+  { value: "16", unit: "mo", label: "Of search history" },
+  { value: "25k", label: "Rows per report" },
+  { value: "1,000", label: "Index checks a month" },
+  { value: "<1", unit: "min", label: "To connect" },
+] as const;
+
+const dataPoints = [
+  "Read-only Google permission — nothing in Search Console can be changed",
+  "Google tokens are encrypted at rest and never shown in the dashboard",
+  "Disconnect in one click; stored search data is deleted with it",
+  "Each workspace connects its own Google account",
+  "Only workspace admins can connect or change a property",
+  "No data leaves Google that Search Console would not already show you",
 ];
 
 const faqs = [
@@ -202,7 +223,7 @@ export default function SearchVisibilityPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+    <>
       <JsonLd data={jsonLd} />
 
       <FeatureHero
@@ -221,127 +242,56 @@ export default function SearchVisibilityPage() {
         tone="violet"
       />
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">What you get</h2>
-        <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          Everything Search Console knows about your site, in the same dashboard as your traffic — organised around the
-          questions you actually ask: where do my clicks come from, what changed, and what should I do about it?
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-y border-border py-12 sm:py-16">
+          <BigStats stats={stats} />
+        </div>
+      </div>
+
+      <ProductSection
+        eyebrow="What you get"
+        title="Everything Search Console knows. Next to your traffic."
+        body="Organised around the questions you actually ask: where do my clicks come from, what changed, and what should I do about it?"
+      >
+        <ProductFeatureGrid features={features} columns={4} />
+      </ProductSection>
+
+      <ProductSection eyebrow="Setup" title="Connected in under a minute." bordered>
+        <ProductSteps steps={steps} />
+      </ProductSection>
+
+      <SplitStory
+        eyebrow="Why it's built in"
+        title="Search data belongs next to your analytics."
+        link={{ label: "Pair it with on-page SEO audits", href: "/seo-audits" }}
+      >
+        <p>
+          Search Console tells you a page earned 40 clicks last week. It cannot tell you that the same page
+          had 900 visits, that most of them came from a newsletter, or that the people who arrived from
+          Google were the ones who signed up. Those answers live in your analytics — so that is where the
+          search data should be too.
         </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={((i % 3) + 1) as 1 | 2 | 3} className="tile group p-7">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <f.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{f.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Connected in under a minute</h2>
-        <ol className="mt-8 grid gap-4 sm:grid-cols-3">
-          {steps.map((s, i) => (
-            <li key={s.title} className="tile tile--static p-6">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-sm font-semibold text-accent">
-                {i + 1}
-              </span>
-              <h3 className="mt-4 text-[15px] font-semibold tracking-tight">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Why it belongs next to your analytics</h2>
-        <div className="mt-6 space-y-5 text-pretty leading-relaxed text-fg-muted">
-          <p>
-            Search Console tells you a page earned 40 clicks last week. It cannot tell you that the same page had 900
-            visits, that most of them came from a newsletter, or that the people who arrived from Google were the ones
-            who signed up. Those answers live in your analytics — so that is where the search data should be too.
-          </p>
-          <p>
-            In Quantalog, every page shows its Google clicks beside the visits it actually received, a drop in clicks
-            links straight to the queries that fell, and a page&apos;s index status sits one click away from its
-            traffic. The question &ldquo;is search working for this page?&rdquo; gets one answer instead of two tabs.
-          </p>
-        </div>
-        <Link
-          href="/seo-audits"
-          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent"
-        >
-          Pair it with on-page SEO audits
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-        </Link>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">What each plan includes</h2>
-        <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          Search visibility is part of every Quantalog plan — no separate add-on. Higher plans go further back and deeper
-          into the data.
+        <p>
+          In Quantalog, every page shows its Google clicks beside the visits it actually received, a drop
+          in clicks links straight to the queries that fell, and a page&apos;s index status sits one click
+          away from its traffic. The question &ldquo;is search working for this page?&rdquo; gets one
+          answer instead of two tabs.
         </p>
-        <div className="tile tile--static mt-8 overflow-x-auto">
-          <table className="w-full min-w-[560px] text-left text-sm">
-            <thead>
-              <tr className="border-b border-border text-fg-faint">
-                <th className="px-6 py-4 font-medium" />
-                <th className="px-6 py-4 font-semibold text-fg">Free</th>
-                <th className="px-6 py-4 font-semibold text-fg">Starter</th>
-                <th className="px-6 py-4 font-semibold text-accent">Pro</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {plans.map((p) => (
-                <tr key={p.row}>
-                  <td className="px-6 py-3.5 text-fg">{p.row}</td>
-                  <td className="px-6 py-3.5 text-fg-muted">{p.free}</td>
-                  <td className="px-6 py-3.5 text-fg-muted">{p.starter}</td>
-                  <td className="px-6 py-3.5 text-fg-muted">{p.pro}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <Link href="/plans" className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent">
-          Compare every plan
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-        </Link>
-      </section>
+      </SplitStory>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Your data, your account</h2>
-        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
-          {[
-            "Read-only Google permission — nothing in Search Console can be changed",
-            "Google tokens are encrypted at rest and never shown in the dashboard",
-            "Disconnect in one click; stored search data is deleted with it",
-            "Each workspace connects its own Google account",
-            "Only workspace admins can connect or change a property",
-            "No data leaves Google that Search Console would not already show you",
-          ].map((item) => (
-            <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-fg-muted">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
+      <ProductSection
+        eyebrow="Plans"
+        title="Included on every plan."
+        body="No separate add-on. Higher plans go further back and deeper into the data."
+        link={{ label: "Compare every plan", href: "/plans" }}
+        bordered
+      >
+        <ProductPlanTable rows={plans} />
+      </ProductSection>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Common questions</h2>
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {faqs.map((f) => (
-            <div key={f.q} className="py-6">
-              <dt className="font-semibold tracking-tight">{f.q}</dt>
-              <dd className="mt-2.5 text-pretty leading-relaxed text-fg-muted">{f.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+      <ProductSection eyebrow="Privacy" title="Your data, your account." bordered>
+        <ProductChecklist items={dataPoints} />
+      </ProductSection>
 
       <OrbitStrip
         body="Search Console shows you the numbers. Orbit reads them for you — a plain-language summary of what changed, why a metric moved, and which query or page is worth your time first, answered from your own Google data."
@@ -352,19 +302,16 @@ export default function SearchVisibilityPage() {
         ]}
       />
 
-      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
-        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">See your Google search data in a minute</h2>
-        <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          Add your site, connect Search Console with read-only access, and read your clicks, queries and index status
-          next to your traffic. Included on the free plan.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Start free</Button>
-          <Button href="/docs/search-visibility" variant="secondary">
-            Read the docs
-          </Button>
-        </div>
-      </section>
-    </div>
+      <ProductFaq faqs={faqs} idPrefix="sv-faq" />
+
+      <RelatedProducts hrefs={["/seo-audits", "/analytics", "/reports"]} />
+
+      <Cta
+        title="See your Google search data in a minute."
+        body="Add your site, connect Search Console with read-only access, and read your clicks, queries and index status next to your traffic. Included on the free plan."
+        secondary={{ label: "Read the docs", href: "/docs/search-visibility" }}
+        location="search_visibility_cta"
+      />
+    </>
   );
 }

@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, Minus } from "lucide-react";
-import {
-  getComparison,
-  getComparisonSlugs,
-  getAllComparisons,
-  type Verdict,
-} from "@/lib/comparisons";
+import { ArrowRight, Scale } from "lucide-react";
+import { getComparison, getComparisonSlugs, getAllComparisons } from "@/lib/comparisons";
 import { site } from "@/lib/site";
-import { Button } from "@/components/ui";
-import { HeadToHead, VerdictBar } from "@/components/charts";
+import { Button, SectionHeading } from "@/components/ui";
+import { DocsBreadcrumb } from "@/components/docs-breadcrumb";
+import { HeadToHead } from "@/components/charts";
+import { BigStats } from "@/components/big-stats";
+import { BrandBadge, QuantalogBadge } from "@/components/compare/brand-badge";
+import { CompareCard } from "@/components/compare/compare-card";
+import { CompareCta } from "@/components/compare/compare-cta";
+import { FaqList } from "@/components/faq-list";
+import { CompareTable } from "@/components/compare/compare-table";
+import { tally } from "@/components/compare/compare-utils";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
@@ -58,31 +61,6 @@ export async function generateMetadata({
   };
 }
 
-function Badge({ verdict, rival }: { verdict: Verdict; rival: string }) {
-  if (verdict === "quantalog") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-[11px] font-semibold text-accent">
-        <Check className="h-3 w-3" strokeWidth={2.5} aria-hidden="true" />
-        Quantalog
-      </span>
-    );
-  }
-  if (verdict === "rival") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-bg-subtle px-2 py-0.5 text-[11px] font-semibold text-fg-muted">
-        <Check className="h-3 w-3" strokeWidth={2.5} aria-hidden="true" />
-        {rival}
-      </span>
-    );
-  }
-  return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-bg-subtle px-2 py-0.5 text-[11px] font-semibold text-fg-faint">
-      <Minus className="h-3 w-3" strokeWidth={2.5} aria-hidden="true" />
-      {verdict === "both" ? "Both" : "Neither"}
-    </span>
-  );
-}
-
 export default async function ComparisonPage({
   params,
 }: {
@@ -92,7 +70,8 @@ export default async function ComparisonPage({
   const c = getComparison(slug);
   if (!c) notFound();
 
-  const others = getAllComparisons().filter((o) => o.slug !== c.slug);
+  const others = getAllComparisons().filter((o) => o.slug !== c.slug).slice(0, 3);
+  const score = tally(c);
 
   const jsonLd = graph(
     {
@@ -106,7 +85,6 @@ export default async function ComparisonPage({
       publisher: { "@id": ORG_ID },
       author: { "@id": ORG_ID },
       image: `${site.url}/OgImage.png`,
-
       about: [
         { "@type": "SoftwareApplication", name: site.name },
         { "@type": "SoftwareApplication", name: c.rival },
@@ -130,49 +108,68 @@ export default async function ComparisonPage({
   );
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-16">
+    <>
       <JsonLd data={jsonLd} />
 
-      <header className="border-b border-border pb-10">
-        <Link
-          href="/compare"
-          className="text-sm text-fg-muted transition hover:text-fg"
-        >
-          All comparisons
-        </Link>
-        <h1 className="mt-6 text-balance text-display font-semibold leading-[1.04] tracking-display">
-          {c.title}
-        </h1>
-        <p className="mt-5 text-pretty text-lg leading-relaxed text-fg-muted">
-          {c.description}
-        </p>
-        <p className="mt-4 text-pretty leading-relaxed text-fg-muted">
-          {c.intro}
-        </p>
-        <div className="mt-8 max-w-md">
-          <VerdictBar
-            ourName={site.name}
-            rival={c.rival}
-            ours={c.rows.filter((r) => r.verdict === "quantalog").length}
-            tied={c.rows.filter((r) => r.verdict === "both" || r.verdict === "neither").length}
-            theirs={c.rows.filter((r) => r.verdict === "rival").length}
+      <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 sm:pt-8">
+        <DocsBreadcrumb root={{ label: "Compare", href: "/compare" }} trail={[c.rival]} />
+      </div>
+
+      <section className="mx-auto max-w-4xl px-4 pb-12 pt-10 text-center sm:px-6 sm:pb-16 sm:pt-16">
+        <div className="v-rise">
+          <div className="flex items-center justify-center gap-4 sm:gap-5">
+            <QuantalogBadge size="lg" />
+            <span className="text-[15px] font-medium text-fg-faint">vs</span>
+            <BrandBadge icon={c.logo} size="lg" />
+          </div>
+          <h1 className="mt-8 text-balance text-display font-medium leading-[1.02] tracking-display">
+            {site.name} <span className="text-fg-faint">vs</span> {c.rival}
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
+            {c.description}
+          </p>
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button
+              href={`${site.app}/signup`}
+              size="lg"
+              className="group"
+              track="cta_start_free"
+              trackProps={{ location: "compare_hero", rival: c.rival }}
+            >
+              Start free
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Button>
+            <Button href="/docs/demo" variant="secondary" size="lg">
+              See the live demo
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-y border-border py-12 sm:py-16">
+          <BigStats
+            stats={[
+              { value: String(score.ours), label: `Points to ${site.name}` },
+              { value: String(score.tied), label: "Tied or neither" },
+              { value: String(score.theirs), label: `Points to ${c.rival}` },
+            ]}
           />
         </div>
-
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Start free — 10k pageviews</Button>
-          <Button href={`${site.app}/login`} variant="secondary">
-            See the live demo
-          </Button>
-        </div>
-      </header>
+        <p className="mx-auto mt-10 max-w-2xl text-pretty text-center text-[17px] leading-relaxed text-fg-muted">
+          {c.intro}
+        </p>
+      </div>
 
       {c.metrics && c.metrics.length > 0 && (
-        <section className="mt-14">
-          <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
-            The numbers you can check yourself
-          </h2>
-          <div className="tile tile--static mt-8 grid gap-8 p-7 sm:grid-cols-2">
+        <section className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 sm:pt-28">
+          <SectionHeading
+            eyebrow="Measured"
+            title="The numbers you can check yourself."
+            centered
+            className="v-rise"
+          />
+          <div className="v-rise v-d1 tile tile--static mt-10 grid gap-10 p-6 sm:mt-14 sm:grid-cols-2 sm:p-10">
             {c.metrics.map((m, i) => (
               <HeadToHead
                 key={m.label}
@@ -191,119 +188,72 @@ export default async function ComparisonPage({
         </section>
       )}
 
-      <section className="mt-14">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
-          {site.name} vs {c.rival}, point by point
-        </h2>
-        <div className="tile tile--static mt-8 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
-              <caption className="sr-only">
-                Feature comparison between {site.name} and {c.rival}
-              </caption>
-              <thead>
-                <tr className="border-b border-border">
-                  <th scope="col" className="px-5 py-3 font-semibold">
-                    What you are comparing
-                  </th>
-                  <th scope="col" className="px-5 py-3 font-semibold">
-                    {site.name}
-                  </th>
-                  <th scope="col" className="px-5 py-3 font-semibold">
-                    {c.rival}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {c.rows.map((row) => (
-                  <tr key={row.point} className="border-b border-border last:border-0">
-                    <th
-                      scope="row"
-                      className="px-5 py-4 align-top font-medium"
-                    >
-                      {row.point}
-                      <span className="mt-1.5 block">
-                        <Badge verdict={row.verdict} rival={c.rival} />
-                      </span>
-                    </th>
-                    <td className="px-5 py-4 align-top leading-relaxed text-fg-muted">
-                      {row.ours}
-                    </td>
-                    <td className="px-5 py-4 align-top leading-relaxed text-fg-muted">
-                      {row.theirs}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+        <SectionHeading
+          eyebrow="Point by point"
+          title={`${site.name} vs ${c.rival}, side by side.`}
+          centered
+          className="v-rise"
+        />
+        <div className="v-rise v-d1 mt-10 sm:mt-14">
+          <CompareTable rows={c.rows} rival={c.rival} logo={c.logo} />
+        </div>
+
+        <div className="v-rise tile tile--static mt-3 p-6 sm:mt-4 sm:p-10">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12">
+            <div>
+              <Scale className="h-7 w-7 text-accent" strokeWidth={1.6} aria-hidden="true" />
+              <p className="mt-5 text-[14px] font-semibold text-accent">In fairness</p>
+              <h2 className="mt-2 text-balance text-[1.375rem] font-semibold leading-[1.18] tracking-tight text-fg sm:text-[1.75rem]">
+                When {c.rival} is the better choice.
+              </h2>
+            </div>
+            <p className="text-pretty text-[16px] leading-relaxed text-fg-muted lg:pt-12 lg:text-[17px]">
+              {c.whenTheirs}
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="mt-14">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
-          When {c.rival} is the better choice
-        </h2>
-        <p className="mt-5 text-pretty leading-relaxed text-fg-muted">
-          {c.whenTheirs}
-        </p>
-      </section>
-
-      <section className="mt-14">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.02em]">
-          Common questions
-        </h2>
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {c.faqs.map((f) => (
-            <div key={f.q} className="py-6">
-              <dt className="font-semibold tracking-tight">{f.q}</dt>
-              <dd className="mt-2.5 text-pretty leading-relaxed text-fg-muted">
-                {f.a}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section className="tile tile--static mt-14 p-8 text-center">
-        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
-          Try it against your own traffic
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          Run {site.name} alongside {c.rival} for a couple of weeks and compare
-          the numbers yourself. The free tier covers 10,000 pageviews a month and
-          needs no card.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Start free</Button>
-          <Button href="/docs" variant="secondary">
-            Read the docs
-          </Button>
+      <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6 sm:pb-28">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
+          <div className="v-rise">
+            <p className="text-[15px] font-semibold text-accent sm:text-[17px]">FAQ</p>
+            <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
+              Common questions.
+            </h2>
+          </div>
+          <div className="v-rise v-d1 min-w-0">
+            <FaqList faqs={c.faqs} idPrefix={`faq-${c.slug}`} />
+          </div>
         </div>
       </section>
 
       {others.length > 0 && (
-        <nav className="mt-14 border-t border-border pt-8">
-          <h2 className="text-sm font-semibold text-fg-muted">
-            Other comparisons
-          </h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6 sm:pb-24">
+          <div className="flex items-end justify-between gap-4">
+            <h2 className="text-[1.5rem] font-semibold tracking-tight text-fg sm:text-[1.75rem]">
+              More comparisons
+            </h2>
+            <Link
+              href="/compare"
+              className="group inline-flex shrink-0 items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
+            >
+              View all
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
             {others.map((o) => (
               <li key={o.slug}>
-                <Link href={`/compare/${o.slug}`} className="tile group block p-5">
-                  <span className="font-semibold tracking-tight transition group-hover:text-accent">
-                    {o.title}
-                  </span>
-                  <span className="mt-1.5 flex items-center gap-1 text-sm text-fg-muted">
-                    Read the comparison
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
+                <CompareCard comparison={o} />
               </li>
             ))}
           </ul>
-        </nav>
+        </section>
       )}
-    </div>
+
+      <CompareCta rival={c.rival} />
+    </>
   );
 }

@@ -7,7 +7,7 @@ import { OrbitMark } from "./orbit-mark";
 import { OrbitPanel } from "./orbit-panel";
 import { onOrbitOpen } from "./orbit-open";
 
-const HIDDEN_ON = ["/contact", "/privacy", "/terms", "/thank-you"];
+const HIDDEN_ON = ["/contact", "/thank-you"];
 
 export function OrbitBubble() {
   const pathname = usePathname();

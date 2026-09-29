@@ -987,6 +987,10 @@ section {
   color: var(--shiki-dark);
 }
 
+.legal-shell {
+  --docs-top: 3rem;
+}
+
 .docs-shell {
   --docs-top: 3rem;
   width: 100%;
@@ -2884,6 +2888,180 @@ body {
     font-size: min(19.5cqi, 15rem);
   }
 }
+@media (max-width: 40rem) {
+  .site-footer {
+    border-radius: 1.75rem 1.75rem 0 0;
+    margin-bottom: 0;
+  }
+  .footer-wordmark {
+    font-size: 17cqi;
+  }
+}
+
+.menu-toggle {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: -8px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--fg);
+  background: transparent;
+}
+.menu-toggle__line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 1.5px;
+  margin-top: -0.75px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 320ms var(--ease-out-q);
+}
+.menu-toggle__line:nth-child(1) {
+  transform: translate(-50%, -4px);
+}
+.menu-toggle__line:nth-child(2) {
+  transform: translate(-50%, 4px);
+}
+.menu-toggle[data-open] .menu-toggle__line:nth-child(1) {
+  transform: translate(-50%, 0) rotate(45deg);
+}
+.menu-toggle[data-open] .menu-toggle__line:nth-child(2) {
+  transform: translate(-50%, 0) rotate(-45deg);
+}
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+@media (max-width: 63.99em) {
+  .site-header {
+    background-color: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    box-shadow: inset 0 -1px 0 var(--hairline);
+  }
+  .site-header[data-menu-open] {
+    background-color: var(--bg);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 3rem 0 0;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  animation: mobile-menu-in 260ms var(--ease-out-q);
+}
+@keyframes mobile-menu-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.mobile-menu__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.25rem 1.5rem 2rem;
+}
+.mobile-menu__link {
+  display: block;
+  padding: 0.4rem 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  transition: color 150ms ease;
+}
+.mobile-menu__link:hover {
+  color: var(--fg-muted);
+}
+.mobile-menu__label {
+  margin-bottom: 0.75rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-faint);
+}
+.mobile-menu__products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.mobile-menu__product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 0.875rem;
+  border-radius: 0.875rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  background: var(--bg-subtle);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  transition: background-color 150ms ease;
+}
+.dark .mobile-menu__product {
+  background: var(--surface);
+}
+.mobile-menu__product:hover {
+  background: color-mix(in srgb, var(--fg) 7%, var(--bg-subtle));
+}
+.mobile-menu__actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.mobile-menu__btn {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 3rem;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 150ms ease;
+}
+.mobile-menu__btn--ghost {
+  color: var(--fg);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+.mobile-menu__btn--ghost:hover {
+  background: var(--bg-subtle);
+}
+.mobile-menu__btn--solid {
+  color: var(--cta-fg);
+  background: var(--cta);
+}
+.mobile-menu__btn--solid:hover {
+  background: var(--cta-hover);
+}
+@media (min-width: 64em) {
+  .menu-toggle,
+  .mobile-menu {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu { animation: none; }
+  .menu-toggle__line { transition: none; }
+}
 
 /* ---------------------------------------------------------- CMS content -- */
 
@@ -3058,7 +3236,8 @@ body {
 .blog-filter__item:hover {
   color: var(--fg);
 }
-.blog-filter__item[aria-pressed="true"] {
+.blog-filter__item[aria-pressed="true"],
+.blog-filter__item[aria-current="page"] {
   background: var(--cta);
   color: var(--cta-fg);
 }

@@ -1,3 +1,14 @@
+import {
+  siCloudflare,
+  siFathom,
+  siGoogleanalytics,
+  siMatomo,
+  siPlausibleanalytics,
+  siPosthog,
+  siSimpleanalytics,
+  siUmami,
+  type SimpleIcon,
+} from "simple-icons";
 import { site } from "@/lib/site";
 
 export type Verdict = "quantalog" | "rival" | "both" | "neither";
@@ -30,6 +41,7 @@ export type Comparison = {
   slug: string;
 
   rival: string;
+  logo: SimpleIcon;
   title: string;
   description: string;
 
@@ -51,6 +63,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "google-analytics-alternative",
     rival: "Google Analytics",
+    logo: siGoogleanalytics,
     title: "Quantalog vs Google Analytics",
     description:
       "A cookieless, real-time Google Analytics alternative with built-in SEO audits. No consent banner, no data sampling, no 24-hour reporting delay — and every visitor counted, not just the ones who accept cookies.",
@@ -162,6 +175,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "plausible-alternative",
     rival: "Plausible",
+    logo: siPlausibleanalytics,
     title: "Quantalog vs Plausible",
     description:
       "A privacy-first Plausible alternative that adds SEO audits, retention cohorts and a multi-tenant API — while keeping the cookieless, no-consent-banner tracking and sub-kilobyte script.",
@@ -250,6 +264,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "matomo-alternative",
     rival: "Matomo",
+    logo: siMatomo,
     title: "Quantalog vs Matomo",
     description:
       "A lighter Matomo alternative: cookieless real-time analytics with SEO audits built in, no server to maintain and no consent banner in the default configuration.",
@@ -331,6 +346,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "fathom-analytics-alternative",
     rival: "Fathom Analytics",
+    logo: siFathom,
     title: "Quantalog vs Fathom Analytics",
     description:
       "A Fathom Analytics alternative that keeps the cookieless, no-consent-banner model and adds built-in SEO audits, retention cohorts, funnels and a multi-tenant API — with a free tier Fathom does not offer.",
@@ -412,6 +428,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "umami-alternative",
     rival: "Umami",
+    logo: siUmami,
     title: "Quantalog vs Umami",
     description:
       "A hosted Umami alternative: the same cookieless, no-banner tracking with no server to run, plus SEO audits, scheduled reports and a multi-tenant API built in.",
@@ -487,6 +504,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "posthog-alternative",
     rival: "PostHog",
+    logo: siPosthog,
     title: "Quantalog vs PostHog",
     description:
       "A lighter, privacy-first PostHog alternative for teams who want traffic analytics, funnels and SEO audits without cookies, a consent banner or a heavy SDK.",
@@ -568,6 +586,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "cloudflare-web-analytics-alternative",
     rival: "Cloudflare Web Analytics",
+    logo: siCloudflare,
     title: "Quantalog vs Cloudflare Web Analytics",
     description:
       "A Cloudflare Web Analytics alternative that keeps the cookieless, privacy-first model and adds real-time data, funnels, custom events, SEO audits and scheduled reports.",
@@ -649,6 +668,7 @@ const COMPARISONS: Comparison[] = [
   {
     slug: "simple-analytics-alternative",
     rival: "Simple Analytics",
+    logo: siSimpleanalytics,
     title: "Quantalog vs Simple Analytics",
     description:
       "A Simple Analytics alternative that keeps the cookieless, no-banner model and the tidy dashboard, then adds funnels, retention cohorts, SEO audits and a multi-tenant API — with a free tier.",

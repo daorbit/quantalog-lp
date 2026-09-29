@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
-  ArrowRight,
   Braces,
-  CheckCircle2,
   FileSearch,
   Gauge,
   Layers,
@@ -12,11 +9,17 @@ import {
   Swords,
   TrendingUp,
 } from "lucide-react";
-import { Button } from "@/components/ui";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
+import { BigStats } from "@/components/big-stats";
+import { SplitStory } from "@/components/split-story";
+import { Cta } from "@/components/sections/cta";
 import { ScoreVisual } from "@/components/explore/visuals/score-visual";
-import { Reveal } from "@/components/reveal";
+import { ProductSection } from "@/components/product/product-section";
+import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
+import { ProductChecklist } from "@/components/product/product-checklist";
+import { ProductFaq } from "@/components/product/product-faq";
+import { RelatedProducts } from "@/components/product/related-products";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -84,6 +87,13 @@ const audited = [
   "Core Web Vitals — LCP, CLS and INP, mobile and desktop",
   "HTTPS, viewport and mobile-friendliness",
 ];
+
+const stats = [
+  { value: "4", label: "Lighthouse scores" },
+  { value: "12", label: "Checks on every run" },
+  { value: "30", label: "Pages per site crawl" },
+  { value: "3", label: "Competitors side by side" },
+] as const;
 
 const faqs = [
   {
@@ -187,7 +197,7 @@ export default function SeoAuditsPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+    <>
       <JsonLd data={jsonLd} />
 
       <FeatureHero
@@ -201,99 +211,52 @@ export default function SeoAuditsPage() {
         }
         description={DESCRIPTION}
         primary={{ label: "Run a free audit" }}
-        secondary={{ label: "See a sample report" }}
+        secondary={{ label: "Read the docs", href: "/docs/seo" }}
         visual={<ScoreVisual />}
         tone="blue"
       />
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          What the audit does
-        </h2>
-        <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          Audit any page on a site you already track. Quantalog reads it the way
-          a crawler would, runs it through Lighthouse, and reports what is
-          holding it back — in the same dashboard as your traffic, not a
-          separate tool with a separate bill.
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-y border-border py-12 sm:py-16">
+          <BigStats stats={stats} />
+        </div>
+      </div>
+
+      <ProductSection
+        eyebrow="What the audit does"
+        title="Everything a crawler sees. And more."
+        body="Audit any page on a site you already track. Quantalog reads it the way a crawler would, runs it through Lighthouse, and reports what is holding it back — in the same dashboard as your traffic."
+      >
+        <ProductFeatureGrid features={checks} columns={4} />
+      </ProductSection>
+
+      <ProductSection
+        eyebrow="On every run"
+        title="Twelve checks. One click."
+        body="Every audit covers the full list below — no configuration, no separate tools."
+        link={{ label: "See what each check means", href: "/docs/seo" }}
+        bordered
+      >
+        <ProductChecklist items={audited} />
+      </ProductSection>
+
+      <SplitStory
+        eyebrow="Why it's built in"
+        title="An audit means more next to the traffic."
+        link={{ label: "Send audits and traffic in one report", href: "/reports" }}
+      >
+        <p>
+          A standalone SEO tool tells you a page has a slow LCP. It cannot tell you that the page is your
+          second-biggest entry point, or that its traffic has been sliding for three weeks. That connection
+          is the whole reason to fix one thing before another, and it only exists when both halves are in
+          the same product.
         </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {checks.map((c, i) => (
-            <Reveal
-              key={c.title}
-              delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="tile group p-7"
-            >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <c.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{c.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{c.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Everything checked on a single run
-        </h2>
-        <ul className="tile tile--static mt-8 grid gap-x-8 gap-y-3 p-7 sm:grid-cols-2">
-          {audited.map((item) => (
-            <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-fg-muted">
-              <CheckCircle2
-                className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                aria-hidden="true"
-              />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Why it lives next to your traffic
-        </h2>
-        <div className="mt-6 space-y-5 text-pretty leading-relaxed text-fg-muted">
-          <p>
-            A standalone SEO tool tells you a page has a slow LCP. It cannot
-            tell you that the page is your second-biggest entry point, or that
-            its traffic has been sliding for three weeks. That connection is the
-            whole reason to fix one thing before another, and it only exists
-            when both halves are in the same product.
-          </p>
-          <p>
-            So an audit here is scoped to a site you already track. The report
-            sits beside the visitor numbers for the same URL, the scheduled
-            email carries both, and the history of every run is kept so the
-            question &ldquo;did that fix work?&rdquo; has an answer with a date
-            on it.
-          </p>
-        </div>
-        <Link
-          href="/reports"
-          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent"
-        >
-          Send audits and traffic in one scheduled report
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-        </Link>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Common questions
-        </h2>
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {faqs.map((f) => (
-            <div key={f.q} className="py-6">
-              <dt className="font-semibold tracking-tight">{f.q}</dt>
-              <dd className="mt-2.5 text-pretty leading-relaxed text-fg-muted">
-                {f.a}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+        <p>
+          So an audit here is scoped to a site you already track. The report sits beside the visitor
+          numbers for the same URL, the scheduled email carries both, and the history of every run is kept
+          so the question &ldquo;did that fix work?&rdquo; has an answer with a date on it.
+        </p>
+      </SplitStory>
 
       <OrbitStrip
         body="An audit tells you what is wrong. Orbit tells you what to do about it — what a flagged issue actually costs, which fix is worth doing first, and what the corrected markup should look like."
@@ -304,21 +267,16 @@ export default function SeoAuditsPage() {
         ]}
       />
 
-      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
-        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
-          Audit your first page in about a minute
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          Add a site, run an audit, and read the report next to the traffic that
-          page is already getting. Included on the free tier — no card.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Start free</Button>
-          <Button href="/docs/seo" variant="secondary">
-            Read the docs
-          </Button>
-        </div>
-      </section>
-    </div>
+      <ProductFaq faqs={faqs} idPrefix="seo-faq" />
+
+      <RelatedProducts hrefs={["/search-visibility", "/analytics", "/reports"]} />
+
+      <Cta
+        title="Audit your first page in about a minute."
+        body="Add a site, run an audit, and read the report next to the traffic that page is already getting. Included on the free plan — no card."
+        secondary={{ label: "Read the docs", href: "/docs/seo" }}
+        location="seo_cta"
+      />
+    </>
   );
 }

@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { ArrowRight, Boxes, Gauge, KeyRound, Palette, Plug, Webhook } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui";
+import { Boxes, Gauge, KeyRound, Palette, Plug, Webhook } from "lucide-react";
 import { FeatureHero } from "@/components/feature-hero";
 import { OrbitStrip } from "@/components/orbit-strip";
+import { BigStats } from "@/components/big-stats";
+import { Cta } from "@/components/sections/cta";
 import { ApiVisual } from "@/components/explore/visuals/api-visual";
 import { CodeCard } from "@/components/code-card";
-import { Reveal } from "@/components/reveal";
+import { ProductSection } from "@/components/product/product-section";
+import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
+import { ProductFaq } from "@/components/product/product-faq";
+import { RelatedProducts } from "@/components/product/related-products";
+import { ApiEndpoints, type ApiEndpoint } from "@/components/product/api-endpoints";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -35,7 +39,7 @@ const res = await fetch(
 
 const { visitors, pageviews, live, topPages } = await res.json();`;
 
-const endpoints = [
+const endpoints: ApiEndpoint[] = [
   { method: "POST", path: "/v1/projects", desc: "Create a project for an end-user" },
   { method: "GET", path: "/v1/projects", desc: "List projects, filter by your user id" },
   { method: "POST", path: "/v1/projects/:pid/sites", desc: "Register a site, get the snippet" },
@@ -45,11 +49,12 @@ const endpoints = [
   { method: "DELETE", path: "/v1/sites/:siteId", desc: "Remove a site and its data" },
 ];
 
-const methodStyle: Record<string, string> = {
-  GET: "border-sky-500/30 bg-sky-500/10 text-sky-500",
-  POST: "border-accent/30 bg-accent/10 text-accent",
-  DELETE: "border-rose-500/30 bg-rose-500/10 text-rose-500",
-};
+const stats = [
+  { value: "1", label: "Key for every tenant" },
+  { value: "7", label: "Endpoints to learn" },
+  { value: "3", label: "Calls, end to end" },
+  { value: "0", label: "Pipelines to build" },
+] as const;
 
 const whoFor = [
   {
@@ -184,7 +189,7 @@ export default function PlatformApiPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+    <>
       <JsonLd data={jsonLd} />
 
       <FeatureHero
@@ -202,102 +207,39 @@ export default function PlatformApiPage() {
         tone="indigo"
       />
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Three calls, end to end
-        </h2>
-        <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-fg-muted">
-          Provision a project, register a site, read the stats back. Everything
-          between those three steps — collection, storage, aggregation — is ours
-          to run.
-        </p>
-        <div className="mt-8 grid gap-4 lg:grid-cols-2">
-          <Reveal delay={1}>
-            <CodeCard filename="provision.sh" language="bash" code={createProject} />
-          </Reveal>
-          <Reveal delay={2}>
-            <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
-          </Reveal>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-y border-border py-12 sm:py-16">
+          <BigStats stats={stats} />
         </div>
-      </section>
+      </div>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Endpoints</h2>
-        <Reveal className="tile tile--static mt-8 overflow-hidden">
-          <div className="divide-y divide-border">
-            {endpoints.map((e) => (
-              <div
-                key={`${e.method} ${e.path}`}
-                className="flex flex-col gap-1.5 px-5 py-3.5 transition-colors hover:bg-bg-subtle sm:flex-row sm:items-center sm:gap-4"
-              >
-                <span
-                  className={`inline-flex w-fit shrink-0 justify-center rounded border px-1.5 py-0.5 font-mono text-[10.5px] font-semibold tracking-wide sm:w-18 ${methodStyle[e.method]}`}
-                >
-                  {e.method}
-                </span>
-                <code className="font-mono text-[13px] text-fg">{e.path}</code>
-                <span className="text-xs text-fg-muted sm:ml-auto">{e.desc}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">Who this is for</h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {whoFor.map((w, i) => (
-            <Reveal
-              key={w.title}
-              delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="tile group p-7"
-            >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <w.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{w.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{w.body}</p>
-            </Reveal>
-          ))}
+      <ProductSection
+        eyebrow="How it works"
+        title="Three calls, end to end."
+        body="Provision a project, register a site, read the stats back. Everything between those three steps — collection, storage, aggregation — is ours to run."
+      >
+        <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
+          <CodeCard filename="provision.sh" language="bash" code={createProject} />
+          <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
         </div>
-      </section>
+      </ProductSection>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          What you can rely on
-        </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {properties.map((p, i) => (
-            <Reveal
-              key={p.title}
-              delay={((i % 3) + 1) as 1 | 2 | 3}
-              className="tile group p-7"
-            >
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-subtle text-accent transition-all duration-200 group-hover:scale-105 group-hover:border-accent/40 group-hover:bg-accent/10">
-                <p.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </div>
-              <h3 className="mt-5 text-[15px] font-semibold tracking-tight">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{p.body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <ProductSection
+        eyebrow="Reference"
+        title="Seven endpoints. That's the API."
+        link={{ label: "Full API reference", href: "/docs/api-reference" }}
+        bordered
+      >
+        <ApiEndpoints endpoints={endpoints} />
+      </ProductSection>
 
-      <section className="mt-16">
-        <h2 className="text-[1.75rem] font-semibold tracking-[-0.025em]">
-          Common questions
-        </h2>
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {faqs.map((f) => (
-            <div key={f.q} className="py-6">
-              <dt className="font-semibold tracking-tight">{f.q}</dt>
-              <dd className="mt-2.5 text-pretty leading-relaxed text-fg-muted">
-                {f.a}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+      <ProductSection eyebrow="Who it's for" title="Built for products with customers." bordered>
+        <ProductFeatureGrid features={whoFor} columns={3} />
+      </ProductSection>
+
+      <ProductSection eyebrow="Guarantees" title="What you can rely on." bordered>
+        <ProductFeatureGrid features={properties} columns={3} />
+      </ProductSection>
 
       <OrbitStrip
         body="Orbit answers from the API reference itself — the exact endpoint, the parameters it takes, and why a call came back the way it did. It is the same assistant your own customers get if you surface it in your product."
@@ -308,26 +250,16 @@ export default function PlatformApiPage() {
         ]}
       />
 
-      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
-        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
-          Build it against the real API
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          Sign up, generate a key, and provision your first project in a few
-          minutes. The free tier is enough to build and test the integration
-          before a single customer is on it.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Get an API key</Button>
-          <Link
-            href="/docs/api-reference"
-            className="group inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-accent"
-          >
-            Full API reference
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
-        </div>
-      </section>
-    </div>
+      <ProductFaq faqs={faqs} idPrefix="api-faq" />
+
+      <RelatedProducts hrefs={["/analytics", "/reports", "/seo-audits"]} />
+
+      <Cta
+        title="Build it against the real API."
+        body="Sign up, generate a key, and provision your first project in a few minutes. The free tier is enough to build and test the integration before a single customer is on it."
+        secondary={{ label: "Full API reference", href: "/docs/api-reference" }}
+        location="platform_api_cta"
+      />
+    </>
   );
 }

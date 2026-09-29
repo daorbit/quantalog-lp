@@ -1,11 +1,30 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui";
+import {
+  BarChart3,
+  BookOpenCheck,
+  CalendarClock,
+  CornerDownRight,
+  Eye,
+  History,
+  LifeBuoy,
+  Lock,
+  Mic,
+  PauseCircle,
+  PenLine,
+  Shuffle,
+  Wrench,
+  UserRound,
+} from "lucide-react";
 import { FeatureHero } from "@/components/feature-hero";
+import { BigStats } from "@/components/big-stats";
+import { Cta } from "@/components/sections/cta";
 import { OrbitVisual } from "@/components/explore/visuals/orbit-visual";
 import { Orbit } from "@/components/sections/orbit";
 import { Scheduling } from "@/components/sections/scheduling";
+import { ProductSection } from "@/components/product/product-section";
+import { ProductFeatureGrid, type ProductFeature } from "@/components/product/product-feature-grid";
+import { ProductFaq } from "@/components/product/product-faq";
+import { RelatedProducts } from "@/components/product/related-products";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -15,6 +34,89 @@ const MODIFIED = "2026-08-09";
 
 const DESCRIPTION =
   "Orbit AI is the assistant built into your dashboard — grounded in the product's own docs, honest about what it can't see. It also writes your scheduled LinkedIn posts from the numbers that are already there.";
+
+const stats = [
+  { value: "10", label: "Free questions a month" },
+  { value: "2,000", label: "Questions a month on Orbit Pro" },
+  { value: "3", label: "Suggested follow-ups per answer" },
+  { value: "0", label: "Conversations used for training" },
+] as const;
+
+const orbitFeatures: ProductFeature[] = [
+  {
+    icon: BookOpenCheck,
+    title: "Grounded in the docs",
+    body: "Orbit answers from a reference kept in step with the product, so it never describes a button that doesn't exist.",
+  },
+  {
+    icon: Wrench,
+    title: "Fixes SEO issues",
+    body: "Paste an audit issue and get the steps to resolve it — including the tag to add and where it goes.",
+  },
+  {
+    icon: BarChart3,
+    title: "Reads your analytics",
+    body: "On Orbit Pro, a seven-day summary of your workspace goes with each question, so \"why is traffic down?\" gets an answer.",
+  },
+  {
+    icon: CornerDownRight,
+    title: "Suggested follow-ups",
+    body: "Every answer comes with up to three one-tap follow-ups — each one answerable, so none lead to a dead end.",
+  },
+  {
+    icon: Mic,
+    title: "Ask by voice",
+    body: "Dictate a question with your browser's speech recognition in Chrome, Edge and Safari, then edit before sending.",
+  },
+  {
+    icon: Shuffle,
+    title: "Every model, every plan",
+    body: "Pick the model you prefer. If it is busy, Orbit falls through to another and tells you which one answered.",
+  },
+  {
+    icon: Lock,
+    title: "Private by design",
+    body: "Individual visitors and raw events are never sent to a model, and nothing you type is used for training.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "A person behind it",
+    body: "When a question is outside what Orbit knows, it says so and points you to Help & support, where a person replies.",
+  },
+];
+
+const postFeatures: ProductFeature[] = [
+  {
+    icon: PenLine,
+    title: "Write and preview",
+    body: "Write the caption on the left and see it laid out exactly as it will render on the right.",
+  },
+  {
+    icon: CalendarClock,
+    title: "Once, or on a repeat",
+    body: "Publish at a set date and time, or daily, weekly or monthly at an hour you pick in your own timezone.",
+  },
+  {
+    icon: PauseCircle,
+    title: "Pause and resume",
+    body: "A paused schedule keeps its cadence and settings, and picks up again the moment you resume it.",
+  },
+  {
+    icon: History,
+    title: "A record of every send",
+    body: "Each post records whether it published, with a link to it, or exactly why it failed.",
+  },
+  {
+    icon: Eye,
+    title: "Engagement figures",
+    body: "The Sent tab shows engagement for LinkedIn posts where the permission is available.",
+  },
+  {
+    icon: UserRound,
+    title: "Yours alone",
+    body: "Schedules belong to you, publish under your own account, and stay invisible to other workspace members.",
+  },
+];
 
 const faqs = [
   {
@@ -28,6 +130,18 @@ const faqs = [
   {
     q: "Does it post without me?",
     a: "Only on the schedule you set, and only after you have approved the draft. Nothing goes out unattended that you have not already read.",
+  },
+  {
+    q: "Can Orbit see my analytics?",
+    a: "On Orbit Free and Starter it cannot see your account or data. On Orbit Pro, a short seven-day summary of the workspace you are in is sent with each question. Individual visitors, sessions and raw events are never sent to a model on any plan.",
+  },
+  {
+    q: "How many questions do I get?",
+    a: "Orbit Free includes 10 questions a month, Starter 300 and Pro 2,000. A question only counts once Orbit has actually answered it, and question packs never expire.",
+  },
+  {
+    q: "Is Orbit bought separately from analytics?",
+    a: "Yes. Orbit is bought per workspace on its own ladder, so a workspace on the free analytics plan can still run Orbit Pro — and the other way round.",
   },
 ];
 
@@ -105,7 +219,7 @@ export default function SocialPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+    <>
       <JsonLd data={jsonLd} />
 
       <FeatureHero
@@ -119,60 +233,53 @@ export default function SocialPage() {
         }
         description={DESCRIPTION}
         primary={{ label: "Start free" }}
-        secondary={{ label: "See the live demo" }}
+        secondary={{ label: "Read the docs", href: "/docs/orbit-ai" }}
         visual={<OrbitVisual />}
         tone="rose"
       />
 
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="border-y border-border py-12 sm:py-16">
+          <BigStats stats={stats} />
+        </div>
+      </div>
+
       <Orbit />
-      <div className="band mt-16 rounded-2xl">
+
+      <ProductSection
+        eyebrow="What Orbit does"
+        title="Fast answers you can trust."
+        body="Grounded in the product's own reference, honest about its limits, and one tap away on every page of the dashboard."
+        link={{ label: "Read the Orbit AI docs", href: "/docs/orbit-ai" }}
+        bordered
+      >
+        <ProductFeatureGrid features={orbitFeatures} columns={4} />
+      </ProductSection>
+
+      <div className="border-t border-border">
         <Scheduling />
       </div>
 
-      <section className="mt-16 max-w-3xl">
-        <h2 className="text-[1.75rem] font-semibold tracking-tight">
-          Common questions
-        </h2>
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {faqs.map((f) => (
-            <div key={f.q} className="py-6">
-              <dt className="font-semibold tracking-tight">{f.q}</dt>
-              <dd className="mt-2.5 text-pretty leading-relaxed text-fg-muted">
-                {f.a}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+      <ProductSection
+        eyebrow="Post studio"
+        title="Write once. Publish on time."
+        body="Draft posts where your analytics live, preview them as they will render, and let Quantalog publish — once, or on a repeat in your own timezone."
+        link={{ label: "Read the scheduled posts docs", href: "/docs/scheduled-posts" }}
+        bordered
+      >
+        <ProductFeatureGrid features={postFeatures} columns={3} />
+      </ProductSection>
 
-      <section className="mt-16 max-w-3xl">
-        <p className="text-pretty leading-relaxed text-fg-muted">
-          The reports Orbit helps write pull from the same place.
-        </p>
-        <Link
-          href="/reports"
-          className="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent"
-        >
-          See scheduled email &amp; WhatsApp reports
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-        </Link>
-      </section>
+      <ProductFaq faqs={faqs} idPrefix="social-faq" />
 
-      <section className="tile tile--static mt-16 p-10 text-center sm:p-14">
-        <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em]">
-          Ask it anything after you sign up
-        </h2>
-        <p className="mx-auto mt-3 max-w-lg text-pretty leading-relaxed text-fg-muted">
-          Orbit is on every plan, free tier included. So is one scheduled post a
-          week — enough to keep a feed alive from the numbers you already have.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button href={`${site.app}/signup`}>Start free</Button>
-          <Button href={`${site.app}/login`} variant="secondary">
-            See the live demo
-          </Button>
-        </div>
-      </section>
-    </div>
+      <RelatedProducts hrefs={["/analytics", "/seo-audits", "/reports"]} />
+
+      <Cta
+        title="Ask it anything after you sign up."
+        body="Orbit is on every plan, free tier included. So is one scheduled post a week — enough to keep a feed alive from the numbers you already have."
+        secondary={{ label: "Read the docs", href: "/docs/orbit-ai" }}
+        location="social_cta"
+      />
+    </>
   );
 }

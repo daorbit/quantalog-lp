@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { getAllComparisons } from "@/lib/comparisons";
 import { Eyebrow } from "@/components/ui";
-import { VerdictBar } from "@/components/charts";
+import { Reveal } from "@/components/reveal";
+import { Compare } from "@/components/sections/compare";
+import { Cta } from "@/components/sections/cta";
+import { CompareCard } from "@/components/compare/compare-card";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 const DESCRIPTION =
-  "How Quantalog compares to Google Analytics, Plausible and Matomo — consent banners, real-time reporting, SEO audits, script weight and price, with the cases where the other tool is the better choice.";
+  "How Quantalog compares to Google Analytics, Plausible, Matomo and other analytics tools — consent banners, real-time reporting, SEO audits, script weight and price, including where the other tool is the better choice.";
 
 export const metadata: Metadata = {
   title: "Analytics tool comparisons",
@@ -53,46 +54,37 @@ export default function ComparisonsIndexPage() {
   );
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+    <>
       <JsonLd data={jsonLd} />
 
-      <header className="mx-auto max-w-3xl text-center">
-        <Eyebrow>Comparisons</Eyebrow>
-        <h1 className="mt-4 text-balance text-display font-semibold leading-[1.04] tracking-display">
-          How Quantalog compares
-        </h1>
-        <p className="mt-5 text-pretty text-lead leading-normal text-fg-muted">
-          {DESCRIPTION}
-        </p>
-      </header>
+      <section className="mx-auto max-w-6xl px-4 pb-14 pt-16 sm:px-6 sm:pb-24 sm:pt-28">
+        <header className="v-rise mx-auto max-w-3xl text-center">
+          <Eyebrow>Compare</Eyebrow>
+          <h1 className="mt-4 text-balance text-display font-medium leading-[1.02] tracking-display">
+            {site.name} vs the rest.
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
+            {comparisons.length} side-by-side comparisons with the tools teams most often leave — each
+            one says plainly where the other tool is the better choice.
+          </p>
+        </header>
 
-      <ul className="mt-12 grid gap-3 sm:mt-16 sm:grid-cols-2">
-        {comparisons.map((c) => (
-          <li key={c.slug}>
-            <Link href={`/compare/${c.slug}`} className="tile group block h-full p-7 sm:p-8">
-              <h2 className="text-[1.25rem] font-semibold tracking-tight transition group-hover:text-accent">
-                {c.title}
-              </h2>
-              <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
-                {c.description}
-              </p>
-              <div className="mt-5">
-                <VerdictBar
-                  ourName={site.name}
-                  rival={c.rival}
-                  ours={c.rows.filter((r) => r.verdict === "quantalog").length}
-                  tied={c.rows.filter((r) => r.verdict === "both" || r.verdict === "neither").length}
-                  theirs={c.rows.filter((r) => r.verdict === "rival").length}
-                />
-              </div>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm text-accent">
-                Read the comparison
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+        <ul className="mt-10 grid gap-3 sm:mt-16 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          {comparisons.map((c, i) => (
+            <li key={c.slug} className={`v-rise v-d${(i % 3) + 1}`}>
+              <CompareCard comparison={c} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div className="border-t border-border">
+        <Compare showLinks={false} />
+      </div>
+
+      <Reveal as="section">
+        <Cta />
+      </Reveal>
+    </>
   );
 }

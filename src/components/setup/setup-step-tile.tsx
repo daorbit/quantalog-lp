@@ -7,7 +7,7 @@ export function SetupStepTile({
   n: number;
   title: string;
   body: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
     <div className="tile tile--static flex h-full flex-col p-6 sm:p-8">
@@ -16,7 +16,7 @@ export function SetupStepTile({
         {title}
       </h3>
       <p className="mt-3 text-pretty text-[15px] leading-relaxed text-fg-muted">{body}</p>
-      <div className="mt-auto pt-8">{children}</div>
+      {children && <div className="mt-auto pt-8">{children}</div>}
     </div>
   );
 }

@@ -22,7 +22,7 @@ export function FeatureHero({
   tone: ExploreTone;
 }) {
   return (
-    <header className="pb-16 sm:pb-24">
+    <header className="mx-auto max-w-7xl px-4 pb-14 pt-16 sm:px-6 sm:pb-20 sm:pt-24 lg:px-10">
       <div className="mx-auto max-w-3xl text-center">
         <div className="rise rise-1 flex justify-center">
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -38,7 +38,7 @@ export function FeatureHero({
             {primary.label}
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Button>
-          <Button href={secondary.href ?? `${site.app}/login`} variant="secondary" size="lg">
+          <Button href={secondary.href ?? "/docs/demo"} variant="secondary" size="lg">
             {secondary.label}
           </Button>
         </div>

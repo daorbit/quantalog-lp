@@ -51,7 +51,7 @@ function Cell({ value }: { value: Support }) {
   );
 }
 
-export function Compare() {
+export function Compare({ showLinks = true }: { showLinks?: boolean }) {
   return (
     <section id="compare" className="relative">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
@@ -115,19 +115,21 @@ export function Compare() {
           in each column.
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm">
-          <span className="text-fg-muted">Comparing a specific tool?</span>
-          {namedComparisons.map((c) => (
-            <Link
-              key={c.href}
-              href={c.href}
-              className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-medium transition hover:border-accent hover:text-accent"
-            >
-              {c.label}
-              <ArrowRight className="h-3 w-3" aria-hidden="true" />
-            </Link>
-          ))}
-        </div>
+        {showLinks && (
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-3 text-sm">
+            <span className="text-fg-muted">Comparing a specific tool?</span>
+            {namedComparisons.map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-medium transition hover:border-accent hover:text-accent"
+              >
+                {c.label}
+                <ArrowRight className="h-3 w-3" aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
