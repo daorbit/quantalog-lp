@@ -126,9 +126,10 @@ export function PrivacyBody() {
       </P>
       <H3 id="search-console">Google Search Console</H3>
       <P>
-        We request Google&apos;s read-only Search Console permission and use it only to show clicks,
-        impressions, rankings, index status and sitemaps for the properties you select. We cannot make
-        changes to your Search Console account.
+        We request Google&apos;s Search Console permission and use it to show clicks, impressions,
+        rankings, index status and sitemaps for the properties you select. The only change we make to
+        your Search Console account is submitting or removing a sitemap, and only when you ask us to.
+        We never add or remove properties, users or other settings.
       </P>
       <H3 id="social-accounts">LinkedIn and Instagram</H3>
       <P>

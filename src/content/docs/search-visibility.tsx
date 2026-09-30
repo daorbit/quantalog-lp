@@ -7,7 +7,8 @@ function Body() {
       <P>
         Search visibility connects Google Search Console to Quantalog. It shows the searches your site appeared for,
         the clicks and impressions it earned, where it ranks, and whether Google has indexed a page — alongside the
-        traffic you already track. It is read-only: Quantalog never changes anything in your Search Console account.
+        traffic you already track. The only thing it changes in your Search Console account is a sitemap you choose to
+        submit or remove.
       </P>
 
       <H2 id="before-you-start">Before you start: add and verify your site in Search Console</H2>
@@ -28,8 +29,9 @@ function Body() {
           this only covers the exact address you enter.
         </Li>
         <Li>
-          Once verification succeeds, submit your sitemap under <b>Sitemaps</b> in Search Console so Google starts
-          crawling and reporting on your pages.
+          Once verification succeeds, submit your sitemap so Google starts crawling and reporting on your pages. You
+          can do this from the <b>Sitemaps</b> tab in Quantalog after connecting, or under <b>Sitemaps</b> in Search
+          Console.
         </Li>
       </Ul>
       <Callout>
@@ -49,7 +51,7 @@ function Body() {
       <Ul>
         <Li>Choose the Google account that owns your Search Console property.</Li>
         <Li>
-          Tick <b>View Search Console data for your verified sites</b>, then press <b>Continue</b>.
+          Tick <b>View and manage Search Console data for your verified sites</b>, then press <b>Continue</b>.
         </Li>
       </Ul>
       <Callout variant="warn">
@@ -89,14 +91,30 @@ function Body() {
 
       <H2 id="reports">The reports</H2>
       <P>
-        The toolbar sets the search type (Web, Image, Video, News) and the date range for every tab. Each range is
-        compared with the equal-length period before it.
+        The toolbar sets the search type and the date range for every tab. Each range is compared with the
+        equal-length period before it. Search types:
       </P>
       <Ul>
         <Li>
+          <b>Web</b>, <b>Image</b>, <b>Video</b> and <b>News tab</b> — the tabs of Google Search.
+        </Li>
+        <Li>
+          <b>Discover</b> — your pages shown in the Google app&apos;s Discover feed.
+        </Li>
+        <Li>
+          <b>Google News</b> — news.google.com and the Google News app.
+        </Li>
+      </Ul>
+      <Callout>
+        Discover and Google News have no search queries, so the Queries tab is hidden for them and average position
+        shows as —. Pages, countries and devices work as usual.
+      </Callout>
+      <Ul>
+        <Li>
           <b>Overview</b> — total clicks, impressions, average click-through rate and average position, with the change
-          against the previous period. Tick the cards to overlay those metrics on the chart. Below it, your top queries
-          and top pages.
+          against the previous period. Tick the cards to overlay those metrics on the chart. Below it, the{" "}
+          <b>Last 48 hours</b> chart shows clicks or impressions hour by hour in your time zone, with the last 24 hours
+          compared to the 24 before — useful right after publishing. Then your top queries and top pages.
         </Li>
         <Li>
           <b>Insights</b> — a ranked list of actions: queries in positions 4–20 that could reach page one, page-one
@@ -118,9 +136,27 @@ function Body() {
         </Li>
         <Li>
           <b>Sitemaps</b> — every sitemap submitted to Search Console, its status, errors and warnings, and when Google
-          last read it.
+          last read it. Submit a new sitemap or remove one from here.
         </Li>
       </Ul>
+
+      <H2 id="submitting-sitemaps">Submitting a sitemap</H2>
+      <P>
+        On the <b>Sitemaps</b> tab, enter the full sitemap address, such as{" "}
+        <code>https://example.com/sitemap.xml</code>, and press <b>Submit</b>. Google queues it and reads it within a
+        few hours to a few days; until then it shows as <b>Pending</b>. Submitting a sitemap that is already listed
+        asks Google to read it again. Use the remove button on a row to stop Google from reading that sitemap; the
+        pages it listed stay in Google.
+      </P>
+      <Ul>
+        <Li>You need admin access to the Quantalog workspace.</Li>
+        <Li>The connected Google account must be an owner or full user of the property. Restricted users can only view.</Li>
+        <Li>The sitemap must sit inside the linked property, for example on the same domain.</Li>
+      </Ul>
+      <Callout>
+        Connected before sitemap submission was added? The tab shows <b>Reconnect Google</b>. Press it and allow the
+        new permission once; your linked properties are kept.
+      </Callout>
       <Callout>
         Clicks and visits measure different things. Google counts a click on your search result; Quantalog counts a page
         that actually loaded, from any source. A page with far more views than clicks gets most of its traffic from
@@ -205,8 +241,9 @@ function Body() {
       <H2 id="privacy">Access and disconnecting</H2>
       <Ul>
         <Li>
-          Quantalog requests Google&apos;s read-only Search Console permission. It cannot submit sitemaps, request
-          indexing, remove URLs or change settings.
+          Quantalog requests Google&apos;s Search Console permission. The only change it makes is submitting or
+          removing a sitemap when you ask it to. It never requests indexing, removes URLs, or changes users or
+          settings.
         </Li>
         <Li>Google tokens are encrypted at rest and are never shown in the dashboard.</Li>
         <Li>
