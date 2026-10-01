@@ -3,7 +3,7 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
-import { Testimonials } from "@/components/sections/testimonials";
+import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { steps as setupSteps } from "@/components/setup/setup-steps";
 import { Pricing } from "@/components/sections/pricing";
@@ -17,7 +17,7 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-08-09";
+const MODIFIED = "2026-10-01";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -65,14 +65,11 @@ const jsonLd = graph(
       availability: "https://schema.org/InStock",
       url: site.url,
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      bestRating: "5",
-      ratingCount: "6",
-    },
     featureList: [
       "Real-time visitor dashboard",
+      "Custom dashboards from 20 templates",
+      "Monthly and quarterly goal targets with pace tracking",
+      "Embeddable live widgets",
       "Cookieless, consent-free tracking",
       "Funnels and conversion goals",
       "Retention cohorts",
@@ -124,9 +121,7 @@ export default function HomePage() {
       <ConsentGap />
       <MoreFeatures />
       <HowItWorks />
-      {/* Social proof immediately before the price: the last thing read before
-          a cost is weighed should be someone else saying it was worth it. */}
-      <Testimonials />
+      <DashboardsGoals />
       <Pricing />
       <Faq />
       <Reveal as="section">
