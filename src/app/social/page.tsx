@@ -32,6 +32,9 @@ import { site } from "@/lib/site";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
 
+const META_DESCRIPTION =
+  "Orbit AI is the assistant built into your dashboard, grounded in the product's own docs. It also writes your scheduled LinkedIn posts from your data.";
+
 const DESCRIPTION =
   "Orbit AI is the assistant built into your dashboard — grounded in the product's own docs, honest about what it can't see. It also writes your scheduled LinkedIn posts from the numbers that are already there.";
 
@@ -147,7 +150,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: "AI analytics assistant and scheduled social posts",
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: "/social" },
   other: {
     "article:published_time": PUBLISHED,
@@ -168,12 +171,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}/social`,
     title: "AI analytics assistant and scheduled social posts",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "AI analytics assistant and scheduled social posts",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
@@ -183,7 +186,7 @@ export default function SocialPage() {
       "@type": "WebPage",
       "@id": `${site.url}/social#page`,
       name: "AI analytics assistant and scheduled social posts",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       url: `${site.url}/social`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -192,13 +195,13 @@ export default function SocialPage() {
     service({
       path: "/social",
       name: "Orbit AI assistant and scheduled social posts",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       serviceType: "AI assistant and social scheduling",
     }),
     article({
       path: "/social",
       headline: "AI analytics assistant and scheduled social posts",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),

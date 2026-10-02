@@ -31,6 +31,9 @@ import { site } from "@/lib/site";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-09-29";
 
+const META_DESCRIPTION =
+  "Real-time, cookieless web analytics: a live visitor dashboard, funnels, goals and retention cohorts — no consent banner, no sampling.";
+
 const DESCRIPTION =
   "Real-time, cookieless web analytics: a live visitor dashboard, funnels and conversion goals, retention cohorts, and breakdowns by device, browser, country and hour of day — no consent banner, no sampling.";
 
@@ -145,7 +148,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: "Real-time web analytics dashboard",
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: "/analytics" },
   other: {
     "article:published_time": PUBLISHED,
@@ -167,12 +170,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}/analytics`,
     title: "Real-time web analytics dashboard",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "Real-time web analytics dashboard",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
@@ -182,7 +185,7 @@ export default function AnalyticsPage() {
       "@type": "WebPage",
       "@id": `${site.url}/analytics#page`,
       name: "Real-time web analytics dashboard",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       url: `${site.url}/analytics`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -191,13 +194,13 @@ export default function AnalyticsPage() {
     service({
       path: "/analytics",
       name: "Real-time web analytics dashboard",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       serviceType: "Web analytics",
     }),
     article({
       path: "/analytics",
       headline: "Real-time web analytics dashboard",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),

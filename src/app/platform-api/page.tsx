@@ -18,6 +18,9 @@ import { site } from "@/lib/site";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
 
+const META_DESCRIPTION =
+  "Embed white label analytics in your own product. One API key provisions a project per customer and reads their stats back — your branding, your UI.";
+
 const DESCRIPTION =
   "Embed white label analytics in your own product. One API key provisions a project per customer, injects the tracker into the sites you generate, and reads their stats back into your dashboard — your branding, your UI, your customers.";
 
@@ -117,7 +120,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: "White label analytics API for your product",
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: "/platform-api" },
   other: {
     "article:published_time": PUBLISHED,
@@ -138,12 +141,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}/platform-api`,
     title: "White label analytics API for your product",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "White label analytics API for your product",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
@@ -153,7 +156,7 @@ export default function PlatformApiPage() {
       "@type": "WebPage",
       "@id": `${site.url}/platform-api#page`,
       name: "White label analytics API for your product",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       url: `${site.url}/platform-api`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -162,13 +165,13 @@ export default function PlatformApiPage() {
     service({
       path: "/platform-api",
       name: "White label analytics API",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       serviceType: "White label analytics API",
     }),
     article({
       path: "/platform-api",
       headline: "White label analytics API for your product",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),

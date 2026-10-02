@@ -8,14 +8,34 @@ import { Reveal } from "@/components/reveal";
  * than redrawing it, so a visitor sees what they will actually click.
  */
 const startMethods = [
-  { src: "/build-with-ai.webp", label: "Build with Orbit" },
-  { src: "/build-with-tempalte.webp", label: "Start from a template" },
-  { src: "/build-with-config.webp", label: "Import a config" },
+  {
+    src: "/build-with-ai.webp",
+    label: "Build with Orbit",
+    alt: "Orbit AI generating a form from a plain-language prompt in the Quantalog form builder",
+  },
+  {
+    src: "/build-with-tempalte.webp",
+    label: "Start from a template",
+    alt: "Picking a pre-built form template in the Quantalog form builder",
+  },
+  {
+    src: "/build-with-config.webp",
+    label: "Import a config",
+    alt: "Importing a form from a config file in the Quantalog form builder",
+  },
 ];
 
 const scopes = [
-  { src: "/standalone.png", label: "Standalone link" },
-  { src: "/embed-in-website.png", label: "Embedded on a site" },
+  {
+    src: "/standalone.png",
+    label: "Standalone link",
+    alt: "A Quantalog form open on its own standalone, shareable link",
+  },
+  {
+    src: "/embed-in-website.png",
+    label: "Embedded on a site",
+    alt: "A Quantalog form embedded directly inside a website's page",
+  },
 ];
 
 export function BuildFlowShowcase() {
@@ -34,7 +54,7 @@ export function BuildFlowShowcase() {
             <div className="relative h-44 w-full bg-[#0b0b0d]">
               <Image
                 src={m.src}
-                alt=""
+                alt={m.alt}
                 fill
                 sizes="(min-width: 640px) 33vw, 100vw"
                 className="object-cover"
@@ -59,7 +79,7 @@ export function BuildFlowShowcase() {
             <div className="relative h-52 w-full bg-[#fdf8f1]">
               <Image
                 src={s.src}
-                alt=""
+                alt={s.alt}
                 fill
                 sizes="(min-width: 640px) 50vw, 100vw"
                 className="object-cover"

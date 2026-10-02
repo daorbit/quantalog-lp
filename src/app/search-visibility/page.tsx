@@ -31,6 +31,9 @@ const TITLE = "Google Search Console, inside your analytics";
 const PUBLISHED = "2026-09-27";
 const MODIFIED = "2026-09-27";
 
+const META_DESCRIPTION =
+  "Connect Google Search Console and read clicks, impressions, rankings and index status next to your real traffic, with a ranked list of what to fix.";
+
 const DESCRIPTION =
   "Connect Google Search Console and read clicks, impressions, rankings and index status next to your real traffic — with a ranked list of what to fix, page-level detail, and Orbit AI to explain what changed.";
 
@@ -150,7 +153,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: TITLE,
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: PATH },
   other: {
     "article:published_time": PUBLISHED,
@@ -172,12 +175,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}${PATH}`,
     title: TITLE,
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
@@ -187,7 +190,7 @@ export default function SearchVisibilityPage() {
       "@type": "WebPage",
       "@id": `${site.url}${PATH}#page`,
       name: TITLE,
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       url: `${site.url}${PATH}`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -196,13 +199,13 @@ export default function SearchVisibilityPage() {
     service({
       path: PATH,
       name: TITLE,
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       serviceType: "Search Console analytics",
     }),
     article({
       path: PATH,
       headline: TITLE,
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),

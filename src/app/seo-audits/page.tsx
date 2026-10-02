@@ -27,6 +27,9 @@ import { site } from "@/lib/site";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
 
+const META_DESCRIPTION =
+  "A free SEO audit tool built into your analytics. Lighthouse scores, structured data checks, broken links and Core Web Vitals — with history.";
+
 const DESCRIPTION =
   "A free SEO audit tool built into your analytics. Run Lighthouse scores, meta tag and heading checks, structured data validation, broken link detection and Core Web Vitals against any page you already track — with history, so a fix is provable.";
 
@@ -124,7 +127,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: "SEO audit tool with Lighthouse scores",
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: "/seo-audits" },
   other: {
     "article:published_time": PUBLISHED,
@@ -146,12 +149,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}/seo-audits`,
     title: "SEO audit tool with Lighthouse scores",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "SEO audit tool with Lighthouse scores",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
@@ -161,7 +164,7 @@ export default function SeoAuditsPage() {
       "@type": "WebPage",
       "@id": `${site.url}/seo-audits#page`,
       name: "SEO audit tool with Lighthouse scores",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       url: `${site.url}/seo-audits`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -170,13 +173,13 @@ export default function SeoAuditsPage() {
     service({
       path: "/seo-audits",
       name: "SEO audit tool with Lighthouse scores",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       serviceType: "SEO audit",
     }),
     article({
       path: "/seo-audits",
       headline: "SEO audit tool with Lighthouse scores",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),

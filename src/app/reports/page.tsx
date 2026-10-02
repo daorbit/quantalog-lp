@@ -27,6 +27,9 @@ import { site } from "@/lib/site";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = "2026-08-09";
 
+const META_DESCRIPTION =
+  "Automated analytics reports by email and WhatsApp. A scheduled traffic and SEO summary for clients or your team — no dashboard login required.";
+
 const DESCRIPTION =
   "Automated analytics reports by email and WhatsApp. Send a scheduled traffic and SEO summary to clients or your team — opening with a plain-language AI read of what changed and why, headline numbers in the body, the full breakdown attached as an XLSX spreadsheet, no dashboard login required.";
 
@@ -125,7 +128,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: "Automated analytics reports by email and WhatsApp",
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   alternates: { canonical: "/reports" },
   other: {
     "article:published_time": PUBLISHED,
@@ -147,12 +150,12 @@ export const metadata: Metadata = {
     type: "website",
     url: `${site.url}/reports`,
     title: "Automated analytics reports by email and WhatsApp",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "Automated analytics reports by email and WhatsApp",
-    description: DESCRIPTION,
+    description: META_DESCRIPTION,
   },
 };
 
@@ -162,7 +165,7 @@ export default function ReportsPage() {
       "@type": "WebPage",
       "@id": `${site.url}/reports#page`,
       name: "Automated analytics reports by email and WhatsApp",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       url: `${site.url}/reports`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
@@ -172,13 +175,13 @@ export default function ReportsPage() {
     service({
       path: "/reports",
       name: "Automated analytics reports by email and WhatsApp",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       serviceType: "Analytics reporting",
     }),
     article({
       path: "/reports",
       headline: "Automated analytics reports by email and WhatsApp",
-      description: DESCRIPTION,
+      description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),
