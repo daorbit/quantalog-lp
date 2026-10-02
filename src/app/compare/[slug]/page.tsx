@@ -84,7 +84,7 @@ export default async function ComparisonPage({
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
       author: { "@id": ORG_ID },
-      image: `${site.url}/OgImage.png`,
+      image: `${site.url}/new-og-image.webp`,
       about: [
         { "@type": "SoftwareApplication", name: site.name },
         { "@type": "SoftwareApplication", name: c.rival },

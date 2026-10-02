@@ -70,9 +70,9 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: "/OgImage.png",
-        width: 1369,
-        height: 1149,
+        url: "/new-og-image.webp",
+        width: 1672,
+        height: 940,
         alt: `${site.name} — ${site.tagline}`,
       },
     ],
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     site: site.twitter,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    images: ["/OgImage.png"],
+    images: ["/new-og-image.webp"],
   },
 
   alternates: {

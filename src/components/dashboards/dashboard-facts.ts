@@ -21,6 +21,6 @@ export const dashboardFacts: DashboardFact[] = [
   {
     icon: Code,
     title: "Embed any widget",
-    body: "Put a live chart or KPI on your own site, a client portal or a Notion page.",
+    body: "On Starter and up, put a live chart or KPI on your own site, a client portal or a Notion page.",
   },
 ];

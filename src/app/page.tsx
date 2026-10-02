@@ -11,6 +11,7 @@ import { Faq } from "@/components/sections/faq";
 import { faqs } from "@/lib/faqs";
 import { Cta } from "@/components/sections/cta";
 import { Reveal } from "@/components/reveal";
+import { PageDate } from "@/components/page-date";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
@@ -49,7 +50,7 @@ const jsonLd = graph(
     operatingSystem: "Web",
     description: site.description,
     url: site.url,
-    image: `${site.url}/OgImage.png`,
+    image: `${site.url}/new-og-image.webp`,
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },
     author: { "@id": AUTHOR_ID },
@@ -127,6 +128,7 @@ export default function HomePage() {
       <Reveal as="section">
         <Cta />
       </Reveal>
+      <PageDate published={PUBLISHED} modified={MODIFIED} />
     </>
   );
 }

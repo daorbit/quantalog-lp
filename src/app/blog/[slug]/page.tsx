@@ -48,7 +48,6 @@ export async function generateMetadata({
       modifiedTime: post.updated ?? post.date,
       authors: [post.author.name],
       tags: post.tags,
-
     },
     twitter: {
       card: "summary_large_image",
@@ -81,7 +80,7 @@ export default async function BlogPostPage({
       publisher: { "@id": ORG_ID },
       isPartOf: { "@id": SITE_ID },
       mainEntityOfPage: `${site.url}/blog/${post.slug}`,
-      image: `${site.url}/OgImage.png`,
+      image: `${site.url}/blog/${post.slug}/opengraph-image`,
       inLanguage: "en",
       keywords: post.tags.join(", "),
     },

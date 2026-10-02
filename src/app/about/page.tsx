@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     url: `${site.url}/about`,
     title: "About Quantalog",
     description: ABOUT_DESCRIPTION,
-    images: ["/OgImage.png"],
+    images: ["/new-og-image.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Quantalog",
     description: ABOUT_DESCRIPTION,
-    images: ["/OgImage.png"],
+    images: ["/new-og-image.webp"],
   },
 };
 
