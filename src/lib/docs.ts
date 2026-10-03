@@ -9,6 +9,8 @@ import { comparisons } from "@/content/docs/comparisons";
 import { funnels } from "@/content/docs/funnels";
 import { channels } from "@/content/docs/channels";
 import { conversions } from "@/content/docs/conversions";
+import { goals } from "@/content/docs/goals";
+import { dashboards } from "@/content/docs/dashboards";
 import { outbound } from "@/content/docs/outbound";
 import { errorTracking } from "@/content/docs/error-tracking";
 import { exporting } from "@/content/docs/exporting";
@@ -63,9 +65,11 @@ const DOCS: Doc[] = [
   retention,
   channels,
   conversions,
+  goals,
   outbound,
   errorTracking,
   exporting,
+  dashboards,
   publicDashboards,
   seo,
   searchVisibility,
