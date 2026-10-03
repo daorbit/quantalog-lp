@@ -873,6 +873,82 @@ section {
   .cohort-cell { opacity: 1; }
 }
 
+.dash-chart {
+  clip-path: inset(0 100% 0 0);
+}
+.dash-chart[data-active] {
+  animation: dash-reveal 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.15s both;
+}
+@keyframes dash-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.dash-kpis > * {
+  opacity: 0;
+}
+.dash-kpis[data-active] > * {
+  animation: chat-in 0.45s var(--ease-out-q) both;
+}
+.dash-kpis[data-active] > :nth-child(2) { animation-delay: 0.08s; }
+.dash-kpis[data-active] > :nth-child(3) { animation-delay: 0.16s; }
+.dash-kpis[data-active] > :nth-child(4) { animation-delay: 0.24s; }
+
+.goal-ring {
+  opacity: 0;
+}
+.goal-ring[data-active] {
+  opacity: 1;
+  animation: ring-fill 1.3s var(--ease-out-q) both;
+}
+.goal-rings > :nth-child(2) .goal-ring { animation-delay: 0.15s; }
+.goal-rings > :nth-child(3) .goal-ring { animation-delay: 0.3s; }
+@keyframes ring-fill {
+  from { stroke-dashoffset: 100; }
+}
+.goal-bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.goal-bar[data-active] {
+  animation: bar-grow 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.goal-list > :nth-child(2) .goal-bar { animation-delay: 0.12s; }
+.goal-list > :nth-child(3) .goal-bar { animation-delay: 0.24s; }
+.goal-status,
+.goal-pace {
+  opacity: 0;
+}
+.goal-status[data-active] {
+  animation: chat-in 0.35s var(--ease-out-q) 1s both;
+}
+.goal-pace[data-active] {
+  animation: fade-in-area 0.4s ease 0.9s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-chart,
+  .dash-chart[data-active] {
+    animation: none;
+    clip-path: none;
+  }
+  .dash-kpis > *,
+  .dash-kpis[data-active] > *,
+  .goal-ring,
+  .goal-ring[data-active],
+  .goal-status,
+  .goal-status[data-active],
+  .goal-pace,
+  .goal-pace[data-active] {
+    animation: none;
+    opacity: 1;
+  }
+  .goal-bar,
+  .goal-bar[data-active] {
+    animation: none;
+    transform: none;
+  }
+}
+
 .prose-q {
   color: var(--fg);
   font-size: 1rem;
@@ -2871,12 +2947,14 @@ body {
   text-align: center;
   white-space: nowrap;
   user-select: none;
-  padding-bottom: 0.08em;
+  padding-bottom: 0.24em;
+  margin-bottom: -0.08em;
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--fg) 88%, transparent) 0%,
-    color-mix(in srgb, var(--fg) 45%, transparent) 50%,
-    transparent 92%
+    color-mix(in srgb, var(--fg) 50%, transparent) 45%,
+    color-mix(in srgb, var(--fg) 14%, transparent) 80%,
+    transparent 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
