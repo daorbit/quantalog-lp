@@ -20,7 +20,7 @@ export const site = {
   legalName: "DA Orbit",
   phone: "+91 7082072347",
 
-  demoCall: "https://calendly.com/goswamiajay526/demo-call",
+  demoCall: "https://calendly.com/daorbit2k25/demo-call",
 
   contactFormSrc:
     "https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view",
