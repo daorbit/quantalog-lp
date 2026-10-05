@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -8,7 +8,6 @@ import {
   Position,
   BaseEdge,
   getSmoothStepPath,
-  useNodesState,
   type Node,
   type NodeProps,
   type Edge,
@@ -239,7 +238,7 @@ const initialEdges: Edge[] = [
   { id: "e4", type: "pulse", source: "events", target: "reports", data: { stage: 1 } },
 ];
 
-const FIT_VIEW = { padding: 0.06, maxZoom: 1.1 };
+const FIT_VIEW = { padding: 0.04, maxZoom: 1.45 };
 
 const NODE_EXTENT: [[number, number], [number, number]] = [
   [-160, -140],
@@ -255,26 +254,22 @@ export function HeroFlow({ compact = false }: { compact?: boolean }) {
 }
 
 function HeroFlowInner({ compact }: { compact: boolean }) {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const nodes = useMemo(() => initialNodes, []);
   const edges = useMemo(() => initialEdges, []);
-  const noop = useCallback(() => {}, []);
 
   return (
-    <div className="h-full w-full" aria-hidden={compact || undefined}>
+    <div className="hero-flow-static h-full w-full" aria-hidden={compact || undefined}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        onNodesChange={onNodesChange}
-        onConnect={noop}
         fitView
         fitViewOptions={FIT_VIEW}
         nodeExtent={NODE_EXTENT}
-        nodesDraggable={!compact}
+        nodesDraggable={false}
         nodesConnectable={false}
         elementsSelectable={false}
-
         nodesFocusable={false}
         edgesFocusable={false}
         disableKeyboardA11y
@@ -282,14 +277,12 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
         maxZoom={1.6}
         panOnDrag={false}
         panOnScroll={false}
-
         zoomOnScroll={false}
-        zoomOnPinch
+        zoomOnPinch={false}
         zoomOnDoubleClick={false}
         preventScrolling={false}
         proOptions={{ hideAttribution: true }}
-      >
-      </ReactFlow>
+      />
     </div>
   );
 }

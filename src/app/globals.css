@@ -3470,6 +3470,10 @@ body {
   animation: enter-rise 1s var(--ease-out-q) 0.42s both;
 }
 
+.hero-flow-static {
+  pointer-events: none;
+  user-select: none;
+}
 
 .hero-card {
   background:

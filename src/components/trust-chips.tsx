@@ -1,21 +1,11 @@
-import { Cookie, Feather, Gauge, ShieldCheck } from "lucide-react";
-
-const chips = [
-  { icon: Cookie, label: "No cookies set" },
-  { icon: ShieldCheck, label: "No personal data stored" },
-  { icon: Feather, label: "Under 1 KB tracker" },
-  { icon: Gauge, label: "No consent banner" },
-];
+const chips = ["No cookies set", "No personal data stored", "Under 1 KB tracker", "No consent banner"];
 
 export function TrustChips({ className = "justify-center lg:justify-start" }: { className?: string }) {
   return (
-    <ul className={`flex flex-wrap items-center gap-x-6 gap-y-2 ${className}`}>
-      {chips.map(({ icon: Icon, label }) => (
-        <li
-          key={label}
-          className="flex items-center gap-1.5 text-[13px] font-medium text-fg-muted"
-        >
-          <Icon className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+    <ul className={`flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[13px] text-fg-faint ${className}`}>
+      {chips.map((label, i) => (
+        <li key={label} className="flex items-center gap-3">
+          {i > 0 && <span className="h-0.75 w-0.75 rounded-full bg-border-strong" aria-hidden="true" />}
           {label}
         </li>
       ))}
