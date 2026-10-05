@@ -7,9 +7,9 @@ const chips = [
   { icon: Gauge, label: "No consent banner" },
 ];
 
-export function TrustChips() {
+export function TrustChips({ className = "justify-center lg:justify-start" }: { className?: string }) {
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:justify-start">
+    <ul className={`flex flex-wrap items-center gap-x-6 gap-y-2 ${className}`}>
       {chips.map(({ icon: Icon, label }) => (
         <li
           key={label}

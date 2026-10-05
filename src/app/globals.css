@@ -3466,3 +3466,68 @@ body {
   box-shadow: inset 0 0 0 1px var(--hairline);
 }
 
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 25%, transparent 75%);
+}
+
+.hero-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 45% 35% at 50% 0%, var(--hairline), transparent 70%);
+}
+
+.hero-window {
+  animation: enter-rise 1s var(--ease-out-q) 0.42s both;
+}
+
+.hero-frame {
+  border-radius: 1.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow:
+    0 0 0 1px var(--hairline),
+    0 1px 0 0 color-mix(in srgb, var(--fg) 6%, transparent) inset,
+    var(--shadow-lg);
+  overflow: hidden;
+}
+
+.hero-canvas {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, color-mix(in srgb, var(--fg) 3.5%, transparent), transparent 70%),
+    var(--bg);
+}
+
+.hero-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 80px 10px var(--bg);
+}
+
+.hero-card {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--fg) 3%, transparent), transparent 40%),
+    var(--surface-raised);
+  box-shadow:
+    0 1px 0 0 color-mix(in srgb, var(--fg) 5%, transparent) inset,
+    var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-window {
+    animation: none;
+  }
+}
