@@ -4,6 +4,8 @@ import { Button } from "../ui";
 import { Words } from "../words";
 import { HeroFlowLazy } from "../hero-flow-lazy";
 import { TrustChips } from "../trust-chips";
+import { BookDemoButton } from "../book-demo-button";
+import { ProviderSignup } from "../provider-signup";
 
 export function Hero() {
   return (
@@ -53,16 +55,20 @@ export function Hero() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Button>
 
-              <Button
-                href={`${site.app}/login`}
-                variant="secondary"
-                size="lg"
-                track="try_demo"
-                trackProps={{ location: "hero" }}
-              >
-                Try the live demo
-              </Button>
+              <BookDemoButton location="hero" />
             </div>
+
+            <ProviderSignup location="hero" className="rise rise-4 mt-6" />
+
+            <p className="rise rise-5 mt-5 text-[13px] text-fg-faint">
+              Rather look around first?{" "}
+              <a
+                href={`${site.app}/login`}
+                className="font-medium text-fg-muted underline-offset-4 transition-colors duration-200 hover:text-fg hover:underline"
+              >
+                Open the live demo
+              </a>
+            </p>
 
             <div className="rise rise-5 mt-8">
               <TrustChips />

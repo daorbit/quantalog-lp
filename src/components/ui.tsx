@@ -13,6 +13,10 @@ type ButtonProps = {
   track?: string;
 
   trackProps?: Record<string, unknown>;
+
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+
+  onIntent?: () => void;
 };
 
 const variants = {
@@ -35,20 +39,28 @@ export function Button({
   className = "",
   track: event,
   trackProps,
+  onClick: handleClick,
+  onIntent,
 }: ButtonProps) {
   const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   const internal = href.startsWith("/") || href.startsWith("#");
 
-  const onClick = event
-    ? () => track(event, trackProps)
-    : undefined;
+  const onClick =
+    event || handleClick
+      ? (e: React.MouseEvent<HTMLAnchorElement>) => {
+          if (event) track(event, trackProps);
+          handleClick?.(e);
+        }
+      : undefined;
+
+  const intent = onIntent ? { onPointerEnter: onIntent, onFocus: onIntent } : {};
 
   return internal ? (
-    <Link href={href} className={cls} onClick={onClick}>
+    <Link href={href} className={cls} onClick={onClick} {...intent}>
       {children}
     </Link>
   ) : (
-    <a href={href} className={cls} onClick={onClick}>
+    <a href={href} className={cls} onClick={onClick} {...intent}>
       {children}
     </a>
   );
