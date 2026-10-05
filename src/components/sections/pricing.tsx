@@ -9,6 +9,7 @@ import { OrbitIcon } from "../orbit/orbit-icon";
 import { BillingControls } from "../pricing/billing-controls";
 import { OrbitPlanCard } from "../pricing/orbit-plan-card";
 import { BillingFacts } from "../pricing/billing-facts";
+import { ProviderSignup } from "../provider-signup";
 import { site } from "@/lib/site";
 import { detectCurrency } from "@/lib/plans";
 import type { Currency, ResolvedOrbitPlan, ResolvedPlan } from "@/lib/plans";
@@ -132,7 +133,9 @@ export function Pricing() {
           )}
         </div>
 
-        <div className="mt-10 text-center">
+        <ProviderSignup location="home_pricing" className="mt-10" />
+
+        <div className="mt-8 text-center">
           <a
             href="/plans"
             className="group inline-flex items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"

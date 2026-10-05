@@ -15,6 +15,7 @@ import { FaqList } from "@/components/faq-list";
 import { CompareTable } from "@/components/compare/compare-table";
 import { tally } from "@/components/compare/compare-utils";
 import { JsonLd } from "@/components/json-ld";
+import { ProviderSignup } from "@/components/provider-signup";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 
 type Params = { slug: string };
@@ -143,6 +144,7 @@ export default async function ComparisonPage({
               See the live demo
             </Button>
           </div>
+          <ProviderSignup location="compare_hero" className="mt-6" />
         </div>
       </section>
 

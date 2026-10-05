@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui";
+import { ProviderSignup } from "../provider-signup";
 import { site } from "@/lib/site";
 
 export function CompareCta({ rival }: { rival: string }) {
@@ -28,6 +29,7 @@ export function CompareCta({ rival }: { rival: string }) {
             See the live demo
           </Button>
         </div>
+        <ProviderSignup location="compare_cta" className="mt-6" />
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { nav, productNav, site } from "@/lib/site";
 import { track } from "@/lib/track";
+import { ProviderSignup } from "../provider-signup";
 
 export function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
@@ -30,6 +31,8 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             ))}
           </ul>
         </div>
+
+        <ProviderSignup location="mobile_menu" align="start" className="rise v-d6 mt-10" />
       </nav>
 
       <div className="mobile-menu__actions">

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button, Eyebrow } from "@/components/ui";
+import { ProviderSignup } from "@/components/provider-signup";
 import type { ExploreTone } from "@/components/explore/explore-items";
 import { site } from "@/lib/site";
 
@@ -42,6 +43,9 @@ export function FeatureHero({
             {secondary.label}
           </Button>
         </div>
+        {!primary.href && (
+          <ProviderSignup location="feature_hero" className="rise rise-4 mt-6" />
+        )}
       </div>
 
       <div

@@ -50,7 +50,7 @@ export function Hero() {
               <BookDemoButton location="hero" />
             </div>
 
-            <ProviderSignup location="hero" className="rise rise-5 mt-7 xl:justify-start" />
+            <ProviderSignup location="hero" align="responsive" className="rise rise-5 mt-7" />
 
             <div className="rise rise-5 mt-12 w-full border-t border-border pt-6">
               <TrustChips className="justify-center xl:justify-start" />

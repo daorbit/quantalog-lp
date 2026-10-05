@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
+import { ProviderSignup } from "@/components/provider-signup";
 import { site } from "@/lib/site";
 
 export function PostCta() {
@@ -27,6 +28,7 @@ export function PostCta() {
           View plans
         </Button>
       </div>
+      <ProviderSignup location="blog_post" className="mt-6" />
     </section>
   );
 }

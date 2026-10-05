@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui";
+import { ProviderSignup } from "../provider-signup";
 import { site } from "@/lib/site";
 
 export function Cta({
@@ -45,6 +46,8 @@ export function Cta({
             {secondary.label}
           </Button>
         </div>
+
+        <ProviderSignup location={location} className="mt-6" />
       </div>
     </section>
   );

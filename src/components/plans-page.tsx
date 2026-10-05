@@ -6,6 +6,7 @@ import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "./plan-i
 import { PlanCard } from "./plan-card";
 import { usePlans } from "./plans-provider";
 import { IntegrationLogo } from "./integration-logos";
+import { ProviderSignup } from "./provider-signup";
 import { site } from "@/lib/site";
 import {
   CURRENCIES, FEATURED_SLUG, MAX_SITES_PER_WORKSPACE,
@@ -194,6 +195,8 @@ export function PlansPage() {
           ))}
         </div>
       )}
+
+      {plans && <ProviderSignup location="plans" className="mt-8" />}
 
       {plans && (
         <div className="mt-20 border-t border-border pt-14">

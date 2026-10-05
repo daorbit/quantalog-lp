@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button, Eyebrow } from "../ui";
+import { ProviderSignup } from "../provider-signup";
 import { site } from "@/lib/site";
 import { ABOUT_DESCRIPTION } from "./about-data";
 
@@ -31,6 +32,7 @@ export function AboutHero() {
             Contact us
           </Button>
         </div>
+        <ProviderSignup location="about_hero" className="mt-6" />
       </div>
     </section>
   );
