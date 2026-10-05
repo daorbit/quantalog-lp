@@ -4,8 +4,6 @@ import { useCallback, useMemo } from "react";
 import {
   ReactFlow,
   ReactFlowProvider,
-  Background,
-  BackgroundVariant,
   Handle,
   Position,
   BaseEdge,
@@ -172,7 +170,7 @@ const initialNodes: Node[] = [
   {
     id: "events",
     type: "card",
-    position: { x: 280, y: 40 },
+    position: { x: 270, y: 40 },
     data: {
       title: "Cookieless events",
       icon: "shield",
@@ -190,7 +188,7 @@ const initialNodes: Node[] = [
   {
     id: "live",
     type: "card",
-    position: { x: 580, y: 0 },
+    position: { x: 540, y: 0 },
     data: {
       title: "Live dashboard",
       icon: "activity",
@@ -205,7 +203,7 @@ const initialNodes: Node[] = [
   {
     id: "seo",
     type: "card",
-    position: { x: 580, y: 150 },
+    position: { x: 540, y: 150 },
     data: {
       title: "SEO audits",
       icon: "search",
@@ -220,7 +218,7 @@ const initialNodes: Node[] = [
   {
     id: "reports",
     type: "card",
-    position: { x: 580, y: 290 },
+    position: { x: 540, y: 290 },
     data: {
       title: "Email reports",
       icon: "mail",
@@ -241,7 +239,7 @@ const initialEdges: Edge[] = [
   { id: "e4", type: "pulse", source: "events", target: "reports", data: { stage: 1 } },
 ];
 
-const FIT_VIEW = { padding: 0.22, maxZoom: 1.05 };
+const FIT_VIEW = { padding: 0.06, maxZoom: 1.1 };
 
 const NODE_EXTENT: [[number, number], [number, number]] = [
   [-160, -140],
@@ -291,7 +289,6 @@ function HeroFlowInner({ compact }: { compact: boolean }) {
         preventScrolling={false}
         proOptions={{ hideAttribution: true }}
       >
-        <Background variant={BackgroundVariant.Dots} gap={28} size={1} color="var(--hairline)" />
       </ReactFlow>
     </div>
   );
