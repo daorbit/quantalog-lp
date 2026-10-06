@@ -295,8 +295,8 @@ export function PrivacyBody() {
 
       <H2 id="contact">20. Contact</H2>
       <P>
-        For any privacy question or request, email <A href={`mailto:${site.email}`}>{site.email}</A>{" "}
-        or call {site.phone}. See also our <A href="/terms">Terms of Service</A>.
+        For any privacy question or request, email <A href={`mailto:${site.email}`}>{site.email}</A>.
+        See also our <A href="/terms">Terms of Service</A>.
       </P>
     </>
   );

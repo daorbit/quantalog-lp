@@ -18,7 +18,6 @@ export const site = {
   github: "https://github.com/quantalog",
   email: "daorbit2k25@gmail.com",
   legalName: "DA Orbit",
-  phone: "+91 7082072347",
 
   demoCall: "https://calendly.com/daorbit2k25/demo-call",
 

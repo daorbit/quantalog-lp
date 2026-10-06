@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { site } from "@/lib/site";
 
 export function LegalContact() {
@@ -15,13 +15,6 @@ export function LegalContact() {
         >
           <Mail className="h-4 w-4 text-accent" aria-hidden="true" />
           {site.email}
-        </a>
-        <a
-          href={`tel:${site.phone.replace(/\s/g, "")}`}
-          className="inline-flex items-center gap-2 font-medium text-fg transition-colors hover:text-accent"
-        >
-          <Phone className="h-4 w-4 text-accent" aria-hidden="true" />
-          {site.phone}
         </a>
       </div>
     </aside>

@@ -240,8 +240,7 @@ export function TermsBody() {
 
       <H2 id="contact">20. Contact</H2>
       <P>
-        Questions about these Terms go to <A href={`mailto:${site.email}`}>{site.email}</A> or{" "}
-        {site.phone}.
+        Questions about these Terms go to <A href={`mailto:${site.email}`}>{site.email}</A>.
       </P>
     </>
   );

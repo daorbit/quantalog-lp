@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { site } from "@/lib/site";
 import { aboutFaqs, companyFacts } from "./about-data";
 
@@ -28,13 +28,6 @@ export function AboutCompany() {
             >
               <Mail className="h-4 w-4 text-accent" aria-hidden="true" />
               {site.email}
-            </a>
-            <a
-              href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="flex items-center gap-2.5 text-fg transition-colors hover:text-accent"
-            >
-              <Phone className="h-4 w-4 text-accent" aria-hidden="true" />
-              {site.phone}
             </a>
           </div>
         </div>

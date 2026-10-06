@@ -227,7 +227,7 @@ export function DpaBody() {
       <H2 id="contact">16. Contact</H2>
       <P>
         For questions about this DPA or to request a signed copy, email{" "}
-        <A href={`mailto:${site.email}`}>{site.email}</A> or call {site.phone}. See also our{" "}
+        <A href={`mailto:${site.email}`}>{site.email}</A>. See also our{" "}
         <A href="/privacy">Privacy Policy</A>.
       </P>
     </>

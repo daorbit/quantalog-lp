@@ -110,14 +110,6 @@ export default function ContactPage() {
           — it reaches the same place.
         </p>
 
-        <p className="mt-2 text-center text-sm text-fg-muted">
-          Or call{" "}
-          <a href={`tel:${site.phone}`} className="text-accent hover:underline">
-            {site.phone}
-          </a>
-          .
-        </p>
-
         <p className="mt-8 text-center text-xs text-fg-faint">
           Quantalog is operated by {site.legalName}.
         </p>
