@@ -1,4 +1,4 @@
-import { siClaude, siGoogle, siPerplexity, type SimpleIcon } from "simple-icons";
+import { siClaude, siGooglegemini, siPerplexity, type SimpleIcon } from "simple-icons";
 
 export type AiAssistant = {
   id: string;
@@ -18,7 +18,7 @@ export const AI_ASSISTANTS: readonly AiAssistant[] = [
   { id: "chatgpt", name: "ChatGPT", icon: OPENAI_ICON, url: (p) => `https://chatgpt.com/?hints=search&q=${q(p)}` },
   { id: "claude", name: "Claude", icon: siClaude, url: (p) => `https://claude.ai/new?q=${q(p)}` },
   { id: "perplexity", name: "Perplexity", icon: siPerplexity, url: (p) => `https://www.perplexity.ai/search/new?q=${q(p)}` },
-  { id: "google", name: "Google AI Mode", icon: siGoogle, url: (p) => `https://www.google.com/search?udm=50&q=${q(p)}` },
+  { id: "gemini", name: "Gemini", icon: siGooglegemini, url: (p) => `https://gemini.google.com/app?q=${q(p)}` },
 ];
 
 export function summarisePrompt(url: string): string {

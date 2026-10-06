@@ -22,16 +22,15 @@ export function SummariseWith({ variant = "inline" }: { variant?: "inline" | "st
       }
     >
       <span className="text-xs font-medium text-fg-faint">Summarize with</span>
-      <div className="flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center gap-1.5">
         <button
           type="button"
           onClick={() => openOrbit({ ask: SUMMARISE_PROMPT })}
           aria-label="Summarize with Orbit AI"
           title="Orbit AI"
-          className="inline-flex h-8 items-center gap-1.5 rounded-full border border-border bg-bg-subtle px-3 text-xs font-medium text-fg-muted transition-colors hover:border-accent/40 hover:bg-accent/10 hover:text-accent"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-bg-subtle text-fg-muted transition-colors hover:border-accent/40 hover:bg-accent/10 hover:text-accent"
         >
           <OrbitMark size={14} />
-          Orbit AI
         </button>
         {AI_ASSISTANTS.map((assistant) => (
           <button
