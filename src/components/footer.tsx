@@ -45,6 +45,7 @@ const columns = [
 const legal = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },
+  { href: "/dpa", label: "Data Processing Addendum" },
   { href: "/contact", label: "Contact" },
   { href: "/docs", label: "Docs" },
 ];

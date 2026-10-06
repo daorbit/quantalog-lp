@@ -31,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.url}/contact`, lastModified: built, changeFrequency: "yearly", priority: 0.5 },
     { url: `${site.url}/privacy`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
     { url: `${site.url}/terms`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${site.url}/dpa`, lastModified: built, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const docRoutes: MetadataRoute.Sitemap = docs.map((doc) => ({
