@@ -21,6 +21,9 @@ import { leadCapture } from "@/content/docs/lead-capture";
 import { formsAiAndTheming } from "@/content/docs/forms-ai-and-theming";
 import { formsEntriesAndLinks } from "@/content/docs/forms-entries-and-links";
 import { formsAdvancedFields } from "@/content/docs/forms-advanced-fields";
+import { formsLogic } from "@/content/docs/forms-logic";
+import { formsNotificationsAndApps } from "@/content/docs/forms-notifications-and-apps";
+import { formsSettingsAndAnalytics } from "@/content/docs/forms-settings-and-analytics";
 import { seo } from "@/content/docs/seo";
 import { searchVisibility } from "@/content/docs/search-visibility";
 import { retention } from "@/content/docs/retention";
@@ -78,7 +81,10 @@ const DOCS: Doc[] = [
   leadCapture,
   formsAiAndTheming,
   formsEntriesAndLinks,
+  formsLogic,
   formsAdvancedFields,
+  formsNotificationsAndApps,
+  formsSettingsAndAnalytics,
   segmentsMarkers,
   orbitAi,
   workspaceMembers,

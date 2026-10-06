@@ -51,10 +51,11 @@ function Body() {
         </Li>
       </Ul>
       <P>
-        Any field can be shown conditionally: under <b>Show this field only if</b>,
-        pick another field and a condition. A hidden field is never required and
-        its answer is never submitted, so a branch nobody took leaves nothing
-        behind.
+        Any field can be shown conditionally, whole steps can be skipped, and
+        the thank-you page and alert emails can change with the answers. A
+        hidden field is never required and its answer is never submitted, so a
+        branch nobody took leaves nothing behind. See{" "}
+        <a href="/docs/forms-logic">Conditional logic</a>.
       </P>
       <P>
         Rather than build every field yourself, describe the form to Orbit
@@ -71,9 +72,36 @@ function Body() {
         payment clears.
       </P>
       <P>
-        Payments run through <b>Razorpay</b>, using your own Razorpay account.
-        The money goes directly to you; it does not pass through Quantalog, and
-        we take no cut of it beyond your normal plan.
+        Payments run through your own <b>Razorpay</b>, <b>Cashfree</b> or{" "}
+        <b>PayU</b> account. The money goes directly to you; it does not pass
+        through Quantalog, and we take no cut of it beyond your normal plan.
+      </P>
+
+      <H3 id="gateways">Choosing a gateway</H3>
+      <Ul>
+        <Li>
+          Connect any or all of the three under <b>Payments</b>. The one you
+          mark as default is used by every payment field that doesn&apos;t
+          choose its own.
+        </Li>
+        <Li>
+          To charge one form through a different gateway, pick it under{" "}
+          <b>Gateway</b> in that payment field&apos;s properties. Click it
+          again to go back to the workspace default.
+        </Li>
+        <Li>
+          Cashfree and PayU need the payer&apos;s mobile number. If the form
+          has no phone field, a <b>Mobile number</b> box appears beside the
+          pay button; it is passed to the gateway but not saved as an answer.
+        </Li>
+        <Li>
+          Razorpay and Cashfree open a payment window over the form. PayU
+          takes the respondent to its own page and brings them back afterwards.
+        </Li>
+      </Ul>
+      <P>
+        The steps below use Razorpay; Cashfree and PayU follow the same three
+        steps in their own panel, each showing its own webhook URL.
       </P>
 
       <H3 id="connecting">Connecting Razorpay</H3>
@@ -202,9 +230,11 @@ function Body() {
       <P>
         Every form records where its submissions came from, so the entries
         screen can break responses down by referring site alongside the view and
-        completion-rate figures. For triaging what comes in, and for letting
-        a respondent edit what they already sent, see{" "}
-        <a href="/docs/forms-entries-and-links">Entries, resume &amp; edit
+        completion-rate figures — see{" "}
+        <a href="/docs/forms-settings-and-analytics#analytics">Form
+        analytics</a>. For working leads through a pipeline, and for letting a
+        respondent edit what they already sent, see{" "}
+        <a href="/docs/forms-entries-and-links">Entries, pipeline &amp;
         links</a>.
       </P>
 
@@ -218,6 +248,13 @@ function Body() {
       <P>
         On a paid form, nothing is sent until the payment clears — a confirmation
         for a payment that failed would be worse than no confirmation at all.
+      </P>
+      <P>
+        Emails go out through an email app you connect (Brevo or your own
+        SMTP), and new responses can also reach the Quantalog bell, Slack and
+        Discord. Setup for all of these is in{" "}
+        <a href="/docs/forms-notifications-and-apps">Notifications &amp;
+        integrations</a>.
       </P>
 
       <H2 id="webhook">Sending submissions to a webhook</H2>
@@ -291,6 +328,31 @@ function Body() {
         shows up in your responses.
       </P>
 
+      <H2 id="more">More on forms</H2>
+      <Ul>
+        <Li>
+          <a href="/docs/forms-ai-and-theming">AI building &amp; theming</a>
+        </Li>
+        <Li>
+          <a href="/docs/forms-entries-and-links">Entries, pipeline &amp;
+          links</a>
+        </Li>
+        <Li>
+          <a href="/docs/forms-logic">Conditional logic</a>
+        </Li>
+        <Li>
+          <a href="/docs/forms-advanced-fields">Advanced field types</a>
+        </Li>
+        <Li>
+          <a href="/docs/forms-notifications-and-apps">Notifications &amp;
+          integrations</a>
+        </Li>
+        <Li>
+          <a href="/docs/forms-settings-and-analytics">Settings, quizzes &amp;
+          analytics</a>
+        </Li>
+      </Ul>
+
       <Callout>
         How many forms you can build, and how many responses you can collect
         each month, depends on your plan. Notification emails and file uploads
@@ -304,7 +366,7 @@ export const leadCapture: Doc = {
   slug: "lead-capture",
   title: "Lead capture",
   description:
-    "Build forms, embed them anywhere, take payments through your own Razorpay account, and send every submission to a webhook — with responses landing beside the analytics that produced them.",
+    "Build forms, embed them anywhere, take payments through your own Razorpay, Cashfree or PayU account, and send every submission to a webhook — with responses landing beside the analytics that produced them.",
   category: "Tracking",
   order: 17,
   Body,
