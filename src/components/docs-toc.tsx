@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
-import { openOrbit, SUMMARISE_PROMPT } from "./orbit/orbit-open";
-import { OrbitMark } from "./orbit/orbit-mark";
+import { SummariseWith } from "./orbit/summarise-with";
 
 type Heading = { id: string; text: string; depth: 2 | 3 };
 
@@ -68,14 +67,7 @@ export function DocsToc() {
       )}
 
       <div className="docs-toc-actions">
-        <button
-          type="button"
-          className="docs-toc-action"
-          onClick={() => openOrbit({ ask: SUMMARISE_PROMPT })}
-        >
-          <OrbitMark size={14} />
-          Summarize with Orbit AI
-        </button>
+        <SummariseWith variant="stacked" />
         <button
           type="button"
           className="docs-toc-action"

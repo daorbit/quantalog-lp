@@ -16,7 +16,7 @@ export function BrandGlyph({
   size = 16,
   label,
 }: {
-  icon: SimpleIcon;
+  icon: Pick<SimpleIcon, "path" | "hex">;
   size?: number;
   label?: string;
 }) {
