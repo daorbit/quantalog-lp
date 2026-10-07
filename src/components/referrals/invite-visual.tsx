@@ -1,33 +1,25 @@
-import { Copy, Link2 } from "lucide-react";
-import { card } from "../setup/setup-visuals";
+"use client";
+
+import { useCycle } from "../use-cycle";
+import { VisualPill } from "../explore/visuals/visual-pill";
 import { SAMPLE_CODE, shareChannels } from "./referral-data";
 
+const states = ["Link copied", ...shareChannels.map((c) => `Shared on ${c}`)];
+
 export function InviteVisual() {
+  const { ref, index } = useCycle<HTMLDivElement>(states.length, 2200);
+
   return (
-    <div className={card}>
-      <p className="text-[12px] text-fg-faint">Your invite link</p>
-      <div className="mt-1.5 flex items-center gap-2 rounded-full bg-bg-subtle py-1.5 pl-3 pr-1.5 text-[13px] dark:bg-surface-raised">
-        <Link2 className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-        <span className="min-w-0 truncate text-fg-muted">
-          …/signup?ref=<span className="font-mono text-fg">{SAMPLE_CODE}</span>
-        </span>
-        <span className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-cta px-3 py-1 text-[12px] font-semibold text-cta-fg">
-          <Copy className="h-3 w-3" aria-hidden="true" />
-          Copy
-        </span>
-      </div>
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-3 text-[12px]">
-        <div className="flex flex-wrap gap-1.5">
-          {shareChannels.map((c) => (
-            <span key={c} className="rounded-full border border-border px-2.5 py-1 text-fg-muted">
-              {c}
-            </span>
-          ))}
-        </div>
-        <span className="text-fg-muted">
-          Code <span className="ml-1 font-mono text-fg">{SAMPLE_CODE}</span>
-        </span>
-      </div>
+    <div ref={ref} className="flex flex-col items-center text-center">
+      <VisualPill swapKey={states[index]} live>
+        {states[index]}
+      </VisualPill>
+      <p className="mt-5 font-mono text-[2.75rem] font-semibold leading-none tracking-tight text-fg sm:text-[4.5rem]">
+        {SAMPLE_CODE}
+      </p>
+      <p className="mt-4 text-[15px] text-fg-muted">
+        …/signup?ref=<span className="text-fg">{SAMPLE_CODE}</span>
+      </p>
     </div>
   );
 }

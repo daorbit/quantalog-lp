@@ -27,18 +27,12 @@ export const GOAL_TONES: Record<GoalTone, { ring: string; bar: string }> = {
   blue: { ring: "stroke-[#3b82f6]", bar: "bg-[#3b82f6]" },
 };
 
-export const STATUS_PILLS: Record<GoalStatus, string> = {
-  "On pace": "bg-accent-quiet text-accent",
-  Behind: "bg-[#f59e0b]/15 text-[#d97706]",
-  Hit: "bg-[#3b82f6]/15 text-[#3b82f6]",
-};
-
 export const RING_RADII = [52, 40, 28];
 
 export const GOAL_PERIODS: GoalPeriod[] = [
   {
     label: "This month",
-    summary: "2 of 3 on track",
+    summary: "2 of 3",
     note: "Day 21 of 30 · the line marks today's pace",
     pace: "left-[70%]",
     goals: [
@@ -73,7 +67,7 @@ export const GOAL_PERIODS: GoalPeriod[] = [
   },
   {
     label: "This quarter",
-    summary: "3 of 3 on track",
+    summary: "3 of 3",
     note: "Week 9 of 13 · the line marks today's pace",
     pace: "left-[69%]",
     goals: [

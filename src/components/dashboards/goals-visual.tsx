@@ -1,40 +1,32 @@
 "use client";
 
 import { useCycle } from "../use-cycle";
+import { VisualPill } from "../explore/visuals/visual-pill";
 import { GoalRing } from "./goal-ring";
-import { GoalRow } from "./goal-row";
 import { GOAL_PERIODS, GOAL_TONES, RING_RADII } from "./goal-periods";
 
 export function GoalsVisual() {
-  const { ref, index, inView } = useCycle<HTMLSpanElement>(GOAL_PERIODS.length, 4800);
+  const { ref, index, inView } = useCycle<HTMLDivElement>(GOAL_PERIODS.length, 4800);
   const period = GOAL_PERIODS[index];
 
   return (
-    <span ref={ref} className="block rounded-2xl border border-border bg-surface p-4 shadow-soft dark:bg-bg-subtle">
-      <span className="flex items-center gap-4">
-        <svg key={`r${index}`} viewBox="0 0 120 120" className="goal-rings h-24 w-24 shrink-0 sm:h-28 sm:w-28" aria-hidden="true">
+    <div ref={ref} className="flex flex-col items-center">
+      <div className="relative h-44 w-44 sm:h-60 sm:w-60">
+        <svg key={index} viewBox="0 0 120 120" className="goal-rings h-full w-full" aria-hidden="true">
           {period.goals.map((g, i) => (
-            <GoalRing
-              key={g.name}
-              r={RING_RADII[i]}
-              progress={g.progress}
-              className={GOAL_TONES[g.tone].ring}
-              active={inView}
-            />
+            <GoalRing key={g.name} r={RING_RADII[i]} progress={g.progress} className={GOAL_TONES[g.tone].ring} active={inView} />
           ))}
         </svg>
-        <span key={`t${index}`} className="chat-in block min-w-0">
-          <span className="block text-[12px] text-fg-muted">{period.label}</span>
-          <span className="mt-0.5 block text-[22px] font-semibold tracking-tight text-fg">{period.summary}</span>
-          <span className="mt-1 block text-[12px] text-fg-muted">{period.note}</span>
-        </span>
-      </span>
-
-      <span key={period.label} className="goal-list mt-4 flex flex-col gap-3 border-t border-border pt-4">
-        {period.goals.map((g) => (
-          <GoalRow key={g.name} goal={g} pace={period.pace} active={inView} />
-        ))}
-      </span>
-    </span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span key={period.summary} className="chat-in text-[15px] font-semibold leading-none tracking-tight tabular-nums text-fg sm:text-[20px]">
+            {period.summary}
+          </span>
+          <span className="mt-1 text-[10px] leading-none text-fg-muted sm:text-[11px]">on track</span>
+        </div>
+      </div>
+      <div className="mt-5">
+        <VisualPill swapKey={period.label}>{period.label}</VisualPill>
+      </div>
+    </div>
   );
 }

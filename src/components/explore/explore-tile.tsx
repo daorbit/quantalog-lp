@@ -30,7 +30,7 @@ export function ExploreTile({ item }: { item: ExploreItem }) {
   const { Visual } = item;
 
   return (
-    <article className={`explore-tile tone-${item.tone} flex min-h-[30rem] flex-col items-center overflow-hidden px-5 pt-10 text-center sm:min-h-[40rem] sm:pt-14`}>
+    <article className={`explore-tile tone-${item.tone} flex h-full min-h-[30rem] flex-col items-center overflow-hidden px-5 pt-10 text-center sm:min-h-[40rem] sm:pt-14`}>
       <p className="inline-flex items-center gap-2 text-[15px] font-semibold text-fg-muted">
         <item.icon className="h-[18px] w-[18px] text-accent" />
         {item.label}

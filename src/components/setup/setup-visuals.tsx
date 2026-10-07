@@ -1,7 +1,7 @@
 import { Check, Globe, Zap } from "lucide-react";
 import { SITE_KEY } from "./setup-steps";
 
-export const card = "rounded-2xl border border-border bg-surface p-4 shadow-soft dark:bg-bg-subtle";
+const card = "rounded-2xl border border-border bg-surface p-4 shadow-soft dark:bg-bg-subtle";
 
 const BARS = ["h-3", "h-5", "h-4", "h-7", "h-5", "h-8", "h-6", "h-9", "h-7", "h-10"];
 
