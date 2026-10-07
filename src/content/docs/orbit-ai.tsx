@@ -151,6 +151,6 @@ export const orbitAi: Doc = {
   description:
     "The support assistant built into the dashboard: what it knows, what it cannot see, and how it helps you fix SEO issues.",
   category: "Getting started",
-  order: 5,
+  order: 6,
   Body,
 };

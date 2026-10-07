@@ -32,6 +32,7 @@ import { apiReference } from "@/content/docs/api-reference";
 import { privacy } from "@/content/docs/privacy";
 import { demo } from "@/content/docs/demo";
 import { billing } from "@/content/docs/billing";
+import { referrals } from "@/content/docs/referrals";
 import { orbitAi } from "@/content/docs/orbit-ai";
 import { segmentsMarkers } from "@/content/docs/segments-markers";
 import { branding } from "@/content/docs/branding";
@@ -58,6 +59,7 @@ const DOCS: Doc[] = [
   overview,
   demo,
   billing,
+  referrals,
   tracking,
   mobileTracking,
   scriptOptions,

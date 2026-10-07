@@ -7,6 +7,7 @@ import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { steps as setupSteps } from "@/components/setup/setup-steps";
 import { Pricing } from "@/components/sections/pricing";
+import { Referrals } from "@/components/sections/referrals";
 import { Faq } from "@/components/sections/faq";
 import { faqs } from "@/lib/faqs";
 import { Cta } from "@/components/sections/cta";
@@ -18,7 +19,7 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-01";
+const MODIFIED = "2026-10-07";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -90,6 +91,7 @@ const jsonLd = graph(
       "Form payments through Razorpay, Cashfree and PayU",
       "Form notification email through Brevo or your own SMTP server",
       "Submission webhooks for Zapier, Make and custom endpoints",
+      "Referral program with discount coupons for every invite that joins",
     ],
   },
   {
@@ -124,6 +126,7 @@ export default function HomePage() {
       <HowItWorks />
       <DashboardsGoals />
       <Pricing />
+      <Referrals />
       <Faq />
       <Reveal as="section">
         <Cta />

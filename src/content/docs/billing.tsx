@@ -1,5 +1,5 @@
 import type { Doc } from "@/lib/docs";
-import { H2, P, Ul, Li, Callout, Code } from "@/components/prose";
+import { H2, P, Ul, Li, Callout, Code, A } from "@/components/prose";
 
 function Body() {
   return (
@@ -19,7 +19,10 @@ function Body() {
       <Ul>
         <Li>Prices can be shown and charged in INR or USD.</Li>
         <Li>Yearly billing is twelve months at the price of ten.</Li>
-        <Li>A coupon code, if you have one, is applied before payment.</Li>
+        <Li>
+          A coupon code, including one earned by <A href="/docs/referrals">referring a friend</A>,
+          is applied before payment.
+        </Li>
         <Li>The Free plan needs no payment at all and is assigned instantly.</Li>
       </Ul>
 

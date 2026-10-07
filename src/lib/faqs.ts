@@ -19,6 +19,10 @@ export const faqCategories: FaqCategory[] = [
         q: "Does the script slow my site down?",
         a: "It is under a kilobyte, loads with the async attribute, and sends events with navigator.sendBeacon, so it never blocks rendering or delays navigation.",
       },
+      {
+        q: "Is there a referral program?",
+        a: "Yes, on every plan including Free. Your personal invite link is under Billing, on the Refer & earn tab. When someone creates an account through it, you get a single-use discount coupon for your next plan or add-on purchase, tied to your account. The current discount and how long the coupon stays valid are shown on that tab.",
+      },
     ],
   },
   {
