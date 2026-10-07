@@ -16,8 +16,33 @@ function Body() {
       <P>
         Open <b>Lead capture</b> in the sidebar and choose <b>New form</b>.
         The palette on the left holds every field type; drag one onto the canvas
-        and click it to open its settings.
+        and click it to open its settings. An accent line shows exactly where a
+        dragged field will land.
       </P>
+      <Ul>
+        <Li>
+          <b>Insert anywhere</b> — hover the gap between two fields and click
+          <b> +</b>, or press <Code>/</Code>, to search every field type and
+          insert one in place.
+        </Li>
+        <Li>
+          <b>Edit text in place</b> — click the form title, description, any
+          field label, heading, or the submit button on the canvas and type.
+          Press <Code>Enter</Code> to finish.
+        </Li>
+        <Li>
+          <b>Rename the form</b> from the name at the top of the editor. The
+          header shows whether the form is a draft or live and whether you
+          have unsaved changes.
+        </Li>
+        <Li>
+          <b>Keyboard shortcuts</b> — <Code>Ctrl/⌘ D</Code> duplicates the
+          selected field, <Code>Delete</Code> removes it,{" "}
+          <Code>Alt/⌥ ↑ ↓</Code> moves it, and <Code>Ctrl/⌘ S</Code> saves.
+          Press <Code>?</Code> in the editor for the full list.
+        </Li>
+      </Ul>
+      <P>The palette groups fields into:</P>
       <Ul>
         <Li>
           <b>Basic info</b> — name, address, phone, email, website. These carry

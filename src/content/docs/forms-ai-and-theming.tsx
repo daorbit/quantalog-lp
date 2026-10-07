@@ -77,15 +77,15 @@ function Body() {
         </Li>
       </Ul>
 
-      <H3 id="theme-presets">Presets</H3>
+      <H3 id="theme-presets">Looks</H3>
       <P>
-        Thirty presets cover most of what a form needs to look intentional
-        without touching a color picker — designed looks like Nightshift,
-        Glass and Blueprint; tinted looks built around one hue like Sky,
-        Amber and Forest; and a set of plain solids like Classic, Paper and
-        Ink for a form that should read as neutral. Picking one sets colors,
-        background and card style together; every control below still works
-        afterward to fine-tune it.
+        The <b>Looks</b> tab is the fastest way to a polished form. The
+        Studio looks — Studio, Studio Dark, Editorial, Aurora Glass,
+        Graphite, Sand, Indigo, Volt and Blush — set everything in one
+        click: colors, background, font, field style, button shape,
+        spacing and title size. Below them sit the designed, tinted and
+        solid presets like Nightshift, Sky and Classic. Every control on
+        the other tabs still works afterward to fine-tune a look.
       </P>
 
       <H3 id="theme-colors">Colors</H3>
@@ -111,14 +111,34 @@ function Body() {
         legible.
       </P>
 
-      <H3 id="theme-card">Card &amp; type</H3>
+      <H3 id="theme-card">Style</H3>
       <P>
-        Font family, corner radius, shadow depth (from none to dramatic),
-        card opacity, and a frosted-glass blur applied to whatever sits
-        behind a translucent card — the details that decide whether a form
-        reads as part of your site or as an obviously separate tool bolted
-        onto it.
+        The <b>Style</b> tab shapes the form itself rather than its colors:
       </P>
+      <Ul>
+        <li>
+          <b>Layout</b> — a card, or <b>Flat</b> for an open page with no
+          card at all; a narrow, regular or wide width; and compact,
+          default or airy spacing.
+        </li>
+        <li>
+          <b>Typography</b> — eleven fonts including Inter, DM Sans,
+          Manrope, Plus Jakarta Sans, Space Grotesk, Playfair Display and
+          Fraunces, plus a title size from small to extra large.
+        </li>
+        <li>
+          <b>Fields</b> — outline, filled or underline inputs, and their
+          corner radius.
+        </li>
+        <li>
+          <b>Button</b> — solid, soft or outline, either matching the
+          fields&apos; corners or fully rounded as a pill.
+        </li>
+        <li>
+          <b>Card</b> — corner radius, shadow depth, opacity, and a
+          frosted-glass blur over whatever sits behind a translucent card.
+        </li>
+      </Ul>
     </>
   );
 }
