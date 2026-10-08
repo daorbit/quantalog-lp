@@ -245,6 +245,22 @@ function Body() {
         price several steps before it charges it.
       </P>
 
+      <H3 id="one-question">One question at a time</H3>
+      <P>
+        Open <b>Steps &amp; progress</b> and turn on <b>One question at a time</b>{" "}
+        to show each question on its own screen, with a larger label and a
+        progress bar. Respondents move on with <b>Enter</b> or the Next button,
+        and single-choice questions (choice, yes/no, rating and NPS) move on as
+        soon as an answer is picked.
+      </P>
+      <P>
+        It works on any form, with or without page breaks. Headings and text
+        blocks appear with the question that follows them, a grid stays together
+        on one screen, and conditional logic still hides questions and skips
+        steps. Compare completion before and after in the form&apos;s drop-off
+        report.
+      </P>
+
       <H2 id="sharing">Sharing and embedding</H2>
       <P>
         A published form has its own link, which anyone can open — no Quantalog
