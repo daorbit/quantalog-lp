@@ -190,7 +190,8 @@ export function DpaBody() {
       <H2 id="deletion">11. Deletion and return</H2>
       <P>
         You can export or delete Customer Data at any time from the dashboard. When you delete a site or
-        close your account, we permanently delete the related Customer Data from the live system. Copies
+        close your account, we permanently delete the related Customer Data from the live system.
+        Analytics events older than 25 months are deleted automatically on every plan. Copies
         held in backups are overwritten as backups expire. We keep data longer only where the law requires
         it.
       </P>

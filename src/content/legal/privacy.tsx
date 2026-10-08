@@ -243,12 +243,18 @@ export function PrivacyBody() {
       <H2 id="retention">15. Retention and deletion</H2>
       <Ul>
         <Li>
-          <b>Analytics and form data</b> is kept until the customer deletes it or closes their account.
-          Your plan sets how far back the dashboard can show, not how long data is kept.
+          <b>Analytics events</b> are kept for 25 months on every plan, then deleted automatically.
+          Your plan sets how far back the dashboard can show within that window.
         </Li>
         <Li>
-          <b>Account data</b> is kept while your account is open. Closing your account deletes it,
-          together with your sites, their data and any connected account tokens.
+          <b>Form data</b> is kept until the customer deletes it, deletes the workspace or closes their
+          account.
+        </Li>
+        <Li>
+          <b>Account data</b> is kept while your account is open. You can delete your account yourself
+          under Settings, then Security. That deletes it together with every workspace you own, their
+          sites, analytics, forms and submissions, media files, and any connected account tokens, which
+          are also revoked with the provider.
         </Li>
         <Li>
           <b>Billing records</b> are kept for as long as tax and accounting law requires, even after an
