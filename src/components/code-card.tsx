@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { track } from "@/lib/track";
 
 export function CodeCard({
   filename,
@@ -16,6 +17,7 @@ export function CodeCard({
 
   async function copy() {
     await navigator.clipboard.writeText(code);
+    track("code_copied", { file: filename });
     setCopied(true);
     setTimeout(() => setCopied(false), 1600);
   }

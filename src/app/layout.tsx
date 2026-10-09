@@ -142,8 +142,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
 
         <Script
-          src={`${site.api}/tracker.js`}
-          data-site={site.siteId}
+          src={`${site.tracker.api}/tracker.js`}
+          data-site={site.tracker.siteId}
           strategy="afterInteractive"
         />
       </body>

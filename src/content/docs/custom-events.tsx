@@ -18,21 +18,22 @@ window.rta.track("checkout_started", { plan: "pro", value: 49 });`}</Pre>
       <P>
         The first argument is the event name. The optional second argument is a
         properties object of extra context — a plan tier, an order value, anything
-        you want to keep with the event.
+        you want to keep with the event. Events work for anonymous visitors; you
+        don&apos;t need to call <Code>rta.identify()</Code> first.
       </P>
 
       <H2 id="dashboard">Where it shows up</H2>
       <P>
-        Every event appears under the <b>Events</b> tab in Analytics, with its fire
-        count, distinct visitors, and conversion rate — the share of visitors in
-        the period who fired it at least once.
+        Every event appears under <b>Conversion → Events</b> in Analytics, with its
+        fire count, distinct visitors, and conversion rate — the share of visitors
+        in the period who fired it at least once. Events are sent in small batches,
+        so a new one shows up within a few seconds.
       </P>
 
-      <H2 id="revenue">Revenue &amp; goals</H2>
+      <H2 id="revenue">Revenue</H2>
       <P>
         Pass a numeric <Code>value</Code> in the properties and Quantalog sums it
-        into revenue — per event and across all events for the period. This turns
-        any event into a goal with a dollar figure attached.
+        into revenue — per event and across all events for the period.
       </P>
       <Pre label="revenue event">{`window.rta.track("purchase", { value: 49.0, plan: "pro" });`}</Pre>
 

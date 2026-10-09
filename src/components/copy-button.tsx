@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { track } from "@/lib/track";
 
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -9,6 +10,7 @@ export function CopyButton({ text }: { text: string }) {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(text);
+      track("docs_code_copied");
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {

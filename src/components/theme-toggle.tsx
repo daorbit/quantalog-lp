@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
+import { track } from "@/lib/track";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -39,7 +40,10 @@ export function ThemeToggle() {
             role="radio"
             aria-checked={active}
             aria-label={label}
-            onClick={() => setTheme(key)}
+            onClick={() => {
+              setTheme(key);
+              track("theme_changed", { theme: key });
+            }}
             /* The visible pill stays 28px so the sliding thumb still lines up,
                but a bare 28px control is below the 44px touch target guideline.
                The ::after pseudo-element grows the hit area past the button box

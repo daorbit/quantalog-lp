@@ -82,6 +82,8 @@ export function PlanCard({
           track("pricing_plan_selected", {
             plan: plan.slug,
             cycle: yearly ? "yearly" : "monthly",
+            currency,
+            value: price,
             location,
           })
         }

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import type { DocNavGroup } from "@/lib/docs";
+import { track } from "@/lib/track";
 
 type Flat = { slug: string; title: string; description: string; category: string };
 
@@ -54,10 +55,11 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
 
   const go = useCallback(
     (slug: string) => {
+      track("docs_search_result", { slug, query: query.trim().slice(0, 80) });
       close();
       router.push(`/docs/${slug}`);
     },
-    [close, router],
+    [close, router, query],
   );
 
   useEffect(() => {
@@ -115,7 +117,10 @@ export function DocsCommand({ groups }: { groups: DocNavGroup[] }) {
       <button
         type="button"
         className="docs-cmdk-trigger"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          track("docs_search_opened", { via: "button" });
+        }}
         aria-label="Search the documentation"
       >
         <Search className="h-4 w-4" aria-hidden="true" />

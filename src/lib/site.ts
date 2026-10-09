@@ -11,6 +11,11 @@ export const site = {
 
   siteId: "hvlZR6aginzuYJiI",
 
+  tracker: {
+    api: process.env.NEXT_PUBLIC_TRACKER_API || "https://quantalog-be.daorbit.in",
+    siteId: process.env.NEXT_PUBLIC_TRACKER_SITE_ID || "hvlZR6aginzuYJiI",
+  },
+
   docs: "/docs",
 
   author: "The Quantalog Team",
