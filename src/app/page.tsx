@@ -3,6 +3,7 @@ import { Logos } from "@/components/sections/logos";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
+import { OrbitExtension } from "@/components/sections/orbit-extension";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { steps as setupSteps } from "@/components/setup/setup-steps";
@@ -84,6 +85,7 @@ const jsonLd = graph(
       "Shareable SEO audit reports",
       "Scheduled email reports with spreadsheet attachments",
       "Orbit AI in-app support assistant",
+      "Orbit AI Chrome extension in the browser side panel",
       "Orbit AI natural-language analytics questions",
       "Orbit AI image generation and image reading",
       "Orbit AI competitor analysis and SEO briefs",
@@ -121,6 +123,7 @@ export default function HomePage() {
       <Hero />
       <Logos />
       <Explore />
+      <OrbitExtension />
       <ConsentGap />
       <MoreFeatures />
       <HowItWorks />

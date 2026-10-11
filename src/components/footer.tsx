@@ -22,6 +22,7 @@ const columns = [
     links: [
       { href: "/#consent-gap", label: "The consent gap" },
       { href: "/social", label: "Orbit AI" },
+      { href: site.orbitExtension, label: "Orbit for Chrome" },
       { href: "/compare", label: "Comparisons" },
       { href: "/#demo", label: "Live demo" },
     ],

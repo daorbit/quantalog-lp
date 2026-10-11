@@ -20,6 +20,7 @@ import { BigStats } from "@/components/big-stats";
 import { Cta } from "@/components/sections/cta";
 import { OrbitVisual } from "@/components/explore/visuals/orbit-visual";
 import { Orbit } from "@/components/sections/orbit";
+import { OrbitExtension } from "@/components/sections/orbit-extension";
 import { Scheduling } from "@/components/sections/scheduling";
 import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid, type ProductFeature } from "@/components/product/product-feature-grid";
@@ -248,6 +249,8 @@ export default function SocialPage() {
       </div>
 
       <Orbit />
+
+      <OrbitExtension location="social" />
 
       <ProductSection
         eyebrow="What Orbit does"

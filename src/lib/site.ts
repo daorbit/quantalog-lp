@@ -26,6 +26,9 @@ export const site = {
 
   demoCall: "https://calendly.com/daorbit2k25/demo-call",
 
+  orbitExtension:
+    "https://chromewebstore.google.com/detail/orbit-ai/ilmdbgnbkgjldhelepoadfkmpahelmkg",
+
   contactFormSrc:
     "https://forms.daorbit.in/form/6a89a4af44a2ed606590a54a/view",
 } as const;

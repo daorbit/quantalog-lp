@@ -1,6 +1,6 @@
-import { ArrowRight, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
+import { AnnouncementPill } from "../announcement-pill";
 import { Button } from "../ui";
 import { Words } from "../words";
 import { BookDemoButton } from "../book-demo-button";
@@ -14,14 +14,14 @@ export function Hero() {
       <div className="mx-auto max-w-360 px-4 pb-20 pt-14 sm:px-6 sm:pb-28 sm:pt-20 xl:pt-24">
         <div className="grid items-center gap-14 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:gap-10">
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center xl:mx-0 xl:items-start xl:text-left">
-            <Link
-              href="/platform-api"
-              className="rise rise-1 group inline-flex items-center gap-2.5 rounded-full border border-border py-1 pl-1 pr-3 text-[13px] text-fg-muted transition-colors duration-200 hover:border-border-strong hover:text-fg"
+            <AnnouncementPill
+              href={site.orbitExtension}
+              label="New"
+              event="cta_orbit_extension"
+              className="rise rise-1"
             >
-              <span className="rounded-full bg-accent/12 px-2 py-0.5 text-[11px] font-semibold text-accent">New</span>
-              Introducing the Platform API
-              <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
+              Orbit AI is now on Chrome
+            </AnnouncementPill>
 
             <h1 className="word-rise mt-8 text-[2.5rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-[3.5rem] xl:text-[3.25rem] 2xl:text-[3.75rem]">
               <Words text="Cookieless analytics" />{" "}
