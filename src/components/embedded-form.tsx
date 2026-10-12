@@ -6,18 +6,20 @@ export function EmbeddedForm({
   src,
   title,
   eager = false,
+  onLoad,
 }: {
   src: string;
   title: string;
-
   eager?: boolean;
+  onLoad?: () => void;
 }) {
   const ref = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     function onMessage(e: MessageEvent) {
       if (e.data?.type !== "da-forms:height") return;
-      if (ref.current) ref.current.style.height = `${e.data.height}px`;
+      if (!ref.current || e.source !== ref.current.contentWindow) return;
+      ref.current.style.height = `${e.data.height}px`;
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -32,6 +34,7 @@ export function EmbeddedForm({
       className="w-full rounded-[8px] border-none"
       style={{ height: 630, overflow: "hidden" }}
       loading={eager ? "eager" : "lazy"}
+      onLoad={onLoad}
     />
   );
 }

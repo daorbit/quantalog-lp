@@ -18,8 +18,8 @@ function Body() {
           <b>Duration</b> is how long each booking lasts.
         </Li>
         <Li>
-          <b>Start a slot every</b> spaces the start times. Leave it blank to
-          use the duration, so 30-minute meetings start every 30 minutes.
+          <b>Slot interval</b> spaces the start times. Leave it blank to use
+          the duration, so 30-minute meetings start every 30 minutes.
         </Li>
         <Li>
           <b>Buffer before</b> and <b>buffer after</b> keep time free around
@@ -27,7 +27,7 @@ function Body() {
         </Li>
         <Li>
           <b>Seats per slot</b> lets more than one person book the same time,
-          for a class or a webinar. <b>Max bookings a day</b> caps the day.
+          for a class or a webinar. <b>Daily limit</b> caps the day.
         </Li>
       </Ul>
 
@@ -42,7 +42,7 @@ function Body() {
           <b>Minimum notice</b> stops last-minute bookings, in hours.
         </Li>
         <Li>
-          <b>Book up to</b> limits how far ahead people can book.
+          <b>Booking window</b> limits how many days ahead people can book.
         </Li>
         <Li>
           <b>Days off</b> blocks holidays and other single dates.
@@ -51,10 +51,12 @@ function Body() {
 
       <H2 id="google-calendar">Google Calendar and Meet</H2>
       <P>
-        Click <b>Connect</b> in the field&apos;s Google Calendar section and
-        allow access in the window that opens. The connection belongs to the
-        workspace, so every booking form in it can use it. Then turn on{" "}
-        <b>Sync with Google Calendar</b>:
+        Open <b>Apps</b>, find <b>Google Calendar</b> under Scheduling and
+        click <b>Connect Google Calendar</b>, then allow access in the window
+        that opens. The connection belongs to the workspace, so every booking
+        form in it can use it. The booking field&apos;s Google Calendar section
+        shows which account is connected and links back to Apps. Then turn on{" "}
+        <b>Sync with Google Calendar</b> on the field:
       </P>
       <Ul>
         <Li>

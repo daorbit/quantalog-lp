@@ -24,7 +24,7 @@ export const site = {
   email: "daorbit2k25@gmail.com",
   legalName: "DA Orbit",
 
-  demoCall: "https://calendly.com/daorbit2k25/demo-call",
+  demoCall: "https://forms.daorbit.in/form/6accc4af7ffcc5038e50d43f/view",
 
   orbitExtension:
     "https://chromewebstore.google.com/detail/orbit-ai/ilmdbgnbkgjldhelepoadfkmpahelmkg",
