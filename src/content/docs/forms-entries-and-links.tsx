@@ -184,8 +184,10 @@ function Body() {
       <Callout>
         Imported leads start in the <b>New</b> stage and get a lead score like
         any other response. They don&apos;t send notification emails or
-        webhooks. File, signature, payment, booking, matrix, ranking and
-        repeater questions can&apos;t be imported.
+        webhooks. A booking time is saved and shows on the calendar, but it
+        doesn&apos;t reserve the slot or create a Google Calendar event. File,
+        signature, payment, matrix, ranking and repeater questions can&apos;t
+        be imported.
       </Callout>
 
       <H2 id="resume-links">Coming back to an unfinished form</H2>
