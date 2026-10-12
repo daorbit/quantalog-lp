@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Loader2, X } from "lucide-react";
+import { X } from "lucide-react";
 import { EmbeddedForm } from "./embedded-form";
 
 export function DemoBookingDialog({
@@ -14,8 +14,6 @@ export function DemoBookingDialog({
   open: boolean;
   onClose: () => void;
 }) {
-  const [loaded, setLoaded] = useState(false);
-
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
@@ -28,10 +26,6 @@ export function DemoBookingDialog({
     };
   }, [open, onClose]);
 
-  useEffect(() => {
-    if (!open) setLoaded(false);
-  }, [open]);
-
   if (!open || typeof document === "undefined") return null;
 
   return createPortal(
@@ -42,7 +36,7 @@ export function DemoBookingDialog({
       className="fixed inset-0 z-100 flex bg-black/55 p-3 backdrop-blur-sm sm:p-6"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl">
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl">
         <button
           type="button"
           onClick={onClose}
@@ -51,15 +45,8 @@ export function DemoBookingDialog({
         >
           <X className="h-4 w-4" aria-hidden="true" />
         </button>
-        {!loaded && (
-          <div className="absolute inset-0 grid place-items-center">
-            <Loader2 className="h-6 w-6 animate-spin text-fg-faint" aria-hidden="true" />
-          </div>
-        )}
-        <div className="flex-1 overflow-y-auto overscroll-contain px-2 py-6 sm:py-10">
-          <div className="mx-auto w-full max-w-220">
-            <EmbeddedForm src={src} title="Book a demo" eager onLoad={() => setLoaded(true)} />
-          </div>
+        <div className="h-full overflow-y-auto overscroll-contain">
+          <EmbeddedForm src={src} title="Book a demo" eager className="block min-h-full" />
         </div>
       </div>
     </div>,

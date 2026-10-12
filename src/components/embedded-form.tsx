@@ -6,12 +6,12 @@ export function EmbeddedForm({
   src,
   title,
   eager = false,
-  onLoad,
+  className = "rounded-lg",
 }: {
   src: string;
   title: string;
   eager?: boolean;
-  onLoad?: () => void;
+  className?: string;
 }) {
   const ref = useRef<HTMLIFrameElement>(null);
 
@@ -31,10 +31,9 @@ export function EmbeddedForm({
       src={src}
       title={title}
       scrolling="no"
-      className="w-full rounded-[8px] border-none"
+      className={`w-full border-none ${className}`}
       style={{ height: 630, overflow: "hidden" }}
       loading={eager ? "eager" : "lazy"}
-      onLoad={onLoad}
     />
   );
 }
