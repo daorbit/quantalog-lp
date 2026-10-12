@@ -33,10 +33,10 @@ export function DemoBookingDialog({
       role="dialog"
       aria-modal="true"
       aria-label="Book a demo"
-      className="fixed inset-0 z-100 flex bg-black/55 p-3 backdrop-blur-sm sm:p-6"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/55 p-3 backdrop-blur-sm sm:p-6"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl">
+      <div className="relative flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl">
         <button
           type="button"
           onClick={onClose}
@@ -45,7 +45,7 @@ export function DemoBookingDialog({
         >
           <X className="h-4 w-4" aria-hidden="true" />
         </button>
-        <div className="h-full overflow-y-auto overscroll-contain">
+        <div className="overflow-y-auto overscroll-contain">
           <EmbeddedForm src={src} title="Book a demo" eager className="block min-h-full" />
         </div>
       </div>
