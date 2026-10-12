@@ -21,6 +21,7 @@ import { leadCapture } from "@/content/docs/lead-capture";
 import { formsAiAndTheming } from "@/content/docs/forms-ai-and-theming";
 import { formsEntriesAndLinks } from "@/content/docs/forms-entries-and-links";
 import { formsAdvancedFields } from "@/content/docs/forms-advanced-fields";
+import { formsBooking } from "@/content/docs/forms-booking";
 import { formsLogic } from "@/content/docs/forms-logic";
 import { formsNotificationsAndApps } from "@/content/docs/forms-notifications-and-apps";
 import { formsSettingsAndAnalytics } from "@/content/docs/forms-settings-and-analytics";
@@ -85,6 +86,7 @@ const DOCS: Doc[] = [
   formsEntriesAndLinks,
   formsLogic,
   formsAdvancedFields,
+  formsBooking,
   formsNotificationsAndApps,
   formsSettingsAndAnalytics,
   segmentsMarkers,
