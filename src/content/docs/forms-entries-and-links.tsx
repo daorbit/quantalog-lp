@@ -122,11 +122,13 @@ function Body() {
 
       <H3 id="filters">Filtering and sorting</H3>
       <P>
-        Beside the search box and date filter, narrow the list by{" "}
-        <b>stage</b>, <b>assignee</b> (including <b>Unassigned</b>) and{" "}
-        <b>tag</b>, and sort by <b>Newest first</b>, <b>Oldest first</b> or,
-        on a scored form, <b>Highest score</b>. The assignee and tag filters
-        appear once at least one response has an assignee or tag.
+        <b>Filter</b>, beside the search box, narrows the list by read
+        status, submission date, <b>stage</b>, <b>assignee</b> (including{" "}
+        <b>Unassigned</b>) and <b>tag</b>. Active filters show as chips under
+        the toolbar; click a chip&apos;s × to remove it. Sort by{" "}
+        <b>Newest first</b>, <b>Oldest first</b> or, on a scored form,{" "}
+        <b>Highest score</b>. The assignee and tag filters appear once at
+        least one response has an assignee or tag.
       </P>
 
       <H3 id="bulk">Bulk actions</H3>
@@ -139,23 +141,25 @@ function Body() {
       <H2 id="exporting">Exporting responses</H2>
       <Ul>
         <Li>
-          <b>Export</b> downloads a CSV of the responses on screen, with stage,
+          <b>Export CSV</b>, in the <b>⋯</b> menu at the top of the page,
+          downloads a CSV of the responses on screen, with stage,
           assignee, tags and (on a scored form) score after the answers. On a
           booking form it also has a Google Meet link column.
         </Li>
         <Li>
-          <b>PDF</b> in a response&apos;s panel, or the PDF icon on its row,
-          downloads that one response.
+          <b>PDF</b> in a response&apos;s panel, or <b>Download PDF</b> in the{" "}
+          <b>⋯</b> menu on its row, downloads that one response.
         </Li>
         <Li>
-          The paperclip lists every uploaded file on the form, each opening
-          from where it is stored.
+          <b>Uploaded files</b> in the page&apos;s <b>⋯</b> menu lists every
+          uploaded file on the form, each opening from where it is stored.
         </Li>
       </Ul>
 
       <H2 id="importing">Importing leads from Excel</H2>
       <P>
-        <b>Import</b> beside Export adds leads you already have, such as a
+        <b>Import leads</b>, in the <b>⋯</b> menu at the top of the page, adds
+        leads you already have, such as a
         list from an event or another tool, as responses on the form.
       </P>
       <Ul>
@@ -165,6 +169,13 @@ function Body() {
           header has a note on the format to use, and choice questions have a
           dropdown of their options. A <b>How to fill</b> sheet lists every
           column.
+        </Li>
+        <Li>
+          After the questions come optional <b>lead details</b> columns:{" "}
+          <b>Stage</b>, <b>Assignee</b>, <b>Tags</b>, a <b>Note</b> and{" "}
+          <b>Submitted at</b> for the original date. Booking forms also get{" "}
+          <b>Google Meet link</b> and <b>Calendar event link</b>. Leave any of
+          them empty to use the defaults.
         </Li>
         <Li>
           Download <b>Sample leads</b> for the same file with five test leads
