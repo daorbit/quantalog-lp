@@ -173,9 +173,10 @@ function Body() {
         <Li>
           After the questions come optional <b>lead details</b> columns:{" "}
           <b>Stage</b>, <b>Assignee</b>, <b>Tags</b>, a <b>Note</b> and{" "}
-          <b>Submitted at</b> for the original date. Booking forms also get{" "}
-          <b>Google Meet link</b> and <b>Calendar event link</b>. Leave any of
-          them empty to use the defaults.
+          <b>Submitted at</b> for the original date. A booking form synced with
+          Google Calendar also gets <b>Calendar event link</b>, plus{" "}
+          <b>Google Meet link</b> when it adds Meet links, for meetings that
+          already have them. Leave any of them empty to use the defaults.
         </Li>
         <Li>
           Download <b>Sample leads</b> for the same file with five test leads
