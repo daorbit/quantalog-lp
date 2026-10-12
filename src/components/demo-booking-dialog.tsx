@@ -39,15 +39,15 @@ export function DemoBookingDialog({
       role="dialog"
       aria-modal="true"
       aria-label="Book a demo"
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/55 p-3 backdrop-blur-sm sm:p-6"
+      className="fixed inset-0 z-100 flex bg-black/55 p-3 backdrop-blur-sm sm:p-6"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="relative flex max-h-full w-full max-w-[760px] flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
+      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-bg shadow-2xl">
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full border border-border bg-surface text-fg-muted transition-colors hover:text-fg"
+          className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full border border-border bg-surface text-fg-muted transition-colors hover:text-fg"
         >
           <X className="h-4 w-4" aria-hidden="true" />
         </button>
@@ -56,8 +56,10 @@ export function DemoBookingDialog({
             <Loader2 className="h-6 w-6 animate-spin text-fg-faint" aria-hidden="true" />
           </div>
         )}
-        <div className="overflow-y-auto overscroll-contain">
-          <EmbeddedForm src={src} title="Book a demo" eager onLoad={() => setLoaded(true)} />
+        <div className="flex-1 overflow-y-auto overscroll-contain px-2 py-6 sm:py-10">
+          <div className="mx-auto w-full max-w-220">
+            <EmbeddedForm src={src} title="Book a demo" eager onLoad={() => setLoaded(true)} />
+          </div>
         </div>
       </div>
     </div>,
