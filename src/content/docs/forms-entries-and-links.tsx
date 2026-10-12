@@ -36,7 +36,7 @@ function Body() {
 
       <H2 id="entries">Reading your entries</H2>
       <P>
-        Open a form&apos;s <b>Responses</b> to see what has come in. Three
+        Open a form&apos;s <b>Responses</b> to see what has come in. These
         views show the same responses in different ways:
       </P>
       <Ul>
@@ -52,7 +52,18 @@ function Body() {
           <b>Sheet</b> — every response in a spreadsheet grid, for scanning
           and comparing many at once.
         </Li>
+        <Li>
+          <b>Calendar</b> — on a form with a{" "}
+          <a href="/docs/forms-booking">Booking</a> field, every booked time
+          on a month or week grid, with the upcoming ones listed beside it.
+          Click a booking to see who booked, copy or join its Google Meet
+          link, or open the response.
+        </Li>
       </Ul>
+      <P>
+        On a booking form, the booking column in the list also shows a{" "}
+        <b>Join Meet</b> link for each response that has one.
+      </P>
       <P>
         Opening a response marks it read. Use the arrow keys (or <b>j</b> and{" "}
         <b>k</b>) to step to the next or previous one without closing the
@@ -129,7 +140,8 @@ function Body() {
       <Ul>
         <Li>
           <b>Export</b> downloads a CSV of the responses on screen, with stage,
-          assignee, tags and (on a scored form) score after the answers.
+          assignee, tags and (on a scored form) score after the answers. On a
+          booking form it also has a Google Meet link column.
         </Li>
         <Li>
           <b>PDF</b> in a response&apos;s panel, or the PDF icon on its row,
@@ -140,6 +152,41 @@ function Body() {
           from where it is stored.
         </Li>
       </Ul>
+
+      <H2 id="importing">Importing leads from Excel</H2>
+      <P>
+        <b>Import</b> beside Export adds leads you already have, such as a
+        list from an event or another tool, as responses on the form.
+      </P>
+      <Ul>
+        <Li>
+          Download the <b>Blank template</b> for an Excel file with one column
+          per question. Required questions are marked with <b>*</b>, each
+          header has a note on the format to use, and choice questions have a
+          dropdown of their options. A <b>How to fill</b> sheet lists every
+          column.
+        </Li>
+        <Li>
+          Download <b>Sample leads</b> for the same file with five test leads
+          already filled in, to try the import before using real data.
+        </Li>
+        <Li>
+          Upload the filled <b>.xlsx</b> file. Columns are matched to
+          questions by their header, and you see the matched columns and the
+          first rows before anything is saved. Up to 2,000 rows per file.
+        </Li>
+        <Li>
+          Turn on <b>Mark as test leads</b> to add a <b>test</b> tag, so you
+          can filter them out or bulk delete them later. Every imported lead
+          also gets an <b>imported</b> tag.
+        </Li>
+      </Ul>
+      <Callout>
+        Imported leads start in the <b>New</b> stage and get a lead score like
+        any other response. They don&apos;t send notification emails or
+        webhooks. File, signature, payment, booking, matrix, ranking and
+        repeater questions can&apos;t be imported.
+      </Callout>
 
       <H2 id="resume-links">Coming back to an unfinished form</H2>
       <P>
@@ -198,7 +245,7 @@ export const formsEntriesAndLinks: Doc = {
   slug: "forms-entries-and-links",
   title: "Forms: entries, pipeline & links",
   description:
-    "Work responses through a lead pipeline with stages, assignees, tags, notes and a lead score; export them; set the thank-you page; and let respondents come back to a draft or edit what they sent.",
+    "Work responses through a lead pipeline with stages, assignees, tags, notes and a lead score; see bookings on a calendar; import leads from Excel and export them; set the thank-you page; and let respondents come back to a draft or edit what they sent.",
   category: "Tracking",
   order: 17.2,
   Body,
