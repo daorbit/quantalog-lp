@@ -115,12 +115,12 @@ export function SectionHeading({
       } ${className}`}
     >
       {eyebrow && (
-        <div className={isCentered ? "flex justify-center" : ""}>
+        <div className={`text-reveal ${isCentered ? "flex justify-center" : ""}`}>
           <Eyebrow dot={dot}>{eyebrow}</Eyebrow>
         </div>
       )}
       <h2
-        className={`mt-3 text-balance font-medium leading-[1.06] tracking-display ${
+        className={`text-reveal text-reveal-d1 mt-3 text-balance font-medium leading-[1.06] tracking-display ${
           size === "lg" ? "text-display" : "text-h2"
         }`}
       >
@@ -128,7 +128,7 @@ export function SectionHeading({
       </h2>
       {body && (
         <p
-          className={`mt-5 text-pretty text-lead leading-normal text-fg-muted ${
+          className={`text-reveal text-reveal-d2 mt-5 text-pretty text-lead leading-normal text-fg-muted ${
             isCentered ? "mx-auto" : ""
           }`}
         >

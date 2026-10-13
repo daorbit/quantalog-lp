@@ -12,6 +12,7 @@ import {
   Users,
 } from "lucide-react";
 import { useLiveNumber } from "./use-live-number";
+import { linePath } from "@/lib/chart-path";
 
 type RangeKey = "24h" | "7d" | "30d";
 
@@ -193,16 +194,6 @@ function scale(values: number[], max: number) {
   return values.map(
     (v, i) => [PAD_L + i * step, PAD_T + plotH - (v / max) * plotH] as const
   );
-}
-
-function linePath(pts: readonly (readonly [number, number])[]) {
-  let d = `M ${pts[0][0]},${pts[0][1]}`;
-  for (let i = 1; i < pts.length; i++) {
-    const [px, py] = pts[i - 1];
-    const [x, y] = pts[i];
-    d += ` Q ${px},${py} ${(px + x) / 2},${(py + y) / 2}`;
-  }
-  return d;
 }
 
 /** Axis ticks as round-ish numbers rather than raw maxima. */

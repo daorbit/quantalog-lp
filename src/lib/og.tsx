@@ -31,7 +31,7 @@ export function ogImage({
               width: 12,
               height: 56,
               borderRadius: 6,
-              background: "#14b8a6",
+              background: "#0a84ff",
             }}
           />
           <div style={{ display: "flex", fontSize: 34, fontWeight: 700, color: "#f7f8f9" }}>
@@ -48,7 +48,7 @@ export function ogImage({
                 fontWeight: 600,
                 letterSpacing: 2,
                 textTransform: "uppercase",
-                color: "#14b8a6",
+                color: "#0a84ff",
               }}
             >
               {eyebrow}

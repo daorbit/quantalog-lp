@@ -2,19 +2,16 @@
 
 import { useEffect } from "react";
 
+const SELECTOR = ".v-rise, .text-reveal";
+
+export const MOTION_BOOT_SCRIPT =
+  "(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion-io');setTimeout(function(){if(!d.dataset.motionReady)d.classList.remove('motion-io')},4000)})()";
+
 export function ScrollRise() {
   useEffect(() => {
-
-    if (
-      typeof CSS !== "undefined" &&
-      CSS.supports?.("animation-timeline: view()")
-    ) {
-      return;
-    }
-    if (typeof IntersectionObserver === "undefined") return;
-
     const root = document.documentElement;
-    root.classList.add("no-scroll-timeline");
+    if (!root.classList.contains("motion-io")) return;
+    root.dataset.motionReady = "1";
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -25,15 +22,30 @@ export function ScrollRise() {
           }
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.1 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
     );
 
-    const els = document.querySelectorAll<HTMLElement>(".v-rise");
-    els.forEach((el) => io.observe(el));
+    const watch = (scope: ParentNode) => {
+      if (scope instanceof Element && scope.matches(SELECTOR)) io.observe(scope);
+      scope.querySelectorAll<HTMLElement>(SELECTOR).forEach((el) => {
+        if (!el.classList.contains("in-view")) io.observe(el);
+      });
+    };
+
+    watch(document);
+
+    const mo = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof Element) watch(node);
+        });
+      }
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       io.disconnect();
-      root.classList.remove("no-scroll-timeline");
+      mo.disconnect();
     };
   }, []);
 
