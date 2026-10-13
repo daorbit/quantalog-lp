@@ -3437,10 +3437,6 @@ body {
   user-select: none;
 }
 
-.world-map .country:not(.map-data) {
-  fill: color-mix(in srgb, var(--fg) 7%, var(--surface));
-}
-
 .world-map .country {
   stroke: color-mix(in srgb, var(--border) 80%, transparent);
   stroke-width: 0.6;
@@ -3450,6 +3446,7 @@ body {
 .world-map .country.map-data {
   stroke: color-mix(in srgb, #ffffff 22%, transparent);
   stroke-width: 0.6;
+  cursor: pointer;
 }
 
 .world-map .country.spotlit {
@@ -3459,6 +3456,84 @@ body {
 
 .map-callout {
   pointer-events: none;
+}
+
+.map-hover {
+  position: relative;
+  isolation: isolate;
+}
+
+.map-dim,
+.map-focus {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.map-dim {
+  background: var(--bg);
+  opacity: 0;
+  transition: opacity 0.25s var(--ease-out-q);
+  will-change: opacity;
+}
+
+.map-hover[data-hovering] .map-dim {
+  opacity: 0.62;
+}
+
+.map-focus {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.map-focus path {
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  animation: map-focus-in 0.18s ease-out both;
+}
+
+@keyframes map-focus-in {
+  from { opacity: 0; }
+}
+
+.map-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 15rem;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  will-change: transform, opacity;
+}
+
+.map-tooltip[data-visible] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-dim,
+  .map-tooltip,
+  .map-focus path {
+    transition: none;
+    animation: none;
+  }
+}
+
+.map-tooltip-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--dot);
 }
 
 .map-callout-line {

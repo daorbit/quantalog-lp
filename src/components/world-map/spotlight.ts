@@ -2,7 +2,7 @@ import { MAP_HEIGHT, MAP_WIDTH, type CountryShape } from "./world-shapes";
 import { flagAccent } from "./flag-palette";
 
 export const CALLOUT = { height: 40, padLeft: 22, radius: 7 };
-export const UNIT = 0.52;
+export const UNIT = 0.4;
 
 const PAD_RIGHT = 12;
 const MIN_TEXT = 34;

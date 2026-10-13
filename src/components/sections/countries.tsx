@@ -2,7 +2,8 @@ import { DataShowcase } from "../showcase/data-showcase";
 import { WorldMap, rankAudience } from "../world-map/world-map";
 import { flagAccent } from "../world-map/flag-palette";
 import { formatShare } from "../world-map/spotlight";
-import { AUDIENCE } from "../world-map/audience-data";
+import { MapHover } from "../world-map/map-hover";
+import { MAP_HEIGHT, MAP_WIDTH } from "../world-map/world-shapes";
 import { compact } from "@/lib/format";
 
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
@@ -14,10 +15,10 @@ export function Countries() {
     <DataShowcase
       eyebrow="Audience"
       title="See where every visitor comes from."
-      body="Each country lights up in its own flag colours as visitors arrive, all counted without cookies."
+      body="The busiest countries light up in their flag colours. Hover any country for its numbers, all counted without cookies."
       pill="Visitors by country · last 30 days"
       stats={[
-        { label: "Countries", value: String(AUDIENCE.length) },
+        { label: "Countries", value: String(ranked.length) },
         { label: "Visitors", value: compact(total) },
         { label: "Cookies set", value: "0" },
       ]}
@@ -35,7 +36,9 @@ export function Countries() {
         </ul>
       }
     >
-      <WorldMap />
+      <MapHover countries={ranked.length} viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}>
+        <WorldMap />
+      </MapHover>
     </DataShowcase>
   );
 }
