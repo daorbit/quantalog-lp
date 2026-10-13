@@ -76,7 +76,7 @@ document.head.appendChild(s);`}</Pre>
       </Ul>
 
       <Callout>
-        The tracker is cookieless. Visitors are a rotating daily hash of IP and
+        The tracker is cookieless. Visitors are a rotating weekly hash of IP and
         user agent, so nothing persists in the browser and no consent banner is
         needed.
       </Callout>

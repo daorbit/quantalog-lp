@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Button } from "../ui";
+import { Button, SectionHeading } from "../ui";
 import { ExploreTile } from "../explore/explore-tile";
 import { dashboardItems } from "../dashboards/dashboard-items";
 import { site } from "@/lib/site";
@@ -7,18 +7,16 @@ import { site } from "@/lib/site";
 export function DashboardsGoals() {
   return (
     <section id="dashboards" className="section-y">
-      <div className="mx-auto max-w-3xl px-4 text-center">
-        <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Dashboards &amp; goals</p>
-        <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
-          Every number you care about, on one screen.
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
-          Build focused dashboards for each job, set the targets you&apos;re working towards, and see
-          at a glance whether you&apos;re on pace.
-        </p>
+      <div className="px-4">
+        <SectionHeading
+          eyebrow="Dashboards & goals"
+          title="Every number you care about, on one screen."
+          body="Build focused dashboards for each job, set the targets you’re working towards, and see at a glance whether you’re on pace."
+          centered
+        />
       </div>
 
-      <div className="mt-8 grid gap-2 sm:mt-16 lg:grid-cols-2">
+      <div className="mt-10 grid gap-3 px-3 sm:mt-16 sm:px-4 lg:grid-cols-2">
         {dashboardItems.map((item) => (
           <div key={item.label}>
             <ExploreTile item={item} />
@@ -30,12 +28,11 @@ export function DashboardsGoals() {
         <p className="text-[15px] text-fg-muted">Free to start — no card needed.</p>
         <Button
           href={`${site.app}/signup`}
-          className="group"
           track="cta_start_free"
           trackProps={{ location: "dashboards" }}
         >
           Build your first dashboard
-          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+          <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </section>

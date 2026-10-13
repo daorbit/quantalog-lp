@@ -265,7 +265,7 @@ export default function AnalyticsPage() {
       >
         <p>
           <span className="font-semibold text-fg">Nobody declines, so nobody is missing.</span> Quantalog
-          sets no cookies and stores nothing in the browser, so there is no consent banner to click away —
+          sets no cookies and stores nothing persistent in the browser, so there is no consent banner to click away —
           and no visitor who quietly drops out of your report.
         </p>
         <p>

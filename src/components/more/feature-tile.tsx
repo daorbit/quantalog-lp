@@ -26,7 +26,7 @@ export function FeatureTile({
       <span className="mt-8 block">{children}</span>
       <span className="mt-auto inline-flex items-center gap-1 pt-8 text-[15px] font-medium text-fg">
         Learn more
-        <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        <ArrowRight className="h-4 w-4" />
       </span>
     </Link>
   );

@@ -9,7 +9,7 @@ const ALL_SLOTS = ["09:00", "09:30", "10:00", "10:30", "11:00", "14:00", "14:30"
 export const HOST = {
   initials: "QL",
   name: "Quantalog team",
-  url: "quantalog.com/book/product-demo",
+  url: "yoursite.com/book-a-demo",
 };
 
 export const BOOKING = {

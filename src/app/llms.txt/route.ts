@@ -18,7 +18,7 @@ export async function GET(): Promise<Response> {
 
     `${site.name} is a privacy-first, cookieless web analytics platform with built-in ` +
       "SEO auditing and a multi-tenant API for embedding analytics into your own product. " +
-      "It requires no cookie banner, and the tracking script is under 1 KB.",
+      "It requires no cookie banner, and the tracking script is under 5 KB gzipped.",
     "",
     "## Product",
     "",

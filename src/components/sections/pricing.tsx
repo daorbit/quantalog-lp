@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, BarChart3 } from "lucide-react";
+import { SectionHeading } from "../ui";
 import { PlanCard } from "../plan-card";
 import { usePlans } from "../plans-provider";
 import { SegmentedControl } from "../segmented-control";
@@ -65,12 +66,7 @@ export function Pricing() {
   return (
     <section id="pricing">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Pricing</p>
-          <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
-            Start free. Pay when it&apos;s worth it.
-          </h2>
-        </div>
+        <SectionHeading eyebrow="Pricing" title="Start free. Pay when it’s worth it." centered />
 
         <div className="mt-10">
           <SegmentedControl
@@ -141,7 +137,7 @@ export function Pricing() {
             className="group inline-flex items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
           >
             Compare every feature
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 

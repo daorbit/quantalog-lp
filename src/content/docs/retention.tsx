@@ -22,7 +22,7 @@ function Body() {
 
       <H2 id="caveat">A privacy caveat</H2>
       <P>
-        Quantalog identifies visitors with a hash that rotates daily for privacy,
+        Quantalog identifies visitors with a hash that rotates weekly for privacy,
         so retention measures returns within the hash&apos;s lifetime — not lifetime
         loyalty. Read the near-term weeks as directional signal rather than exact
         long-run numbers.

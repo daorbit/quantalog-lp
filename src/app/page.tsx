@@ -6,7 +6,6 @@ import { BookMeeting } from "@/components/sections/book-meeting";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
-import { OrbitExtension } from "@/components/sections/orbit-extension";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { steps as setupSteps } from "@/components/setup/setup-steps";
@@ -124,16 +123,15 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
-      <Countries />
       <Logos />
-      <BookMeeting />
+      <Countries />
       <Explore />
-      <OrbitExtension />
       <ConsentGap />
-      <MoreFeatures />
       <Heatmap />
-      <HowItWorks />
+      <BookMeeting />
       <DashboardsGoals />
+      <MoreFeatures />
+      <HowItWorks />
       <Pricing />
       <Referrals />
       <Faq />

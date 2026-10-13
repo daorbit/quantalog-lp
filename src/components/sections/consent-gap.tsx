@@ -1,4 +1,5 @@
 import { Cookie, ShieldCheck } from "lucide-react";
+import { SectionHeading } from "../ui";
 import { ConsentTile } from "../consent/consent-tile";
 import { ConsentFacts } from "../consent/consent-facts";
 
@@ -8,17 +9,12 @@ export function ConsentGap() {
   return (
     <section id="consent-gap">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[15px] font-semibold text-accent sm:text-[17px]">The consent gap</p>
-          <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
-            Half your traffic never makes it into the report.
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
-            Cookie-based analytics need permission before they record anything.
-            The people who say no aren&apos;t random — they&apos;re the
-            privacy-conscious, technical audience most products care about.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="The consent gap"
+          title="Up to half your traffic never makes it into the report."
+          body="Cookie-based analytics need permission before they record anything. The people who say no aren’t random. They’re the privacy-conscious, technical audience most products care about."
+          centered
+        />
 
         <div className="mt-10 grid gap-2 sm:mt-16 lg:grid-cols-2">
           <div>
@@ -45,7 +41,7 @@ export function ConsentGap() {
               label="Quantalog"
               title="Counts every visitor."
               lost={[]}
-              caption="of visitors recorded. Nothing is written to the browser, so nobody is asked and nobody goes missing."
+              caption="of visitors recorded. No cookies are set, so nobody is asked and nobody goes missing."
               badge={
                 <div className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2.5 text-[13px] font-medium text-fg shadow-soft ring-1 ring-border dark:bg-bg-subtle">
                   <ShieldCheck className="h-4 w-4 text-accent" aria-hidden="true" />

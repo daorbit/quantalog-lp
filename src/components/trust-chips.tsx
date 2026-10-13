@@ -1,4 +1,4 @@
-const chips = ["No cookies set", "No personal data stored", "Under 1 KB tracker", "No consent banner"];
+const chips = ["No cookies set", "No personal data stored", "Under 5 KB tracker", "No consent banner"];
 
 export function TrustChips({ className = "justify-center lg:justify-start" }: { className?: string }) {
   return (

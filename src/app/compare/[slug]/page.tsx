@@ -138,7 +138,7 @@ export default async function ComparisonPage({
               trackProps={{ location: "compare_hero", rival: c.rival }}
             >
               Start free
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4" />
             </Button>
             <Button href="/docs/demo" variant="secondary" size="lg">
               See the live demo
@@ -242,7 +242,7 @@ export default async function ComparisonPage({
               className="group inline-flex shrink-0 items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
             >
               View all
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">

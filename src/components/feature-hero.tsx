@@ -37,7 +37,7 @@ export function FeatureHero({
         <div className="rise rise-4 mt-8 flex flex-wrap justify-center gap-3">
           <Button href={primary.href ?? `${site.app}/signup`} size="lg" className="group">
             {primary.label}
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <Button href={secondary.href ?? "/docs/demo"} variant="secondary" size="lg">
             {secondary.label}

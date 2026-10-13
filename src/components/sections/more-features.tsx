@@ -1,4 +1,5 @@
 import { FeatureTile } from "../more/feature-tile";
+import { SectionHeading } from "../ui";
 import { MoreTile } from "../more/more-tile";
 import { ShareVisual } from "../more/share-visual";
 import { ReportVisual } from "../more/report-visual";
@@ -8,15 +9,12 @@ export function MoreFeatures() {
   return (
     <section id="more">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
-            And a lot more, built in.
-          </h2>
-          <p className="mt-4 text-pretty text-lead leading-normal text-fg-muted">
-            The smaller things that would otherwise each be another tool, another
-            login and another bill.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="More features"
+          title="And a lot more, built in."
+          body="The smaller things that would otherwise each be another tool, another login and another bill."
+          centered
+        />
 
         <div className="mt-8 grid gap-3 sm:mt-16 sm:gap-4 sm:grid-cols-2 lg:grid-flow-dense lg:grid-cols-4">
           <div className="sm:col-span-2 lg:row-span-2">

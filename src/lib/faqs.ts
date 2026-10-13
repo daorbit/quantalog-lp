@@ -17,7 +17,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         q: "Does the script slow my site down?",
-        a: "It is under a kilobyte, loads with the async attribute, and sends events with navigator.sendBeacon, so it never blocks rendering or delays navigation.",
+        a: "It is under 5 KB gzipped, loads with the async attribute, and sends events with navigator.sendBeacon, so it never blocks rendering or delays navigation.",
       },
       {
         q: "Is there a referral program?",
@@ -31,7 +31,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         q: "Do I need a cookie consent banner?",
-        a: "No. Quantalog sets no cookies and writes nothing to localStorage. A visitor is a salted hash of IP, user agent and site key that rotates every day, so the same person is not re-identifiable tomorrow or across any other site. There is no personal data to consent to.",
+        a: "No. Quantalog sets no cookies and writes nothing to localStorage. A visitor is a salted hash of IP, user agent and site key that rotates every week, so the same person is not re-identifiable the following week or across any other site. There is no personal data to consent to.",
       },
       {
         q: "How is this different from Google Analytics?",

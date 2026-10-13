@@ -84,7 +84,7 @@ export function Seo() {
           className="group mt-12 inline-flex items-center gap-2 text-sm font-medium text-accent"
         >
           Everything the SEO audit checks
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </section>

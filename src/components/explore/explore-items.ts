@@ -1,4 +1,4 @@
-import { BarChart3, CalendarClock, FileSearch, LayoutGrid, Mail, Plug, Swords, TrendingUp } from "lucide-react";
+import { BarChart3, CalendarClock, FileSearch, LayoutGrid, Mail, PanelRight, Plug, Swords, TrendingUp } from "lucide-react";
 import { OrbitIcon } from "../orbit/orbit-icon";
 import { site } from "@/lib/site";
 import { LiveVisual } from "./visuals/live-visual";
@@ -10,6 +10,7 @@ import { CompareVisual } from "./visuals/compare-visual";
 import { ApiVisual } from "./visuals/api-visual";
 import { ReportVisual } from "./visuals/report-visual";
 import { SocialVisual } from "./visuals/social-visual";
+import { ExtensionVisual } from "./visuals/extension-visual";
 
 type Link = { label: string; href: string };
 
@@ -24,7 +25,6 @@ export type ExploreItem = {
   primary: Link;
   secondary: Link;
   Visual: () => React.ReactNode;
-  wide?: boolean;
 };
 
 export const exploreItems: ExploreItem[] = [
@@ -63,7 +63,7 @@ export const exploreItems: ExploreItem[] = [
     tone: "violet",
     label: "Social posts",
     title: "Write once. Post on time.",
-    body: "Orbit drafts LinkedIn posts and schedules them.",
+    body: "Orbit drafts LinkedIn and Instagram posts and schedules them.",
     primary: { label: "Learn more", href: "/social" },
     secondary: { label: "Docs", href: "/docs/scheduled-posts" },
     Visual: SocialVisual,
@@ -94,8 +94,8 @@ export const exploreItems: ExploreItem[] = [
     label: "Orbit AI",
     title: "Ask. Get the fix.",
     body: "An assistant that knows the product.",
-    primary: { label: "Learn more", href: "/social" },
-    secondary: { label: "Docs", href: "/docs/orbit-ai" },
+    primary: { label: "Learn more", href: "/docs/orbit-ai" },
+    secondary: { label: "Add to Chrome", href: site.orbitExtension },
     Visual: OrbitVisual,
   },
   {
@@ -117,6 +117,15 @@ export const exploreItems: ExploreItem[] = [
     primary: { label: "Learn more", href: "/platform-api" },
     secondary: { label: "API reference", href: "/docs/api-reference" },
     Visual: ApiVisual,
-    wide: true,
+  },
+  {
+    icon: PanelRight,
+    tone: "rose",
+    label: "Orbit AI for Chrome",
+    title: "Orbit, on every tab.",
+    body: "Ask about the page you're on, from Chrome's side panel.",
+    primary: { label: "Add to Chrome", href: site.orbitExtension },
+    secondary: { label: "How it works", href: "/docs/orbit-ai" },
+    Visual: ExtensionVisual,
   },
 ];

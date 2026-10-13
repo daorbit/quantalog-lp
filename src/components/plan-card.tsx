@@ -97,7 +97,7 @@ export function PlanCard({
           {price === 0 ? "Get started now" : "Upgrade plan"}
         </span>
         <span
-          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-transform duration-200 group-hover:translate-x-0.5 ${
+          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
             featured ? "bg-cta-fg/12" : "bg-fg/8"
           }`}
           aria-hidden="true"

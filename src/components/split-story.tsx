@@ -28,7 +28,7 @@ export function SplitStory({
               className="group mt-8 inline-flex items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
             >
               {link.label}
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           )}
         </div>

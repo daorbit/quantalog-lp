@@ -85,7 +85,7 @@ export default function DocsIndexPage() {
                       {doc.description}
                     </p>
                   </div>
-                  <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-fg-faint opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+                  <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-fg-faint opacity-0 transition group-hover:opacity-100" />
                 </Link>
               ))}
             </div>

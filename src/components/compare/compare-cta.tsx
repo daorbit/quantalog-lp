@@ -23,7 +23,7 @@ export function CompareCta({ rival }: { rival: string }) {
             trackProps={{ location: "compare_cta" }}
           >
             Start free
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <Button href="/docs/demo" variant="secondary" size="lg">
             See the live demo

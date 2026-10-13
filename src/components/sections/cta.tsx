@@ -7,7 +7,7 @@ export function Cta({
   title = (
     <>
       Your first pageview is
-      <br className="hidden sm:block" /> three minutes away.
+      <br className="hidden sm:block" /> two minutes away.
     </>
   ),
   body = "The Free plan stays free forever. No credit card, no sales call, no onboarding webinar.",
@@ -29,12 +29,11 @@ export function Cta({
           <Button
             href={`${site.app}/signup`}
             size="lg"
-            className="group"
             track="cta_start_free"
             trackProps={{ location }}
           >
             Start free
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <Button
             href={secondary.href}

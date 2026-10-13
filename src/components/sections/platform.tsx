@@ -94,7 +94,7 @@ export function Platform() {
             className="group inline-flex items-center gap-2 text-sm font-medium text-accent"
           >
             How the Platform API works
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
           <a
             href={site.docs}
@@ -102,7 +102,7 @@ export function Platform() {
             className="group inline-flex items-center gap-2 text-sm font-medium text-fg-muted transition hover:text-fg"
           >
             Read the API reference
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="h-4 w-4" />
           </a>
         </div>
       </div>

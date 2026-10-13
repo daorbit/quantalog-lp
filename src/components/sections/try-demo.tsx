@@ -61,13 +61,12 @@ export function TryDemo() {
         <div className="mt-14 flex flex-col items-center gap-4">
           <Button
             href={`${site.app}/login`}
-            size="lg"
-            className="group"
+            size="lg"
             track="try_demo"
             trackProps={{ location: "demo_section" }}
           >
             Explore the live demo
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <p className="flex items-center gap-1.5 text-xs text-fg-faint">
             <Lock className="h-3 w-3" aria-hidden="true" />

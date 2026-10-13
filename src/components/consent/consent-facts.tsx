@@ -4,17 +4,17 @@ const facts = [
   {
     icon: Cookie,
     title: "Zero cookies.",
-    body: "Nothing is written to the browser — not a cookie, not localStorage — so there is nothing to consent to.",
+    body: "No cookies, no localStorage and no persistent ID. The only thing kept is a session ID that is cleared when the tab closes.",
   },
   {
     icon: RefreshCw,
     title: "A hash that forgets.",
-    body: "Visitors are a salted hash of IP and user agent that rotates every day, so nobody is recognisable tomorrow.",
+    body: "Visitors are a salted hash of IP and user agent that rotates every week, so nobody can be followed from one week to the next.",
   },
   {
     icon: ShieldCheck,
     title: "No personal data.",
-    body: "Nothing personal is stored, so there is nothing to leak, export or delete on request.",
+    body: "Analytics keeps no names, emails or IP addresses, so there is nothing personal to leak or export.",
   },
 ];
 

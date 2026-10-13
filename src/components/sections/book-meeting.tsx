@@ -6,7 +6,7 @@ import { BookingShowcase } from "../booking-showcase/booking-showcase";
 const FEATURES = [
   { icon: CalendarCheck, title: "Google Calendar sync", body: "Busy times are hidden and every booking is added to your calendar." },
   { icon: Video, title: "Meet link included", body: "Each booking can get its own Google Meet room." },
-  { icon: Timer, title: "Your rules", body: "Buffers, minimum notice, daily limits and days off." },
+  { icon: Timer, title: "Your rules", body: "Weekly hours, buffers, minimum notice and days off." },
   { icon: CreditCard, title: "Paid bookings", body: "The time is held while they pay and released if they don't." },
 ];
 

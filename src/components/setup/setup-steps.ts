@@ -9,7 +9,7 @@ export const steps = [
   {
     n: 2,
     title: "Drop in the tag",
-    body: "Paste one async script into your <head>. It is under a kilobyte and blocks nothing.",
+    body: "Paste one async script into your <head>. It is under 5 KB gzipped and blocks nothing.",
   },
   {
     n: 3,
@@ -19,7 +19,7 @@ export const steps = [
 ] as const;
 
 export const setupFacts = [
-  { value: "0.9", unit: "KB", label: "Tracker size" },
+  { value: "4.6", unit: "KB", label: "Tracker size, gzipped" },
   { value: "0", unit: "", label: "Cookies set" },
   { value: "~3", unit: "s", label: "Until the first pageview" },
 ] as const;

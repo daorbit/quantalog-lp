@@ -24,7 +24,7 @@ export function Hero() {
 
           <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.75rem]">
             <Words text="Cookieless analytics" />{" "}
-            <Words text="that counts the half others miss." offset={2} />
+            <Words text="that counts the visitors others miss." offset={2} />
           </h1>
 
           <p className="rise rise-3 mt-6 max-w-lg text-pretty text-[1.0625rem] leading-[1.6] text-fg-muted sm:text-[1.1875rem]">

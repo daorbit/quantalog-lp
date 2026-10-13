@@ -98,7 +98,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         point: "Script weight",
-        ours: "Under 1 KB, loaded async.",
+        ours: "Under 5 KB gzipped, loaded async.",
         theirs: "The gtag.js bundle is roughly two orders of magnitude larger.",
         verdict: "quantalog",
       },
@@ -160,7 +160,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         q: "Does Quantalog need a cookie consent banner?",
-        a: "No. Quantalog sets no cookies and stores nothing in the browser. Visitors are identified by a rotating daily hash of IP address and user agent, which is discarded and cannot be reversed, so there is no personal data to obtain consent for.",
+        a: "No. Quantalog sets no cookies and stores nothing persistent in the browser. Visitors are identified by a rotating weekly hash of IP address and user agent, which is discarded and cannot be reversed, so there is no personal data to obtain consent for.",
       },
       {
         q: "Why does Google Analytics under-report traffic?",
@@ -178,7 +178,7 @@ const COMPARISONS: Comparison[] = [
     logo: siPlausibleanalytics,
     title: "Quantalog vs Plausible",
     description:
-      "A privacy-first Plausible alternative that adds SEO audits, retention cohorts and a multi-tenant API — while keeping the cookieless, no-consent-banner tracking and sub-kilobyte script.",
+      "A privacy-first Plausible alternative that adds SEO audits, retention cohorts and a multi-tenant API — while keeping the cookieless, no-consent-banner tracking and a script under 5 KB.",
     intro:
       "Plausible and Quantalog agree on the important part: no cookies, no personal data, no consent banner, a tiny script. This page is for teams who like that model and have outgrown a pageview counter.",
     whenTheirs:
@@ -192,8 +192,8 @@ const COMPARISONS: Comparison[] = [
       },
       {
         point: "Script weight",
-        ours: "Under 1 KB.",
-        theirs: "Also under 1 KB. Neither tool is a page-weight problem.",
+        ours: "Under 5 KB gzipped.",
+        theirs: "Under 1 KB. Neither tool is a page-weight problem.",
         verdict: "both",
       },
       {
@@ -287,7 +287,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         point: "Script weight",
-        ours: "Under 1 KB.",
+        ours: "Under 5 KB gzipped.",
         theirs: "The full matomo.js tracker is substantially larger.",
         verdict: "quantalog",
       },
@@ -331,7 +331,7 @@ const COMPARISONS: Comparison[] = [
     faqs: [
       {
         q: "Is Quantalog GDPR compliant without a consent banner?",
-        a: "Quantalog stores no cookies and no personal data. Visitors are counted using a rotating daily hash of IP and user agent that is never stored in reversible form, which is why no banner is needed. Your own compliance obligations still depend on everything else running on your site, so treat this as one fewer thing to disclose rather than legal advice.",
+        a: "Quantalog stores no cookies and no personal data. Visitors are counted using a rotating weekly hash of IP and user agent that is never stored in reversible form, which is why no banner is needed. Your own compliance obligations still depend on everything else running on your site, so treat this as one fewer thing to disclose rather than legal advice.",
       },
       {
         q: "Can Quantalog replace a self-hosted Matomo?",
@@ -339,7 +339,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         q: "Which is lighter on page performance?",
-        a: "Quantalog. The tracker is under 1 KB and loads asynchronously, against a materially larger matomo.js.",
+        a: "Quantalog. The tracker is under 5 KB gzipped and loads asynchronously, against a materially larger matomo.js.",
       },
     ],
   },
@@ -393,7 +393,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         point: "Script weight",
-        ours: "Under 1 KB, loaded async.",
+        ours: "Under 5 KB gzipped, loaded async.",
         theirs: "A small script in the same class; both are a fraction of a typical analytics bundle.",
         verdict: "both",
       },
@@ -521,7 +521,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         point: "Script weight",
-        ours: "Under 1 KB, loaded async.",
+        ours: "Under 5 KB gzipped, loaded async.",
         theirs: "The posthog-js SDK is substantially larger, more so with session replay and autocapture enabled.",
         verdict: "quantalog",
       },
@@ -721,7 +721,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         point: "Script weight",
-        ours: "Under 1 KB, loaded async.",
+        ours: "Under 5 KB gzipped, loaded async.",
         theirs: "A small script in the same class; both are a fraction of a typical analytics bundle.",
         verdict: "both",
       },

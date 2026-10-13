@@ -15,7 +15,7 @@ export const principles = [
   {
     icon: Cookie,
     title: "No cookies, by design",
-    body: "There is no setting to switch cookies on. A visitor is a salted hash of IP, user agent and site key that rotates daily, so nobody is recognisable tomorrow or on another site.",
+    body: "There is no setting to switch cookies on. A visitor is a salted hash of IP, user agent and site key that rotates every week, so nobody can be followed from one week to the next or across sites.",
   },
   {
     icon: Database,
@@ -30,7 +30,7 @@ export const principles = [
   {
     icon: Gauge,
     title: "Lightweight on every page",
-    body: "The tracker is under a kilobyte and loads asynchronously. Analytics should never slow down the pages it measures.",
+    body: "The tracker is under 5 KB gzipped and loads asynchronously. Analytics should never slow down the pages it measures.",
   },
 ] as const;
 
@@ -57,7 +57,7 @@ export const aboutFaqs = [
   },
   {
     q: "Is Quantalog GDPR compliant?",
-    a: "Quantalog sets no cookies and stores no personal data. Visitors are counted with a daily-rotating hash that is never stored in reversible form, which is why no consent banner is needed for it. Your overall obligations still depend on everything else running on your site, so treat this as one fewer disclosure rather than legal advice.",
+    a: "Quantalog sets no cookies and stores no personal data. Visitors are counted with a weekly-rotating hash that is never stored in reversible form, which is why no consent banner is needed for it. Your overall obligations still depend on everything else running on your site, so treat this as one fewer disclosure rather than legal advice.",
   },
   {
     q: "What does Quantalog deliberately not do?",

@@ -56,7 +56,7 @@ export function OrbitPlanCard({
         }`}
       >
         {price === 0 ? "Start free" : "Get started"}
-        <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        <ArrowRight className="h-4 w-4" />
       </a>
 
       <ul className="mt-7 space-y-3 border-t border-border pt-6">

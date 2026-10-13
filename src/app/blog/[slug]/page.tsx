@@ -171,7 +171,7 @@ export default async function BlogPostPage({
             </h2>
             <Link href="/blog" className="blog-back group">
               All articles
-              <ChevronRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">

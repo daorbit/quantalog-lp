@@ -26,7 +26,7 @@ export function AboutHero() {
             trackProps={{ location: "about_hero" }}
           >
             Start free
-            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <Button href="/contact" variant="secondary" size="lg">
             Contact us

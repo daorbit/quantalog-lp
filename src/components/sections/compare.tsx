@@ -23,7 +23,7 @@ const rows: { feature: string; values: [Support, Support, Support] }[] = [
   { feature: "Broken link and schema checks", values: ["yes", "no", "no"] },
   { feature: "Raw event export (CSV / XLSX)", values: ["yes", "partial", "no"] },
   { feature: "Multi-tenant API for your own users", values: ["yes", "no", "no"] },
-  { feature: "Under 1 KB on the page", values: ["yes", "no", "yes"] },
+  { feature: "Under 5 KB on the page", values: ["yes", "no", "yes"] },
 ];
 
 function Cell({ value }: { value: Support }) {
