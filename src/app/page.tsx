@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
+import { Countries } from "@/components/sections/countries";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
@@ -121,6 +122,7 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
+      <Countries />
       <Logos />
       <Explore />
       <OrbitExtension />

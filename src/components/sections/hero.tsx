@@ -6,13 +6,13 @@ import { Words } from "../words";
 import { BookDemoButton } from "../book-demo-button";
 import { ProviderSignup } from "../provider-signup";
 import { TrustChips } from "../trust-chips";
-import { HeroShowcase } from "../hero/hero-showcase";
+import { HeroVisual } from "../hero-visual";
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      <div className="mx-auto w-full max-w-360 px-4 pb-16 pt-16 sm:px-6 sm:pb-24 sm:pt-24">
-        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+      <div className="mx-auto grid w-full max-w-360 items-center gap-10 px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:py-20">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <AnnouncementPill
             href={site.orbitExtension}
             label="New"
@@ -22,22 +22,16 @@ export function Hero() {
             Orbit AI is now on Chrome
           </AnnouncementPill>
 
-          <h1 className="word-rise mt-8 text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.05em] sm:text-[4.25rem] lg:text-[5rem]">
-            <Words text="Cookieless analytics" className="text-fg-faint" />{" "}
-            <br className="hidden sm:block" />
-            <Words text="that counts the" offset={2} />{" "}
-            <span className="text-accent" style={{ ["--i" as string]: 5 }}>
-              half
-            </span>{" "}
-            <Words text="others miss." offset={6} />
+          <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.75rem]">
+            <Words text="Cookieless analytics" />{" "}
+            <Words text="that counts the half others miss." offset={2} />
           </h1>
 
-          <p className="rise rise-3 mt-7 max-w-2xl text-pretty text-[1.0625rem] leading-[1.55] text-fg-muted sm:text-[1.25rem]">
-            Real-time dashboards, SEO audits and AI insights in one place.
-            No cookies. No consent banner.
+          <p className="rise rise-3 mt-6 max-w-lg text-pretty text-[1.0625rem] leading-[1.6] text-fg-muted sm:text-[1.1875rem]">
+            Real-time dashboards, SEO audits and AI insights in one place. No cookies, no consent banner.
           </p>
 
-          <div className="rise rise-4 mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="rise rise-4 mt-9 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
             <Button
               href={`${site.app}/signup`}
               size="lg"
@@ -50,12 +44,12 @@ export function Hero() {
             <BookDemoButton location="hero" />
           </div>
 
-          <ProviderSignup location="hero" className="rise rise-5 mt-7" />
+          <ProviderSignup location="hero" align="responsiveLg" className="rise rise-5 mt-7" />
+
+          <TrustChips className="rise rise-5 mt-10 justify-center lg:justify-start" />
         </div>
 
-        <HeroShowcase />
-
-        <TrustChips className="mt-10 justify-center" />
+        <HeroVisual />
       </div>
     </section>
   );

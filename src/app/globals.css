@@ -3419,126 +3419,190 @@ body {
   box-shadow: inset 0 0 0 1px var(--hairline);
 }
 
-.hero-panel {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.04), 0 16px 40px -20px rgba(10, 10, 10, 0.14);
+.hero-visual {
+  animation: enter-rise 1s var(--ease-out-q) 0.3s both;
 }
 
-.dark .hero-panel {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 16px 40px -20px rgba(0, 0, 0, 0.9);
+.hero-flow-static {
+  pointer-events: none;
+  user-select: none;
 }
 
-@keyframes hero-in {
-  from { opacity: 0; transform: translateY(20px) scale(0.985); }
+.hero-card {
+  background: var(--surface-raised);
+  box-shadow:
+    0 1px 0 0 color-mix(in srgb, var(--fg) 5%, transparent) inset,
+    var(--shadow-md);
+  animation: hero-node-in 0.7s var(--ease-out-q) both;
+  animation-delay: calc(0.5s + var(--i, 0) * 0.14s);
 }
 
-@keyframes hero-fade {
-  from { opacity: 0; transform: translateY(6px); }
+@keyframes hero-node-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
 }
 
-@keyframes hero-fade-only {
-  from { opacity: 0; }
-}
-
-@keyframes hero-draw {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes hero-pop {
-  from { opacity: 0; transform: scale(0); }
-}
-
-@keyframes hero-typing {
-  0% { opacity: 0; }
-  15%, 85% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes hero-typing-dot {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-3px); opacity: 1; }
-}
-
-.hero-in {
-  animation: hero-in 0.9s var(--ease-out-q) both;
-}
-
-.hero-in--main { animation-delay: 0.45s; }
-.hero-in--thread { animation-delay: 0.7s; }
-.hero-in--agent { animation-delay: 0.9s; }
-
-.hero-kpi {
-  animation: hero-fade 0.6s var(--ease-out-q) both;
-  animation-delay: calc(0.85s + var(--i, 0) * 80ms);
-}
-
-.hero-row {
-  animation: hero-fade 0.6s var(--ease-out-q) both;
-  animation-delay: calc(1.5s + var(--i, 0) * 90ms);
-}
-
-.hero-draw {
+.react-flow .hero-edge__base {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: hero-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 1s forwards;
+  animation: hero-edge-draw 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: calc(0.9s + var(--i, 0) * 0.12s);
 }
 
-.hero-ghost {
-  animation: hero-fade-only 0.8s ease 0.9s both;
+@keyframes hero-edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-.hero-dot {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: hero-pop 0.45s var(--ease-spring) 2.5s both;
+.hero-card__flare {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  animation: hero-card-flare 3s ease-out infinite;
 }
 
-.hero-msg-q {
-  animation: hero-fade 0.5s var(--ease-out-q) 1.3s both;
+.hero-card__flare--events {
+  animation-delay: 2.8s;
 }
 
-.hero-typing {
-  animation: hero-typing 1.1s ease 1.7s both;
+.hero-card__flare--output {
+  animation-delay: 3.8s;
 }
 
-.hero-typing > span {
-  animation: hero-typing-dot 0.9s ease-in-out 1.7s 2;
-}
-
-.hero-typing > span:nth-child(2) { animation-delay: 1.85s; }
-.hero-typing > span:nth-child(3) { animation-delay: 2s; }
-
-.hero-msg-a {
-  animation: hero-fade 0.5s var(--ease-out-q) 2.8s both;
-}
-
-.hero-step {
-  animation: hero-fade 0.45s var(--ease-out-q) both;
-  animation-delay: calc(3.1s + var(--i, 0) * 280ms);
+@keyframes hero-card-flare {
+  0% { opacity: 0; }
+  4% { opacity: 1; }
+  28%, 100% { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-in,
-  .hero-kpi,
-  .hero-row,
-  .hero-ghost,
-  .hero-dot,
-  .hero-msg-q,
-  .hero-msg-a,
-  .hero-step,
-  .hero-typing > span {
+  .hero-visual,
+  .hero-card,
+  .hero-card__flare {
     animation: none;
   }
 
-  .hero-draw {
+  .react-flow .hero-edge__base {
     animation: none;
     stroke-dashoffset: 0;
   }
+}
 
-  .hero-typing {
+.world-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  user-select: none;
+}
+
+.world-map .country:not(.map-data) {
+  fill: color-mix(in srgb, var(--fg) 7%, var(--surface));
+}
+
+.world-map .country {
+  stroke: color-mix(in srgb, var(--border) 80%, transparent);
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.world-map .country.map-data {
+  stroke: color-mix(in srgb, #ffffff 22%, transparent);
+  stroke-width: 0.6;
+}
+
+.world-map .country.spotlit {
+  stroke: color-mix(in srgb, #ffffff 55%, transparent);
+  stroke-width: 0.7;
+}
+
+.map-callout {
+  pointer-events: none;
+}
+
+.map-callout-line {
+  fill: none;
+  stroke-width: 1;
+  stroke-opacity: 0.9;
+  vector-effect: non-scaling-stroke;
+}
+
+.map-callout-halo {
+  fill-opacity: 0.35;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-halo 2.4s ease-out infinite;
+}
+
+.map-callout-anchor {
+  fill: #ffffff;
+}
+
+.map-callout-box {
+  fill: color-mix(in srgb, var(--surface) 94%, transparent);
+  stroke-width: 1;
+}
+
+.map-callout-name {
+  fill: var(--fg-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.map-callout-value {
+  fill: var(--fg);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@keyframes map-halo {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes map-data-in {
+  from { opacity: 0; }
+}
+
+@keyframes map-callout-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+.motion-io .map-stage:not(.in-view) .map-data,
+.motion-io .map-stage:not(.in-view) .map-callout {
+  opacity: 0;
+}
+
+.motion-io .map-stage.in-view .map-data {
+  animation: map-data-in 0.8s var(--ease-out-q) both;
+  animation-delay: calc(var(--i, 0) * 22ms);
+}
+
+.motion-io .map-stage.in-view .map-callout {
+  animation: map-callout-in 0.6s var(--ease-out-q) both;
+  animation-delay: calc(1.1s + var(--i, 0) * 0.14s);
+}
+
+@media (max-width: 40rem) {
+  .map-callout {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-callout-halo,
+  .motion-io .map-stage.in-view .map-data,
+  .motion-io .map-stage.in-view .map-callout {
     animation: none;
-    opacity: 0;
   }
 }
