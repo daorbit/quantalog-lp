@@ -99,7 +99,7 @@ export default function ContactPage() {
         </ul>
       </header>
 
-      <div className="mx-auto mt-14 max-w-2xl">
+      <div className="mx-auto mt-14 max-w-3xl">
         <EmbeddedForm src={site.contactFormSrc} title="Contact form" eager />
 
         <p className="mt-5 text-center text-sm text-fg-muted">
