@@ -6,6 +6,8 @@ import { BookMeeting } from "@/components/sections/book-meeting";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
+import { Grow } from "@/components/sections/grow";
+import { OrbitAi } from "@/components/sections/orbit-ai";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { steps as setupSteps } from "@/components/setup/setup-steps";
@@ -128,9 +130,11 @@ export default function HomePage() {
       <Explore />
       <ConsentGap />
       <Heatmap />
+      <Grow />
       <BookMeeting />
       <DashboardsGoals />
       <MoreFeatures />
+      <OrbitAi />
       <HowItWorks />
       <Pricing />
       <Referrals />

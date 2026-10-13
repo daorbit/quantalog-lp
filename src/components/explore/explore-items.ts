@@ -1,4 +1,4 @@
-import { BarChart3, CalendarClock, FileSearch, LayoutGrid, Mail, PanelRight, Plug, Swords, TrendingUp } from "lucide-react";
+import { BarChart3, CalendarClock, FileSearch, LayoutGrid, Mail, PanelRight, Plug, TrendingUp } from "lucide-react";
 import { OrbitIcon } from "../orbit/orbit-icon";
 import { site } from "@/lib/site";
 import { LiveVisual } from "./visuals/live-visual";
@@ -6,7 +6,6 @@ import { ScoreVisual } from "./visuals/score-visual";
 import { RankVisual } from "./visuals/rank-visual";
 import { FieldVisual } from "./visuals/field-visual";
 import { OrbitVisual } from "./visuals/orbit-visual";
-import { CompareVisual } from "./visuals/compare-visual";
 import { ApiVisual } from "./visuals/api-visual";
 import { ReportVisual } from "./visuals/report-visual";
 import { SocialVisual } from "./visuals/social-visual";
@@ -27,7 +26,7 @@ export type ExploreItem = {
   Visual: () => React.ReactNode;
 };
 
-export const exploreItems: ExploreItem[] = [
+const items: ExploreItem[] = [
   {
     icon: BarChart3,
     tone: "teal",
@@ -95,18 +94,8 @@ export const exploreItems: ExploreItem[] = [
     title: "Ask. Get the fix.",
     body: "An assistant that knows the product.",
     primary: { label: "Learn more", href: "/docs/orbit-ai" },
-    secondary: { label: "Add to Chrome", href: site.orbitExtension },
-    Visual: OrbitVisual,
-  },
-  {
-    icon: Swords,
-    tone: "slate",
-    label: "Compare",
-    title: "See it side by side.",
-    body: "Honest head-to-heads with the big names.",
-    primary: { label: "Compare", href: "/compare" },
     secondary: { label: "Start free", href: `${site.app}/signup` },
-    Visual: CompareVisual,
+    Visual: OrbitVisual,
   },
   {
     icon: Plug,
@@ -120,7 +109,7 @@ export const exploreItems: ExploreItem[] = [
   },
   {
     icon: PanelRight,
-    tone: "rose",
+    tone: "teal",
     label: "Orbit AI for Chrome",
     title: "Orbit, on every tab.",
     body: "Ask about the page you're on, from Chrome's side panel.",
@@ -129,3 +118,9 @@ export const exploreItems: ExploreItem[] = [
     Visual: ExtensionVisual,
   },
 ];
+
+const pick = (...labels: string[]) => labels.map((label) => items.find((item) => item.label === label)!);
+
+export const measureItems = pick("Analytics", "Forms", "Reports");
+export const growItems = pick("SEO audits", "Search visibility", "Social posts");
+export const aiItems = pick("Orbit AI", "Orbit AI for Chrome", "Platform API");
