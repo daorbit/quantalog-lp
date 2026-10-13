@@ -88,6 +88,22 @@ function Body() {
         can then revise the same way. See{" "}
         <a href="/docs/forms-ai-and-theming">AI building &amp; theming</a>.
       </P>
+      <P>
+        A new, empty form offers three ways to begin: add a question, pick a
+        template, or describe it to Orbit. A template can also be swapped in
+        later. See{" "}
+        <a href="/docs/forms-settings-and-analytics#switch-template">Switching templates</a>.
+      </P>
+
+      <H2 id="phone">Editing on a phone</H2>
+      <P>
+        On a phone the editor becomes a list of your questions. Change any
+        label, its choices or whether it is required, move questions up and
+        down, duplicate or delete them, and add new ones from the bar at the
+        bottom. <b>Preview</b> shows the form exactly as respondents see it, and
+        you can save and publish from the top bar. Creating a brand new form
+        from a template or with Orbit still needs a bigger screen.
+      </P>
 
       <H2 id="payments">Taking payments</H2>
       <P>
