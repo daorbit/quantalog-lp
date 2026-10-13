@@ -64,7 +64,7 @@ export function WorldMap() {
           <path
             key={r.shape.id}
             d={r.shape.d}
-            className={`country map-data${spotlit ? " spotlit" : ""}`}
+            className={`country map-data stage-item${spotlit ? " spotlit" : ""}`}
             fill={FLAG_PALETTES[r.code] ? `url(#${flagGradientId(r.code)})` : "var(--accent)"}
             fillOpacity={spotlit ? 1 : 0.4 + 0.6 * intensity(r.count)}
             filter={spotlit ? `url(#${GLOW_ID})` : undefined}

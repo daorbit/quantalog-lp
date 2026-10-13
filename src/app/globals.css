@@ -3570,25 +3570,32 @@ body {
   100% { transform: scale(2.4); opacity: 0; }
 }
 
-@keyframes map-data-in {
-  from { opacity: 0; }
+.stage-item {
+  transform-box: fill-box;
+  transform-origin: var(--origin, center);
+}
+
+@keyframes stage-item-in {
+  from {
+    opacity: 0;
+    transform: scale(var(--from-scale, 1));
+  }
 }
 
 @keyframes map-callout-in {
   from { opacity: 0; transform: translateY(6px); }
 }
 
-.motion-io .map-stage:not(.in-view) .map-data,
-.motion-io .map-stage:not(.in-view) .map-callout {
+.motion-io .data-stage:not(.in-view) :is(.stage-item, .map-callout) {
   opacity: 0;
 }
 
-.motion-io .map-stage.in-view .map-data {
-  animation: map-data-in 0.8s var(--ease-out-q) both;
-  animation-delay: calc(var(--i, 0) * 22ms);
+.motion-io .data-stage.in-view .stage-item {
+  animation: stage-item-in 0.75s var(--ease-out-q) both;
+  animation-delay: calc(var(--delay, 0s) + var(--i, 0) * var(--stagger, 22ms));
 }
 
-.motion-io .map-stage.in-view .map-callout {
+.motion-io .data-stage.in-view .map-callout {
   animation: map-callout-in 0.6s var(--ease-out-q) both;
   animation-delay: calc(1.1s + var(--i, 0) * 0.14s);
 }
@@ -3601,8 +3608,87 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .map-callout-halo,
-  .motion-io .map-stage.in-view .map-data,
-  .motion-io .map-stage.in-view .map-callout {
+  .motion-io .data-stage.in-view .stage-item,
+  .motion-io .data-stage.in-view .map-callout {
     animation: none;
   }
+}
+
+.heatmap,
+.funnel,
+.retention {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  user-select: none;
+}
+
+.heatmap-label {
+  fill: var(--fg-faint);
+  font-size: 12px;
+}
+
+.heatmap-cell {
+  fill: var(--accent);
+}
+
+.heatmap-peak {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.5;
+}
+
+.funnel-step {
+  fill: var(--fg);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.funnel-meta {
+  fill: var(--fg-faint);
+  font-size: 13px;
+}
+
+.funnel-count {
+  fill: var(--fg);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.funnel-drop {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.retention-head {
+  fill: var(--fg-faint);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.retention-label {
+  fill: var(--fg);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.retention-size {
+  fill: var(--fg-muted);
+  font-size: 13px;
+}
+
+.retention-cell {
+  fill: var(--accent);
+}
+
+.retention-pct {
+  fill: var(--fg);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.retention-pct--strong {
+  fill: #ffffff;
 }

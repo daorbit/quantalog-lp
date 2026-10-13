@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const SELECTOR = ".v-rise, .text-reveal, .map-stage";
+const SELECTOR = ".v-rise, .text-reveal, .data-stage";
 
 export const MOTION_BOOT_SCRIPT =
   "(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion-io');setTimeout(function(){if(!d.dataset.motionReady)d.classList.remove('motion-io')},4000)})()";

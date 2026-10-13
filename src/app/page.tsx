@@ -1,6 +1,9 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { Countries } from "@/components/sections/countries";
+import { TrafficTimes } from "@/components/sections/traffic-times";
+import { Funnels } from "@/components/sections/funnels";
+import { Retention } from "@/components/sections/retention";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
@@ -124,10 +127,13 @@ export default function HomePage() {
       <Hero />
       <Countries />
       <Logos />
+      <TrafficTimes />
       <Explore />
       <OrbitExtension />
+      <Funnels />
       <ConsentGap />
       <MoreFeatures />
+      <Retention />
       <HowItWorks />
       <DashboardsGoals />
       <Pricing />
