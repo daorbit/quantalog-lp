@@ -3732,7 +3732,6 @@ body {
 
 .bm-band {
   background: color-mix(in srgb, var(--accent) 4%, var(--bg));
-  border-block: 1px solid color-mix(in srgb, var(--accent) 10%, var(--border));
 }
 
 .dark .bm-band {
@@ -3782,56 +3781,14 @@ body {
   color: #34d399;
 }
 
-.orbit-band {
-  background: color-mix(in srgb, var(--tone) 4%, var(--bg));
-  border-block: 1px solid color-mix(in srgb, var(--tone) 10%, var(--border));
-}
-
-.dark .orbit-band {
-  background: color-mix(in srgb, var(--tone) 6%, var(--bg));
-}
-
 .orbit-tone {
   color: var(--tone);
 }
 
 .orbit-new,
-.orbit-point-icon,
-.orbit-ext-icon {
+.orbit-point-icon {
   background: color-mix(in srgb, var(--tone) 14%, transparent);
   color: var(--tone);
-}
-
-.orbit-window {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--surface);
-  box-shadow: var(--shadow-lg);
-}
-
-.orbit-flag {
-  position: absolute;
-  inset: -4px;
-  border: 2px solid var(--tone);
-  border-radius: 15px;
-  pointer-events: none;
-}
-
-.orbit-key {
-  display: inline-grid;
-  place-items: center;
-  min-width: 30px;
-  height: 30px;
-  padding: 0 9px;
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  background: var(--surface);
-  box-shadow: 0 2px 0 var(--border-strong);
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--fg);
 }
 
 .orbit-typing {
@@ -3870,4 +3827,46 @@ body {
   .motion-io .data-stage.in-view .orbit-typing span span {
     animation: none;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-io .data-stage.in-view .orbit-bar {
+    animation: none;
+  }
+}
+
+.orbit-mock-panel {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.orbit-drop {
+  color: var(--tone);
+}
+
+.orbit-bar {
+  display: block;
+  flex: 1;
+  transform-origin: left center;
+}
+
+.orbit-bar--before {
+  max-width: 100%;
+  background: color-mix(in srgb, var(--fg) 18%, transparent);
+}
+
+.orbit-bar--after {
+  max-width: 69%;
+  background: var(--tone);
+}
+
+.motion-io .data-stage.in-view .orbit-bar {
+  animation: orbit-bar-grow 0.9s var(--ease-out-q) 3.6s both;
+}
+
+@keyframes orbit-bar-grow {
+  from { transform: scaleX(0); }
 }

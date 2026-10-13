@@ -1,4 +1,4 @@
-import { ArrowRight, Keyboard, PanelRight, Globe } from "lucide-react";
+import { ArrowRight, PanelRight, Globe } from "lucide-react";
 import { Button } from "../ui";
 import { OrbitMark } from "../orbit/orbit-mark";
 import { OrbitExtensionPreview } from "../orbit/orbit-extension-preview";
@@ -11,11 +11,6 @@ const points = [
     body: "Orbit opens beside whatever tab you are on, so you never leave the page to ask about it.",
   },
   {
-    icon: Keyboard,
-    title: "One shortcut away",
-    body: "Ctrl+Shift+O on Windows and Linux, Cmd+Shift+O on a Mac.",
-  },
-  {
     icon: Globe,
     title: "Follows the site you're on",
     body: "Suggestions change with the tab, and your saved conversations come with you.",
@@ -24,7 +19,7 @@ const points = [
 
 export function OrbitExtension({ location = "home" }: { location?: string }) {
   return (
-    <section id="orbit-extension" className="orbit-band tone-rose section-y">
+    <section id="orbit-extension" className="tone-rose section-y">
       <div className="mx-auto grid w-full max-w-400 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 lg:px-10">
         <div className="min-w-0">
           <div className="v-rise flex items-center gap-3">
