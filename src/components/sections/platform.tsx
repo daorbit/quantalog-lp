@@ -51,7 +51,7 @@ export function Platform() {
         <SectionHeading
           eyebrow="Platform API"
           align="left"
-          className="v-rise"
+         
           title={
             <>
               Give analytics to <span className="text-accent">your</span> users.
@@ -61,15 +61,15 @@ export function Platform() {
         />
 
         <div className="mt-12 grid sm:mt-14 gap-3 lg:grid-cols-2">
-          <div className="v-rise v-d1 min-w-0">
+          <div className="min-w-0">
             <CodeCard filename="provision.sh" language="bash" code={createProject} />
           </div>
-          <div className="v-rise v-d2 min-w-0">
+          <div className="min-w-0">
             <CodeCard filename="dashboard.ts" language="typescript" code={readStats} />
           </div>
         </div>
 
-        <div className="v-rise v-d3 mt-3 overflow-hidden rounded-2xl border border-border bg-surface">
+        <div className="mt-3 overflow-hidden rounded-2xl border border-border bg-surface">
           <div className="divide-y divide-border">
             {endpoints.map((e) => (
               <div

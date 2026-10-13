@@ -60,10 +60,10 @@ export function Compare({ showLinks = true }: { showLinks?: boolean }) {
           title="Where Quantalog fits"
           body="Most teams are choosing between a heavyweight suite that needs a consent banner and a counter that only shows pageviews. Quantalog is the middle: product depth without the compliance surface."
           align="center"
-          className="v-rise"
+         
         />
 
-        <div className="v-rise v-d2 panel mt-16 overflow-hidden">
+        <div className="panel mt-16 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[36rem] border-collapse text-left">
               <thead>

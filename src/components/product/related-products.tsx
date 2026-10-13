@@ -21,17 +21,17 @@ export function RelatedProducts({ hrefs }: { hrefs: readonly string[] }) {
   return (
     <section className="border-t border-border">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="v-rise">
+        <div>
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Works with</p>
           <h2 className="mt-3 text-balance text-[1.75rem] font-semibold tracking-tight text-fg sm:text-[2.25rem]">
             Better together.
           </h2>
         </div>
         <ul className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
-          {items.map((p, i) => {
+          {items.map((p) => {
             const Icon = ICONS[p.href];
             return (
-              <li key={p.href} className={`v-rise v-d${i + 1}`}>
+              <li key={p.href}>
                 <Link href={p.href} className="tile group flex h-full flex-col p-6 sm:p-7">
                   {Icon && <Icon className="h-7 w-7 text-accent" />}
                   <span className="mt-8 block text-[1.125rem] font-semibold tracking-tight text-fg">{p.label}</span>

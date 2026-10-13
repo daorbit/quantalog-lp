@@ -89,7 +89,7 @@ export function Reports() {
         <SectionHeading
           eyebrow="Reports"
           align="left"
-          className="v-rise"
+         
           title={
             <>
               The people who need the numbers
@@ -102,10 +102,10 @@ export function Reports() {
 
         <div className="mt-12 grid sm:mt-14 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="grid gap-3 sm:grid-cols-2">
-            {points.map((p, i) => (
+            {points.map((p) => (
               <GlowCard
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group p-6 sm:p-7`}
+                className="group p-6 sm:p-7"
               >
                 <p.icon
                   className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
@@ -121,7 +121,7 @@ export function Reports() {
             ))}
           </div>
 
-          <div className="v-rise v-d2" aria-hidden="true">
+          <div aria-hidden="true">
             <EmailPreview />
           </div>
         </div>

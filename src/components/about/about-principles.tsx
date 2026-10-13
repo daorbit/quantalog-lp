@@ -11,12 +11,12 @@ export function AboutPrinciples() {
         title="Principles we don't trade away."
         body="Four commitments shape every feature we ship — and every one we decline to build."
         centered
-        className="v-rise"
+       
       />
 
       <ul className="mt-10 grid gap-3 sm:mt-16 sm:grid-cols-2 sm:gap-4">
-        {principles.map((p, i) => (
-          <li key={p.title} className={`v-rise v-d${i + 1} tile tile--static flex flex-col p-6 sm:p-9`}>
+        {principles.map((p) => (
+          <li key={p.title} className="tile tile--static flex flex-col p-6 sm:p-9">
             <p.icon className="h-7 w-7 text-accent" strokeWidth={1.6} aria-hidden="true" />
             <h3 className="mt-6 text-[1.25rem] font-semibold tracking-tight text-fg sm:mt-10 sm:text-[1.5rem]">
               {p.title}
@@ -26,7 +26,7 @@ export function AboutPrinciples() {
         ))}
       </ul>
 
-      <div className="v-rise tile tile--static mt-3 p-6 sm:mt-4 sm:p-9">
+      <div className="tile tile--static mt-3 p-6 sm:mt-4 sm:p-9">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div>
             <p className="text-[14px] font-semibold text-accent">By design</p>

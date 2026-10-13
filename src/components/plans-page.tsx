@@ -83,7 +83,7 @@ export function PlansPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
-      <div className="v-rise">
+      <div>
         <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11.5px] font-medium text-fg-muted">
           <PlanIcon slug="pro" size={13} uid="plans-eyebrow" />
           Plans

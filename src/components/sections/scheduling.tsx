@@ -1,6 +1,5 @@
 import { CalendarClock, Images, MessageSquareText, Repeat2 } from "lucide-react";
 import { SectionHeading, GlowCard } from "../ui";
-import { Reveal } from "../reveal";
 
 const points = [
   {
@@ -62,7 +61,7 @@ export function Scheduling() {
         <SectionHeading
           eyebrow="Scheduled posts"
           align="left"
-          className="v-rise"
+         
           title={
             <>
               Your numbers are already here.
@@ -75,10 +74,10 @@ export function Scheduling() {
 
         <div className="mt-12 grid items-start gap-8 sm:mt-14 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="grid gap-3 sm:grid-cols-2">
-            {points.map((p, i) => (
+            {points.map((p) => (
               <GlowCard
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group bg-surface p-6 sm:p-7`}
+                className="group bg-surface p-6 sm:p-7"
               >
                 <p.icon
                   className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
@@ -90,14 +89,12 @@ export function Scheduling() {
             ))}
           </div>
 
-          <Reveal delay={2} className="tilt-in">
-            <div aria-hidden="true">
-              <ComposerPreview />
-            </div>
-          </Reveal>
+          <div aria-hidden="true">
+            <ComposerPreview />
+          </div>
         </div>
 
-        <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
+        <div className="mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-md">
               <h3 className="text-[15px] font-semibold tracking-tight">

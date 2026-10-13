@@ -21,8 +21,8 @@ const facts = [
 export function ConsentFacts() {
   return (
     <ul className="grid gap-10 sm:grid-cols-3 sm:gap-8">
-      {facts.map((f, i) => (
-        <li key={f.title} className={`v-rise v-d${i + 1} text-center sm:text-left`}>
+      {facts.map((f) => (
+        <li key={f.title} className="text-center sm:text-left">
           <f.icon className="mx-auto h-7 w-7 text-accent sm:mx-0" strokeWidth={1.6} aria-hidden="true" />
           <p className="mt-4 text-[1.1875rem] font-semibold tracking-tight text-fg">{f.title}</p>
           <p className="mt-2 text-pretty text-[15px] leading-relaxed text-fg-muted">{f.body}</p>

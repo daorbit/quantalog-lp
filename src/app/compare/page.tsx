@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getAllComparisons } from "@/lib/comparisons";
 import { Eyebrow } from "@/components/ui";
-import { Reveal } from "@/components/reveal";
 import { Compare } from "@/components/sections/compare";
 import { Cta } from "@/components/sections/cta";
 import { CompareCard } from "@/components/compare/compare-card";
@@ -58,7 +57,7 @@ export default function ComparisonsIndexPage() {
       <JsonLd data={jsonLd} />
 
       <section className="mx-auto max-w-6xl px-4 pb-14 pt-16 sm:px-6 sm:pb-24 sm:pt-28">
-        <header className="v-rise mx-auto max-w-3xl text-center">
+        <header className="mx-auto max-w-3xl text-center">
           <Eyebrow>Compare</Eyebrow>
           <h1 className="mt-4 text-balance text-display font-medium leading-[1.02] tracking-display">
             {site.name} vs the rest.
@@ -71,7 +70,7 @@ export default function ComparisonsIndexPage() {
 
         <ul className="mt-10 grid gap-3 sm:mt-16 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {comparisons.map((c, i) => (
-            <li key={c.slug} className={`v-rise v-d${(i % 3) + 1}`}>
+            <li key={c.slug}>
               <CompareCard comparison={c} />
             </li>
           ))}
@@ -82,9 +81,9 @@ export default function ComparisonsIndexPage() {
         <Compare showLinks={false} />
       </div>
 
-      <Reveal as="section">
+      <section>
         <Cta />
-      </Reveal>
+      </section>
     </>
   );
 }

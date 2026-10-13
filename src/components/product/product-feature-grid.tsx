@@ -43,8 +43,8 @@ export function ProductFeatureGrid({
 }) {
   return (
     <ul className={`grid gap-3 sm:gap-4 ${COLUMNS[columns]}`}>
-      {features.map((f, i) => (
-        <li key={f.title} className={`v-rise v-d${(i % 4) + 1}`}>
+      {features.map((f) => (
+        <li key={f.title}>
           {f.href ? (
             <Link href={f.href} className="tile group flex h-full flex-col p-6 sm:p-7">
               <FeatureBody feature={f} />

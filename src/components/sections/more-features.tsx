@@ -8,7 +8,7 @@ export function MoreFeatures() {
   return (
     <section id="more">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="v-rise mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
             And a lot more, built in.
           </h2>
@@ -19,7 +19,7 @@ export function MoreFeatures() {
         </div>
 
         <div className="mt-8 grid gap-3 sm:mt-16 sm:gap-4 sm:grid-cols-2 lg:grid-flow-dense lg:grid-cols-4">
-          <div className="v-rise sm:col-span-2 lg:row-span-2">
+          <div className="sm:col-span-2 lg:row-span-2">
             <FeatureTile
               href="/docs/public-dashboards"
               label="Public dashboards"
@@ -30,13 +30,13 @@ export function MoreFeatures() {
             </FeatureTile>
           </div>
 
-          {moreItems.slice(0, 4).map((item, i) => (
-            <div key={item.title} className={`v-rise v-d${i + 1}`}>
+          {moreItems.slice(0, 4).map((item) => (
+            <div key={item.title}>
               <MoreTile item={item} />
             </div>
           ))}
 
-          <div className="v-rise sm:col-span-2 lg:row-span-2 lg:col-start-3">
+          <div className="sm:col-span-2 lg:row-span-2 lg:col-start-3">
             <FeatureTile
               href="/reports"
               label="Reports"
@@ -47,8 +47,8 @@ export function MoreFeatures() {
             </FeatureTile>
           </div>
 
-          {moreItems.slice(4).map((item, i) => (
-            <div key={item.title} className={`v-rise v-d${i + 1}`}>
+          {moreItems.slice(4).map((item) => (
+            <div key={item.title}>
               <MoreTile item={item} />
             </div>
           ))}

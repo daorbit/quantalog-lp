@@ -48,7 +48,7 @@ export function Seo() {
         <SectionHeading
           eyebrow="SEO audits"
           align="center"
-          className="v-rise"
+         
           title={
             <>
               Traffic tells you who came.
@@ -60,10 +60,10 @@ export function Seo() {
         />
 
         <div className="mt-14 grid sm:mt-16 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {checks.map((c, i) => (
+          {checks.map((c) => (
             <GlowCard
               key={c.title}
-              className={`v-rise v-d${(i % 3) + 1} group bg-surface p-6 sm:p-7`}
+              className="group bg-surface p-6 sm:p-7"
             >
               <c.icon
                 className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"

@@ -11,7 +11,7 @@ export function HowItWorks() {
   return (
     <section id="setup">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="v-rise mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Setup</p>
           <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
             Three steps.
@@ -27,7 +27,7 @@ export function HowItWorks() {
           {steps.map((s, i) => {
             const Visual = visuals[i];
             return (
-              <li key={s.n} className={`v-rise v-d${i + 1}`}>
+              <li key={s.n}>
                 <SetupStepTile n={s.n} title={s.title} body={s.body}>
                   <Visual />
                 </SetupStepTile>

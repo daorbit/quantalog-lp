@@ -6,7 +6,6 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 // import { DisplayMenu } from "@/components/display/display-menu";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
-import { MOTION_BOOT_SCRIPT, ScrollRise } from "@/components/scroll-rise";
 import { PlansProvider } from "@/components/plans-provider";
 import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { site } from "@/lib/site";
@@ -109,17 +108,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={sans.variable}>
       <head>
-        <Script id="motion-boot" strategy="beforeInteractive">
-          {MOTION_BOOT_SCRIPT}
-        </Script>
         <link rel="preconnect" href="https://forms.daorbit.in" />
         <link rel="prefetch" as="document" href={site.contactFormSrc} />
       </head>
       <body className="font-sans antialiased">
 
-        <noscript>
-          <style>{`.reveal,.v-rise,.text-reveal{opacity:1!important;transform:none!important;filter:none!important}`}</style>
-        </noscript>
         <ThemeProvider>
           <a
             href="#main"
@@ -137,8 +130,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* <DisplayMenu /> */}
 
           <OrbitBubble />
-
-          <ScrollRise />
 
           <ContactFormPrewarm />
         </ThemeProvider>

@@ -94,7 +94,7 @@ export function Analytics() {
           eyebrow="Analytics"
           dot
           align="left"
-          className="v-rise"
+         
           title={
             <>
               Not a counter.
@@ -104,7 +104,7 @@ export function Analytics() {
           body="Funnels, retention cohorts, device splits, time of day and geography — every panel below is a view you get on day one, drawn from the same event stream, with no extra tags to place."
         />
 
-        <div className="card v-rise v-d2 mt-14 grid overflow-hidden divide-y divide-border sm:mt-16 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 [&>*:not(:last-child)]:sm:border-r [&>*]:sm:border-border">
+        <div className="card mt-14 grid overflow-hidden divide-y divide-border sm:mt-16 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 [&>*:not(:last-child)]:sm:border-r [&>*]:sm:border-border">
           {KPIS.map((k, i) => (
             <SparkStat key={k.label} {...k} delay={i * 0.1} />
           ))}
@@ -112,12 +112,12 @@ export function Analytics() {
 
         <div className="mt-3 grid gap-3 lg:grid-cols-3">
 
-          <GlowCard className="v-rise v-d1 p-6 sm:p-7 lg:col-span-2">
+          <GlowCard className="p-6 sm:p-7 lg:col-span-2">
             <PanelHead title="Signup funnel · last 30 days" note="4.8% end to end" />
             <Funnel steps={FUNNEL} />
           </GlowCard>
 
-          <GlowCard className="v-rise v-d2 flex flex-col justify-center p-6 sm:p-7">
+          <GlowCard className="flex flex-col justify-center p-6 sm:p-7">
             <PanelHead title="Goals" />
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
               <Gauge pct={78} label="Trial → paid" caption="78 of 100 monthly target" />
@@ -125,7 +125,7 @@ export function Analytics() {
             </div>
           </GlowCard>
 
-          <GlowCard className="v-rise v-d1 p-6 sm:p-7 lg:col-span-2">
+          <GlowCard className="p-6 sm:p-7 lg:col-span-2">
             <PanelHead title="Weekly retention cohorts" note="% still active" />
             <CohortGrid
               rows={COHORTS}
@@ -133,23 +133,23 @@ export function Analytics() {
             />
           </GlowCard>
 
-          <GlowCard className="v-rise v-d2 p-6 sm:p-7">
+          <GlowCard className="p-6 sm:p-7">
             <PanelHead title="Devices" note="10,840" />
             <Donut slices={DEVICES} centerLabel="Sessions" centerValue="10.8k" />
           </GlowCard>
 
-          <GlowCard className="v-rise v-d1 p-6 sm:p-7">
+          <GlowCard className="p-6 sm:p-7">
             <PanelHead title="Top countries" note="Views" />
             <GeoBars rows={GEO} />
           </GlowCard>
 
-          <GlowCard className="v-rise v-d2 p-6 sm:p-7 lg:col-span-2">
+          <GlowCard className="p-6 sm:p-7 lg:col-span-2">
             <PanelHead title="Traffic by hour · local time" note="Peak 15:00" />
             <HourBars values={HOURS} peakHour={15} />
           </GlowCard>
         </div>
 
-        <p className="v-rise v-d3 mt-6 text-sm text-fg-faint">
+        <p className="mt-6 text-sm text-fg-faint">
           Sample data. Every panel is a standard view — none of it needs a
           custom dashboard build.
         </p>

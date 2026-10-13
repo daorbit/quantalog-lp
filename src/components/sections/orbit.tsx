@@ -3,7 +3,6 @@ import {
   BarChart3, ImageIcon, Swords,
 } from "lucide-react";
 import { SectionHeading } from "../ui";
-import { Reveal } from "../reveal";
 import { OrbitMark } from "../orbit/orbit-mark";
 
 const points = [
@@ -113,13 +112,13 @@ export function Orbit() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 section-y">
 
         <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
-          <div className="v-rise">
+          <div>
             <OrbitBadge />
           </div>
           <SectionHeading
             eyebrow="Orbit AI"
             align="left"
-            className="v-rise v-d2"
+           
             title={
               <>
                 Support that answers
@@ -137,10 +136,10 @@ export function Orbit() {
               hover only — four accent icons in a block competed with the
               chat preview beside them, which is the thing worth looking at. */}
           <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
-            {points.map((p, i) => (
+            {points.map((p) => (
               <div
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group flex flex-col bg-surface p-5 transition-colors duration-200 hover:bg-surface-raised sm:p-6`}
+                className="group flex flex-col bg-surface p-5 transition-colors duration-200 hover:bg-surface-raised sm:p-6"
               >
                 <div className="flex items-center gap-2.5">
                   <p.icon
@@ -158,22 +157,20 @@ export function Orbit() {
             ))}
           </div>
 
-          <Reveal delay={2} className="tilt-in">
-            <div aria-hidden="true">
-              <ChatPreview />
-            </div>
-          </Reveal>
+          <div aria-hidden="true">
+            <ChatPreview />
+          </div>
         </div>
 
         <div className="mt-10">
-          <h3 className="v-rise text-[13px] font-medium text-fg-muted">
+          <h3 className="text-[13px] font-medium text-fg-muted">
             On a plan with data access, Orbit does more than answer support questions
           </h3>
           <div className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
-            {dataPoints.map((p, i) => (
+            {dataPoints.map((p) => (
               <div
                 key={p.title}
-                className={`v-rise v-d${(i % 3) + 1} group flex flex-col bg-surface p-5 transition-colors duration-200 hover:bg-surface-raised sm:p-6`}
+                className="group flex flex-col bg-surface p-5 transition-colors duration-200 hover:bg-surface-raised sm:p-6"
               >
                 <div className="flex items-center gap-2.5">
                   <p.icon
@@ -192,7 +189,7 @@ export function Orbit() {
           </div>
         </div>
 
-        <div className="v-rise v-d2 mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
+        <div className="mt-10 rounded-2xl border border-border bg-surface p-7 sm:p-8">
           <div className="max-w-md">
             <h3 className="text-[15px] font-semibold tracking-tight">
               More than one model, so one being busy is never your problem

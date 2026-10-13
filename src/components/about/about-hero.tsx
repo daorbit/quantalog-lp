@@ -7,7 +7,7 @@ import { ABOUT_DESCRIPTION } from "./about-data";
 export function AboutHero() {
   return (
     <section className="mx-auto max-w-4xl px-4 pb-14 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-28">
-      <div className="v-rise">
+      <div>
         <Eyebrow>About Quantalog</Eyebrow>
         <h1 className="mt-4 text-balance text-display font-medium leading-[1.02] tracking-display">
           Analytics that counts everyone.

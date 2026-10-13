@@ -16,7 +16,7 @@ export function Demo() {
         <SectionHeading
           align="center"
           eyebrow="Product tour"
-          className="v-rise"
+         
           title={
             <>
               See it before
@@ -27,7 +27,7 @@ export function Demo() {
           body="Watch how Quantalog goes from a blank workspace to a live dashboard, in about a minute. No account needed."
         />
 
-        <div className="v-rise v-d2 stage mx-auto mt-12 max-w-6xl">
+        <div className="stage mx-auto mt-12 max-w-6xl">
           <div className="panel overflow-hidden">
             <div className="flex items-center gap-1.5 border-b border-border bg-surface px-4 py-3">
               <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
@@ -58,7 +58,7 @@ export function Demo() {
           </div>
         </div>
 
-        <div className="v-rise v-d3">
+        <div>
           <p className="mt-5 text-center text-sm text-fg-faint">
             Prefer the real thing?{" "}
             <a

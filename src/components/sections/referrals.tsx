@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export function Referrals() {
   return (
     <section id="referrals" className="section-y">
-      <div className="v-rise mx-auto max-w-3xl px-4 text-center">
+      <div className="mx-auto max-w-3xl px-4 text-center">
         <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Refer &amp; earn</p>
         <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
           Share Quantalog.
@@ -21,14 +21,14 @@ export function Referrals() {
       </div>
 
       <div className="mt-8 grid gap-2 sm:mt-16 lg:grid-cols-2">
-        {referralItems.map((item, i) => (
-          <div key={item.label} className={`v-rise ${i % 2 ? "v-d2" : "v-d1"}`}>
+        {referralItems.map((item) => (
+          <div key={item.label}>
             <ExploreTile item={item} />
           </div>
         ))}
       </div>
 
-      <div className="v-rise mt-10 flex justify-center px-4 sm:mt-14">
+      <div className="mt-10 flex justify-center px-4 sm:mt-14">
         <Button
           href={`${site.app}/app/billing?tab=referrals`}
           className="group"

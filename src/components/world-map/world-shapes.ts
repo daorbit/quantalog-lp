@@ -4,7 +4,8 @@ import type { Feature, FeatureCollection, Geometry, MultiPolygon, Polygon } from
 import topo from "world-atlas/countries-110m.json";
 
 export const MAP_WIDTH = 800;
-export const MAP_HEIGHT = 380;
+export const MAP_HEIGHT = 534;
+const EQUATOR_Y = 376;
 
 export type CountryShape = {
   id: string;
@@ -36,7 +37,7 @@ export function worldShapes(): CountryShape[] {
   const countries = feature(atlas, atlas.objects.countries) as unknown as FeatureCollection;
   const projection = geoMercator()
     .scale(MAP_WIDTH / (2 * Math.PI))
-    .translate([MAP_WIDTH / 2, MAP_HEIGHT / 1.55]);
+    .translate([MAP_WIDTH / 2, EQUATOR_Y]);
   const path = geoPath(projection).digits(1);
 
   cache = countries.features

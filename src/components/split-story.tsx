@@ -15,12 +15,12 @@ export function SplitStory({
   return (
     <section className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-20">
-        <div className="v-rise lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:sticky lg:top-24 lg:self-start">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">{eyebrow}</p>
           <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">{title}</h2>
         </div>
 
-        <div className="v-rise v-d1">
+        <div>
           <div className="space-y-6 text-pretty text-[17px] leading-relaxed text-fg-muted">{children}</div>
           {link && (
             <Link

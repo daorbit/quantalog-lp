@@ -41,7 +41,7 @@ const rows: { label: string; items: Framework[] }[] = [
 export function Logos() {
   return (
     <section className="section-y">
-      <div className="v-rise mx-auto max-w-2xl px-4 text-center">
+      <div className="mx-auto max-w-2xl px-4 text-center">
         <h2 className="text-balance text-[1.5rem] font-medium leading-[1.1] tracking-display text-fg sm:text-[2rem]">
           Works with every stack.
         </h2>
@@ -52,7 +52,7 @@ export function Logos() {
 
       <div className="marquee-mask mt-10 space-y-6 overflow-hidden sm:mt-12 sm:space-y-8">
         {rows.map((row, r) => (
-          <div key={row.label} className={`v-rise ${r ? "v-d2" : "v-d1"}`}>
+          <div key={row.label}>
             <ul
               className={`marquee-track flex items-center gap-x-12 py-2 sm:gap-x-16 ${r ? "marquee-track--reverse" : ""}`}
               aria-label={row.label}

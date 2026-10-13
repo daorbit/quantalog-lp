@@ -26,7 +26,7 @@ export function DataShowcase({
     <section className="relative overflow-hidden section-y">
       <div className="mx-auto max-w-360 px-4 sm:px-6">
         <SectionHeading eyebrow={eyebrow} title={title} body={body} centered />
-        <div className="v-rise mt-6 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <span className="flex items-center gap-2 rounded-full border border-border px-3 py-1 text-[12.5px] text-fg-muted">
             <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
             {pill}
@@ -34,13 +34,13 @@ export function DataShowcase({
         </div>
       </div>
 
-      <div className={`data-stage mx-auto mt-10 w-full max-w-400 sm:mt-14 ${scroll ? "overflow-x-auto px-4 sm:px-6" : ""}`}>
+      <div className={`mx-auto mt-10 w-full sm:mt-14 ${scroll ? "overflow-x-auto px-4 sm:px-6" : ""}`}>
         {children}
       </div>
 
       <div className="mx-auto max-w-360 px-4 sm:px-6">
         {footer}
-        <div className="v-rise mx-auto mt-12 grid max-w-2xl grid-cols-3 text-center">
+        <div className="mx-auto mt-12 grid max-w-2xl grid-cols-3 text-center">
           {stats.map(({ label, value }) => (
             <div key={label}>
               <p className="text-[1.75rem] font-semibold tracking-[-0.03em] tabular-nums sm:text-[2rem]">{value}</p>

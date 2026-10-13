@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Reveal } from "@/components/reveal";
 import { JsonLd } from "@/components/json-ld";
 import { BigStats } from "@/components/big-stats";
 import { Cta } from "@/components/sections/cta";
@@ -74,9 +73,9 @@ export default function AboutPage() {
       <AboutPrinciples />
       <AboutCompany />
 
-      <Reveal as="section">
+      <section>
         <Cta />
-      </Reveal>
+      </section>
     </>
   );
 }

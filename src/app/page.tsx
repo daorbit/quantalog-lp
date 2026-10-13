@@ -1,7 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { Countries } from "@/components/sections/countries";
-import { Retention } from "@/components/sections/retention";
+import { Heatmap } from "@/components/sections/heatmap";
 import { BookMeeting } from "@/components/sections/book-meeting";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
@@ -15,7 +15,6 @@ import { Referrals } from "@/components/sections/referrals";
 import { Faq } from "@/components/sections/faq";
 import { faqs } from "@/lib/faqs";
 import { Cta } from "@/components/sections/cta";
-import { Reveal } from "@/components/reveal";
 import { PageDate } from "@/components/page-date";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
@@ -132,15 +131,15 @@ export default function HomePage() {
       <OrbitExtension />
       <ConsentGap />
       <MoreFeatures />
-      <Retention />
+      <Heatmap />
       <HowItWorks />
       <DashboardsGoals />
       <Pricing />
       <Referrals />
       <Faq />
-      <Reveal as="section">
+      <section>
         <Cta />
-      </Reveal>
+      </section>
       <PageDate published={PUBLISHED} modified={MODIFIED} />
     </>
   );

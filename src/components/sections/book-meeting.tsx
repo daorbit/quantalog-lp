@@ -12,7 +12,7 @@ const FEATURES = [
 
 export function BookMeeting() {
   return (
-    <section id="book-a-meeting" className="bm-band relative overflow-hidden section-y">
+    <section id="book-a-meeting" className="section-y">
       <div className="mx-auto max-w-360 px-4 sm:px-6">
         <SectionHeading
           eyebrow="Lead capture"
@@ -20,24 +20,7 @@ export function BookMeeting() {
           body="Add a booking field to any Quantalog form. Visitors pick a time that suits you both, and the meeting is on your calendar before they close the tab."
           centered
         />
-      </div>
-
-      <div className="mt-12 sm:mt-16">
-        <BookingShowcase />
-      </div>
-
-      <div className="mx-auto max-w-360 px-4 sm:px-6">
-        <ul className="mt-14 grid gap-8 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map(({ icon: Icon, title, body }, i) => (
-            <li key={title} className={`v-rise v-d${i + 1}`}>
-              <Icon className="h-5 w-5 text-accent" />
-              <p className="mt-3 text-[15px] font-semibold">{title}</p>
-              <p className="mt-1 text-[14px] leading-relaxed text-fg-muted">{body}</p>
-            </li>
-          ))}
-        </ul>
-
-        <div className="v-rise mt-12 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button href={`${site.app}/signup`} size="lg" track="cta_start_free" trackProps={{ location: "book_meeting" }}>
             Create a booking form
             <ArrowRight className="h-4 w-4" />
@@ -46,6 +29,22 @@ export function BookMeeting() {
             How booking works
           </Button>
         </div>
+
+        <div className="mt-14 sm:mt-20">
+          <BookingShowcase />
+        </div>
+
+        <ul className="mt-16 grid border-t border-border pt-10 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          {FEATURES.map(({ icon: Icon, title, body }) => (
+            <li key={title} className="bm-spec">
+              <span className="bm-spec-icon">
+                <Icon className="h-4.5 w-4.5" />
+              </span>
+              <p className="mt-4 text-[15px] font-semibold tracking-[-0.01em]">{title}</p>
+              <p className="mt-1.5 text-[14px] leading-relaxed text-fg-muted">{body}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

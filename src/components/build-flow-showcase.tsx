@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Reveal } from "@/components/reveal";
 
 /**
  * Six real screens from the form builder: four ways to start a form, two
@@ -42,12 +41,8 @@ export function BuildFlowShowcase() {
   return (
     <div>
       <div className="grid gap-4 sm:grid-cols-3">
-        {startMethods.map((m, i) => (
-          <Reveal
-            key={m.label}
-            delay={((i % 3) + 1) as 1 | 2 | 3}
-            className="card card-hover overflow-hidden"
-          >
+        {startMethods.map((m) => (
+          <div key={m.label} className="card card-hover overflow-hidden">
             {/* Dark render, so it keeps its own ground rather than the
                 theme's — a light-mode card behind a transparent-cornered
                 screenshot would show through as a mismatched frame. */}
@@ -63,17 +58,13 @@ export function BuildFlowShowcase() {
             <p className="border-t border-border px-4 py-3 text-sm font-medium">
               {m.label}
             </p>
-          </Reveal>
+          </div>
         ))}
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {scopes.map((s, i) => (
-          <Reveal
-            key={s.label}
-            delay={((i % 3) + 1) as 1 | 2 | 3}
-            className="card card-hover overflow-hidden"
-          >
+        {scopes.map((s) => (
+          <div key={s.label} className="card card-hover overflow-hidden">
             {/* These renders sit on a pale cream ground of their own, kept
                 as-is for the same reason as the dark set above. */}
             <div className="relative h-52 w-full bg-[#fdf8f1]">
@@ -88,7 +79,7 @@ export function BuildFlowShowcase() {
             <p className="border-t border-border px-4 py-3 text-sm font-medium">
               {s.label}
             </p>
-          </Reveal>
+          </div>
         ))}
       </div>
     </div>

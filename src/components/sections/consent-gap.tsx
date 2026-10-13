@@ -8,7 +8,7 @@ export function ConsentGap() {
   return (
     <section id="consent-gap">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-        <div className="v-rise mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">The consent gap</p>
           <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">
             Half your traffic never makes it into the report.
@@ -21,7 +21,7 @@ export function ConsentGap() {
         </div>
 
         <div className="mt-10 grid gap-2 sm:mt-16 lg:grid-cols-2">
-          <div className="v-rise v-d1">
+          <div>
             <ConsentTile
               tone="slate"
               label="Cookie-based analytics"
@@ -39,7 +39,7 @@ export function ConsentGap() {
               }
             />
           </div>
-          <div className="v-rise v-d2">
+          <div>
             <ConsentTile
               tone="teal"
               label="Quantalog"

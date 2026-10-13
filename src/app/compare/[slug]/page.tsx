@@ -117,7 +117,7 @@ export default async function ComparisonPage({
       </div>
 
       <section className="mx-auto max-w-4xl px-4 pb-12 pt-10 text-center sm:px-6 sm:pb-16 sm:pt-16">
-        <div className="v-rise">
+        <div>
           <div className="flex items-center justify-center gap-4 sm:gap-5">
             <QuantalogBadge size="lg" />
             <span className="text-[15px] font-medium text-fg-faint">vs</span>
@@ -169,9 +169,9 @@ export default async function ComparisonPage({
             eyebrow="Measured"
             title="The numbers you can check yourself."
             centered
-            className="v-rise"
+           
           />
-          <div className="v-rise v-d1 tile tile--static mt-10 grid gap-10 p-6 sm:mt-14 sm:grid-cols-2 sm:p-10">
+          <div className="tile tile--static mt-10 grid gap-10 p-6 sm:mt-14 sm:grid-cols-2 sm:p-10">
             {c.metrics.map((m, i) => (
               <HeadToHead
                 key={m.label}
@@ -195,13 +195,13 @@ export default async function ComparisonPage({
           eyebrow="Point by point"
           title={`${site.name} vs ${c.rival}, side by side.`}
           centered
-          className="v-rise"
+         
         />
-        <div className="v-rise v-d1 mt-10 sm:mt-14">
+        <div className="mt-10 sm:mt-14">
           <CompareTable rows={c.rows} rival={c.rival} logo={c.logo} />
         </div>
 
-        <div className="v-rise tile tile--static mt-3 p-6 sm:mt-4 sm:p-10">
+        <div className="tile tile--static mt-3 p-6 sm:mt-4 sm:p-10">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12">
             <div>
               <Scale className="h-7 w-7 text-accent" strokeWidth={1.6} aria-hidden="true" />
@@ -219,13 +219,13 @@ export default async function ComparisonPage({
 
       <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6 sm:pb-28">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
-          <div className="v-rise">
+          <div>
             <p className="text-[15px] font-semibold text-accent sm:text-[17px]">FAQ</p>
             <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
               Common questions.
             </h2>
           </div>
-          <div className="v-rise v-d1 min-w-0">
+          <div className="min-w-0">
             <FaqList faqs={c.faqs} idPrefix={`faq-${c.slug}`} />
           </div>
         </div>

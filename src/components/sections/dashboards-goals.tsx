@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export function DashboardsGoals() {
   return (
     <section id="dashboards" className="section-y">
-      <div className="v-rise mx-auto max-w-3xl px-4 text-center">
+      <div className="mx-auto max-w-3xl px-4 text-center">
         <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Dashboards &amp; goals</p>
         <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
           Every number you care about, on one screen.
@@ -19,14 +19,14 @@ export function DashboardsGoals() {
       </div>
 
       <div className="mt-8 grid gap-2 sm:mt-16 lg:grid-cols-2">
-        {dashboardItems.map((item, i) => (
-          <div key={item.label} className={`v-rise ${i % 2 ? "v-d2" : "v-d1"}`}>
+        {dashboardItems.map((item) => (
+          <div key={item.label}>
             <ExploreTile item={item} />
           </div>
         ))}
       </div>
 
-      <div className="v-rise mt-10 flex flex-col items-center gap-4 px-4 text-center sm:mt-14">
+      <div className="mt-10 flex flex-col items-center gap-4 px-4 text-center sm:mt-14">
         <p className="text-[15px] text-fg-muted">Free to start — no card needed.</p>
         <Button
           href={`${site.app}/signup`}

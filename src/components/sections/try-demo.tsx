@@ -35,14 +35,14 @@ export function TryDemo() {
           }
           body="Open a fully populated workspace in one click — real charts, a real SEO report, every page of the product. Nothing to install, nothing to sign up for, and nothing you can break."
           align="center"
-          className="v-rise"
+         
         />
 
         <div className="mt-12 grid sm:mt-14 gap-3 sm:grid-cols-3">
-          {explore.map((item, i) => (
+          {explore.map((item) => (
             <GlowCard
               key={item.title}
-              className={`v-rise v-d${i + 1} group p-6 sm:p-7`}
+              className="group p-6 sm:p-7"
             >
               <item.icon
                 className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
