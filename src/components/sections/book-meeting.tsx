@@ -12,7 +12,7 @@ const FEATURES = [
 
 export function BookMeeting() {
   return (
-    <section id="book-a-meeting" className="relative overflow-hidden section-y">
+    <section id="book-a-meeting" className="bm-band relative overflow-hidden section-y">
       <div className="mx-auto max-w-360 px-4 sm:px-6">
         <SectionHeading
           eyebrow="Lead capture"

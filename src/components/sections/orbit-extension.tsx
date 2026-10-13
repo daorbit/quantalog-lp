@@ -24,56 +24,52 @@ const points = [
 
 export function OrbitExtension({ location = "home" }: { location?: string }) {
   return (
-    <section id="orbit-extension" className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
-      <div className="v-rise explore-tile tone-rose grid gap-10 p-7 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center lg:gap-12">
+    <section id="orbit-extension" className="orbit-band tone-rose section-y">
+      <div className="mx-auto grid w-full max-w-400 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 lg:px-10">
         <div className="min-w-0">
-          <div className="flex items-center gap-3">
+          <div className="v-rise flex items-center gap-3">
             <OrbitMark size={40} />
-            <span className="rounded-full bg-accent/12 px-2 py-0.5 text-[11px] font-semibold text-accent">
-              New
-            </span>
-            <span className="text-[15px] font-semibold text-accent">Orbit AI for Chrome</span>
+            <span className="orbit-new rounded-full px-2 py-0.5 text-[11px] font-semibold">New</span>
+            <span className="orbit-tone text-[15px] font-semibold">Orbit AI for Chrome</span>
           </div>
 
-          <h2 className="mt-5 text-balance text-[1.75rem] font-semibold leading-tight tracking-tight sm:text-[2.25rem]">
+          <h2 className="text-reveal text-reveal-d1 mt-6 text-balance text-h2 font-medium leading-[1.06] tracking-display">
             Orbit, on every tab you open.
           </h2>
-          <p className="mt-3 max-w-xl text-pretty text-[15px] leading-relaxed text-fg-muted sm:text-[16px]">
-            The same assistant from your dashboard, now in Chrome&apos;s side panel. Install it, paste
-            your workspace ID and an API key from the Developers page, and ask away.
+          <p className="text-reveal text-reveal-d2 mt-5 max-w-xl text-pretty text-lead leading-normal text-fg-muted">
+            The same assistant from your dashboard, now in Chrome&apos;s side panel. Install it, paste your workspace ID
+            and an API key from the Developers page, and ask away.
           </p>
 
-          <ul className="mt-7 space-y-4">
-            {points.map((p) => (
-              <li key={p.title} className="flex gap-3">
-                <p.icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+          <ul className="mt-9 space-y-5">
+            {points.map((p, i) => (
+              <li key={p.title} className={`v-rise v-d${i + 2} flex gap-3.5`}>
+                <span className="orbit-point-icon grid h-9 w-9 shrink-0 place-items-center rounded-xl">
+                  <p.icon className="h-4 w-4" aria-hidden="true" />
+                </span>
                 <div>
-                  <h3 className="text-[14px] font-medium tracking-[-0.01em]">{p.title}</h3>
-                  <p className="mt-0.5 text-[13px] leading-relaxed text-fg-muted">{p.body}</p>
+                  <h3 className="text-[15px] font-semibold tracking-[-0.01em]">{p.title}</h3>
+                  <p className="mt-0.5 text-[14px] leading-relaxed text-fg-muted">{p.body}</p>
                 </div>
               </li>
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button
-              href={site.orbitExtension}
-              size="lg"
-              className="group"
-              track="cta_orbit_extension"
-              trackProps={{ location }}
-            >
+          <div className="v-rise v-d5 mt-10 flex flex-wrap items-center gap-3">
+            <Button href={site.orbitExtension} size="lg" track="cta_orbit_extension" trackProps={{ location }}>
               Add to Chrome
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4" />
             </Button>
             <Button href="/docs/orbit-ai" variant="secondary" size="lg">
               How Orbit works
             </Button>
           </div>
-          <p className="mt-3 text-[12px] text-fg-faint">Free. Works in Chrome, Edge and Brave.</p>
+          <p className="v-rise v-d5 mt-3 text-[12px] text-fg-faint">Free. Works in Chrome, Edge and Brave.</p>
         </div>
 
-        <OrbitExtensionPreview />
+        <div className="min-w-0">
+          <OrbitExtensionPreview />
+        </div>
       </div>
     </section>
   );

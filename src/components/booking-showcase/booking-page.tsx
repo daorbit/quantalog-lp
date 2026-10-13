@@ -1,15 +1,15 @@
 import { Check, Clock3, Globe, Video } from "lucide-react";
+import { stageStyle } from "@/lib/stage";
 import { BOOKING, OPEN_DAYS, PICKED_SLOT, SELECTED_DAY, SLOTS, TODAY, WEEKDAYS, BOOKING_MONTH, monthCells } from "./booking-data";
 
-const delay = (seconds: number, i = 0, stagger = 0) =>
-  ({ ["--delay" as string]: `${seconds}s`, ["--i" as string]: i, ["--stagger" as string]: `${stagger}ms` }) as React.CSSProperties;
+const delay = (seconds: number, i = 0, stagger = 0) => stageStyle({ delay: seconds, i, stagger });
 
 export function BookingPage() {
   const cells = monthCells();
 
   return (
     <div className="bm-panel">
-      <div className="flex items-center gap-4 border-b border-border px-4 py-3 text-[12.5px] font-medium text-fg-muted">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-border px-4 py-3 text-[12.5px] font-medium text-fg-muted">
         <span className="flex items-center gap-1.5">
           <Clock3 className="h-3.5 w-3.5" />
           {BOOKING.duration}
@@ -24,7 +24,7 @@ export function BookingPage() {
         </span>
       </div>
 
-      <div className="grid grid-cols-[minmax(0,1fr)_7.5rem]">
+      <div className="grid sm:grid-cols-[minmax(0,1fr)_10rem]">
         <div className="p-4">
           <p className="mb-3 text-[13px] font-semibold">Select a date &amp; time</p>
           <p className="mb-2 text-center text-[12px] font-semibold">{BOOKING_MONTH.label}</p>
@@ -57,12 +57,12 @@ export function BookingPage() {
           </div>
         </div>
 
-        <div className="border-l border-border p-3">
-          <p className="mb-3 text-[11.5px] font-semibold leading-tight">Fri, Oct 16</p>
-          <div className="space-y-1.5">
+        <div className="border-t border-border p-4 sm:border-l sm:border-t-0 sm:p-3">
+          <p className="mb-3 text-[12px] font-semibold leading-tight">Friday, October 16</p>
+          <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-1">
             {SLOTS.map((slot, i) =>
               slot === PICKED_SLOT ? (
-                <div key={slot} className="stage-item grid grid-cols-2 gap-1" style={delay(1.75)}>
+                <div key={slot} className="stage-item col-span-3 grid grid-cols-2 gap-1.5 sm:col-span-1" style={delay(1.75)}>
                   <span className="bm-slot bm-slot--picked">{slot}</span>
                   <span className="bm-slot bm-slot--confirm">Confirm</span>
                 </div>
