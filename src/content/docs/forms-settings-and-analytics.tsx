@@ -17,15 +17,40 @@ function Body() {
           <a href="/docs/forms-ai-and-theming">AI building &amp; theming</a>.
         </Li>
         <Li>
-          <b>Templates</b> cover common forms across business, commerce,
-          education, health, hospitality, HR, property, support, feedback and
-          more. Filter by{" "}
+          <b>Templates</b> cover common forms across contact, business,
+          commerce, education, health, hospitality, HR, property, support,
+          feedback and more. Filter by{" "}
           <b>Standalone</b> (shared as a link) or <b>Embedded</b> (placed on
           your site).
         </Li>
         <Li>
           <b>Import</b> creates a form from a config copied out of another one
           — see <a href="#copying">Copying forms</a>.
+        </Li>
+      </Ul>
+
+      <H2 id="switch-template">Switching templates</H2>
+      <P>
+        Open <b>Templates</b> on the icon rail to move a form you have already
+        started onto another template. Pick one on the left and use{" "}
+        <b>Before</b> and <b>After</b> to compare it with your form on any
+        device. Nothing changes until you apply it.
+      </P>
+      <Ul>
+        <Li>
+          <b>Design only</b> takes the template&apos;s colours, fonts and
+          background. Your fields, wording and settings stay as they are.
+        </Li>
+        <Li>
+          <b>Design and fields</b> also takes the template&apos;s questions,
+          title and button text. A field that matches one of yours, such as the
+          email field, keeps its place in your entries, so its answers carry
+          over. The panel lists what is kept, what is new and what is not in the
+          template, and you can keep those extra fields at the end of the form.
+        </Li>
+        <Li>
+          Answers already collected are never deleted, and Ctrl+Z undoes the
+          switch until you leave the editor.
         </Li>
       </Ul>
 
