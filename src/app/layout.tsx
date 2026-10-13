@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
   authors: [{ name: site.author, url: site.url }],
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
+    icon: [{ url: "/favicon-rounded.png", type: "image/png" }],
     apple: [{ url: "/favicon.png", type: "image/png" }],
   },
 
