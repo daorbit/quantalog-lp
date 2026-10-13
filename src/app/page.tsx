@@ -1,9 +1,8 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { Countries } from "@/components/sections/countries";
-import { TrafficTimes } from "@/components/sections/traffic-times";
-import { Funnels } from "@/components/sections/funnels";
 import { Retention } from "@/components/sections/retention";
+import { BookMeeting } from "@/components/sections/book-meeting";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
@@ -94,6 +93,7 @@ const jsonLd = graph(
       "Orbit AI image generation and image reading",
       "Orbit AI competitor analysis and SEO briefs",
       "Scheduled LinkedIn posts written with Orbit AI",
+      "Booking forms with Google Calendar sync and Google Meet links",
       "Form payments through Razorpay, Cashfree and PayU",
       "Form notification email through Brevo or your own SMTP server",
       "Submission webhooks for Zapier, Make and custom endpoints",
@@ -127,10 +127,9 @@ export default function HomePage() {
       <Hero />
       <Countries />
       <Logos />
-      <TrafficTimes />
+      <BookMeeting />
       <Explore />
       <OrbitExtension />
-      <Funnels />
       <ConsentGap />
       <MoreFeatures />
       <Retention />

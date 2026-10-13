@@ -20,7 +20,7 @@ export function RelatedProducts({ hrefs }: { hrefs: readonly string[] }) {
 
   return (
     <section className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
         <div className="v-rise">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Works with</p>
           <h2 className="mt-3 text-balance text-[1.75rem] font-semibold tracking-tight text-fg sm:text-[2.25rem]">

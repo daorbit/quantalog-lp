@@ -72,7 +72,7 @@ function IntegrationCard({ item }: { item: Integration }) {
 export function Integrations() {
   return (
     <section id="integrations" className="border-y border-border bg-bg-subtle">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 section-y">
         <div className="v-rise max-w-2xl">
           <Eyebrow>Integrations</Eyebrow>
           <h2 className="mt-5 text-balance text-h2 font-medium leading-[1.08] tracking-[-0.03em]">

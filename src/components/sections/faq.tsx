@@ -4,7 +4,7 @@ import { FaqBrowser } from "../faq-browser";
 export function Faq() {
   return (
     <section id="faq">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
         <FaqBrowser
           intro={
             <>

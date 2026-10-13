@@ -7,7 +7,7 @@ import { moreItems } from "../more/more-items";
 export function MoreFeatures() {
   return (
     <section id="more">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
         <div className="v-rise mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
             And a lot more, built in.

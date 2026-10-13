@@ -64,7 +64,7 @@ export function Pricing() {
 
   return (
     <section id="pricing">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
         <div className="v-rise mx-auto max-w-2xl text-center">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Pricing</p>
           <h2 className="mt-3 text-balance text-display font-medium leading-[1.02] tracking-display">

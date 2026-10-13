@@ -5,7 +5,7 @@ import { exclusions, principles } from "./about-data";
 
 export function AboutPrinciples() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
       <SectionHeading
         eyebrow="What we stand for"
         title="Principles we don't trade away."

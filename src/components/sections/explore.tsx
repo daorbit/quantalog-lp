@@ -3,13 +3,13 @@ import { exploreItems } from "../explore/explore-items";
 
 export function Explore() {
   return (
-    <section id="features" className="py-14 sm:py-28">
+    <section id="features" className="section-y">
       <div className="v-rise mx-auto max-w-3xl px-4 text-center">
         <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
-          One place for every number that matters.
+          Everything your website needs to grow.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
-          Analytics, search, SEO, forms and AI built on the same data, so nothing has to be copied between tools.
+          Analytics, lead capture, reports, social posts, SEO and AI in one workspace, so nothing has to be copied between tools.
         </p>
       </div>
 

@@ -13,7 +13,7 @@ export function SplitStory({
   link?: { label: string; href: string };
 }) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-20">
         <div className="v-rise lg:sticky lg:top-24 lg:self-start">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">{eyebrow}</p>

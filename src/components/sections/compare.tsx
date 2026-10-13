@@ -54,7 +54,7 @@ function Cell({ value }: { value: Support }) {
 export function Compare({ showLinks = true }: { showLinks?: boolean }) {
   return (
     <section id="compare" className="relative">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 section-y">
         <SectionHeading
           eyebrow="Comparison"
           title="Where Quantalog fits"

@@ -40,7 +40,7 @@ const rows: { label: string; items: Framework[] }[] = [
 
 export function Logos() {
   return (
-    <section className="py-14 sm:py-20">
+    <section className="section-y">
       <div className="v-rise mx-auto max-w-2xl px-4 text-center">
         <h2 className="text-balance text-[1.5rem] font-medium leading-[1.1] tracking-display text-fg sm:text-[2rem]">
           Works with every stack.

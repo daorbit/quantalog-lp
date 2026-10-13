@@ -44,7 +44,7 @@ export function Seo() {
       id="seo"
       className="relative overflow-hidden border-y border-border bg-bg-subtle"
     >
-      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 section-y">
         <SectionHeading
           eyebrow="SEO audits"
           align="center"

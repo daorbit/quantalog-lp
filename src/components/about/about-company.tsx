@@ -4,7 +4,7 @@ import { aboutFaqs, companyFacts } from "./about-data";
 
 export function AboutCompany() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-28">
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
         <div className="v-rise">
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Company</p>

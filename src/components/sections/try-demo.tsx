@@ -23,7 +23,7 @@ const explore = [
 export function TryDemo() {
   return (
     <section id="demo-account" className="relative">
-      <div className="mx-auto max-w-5xl px-4 py-14 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-5xl px-4 section-y">
         <SectionHeading
           eyebrow="Live demo"
           dot

@@ -23,7 +23,7 @@ export function DataShowcase({
   scroll?: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28">
+    <section className="relative overflow-hidden section-y">
       <div className="mx-auto max-w-360 px-4 sm:px-6">
         <SectionHeading eyebrow={eyebrow} title={title} body={body} centered />
         <div className="v-rise mt-6 flex justify-center">

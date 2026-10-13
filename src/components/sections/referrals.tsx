@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export function Referrals() {
   return (
-    <section id="referrals" className="py-14 sm:py-28">
+    <section id="referrals" className="section-y">
       <div className="v-rise mx-auto max-w-3xl px-4 text-center">
         <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Refer &amp; earn</p>
         <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">

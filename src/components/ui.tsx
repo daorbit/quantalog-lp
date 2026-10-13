@@ -48,8 +48,8 @@ export function Button({
   const onClick =
     event || handleClick
       ? (e: React.MouseEvent<HTMLAnchorElement>) => {
-          if (event) track(event, trackProps);
           handleClick?.(e);
+          if (event) track(event, trackProps);
         }
       : undefined;
 
