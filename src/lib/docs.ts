@@ -24,6 +24,7 @@ import { formsAdvancedFields } from "@/content/docs/forms-advanced-fields";
 import { formsBooking } from "@/content/docs/forms-booking";
 import { formsLogic } from "@/content/docs/forms-logic";
 import { formsNotificationsAndApps } from "@/content/docs/forms-notifications-and-apps";
+import { formsGoogleSheets } from "@/content/docs/forms-google-sheets";
 import { formsSettingsAndAnalytics } from "@/content/docs/forms-settings-and-analytics";
 import { seo } from "@/content/docs/seo";
 import { searchVisibility } from "@/content/docs/search-visibility";
@@ -88,6 +89,7 @@ const DOCS: Doc[] = [
   formsAdvancedFields,
   formsBooking,
   formsNotificationsAndApps,
+  formsGoogleSheets,
   formsSettingsAndAnalytics,
   segmentsMarkers,
   orbitAi,

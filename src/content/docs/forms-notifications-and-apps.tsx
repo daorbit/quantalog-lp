@@ -7,9 +7,10 @@ function Body() {
       <P>
         A new response can reach you four ways: an email to you, a
         confirmation email to the respondent, a row in your Quantalog
-        notification bell, and a message in Slack or Discord. This page covers
-        how to set each one up, and the email app that the two emails depend
-        on.
+        notification bell, and a message in Slack, Discord or Telegram. This
+        page covers how to set each one up, and the email app that the two
+        emails depend on. To collect responses in a spreadsheet instead, see{" "}
+        <a href="/docs/forms-google-sheets">Google Sheets</a>.
       </P>
 
       <H2 id="email-app">Connect an email app first</H2>
@@ -124,6 +125,74 @@ function Body() {
         connection is shared by every form in the workspace.
       </P>
 
+      <H2 id="telegram">Telegram</H2>
+      <P>
+        Telegram alerts come from a bot you own, so they arrive in your own
+        chat, a group, or a channel. Setting it up takes about two minutes.
+      </P>
+
+      <H3 id="telegram-bot">1. Create a bot and copy its token</H3>
+      <ol>
+        <li>
+          In Telegram, open <b>@BotFather</b> (the official bot with the blue
+          tick) and send <Code>/newbot</Code>.
+        </li>
+        <li>
+          Give it a name, then a username ending in <Code>bot</Code>, for
+          example <Code>acme_leads_bot</Code>.
+        </li>
+        <li>
+          BotFather replies with a <b>token</b> that looks like{" "}
+          <Code>123456789:AAH…</Code>. Copy it. Anyone with the token can post
+          as your bot, so keep it private.
+        </li>
+      </ol>
+
+      <H3 id="telegram-chat">2. Find the chat ID</H3>
+      <P>The chat ID tells the bot where to post. Pick where you want alerts:</P>
+      <Ul>
+        <Li>
+          <b>Your own chat</b> — open your new bot and press <b>Start</b> (or
+          send it any message). Then open{" "}
+          <Code>{"https://api.telegram.org/bot<token>/getUpdates"}</Code> in a
+          browser, with your token in place of <Code>{"<token>"}</Code>, and copy
+          the number after <Code>{'"chat":{"id":'}</Code>.
+        </Li>
+        <Li>
+          <b>A group</b> — add the bot to the group and send a message there,
+          then open the same <Code>getUpdates</Code> link. Group IDs start with
+          a minus sign, for example <Code>-1001234567890</Code>; copy the minus
+          too.
+        </Li>
+        <Li>
+          <b>A public channel</b> — add the bot to the channel as an{" "}
+          <b>administrator</b> who can post messages, and use the
+          channel&apos;s username, for example <Code>@acmeleads</Code>.
+        </Li>
+      </Ul>
+
+      <H3 id="telegram-connect">3. Connect it in Quantalog</H3>
+      <P>
+        Open <b>Settings → Connections</b>, find <b>Telegram</b> (search
+        &quot;telegram&quot; or pick <b>Notifications</b> in the category
+        filter) and choose <b>Connect Telegram</b>. Paste the <b>Bot token</b>{" "}
+        and <b>Chat ID</b>, then press <b>Connect Telegram</b>. Use{" "}
+        <b>Send test message</b> to check: a test message should appear in the
+        chat within a second or two.
+      </P>
+      <P>
+        From then on, every form with <b>Notify me</b> or{" "}
+        <b>Notify in Quantalog</b> switched on posts each new response — the
+        form&apos;s title and up to 12 answers — to that chat.
+      </P>
+      <Callout variant="tip" title="If the test fails">
+        <b>chat not found</b> means the bot has never seen that chat: press{" "}
+        <b>Start</b> in your bot, or add it to the group or channel, then test
+        again. <b>Unauthorized</b> means the token is wrong or was revoked in
+        BotFather; paste a fresh one. <b>bot was blocked by the user</b> means
+        you blocked the bot; unblock it in Telegram.
+      </Callout>
+
       <H3 id="paid-forms">On paid forms</H3>
       <P>
         Nothing is sent — email, bell or chat — until the payment clears. A
@@ -132,8 +201,9 @@ function Body() {
 
       <H2 id="webhook">Anything else: the webhook</H2>
       <P>
-        To reach Google Sheets, a CRM, or your own server, connect a{" "}
-        <b>Webhook</b> on the form. It POSTs every submission as JSON and can
+        For a spreadsheet, connect{" "}
+        <a href="/docs/forms-google-sheets">Google Sheets</a>. To reach a CRM
+        or your own server, connect a <b>Webhook</b> on the form. It POSTs every submission as JSON and can
         be signed. See{" "}
         <a href="/docs/lead-capture#webhook">Sending submissions to a
         webhook</a>.
@@ -141,8 +211,8 @@ function Body() {
 
       <Callout>
         Notifications are a paid feature. On a plan without them, no email,
-        bell, Slack or Discord alert is sent — the webhook still fires on every
-        plan.
+        bell, Slack, Discord or Telegram alert is sent — the webhook and Google
+        Sheets still work on every plan.
       </Callout>
     </>
   );
@@ -152,7 +222,7 @@ export const formsNotificationsAndApps: Doc = {
   slug: "forms-notifications-and-apps",
   title: "Forms: notifications & integrations",
   description:
-    "Connect Brevo or your own SMTP, alert yourself and confirm to respondents by email, and get new responses in the Quantalog bell, Slack or Discord.",
+    "Connect Brevo or your own SMTP, alert yourself and confirm to respondents by email, and get new responses in the Quantalog bell, Slack, Discord or Telegram.",
   category: "Tracking",
   order: 17.35,
   Body,
