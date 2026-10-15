@@ -118,9 +118,14 @@ export function Footer() {
         </div>
 
         <p className="mx-auto max-w-4xl pb-8 text-[11px] leading-relaxed text-fg-faint sm:pb-10 sm:text-center">
-          {site.name} is operated by {site.legalName}. No cookies, no
-          cross-site tracking and no personal data stored — GDPR-ready by
-          design. For questions about the company or the service, contact{" "}
+          {site.name} is operated by {site.legalName}. Our analytics sets no
+          cookies, does no cross-site tracking and stores no IP addresses.
+          Account, form, booking and connected Google data is handled as set
+          out in our{" "}
+          <Link href="/privacy" className="underline underline-offset-2 hover:text-fg">
+            Privacy Policy
+          </Link>
+          . For questions about the company or the service, contact{" "}
           <a href={`mailto:${site.email}`} className="underline underline-offset-2 hover:text-fg">
             {site.email}
           </a>

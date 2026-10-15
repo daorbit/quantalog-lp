@@ -2,7 +2,7 @@ import { Cookie, Database, Gauge, Scale } from "lucide-react";
 import { site } from "@/lib/site";
 
 export const ABOUT_DESCRIPTION =
-  "Quantalog is privacy-first web analytics for teams that want complete numbers without tracking people. No cookies, no personal data and no consent banner — with SEO audits, reports and an AI assistant in the same dashboard.";
+  "Quantalog is privacy-first web analytics for teams that want complete numbers without tracking people. No cookies, no stored IP addresses and no consent banner — with SEO audits, reports and an AI assistant in the same dashboard.";
 
 export const aboutStats = [
   { value: "0", label: "Cookies set" },
@@ -57,7 +57,7 @@ export const aboutFaqs = [
   },
   {
     q: "Is Quantalog GDPR compliant?",
-    a: "Quantalog sets no cookies and stores no personal data. Visitors are counted with a weekly-rotating hash that is never stored in reversible form, which is why no consent banner is needed for it. Your overall obligations still depend on everything else running on your site, so treat this as one fewer disclosure rather than legal advice.",
+    a: "Quantalog analytics sets no cookies and stores no IP addresses, names or emails. Visitors are counted with a weekly-rotating hash, which is why no consent banner is needed for it. Account details, form responses and bookings you collect with Quantalog are personal data, handled as described in our Privacy Policy and DPA. Your overall obligations still depend on everything else running on your site, so treat this as one fewer disclosure rather than legal advice.",
   },
   {
     q: "What does Quantalog deliberately not do?",

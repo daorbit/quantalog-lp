@@ -1,25 +1,26 @@
-import { A, Callout, H2, H3, Li, P, Ul } from "@/components/prose";
+import { A, Callout, Code, H2, H3, Li, P, Ul } from "@/components/prose";
 import type { LegalHighlight } from "@/components/legal/legal-data";
 import { site } from "@/lib/site";
+import { GoogleDataSection } from "./privacy-google";
 
 export const PRIVACY_LEAD = `How ${site.name} handles data — for visitors to the sites that use it, for our customers, and for anyone using this website.`;
 
 export const PRIVACY_HIGHLIGHTS: readonly LegalHighlight[] = [
   {
-    title: "No cookies, no personal data",
-    body: "The tracker sets no cookies, writes nothing to the browser and never stores a raw IP address.",
+    title: "No cookies, no stored IPs",
+    body: "The analytics tracker sets no cookies, keeps nothing in the browser beyond the open tab and never stores a raw IP address.",
   },
   {
-    title: "Visitors can't be identified",
-    body: "A visitor is a daily-rotating hash that cannot be reversed or linked across days or sites.",
+    title: "Visitors aren't followed",
+    body: "A web visitor is a hash that changes every week and differs on every site, so nobody is tracked across weeks or websites.",
   },
   {
     title: "We never sell data",
     body: "Nothing is sold, shared with advertisers or used to build profiles. We are paid by subscriptions.",
   },
   {
-    title: "You stay in control",
-    body: "Customers can export or permanently delete their data at any time from the dashboard.",
+    title: "Google data stays limited",
+    body: "Google Calendar and other Google data is used only for the features you connect, and you can disconnect at any time.",
   },
 ];
 
@@ -62,7 +63,10 @@ export function PrivacyBody() {
       <H2 id="tracker-collects">3. What the tracker collects</H2>
       <P>When a page running the tracker loads, we receive:</P>
       <Ul>
-        <Li>the page address, the referring address and any UTM campaign parameters;</Li>
+        <Li>
+          the page address, the referring address, any UTM campaign parameters and any ad click id in
+          the page address (such as <Code>gclid</Code> or <Code>fbclid</Code>);
+        </Li>
         <Li>the screen size;</Li>
         <Li>custom events and properties that the website owner has chosen to send; and</Li>
         <Li>
@@ -74,11 +78,20 @@ export function PrivacyBody() {
         The IP address is used only at the moment of the request — to derive the country and to form
         the visitor hash described below — and is then discarded.
       </Callout>
+      <P>
+        Customers who measure a mobile or web app through our tracking API send their own identifier
+        for each signed-in user with every event, and we store it with those events. The customer
+        chooses that identifier and is responsible for it.
+      </P>
 
       <H2 id="tracker-does-not-collect">4. What the tracker does not collect</H2>
       <Ul>
-        <Li>No cookies, localStorage or any other data is written to the visitor&apos;s browser.</Li>
-        <Li>No identifier is created that follows a visitor across websites or across days.</Li>
+        <Li>
+          No cookies or localStorage. A random session id, the session&apos;s page count, entry page
+          and campaign source are kept in the tab&apos;s sessionStorage, which the browser clears when
+          the tab is closed.
+        </Li>
+        <Li>No identifier is created that follows a web visitor across websites or across weeks.</Li>
         <Li>No keystrokes, form input, mouse movement or session recordings.</Li>
         <Li>No names, email addresses or other directly identifying information.</Li>
       </Ul>
@@ -88,10 +101,11 @@ export function PrivacyBody() {
 
       <H2 id="counting-visitors">5. How visitors are counted</H2>
       <P>
-        A visitor is a SHA-256 hash of the IP address, the user agent, the website&apos;s site key and a
-        salt that changes every day. Because the salt rotates daily, the same person appears as a new
-        visitor tomorrow, and the same person on two different websites produces two unrelated hashes.
-        The hash cannot be reversed into an IP address or an identity, by us or by anyone else.
+        A web visitor is a SHA-256 hash of the IP address, the user agent, the website&apos;s site key
+        and the current calendar week. Because the week is part of the hash, the same person appears
+        as a new visitor the following week, and the same person on two different websites produces
+        two unrelated hashes. We store only the hash, never the IP address, and we never use the hash
+        to identify anyone.
       </P>
 
       <H2 id="customer-data">6. Information about customers</H2>
@@ -99,6 +113,8 @@ export function PrivacyBody() {
       <Ul>
         <Li>
           <b>Account details</b> — your name, email address and a one-way (bcrypt) hash of your password.
+          If you sign in with Google, we also keep your Google account id and profile picture address
+          (see <A href="#google-other">section 8</A>).
         </Li>
         <Li>
           <b>Workspace configuration</b> — the workspaces, sites, goals, reports and settings you create.
@@ -124,12 +140,9 @@ export function PrivacyBody() {
         Some features ask you to connect an account you hold with another service. You choose whether
         to connect each one, and you can disconnect it at any time.
       </P>
-      <H3 id="search-console">Google Search Console</H3>
       <P>
-        We request Google&apos;s Search Console permission and use it to show clicks, impressions,
-        rankings, index status and sitemaps for the properties you select. The only change we make to
-        your Search Console account is submitting or removing a sitemap, and only when you ask us to.
-        We never add or remove properties, users or other settings.
+        Google accounts, including Google Calendar, Search Console and Business Profile, are covered
+        in <A href="#google-user-data">section 8</A>.
       </P>
       <H3 id="social-accounts">LinkedIn and Instagram</H3>
       <P>
@@ -142,19 +155,28 @@ export function PrivacyBody() {
         immediately.
       </P>
 
-      <H2 id="forms">8. Forms and respondents</H2>
+      <GoogleDataSection />
+
+      <H2 id="forms">9. Forms and respondents</H2>
       <P>
         When someone submits a form built with {site.name}, the answers are stored for the customer who
         owns that form, alongside the analytics that led to the submission. If the form takes a payment,
         it is processed through the form owner&apos;s own payment account, and we store the payment
-        reference, status, method and the contact details the payment provider returns.
+        reference, status, method and the contact details the payment provider returns. A form owner
+        can also choose to record each respondent&apos;s IP address.
+      </P>
+      <P>
+        If a form has a booking field, we store the time booked. When the form owner has connected
+        Google Calendar, the respondent&apos;s answers are added to an event in the owner&apos;s
+        calendar and, if they gave an email address, Google sends them an invitation, as described in{" "}
+        <A href="#google-calendar-features">section 8</A>.
       </P>
       <P>
         Form owners may configure notification emails and webhooks. A webhook sends each submission to
         an address the form owner chooses, and what happens there is governed by the form owner.
       </P>
 
-      <H2 id="orbit">9. Orbit, our AI assistant</H2>
+      <H2 id="orbit">10. Orbit, our AI assistant</H2>
       <P>
         Questions you ask Orbit are sent to a third-party AI model to generate an answer. Orbit
         currently uses Meta&apos;s Llama models hosted on Cloudflare Workers AI; when more than one
@@ -176,14 +198,14 @@ export function PrivacyBody() {
         personal information with Orbit.
       </P>
 
-      <H2 id="this-website">10. This website</H2>
+      <H2 id="this-website">11. This website</H2>
       <P>
         This website measures its own traffic with {site.name}, so it sets no cookies either. If you
         use our contact form, we use what you send only to reply to you and keep it with our support
         correspondence.
       </P>
 
-      <H2 id="how-we-use">11. How we use information</H2>
+      <H2 id="how-we-use">12. How we use information</H2>
       <Ul>
         <Li>to provide, maintain and improve the service;</Li>
         <Li>to process payments and issue receipts;</Li>
@@ -196,7 +218,7 @@ export function PrivacyBody() {
         We do not use your information for advertising, and we do not sell or rent it to anyone.
       </P>
 
-      <H2 id="legal-bases">12. Legal bases</H2>
+      <H2 id="legal-bases">13. Legal bases</H2>
       <P>
         Where laws such as the EU and UK GDPR or India&apos;s Digital Personal Data Protection Act, 2023
         apply, we rely on: performing our contract with you; our legitimate interests in running a
@@ -205,7 +227,7 @@ export function PrivacyBody() {
         rules.
       </P>
 
-      <H2 id="sub-processors">13. Service providers</H2>
+      <H2 id="sub-processors">14. Service providers</H2>
       <P>We use a small number of trusted providers to run {site.name}:</P>
       <Ul>
         <Li>
@@ -225,7 +247,8 @@ export function PrivacyBody() {
           <b>Email and WhatsApp delivery providers</b> — to send receipts, reports and notifications.
         </Li>
         <Li>
-          <b>Google, LinkedIn and Meta</b> — only when you connect an account with them.
+          <b>Google, LinkedIn and Meta</b> — only when you connect an account with them. Google data is
+          handled as described in <A href="#google-user-data">section 8</A>.
         </Li>
       </Ul>
       <P>
@@ -233,14 +256,14 @@ export function PrivacyBody() {
         information where the law requires it, and only to the extent required.
       </P>
 
-      <H2 id="transfers">14. International transfers</H2>
+      <H2 id="transfers">15. International transfers</H2>
       <P>
         Our providers may process data in countries other than your own, including India and the
         United States. Where data leaves the EU, UK or another region with transfer rules, we rely on
         appropriate safeguards such as standard contractual clauses offered by our providers.
       </P>
 
-      <H2 id="retention">15. Retention and deletion</H2>
+      <H2 id="retention">16. Retention and deletion</H2>
       <Ul>
         <Li>
           <b>Analytics events</b> are kept for 25 months on every plan, then deleted automatically.
@@ -257,6 +280,10 @@ export function PrivacyBody() {
           are also revoked with the provider.
         </Li>
         <Li>
+          <b>Google connections</b> are kept until you disconnect them. What is kept, and what is
+          deleted when you disconnect, is set out in <A href="#google-calendar-storage">section 8</A>.
+        </Li>
+        <Li>
           <b>Billing records</b> are kept for as long as tax and accounting law requires, even after an
           account is closed.
         </Li>
@@ -265,15 +292,16 @@ export function PrivacyBody() {
         You can export or permanently delete a site&apos;s data at any time from the dashboard.
       </P>
 
-      <H2 id="security">16. Security</H2>
+      <H2 id="security">17. Security</H2>
       <P>
         Data is encrypted in transit with TLS. Passwords are stored only as one-way hashes, access tokens
-        for connected accounts are encrypted at rest, and access to production systems is limited to the
-        people who need it. No system is perfectly secure; if we become aware of a breach affecting your
+        for Google accounts are encrypted at rest with AES-256-GCM, access tokens for other connected
+        accounts are encrypted at rest, and access to production systems is limited to the people who
+        need it. No system is perfectly secure; if we become aware of a breach affecting your
         data, we will notify you and the relevant authorities as the law requires.
       </P>
 
-      <H2 id="your-rights">17. Your rights</H2>
+      <H2 id="your-rights">18. Your rights</H2>
       <P>
         Depending on where you live, you may have the right to access, correct, export or delete your
         personal data, to object to or restrict certain processing, to withdraw consent, and to complain
@@ -286,22 +314,23 @@ export function PrivacyBody() {
         website owner is the right contact for questions about their site.
       </P>
 
-      <H2 id="children">18. Children</H2>
+      <H2 id="children">19. Children</H2>
       <P>
         {site.name} is a business service and is not intended for anyone under 18. We do not knowingly
         collect personal data from children.
       </P>
 
-      <H2 id="changes">19. Changes to this policy</H2>
+      <H2 id="changes">20. Changes to this policy</H2>
       <P>
         We may update this policy as the product or the law changes. The date at the top shows the
         latest version. If a change materially affects how we handle your data, we will email account
         holders before it takes effect.
       </P>
 
-      <H2 id="contact">20. Contact</H2>
+      <H2 id="contact">21. Contact</H2>
       <P>
-        For any privacy question or request, email <A href={`mailto:${site.email}`}>{site.email}</A>.
+        For any privacy question or request, including a request to delete data received from Google,
+        email <A href={`mailto:${site.email}`}>{site.email}</A>.
         See also our <A href="/terms">Terms of Service</A>.
       </P>
     </>

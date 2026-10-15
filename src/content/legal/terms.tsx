@@ -153,8 +153,8 @@ export function TermsBody() {
 
       <H2 id="third-parties">9. Third-party services</H2>
       <P>
-        Some features rely on services you connect or that we integrate with, including Google Search
-        Console, LinkedIn, Instagram, Razorpay (including your own Razorpay account for form payments)
+        Some features rely on services you connect or that we integrate with, including Google Calendar
+        and Google Meet, Google Search Console, Google Business Profile, LinkedIn, Instagram, Razorpay (including your own Razorpay account for form payments)
         and WhatsApp. Your use of those services is governed by their own terms. If a third party
         changes, limits or withdraws its service, the related feature may stop working, and we will
         tell you rather than silently retry or substitute different content.

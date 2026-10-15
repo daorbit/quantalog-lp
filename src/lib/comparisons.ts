@@ -160,7 +160,7 @@ const COMPARISONS: Comparison[] = [
       },
       {
         q: "Does Quantalog need a cookie consent banner?",
-        a: "No. Quantalog sets no cookies and stores nothing persistent in the browser. Visitors are identified by a rotating weekly hash of IP address and user agent, which is discarded and cannot be reversed, so there is no personal data to obtain consent for.",
+        a: "No. Quantalog sets no cookies and stores nothing persistent in the browser. Visitors are counted with a weekly-rotating hash of IP address and user agent, and the IP address itself is discarded, so there is no stored identifier to obtain consent for.",
       },
       {
         q: "Why does Google Analytics under-report traffic?",
@@ -180,7 +180,7 @@ const COMPARISONS: Comparison[] = [
     description:
       "A privacy-first Plausible alternative that adds SEO audits, retention cohorts and a multi-tenant API — while keeping the cookieless, no-consent-banner tracking and a script under 5 KB.",
     intro:
-      "Plausible and Quantalog agree on the important part: no cookies, no personal data, no consent banner, a tiny script. This page is for teams who like that model and have outgrown a pageview counter.",
+      "Plausible and Quantalog agree on the important part: no cookies, no stored IP addresses, no consent banner, a tiny script. This page is for teams who like that model and have outgrown a pageview counter.",
     whenTheirs:
       "Stay with Plausible if you want the simplest possible dashboard, or if self-hosting the analytics stack yourself is a requirement. Plausible is open source and can be self-hosted; Quantalog is a hosted service.",
     rows: [
@@ -331,7 +331,7 @@ const COMPARISONS: Comparison[] = [
     faqs: [
       {
         q: "Is Quantalog GDPR compliant without a consent banner?",
-        a: "Quantalog stores no cookies and no personal data. Visitors are counted using a rotating weekly hash of IP and user agent that is never stored in reversible form, which is why no banner is needed. Your own compliance obligations still depend on everything else running on your site, so treat this as one fewer thing to disclose rather than legal advice.",
+        a: "Quantalog analytics sets no cookies and stores no IP addresses. Visitors are counted using a weekly-rotating hash of IP and user agent, and the IP itself is discarded, which is why no banner is needed. Your own compliance obligations still depend on everything else running on your site, so treat this as one fewer thing to disclose rather than legal advice.",
       },
       {
         q: "Can Quantalog replace a self-hosted Matomo?",
@@ -351,7 +351,7 @@ const COMPARISONS: Comparison[] = [
     description:
       "A Fathom Analytics alternative that keeps the cookieless, no-consent-banner model and adds built-in SEO audits, retention cohorts, funnels and a multi-tenant API — with a free tier Fathom does not offer.",
     intro:
-      "Fathom and Quantalog start from the same place: no cookies, no personal data, no banner, a small script and a single-page dashboard. This page is for teams who want that model but need more than a traffic counter, or want to try it before paying.",
+      "Fathom and Quantalog start from the same place: no cookies, no stored IP addresses, no banner, a small script and a single-page dashboard. This page is for teams who want that model but need more than a traffic counter, or want to try it before paying.",
     whenTheirs:
       "Stay with Fathom if its dashboard is exactly the amount of product you want and you value its long track record and EU-isolated data option. Fathom is a mature, focused tool and does not try to be more than that.",
     rows: [

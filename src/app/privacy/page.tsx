@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `How ${site.name} collects, hashes and stores analytics data — and what it deliberately does not collect.`,
+  description: `How ${site.name} handles analytics, account, form and booking data, and how it uses Google Calendar and other Google data.`,
   alternates: { canonical: "/privacy" },
 };
 

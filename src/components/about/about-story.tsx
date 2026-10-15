@@ -12,7 +12,7 @@ export function AboutStory() {
       </p>
       <p>
         <span className="font-semibold text-fg">We removed the need for consent instead.</span>{" "}
-        When nothing is stored in the browser and no personal data leaves it, there is nothing to ask
+        When nothing persistent is stored in the browser and no visitor is identified, there is nothing to ask
         permission for, nothing to decline and nobody missing from the count.
       </p>
       <p>
