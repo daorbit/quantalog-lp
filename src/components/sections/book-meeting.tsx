@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, CalendarCheck, CreditCard, Timer, Video } from "lucide-react";
 import { site } from "@/lib/site";
 import { Button, SectionHeading } from "../ui";
@@ -45,6 +46,14 @@ export function BookMeeting() {
             </li>
           ))}
         </ul>
+
+        <p className="mx-auto mt-10 max-w-2xl text-pretty text-center text-[13px] leading-relaxed text-fg-faint">
+          Connecting Google Calendar is optional. {site.name} uses it only to check your busy times, add
+          bookings with their Meet links and cancel them when you delete an entry.{" "}
+          <Link href="/privacy#google-user-data" className="underline underline-offset-2 hover:text-fg">
+            How we handle Google data
+          </Link>
+        </p>
       </div>
     </section>
   );

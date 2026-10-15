@@ -13,8 +13,8 @@ const facts = [
   },
   {
     icon: ShieldCheck,
-    title: "No personal data.",
-    body: "Analytics keeps no names, emails or IP addresses, so there is nothing personal to leak or export.",
+    title: "No names or IPs.",
+    body: "Analytics keeps no names, emails or IP addresses, so there is no identity to leak or export.",
   },
 ];
 

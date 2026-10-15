@@ -1,4 +1,4 @@
-export const LEGAL_UPDATED = "September 29, 2026";
+export const LEGAL_UPDATED = "October 15, 2026";
 
 export const LEGAL_PAGES = [
   { href: "/privacy", label: "Privacy Policy" },

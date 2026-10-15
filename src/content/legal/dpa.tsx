@@ -84,15 +84,16 @@ export function DpaBody() {
       <Ul>
         <Li>
           pseudonymous analytics: page addresses, referrers, campaign parameters, screen size, device type,
-          browser, operating system, country, and a daily-rotating visitor hash;
+          browser, operating system, country, ad click ids, and a weekly-rotating visitor hash;
         </Li>
         <Li>app user identifiers, if you choose to send them through the Platform API or mobile SDK;</Li>
-        <Li>form responses, which contain whatever your form asks for; and</Li>
+        <Li>form responses, which contain whatever your form asks for, and the times booked through booking fields; and</Li>
         <Li>custom events and properties you choose to send.</Li>
       </Ul>
       <Callout title="What the tracker never stores">
-        No cookies or browser storage, no raw IP addresses, and no identifier that follows a visitor across
-        days or websites. The IP address is used only at the moment of the request to derive the country
+        No cookies or persistent browser storage, no raw IP addresses, and no identifier that follows a
+        visitor across weeks or websites. A session id is kept in the tab&apos;s sessionStorage and cleared
+        when the tab closes. The IP address is used only at the moment of the request to derive the country
         and the visitor hash, and is then discarded.
       </Callout>
       <P>

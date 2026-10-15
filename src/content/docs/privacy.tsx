@@ -12,21 +12,29 @@ function Body() {
 
       <H2 id="visitors">How visitors are counted</H2>
       <P>
-        A visitor is a one-way hash of IP address, user agent, and{" "}
-        <Code>siteId</Code>, salted with the current day. The salt rotates every 24
-        hours, so the same person is uncountable across days and unlinkable across
-        sites. Nothing is stored in the browser.
+        A web visitor is a one-way hash of IP address, user agent,{" "}
+        <Code>siteId</Code> and the current calendar week. The hash changes every
+        week, so the same person is not linked from one week to the next, and it
+        differs on every site. Only a session id, cleared when the tab closes, is
+        kept in the browser.
       </P>
       <Ul>
         <Li>No cookies, no localStorage identifiers.</Li>
         <Li>No cross-site or cross-device tracking.</Li>
-        <Li>IP addresses are never stored — only the derived daily hash.</Li>
+        <Li>IP addresses are never stored — only the derived weekly hash.</Li>
       </Ul>
 
       <Callout>
-        Because no personal data persists, most deployments do not require a cookie
-        consent banner. Confirm your obligations for your jurisdiction.
+        Because nothing persistent is stored on the device and no IP address is
+        kept, most deployments do not require a cookie consent banner. Confirm your
+        obligations for your jurisdiction.
       </Callout>
+
+      <P>
+        This covers analytics. Account details, form responses, bookings and
+        connected accounts such as Google Calendar are personal data and are
+        handled as described in the <A href="/privacy">privacy policy</A>.
+      </P>
 
       <H2 id="more">More</H2>
       <P>

@@ -31,7 +31,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         q: "Do I need a cookie consent banner?",
-        a: "No. Quantalog sets no cookies and writes nothing to localStorage. A visitor is a salted hash of IP, user agent and site key that rotates every week, so the same person is not re-identifiable the following week or across any other site. There is no personal data to consent to.",
+        a: "No. Quantalog sets no cookies and writes nothing to localStorage. A visitor is a salted hash of IP, user agent and site key that rotates every week, so the same person is not re-identifiable the following week or across any other site. Nothing persistent is stored on the device and no IP address is kept.",
       },
       {
         q: "How is this different from Google Analytics?",
