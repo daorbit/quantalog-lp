@@ -121,9 +121,10 @@ function Body() {
       <H3 id="gateways">Choosing a gateway</H3>
       <Ul>
         <Li>
-          Connect any or all of the three under <b>Payments</b>. The one you
-          mark as default is used by every payment field that doesn&apos;t
-          choose its own.
+          Connect any or all of the three in Quantalog under{" "}
+          <b>Settings → Connections</b>, in the <b>Payments</b> category. The
+          one you mark as default is used by every payment field that
+          doesn&apos;t choose its own.
         </Li>
         <Li>
           To charge one form through a different gateway, pick it under{" "}
@@ -142,14 +143,16 @@ function Body() {
       </Ul>
       <P>
         The steps below use Razorpay; Cashfree and PayU follow the same three
-        steps in their own panel, each showing its own webhook URL.
+        steps on their own page, each showing its own webhook URL.
       </P>
 
       <H3 id="connecting">Connecting Razorpay</H3>
       <P>
-        In the form builder, open <b>Payments</b> from the icon rail on the
-        right. The panel walks through three steps, and all three are needed
-        before a form can charge anyone.
+        Open <b>Settings → Connections</b> in Quantalog and choose{" "}
+        <b>Connect Razorpay</b> (the <b>Manage</b> link on a payment field in
+        the form builder takes you there too). The page walks through three
+        steps in the left panel, and all three are needed before a form can
+        charge anyone.
       </P>
       <Ul>
         <Li>
@@ -168,6 +171,25 @@ function Body() {
         </Li>
         <Li>
           <b>Go live</b> — switch from test to live mode and turn payments on.
+        </Li>
+      </Ul>
+      <P>Where to find the keys for the other two gateways:</P>
+      <Ul>
+        <Li>
+          <b>Cashfree</b> — the <b>App ID</b> and <b>Secret Key</b> under
+          Developers → API Keys in the Cashfree merchant dashboard. Register
+          the webhook under Developers → Webhooks for{" "}
+          <Code>PAYMENT_SUCCESS_WEBHOOK</Code>,{" "}
+          <Code>PAYMENT_FAILED_WEBHOOK</Code> and{" "}
+          <Code>PAYMENT_USER_DROPPED_WEBHOOK</Code>. There is no separate
+          webhook secret: Cashfree signs with your Secret Key.
+        </Li>
+        <Li>
+          <b>PayU</b> — the <b>Merchant Key</b> and <b>Merchant Salt</b> under
+          Payment Gateway → Key &amp; Salt Details in the PayU dashboard. Add
+          the webhook under Payment Gateway → Webhooks for successful and
+          failed transactions. PayU signs with your salt, so there is no
+          separate secret either.
         </Li>
       </Ul>
       <P>

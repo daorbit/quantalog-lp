@@ -46,7 +46,9 @@ function Body() {
 
       <H2 id="connecting">Connecting Google</H2>
       <P>
-        Open <b>Search visibility</b> in the sidebar and press <b>Connect with Google</b>. A Google window opens:
+        Open <b>Search visibility</b> in the sidebar and press <b>Connect with Google</b>, or open{" "}
+        <b>Settings → Connections</b>, find <b>Google Search Console</b> under <b>Search &amp; SEO</b> and press{" "}
+        <b>Continue to Google</b>. A Google window opens:
       </P>
       <Ul>
         <Li>Choose the Google account that owns your Search Console property.</Li>
@@ -60,6 +62,8 @@ function Body() {
       </Callout>
       <P>
         One Google connection covers the whole workspace. Each site in the workspace is then linked to its own property.
+        The Google Search Console page in Settings → Connections lists every website with its property: use{" "}
+        <b>Link property</b>, <b>Change</b> or <b>Unlink</b> on any row, switch Google account, or <b>Disconnect</b>.
       </P>
 
       <H2 id="linking">Linking a property</H2>
