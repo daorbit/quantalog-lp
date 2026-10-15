@@ -317,9 +317,8 @@ function Body() {
       <H2 id="webhook">Sending submissions to a webhook</H2>
       <P>
         A form can POST every submission to a URL you supply. Open{" "}
-        <b>Integrations</b> on the icon rail and connect <b>Webhook</b>{" "}
-        from the Automation section, alongside your email and payment apps
-        — it opens the same way any of those do. Unlike those, though, it
+        <b>Settings → Connections</b> in Quantalog and turn on <b>Webhook</b>{" "}
+        in the Automation section, alongside your email and payment apps. Unlike those, though, it
         belongs to the one form you had open when you connected it, not the
         whole workspace: a different form's submissions go nowhere until you
         connect a webhook on that one too.

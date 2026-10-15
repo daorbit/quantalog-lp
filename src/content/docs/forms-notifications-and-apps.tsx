@@ -16,7 +16,8 @@ function Body() {
       <P>
         Form emails are sent from <b>your</b> email account, so replies reach
         you and your domain&apos;s reputation stays your own. Open{" "}
-        <b>Integrations</b> on the icon rail and connect one of:
+        <b>Settings → Connections</b> in Quantalog (the <b>Integrations</b>{" "}
+        button in the form builder takes you there) and connect one of:
       </P>
       <Ul>
         <Li>
@@ -103,7 +104,7 @@ function Body() {
 
       <H2 id="chat">Slack and Discord</H2>
       <P>
-        In <b>Integrations</b>, connect <b>Slack</b> or <b>Discord</b> with an
+        In <b>Settings → Connections</b>, connect <b>Slack</b> or <b>Discord</b> with an
         incoming webhook URL for the channel you want:
       </P>
       <Ul>
