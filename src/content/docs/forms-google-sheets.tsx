@@ -19,7 +19,7 @@ function Body() {
           <b>Automation</b> in the category filter).
         </li>
         <li>
-          Choose <b>Connect Google Sheets</b>, then <b>Continue to Google</b>.
+          Choose <b>Connect</b> on the Google Sheets card, then <b>Continue to Google</b>.
           A Google window opens.
         </li>
         <li>

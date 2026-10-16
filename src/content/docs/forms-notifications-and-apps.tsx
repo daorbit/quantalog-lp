@@ -153,16 +153,14 @@ function Body() {
       <Ul>
         <Li>
           <b>Your own chat</b> — open your new bot and press <b>Start</b> (or
-          send it any message). Then open{" "}
-          <Code>{"https://api.telegram.org/bot<token>/getUpdates"}</Code> in a
-          browser, with your token in place of <Code>{"<token>"}</Code>, and copy
-          the number after <Code>{'"chat":{"id":'}</Code>.
+          send it any message). In Quantalog, paste the bot token and press{" "}
+          <b>Find my chat</b>: your chat appears in the list, and choosing it
+          fills in the chat ID.
         </Li>
         <Li>
           <b>A group</b> — add the bot to the group and send a message there,
-          then open the same <Code>getUpdates</Code> link. Group IDs start with
-          a minus sign, for example <Code>-1001234567890</Code>; copy the minus
-          too.
+          then press <b>Find my chat</b> and choose the group. Group IDs start
+          with a minus sign, for example <Code>-1001234567890</Code>.
         </Li>
         <Li>
           <b>A public channel</b> — add the bot to the channel as an{" "}
@@ -175,8 +173,10 @@ function Body() {
       <P>
         Open <b>Settings → Connections</b>, find <b>Telegram</b> (search
         &quot;telegram&quot; or pick <b>Notifications</b> in the category
-        filter) and choose <b>Connect Telegram</b>. Paste the <b>Bot token</b>{" "}
-        and <b>Chat ID</b>, then press <b>Connect Telegram</b>. Use{" "}
+        filter) and choose <b>Connect</b>. Paste the <b>Bot token</b>, pick
+        your chat with <b>Find my chat</b> (or type the <b>Chat ID</b>), then
+        press <b>Connect Telegram</b>. The page also shows a preview of how
+        each alert will look. Use{" "}
         <b>Send test message</b> to check: a test message should appear in the
         chat within a second or two.
       </P>

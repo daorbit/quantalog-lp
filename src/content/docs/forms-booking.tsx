@@ -53,7 +53,7 @@ function Body() {
       <P>
         Open <b>Settings → Connections</b> in Quantalog, find{" "}
         <b>Google Calendar</b> under Scheduling and click{" "}
-        <b>Connect Google Calendar</b>. The page lists what Google will ask you
+        <b>Connect</b>. The page lists what Google will ask you
         to allow; choose <b>Continue to Google</b> and allow access in the
         window that opens. The connection belongs to the workspace, so every
         booking form in it can use it. The booking field&apos;s Google Calendar

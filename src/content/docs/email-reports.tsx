@@ -52,10 +52,10 @@ function Body() {
         than once in a 24-hour period.
       </P>
 
-      <H2 id="channels">Email and WhatsApp</H2>
+      <H2 id="channels">Email, WhatsApp and Telegram</H2>
       <P>
-        A report can go out by email, by WhatsApp, or both. They carry the same
-        numbers in the form each medium suits:
+        A report can go out by email, WhatsApp, Telegram, or any mix of them.
+        They carry the same numbers in the form each medium suits:
       </P>
       <Ul>
         <Li>
@@ -66,6 +66,10 @@ function Body() {
           <b>WhatsApp</b> — headline numbers, the top three SEO movers, and the
           dashboard link. No attachment: a spreadsheet in a chat thread is
           rarely opened.
+        </Li>
+        <Li>
+          <b>Telegram</b> — headline numbers, the AI summary, the top SEO
+          movers, and links to the full report and the live dashboard.
         </Li>
       </Ul>
       <P>
@@ -80,6 +84,34 @@ function Body() {
         unsubscribe link — so a report arriving on a client&apos;s phone would
         come from an unfamiliar sender they couldn&apos;t opt out of. Email is the
         channel built for sharing, and it carries the spreadsheet too.
+      </Callout>
+
+      <H2 id="telegram">Sending reports to Telegram</H2>
+      <P>
+        Turn on <b>Telegram</b> under delivery, then choose where reports go:
+      </P>
+      <Ul>
+        <Li>
+          <b>Your own chat</b> — press <b>Connect my chat</b>. Telegram opens
+          the Quantalog bot; press <b>Start</b> and come back. The chat appears
+          in the list, already ticked.
+        </Li>
+        <Li>
+          <b>A group</b> — press <b>Add to a group</b> and pick the group in
+          Telegram. Everyone in it sees the report, which suits a team or a
+          client group.
+        </Li>
+      </Ul>
+      <P>
+        Linked chats belong to the workspace, so any report can tick them. Send{" "}
+        <Code>/stop</Code> to the bot in a chat to stop reports there.
+      </P>
+      <Callout>
+        Want reports to arrive from your own brand? Choose{" "}
+        <b>Use your own bot</b>, create a bot with <b>@BotFather</b>, paste its
+        token, message the bot (or add it to a group), then press{" "}
+        <b>Find chats</b> and add the chat. Each Telegram chat counts toward
+        your plan&apos;s recipients per report.
       </Callout>
 
       <H2 id="recipients">Who receives it</H2>
@@ -199,7 +231,9 @@ function Body() {
         The send icon on any report mails a copy to you immediately, marked as a
         test. It&apos;s built from exactly the same data and template as the real
         thing, so what you see is what your recipients will get. Test sends go
-        only to you — never to the rest of the list.
+        only to you — never to the rest of the list. For Telegram, choose{" "}
+        <b>Send Telegram test</b> from the report&apos;s menu to post a test
+        copy to its chats.
       </P>
 
       <H2 id="pausing">Pausing and deleting</H2>
@@ -221,7 +255,7 @@ export const emailReports: Doc = {
   slug: "email-reports",
   title: "Reports",
   description:
-    "Send analytics and SEO summaries on a schedule by email or WhatsApp, opening with a plain-language AI read of the period.",
+    "Send analytics and SEO summaries on a schedule by email, WhatsApp or Telegram, opening with a plain-language AI read of the period.",
   category: "Tracking",
   order: 14,
   Body,
