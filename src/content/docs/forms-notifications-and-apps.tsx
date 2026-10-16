@@ -104,10 +104,11 @@ function Body() {
         app.
       </P>
 
-      <H2 id="chat">Slack, Discord and Microsoft Teams</H2>
+      <H2 id="chat">Slack, Discord, Microsoft Teams and Google Chat</H2>
       <P>
-        In <b>Settings → Connections</b>, connect <b>Slack</b>, <b>Discord</b>{" "}
-        or <b>Microsoft Teams</b> with a webhook URL for the channel you want:
+        In <b>Settings → Connections</b>, connect <b>Slack</b>, <b>Discord</b>,{" "}
+        <b>Microsoft Teams</b> or <b>Google Chat</b> with a webhook URL for the
+        channel you want:
       </P>
       <Ul>
         <Li>
@@ -123,6 +124,12 @@ function Body() {
           <b>Post to a channel when a webhook request is received</b>, and copy
           the URL it gives you. Each response arrives as a card.
         </Li>
+        <Li>
+          <b>Google Chat</b> — in the space, open the space name menu, choose{" "}
+          <b>Apps &amp; integrations</b>, then <b>Webhooks</b>, add one and copy
+          its URL (<Code>https://chat.googleapis.com/v1/spaces/…</Code>). Each
+          response arrives as a card. Webhooks need a Google Workspace account.
+        </Li>
       </Ul>
       <P>
         Once connected, a form posts each new response — its title and answers
@@ -133,13 +140,32 @@ function Body() {
 
       <H2 id="whatsapp">WhatsApp</H2>
       <P>
-        On plans that include WhatsApp alerts, open <b>Alerts</b> in the form
-        builder, switch on <b>WhatsApp</b> and save the form. Each new response
-        — the form&apos;s title and up to 12 answers — arrives on the
-        workspace owner&apos;s own WhatsApp, at the mobile number saved in{" "}
-        <b>Settings → Profile</b>. Messages come from Quantalog&apos;s shared
-        WhatsApp number and go only to the owner, never to respondents or
-        other people.
+        WhatsApp is an app you connect once per workspace, on plans that
+        include it, and it is shared by form alerts and scheduled reports:
+      </P>
+      <Ul>
+        <Li>
+          Open <b>Settings → Connections → WhatsApp</b> and turn it on.
+        </Li>
+        <Li>
+          Add a number with its country code and press <b>Send code</b>.
+          Quantalog sends a 6-digit code to that WhatsApp; enter it to verify
+          the number. Add up to 10.
+        </Li>
+        <Li>
+          Switch on <b>Form alerts</b> for each number that should hear about
+          new responses.
+        </Li>
+        <Li>
+          In the form builder, open <b>Alerts</b>, switch on <b>WhatsApp</b>{" "}
+          and save the form.
+        </Li>
+      </Ul>
+      <P>
+        Each new response — the form&apos;s title and up to 12 answers — then
+        arrives on those numbers. Messages come from Quantalog&apos;s shared
+        WhatsApp number, only to numbers that confirmed a code — never to
+        respondents.
       </P>
 
       <H2 id="telegram">Telegram</H2>

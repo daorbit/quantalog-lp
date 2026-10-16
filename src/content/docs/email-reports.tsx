@@ -72,18 +72,20 @@ function Body() {
           movers, and links to the full report and the live dashboard.
         </Li>
       </Ul>
+      <H2 id="whatsapp">Sending reports to WhatsApp</H2>
       <P>
-        WhatsApp reports are delivered to <b>your own mobile number</b>, taken
-        from your profile — add it under Settings before turning the channel on.
-        To share a report with a client or colleague, add their email address
-        instead.
+        WhatsApp is an app you connect once per workspace, on plans that
+        include it. Open <b>Settings → Connections → WhatsApp</b>, turn it on,
+        and add each number that should get reports. Quantalog sends a 6-digit
+        code to that WhatsApp; enter it to verify the number. Then, in a
+        report&apos;s <b>Delivery</b> settings, turn on <b>WhatsApp</b> and tick
+        the numbers it goes to. You can add up to 10 numbers per workspace.
       </P>
       <Callout>
-        WhatsApp delivery is deliberately limited to your own number. Messages
-        send from a shared platform number, and a chat has nowhere to put an
-        unsubscribe link — so a report arriving on a client&apos;s phone would
-        come from an unfamiliar sender they couldn&apos;t opt out of. Email is the
-        channel built for sharing, and it carries the spreadsheet too.
+        Messages come from Quantalog&apos;s shared WhatsApp number, which is why
+        every number confirms a code first — only people who agreed get
+        messages. To stop a number receiving anything, remove it in
+        Connections.
       </Callout>
 
       <H2 id="telegram">Sending reports to Telegram</H2>
