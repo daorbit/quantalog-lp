@@ -330,8 +330,12 @@ function Body() {
         </Li>
       </Ul>
       <P>
-        Use answer piping and endings by answer to personalise the result, and
-        quiz scoring if answers should add up to a score.
+        Use endings by answer to personalise the result, and quiz scoring if
+        answers should add up to a score. To start from a working example, pick
+        the <b>Calm kids plan quiz</b> under <b>Quiz Funnels</b> in the template
+        picker: picture cards, agree/disagree screens, an image above a
+        question, an analyzing screen, email capture, and a plan picker with a
+        countdown and payment, all on one-question-at-a-time.
       </P>
 
       <H2 id="sharing">Sharing and embedding</H2>
