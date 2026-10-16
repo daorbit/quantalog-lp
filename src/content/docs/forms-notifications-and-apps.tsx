@@ -167,10 +167,13 @@ function Body() {
       <H3 id="telegram-connect">3. Turn on form alerts</H3>
       <P>
         Switch on <b>Form alerts</b> for each chat that should hear about new
-        responses. From then on, every form with <b>Notify me</b> or{" "}
-        <b>Notify in Quantalog</b> switched on posts each new response — the
-        form&apos;s title and up to 12 answers — to those chats. Chats with
-        form alerts off can still receive reports. Use{" "}
+        responses. Then, in the form builder, open <b>Telegram alerts</b> in
+        the right-hand rail and switch on{" "}
+        <b>Send this form&apos;s responses to Telegram</b>, and save the form.
+        Each new response — the form&apos;s title and up to 12 answers — is
+        posted to those chats. Forms made before this switch existed follow{" "}
+        <b>Notify me</b> or <b>Notify in Quantalog</b> until you change it.
+        Chats with form alerts off can still receive reports. Use{" "}
         <b>Send test message</b> to check: a message should appear in every
         linked chat within a second or two.
       </P>
