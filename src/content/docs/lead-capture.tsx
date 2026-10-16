@@ -299,6 +299,41 @@ function Body() {
         report.
       </P>
 
+      <H3 id="quiz-funnel">Quiz funnels</H3>
+      <P>
+        With <b>One question at a time</b> on, a form can work like a quiz
+        funnel — a tap per screen, pictures, a short &quot;analyzing&quot;
+        moment, then the result or offer:
+      </P>
+      <Ul>
+        <Li>
+          <b>Picture cards</b> — on a Radio or Checkbox question, open{" "}
+          <b>Display</b> and turn on <b>Show as picture cards</b>. Each option
+          gets an image, an optional badge (&quot;Most popular&quot;) and a
+          note (&quot;₹299 / month&quot;); pick 1–4 columns. Radio cards move
+          on as soon as one is tapped.
+        </Li>
+        <Li>
+          <b>Image</b> — under <b>Page Elements</b>. Place it just before a
+          question and it shows above that question on the same screen.
+        </Li>
+        <Li>
+          <b>Analyzing Screen</b> — under <b>Funnel</b>. It gets its own step
+          with a progress ring and a checklist that ticks off, then moves on by
+          itself after the seconds you set.
+        </Li>
+        <Li>
+          <b>Countdown</b> — under <b>Funnel</b>. A timer for an offer that
+          starts when it is first seen and keeps running if the page is
+          refreshed. Pair it with a Payment field and picture cards with prices
+          for a plan picker.
+        </Li>
+      </Ul>
+      <P>
+        Use answer piping and endings by answer to personalise the result, and
+        quiz scoring if answers should add up to a score.
+      </P>
+
       <H2 id="sharing">Sharing and embedding</H2>
       <P>
         A published form has its own link, which anyone can open — no Quantalog
