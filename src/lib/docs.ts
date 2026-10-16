@@ -27,6 +27,7 @@ import { formsNotificationsAndApps } from "@/content/docs/forms-notifications-an
 import { formsGoogleSheets } from "@/content/docs/forms-google-sheets";
 import { formsSettingsAndAnalytics } from "@/content/docs/forms-settings-and-analytics";
 import { seo } from "@/content/docs/seo";
+import { quantalogCompare } from "@/content/docs/quantalog-compare";
 import { searchVisibility } from "@/content/docs/search-visibility";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
@@ -79,6 +80,7 @@ const DOCS: Doc[] = [
   dashboards,
   publicDashboards,
   seo,
+  quantalogCompare,
   searchVisibility,
   emailReports,
   scheduledPosts,

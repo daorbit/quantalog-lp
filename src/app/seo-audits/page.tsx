@@ -18,6 +18,7 @@ import { ScoreVisual } from "@/components/explore/visuals/score-visual";
 import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
 import { ProductChecklist } from "@/components/product/product-checklist";
+import { ProductSteps } from "@/components/product/product-steps";
 import { ProductFaq } from "@/components/product/product-faq";
 import { RelatedProducts } from "@/components/product/related-products";
 import { JsonLd } from "@/components/json-ld";
@@ -25,7 +26,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-08-09";
+const MODIFIED = "2026-10-16";
 
 const META_DESCRIPTION =
   "A free SEO audit tool built into your analytics. Lighthouse scores, structured data checks, broken links and Core Web Vitals — with history.";
@@ -66,8 +67,8 @@ const checks = [
   },
   {
     icon: Swords,
-    title: "Competitors side by side",
-    body: "Add up to three competitor pages and compare titles, headings, content depth and structured data against yours, scored on the same on-page signals.",
+    title: "Quantalog Compare",
+    body: "Turn on the official Compare app to put up to 10 competitor pages beside yours, scored on the same on-page signals, with standings, history and what to fix first.",
   },
   {
     icon: Share2,
@@ -95,7 +96,22 @@ const stats = [
   { value: "4", label: "Lighthouse scores" },
   { value: "12", label: "Checks on every run" },
   { value: "30", label: "Pages per site crawl" },
-  { value: "3", label: "Competitors side by side" },
+  { value: "10", label: "Competitors per site" },
+] as const;
+
+const compareSteps = [
+  {
+    title: "Turn on Compare",
+    body: "A workspace admin opens Settings → Connections, picks Quantalog Compare under Quantalog apps and presses Enable. It's included — no extra plan.",
+  },
+  {
+    title: "Find it in the sidebar",
+    body: "Compare appears under Analyze for everyone in the workspace. Or press Ctrl K and type “Compare”.",
+  },
+  {
+    title: "Add your competitors",
+    body: "Paste up to 10 competitor URLs per site. Your page is fetched alongside theirs, so every score is measured the same way.",
+  },
 ] as const;
 
 const faqs = [
@@ -113,7 +129,15 @@ const faqs = [
   },
   {
     q: "Can I audit a site I do not own?",
-    a: "You can add up to three competitor pages per site and compare them against yours on on-page signals — titles, headings, content depth, structured data. Full audits with Lighthouse run against sites in your own workspace.",
+    a: "With Quantalog Compare turned on, you can add up to 10 competitor pages per site and compare them against yours on on-page signals — titles, headings, content depth, structured data. Full audits with Lighthouse run against sites in your own workspace.",
+  },
+  {
+    q: "How do I turn on Quantalog Compare?",
+    a: "Compare is an official Quantalog app that each workspace switches on. A workspace admin opens Settings → Connections, finds Quantalog Compare under Quantalog apps, and presses Enable. You can also open the Compare page directly and press Enable Compare there. It's included on every plan.",
+  },
+  {
+    q: "Where do I find Compare in the app?",
+    a: "Once it's on, Compare sits in the sidebar under Analyze, just below SEO, for everyone in the workspace. You can also press Ctrl K (⌘ K on a Mac) and type “Compare”, or on mobile tap More and look under Analyze.",
   },
   {
     q: "Does an audit cost me pageview quota?",
@@ -241,6 +265,16 @@ export default function SeoAuditsPage() {
         bordered
       >
         <ProductChecklist items={audited} />
+      </ProductSection>
+
+      <ProductSection
+        eyebrow="Quantalog Compare"
+        title="See exactly where competitors beat you."
+        body="Compare is an official Quantalog app. Turn it on once and your whole workspace gets head-to-head scores, standings over time, and a ranked list of what would close each gap."
+        link={{ label: "How to turn on Compare", href: "/docs/quantalog-compare" }}
+        bordered
+      >
+        <ProductSteps steps={compareSteps} />
       </ProductSection>
 
       <SplitStory

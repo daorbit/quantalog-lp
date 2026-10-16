@@ -98,7 +98,8 @@ function Body() {
         </Li>
         <Li>
           <b>Compare</b> — this page beside competitor URLs you add, on the
-          on-page signals, so the gap is a list rather than a hunch.
+          on-page signals, so the gap is a list rather than a hunch. Needs the{" "}
+          <A href="/docs/quantalog-compare">Quantalog Compare</A> app turned on.
         </Li>
         <Li>
           <b>Suggestions</b> — the Lighthouse audits this page failed, each with a
@@ -106,6 +107,16 @@ function Body() {
           responsible.
         </Li>
       </Ul>
+
+      <H2 id="compare">Quantalog Compare</H2>
+      <P>
+        Comparing your pages against competitors lives in its own official
+        app, <b>Quantalog Compare</b>, which a workspace admin turns on in{" "}
+        <b>Settings → Connections</b>. Once on, it appears as <b>Compare</b> in
+        the sidebar. See{" "}
+        <A href="/docs/quantalog-compare">Quantalog Compare</A> for how to
+        turn it on, find it and read the results.
+      </P>
 
       <H2 id="whose-crawler">This is our crawler, not Google&apos;s</H2>
       <P>
