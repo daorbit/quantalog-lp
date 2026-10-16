@@ -104,10 +104,10 @@ function Body() {
         app.
       </P>
 
-      <H2 id="chat">Slack and Discord</H2>
+      <H2 id="chat">Slack, Discord and Microsoft Teams</H2>
       <P>
-        In <b>Settings → Connections</b>, connect <b>Slack</b> or <b>Discord</b> with an
-        incoming webhook URL for the channel you want:
+        In <b>Settings → Connections</b>, connect <b>Slack</b>, <b>Discord</b>{" "}
+        or <b>Microsoft Teams</b> with a webhook URL for the channel you want:
       </P>
       <Ul>
         <Li>
@@ -118,12 +118,28 @@ function Body() {
           <b>Discord</b> — in the channel&apos;s settings open{" "}
           <b>Integrations</b>, create a webhook, and copy its URL.
         </Li>
+        <Li>
+          <b>Microsoft Teams</b> — in the channel, open <b>Workflows</b>, choose{" "}
+          <b>Post to a channel when a webhook request is received</b>, and copy
+          the URL it gives you. Each response arrives as a card.
+        </Li>
       </Ul>
       <P>
         Once connected, a form posts each new response — its title and answers
         — to the channel whenever that form has <b>Notify me</b> or{" "}
         <b>Quantalog notifications</b> switched on. Like the email app, the
         connection is shared by every form in the workspace.
+      </P>
+
+      <H2 id="whatsapp">WhatsApp</H2>
+      <P>
+        On plans that include WhatsApp alerts, open <b>Alerts</b> in the form
+        builder, switch on <b>WhatsApp</b> and save the form. Each new response
+        — the form&apos;s title and up to 12 answers — arrives on the
+        workspace owner&apos;s own WhatsApp, at the mobile number saved in{" "}
+        <b>Settings → Profile</b>. Messages come from Quantalog&apos;s shared
+        WhatsApp number and go only to the owner, never to respondents or
+        other people.
       </P>
 
       <H2 id="telegram">Telegram</H2>
