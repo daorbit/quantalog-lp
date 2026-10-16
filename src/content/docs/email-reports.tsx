@@ -88,7 +88,8 @@ function Body() {
 
       <H2 id="telegram">Sending reports to Telegram</H2>
       <P>
-        Turn on <b>Telegram</b> under delivery, then choose where reports go:
+        Turn on <b>Telegram</b> under delivery and tick the chats the report
+        goes to. With the Quantalog bot you can link a new chat right there:
       </P>
       <Ul>
         <Li>
@@ -103,15 +104,18 @@ function Body() {
         </Li>
       </Ul>
       <P>
-        Linked chats belong to the workspace, so any report can tick them. Send{" "}
-        <Code>/stop</Code> to the bot in a chat to stop reports there.
+        Linked chats belong to the workspace&apos;s Telegram connection, so any
+        report can tick them and form alerts can use them too. Send{" "}
+        <Code>/stop</Code> to the bot in a chat to stop messages there.
       </P>
       <Callout>
-        Want reports to arrive from your own brand? Choose{" "}
-        <b>Use your own bot</b>, create a bot with <b>@BotFather</b>, paste its
-        token, message the bot (or add it to a group), then press{" "}
-        <b>Find chats</b> and add the chat. Each Telegram chat counts toward
-        your plan&apos;s recipients per report.
+        Want reports to arrive from your own brand? Open{" "}
+        <b>Manage Telegram in Connections</b> (or{" "}
+        <b>Settings → Connections → Telegram</b>), choose{" "}
+        <b>Your own Telegram bot</b>, paste its token from <b>@BotFather</b>,
+        message the bot (or add it to a group), then press <b>Find chats</b>{" "}
+        and add the chat. Each Telegram chat counts toward your plan&apos;s
+        recipients per report.
       </Callout>
 
       <H2 id="recipients">Who receives it</H2>

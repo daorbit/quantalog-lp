@@ -127,70 +127,60 @@ function Body() {
 
       <H2 id="telegram">Telegram</H2>
       <P>
-        Telegram alerts come from a bot you own, so they arrive in your own
-        chat, a group, or a channel. Setting it up takes about two minutes.
+        A workspace has one Telegram connection, shared by form alerts and
+        scheduled reports. Open <b>Settings → Connections</b>, find{" "}
+        <b>Telegram</b> (search &quot;telegram&quot; or pick{" "}
+        <b>Notifications</b> in the category filter) and choose{" "}
+        <b>Connect</b>.
       </P>
 
-      <H3 id="telegram-bot">1. Create a bot and copy its token</H3>
-      <ol>
-        <li>
-          In Telegram, open <b>@BotFather</b> (the official bot with the blue
-          tick) and send <Code>/newbot</Code>.
-        </li>
-        <li>
-          Give it a name, then a username ending in <Code>bot</Code>, for
-          example <Code>acme_leads_bot</Code>.
-        </li>
-        <li>
-          BotFather replies with a <b>token</b> that looks like{" "}
-          <Code>123456789:AAH…</Code>. Copy it. Anyone with the token can post
-          as your bot, so keep it private.
-        </li>
-      </ol>
-
-      <H3 id="telegram-chat">2. Find the chat ID</H3>
-      <P>The chat ID tells the bot where to post. Pick where you want alerts:</P>
+      <H3 id="telegram-bot">1. Choose the bot</H3>
       <Ul>
         <Li>
-          <b>Your own chat</b> — open your new bot and press <b>Start</b> (or
-          send it any message). In Quantalog, paste the bot token and press{" "}
-          <b>Find my chat</b>: your chat appears in the list, and choosing it
-          fills in the chat ID.
+          <b>Quantalog bot</b> — nothing to set up. Messages come from the
+          Quantalog bot.
         </Li>
         <Li>
-          <b>A group</b> — add the bot to the group and send a message there,
-          then press <b>Find my chat</b> and choose the group. Group IDs start
-          with a minus sign, for example <Code>-1001234567890</Code>.
-        </Li>
-        <Li>
-          <b>A public channel</b> — add the bot to the channel as an{" "}
-          <b>administrator</b> who can post messages, and use the
-          channel&apos;s username, for example <Code>@acmeleads</Code>.
+          <b>Your own bot</b> — messages come from your bot&apos;s name and
+          picture. In Telegram, open <b>@BotFather</b>, send{" "}
+          <Code>/newbot</Code>, and paste the token it gives you (it looks like{" "}
+          <Code>123456789:AAH…</Code>). Anyone with the token can post as your
+          bot, so keep it private.
         </Li>
       </Ul>
 
-      <H3 id="telegram-connect">3. Connect it in Quantalog</H3>
+      <H3 id="telegram-chat">2. Link a chat</H3>
+      <Ul>
+        <Li>
+          <b>With the Quantalog bot</b> — press <b>Connect my chat</b> and press{" "}
+          <b>Start</b> in Telegram, or <b>Add to a group</b> and pick the
+          group. Come back and the chat is in the list.
+        </Li>
+        <Li>
+          <b>With your own bot</b> — send your bot a message (or add it to a
+          group and post there), then press <b>Find chats</b> and{" "}
+          <b>Add</b>. For a public channel, add the bot as an{" "}
+          <b>administrator</b> and add <Code>@channelname</Code> by hand.
+        </Li>
+      </Ul>
+
+      <H3 id="telegram-connect">3. Turn on form alerts</H3>
       <P>
-        Open <b>Settings → Connections</b>, find <b>Telegram</b> (search
-        &quot;telegram&quot; or pick <b>Notifications</b> in the category
-        filter) and choose <b>Connect</b>. Paste the <b>Bot token</b>, pick
-        your chat with <b>Find my chat</b> (or type the <b>Chat ID</b>), then
-        press <b>Connect Telegram</b>. The page also shows a preview of how
-        each alert will look. Use{" "}
-        <b>Send test message</b> to check: a test message should appear in the
-        chat within a second or two.
-      </P>
-      <P>
-        From then on, every form with <b>Notify me</b> or{" "}
+        Switch on <b>Form alerts</b> for each chat that should hear about new
+        responses. From then on, every form with <b>Notify me</b> or{" "}
         <b>Notify in Quantalog</b> switched on posts each new response — the
-        form&apos;s title and up to 12 answers — to that chat.
+        form&apos;s title and up to 12 answers — to those chats. Chats with
+        form alerts off can still receive reports. Use{" "}
+        <b>Send test message</b> to check: a message should appear in every
+        linked chat within a second or two.
       </P>
       <Callout variant="tip" title="If the test fails">
         <b>chat not found</b> means the bot has never seen that chat: press{" "}
-        <b>Start</b> in your bot, or add it to the group or channel, then test
-        again. <b>Unauthorized</b> means the token is wrong or was revoked in
-        BotFather; paste a fresh one. <b>bot was blocked by the user</b> means
-        you blocked the bot; unblock it in Telegram.
+        <b>Start</b> in the bot, or add it to the group or channel, then link
+        it again. <b>Unauthorized</b> means your own bot&apos;s token was
+        revoked in BotFather; paste a fresh one. <b>bot was blocked by the
+        user</b> means the bot was blocked; unblock it in Telegram. Send{" "}
+        <Code>/stop</Code> in a chat to unlink it from the Quantalog bot.
       </Callout>
 
       <H3 id="paid-forms">On paid forms</H3>
