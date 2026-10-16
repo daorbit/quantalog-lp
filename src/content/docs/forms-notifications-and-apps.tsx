@@ -96,8 +96,9 @@ function Body() {
 
       <H2 id="bell">Responses in your Quantalog bell</H2>
       <P>
-        <b>Notification Drawer</b> on the icon rail has one switch,{" "}
-        <b>Notify in Quantalog</b>. With it on, every response to this form
+        <b>Alerts</b> (the bell on the icon rail) holds the in-app and
+        Telegram switches for the form. With <b>Quantalog notifications</b>{" "}
+        on, every response to this form
         adds a row to the bell in Quantalog, answers attached, and arrives as a
         push notification on devices where you allowed them. It needs no email
         app.
@@ -121,7 +122,7 @@ function Body() {
       <P>
         Once connected, a form posts each new response — its title and answers
         — to the channel whenever that form has <b>Notify me</b> or{" "}
-        <b>Notify in Quantalog</b> switched on. Like the email app, the
+        <b>Quantalog notifications</b> switched on. Like the email app, the
         connection is shared by every form in the workspace.
       </P>
 
@@ -167,12 +168,11 @@ function Body() {
       <H3 id="telegram-connect">3. Turn on form alerts</H3>
       <P>
         Switch on <b>Form alerts</b> for each chat that should hear about new
-        responses. Then, in the form builder, open <b>Telegram alerts</b> in
-        the right-hand rail and switch on{" "}
-        <b>Send this form&apos;s responses to Telegram</b>, and save the form.
+        responses. Then, in the form builder, open <b>Alerts</b> (the bell in
+        the right-hand rail), switch on <b>Telegram</b>, and save the form.
         Each new response — the form&apos;s title and up to 12 answers — is
         posted to those chats. Forms made before this switch existed follow{" "}
-        <b>Notify me</b> or <b>Notify in Quantalog</b> until you change it.
+        <b>Notify me</b> or <b>Quantalog notifications</b> until you change it.
         Chats with form alerts off can still receive reports. Use{" "}
         <b>Send test message</b> to check: a message should appear in every
         linked chat within a second or two.
