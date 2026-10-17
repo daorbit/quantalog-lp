@@ -11,6 +11,16 @@ function Body() {
         in Branding.
       </P>
 
+      <H2 id="enable">Turning Media on</H2>
+      <P>
+        The library page is an official Quantalog app, <b>Quantalog Media</b>.
+        A workspace admin opens <b>Apps</b> in the sidebar, finds{" "}
+        <b>Quantalog Media</b> under <b>Quantalog apps</b> and presses{" "}
+        <b>Enable</b>, and <b>Media</b> appears in the sidebar. While it is
+        off, posts, branding and forms can still pick and upload images as
+        before; only the library page is hidden.
+      </P>
+
       <H2 id="uploading">Uploading files</H2>
       <P>
         Drag a file anywhere onto the page, or use the <b>Upload</b> button.

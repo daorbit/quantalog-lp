@@ -9,6 +9,7 @@ import { Explore } from "@/components/sections/explore";
 import { Grow } from "@/components/sections/grow";
 import { OrbitAi } from "@/components/sections/orbit-ai";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
+import { QuantalogApps } from "@/components/sections/quantalog-apps";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { steps as setupSteps } from "@/components/setup/setup-steps";
 import { Pricing } from "@/components/sections/pricing";
@@ -133,6 +134,7 @@ export default function HomePage() {
       <Grow />
       <BookMeeting />
       <DashboardsGoals />
+      <QuantalogApps />
       <MoreFeatures />
       <OrbitAi />
       <HowItWorks />
