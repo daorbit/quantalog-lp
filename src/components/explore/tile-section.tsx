@@ -14,6 +14,7 @@ type Props = {
 
 export function TileSection({ id, eyebrow, title, body, items, children }: Props) {
   const odd = items.length % 2 === 1;
+  const loneClass = "lg:col-span-2 lg:mx-auto lg:w-[calc(50%-0.375rem)]";
 
   return (
     <section id={id} className="section-y">
@@ -23,7 +24,7 @@ export function TileSection({ id, eyebrow, title, body, items, children }: Props
 
       <div className="mt-10 grid gap-3 px-3 sm:mt-16 sm:px-4 lg:grid-cols-2">
         {items.map((item, i) => (
-          <div key={item.label} className={odd && i === items.length - 1 ? "lg:col-span-2" : undefined}>
+          <div key={item.label} className={odd && i === items.length - 1 ? loneClass : undefined}>
             <ExploreTile item={item} />
           </div>
         ))}

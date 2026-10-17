@@ -17,9 +17,15 @@ export function EmbeddedForm({
 
   useEffect(() => {
     function onMessage(e: MessageEvent) {
-      if (e.data?.type !== "da-forms:height") return;
-      if (!ref.current || e.source !== ref.current.contentWindow) return;
-      ref.current.style.height = `${e.data.height}px`;
+      const frame = ref.current;
+      if (!frame || e.source !== frame.contentWindow) return;
+      if (e.data?.type === "da-forms:height") frame.style.height = `${e.data.height}px`;
+      if (e.data?.type === "da-forms:ready") {
+        frame.contentWindow?.postMessage(
+          { type: "da-forms:context", page: window.location.href, referrer: document.referrer },
+          "*",
+        );
+      }
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);

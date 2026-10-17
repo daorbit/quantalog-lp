@@ -1,4 +1,4 @@
-import { BarChart3, CalendarClock, FileSearch, LayoutGrid, Mail, PanelRight, Plug, TrendingUp } from "lucide-react";
+import { BarChart3, CalendarClock, FileSearch, LayoutGrid, Mail, PanelRight, Plug, Signpost, TrendingUp } from "lucide-react";
 import { OrbitIcon } from "../orbit/orbit-icon";
 import { site } from "@/lib/site";
 import { LiveVisual } from "./visuals/live-visual";
@@ -10,6 +10,7 @@ import { ApiVisual } from "./visuals/api-visual";
 import { ReportVisual } from "./visuals/report-visual";
 import { SocialVisual } from "./visuals/social-visual";
 import { ExtensionVisual } from "./visuals/extension-visual";
+import { SourceVisual } from "./visuals/source-visual";
 
 type Link = { label: string; href: string };
 
@@ -46,6 +47,16 @@ const items: ExploreItem[] = [
     primary: { label: "Learn more", href: "/forms" },
     secondary: { label: "Docs", href: "/docs/lead-capture" },
     Visual: FieldVisual,
+  },
+  {
+    icon: Signpost,
+    tone: "violet",
+    label: "Lead sources",
+    title: "Know which ads pay off.",
+    body: "Every lead tagged with where it came from, and whether you won it.",
+    primary: { label: "Learn more", href: "/forms" },
+    secondary: { label: "Docs", href: "/docs/forms-settings-and-analytics#lead-sources" },
+    Visual: SourceVisual,
   },
   {
     icon: Mail,
@@ -121,6 +132,6 @@ const items: ExploreItem[] = [
 
 const pick = (...labels: string[]) => labels.map((label) => items.find((item) => item.label === label)!);
 
-export const measureItems = pick("Analytics", "Forms", "Reports");
-export const growItems = pick("SEO audits", "Search visibility", "Social posts");
-export const aiItems = pick("Orbit AI", "Orbit AI for Chrome", "Platform API");
+export const measureItems = pick("Analytics", "Forms", "Lead sources", "Reports");
+export const growItems = pick("SEO audits", "Search visibility");
+export const aiItems = pick("Orbit AI", "Social posts", "Orbit AI for Chrome", "Platform API");

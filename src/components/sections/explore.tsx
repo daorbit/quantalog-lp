@@ -7,7 +7,7 @@ export function Explore() {
       id="features"
       eyebrow="Platform"
       title="See every visit. Keep every lead."
-      body="Live analytics, forms that show where people drop off, and reports that reach the people who need them."
+      body="Live analytics, forms that show where people drop off, the source behind every lead, and reports that reach the people who need them."
       items={measureItems}
     />
   );

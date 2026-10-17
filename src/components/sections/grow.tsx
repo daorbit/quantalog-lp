@@ -7,7 +7,7 @@ export function Grow() {
       id="grow"
       eyebrow="Growth"
       title="Get found. Then keep showing up."
-      body="Audits you can track over time, Search Console inside your analytics, and social posts that go out on schedule."
+      body="Audits you can track over time, and Search Console inside your analytics."
       items={growItems}
     />
   );

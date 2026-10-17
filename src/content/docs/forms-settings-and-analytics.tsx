@@ -163,8 +163,8 @@ function Body() {
           what share of views they are.
         </Li>
         <Li>
-          <b>Top source</b> — the site most responses came from. The full list
-          is under <b>Traffic sources</b>.
+          <b>Top source</b> — where most responses came from. The full list
+          is under <b>Lead sources</b> in <b>Insights</b>.
         </Li>
         <Li>
           <b>Most gave up at</b> and <b>Where people gave up</b> — the
@@ -173,6 +173,55 @@ function Body() {
           where anyone stopped.
         </Li>
       </Ul>
+
+      <H2 id="lead-sources">Lead sources</H2>
+      <P>
+        Every new response records where the person came from, such as
+        Instagram, Google Ads, a newsletter or another website. You can see it
+        in two places:
+      </P>
+      <Ul>
+        <Li>
+          <b>Lead sources</b> on the Lead capture page covers every form, for
+          the last 30 days, 90 days, 12 months or all time.
+        </Li>
+        <Li>
+          <b>Insights</b> on a form&apos;s Responses page covers that form
+          only.
+        </Li>
+      </Ul>
+      <P>
+        Each source shows its leads, how many you marked <b>Won</b> in the{" "}
+        <a href="/docs/forms-entries-and-links#pipeline">pipeline</a>, and its
+        win rate. Each response also shows its source, campaign and landing
+        page under <b>Details</b>, and CSV exports include a{" "}
+        <b>Lead source</b> column.
+      </P>
+      <H3 id="lead-sources-tracking">How the source is worked out</H3>
+      <Ul>
+        <Li>
+          <b>UTM tags</b> come first. Add{" "}
+          <Code>?utm_source=instagram&amp;utm_campaign=diwali</Code> to the
+          link you share, or to the page the form is embedded on. A medium such
+          as <Code>cpc</Code> or <Code>paid_social</Code> marks it as an ad,
+          for example <b>Instagram Ads</b>.
+        </Li>
+        <Li>
+          <b>Ad clicks</b> from Google, Microsoft, LinkedIn, TikTok and X are
+          recognised without tags.
+        </Li>
+        <Li>
+          Otherwise, the <b>site people arrived from</b> is used, such as
+          Google search or Facebook. With none of these, it is{" "}
+          <b>Direct</b>.
+        </Li>
+      </Ul>
+      <Callout>
+        Forms embedded on your website need the embed code from{" "}
+        <b>Share → Embed</b> copied again. The new code tells the form which
+        page it is on and where the visitor came from. Responses from before
+        this feature show as <b>Not tracked</b>.
+      </Callout>
 
       <H2 id="copying">Copying forms</H2>
       <Ul>
@@ -201,7 +250,7 @@ export const formsSettingsAndAnalytics: Doc = {
   slug: "forms-settings-and-analytics",
   title: "Forms: settings, quizzes & analytics",
   description:
-    "Form-wide settings, opening and closing dates, spam protection, prefilled answers, quiz scoring, form analytics and drop-off, and copying forms between workspaces.",
+    "Form-wide settings, opening and closing dates, spam protection, prefilled answers, quiz scoring, form analytics, lead sources and drop-off, and copying forms between workspaces.",
   category: "Tracking",
   order: 17.4,
   Body,

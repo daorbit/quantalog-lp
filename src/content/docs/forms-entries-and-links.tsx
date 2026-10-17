@@ -70,6 +70,32 @@ function Body() {
         panel.
       </P>
 
+      <H3 id="contact-a-lead">Contacting a lead</H3>
+      <P>
+        Under the respondent&apos;s name, each response has buttons to reach
+        them straight away:
+      </P>
+      <Ul>
+        <Li>
+          <b>Call</b> — opens your phone&apos;s dialer, or your computer&apos;s
+          calling app, with their number.
+        </Li>
+        <Li>
+          <b>WhatsApp</b> — opens a chat with them and a ready greeting that
+          names the form. Numbers without a country code use the code of your
+          browser&apos;s region.
+        </Li>
+        <Li>
+          <b>Email</b> — opens your email app with a subject and greeting
+          filled in.
+        </Li>
+      </Ul>
+      <P>
+        Buttons appear only for details the respondent gave. Using one moves a{" "}
+        <b>New</b> response to <b>Contacted</b>. Everything is sent from your
+        own phone, WhatsApp or email, never from Quantalog.
+      </P>
+
       <H2 id="pipeline">Working leads through a pipeline</H2>
       <P>
         Every response has a <b>stage</b>: <b>New</b>, <b>Contacted</b>,{" "}
