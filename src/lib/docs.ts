@@ -28,6 +28,7 @@ import { formsGoogleSheets } from "@/content/docs/forms-google-sheets";
 import { formsSettingsAndAnalytics } from "@/content/docs/forms-settings-and-analytics";
 import { seo } from "@/content/docs/seo";
 import { quantalogCompare } from "@/content/docs/quantalog-compare";
+import { quantalogNotes } from "@/content/docs/quantalog-notes";
 import { searchVisibility } from "@/content/docs/search-visibility";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
@@ -81,6 +82,7 @@ const DOCS: Doc[] = [
   publicDashboards,
   seo,
   quantalogCompare,
+  quantalogNotes,
   searchVisibility,
   emailReports,
   scheduledPosts,

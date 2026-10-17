@@ -1,5 +1,5 @@
 import type { Doc } from "@/lib/docs";
-import { H2, P, Ul, Li, Callout, A } from "@/components/prose";
+import { H2, P, Ul, Li, Callout, A, Code } from "@/components/prose";
 
 function Body() {
   return (
@@ -16,6 +16,31 @@ function Body() {
         defines <i>what</i> counts as a conversion; a goal sets <i>how many</i>{" "}
         you are aiming for in a month or quarter.
       </Callout>
+
+      <H2 id="enable">Turning Goals on</H2>
+      <P>
+        Goals is a Quantalog app, <b>Quantalog Goals</b>. It comes with every
+        workspace but stays off until a workspace admin or owner turns it on:
+      </P>
+      <Ul>
+        <Li>
+          <b>From Connections</b> — open <b>Settings → Connections</b>, find{" "}
+          <b>Quantalog Goals</b> in the <b>Quantalog apps</b> group, press{" "}
+          <b>Enable</b>, then <b>Enable Goals</b>.
+        </Li>
+        <Li>
+          <b>From the Goals page</b> — open <Code>/app/goals</Code>, or press{" "}
+          <b>Turn on Goals</b> on the Goal progress widget. While the app is
+          off, the page explains what Goals does and shows an{" "}
+          <b>Enable Goals</b> button.
+        </Li>
+      </Ul>
+      <P>
+        Once it is on, <b>Goals</b> appears in the sidebar for everyone in the
+        workspace. Turning it off in Connections hides it again; your goals are
+        kept and come back when you turn it on. Members who are not admins see
+        a note asking them to contact an admin instead of the button.
+      </P>
 
       <H2 id="creating">Setting a goal</H2>
       <P>
