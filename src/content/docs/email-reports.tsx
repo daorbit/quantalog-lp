@@ -75,7 +75,7 @@ function Body() {
       <H2 id="whatsapp">Sending reports to WhatsApp</H2>
       <P>
         WhatsApp is an app you connect once per workspace, on plans that
-        include it. Open <b>Settings → Connections → WhatsApp</b>, turn it on,
+        include it. Open <b>Apps → WhatsApp</b>, turn it on,
         and add each number that should get reports. Quantalog sends a 6-digit
         code to that WhatsApp; enter it to verify the number. Then, in a
         report&apos;s <b>Delivery</b> settings, turn on <b>WhatsApp</b> and tick
@@ -85,7 +85,7 @@ function Body() {
         Messages come from Quantalog&apos;s shared WhatsApp number, which is why
         every number confirms a code first — only people who agreed get
         messages. To stop a number receiving anything, remove it in
-        Connections.
+        Apps.
       </Callout>
 
       <H2 id="telegram">Sending reports to Telegram</H2>
@@ -112,8 +112,8 @@ function Body() {
       </P>
       <Callout>
         Want reports to arrive from your own brand? Open{" "}
-        <b>Manage Telegram in Connections</b> (or{" "}
-        <b>Settings → Connections → Telegram</b>), choose{" "}
+        <b>Manage Telegram in Apps</b> (or{" "}
+        <b>Apps → Telegram</b>), choose{" "}
         <b>Your own Telegram bot</b>, paste its token from <b>@BotFather</b>,
         message the bot (or add it to a group), then press <b>Find chats</b>{" "}
         and add the chat. Each Telegram chat counts toward your plan&apos;s

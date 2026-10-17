@@ -51,7 +51,7 @@ function Body() {
 
       <H2 id="google-calendar">Google Calendar and Meet</H2>
       <P>
-        Open <b>Settings → Connections</b> in Quantalog, find{" "}
+        Open <b>Apps</b> in Quantalog, find{" "}
         <b>Google Calendar</b> under Scheduling and click{" "}
         <b>Connect</b>. The page lists what Google will ask you
         to allow; choose <b>Continue to Google</b> and allow access in the
@@ -118,7 +118,7 @@ function Body() {
 
       <H3 id="google-disconnect">Disconnecting</H3>
       <P>
-        Open <b>Settings → Connections</b>, choose <b>Google Calendar</b> and
+        Open <b>Apps</b>, choose <b>Google Calendar</b> and
         click <b>Disconnect</b>. Quantalog revokes its access with Google and deletes
         the stored tokens straight away. You can also remove Quantalog from{" "}
         <A href="https://myaccount.google.com/connections">your Google Account</A>

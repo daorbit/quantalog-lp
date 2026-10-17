@@ -16,7 +16,7 @@ function Body() {
       <P>Only workspace admins and owners can turn apps on or off. There are two ways:</P>
       <Ul>
         <Li>
-          <b>From Connections</b> — open <b>Settings → Connections</b>. The{" "}
+          <b>From Apps</b> — open <b>Apps</b>. The{" "}
           <b>Quantalog apps</b> group sits at the top. Find{" "}
           <b>Quantalog Compare</b> (it carries an <b>Official</b> badge), press{" "}
           <b>Enable</b>, then <b>Enable Compare</b> on the page that opens.
@@ -48,7 +48,7 @@ function Body() {
           the <b>Analyze</b> group.
         </Li>
         <Li>
-          <b>From Connections</b> — once on, the Quantalog Compare card shows{" "}
+          <b>From Apps</b> — once on, the Quantalog Compare card shows{" "}
           <b>Manage</b>, and its page has an <b>Open Compare</b> button.
         </Li>
       </Ul>
@@ -95,7 +95,7 @@ function Body() {
 
       <H2 id="disable">Turning Compare off</H2>
       <P>
-        In <b>Settings → Connections</b>, open <b>Quantalog Compare</b> and
+        In <b>Apps</b>, open <b>Quantalog Compare</b> and
         press <b>Turn off</b>. Compare leaves the sidebar for everyone, and
         competitor checks stop. Your tracked competitors and their score
         history are kept, so turning it back on picks up where you left off.

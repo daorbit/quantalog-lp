@@ -14,7 +14,7 @@ function Body() {
       <H2 id="connect">Connect Google Sheets</H2>
       <ol>
         <li>
-          In Quantalog, open <b>Settings → Connections</b> and find{" "}
+          In Quantalog, open <b>Apps</b> and find{" "}
           <b>Google Sheets</b> (search &quot;sheets&quot; or pick{" "}
           <b>Automation</b> in the category filter).
         </li>
@@ -65,7 +65,7 @@ function Body() {
 
       <H2 id="find">Finding your sheets</H2>
       <P>
-        Open <b>Google Sheets</b> in Settings → Connections. <b>Your
+        Open <b>Google Sheets</b> in Apps. <b>Your
         spreadsheets</b> lists each form with its row count, when the last row
         was added, and an <b>Open</b> button. You can also find them in Google
         Drive under the connected account.

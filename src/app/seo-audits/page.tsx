@@ -102,7 +102,7 @@ const stats = [
 const compareSteps = [
   {
     title: "Turn on Compare",
-    body: "A workspace admin opens Settings → Connections, picks Quantalog Compare under Quantalog apps and presses Enable. It's included — no extra plan.",
+    body: "A workspace admin opens Apps, picks Quantalog Compare under Quantalog apps and presses Enable. It's included — no extra plan.",
   },
   {
     title: "Find it in the sidebar",
@@ -133,7 +133,7 @@ const faqs = [
   },
   {
     q: "How do I turn on Quantalog Compare?",
-    a: "Compare is an official Quantalog app that each workspace switches on. A workspace admin opens Settings → Connections, finds Quantalog Compare under Quantalog apps, and presses Enable. You can also open the Compare page directly and press Enable Compare there. It's included on every plan.",
+    a: "Compare is an official Quantalog app that each workspace switches on. A workspace admin opens Apps, finds Quantalog Compare under Quantalog apps, and presses Enable. You can also open the Compare page directly and press Enable Compare there. It's included on every plan.",
   },
   {
     q: "Where do I find Compare in the app?",

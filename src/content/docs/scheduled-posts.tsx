@@ -14,7 +14,7 @@ function Body() {
       <H2 id="connecting">Connecting an account</H2>
       <P>
         Before anything can publish, connect the network from{" "}
-        <b>Settings → Connections</b>. Each is a separate permission from signing
+        <b>Apps</b>. Each is a separate permission from signing
         in: signing in proves who you are, but it does not let us post on your
         behalf, so the network asks again the first time you connect for
         publishing.

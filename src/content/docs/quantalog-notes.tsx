@@ -16,7 +16,7 @@ function Body() {
       <P>Only workspace admins and owners can turn apps on or off.</P>
       <Ul>
         <Li>
-          Open <b>Settings → Connections</b>, find <b>Quantalog Notes</b> in
+          Open <b>Apps</b>, find <b>Quantalog Notes</b> in
           the <b>Quantalog apps</b> group, press <b>Enable</b>, then{" "}
           <b>Enable Notes</b>.
         </Li>

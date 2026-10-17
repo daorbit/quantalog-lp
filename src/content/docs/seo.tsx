@@ -112,7 +112,7 @@ function Body() {
       <P>
         Comparing your pages against competitors lives in its own official
         app, <b>Quantalog Compare</b>, which a workspace admin turns on in{" "}
-        <b>Settings → Connections</b>. Once on, it appears as <b>Compare</b> in
+        <b>Apps</b>. Once on, it appears as <b>Compare</b> in
         the sidebar. See{" "}
         <A href="/docs/quantalog-compare">Quantalog Compare</A> for how to
         turn it on, find it and read the results.

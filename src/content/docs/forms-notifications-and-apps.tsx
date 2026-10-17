@@ -17,7 +17,7 @@ function Body() {
       <P>
         Form emails are sent from <b>your</b> email account, so replies reach
         you and your domain&apos;s reputation stays your own. Open{" "}
-        <b>Settings → Connections</b> in Quantalog (the <b>Integrations</b>{" "}
+        <b>Apps</b> in Quantalog (the <b>Apps</b>{" "}
         button in the form builder takes you there) and connect one of:
       </P>
       <Ul>
@@ -106,7 +106,7 @@ function Body() {
 
       <H2 id="chat">Slack, Discord, Microsoft Teams and Google Chat</H2>
       <P>
-        In <b>Settings → Connections</b>, connect <b>Slack</b>, <b>Discord</b>,{" "}
+        In <b>Apps</b>, connect <b>Slack</b>, <b>Discord</b>,{" "}
         <b>Microsoft Teams</b> or <b>Google Chat</b> with a webhook URL for the
         channel you want:
       </P>
@@ -145,7 +145,7 @@ function Body() {
       </P>
       <Ul>
         <Li>
-          Open <b>Settings → Connections → WhatsApp</b> and turn it on.
+          Open <b>Apps → WhatsApp</b> and turn it on.
         </Li>
         <Li>
           Add a number with its country code and press <b>Send code</b>.
@@ -171,7 +171,7 @@ function Body() {
       <H2 id="telegram">Telegram</H2>
       <P>
         A workspace has one Telegram connection, shared by form alerts and
-        scheduled reports. Open <b>Settings → Connections</b>, find{" "}
+        scheduled reports. Open <b>Apps</b>, find{" "}
         <b>Telegram</b> (search &quot;telegram&quot; or pick{" "}
         <b>Notifications</b> in the category filter) and choose{" "}
         <b>Connect</b>.

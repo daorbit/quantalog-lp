@@ -24,7 +24,7 @@ function Body() {
       </P>
       <Ul>
         <Li>
-          <b>From Connections</b> — open <b>Settings → Connections</b>, find{" "}
+          <b>From Apps</b> — open <b>Apps</b>, find{" "}
           <b>Quantalog Goals</b> in the <b>Quantalog apps</b> group, press{" "}
           <b>Enable</b>, then <b>Enable Goals</b>.
         </Li>
@@ -37,7 +37,7 @@ function Body() {
       </Ul>
       <P>
         Once it is on, <b>Goals</b> appears in the sidebar for everyone in the
-        workspace. Turning it off in Connections hides it again; your goals are
+        workspace. Turning it off in Apps hides it again; your goals are
         kept and come back when you turn it on. Members who are not admins see
         a note asking them to contact an admin instead of the button.
       </P>

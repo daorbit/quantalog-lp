@@ -122,7 +122,7 @@ function Body() {
       <Ul>
         <Li>
           Connect any or all of the three in Quantalog under{" "}
-          <b>Settings → Connections</b>, in the <b>Payments</b> category. The
+          <b>Apps</b>, in the <b>Payments</b> category. The
           one you mark as default is used by every payment field that
           doesn&apos;t choose its own.
         </Li>
@@ -148,7 +148,7 @@ function Body() {
 
       <H3 id="connecting">Connecting Razorpay</H3>
       <P>
-        Open <b>Settings → Connections</b> in Quantalog and choose{" "}
+        Open <b>Apps</b> in Quantalog and choose{" "}
         <b>Connect Razorpay</b> (the <b>Manage</b> link on a payment field in
         the form builder takes you there too). The page walks through three
         steps in the left panel, and all three are needed before a form can
@@ -378,7 +378,7 @@ function Body() {
       <H2 id="webhook">Sending submissions to a webhook</H2>
       <P>
         A form can POST every submission to a URL you supply. Open{" "}
-        <b>Settings → Connections</b> in Quantalog and turn on <b>Webhook</b>{" "}
+        <b>Apps</b> in Quantalog and turn on <b>Webhook</b>{" "}
         in the Automation section, alongside your email and payment apps. Unlike those, though, it
         belongs to the one form you had open when you connected it, not the
         whole workspace: a different form's submissions go nowhere until you
