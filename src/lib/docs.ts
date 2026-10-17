@@ -29,6 +29,7 @@ import { formsSettingsAndAnalytics } from "@/content/docs/forms-settings-and-ana
 import { seo } from "@/content/docs/seo";
 import { quantalogCompare } from "@/content/docs/quantalog-compare";
 import { quantalogNotes } from "@/content/docs/quantalog-notes";
+import { quantalogLinks } from "@/content/docs/quantalog-links";
 import { searchVisibility } from "@/content/docs/search-visibility";
 import { retention } from "@/content/docs/retention";
 import { platformApi } from "@/content/docs/platform-api";
@@ -83,6 +84,7 @@ const DOCS: Doc[] = [
   seo,
   quantalogCompare,
   quantalogNotes,
+  quantalogLinks,
   searchVisibility,
   emailReports,
   scheduledPosts,

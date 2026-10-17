@@ -16,6 +16,16 @@ function Body() {
         one is set up, but cannot connect, switch locations, or sync.
       </P>
 
+      <H2 id="enable">Turning Reviews on</H2>
+      <P>
+        Reviews is an official Quantalog app, <b>Quantalog Reviews</b>. A
+        workspace admin opens <b>Apps</b> in the sidebar, finds{" "}
+        <b>Quantalog Reviews</b> under <b>Quantalog apps</b> and presses{" "}
+        <b>Enable</b>. You can also open <b>/app/reviews</b> and press{" "}
+        <b>Enable Reviews</b> there. Turning it off hides Reviews for everyone
+        but keeps your Google connection and synced reviews.
+      </P>
+
       <H2 id="connecting">Connecting Google</H2>
       <P>
         Open <b>Reviews</b> in the sidebar and press <b>Connect Google</b>.
