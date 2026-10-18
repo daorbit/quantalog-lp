@@ -42,6 +42,8 @@ const quantalog = (id: string, name: string, body: string, href: string): AppEnt
 export const allApps: AppEntry[] = [
   quantalog("compare", "Quantalog Compare", "Score your pages against up to 10 competitors and see what to fix first.", "/docs/quantalog-compare"),
   quantalog("goals", "Quantalog Goals", "Monthly and quarterly targets that fill in from your live data.", "/docs/goals"),
+  quantalog("alerts", "Quantalog Alerts", "Hear about traffic drops, spikes and stalled goals by email, Telegram or WhatsApp.", "/docs/quantalog-alerts"),
+  quantalog("popups", "Quantalog Popups", "Show your lead capture forms as popups and slide-ins on your site.", "/docs/quantalog-popups"),
   quantalog("reviews", "Quantalog Reviews", "Every Google review and your rating breakdown, synced into Quantalog.", "/docs/reviews"),
   quantalog("notes", "Quantalog Notes", "Private notes that float over any page. Press N to open them.", "/docs/quantalog-notes"),
   quantalog("links", "Quantalog Links", "Your team's other tools in the sidebar, opened right inside Quantalog.", "/docs/quantalog-links"),

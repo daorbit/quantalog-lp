@@ -2,7 +2,7 @@ export type AppMarkSpec = { kind: "quantalog"; id: string } | { kind: "logo"; fi
 
 export function AppMark({ mark }: { mark: AppMarkSpec }) {
   if (mark.kind === "quantalog") {
-    return <img src={`/apps/quantalog-${mark.id}.svg`} alt="" width={56} height={56} className="h-14 w-14 rounded-[22%]" />;
+    return <img src={`/apps/quantalog-${mark.id}.svg`} alt="" width={56} height={56} className="h-14 w-14" />;
   }
 
   return (
