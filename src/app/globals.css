@@ -4199,40 +4199,16 @@ body {
   box-shadow: none !important;
 }
 
-.lang-panel {
-  position: fixed;
-  top: calc(3rem + 0.5rem);
-  left: 1rem;
-  right: 1rem;
-  z-index: 60;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  background: var(--surface);
-  box-shadow: var(--shadow-lg);
-  transform-origin: top right;
-  animation: lang-panel-in 0.24s var(--ease-out-q) both;
+.mega--open .mega__panel {
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.36s var(--ease-out-q), visibility 0s;
 }
-
-@media (min-width: 640px) {
-  .lang-panel {
-    position: absolute;
-    top: calc(100% + 0.75rem);
-    left: auto;
-    right: 0;
-    width: 22rem;
-  }
+.mega--open .mega__scrim {
+  opacity: 1;
 }
-
-@keyframes lang-panel-in {
-  from {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.98);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lang-panel {
-    animation: none;
-  }
+.mega--open .menu-reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s ease 0.08s, transform 0.3s var(--ease-out-q) 0.08s;
 }

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Logo } from "./logo";
+import { MegaMenu } from "./mega-menu";
 import { ProductMenu } from "./product-menu";
 import { MenuToggle } from "./mobile-nav/menu-toggle";
 import { MobileMenu } from "./mobile-nav/mobile-menu";
@@ -12,17 +13,10 @@ import { LanguageMenu } from "./language/language-menu";
 import { nav, site } from "@/lib/site";
 import { track } from "@/lib/track";
 
-export function Header() {
+export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNode>> }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isDocs = pathname === "/docs" || pathname.startsWith("/docs/");
-
-  const [menuDismissed, setMenuDismissed] = useState(false);
-
-  const dismissMenu = () => {
-    setMenuDismissed(true);
-    window.setTimeout(() => setMenuDismissed(false), 400);
-  };
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -61,31 +55,15 @@ export function Header() {
             aria-label="Main"
           >
 
-          <div className={`mega group flex h-full items-center ${menuDismissed ? "mega--dismissed" : ""}`}>
-            <button
-              type="button"
-              aria-haspopup="true"
-              className="inline-flex items-center gap-1 px-3.5 py-1.5 text-[13px] text-fg transition-colors duration-200 group-hover:text-fg-muted group-focus-within:text-fg-muted"
-            >
-              Product
-              <ChevronDown
-                className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
-                aria-hidden="true"
-              />
-            </button>
+          <MegaMenu label="Product">
+            <ProductMenu />
+          </MegaMenu>
 
-            <div className="mega__panel">
-              <ProductMenu
-                onNavigate={(el) => {
-                  el.blur();
-                  dismissMenu();
-                }}
-              />
-            </div>
-            <div className="mega__scrim" aria-hidden="true" />
-          </div>
-
-          {nav.map((item) => (
+          {nav.map((item) => menus[item.href] ? (
+            <MegaMenu key={item.href} label={item.label} href={item.href}>
+              {menus[item.href]}
+            </MegaMenu>
+          ) : (
             <Link
               key={item.href}
               href={item.href}
@@ -96,7 +74,7 @@ export function Header() {
           ))}
           </nav>
 
-          <div className="flex flex-1 items-center justify-end gap-2">
+          <div className="flex flex-1 items-center justify-end gap-2 self-stretch">
             <LanguageMenu />
 
             <a

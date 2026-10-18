@@ -3,6 +3,8 @@ import Script from "next/script";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
+import { DocsMenu } from "@/components/menus/docs-menu";
+import { CompareMenu } from "@/components/menus/compare-menu";
 import { Footer } from "@/components/footer";
 // import { DisplayMenu } from "@/components/display/display-menu";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
@@ -121,7 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             Skip to content
           </a>
-          <Header />
+          <Header menus={{ "/docs": <DocsMenu />, "/compare": <CompareMenu /> }} />
 
           <PlansProvider>
             <main id="main">{children}</main>

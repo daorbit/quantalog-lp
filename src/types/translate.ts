@@ -2,6 +2,7 @@ export interface SiteLanguage {
   code: string;
   label: string;
   native: string;
+  flag: string;
 }
 
 interface TranslateElementOptions {
