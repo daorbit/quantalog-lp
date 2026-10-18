@@ -8,6 +8,7 @@ import { Logo } from "./logo";
 import { ProductMenu } from "./product-menu";
 import { MenuToggle } from "./mobile-nav/menu-toggle";
 import { MobileMenu } from "./mobile-nav/mobile-menu";
+import { LanguageMenu } from "./language/language-menu";
 import { nav, site } from "@/lib/site";
 import { track } from "@/lib/track";
 
@@ -96,6 +97,7 @@ export function Header() {
           </nav>
 
           <div className="flex flex-1 items-center justify-end gap-2">
+            <LanguageMenu />
 
             <a
               href={`${site.app}/login`}

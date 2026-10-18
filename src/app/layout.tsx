@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { PlansProvider } from "@/components/plans-provider";
 import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
+import { GoogleTranslate } from "@/components/language/google-translate";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -133,6 +134,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <ContactFormPrewarm />
         </ThemeProvider>
+
+        <GoogleTranslate />
 
         <Script
           src={`${site.tracker.api}/tracker.js`}

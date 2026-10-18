@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
   // Fully static export-friendly: every route is prerendered at build time (SSG).
   reactStrictMode: true,
   images: { unoptimized: true },
-  
+  experimental: { viewTransition: true },
+
   outputFileTracingRoot: path.join(__dirname),
 };
 
