@@ -41,6 +41,7 @@ import { demo } from "@/content/docs/demo";
 import { billing } from "@/content/docs/billing";
 import { referrals } from "@/content/docs/referrals";
 import { orbitAi } from "@/content/docs/orbit-ai";
+import { aiAssistants } from "@/content/docs/ai-assistants";
 import { segmentsMarkers } from "@/content/docs/segments-markers";
 import { branding } from "@/content/docs/branding";
 import { mediaLibrary } from "@/content/docs/media-library";
@@ -103,6 +104,7 @@ const DOCS: Doc[] = [
   formsSettingsAndAnalytics,
   segmentsMarkers,
   orbitAi,
+  aiAssistants,
   workspaceMembers,
   branding,
   mediaLibrary,
