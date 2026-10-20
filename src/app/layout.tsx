@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { DocsMenu } from "@/components/menus/docs-menu";
 import { CompareMenu } from "@/components/menus/compare-menu";
 import { Footer } from "@/components/footer";
+import { HideOnRoutes } from "@/components/hide-on-routes";
 // import { DisplayMenu } from "@/components/display/display-menu";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { PlansProvider } from "@/components/plans-provider";
@@ -128,7 +129,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PlansProvider>
             <main id="main">{children}</main>
           </PlansProvider>
-          <Footer />
+          <HideOnRoutes routes={["/docs"]}>
+            <Footer />
+          </HideOnRoutes>
 
           {/* <DisplayMenu /> */}
 
