@@ -37,7 +37,7 @@ export type ResolvedOrbitPlan = {
 };
 
 export const FEATURED_SLUG = "pro";
-export const MAX_SITES_PER_WORKSPACE = 2;
+export const MAX_SITES_PER_WORKSPACE = 1;
 
 export function detectCurrency(): Currency {
   if (typeof navigator === "undefined") return "USD";
@@ -60,7 +60,7 @@ function plural(n: number, word: string) {
 /** Quota lines are per-plan facts, so they always read as included. */
 export function planQuotas(plan: ResolvedPlan): string[] {
   return [
-    `${MAX_SITES_PER_WORKSPACE} sites per workspace`,
+    `${plural(MAX_SITES_PER_WORKSPACE, "site")} per workspace`,
     `${plan.monthlyAuditQuota} SEO audits / month`,
     `${plural(plan.monthlyCrawlQuota, "site crawl")} / month`,
     `${plural(plan.maxReportRecipients, "report recipient")} per report`,
