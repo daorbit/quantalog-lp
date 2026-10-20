@@ -36,7 +36,7 @@ export function FeatureHero({
             {primary.label}
             <ArrowRight className="h-4 w-4" />
           </Button>
-          <Button href={secondary.href ?? "/docs/demo"} variant="secondary" size="lg">
+          <Button href={secondary.href ?? `${site.app}/login`} variant="secondary" size="lg">
             {secondary.label}
           </Button>
         </div>

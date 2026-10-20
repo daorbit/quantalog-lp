@@ -13,17 +13,14 @@ export function ApiVisual() {
   const call = calls[index];
 
   return (
-    <div
-      ref={ref}
-      className="w-full max-w-xl overflow-hidden rounded-2xl bg-surface text-left shadow-soft ring-1 ring-border dark:bg-bg-subtle"
-    >
-      <div className="flex items-center gap-2.5 border-b border-border px-5 py-3.5 font-mono text-[13px] sm:text-[14px]">
+    <div ref={ref} className="w-full max-w-xl text-left">
+      <div className="flex items-center gap-2.5 border-b border-border pb-3.5 font-mono text-[13px] sm:text-[14px]">
         <span className="rounded-md bg-accent/10 px-2 py-0.5 text-[12px] font-semibold text-accent">{call.method}</span>
         <span className="min-w-0 truncate text-fg">
           {inView ? <TypedText key={call.path} text={call.path} speed={35} /> : call.path}
         </span>
       </div>
-      <div key={`r${index}`} className="api-response px-5 py-4 font-mono text-[13px] sm:text-[14px]">
+      <div key={`r${index}`} className="api-response mt-4 border-l-2 border-accent pl-4 font-mono text-[13px] sm:text-[14px]">
         <p className="text-[12px] font-semibold text-accent">{call.status}</p>
         <p className="mt-1.5 break-all text-fg-muted">{call.body}</p>
       </div>

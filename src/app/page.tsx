@@ -1,12 +1,10 @@
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { Countries } from "@/components/sections/countries";
-import { Heatmap } from "@/components/sections/heatmap";
 import { BookMeeting } from "@/components/sections/book-meeting";
 import { ConsentGap } from "@/components/sections/consent-gap";
-import { MoreFeatures } from "@/components/sections/more-features";
 import { Explore } from "@/components/sections/explore";
-import { Grow } from "@/components/sections/grow";
+import { AiAssistants } from "@/components/sections/ai-assistants";
 import { OrbitAi } from "@/components/sections/orbit-ai";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { QuantalogApps } from "@/components/sections/quantalog-apps";
@@ -129,14 +127,12 @@ export default function HomePage() {
       <Hero />
       <Logos />
       <Countries />
-      <Explore />
       <ConsentGap />
-      <Heatmap />
-      <Grow />
+      <Explore />
       <BookMeeting />
       <DashboardsGoals />
+      <AiAssistants />
       <QuantalogApps />
-      <MoreFeatures />
       <OrbitAi />
       <HowItWorks />
       <Pricing />

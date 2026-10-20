@@ -24,11 +24,7 @@ function FieldRow({
   const pct = useCountTo(shown ? field.kept : 0, 1300);
 
   return (
-    <div
-      className={`rounded-2xl bg-surface px-4 py-3 shadow-soft transition-shadow duration-300 dark:bg-bg-subtle ${
-        focused ? "ring-2 ring-accent" : "ring-1 ring-border"
-      }`}
-    >
+    <div className="py-2.5">
       <div className="flex items-center justify-between gap-2 text-[13px]">
         <span className="flex items-center gap-2 font-medium text-fg">
           {field.label}
@@ -42,7 +38,11 @@ function FieldRow({
           {pct}% still here
         </span>
       </div>
-      <div className="mt-2 flex h-8 items-center rounded-lg bg-bg-subtle px-3 text-left text-[13px] text-fg dark:bg-surface-raised">
+      <div
+        className={`mt-2 flex h-9 items-center border-b-[1.5px] text-left text-[14px] text-fg transition-colors duration-300 ${
+          focused ? "border-accent" : "border-border-strong"
+        }`}
+      >
         {filled && field.value}
         {focused && <TypedText key={field.label} text={field.value} speed={field.flagged ? 140 : 60} />}
       </div>
@@ -54,7 +54,7 @@ export function FieldVisual() {
   const { ref, index, inView } = useCycle<HTMLDivElement>(fields.length, 2400);
 
   return (
-    <div ref={ref} className="stagger-in w-full max-w-xs space-y-3" data-active={inView || undefined}>
+    <div ref={ref} className="stagger-in w-full max-w-xs space-y-2" data-active={inView || undefined}>
       {fields.map((f, i) => (
         <FieldRow
           key={f.label}

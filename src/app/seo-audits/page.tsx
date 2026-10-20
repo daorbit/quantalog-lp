@@ -26,7 +26,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-16";
+const MODIFIED = "2026-10-20";
 
 const META_DESCRIPTION =
   "A free SEO audit tool built into your analytics. Lighthouse scores, structured data checks, broken links and Core Web Vitals — with history.";

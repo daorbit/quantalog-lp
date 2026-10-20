@@ -16,7 +16,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-08-09";
+const MODIFIED = "2026-10-20";
 
 const META_DESCRIPTION =
   "Embed white label analytics in your own product. One API key provisions a project per customer and reads their stats back — your branding, your UI.";

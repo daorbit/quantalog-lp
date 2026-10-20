@@ -132,6 +132,5 @@ const items: ExploreItem[] = [
 
 const pick = (...labels: string[]) => labels.map((label) => items.find((item) => item.label === label)!);
 
-export const measureItems = pick("Analytics", "Forms", "Lead sources", "Reports");
-export const growItems = pick("SEO audits", "Search visibility");
+export const measureItems = pick("Analytics", "Forms", "Lead sources", "Reports", "SEO audits", "Search visibility");
 export const aiItems = pick("Orbit AI", "Social posts", "Orbit AI for Chrome", "Platform API");

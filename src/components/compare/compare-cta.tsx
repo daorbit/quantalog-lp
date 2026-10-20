@@ -25,7 +25,7 @@ export function CompareCta({ rival }: { rival: string }) {
             Start free
             <ArrowRight className="h-4 w-4" />
           </Button>
-          <Button href="/docs/demo" variant="secondary" size="lg">
+          <Button href={`${site.app}/login`} variant="secondary" size="lg">
             See the live demo
           </Button>
         </div>

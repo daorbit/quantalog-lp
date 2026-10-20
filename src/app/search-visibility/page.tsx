@@ -29,7 +29,7 @@ import { site } from "@/lib/site";
 const PATH = "/search-visibility";
 const TITLE = "Google Search Console, inside your analytics";
 const PUBLISHED = "2026-09-27";
-const MODIFIED = "2026-09-27";
+const MODIFIED = "2026-10-20";
 
 const META_DESCRIPTION =
   "Connect Google Search Console and read clicks, impressions, rankings and index status next to your real traffic, with a ranked list of what to fix.";

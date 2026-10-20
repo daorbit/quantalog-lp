@@ -1,41 +1,8 @@
-import { SectionHeading, GlowCard } from "../ui";
-import {
-  CohortGrid,
-  Donut,
-  Funnel,
-  Gauge,
-  GeoBars,
-  HourBars,
-  SparkStat,
-} from "../charts";
-
-const KPIS = [
-  {
-    label: "Visitors",
-    value: "128,470",
-    delta: "+18.2%",
-    series: [42, 48, 45, 53, 61, 58, 66, 72, 69, 78, 84, 81, 92, 99],
-  },
-  {
-    label: "Conversion rate",
-    value: "4.8%",
-    delta: "+0.9pt",
-    series: [28, 31, 30, 34, 33, 38, 41, 39, 44, 47, 45, 52, 56, 61],
-  },
-  {
-    label: "Avg. session",
-    value: "2m 41s",
-    delta: "+9.8%",
-    series: [50, 52, 49, 55, 54, 58, 57, 62, 60, 66, 64, 70, 68, 74],
-  },
-  {
-    label: "Bounce rate",
-    value: "34.2%",
-    delta: "−6.1%",
-    up: false,
-    series: [72, 70, 71, 66, 64, 65, 60, 58, 59, 54, 51, 49, 44, 41],
-  },
-];
+import { SectionHeading } from "../ui";
+import { CohortGrid, Funnel } from "../charts";
+import { GoalsVisual } from "../dashboards/goals-visual";
+import { FeatureRows, type FeatureRow } from "../product/feature-rows";
+import { RevealOnView } from "../product/reveal-on-view";
 
 const FUNNEL = [
   { label: "Landing page", count: 41203 },
@@ -53,106 +20,55 @@ const COHORTS = [
   { label: "Aug 04", size: 2947, values: [100, 78] },
 ];
 
-const DEVICES = [
-  { label: "Desktop", value: 5820 },
-  { label: "Mobile", value: 4110 },
-  { label: "Tablet", value: 720 },
-  { label: "Other", value: 190 },
+const ROWS: FeatureRow[] = [
+  {
+    eyebrow: "Funnels",
+    title: "See the exact step people give up.",
+    body: "Line up pages and events in order and Quantalog shows how many reach each one, and how many leave between them.",
+    link: { label: "How funnels work", href: "/docs/funnels" },
+    visual: (
+      <RevealOnView className="min-h-96">
+        <Funnel steps={FUNNEL} />
+      </RevealOnView>
+    ),
+  },
+  {
+    eyebrow: "Goals",
+    title: "Targets that fill in by themselves.",
+    body: "Set a monthly or quarterly number for visitors, signups or form responses, and watch it track against your live data, with pace built in.",
+    link: { label: "Set your first goal", href: "/docs/goals" },
+    visual: (
+      <RevealOnView className="flex min-h-80 items-center justify-center">
+        <GoalsVisual />
+      </RevealOnView>
+    ),
+  },
+  {
+    eyebrow: "Retention",
+    title: "Find out who comes back.",
+    body: "Weekly cohorts show what share of each week's visitors return, so you can tell a launch spike from an audience that sticks.",
+    link: { label: "Reading cohorts", href: "/docs/retention" },
+    visual: (
+      <RevealOnView className="min-h-64">
+        <CohortGrid rows={COHORTS} weeks={["W0", "W1", "W2", "W3", "W4", "W5"]} />
+      </RevealOnView>
+    ),
+  },
 ];
-
-const HOURS = [
-  12, 9, 7, 6, 6, 9, 18, 34, 56, 72, 84, 79, 63, 71, 88, 96, 91, 77, 62, 51,
-  43, 34, 25, 17,
-];
-
-const GEO = [
-  { flag: "🇺🇸", label: "United States", views: 5218, pct: 100 },
-  { flag: "🇮🇳", label: "India", views: 3104, pct: 60 },
-  { flag: "🇩🇪", label: "Germany", views: 1842, pct: 35 },
-  { flag: "🇬🇧", label: "United Kingdom", views: 1390, pct: 27 },
-  { flag: "🇧🇷", label: "Brazil", views: 902, pct: 17 },
-];
-
-function PanelHead({ title, note }: { title: string; note?: string }) {
-  return (
-    <div className="mb-5 flex items-baseline justify-between gap-3">
-      <h3 className="text-[13px] font-semibold text-fg-faint">
-        {title}
-      </h3>
-      {note && (
-        <span className="shrink-0 text-[11px] tabular-nums text-fg-faint">{note}</span>
-      )}
-    </div>
-  );
-}
 
 export function Analytics() {
   return (
     <section id="analytics" className="relative">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 section-y">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
         <SectionHeading
-          eyebrow="Analytics"
-          dot
-          align="left"
-         
-          title={
-            <>
-              Not a counter.
-              <br className="hidden sm:block" /> A room full of charts.
-            </>
-          }
-          body="Funnels, retention cohorts, device splits, time of day and geography — every panel below is a view you get on day one, drawn from the same event stream, with no extra tags to place."
+          eyebrow="Built in"
+          title="The answers, not just the counts."
+          body="Funnels, goals and retention come with every plan, drawn from the same event stream with no extra tags."
+          centered
         />
-
-        <div className="card mt-14 grid overflow-hidden divide-y divide-border sm:mt-16 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 [&>*:not(:last-child)]:sm:border-r [&>*]:sm:border-border">
-          {KPIS.map((k, i) => (
-            <SparkStat key={k.label} {...k} delay={i * 0.1} />
-          ))}
+        <div className="mt-16 sm:mt-24">
+          <FeatureRows rows={ROWS} />
         </div>
-
-        <div className="mt-3 grid gap-3 lg:grid-cols-3">
-
-          <GlowCard className="p-6 sm:p-7 lg:col-span-2">
-            <PanelHead title="Signup funnel · last 30 days" note="4.8% end to end" />
-            <Funnel steps={FUNNEL} />
-          </GlowCard>
-
-          <GlowCard className="flex flex-col justify-center p-6 sm:p-7">
-            <PanelHead title="Goals" />
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
-              <Gauge pct={78} label="Trial → paid" caption="78 of 100 monthly target" />
-              <Gauge pct={41} label="Docs → install" caption="41 of 100 monthly target" />
-            </div>
-          </GlowCard>
-
-          <GlowCard className="p-6 sm:p-7 lg:col-span-2">
-            <PanelHead title="Weekly retention cohorts" note="% still active" />
-            <CohortGrid
-              rows={COHORTS}
-              weeks={["W0", "W1", "W2", "W3", "W4", "W5"]}
-            />
-          </GlowCard>
-
-          <GlowCard className="p-6 sm:p-7">
-            <PanelHead title="Devices" note="10,840" />
-            <Donut slices={DEVICES} centerLabel="Sessions" centerValue="10.8k" />
-          </GlowCard>
-
-          <GlowCard className="p-6 sm:p-7">
-            <PanelHead title="Top countries" note="Views" />
-            <GeoBars rows={GEO} />
-          </GlowCard>
-
-          <GlowCard className="p-6 sm:p-7 lg:col-span-2">
-            <PanelHead title="Traffic by hour · local time" note="Peak 15:00" />
-            <HourBars values={HOURS} peakHour={15} />
-          </GlowCard>
-        </div>
-
-        <p className="mt-6 text-sm text-fg-faint">
-          Sample data. Every panel is a standard view — none of it needs a
-          custom dashboard build.
-        </p>
       </div>
     </section>
   );

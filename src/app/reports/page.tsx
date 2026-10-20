@@ -25,7 +25,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-08-09";
+const MODIFIED = "2026-10-20";
 
 const META_DESCRIPTION =
   "Automated analytics reports by email and WhatsApp. A scheduled traffic and SEO summary for clients or your team — no dashboard login required.";

@@ -33,7 +33,7 @@ import { site } from "@/lib/site";
 import { formatDate } from "@/lib/blog";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-08-29";
+const MODIFIED = "2026-10-20";
 
 const META_DESCRIPTION =
   "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, payments, and per-field drop-off you can actually see.";

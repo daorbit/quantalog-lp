@@ -8,9 +8,7 @@ import {
   GitCompareArrows,
   Link2,
   MousePointerClick,
-  Repeat,
   Share2,
-  Split,
   Target,
 } from "lucide-react";
 import { FeatureHero } from "@/components/feature-hero";
@@ -18,6 +16,7 @@ import { OrbitStrip } from "@/components/orbit-strip";
 import { BigStats } from "@/components/big-stats";
 import { SplitStory } from "@/components/split-story";
 import { Analytics } from "@/components/sections/analytics";
+import { Heatmap } from "@/components/sections/heatmap";
 import { Cta } from "@/components/sections/cta";
 import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid, type ProductFeature } from "@/components/product/product-feature-grid";
@@ -29,7 +28,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-09-29";
+const MODIFIED = "2026-10-20";
 
 const META_DESCRIPTION =
   "Real-time, cookieless web analytics: a live visitor dashboard, funnels, goals and retention cohorts — no consent banner, no sampling.";
@@ -46,22 +45,10 @@ const stats = [
 
 const features: ProductFeature[] = [
   {
-    icon: Split,
-    title: "Funnels",
-    body: "Measure conversion through an ordered sequence of pages and events, and see exactly where people drop off.",
-    href: "/docs/funnels",
-  },
-  {
     icon: Target,
-    title: "Conversions & goals",
-    body: "Define goals from pages or events and track their conversion rate over any window.",
+    title: "Conversions",
+    body: "Define conversions from pages or events and track their rate over any window.",
     href: "/docs/conversions",
-  },
-  {
-    icon: Repeat,
-    title: "Retention cohorts",
-    body: "Weekly cohorts show whether visitors come back, and how sticky each one is.",
-    href: "/docs/retention",
   },
   {
     icon: MousePointerClick,
@@ -247,6 +234,8 @@ export default function AnalyticsPage() {
 
       <Analytics />
 
+      <Heatmap />
+
       <ProductSection
         eyebrow="Everything included"
         title="Every report, on every plan."
@@ -254,7 +243,7 @@ export default function AnalyticsPage() {
         link={{ label: "Read the analytics docs", href: "/docs/tracking" }}
         bordered
       >
-        <ProductFeatureGrid features={features} columns={4} />
+        <ProductFeatureGrid features={features} columns={3} />
       </ProductSection>
 
       <SplitStory
@@ -294,7 +283,7 @@ export default function AnalyticsPage() {
       <Cta
         title="One script tag, live in a minute."
         body="The Free plan covers 10,000 events a month, forever. Add the snippet, watch the first visitor land, decide later."
-        secondary={{ label: "See the live demo", href: "/docs/demo" }}
+        secondary={{ label: "See the live demo", href: `${site.app}/login` }}
         location="analytics_cta"
       />
     </>

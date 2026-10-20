@@ -27,18 +27,18 @@ export function RelatedProducts({ hrefs }: { hrefs: readonly string[] }) {
             Better together.
           </h2>
         </div>
-        <ul className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
+        <ul className="mt-8 grid gap-x-10 gap-y-8 sm:mt-10 sm:grid-cols-3">
           {items.map((p) => {
             const Icon = ICONS[p.href];
             return (
-              <li key={p.href}>
-                <Link href={p.href} className="tile group flex h-full flex-col p-6 sm:p-7">
-                  {Icon && <Icon className="h-7 w-7 text-accent" />}
-                  <span className="mt-8 block text-[1.125rem] font-semibold tracking-tight text-fg">{p.label}</span>
+              <li key={p.href} className="border-t border-border pt-6">
+                <Link href={p.href} className="group flex h-full flex-col">
+                  {Icon && <Icon className="h-5 w-5 text-accent" />}
+                  <span className="mt-4 block text-[1.0625rem] font-semibold tracking-tight text-fg">{p.label}</span>
                   <span className="mt-1.5 block text-pretty text-[14px] leading-relaxed text-fg-muted">
                     {p.blurb}
                   </span>
-                  <span className="mt-auto inline-flex items-center gap-1 pt-6 text-[15px] font-medium text-accent">
+                  <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[15px] font-medium text-accent group-hover:underline group-hover:underline-offset-4">
                     Learn more
                     <ArrowRight className="h-4 w-4" />
                   </span>
