@@ -12,7 +12,7 @@ export function QuantalogApps() {
         <SectionHeading
           eyebrow="Apps"
           title="Everything you use, connected."
-          body="Built-in Quantalog apps you switch on for your whole team, and the tools you already rely on, from Slack and WhatsApp to Razorpay and Google Sheets."
+          body="Built-in Quantalog apps you switch on for your whole team, and the tools you already rely on, from Claude and ChatGPT to Slack, WhatsApp, Razorpay and Google Sheets."
           centered
         />
       </div>

@@ -24,7 +24,7 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-07";
+const MODIFIED = "2026-10-20";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -98,6 +98,7 @@ const jsonLd = graph(
       "Form payments through Razorpay, Cashfree and PayU",
       "Form notification email through Brevo or your own SMTP server",
       "Submission webhooks for Zapier, Make and custom endpoints",
+      "Read-only Claude and ChatGPT connectors for forms, leads, bookings and traffic",
       "Referral program with discount coupons for every invite that joins",
     ],
   },
