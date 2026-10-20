@@ -13,7 +13,7 @@ import { FeatureHero } from "@/components/feature-hero";
 import { BigStats } from "@/components/big-stats";
 import { SplitStory } from "@/components/split-story";
 import { Cta } from "@/components/sections/cta";
-import { ReportVisual } from "@/components/more/report-visual";
+import { ReportDeliveryVisual } from "@/components/product/visuals/report-delivery-visual";
 import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
 import { ProductChecklist } from "@/components/product/product-checklist";
@@ -31,7 +31,7 @@ const META_DESCRIPTION =
   "Automated analytics reports by email and WhatsApp. A scheduled traffic and SEO summary for clients or your team — no dashboard login required.";
 
 const DESCRIPTION =
-  "Automated analytics reports by email and WhatsApp. Send a scheduled traffic and SEO summary to clients or your team — opening with a plain-language AI read of what changed and why, headline numbers in the body, the full breakdown attached as an XLSX spreadsheet, no dashboard login required.";
+  "A scheduled traffic and SEO summary by email, WhatsApp or Telegram, in plain language, with the spreadsheet attached.";
 
 const capabilities = [
   {
@@ -217,8 +217,7 @@ export default function ReportsPage() {
         description={DESCRIPTION}
         primary={{ label: "Start free — no card" }}
         secondary={{ label: "Read the docs", href: "/docs/email-reports" }}
-        visual={<ReportVisual />}
-        tone="slate"
+        visual={<ReportDeliveryVisual />}
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

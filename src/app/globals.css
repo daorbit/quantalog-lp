@@ -523,10 +523,104 @@ section {
   background: color-mix(in srgb, var(--tone) 10%, var(--bg));
 }
 .dark .explore-tile {
-  background:
-    radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--tone) 24%, transparent) 0%, transparent 70%),
-    linear-gradient(180deg, color-mix(in srgb, var(--tone) 6%, var(--surface-raised)) 0%, var(--surface) 100%);
+  background: color-mix(in srgb, var(--tone) 8%, var(--surface));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone) 18%, var(--hairline));
+}
+.feature-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26rem;
+  padding: 2.5rem 1.25rem;
+  border-radius: var(--radius-stage);
+  background: var(--bg-subtle);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+@media (min-width: 640px) {
+  .feature-stage {
+    min-height: 32rem;
+    padding: 3.5rem 2.5rem;
+  }
+}
+.dark .feature-stage {
+  background: var(--surface);
+}
+.visits-card {
+  width: 100%;
+  max-width: 28rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border);
+  text-align: left;
+}
+.dark .visits-card {
+  background: var(--bg-subtle);
+}
+.visits-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto 4.25rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.625rem;
+  border-bottom: 1px solid var(--hairline);
+  animation: visit-in 0.45s var(--ease-out-q) both;
+}
+.visits-row:last-child {
+  border-bottom: 0;
+}
+.visits-age {
+  text-align: right;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-faint);
+  transition: color 0.3s ease;
+}
+.visits-age[data-new] {
+  font-weight: 600;
+  color: var(--accent);
+}
+@keyframes visit-in {
+  from { opacity: 0; transform: translateY(-6px); }
+}
+.report-delivery {
+  padding: 1.5rem;
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border);
+  text-align: left;
+}
+.dark .report-delivery {
+  background: var(--bg-subtle);
+}
+.report-channel-mark {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07);
+}
+.report-channel-pill {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg-faint);
+  transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+.report-channel-pill[data-active] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .visits-row {
+    animation: none;
+  }
 }
 .apps-marquee {
   display: flex;
@@ -3421,6 +3515,42 @@ body {
   }
 }
 
+.react-flow .hero-edge__flow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 2 8;
+  opacity: 0;
+  animation:
+    hero-edge-flow 0.8s linear infinite,
+    hero-edge-flow-in 0.6s ease forwards;
+  animation-delay: 0s, calc(1.6s + var(--i, 0) * 0.12s);
+}
+
+@keyframes hero-edge-flow {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+@keyframes hero-edge-flow-in {
+  to {
+    opacity: 0.4;
+  }
+}
+
+.react-flow .hero-handle {
+  top: 21px;
+  width: 1px;
+  min-width: 0;
+  height: 1px;
+  min-height: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+}
+
 .hero-card__flare {
   position: absolute;
   inset: -1px;
@@ -3455,6 +3585,10 @@ body {
   .react-flow .hero-edge__base {
     animation: none;
     stroke-dashoffset: 0;
+  }
+
+  .react-flow .hero-edge__flow {
+    display: none;
   }
 }
 

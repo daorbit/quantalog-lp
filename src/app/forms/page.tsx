@@ -41,6 +41,9 @@ const META_DESCRIPTION =
 const DESCRIPTION =
   "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay, Cashfree or PayU account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
 
+const HERO_LEAD =
+  "Multi-step forms with logic, payments and bookings, plus the field-by-field drop-off other builders hide.";
+
 const capabilities = [
   {
     icon: LayoutGrid,
@@ -247,11 +250,10 @@ export default function FormsPage() {
             <span className="text-accent">Most are invisible ones.</span>
           </>
         }
-        description={DESCRIPTION}
+        description={HERO_LEAD}
         primary={{ label: "Build a form free" }}
         secondary={{ label: "Read the docs", href: "/docs/lead-capture" }}
         visual={<FieldVisual />}
-        tone="amber"
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

@@ -22,7 +22,7 @@ const META_DESCRIPTION =
   "Embed white label analytics in your own product. One API key provisions a project per customer and reads their stats back — your branding, your UI.";
 
 const DESCRIPTION =
-  "Embed white label analytics in your own product. One API key provisions a project per customer, injects the tracker into the sites you generate, and reads their stats back into your dashboard — your branding, your UI, your customers.";
+  "One API key gives every customer their own analytics, under your brand and inside your product.";
 
 const createProject = `# 1. Your backend creates a project for one of your users
 curl -X POST ${site.api}/v1/projects \\
@@ -207,7 +207,6 @@ export default function PlatformApiPage() {
         primary={{ label: "Get an API key" }}
         secondary={{ label: "Read the API reference", href: "/docs/platform-api" }}
         visual={<ApiVisual />}
-        tone="indigo"
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

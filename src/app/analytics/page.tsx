@@ -23,7 +23,7 @@ import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid, type ProductFeature } from "@/components/product/product-feature-grid";
 import { ProductFaq } from "@/components/product/product-faq";
 import { RelatedProducts } from "@/components/product/related-products";
-import { LiveDashboardVisual } from "@/components/product/visuals/live-dashboard-visual";
+import { LiveVisitsVisual } from "@/components/product/visuals/live-visits-visual";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -35,7 +35,7 @@ const META_DESCRIPTION =
   "Real-time, cookieless web analytics: a live visitor dashboard, funnels, goals and retention cohorts — no consent banner, no sampling.";
 
 const DESCRIPTION =
-  "Real-time, cookieless web analytics: a live visitor dashboard, funnels and conversion goals, retention cohorts, and breakdowns by device, browser, country and hour of day — no consent banner, no sampling.";
+  "See every visitor the moment they land. No cookies, no consent banner, and nothing sampled.";
 
 const stats = [
   { value: "<1", unit: "KB", label: "Tracker size" },
@@ -236,8 +236,7 @@ export default function AnalyticsPage() {
         description={DESCRIPTION}
         primary={{ label: "Start free" }}
         secondary={{ label: "See the live demo" }}
-        visual={<LiveDashboardVisual />}
-        tone="teal"
+        visual={<LiveVisitsVisual />}
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

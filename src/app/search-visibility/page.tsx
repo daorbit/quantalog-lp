@@ -35,7 +35,7 @@ const META_DESCRIPTION =
   "Connect Google Search Console and read clicks, impressions, rankings and index status next to your real traffic, with a ranked list of what to fix.";
 
 const DESCRIPTION =
-  "Connect Google Search Console and read clicks, impressions, rankings and index status next to your real traffic — with a ranked list of what to fix, page-level detail, and Orbit AI to explain what changed.";
+  "Clicks, rankings and index status from Search Console, next to your real traffic, with what to fix first.";
 
 const features = [
   {
@@ -242,7 +242,6 @@ export default function SearchVisibilityPage() {
         primary={{ label: "Connect Search Console" }}
         secondary={{ label: "Read the docs", href: "/docs/search-visibility" }}
         visual={<RankVisual />}
-        tone="violet"
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

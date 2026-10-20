@@ -37,7 +37,7 @@ const META_DESCRIPTION =
   "Orbit AI is the assistant built into your dashboard, grounded in the product's own docs. It also writes your scheduled LinkedIn posts from your data.";
 
 const DESCRIPTION =
-  "Orbit AI is the assistant built into your dashboard — grounded in the product's own docs, honest about what it can't see. It also writes your scheduled LinkedIn posts from the numbers that are already there.";
+  "Orbit answers from the product's own docs, and writes your scheduled LinkedIn and Instagram posts from your real numbers.";
 
 const stats = [
   { value: "10", label: "Free questions a month" },
@@ -239,7 +239,6 @@ export default function SocialPage() {
         primary={{ label: "Start free" }}
         secondary={{ label: "Read the docs", href: "/docs/orbit-ai" }}
         visual={<OrbitVisual />}
-        tone="rose"
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">

@@ -34,6 +34,9 @@ const META_DESCRIPTION =
 const DESCRIPTION =
   "A free SEO audit tool built into your analytics. Run Lighthouse scores, meta tag and heading checks, structured data validation, broken link detection and Core Web Vitals against any page you already track — with history, so a fix is provable.";
 
+const HERO_LEAD =
+  "Lighthouse scores, broken links, structured data and Core Web Vitals for every page you track, with history.";
+
 const checks = [
   {
     icon: Gauge,
@@ -236,11 +239,10 @@ export default function SeoAuditsPage() {
             <span className="text-accent">SEO tells you who didn&apos;t.</span>
           </>
         }
-        description={DESCRIPTION}
+        description={HERO_LEAD}
         primary={{ label: "Run a free audit" }}
         secondary={{ label: "Read the docs", href: "/docs/seo" }}
         visual={<ScoreVisual />}
-        tone="blue"
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
