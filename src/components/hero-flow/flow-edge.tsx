@@ -1,9 +1,8 @@
 "use client";
 
-import { getSmoothStepPath, type EdgeProps } from "@xyflow/react";
+import { getBezierPath, type EdgeProps } from "@xyflow/react";
 import { useReducedMotion } from "../use-reduced-motion";
-
-export const PACKET_START = 1.8;
+import { PACKET_CYCLE_S, PACKET_START } from "./flow-timing";
 
 const STAGES = {
   0: {
@@ -24,7 +23,7 @@ function Packet({ path, stage, radius, opacity }: { path: string; stage: (typeof
   return (
     <circle r={radius} fill="var(--accent)" opacity="0">
       <animateMotion
-        dur="3s"
+        dur={`${PACKET_CYCLE_S}s`}
         begin={`${PACKET_START}s`}
         repeatCount="indefinite"
         path={path}
@@ -35,7 +34,7 @@ function Packet({ path, stage, radius, opacity }: { path: string; stage: (typeof
       />
       <animate
         attributeName="opacity"
-        dur="3s"
+        dur={`${PACKET_CYCLE_S}s`}
         begin={`${PACKET_START}s`}
         repeatCount="indefinite"
         values={stage.opacity.split(";").map((v) => String(Number(v) * opacity)).join(";")}
@@ -47,14 +46,16 @@ function Packet({ path, stage, radius, opacity }: { path: string; stage: (typeof
 
 export function FlowEdge({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, data }: EdgeProps) {
   const reduced = useReducedMotion();
-  const [path] = getSmoothStepPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, borderRadius: 12 });
+  const [path] = getBezierPath({ sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, curvature: 0.4 });
   const stage = STAGES[data?.stage === 1 ? 1 : 0];
+  const order = { ["--i" as string]: Number(data?.order ?? 0) };
 
   return (
     <>
-      <path d={path} pathLength={1} className="hero-edge__base" style={{ ["--i" as string]: Number(data?.order ?? 0) }} />
+      <path d={path} pathLength={1} className="hero-edge__base" style={order} />
       {!reduced && (
         <>
+          <path d={path} className="hero-edge__flow" style={order} />
           <Packet path={path} stage={stage} radius={7} opacity={0.18} />
           <Packet path={path} stage={stage} radius={3.5} opacity={1} />
         </>

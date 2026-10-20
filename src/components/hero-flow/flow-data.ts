@@ -5,7 +5,7 @@ export const FLOW_NODES: Node[] = [
   {
     id: "script",
     type: "card",
-    position: { x: 0, y: 190 },
+    position: { x: 0, y: 150 },
     data: {
       title: "Your website",
       icon: "code",
@@ -43,7 +43,7 @@ export const FLOW_NODES: Node[] = [
       order: 2,
       rows: [
         { label: "Online now", live: 48 },
-        { label: "Pageviews today", value: "12.4k" },
+        { label: "Pageviews today", count: 12408 },
       ],
       target: true,
       flare: "output",
@@ -73,7 +73,11 @@ export const FLOW_NODES: Node[] = [
       title: "Orbit AI",
       icon: "orbit",
       order: 4,
-      note: "Signups up 42% this week, mostly from Product Hunt.",
+      notes: [
+        "Signups up 42% this week, mostly from Product Hunt.",
+        "Your pricing page converts 3x better from Google.",
+        "Bounce rate on /blog fell 18% after the last fix.",
+      ],
       target: true,
       flare: "output",
     } satisfies CardData,
