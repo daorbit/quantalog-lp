@@ -1,9 +1,9 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BOOKING_MONTH, OPEN_DAYS, TODAY, WEEKDAYS, longDay, monthCells } from "./booking-data";
 
-type Props = { day: number; onPick: (day: number) => void };
+type Props = { day: number; cueDay?: number; onPick: (day: number) => void };
 
-export function BookingCalendar({ day: selected, onPick }: Props) {
+export function BookingCalendar({ day: selected, cueDay, onPick }: Props) {
   const cells = monthCells();
 
   return (
@@ -35,6 +35,7 @@ export function BookingCalendar({ day: selected, onPick }: Props) {
               type="button"
               className="bm-day bm-day--open"
               data-today={today}
+              data-cue={day === cueDay || undefined}
               aria-pressed={day === selected}
               aria-label={longDay(day)}
               onClick={() => onPick(day)}

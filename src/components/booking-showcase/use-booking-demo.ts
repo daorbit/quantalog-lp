@@ -15,6 +15,10 @@ export function useBookingDemo() {
     setSlot(null);
   }, []);
 
+  const pickSlot = useCallback((next: string) => {
+    setSlot(next);
+  }, []);
+
   const confirm = useCallback(() => {
     if (slot) setConfirmed(true);
   }, [slot]);
@@ -24,7 +28,7 @@ export function useBookingDemo() {
     setSlot(null);
   }, []);
 
-  return { day, slot, slots, confirmed, pickDay, pickSlot: setSlot, confirm, reset };
+  return { day, slot, slots, confirmed, pickDay, pickSlot, confirm, reset };
 }
 
 export type BookingDemo = ReturnType<typeof useBookingDemo>;

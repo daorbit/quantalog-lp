@@ -49,11 +49,11 @@ function stepsFor({ day, slot, confirmed }: BookingDemo): Step[] {
   ];
 }
 
-export function BookingSteps({ demo }: { demo: BookingDemo }) {
+export function BookingSteps({ demo, announce }: { demo: BookingDemo; announce: boolean }) {
   const live = demo.confirmed && demo.slot !== null;
 
   return (
-    <ol aria-live="polite">
+    <ol aria-live={announce ? "polite" : "off"}>
       {stepsFor(demo).map(({ title, body, state, note }, i) => (
         <li key={title} className="bm-step" data-state={state}>
           <span className="bm-step-mark">{state === "done" ? <Check className="h-3.5 w-3.5" strokeWidth={3} /> : i + 1}</span>

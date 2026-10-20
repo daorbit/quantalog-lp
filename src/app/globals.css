@@ -3773,6 +3773,12 @@ body {
   outline-offset: 2px;
 }
 
+.bm-day--open[data-cue] {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  outline-offset: 2px;
+}
+
 .bm-day--open[aria-pressed="true"] {
   background: var(--accent);
   color: var(--accent-fg);
@@ -3826,6 +3832,16 @@ body {
 
 .bm-slot--confirm:hover {
   opacity: 0.9;
+}
+
+.bm-slot:not(.bm-slot--confirm)[data-cue] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+}
+
+.bm-slot--confirm[data-cue] {
+  opacity: 0.8;
 }
 
 .bm-confirmed {

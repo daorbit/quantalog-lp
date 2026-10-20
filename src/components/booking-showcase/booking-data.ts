@@ -4,6 +4,13 @@ export const TODAY = 13;
 export const DEFAULT_DAY = 16;
 export const OPEN_DAYS = new Set([14, 15, 16, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30]);
 
+export const AUTOPLAY_SCENES = [
+  { day: 23, slot: "14:30" },
+  { day: 28, slot: "10:30" },
+  { day: 20, slot: "15:00" },
+  { day: 16, slot: "10:00" },
+];
+
 const ALL_SLOTS = ["09:00", "09:30", "10:00", "10:30", "11:00", "14:00", "14:30", "15:00", "16:30"];
 
 export const HOST = {

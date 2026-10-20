@@ -5,8 +5,9 @@ import { BookingCalendar } from "./booking-calendar";
 import { BookingSlots } from "./booking-slots";
 import { BookingConfirmed } from "./booking-confirmed";
 import type { BookingDemo } from "./use-booking-demo";
+import type { BookingCue } from "./use-booking-autoplay";
 
-export function BookingWindow({ demo }: { demo: BookingDemo }) {
+export function BookingWindow({ demo, cue }: { demo: BookingDemo; cue: BookingCue }) {
   const { day, slot, slots, confirmed, pickDay, pickSlot, confirm, reset } = demo;
 
   return (
@@ -24,8 +25,16 @@ export function BookingWindow({ demo }: { demo: BookingDemo }) {
             <BookingConfirmed day={day} slot={slot} onReset={reset} />
           ) : (
             <div className="grid sm:grid-cols-[minmax(0,1fr)_11rem]">
-              <BookingCalendar day={day} onPick={pickDay} />
-              <BookingSlots day={day} slots={slots} slot={slot} onPick={pickSlot} onConfirm={confirm} />
+              <BookingCalendar day={day} cueDay={cue?.day} onPick={pickDay} />
+              <BookingSlots
+                day={day}
+                slots={slots}
+                slot={slot}
+                cueSlot={cue?.slot}
+                cueConfirm={Boolean(cue?.confirm)}
+                onPick={pickSlot}
+                onConfirm={confirm}
+              />
             </div>
           )}
         </div>
