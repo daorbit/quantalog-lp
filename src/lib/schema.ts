@@ -1,13 +1,14 @@
+import { BUILD_DATE } from "@/lib/build-date";
 import { site } from "@/lib/site";
 
 export const ORG_ID = `${site.url}/#organization`;
 export const SITE_ID = `${site.url}/#website`;
 
 // Answer engines want a date they can attribute and check without parsing prose.
-// SITE_PUBLISHED is the launch date and is fixed; SITE_MODIFIED is bumped with
-// each meaningful content release.
+// SITE_PUBLISHED is the launch date and is fixed; SITE_MODIFIED is the date of
+// the latest build, refreshed by the daily rebuild.
 export const SITE_PUBLISHED = "2025-11-01";
-export const SITE_MODIFIED = "2026-08-09";
+export const SITE_MODIFIED = BUILD_DATE;
 
 export const organization = {
   "@type": "Organization",

@@ -1,3 +1,4 @@
+import { BUILD_DATE } from "@/lib/build-date";
 import type { Metadata } from "next";
 import { Boxes, Gauge, KeyRound, Palette, Plug, Webhook } from "lucide-react";
 import { FeatureHero } from "@/components/feature-hero";
@@ -16,7 +17,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-20";
+const MODIFIED = BUILD_DATE;
 
 const META_DESCRIPTION =
   "Embed white label analytics in your own product. One API key provisions a project per customer and reads their stats back — your branding, your UI.";

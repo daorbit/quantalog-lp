@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   experimental: { viewTransition: true },
 
   outputFileTracingRoot: path.join(__dirname),
+  env: { BUILD_DATE: new Date().toISOString().slice(0, 10) },
 };
 
 export default nextConfig;

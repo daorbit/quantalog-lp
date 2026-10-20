@@ -1,3 +1,4 @@
+import { BUILD_DATE } from "@/lib/build-date";
 import type { Metadata } from "next";
 import {
   Code2,
@@ -33,7 +34,7 @@ import { site } from "@/lib/site";
 import { formatDate } from "@/lib/blog";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-20";
+const MODIFIED = BUILD_DATE;
 
 const META_DESCRIPTION =
   "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, payments, and per-field drop-off you can actually see.";

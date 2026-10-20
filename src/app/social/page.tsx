@@ -1,3 +1,4 @@
+import { BUILD_DATE } from "@/lib/build-date";
 import type { Metadata } from "next";
 import {
   BarChart3,
@@ -31,7 +32,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-20";
+const MODIFIED = BUILD_DATE;
 
 const META_DESCRIPTION =
   "Orbit AI is the assistant built into your dashboard, grounded in the product's own docs. It also writes your scheduled LinkedIn posts from your data.";

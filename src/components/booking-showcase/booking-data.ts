@@ -1,15 +1,8 @@
-export const BOOKING_MONTH = { year: 2026, month: 9, label: "October 2026" };
+import { BOOKING_MONTH, OPEN_DAY_LIST } from "./booking-month";
 
-export const TODAY = 13;
-export const DEFAULT_DAY = 16;
-export const OPEN_DAYS = new Set([14, 15, 16, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30]);
+export { BOOKING_MONTH, DEFAULT_DAY, OPEN_DAYS, TODAY } from "./booking-month";
 
-export const AUTOPLAY_SCENES = [
-  { day: 23, slot: "14:30" },
-  { day: 28, slot: "10:30" },
-  { day: 20, slot: "15:00" },
-  { day: 16, slot: "10:00" },
-];
+const SCENE_PICKS = [7, 11, 4, 2];
 
 const ALL_SLOTS = ["09:00", "09:30", "10:00", "10:30", "11:00", "14:00", "14:30", "15:00", "16:30"];
 
@@ -45,6 +38,12 @@ export function monthCells() {
 export function slotsFor(day: number) {
   return ALL_SLOTS.filter((_, i) => (i + day) % 4 !== 0).slice(0, 7);
 }
+
+export const AUTOPLAY_SCENES = SCENE_PICKS.map((pick, i) => {
+  const day = OPEN_DAY_LIST[pick % OPEN_DAY_LIST.length];
+  const slots = slotsFor(day);
+  return { day, slot: slots[(i * 2 + 3) % slots.length] };
+});
 
 const dateOf = (day: number) => new Date(Date.UTC(BOOKING_MONTH.year, BOOKING_MONTH.month, day));
 

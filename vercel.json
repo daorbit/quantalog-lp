@@ -1,4 +1,10 @@
 {
+  "crons": [
+    {
+      "path": "/api/rebuild",
+      "schedule": "30 0 * * *"
+    }
+  ],
   "redirects": [
     {
       "source": "/:path*",

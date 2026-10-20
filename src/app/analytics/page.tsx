@@ -1,3 +1,4 @@
+import { BUILD_DATE } from "@/lib/build-date";
 import type { Metadata } from "next";
 import {
   AlertTriangle,
@@ -28,7 +29,7 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-20";
+const MODIFIED = BUILD_DATE;
 
 const META_DESCRIPTION =
   "Real-time, cookieless web analytics: a live visitor dashboard, funnels, goals and retention cohorts — no consent banner, no sampling.";

@@ -1,3 +1,4 @@
+import { BUILD_DATE } from "@/lib/build-date";
 import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { Countries } from "@/components/sections/countries";
@@ -22,7 +23,7 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
 
 const PUBLISHED = "2025-11-01";
-const MODIFIED = "2026-10-20";
+const MODIFIED = BUILD_DATE;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
