@@ -530,32 +530,17 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 26rem;
-  padding: 2.5rem 1.25rem;
-  border-radius: var(--radius-stage);
-  background: var(--bg-subtle);
-  box-shadow: inset 0 0 0 1px var(--hairline);
+  min-height: 22rem;
 }
 @media (min-width: 640px) {
   .feature-stage {
-    min-height: 32rem;
-    padding: 3.5rem 2.5rem;
+    min-height: 28rem;
   }
-}
-.dark .feature-stage {
-  background: var(--surface);
 }
 .visits-card {
   width: 100%;
-  max-width: 28rem;
-  padding: 1.75rem;
-  border-radius: var(--radius-panel);
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px var(--border);
+  max-width: 30rem;
   text-align: left;
-}
-.dark .visits-card {
-  background: var(--bg-subtle);
 }
 .visits-row {
   display: grid;
@@ -584,14 +569,7 @@ section {
   from { opacity: 0; transform: translateY(-6px); }
 }
 .report-delivery {
-  padding: 1.5rem;
-  border-radius: var(--radius-panel);
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px var(--border);
   text-align: left;
-}
-.dark .report-delivery {
-  background: var(--bg-subtle);
 }
 .report-channel-mark {
   display: grid;

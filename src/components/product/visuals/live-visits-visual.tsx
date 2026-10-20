@@ -22,12 +22,12 @@ export function LiveVisitsVisual() {
         <span className="text-[12px] text-fg-faint">acme.com</span>
       </div>
 
-      <p className="mt-6 text-[4rem] font-semibold leading-none tracking-[-0.05em] tabular-nums text-fg sm:text-[4.75rem]">
+      <p className="mt-5 text-[5rem] font-semibold leading-none tracking-[-0.05em] tabular-nums text-fg sm:text-[6.5rem]">
         <RollingNumber value={live} />
       </p>
-      <p className="mt-2 text-[14px] text-fg-muted">people on the site right now</p>
+      <p className="mt-3 text-[15px] text-fg-muted">people on the site right now</p>
 
-      <p className="mt-7 border-t border-border pt-5 text-[12px] font-semibold uppercase tracking-wide text-fg-faint">
+      <p className="mt-10 text-[12px] font-semibold uppercase tracking-wide text-fg-faint">
         Latest visits
       </p>
       <ul className="mt-2">
