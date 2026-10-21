@@ -10,13 +10,19 @@ function Body() {
         put traffic on an office screen, or publish stats openly without handing
         out access to your Quantalog account.
       </P>
+      <P>
+        Public dashboards come with <b>Quantalog Public Dashboard</b>, an
+        official Quantalog app that a workspace admin turns on in <b>Apps</b>.
+        Turning the app off keeps your link and settings, but the link stops
+        opening until you turn it back on.
+      </P>
 
       <H2 id="enable">Turning it on</H2>
       <P>
-        Open <b>Public dashboard</b> in the sidebar, pick the workspace you want
-        to publish, and switch it on. Quantalog mints a link and shows it
-        straight away. Copy it, or open it in a new tab to see exactly what a
-        visitor sees.
+        Open <b>Public sharing</b> in the sidebar, pick the workspace you want
+        to publish, and switch it on under <b>Analytics dashboard</b>. Quantalog
+        mints a link and shows it straight away. Copy it, or open it in a new
+        tab to see exactly what a visitor sees.
       </P>
       <P>
         Sharing is per workspace. A workspace covers every site inside it, and
