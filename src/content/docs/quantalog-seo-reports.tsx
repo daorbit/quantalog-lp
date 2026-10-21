@@ -5,8 +5,8 @@ function Body() {
   return (
     <>
       <P>
-        <b>Quantalog SEO Reports</b> turns any SEO audit into a read-only report
-        at its own link. Send it to a client or a teammate and they can open it
+        <b>Quantalog SEO Reports</b> gives every SEO audit a read-only report at
+        its own link. Send it to a client or a teammate and they can open it
         without a Quantalog account. It is an official Quantalog app that a
         workspace admin turns on in <b>Apps</b>.
       </P>
@@ -14,35 +14,35 @@ function Body() {
       <H2 id="share">Sharing an audit</H2>
       <Ul>
         <Li>Open <b>Public sharing</b> in the sidebar and choose the <b>SEO reports</b> tab.</Li>
-        <Li>Pick the site, then open the audited page you want to share.</Li>
-        <Li>Press <b>Create public link</b>, copy it, and send it.</Li>
+        <Li>Every audited page is listed with its own live link.</Li>
+        <Li>Copy a link and send it, or open it to see exactly what the reader sees.</Li>
       </Ul>
       <P>
-        Each audited page has its own link, so sharing one never exposes the
-        rest of the site&apos;s history. Running the audit again keeps the same
-        link and shows the newest result.
+        Running the audit on a page again keeps the same link, and the link
+        shows the newest result. Each page has its own link, so sharing one
+        never exposes the rest of the site&apos;s history.
       </P>
 
       <H2 id="sections">Choosing what is visible</H2>
       <P>
-        The score, issues, technical checks and performance are on by default.
-        Meta tags, content, the full link list, structured data and AI search
-        start off, because they can carry internal URLs or staging paths.
+        One set of choices under <b>What readers see</b> applies to every report
+        link. The score, issues, technical checks and performance are on by
+        default. Meta tags, content, the full link list, structured data and AI
+        search start off, because they can carry internal URLs or staging paths.
         Anything switched off is removed on the server, so it never reaches the
         reader.
       </P>
 
       <H2 id="opens">Opens and replacing a link</H2>
       <P>
-        Each report shows how often its link was opened and when. Use <b>New
-        link</b> if a link reached the wrong person: the old address stops
-        working at once. <b>Stop sharing</b> takes one audit offline and keeps
-        its address, so creating the link again brings the same URL back.
+        Each page shows how often its link was opened. Choose <b>Replace
+        link</b> from the row&apos;s menu if a link reached the wrong person: the
+        old address stops working at once.
       </P>
 
       <Callout>
-        Turning the app off keeps your links and their settings, but every
-        shared report stops opening until you turn it back on.
+        Turning the app off keeps your links and settings, but every report link
+        stops opening until you turn it back on.
       </Callout>
     </>
   );
@@ -51,7 +51,7 @@ function Body() {
 export const quantalogSeoReports: Doc = {
   slug: "quantalog-seo-reports",
   title: "Quantalog SEO Reports",
-  description: "Share any SEO audit as a read-only report at its own link, and choose which sections a client sees.",
+  description: "Every SEO audit gets a read-only report link, and you choose which sections readers see.",
   category: "Tracking",
   order: 12.5,
   Body,

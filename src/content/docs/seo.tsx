@@ -158,9 +158,9 @@ function Body() {
       <H2 id="sharing">Sharing a report</H2>
       <P>
         With the <A href="/docs/quantalog-seo-reports">Quantalog SEO Reports</A> app
-        on, <b>Public sharing → SEO reports</b> publishes one audit at a link
-        anyone can open — no account needed. It is per report, so publishing one
-        never exposes the rest of the site&apos;s history.
+        on, every audited page has a link anyone can open under <b>Public
+        sharing → SEO reports</b> — no account needed. Each page has its own
+        link, so sharing one never exposes the rest of the site&apos;s history.
       </P>
       <P>
         You choose what the reader sees, section by section. The score, issues,
