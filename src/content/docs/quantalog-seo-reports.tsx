@@ -13,7 +13,7 @@ function Body() {
 
       <H2 id="share">Sharing an audit</H2>
       <Ul>
-        <Li>Open <b>Public sharing</b> in the sidebar and choose the <b>SEO reports</b> tab.</Li>
+        <Li>Open <b>Apps</b> and select <b>Quantalog SEO Reports</b>.</Li>
         <Li>Every audited page is listed with its own live link.</Li>
         <Li>Copy a link and send it, or open it to see exactly what the reader sees.</Li>
       </Ul>
@@ -37,7 +37,9 @@ function Body() {
       <P>
         Each page shows how often its link was opened. Choose <b>Replace
         link</b> from the row&apos;s menu if a link reached the wrong person: the
-        old address stops working at once.
+        old address stops working at once. <b>Remove page</b> deletes every
+        audit of that page, for example one audited by mistake, and its link
+        stops working.
       </P>
 
       <Callout>

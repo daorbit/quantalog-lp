@@ -20,8 +20,8 @@ function Body() {
       <H2 id="enable">Turning it on</H2>
       <P>
         Turn on <b>Quantalog Public Dashboard</b> in <b>Apps</b> for the
-        workspace you want to publish. Quantalog mints the link straight away,
-        and you will find it under <b>Public sharing → Analytics dashboard</b>.
+        workspace you want to publish. Quantalog mints the link straight away
+        and shows it, with every setting below, in the same <b>Apps</b> panel.
         Copy it, or open it in a new tab to see exactly what a visitor sees.
       </P>
       <P>
