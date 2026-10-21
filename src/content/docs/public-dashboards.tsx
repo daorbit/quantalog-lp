@@ -19,10 +19,10 @@ function Body() {
 
       <H2 id="enable">Turning it on</H2>
       <P>
-        Open <b>Public sharing</b> in the sidebar, pick the workspace you want
-        to publish, and switch it on under <b>Analytics dashboard</b>. Quantalog
-        mints a link and shows it straight away. Copy it, or open it in a new
-        tab to see exactly what a visitor sees.
+        Turn on <b>Quantalog Public Dashboard</b> in <b>Apps</b> for the
+        workspace you want to publish. Quantalog mints the link straight away,
+        and you will find it under <b>Public sharing → Analytics dashboard</b>.
+        Copy it, or open it in a new tab to see exactly what a visitor sees.
       </P>
       <P>
         Sharing is per workspace. A workspace covers every site inside it, and
@@ -78,8 +78,8 @@ function Body() {
       <P>
         If a link reaches someone it should not have, use <b>New link</b>. The
         old URL stops working immediately, and everyone you sent it to will need
-        the replacement. Switching sharing off instead keeps the token, so the
-        same URL works again when you switch it back on — that is usually what
+        the replacement. Turning the app off in Apps instead keeps the token, so
+        the same URL works again when you turn it back on — that is usually what
         you want for a temporary pause.
       </P>
 

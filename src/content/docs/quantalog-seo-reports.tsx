@@ -15,7 +15,7 @@ function Body() {
       <Ul>
         <Li>Open <b>Public sharing</b> in the sidebar and choose the <b>SEO reports</b> tab.</Li>
         <Li>Pick the site, then open the audited page you want to share.</Li>
-        <Li>Switch the link on, copy it, and send it.</Li>
+        <Li>Press <b>Create public link</b>, copy it, and send it.</Li>
       </Ul>
       <P>
         Each audited page has its own link, so sharing one never exposes the
@@ -36,7 +36,8 @@ function Body() {
       <P>
         Each report shows how often its link was opened and when. Use <b>New
         link</b> if a link reached the wrong person: the old address stops
-        working at once.
+        working at once. <b>Stop sharing</b> takes one audit offline and keeps
+        its address, so creating the link again brings the same URL back.
       </P>
 
       <Callout>
