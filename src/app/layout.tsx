@@ -145,6 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script
           src={`${site.tracker.api}/tracker.js`}
           data-site={site.tracker.siteId}
+          data-heatmap="on"
           strategy="afterInteractive"
         />
       </body>
