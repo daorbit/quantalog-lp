@@ -75,6 +75,22 @@ document.head.appendChild(s);`}</Pre>
         </Li>
       </Ul>
 
+      <H2 id="heatmaps">Heatmaps</H2>
+      <P>
+        Add <Code>data-heatmap=&quot;on&quot;</Code> to the script tag (or turn on
+        “Capture heatmap data” in the snippet builder) to record where visitors
+        click on each page and how far they scroll. See them in Analytics →
+        Behavior → Heatmaps:
+      </P>
+      <Ul>
+        <Li>Pick a page on the left to see its click heatmap.</Li>
+        <Li>Switch between desktop, tablet and mobile, since layouts differ.</Li>
+        <Li>
+          The percentages beside the page show the share of visitors who scrolled
+          that far. Shaded bands are where most of them have already left.
+        </Li>
+      </Ul>
+
       <Callout>
         The tracker is cookieless. Visitors are a rotating weekly hash of IP and
         user agent, so nothing persists in the browser and no consent banner is
@@ -88,7 +104,7 @@ export const tracking: Doc = {
   slug: "tracking",
   title: "Install the tracker",
   description:
-    "Add the tracking script to plain HTML, React, Next.js, or Vue — plus click tracking options.",
+    "Add the tracking script to plain HTML, React, Next.js, or Vue — plus click tracking and heatmap options.",
   category: "Tracking",
   order: 1,
   Body,
