@@ -32,6 +32,7 @@ import { quantalogNotes } from "@/content/docs/quantalog-notes";
 import { quantalogLinks } from "@/content/docs/quantalog-links";
 import { quantalogAlerts } from "@/content/docs/quantalog-alerts";
 import { quantalogPopups } from "@/content/docs/quantalog-popups";
+import { quantalogBio } from "@/content/docs/quantalog-bio";
 import { quantalogSeoReports } from "@/content/docs/quantalog-seo-reports";
 import { searchVisibility } from "@/content/docs/search-visibility";
 import { retention } from "@/content/docs/retention";
@@ -92,6 +93,7 @@ const DOCS: Doc[] = [
   quantalogLinks,
   quantalogAlerts,
   quantalogPopups,
+  quantalogBio,
   searchVisibility,
   emailReports,
   scheduledPosts,

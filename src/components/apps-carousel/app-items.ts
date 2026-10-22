@@ -46,6 +46,7 @@ export const allApps: AppEntry[] = [
   quantalog("goals", "Quantalog Goals", "Monthly and quarterly targets that fill in from your live data.", "/docs/goals"),
   quantalog("alerts", "Quantalog Alerts", "Hear about traffic drops, spikes and stalled goals by email, Telegram or WhatsApp.", "/docs/quantalog-alerts"),
   quantalog("popups", "Quantalog Popups", "Show your lead capture forms as popups and slide-ins on your site.", "/docs/quantalog-popups"),
+  quantalog("bio", "Quantalog Link-in-bio", "One link for your social bios, with every tap counted.", "/docs/quantalog-bio"),
   quantalog("public-dashboard", "Quantalog Public Dashboard", "A live, read-only analytics dashboard at a link anyone can open.", "/docs/public-dashboards"),
   quantalog("seo-reports", "Quantalog SEO Reports", "Send a client a public link to any SEO audit, showing only what you choose.", "/docs/quantalog-seo-reports"),
   quantalog("reviews", "Quantalog Reviews", "Every Google review and your rating breakdown, synced into Quantalog.", "/docs/reviews"),
