@@ -21,21 +21,6 @@ export type ResolvedPlan = {
   priceYearly: CurrencyPrices;
 };
 
-/** Orbit is sold as credits alongside a plan, not as a plan tier of its own. */
-export type ResolvedOrbitPlan = {
-  slug: string;
-  name: string;
-  description: string;
-  monthlyQuota: number;
-  modelTier: "basic" | "standard" | "advanced";
-  dataAccess: boolean;
-  maxHistoryTurns: number;
-  features: string[];
-  sortOrder: number;
-  priceMonthly: CurrencyPrices;
-  priceYearly: CurrencyPrices;
-};
-
 export const FEATURED_SLUG = "pro";
 export const MAX_SITES_PER_WORKSPACE = 1;
 

@@ -5,12 +5,10 @@ import { site } from "@/lib/site";
 
 type PlansState = {
   plans: unknown[] | null;
-  orbitPlans: unknown[] | null;
-
   error: boolean;
 };
 
-const EMPTY: PlansState = { plans: null, orbitPlans: null, error: false };
+const EMPTY: PlansState = { plans: null, error: false };
 
 const PlansContext = createContext<PlansState>(EMPTY);
 
@@ -18,9 +16,9 @@ export function usePlans() {
   return useContext(PlansContext);
 }
 
-const SS_KEY = "quantalog:plans:v1";
+const SS_KEY = "quantalog:plans:v2";
 
-type Cache = { plans: unknown[] | null; orbitPlans: unknown[] };
+type Cache = { plans: unknown[] | null };
 
 let inflight: Promise<Cache> | null = null;
 
@@ -42,21 +40,9 @@ function writeSession(value: Cache) {
 }
 
 async function loadPlans(): Promise<Cache> {
-
-  const plansReq = fetch(`${site.api}/api/public/plans`).then((r) => {
-    if (!r.ok) throw new Error(String(r.status));
-    return r.json() as Promise<unknown[]>;
-  });
-
-  const orbitReq = fetch(`${site.api}/api/public/plans/orbit`)
-    .then((r) => {
-      if (!r.ok) throw new Error(String(r.status));
-      return r.json() as Promise<unknown[]>;
-    })
-    .catch(() => [] as unknown[]);
-
-  const [plans, orbitPlans] = await Promise.all([plansReq, orbitReq]);
-  const value: Cache = { plans, orbitPlans };
+  const response = await fetch(`${site.api}/api/public/plans`);
+  if (!response.ok) throw new Error(String(response.status));
+  const value: Cache = { plans: (await response.json()) as unknown[] };
   writeSession(value);
   return value;
 }
@@ -86,23 +72,18 @@ export function PlansProvider({ children }: { children: React.ReactNode }) {
     // and refreshes it.
     const cached = readSession();
     if (cached) {
-      setState({ plans: cached.plans, orbitPlans: cached.orbitPlans, error: false });
+      setState({ plans: cached.plans, error: false });
     }
 
     getPlans()
       .then((cache) => {
-        if (!cancelled)
-          setState({
-            plans: cache.plans,
-            orbitPlans: cache.orbitPlans,
-            error: false,
-          });
+        if (!cancelled) setState({ plans: cache.plans, error: false });
       })
       .catch(() => {
         if (!cancelled)
           setState((prev) =>
 
-            prev.plans ? prev : { plans: null, orbitPlans: [], error: true },
+            prev.plans ? prev : { plans: null, error: true },
           );
       });
 

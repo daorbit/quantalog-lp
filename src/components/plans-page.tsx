@@ -12,7 +12,7 @@ import {
   CURRENCIES, FEATURED_SLUG, MAX_SITES_PER_WORKSPACE,
   allFeatures, detectCurrency, formatPrice,
 } from "@/lib/plans";
-import type { Currency, ResolvedPlan, ResolvedOrbitPlan } from "@/lib/plans";
+import type { Currency, ResolvedPlan } from "@/lib/plans";
 
 /** A row in the comparison matrix. `value` returns what a plan gets. */
 type Row = {
@@ -68,7 +68,6 @@ function Cell({ value }: { value: string | boolean }) {
 export function PlansPage() {
   const shared = usePlans();
   const plans = shared.plans as ResolvedPlan[] | null;
-  const orbitPlans = shared.orbitPlans as ResolvedOrbitPlan[] | null;
   const error = shared.error;
 
   const [yearly, setYearly] = useState(false);
@@ -306,46 +305,6 @@ export function PlansPage() {
               </tbody>
             </table>
           </div>
-        </div>
-      )}
-
-      {/* Orbit is credits bought alongside a plan, not a tier of its own — so
-          it sits in its own block rather than as columns in the matrix. */}
-      {orbitPlans && orbitPlans.length > 0 && (
-        <div className="mt-20 border-t border-border pt-14">
-          <h2 className="text-h3 font-medium tracking-tight">Orbit AI credits</h2>
-          <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-fg-muted">
-            Orbit answers questions about your setup and walks you through
-            fixing what an audit flagged. Every plan includes a monthly
-            allowance; packs are bought on top and never expire.
-          </p>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {[...orbitPlans]
-              .sort((a, b) => a.sortOrder - b.sortOrder)
-              .map((plan) => (
-                <div
-                  key={plan.slug}
-                  className="rounded-xl border border-border bg-surface p-4"
-                >
-                  <div className="text-sm font-semibold">
-                    {plan.name.replace(/^Orbit /, "")}
-                  </div>
-                  <div className="mt-1 text-[13px] text-fg-muted">
-                    {plan.monthlyQuota.toLocaleString()} questions / month
-                  </div>
-                  <div className="mt-2 text-xs text-fg-faint">
-                    {plan.dataAccess
-                      ? "Answers from your own analytics"
-                      : "All models included"}
-                  </div>
-                </div>
-              ))}
-          </div>
-
-          <p className="mt-6 text-xs text-fg-faint">
-            A question only counts once Orbit has answered it.
-          </p>
         </div>
       )}
 

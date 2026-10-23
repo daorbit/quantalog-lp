@@ -1,31 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, BarChart3 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { PlanCard } from "../plan-card";
 import { usePlans } from "../plans-provider";
-import { SegmentedControl } from "../segmented-control";
-import { OrbitIcon } from "../orbit/orbit-icon";
 import { BillingControls } from "../pricing/billing-controls";
-import { OrbitPlanCard } from "../pricing/orbit-plan-card";
 import { BillingFacts } from "../pricing/billing-facts";
 import { ProviderSignup } from "../provider-signup";
 import { site } from "@/lib/site";
 import { detectCurrency } from "@/lib/plans";
-import type { Currency, ResolvedOrbitPlan, ResolvedPlan } from "@/lib/plans";
+import type { Currency, ResolvedPlan } from "@/lib/plans";
 
 const CARD_FEATURE_ROWS = 8;
 
-const ladders = [
-  { id: "analytics", label: "Analytics plans", icon: BarChart3 },
-  { id: "orbit", label: "Orbit AI", icon: OrbitIcon },
-];
-
-const blurbs: Record<string, string> = {
-  analytics: "Every plan includes the full dashboard and the SEO audit suite. Start on Free and move up as your sites grow.",
-  orbit: "Orbit is bought per workspace, on its own ladder — a small site can still be a heavy Orbit user. A question only counts once it's answered.",
-};
+const BLURB =
+  "Every plan includes the full dashboard, the SEO audit suite and Orbit AI. Start on Free and move up as your sites grow.";
 
 function Skeleton() {
   return (
@@ -50,9 +40,7 @@ function Skeleton() {
 export function Pricing() {
   const shared = usePlans();
   const plans = shared.plans as ResolvedPlan[] | null;
-  const orbitPlans = shared.orbitPlans as ResolvedOrbitPlan[] | null;
 
-  const [ladder, setLadder] = useState("analytics");
   const [yearly, setYearly] = useState(false);
   const [currency, setCurrency] = useState<Currency>("USD");
 
@@ -60,32 +48,19 @@ export function Pricing() {
     setCurrency(detectCurrency());
   }, []);
 
-  const sortedOrbit = orbitPlans ? [...orbitPlans].sort((a, b) => a.sortOrder - b.sortOrder) : null;
-  const loading = ladder === "analytics" ? !plans : !sortedOrbit;
-
   return (
     <section id="pricing">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 section-y">
         <SectionHeading eyebrow="Pricing" title="Start free. Pay when it’s worth it." centered />
 
         <div className="mt-10">
-          <SegmentedControl
-            options={ladders}
-            value={ladder}
-            onChange={setLadder}
-            label="Pricing"
-            idPrefix="pricing-tab"
-            controls="pricing-panel"
-          />
-          <p key={ladder} className="rise mx-auto mt-5 max-w-xl text-center text-[15px] leading-relaxed text-fg-muted">
-            {blurbs[ladder]}
-          </p>
+          <p className="mx-auto max-w-xl text-center text-[15px] leading-relaxed text-fg-muted">{BLURB}</p>
           <div className="mt-6">
             <BillingControls currency={currency} onCurrency={setCurrency} yearly={yearly} onYearly={setYearly} />
           </div>
         </div>
 
-        <div id="pricing-panel" role="tabpanel" aria-labelledby={`pricing-tab-${ladder}`} className="mt-8 sm:mt-12">
+        <div className="mt-8 sm:mt-12">
           {shared.error ? (
             <p className="text-center text-[15px] text-fg-muted">
               Couldn&apos;t load plans right now.{" "}
@@ -94,13 +69,13 @@ export function Pricing() {
               </a>{" "}
               for pricing.
             </p>
-          ) : loading ? (
+          ) : !plans ? (
             <>
               <Skeleton />
               <span className="sr-only">Loading plans…</span>
             </>
-          ) : ladder === "analytics" && plans ? (
-            <div key="analytics" className="rise grid gap-5 lg:grid-cols-3">
+          ) : (
+            <div className="rise grid gap-5 lg:grid-cols-3">
               {plans.map((plan) => (
                 <PlanCard
                   key={plan.slug}
@@ -112,20 +87,6 @@ export function Pricing() {
                 />
               ))}
             </div>
-          ) : sortedOrbit && sortedOrbit.length > 0 ? (
-            <div key="orbit" className="rise grid gap-5 lg:grid-cols-3">
-              {sortedOrbit.map((plan, i) => (
-                <OrbitPlanCard
-                  key={plan.slug}
-                  plan={plan}
-                  currency={currency}
-                  yearly={yearly}
-                  featured={i === sortedOrbit.length - 1}
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-[15px] text-fg-muted">Orbit plans are shown in the dashboard.</p>
           )}
         </div>
 
