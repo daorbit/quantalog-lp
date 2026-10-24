@@ -63,7 +63,7 @@ export function Analytics() {
         <SectionHeading
           eyebrow="Built in"
           title="The answers, not just the counts."
-          body="Funnels, goals and retention come with every plan, drawn from the same event stream with no extra tags."
+          body="Funnels, goals and retention, drawn from the same event stream with no extra tags."
           centered
         />
         <div className="mt-16 sm:mt-24">

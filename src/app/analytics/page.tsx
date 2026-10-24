@@ -114,7 +114,7 @@ const faqs = [
   },
   {
     q: "Do funnels and cohorts cost extra?",
-    a: "No. Funnels, goals, retention cohorts and every breakdown are on every plan, including the free tier — the limit is on events per month, not on features.",
+    a: "Retention cohorts and every breakdown are on every plan, including the free tier — the limit is on events per month. Funnels come with Quantalog Funnels, an app a workspace admin unlocks once in Apps, with no subscription. Goals is a free app you turn on in the same place.",
   },
   {
     q: "Is the data sampled?",
