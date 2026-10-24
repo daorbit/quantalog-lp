@@ -3,11 +3,12 @@ import { LegalPage } from "@/components/legal-page";
 import { LEGAL_UPDATED } from "@/components/legal/legal-data";
 import { PRIVACY_HIGHLIGHTS, PRIVACY_LEAD, PrivacyBody } from "@/content/legal/privacy";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `How ${site.name} handles analytics, account, form and booking data, and how it uses Google Calendar and other Google data.`,
-  alternates: { canonical: "/privacy" },
+  alternates: pageAlternates("/privacy"),
 };
 
 export default function PrivacyPage() {

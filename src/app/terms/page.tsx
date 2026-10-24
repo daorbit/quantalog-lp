@@ -3,11 +3,12 @@ import { LegalPage } from "@/components/legal-page";
 import { LEGAL_UPDATED } from "@/components/legal/legal-data";
 import { TERMS_HIGHLIGHTS, TERMS_LEAD, TermsBody } from "@/content/legal/terms";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: `The terms that govern use of ${site.name}.`,
-  alternates: { canonical: "/terms" },
+  alternates: pageAlternates("/terms"),
 };
 
 export default function TermsPage() {

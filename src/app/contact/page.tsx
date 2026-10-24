@@ -6,6 +6,7 @@ import { EmbeddedForm } from "@/components/embedded-form";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 const DESCRIPTION =
   "Get in touch with the Quantalog team about pricing, the Platform API, privacy and compliance, or help with your account. Messages reach a person, usually answered within a working day.";
@@ -37,7 +38,7 @@ const elsewhere = [
 export const metadata: Metadata = {
   title: "Contact",
   description: DESCRIPTION,
-  alternates: { canonical: "/contact" },
+  alternates: pageAlternates("/contact"),
   openGraph: {
     type: "website",
     url: `${site.url}/contact`,

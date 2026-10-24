@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { ArrowLeft, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 export const metadata: Metadata = {
   title: "Thanks — your message is on its way",
   description: "Your message reached the Quantalog team. We reply within one working day.",
   robots: { index: false, follow: true },
-  alternates: { canonical: "/thank-you" },
+  alternates: pageAlternates("/thank-you"),
 };
 
 const next = [

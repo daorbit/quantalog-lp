@@ -12,6 +12,7 @@ import { SummariseButton } from "@/components/orbit/summarise-button";
 import { PostCard } from "@/components/blog/post-card";
 import { PostCta } from "@/components/blog/post-cta";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { pageAlternates } from "@/lib/alternates";
 
 type Params = { slug: string };
 
@@ -36,7 +37,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: pageAlternates(`/blog/${post.slug}`),
     // Honours the CMS SEO panel; the sitemap leaves these out to match.
     ...(post.noIndex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {

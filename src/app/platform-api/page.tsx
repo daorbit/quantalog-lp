@@ -15,6 +15,7 @@ import { ApiEndpoints, type ApiEndpoint } from "@/components/product/api-endpoin
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
@@ -122,7 +123,7 @@ const faqs = [
 export const metadata: Metadata = {
   title: "White label analytics API for your product",
   description: META_DESCRIPTION,
-  alternates: { canonical: "/platform-api" },
+  alternates: pageAlternates("/platform-api"),
   other: {
     "article:published_time": PUBLISHED,
     "article:modified_time": MODIFIED,

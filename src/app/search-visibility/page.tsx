@@ -26,6 +26,7 @@ import { RelatedProducts } from "@/components/product/related-products";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 const PATH = "/search-visibility";
 const TITLE = "Google Search Console, inside your analytics";
@@ -155,7 +156,7 @@ const faqs = [
 export const metadata: Metadata = {
   title: TITLE,
   description: META_DESCRIPTION,
-  alternates: { canonical: PATH },
+  alternates: pageAlternates(PATH),
   other: {
     "article:published_time": PUBLISHED,
     "article:modified_time": MODIFIED,

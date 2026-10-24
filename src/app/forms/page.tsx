@@ -32,6 +32,7 @@ import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { formatDate } from "@/lib/blog";
+import { pageAlternates } from "@/lib/alternates";
 
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
@@ -166,7 +167,7 @@ const faqs = [
 export const metadata: Metadata = {
   title: "Form builder with built-in form analytics",
   description: META_DESCRIPTION,
-  alternates: { canonical: "/forms" },
+  alternates: pageAlternates("/forms"),
   keywords: [
     "form builder",
     "online form builder",

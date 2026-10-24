@@ -9,11 +9,12 @@ import { AboutCompany } from "@/components/about/about-company";
 import { ABOUT_DESCRIPTION, aboutFaqs, aboutStats } from "@/components/about/about-data";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 export const metadata: Metadata = {
   title: "About",
   description: ABOUT_DESCRIPTION,
-  alternates: { canonical: "/about" },
+  alternates: pageAlternates("/about"),
   openGraph: {
     type: "website",
     url: `${site.url}/about`,

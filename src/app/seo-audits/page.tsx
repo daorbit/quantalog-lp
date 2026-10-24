@@ -25,6 +25,7 @@ import { RelatedProducts } from "@/components/product/related-products";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
@@ -156,7 +157,7 @@ const faqs = [
 export const metadata: Metadata = {
   title: "SEO audit tool with Lighthouse scores",
   description: META_DESCRIPTION,
-  alternates: { canonical: "/seo-audits" },
+  alternates: pageAlternates("/seo-audits"),
   other: {
     "article:published_time": PUBLISHED,
     "article:modified_time": MODIFIED,

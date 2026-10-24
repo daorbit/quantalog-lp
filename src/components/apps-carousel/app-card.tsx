@@ -7,7 +7,7 @@ export function AppCard({ app }: { app: AppEntry }) {
 
   const body = (
     <>
-      <AppMark mark={app.mark} />
+      <AppMark mark={app.mark} name={app.name} />
       <h3 className="mt-5 text-[16px] font-semibold tracking-[-0.01em] text-fg">{app.name}</h3>
       <p className="mt-0.5 text-[13px] text-fg-faint">{CATEGORY_LABEL[app.category]}</p>
       <p className="mt-3 text-[14px] leading-relaxed text-fg-muted">{app.body}</p>

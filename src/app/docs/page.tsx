@@ -6,12 +6,13 @@ import { DocsBreadcrumb } from "@/components/docs-breadcrumb";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 export const metadata: Metadata = {
   title: "Documentation",
   description:
     "Everything you need to install Quantalog, track custom events, and embed analytics into your own product with the Platform API.",
-  alternates: { canonical: "/docs" },
+  alternates: pageAlternates("/docs"),
   openGraph: {
     type: "website",
     url: `${site.url}/docs`,

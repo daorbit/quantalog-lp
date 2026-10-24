@@ -7,6 +7,7 @@ import { DocsBreadcrumb } from "@/components/docs-breadcrumb";
 import { DocsPager } from "@/components/docs-pager";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { pageAlternates } from "@/lib/alternates";
 
 type Params = { slug: string };
 
@@ -28,7 +29,7 @@ export async function generateMetadata({
   return {
     title: `${doc.title} — Docs`,
     description: doc.description,
-    alternates: { canonical: `/docs/${doc.slug}` },
+    alternates: pageAlternates(`/docs/${doc.slug}`),
     openGraph: {
       type: "article",
       url: `${site.url}/docs/${doc.slug}`,

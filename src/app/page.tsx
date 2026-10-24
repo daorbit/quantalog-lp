@@ -10,7 +10,6 @@ import { OrbitAi } from "@/components/sections/orbit-ai";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { QuantalogApps } from "@/components/sections/quantalog-apps";
 import { HowItWorks } from "@/components/sections/how-it-works";
-import { steps as setupSteps } from "@/components/setup/setup-steps";
 import { Pricing } from "@/components/sections/pricing";
 import { Referrals } from "@/components/sections/referrals";
 import { Faq } from "@/components/sections/faq";
@@ -20,13 +19,14 @@ import { PageDate } from "@/components/page-date";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
-import { graph, organization, website, author, article, howTo, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
+import { graph, organization, website, author, article, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
+import { pageAlternates } from "@/lib/alternates";
 
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: pageAlternates("/"),
 
   other: {
     "article:published_time": PUBLISHED,
@@ -110,15 +110,7 @@ const jsonLd = graph(
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
-  },
-
-  howTo({
-    path: "/",
-    name: "How to add cookieless web analytics to your site",
-    description:
-      "Add real-time, consent-free analytics in about two minutes — no SDK, no build step, no cookie policy change.",
-    steps: setupSteps.map((s) => ({ name: s.title, text: s.body })),
-  })
+  }
 );
 
 export default function HomePage() {

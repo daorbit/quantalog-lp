@@ -21,7 +21,7 @@ export function AssistantChat() {
   return (
     <div ref={ref} className="mx-auto w-full max-w-lg">
       <p key={`h${index}`} className="chat-in flex items-center gap-2.5 text-[14px] font-semibold text-fg">
-        <img src={chat.logo} alt="" width={22} height={22} className="h-5.5 w-5.5" />
+        <img src={chat.logo} alt={chat.assistant} width={22} height={22} className="h-5.5 w-5.5" />
         {chat.assistant}
         <span className="font-normal text-fg-faint">with Quantalog connected</span>
       </p>

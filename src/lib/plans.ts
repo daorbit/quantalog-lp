@@ -46,7 +46,6 @@ function plural(n: number, word: string) {
 export function planQuotas(plan: ResolvedPlan): string[] {
   return [
     `${plural(MAX_SITES_PER_WORKSPACE, "site")} per workspace`,
-    `${plan.monthlyAuditQuota} SEO audits / month`,
     `${plural(plan.monthlyCrawlQuota, "site crawl")} / month`,
     `${plural(plan.maxReportRecipients, "report recipient")} per report`,
   ];

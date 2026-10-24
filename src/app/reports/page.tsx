@@ -24,6 +24,7 @@ import { ReportInboxPreview } from "@/components/product/report-inbox-preview";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
@@ -130,7 +131,7 @@ const faqs = [
 export const metadata: Metadata = {
   title: "Automated analytics reports by email and WhatsApp",
   description: META_DESCRIPTION,
-  alternates: { canonical: "/reports" },
+  alternates: pageAlternates("/reports"),
   other: {
     "article:published_time": PUBLISHED,
     "article:modified_time": MODIFIED,

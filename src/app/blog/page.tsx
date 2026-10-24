@@ -5,12 +5,13 @@ import { PostGrid } from "@/components/blog/post-grid";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Engineering notes and product updates from the Quantalog team — privacy-first analytics, real-time data, and the platform API.",
-  alternates: { canonical: "/blog" },
+  alternates: pageAlternates("/blog"),
   openGraph: {
     type: "website",
     url: `${site.url}/blog`,

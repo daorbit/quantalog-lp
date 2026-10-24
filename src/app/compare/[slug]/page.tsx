@@ -17,6 +17,7 @@ import { tally } from "@/components/compare/compare-utils";
 import { JsonLd } from "@/components/json-ld";
 import { ProviderSignup } from "@/components/provider-signup";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
+import { pageAlternates } from "@/lib/alternates";
 
 type Params = { slug: string };
 
@@ -38,7 +39,7 @@ export async function generateMetadata({
   return {
     title: c.title,
     description: c.description,
-    alternates: { canonical: `/compare/${c.slug}` },
+    alternates: pageAlternates(`/compare/${c.slug}`),
     keywords: [
       `${site.name} vs ${c.rival}`,
       `${c.rival} alternative`,

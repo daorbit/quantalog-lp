@@ -7,6 +7,7 @@ import { CompareCard } from "@/components/compare/compare-card";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/alternates";
 
 const DESCRIPTION =
   "How Quantalog compares to Google Analytics, Plausible, Matomo and other analytics tools — consent banners, real-time reporting, SEO audits, script weight and price, including where the other tool is the better choice.";
@@ -14,7 +15,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: "Analytics tool comparisons",
   description: DESCRIPTION,
-  alternates: { canonical: "/compare" },
+  alternates: pageAlternates("/compare"),
   openGraph: {
     type: "website",
     url: `${site.url}/compare`,

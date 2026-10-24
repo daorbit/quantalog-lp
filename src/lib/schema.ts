@@ -156,31 +156,6 @@ export function service({
   };
 }
 
-export function howTo({
-  path,
-  name,
-  description,
-  steps,
-}: {
-  path: string;
-  name: string;
-  description: string;
-  steps: { name: string; text: string }[];
-}): Record<string, unknown> {
-  return {
-    "@type": "HowTo",
-    "@id": `${site.url}${path}#howto`,
-    name,
-    description,
-    step: steps.map((s, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: s.name,
-      text: s.text,
-    })),
-  };
-}
-
 export function graph(...nodes: Record<string, unknown>[]) {
   return {
     "@context": "https://schema.org",
