@@ -24,6 +24,14 @@ function Body() {
         lets you pick another one or remove it.
       </P>
 
+      <H2 id="per-form">Showing your logo on a form</H2>
+      <P>
+        Public forms don&apos;t show your logo and business name at the top
+        unless you turn it on. To add them to a form, open it in the builder,
+        go to <b>Theme</b> → <b>Style</b>, and turn on{" "}
+        <b>Show logo and name</b> under Branding. Each form has its own switch.
+      </P>
+
       <H2 id="credits">Credits</H2>
       <Ul>
         <Li><b>Powered-by footer</b> — a small attribution shown on public forms, thank-you screens, and respondent emails.</Li>
