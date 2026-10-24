@@ -12,19 +12,27 @@ function Body() {
         <b>Apps</b>, with no subscription.
       </P>
 
-      <H2 id="building">Building a funnel</H2>
+      <H2 id="building">Creating a funnel</H2>
       <Ul>
         <Li>
-          Open <b>Funnels</b> in the sidebar. With an empty funnel you can start
-          from a suggestion built from your own traffic, or pick each step yourself.
+          Open <b>Funnels</b> in the sidebar and press <b>New funnel</b>, or pick one
+          of the suggestions built from your own traffic.
         </Li>
         <Li>
-          Each step is a <b>page</b> someone visited or an <b>event</b> they fired.
-          The picker lists pages and events that have traffic in the chosen range.
+          Add the steps in the order visitors take them. Each step is a <b>page</b>{" "}
+          someone visited or an <b>event</b> they fired, and the picker lists the ones
+          with traffic in the chosen range. Use the arrows to reorder steps, up to eight.
         </Li>
-        <Li>Add up to eight steps. Results update on their own a moment after you change a step.</Li>
-        <Li>Use the range picker at the top to measure any window your plan allows.</Li>
+        <Li>The preview beside the steps shows the result as you go. Give it a name and press <b>Create funnel</b>.</Li>
       </Ul>
+
+      <H2 id="list">Your funnels</H2>
+      <P>
+        The Funnels page lists every saved funnel with its conversion and how many
+        sessions entered, for the range you pick at the top. Click a funnel to see
+        its full results. Use <b>Edit</b> to change its steps or name, and the{" "}
+        <b>⋯</b> menu to duplicate or delete it.
+      </P>
 
       <H2 id="reading">Reading the results</H2>
       <Ul>
@@ -60,12 +68,10 @@ function Body() {
         </Li>
       </Ul>
 
-      <H2 id="saving">Saving and sharing</H2>
+      <H2 id="sharing">Who can change funnels</H2>
       <P>
-        Name a funnel and press <b>Save</b>. Saved funnels are shared with everyone
-        in the workspace and open from the <b>Open</b> menu for any date range.
-        Editors and admins can save, change and delete them; viewers can open and
-        read them.
+        Saved funnels are shared with everyone in the workspace. Editors and admins
+        can create, change and delete them; viewers can open and read them.
       </P>
 
       <H2 id="how">How it&apos;s counted</H2>
