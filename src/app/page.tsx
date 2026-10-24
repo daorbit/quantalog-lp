@@ -19,7 +19,7 @@ import { PageDate } from "@/components/page-date";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/json-ld";
-import { graph, organization, website, author, article, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
+import { graph, organization, website, author, ORG_ID, SITE_ID, AUTHOR_ID } from "@/lib/schema";
 import { pageAlternates } from "@/lib/alternates";
 
 const PUBLISHED = "2025-11-01";
@@ -27,25 +27,12 @@ const MODIFIED = BUILD_DATE;
 
 export const metadata: Metadata = {
   alternates: pageAlternates("/"),
-
-  other: {
-    "article:published_time": PUBLISHED,
-    "article:modified_time": MODIFIED,
-  },
 };
 
 const jsonLd = graph(
   organization,
   website,
   author,
-
-  article({
-    path: "/",
-    headline: `${site.name} — ${site.tagline}`,
-    description: site.description,
-    published: PUBLISHED,
-    modified: MODIFIED,
-  }),
   {
     "@type": "SoftwareApplication",
     "@id": `${site.url}/#software`,
@@ -55,7 +42,7 @@ const jsonLd = graph(
     operatingSystem: "Web",
     description: site.description,
     url: site.url,
-    image: `${site.url}/new-og-image.webp`,
+    image: `${site.url}${site.ogImage}`,
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },
     author: { "@id": AUTHOR_ID },

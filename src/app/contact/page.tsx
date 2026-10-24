@@ -44,13 +44,13 @@ export const metadata: Metadata = {
     url: `${site.url}/contact`,
     title: "Contact Quantalog",
     description: DESCRIPTION,
-    images: ["/new-og-image.webp"],
+    images: [site.ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact Quantalog",
     description: DESCRIPTION,
-    images: ["/new-og-image.webp"],
+    images: [site.ogImage],
   },
 };
 

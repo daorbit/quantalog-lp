@@ -3,7 +3,7 @@ import {
   siWordpress, siShopify, siWebflow, siAngular, siLaravel, siDjango,
   siRubyonrails, siGatsby, siHtml5, siSquarespace, siWix, siGhost, siWoocommerce,
 } from "simple-icons";
-import { FrameworkMark, type Framework } from "../framework-mark";
+import { FrameworkMark, FrameworkSprite, type Framework } from "../framework-mark";
 
 const rows: { label: string; items: Framework[] }[] = [
   {
@@ -41,6 +41,7 @@ const rows: { label: string; items: Framework[] }[] = [
 export function Logos() {
   return (
     <section className="section-y">
+      <FrameworkSprite frameworks={rows.flatMap((row) => row.items)} />
       <div className="mx-auto max-w-2xl px-4 text-center">
         <h2 className="text-balance text-[1.5rem] font-medium leading-[1.1] tracking-display text-fg sm:text-[2rem]">
           Works with every stack.

@@ -3595,6 +3595,10 @@ body {
   }
 }
 
+.world-map-slot {
+  aspect-ratio: 800 / 534;
+}
+
 .world-map {
   display: block;
   width: 100%;

@@ -1,18 +1,10 @@
 import { getAllPosts } from "@/lib/blog";
 import { site } from "@/lib/site";
+import { escapeXml } from "@/lib/escape-xml";
 
 // Revalidated rather than frozen at build time, so a post published between
 // deploys reaches subscribers without waiting for one.
 export const revalidate = 60;
-
-function escapeXml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
 
 export async function GET(): Promise<Response> {
   const posts = (await getAllPosts()).filter((post) => !post.noIndex);

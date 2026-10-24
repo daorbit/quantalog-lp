@@ -208,7 +208,7 @@ export default function FormsPage() {
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
       inLanguage: "en",
-      primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}/new-og-image.webp` },
+      primaryImageOfPage: { "@type": "ImageObject", url: `${site.url}${site.ogImage}` },
     },
     service({
       path: "/forms",

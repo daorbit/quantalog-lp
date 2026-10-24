@@ -90,7 +90,7 @@ export function article({
     headline,
     description,
     url: `${site.url}${path}`,
-    image: `${site.url}/new-og-image.webp`,
+    image: `${site.url}${site.ogImage}`,
     author: { "@id": AUTHOR_ID },
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": SITE_ID },

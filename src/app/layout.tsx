@@ -25,7 +25,7 @@ const sans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} — ${site.seoTitle}`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
@@ -69,23 +69,23 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} — ${site.seoTitle}`,
     description: site.description,
     images: [
       {
-        url: "/new-og-image.webp",
+        url: site.ogImage,
         width: 1672,
         height: 940,
-        alt: `${site.name} — ${site.tagline}`,
+        alt: `${site.name} — ${site.seoTitle}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     site: site.twitter,
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} — ${site.seoTitle}`,
     description: site.description,
-    images: ["/new-og-image.webp"],
+    images: [site.ogImage],
   },
 
   alternates: {

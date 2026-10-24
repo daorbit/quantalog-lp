@@ -1,6 +1,8 @@
 export const site = {
   name: "Quantalog",
   tagline: "Real-time analytics you can embed.",
+  seoTitle: "Cookieless, real-time web analytics",
+  ogImage: "/og-image.jpg",
   // Kept under 160 characters so search results show it in full rather than
   // truncating mid-sentence. The longer pitch lives in the footer copy.
   description:

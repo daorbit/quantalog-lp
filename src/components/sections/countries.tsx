@@ -1,5 +1,6 @@
 import { DataShowcase } from "../showcase/data-showcase";
-import { WorldMap, rankAudience } from "../world-map/world-map";
+import { rankAudience } from "../world-map/audience-rank";
+import { LazyWorldMap } from "../world-map/lazy-world-map";
 import { flagAccent } from "../world-map/flag-palette";
 import { formatShare } from "../world-map/spotlight";
 import { MapHover } from "../world-map/map-hover";
@@ -37,7 +38,7 @@ export function Countries() {
       }
     >
       <MapHover countries={ranked.length} viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}>
-        <WorldMap />
+        <LazyWorldMap />
       </MapHover>
     </DataShowcase>
   );
