@@ -28,10 +28,36 @@ function Body() {
 
       <H2 id="reading">Reading the results</H2>
       <Ul>
-        <Li>Every step shows how many sessions reached it and what share of the first step that is.</Li>
-        <Li>Between steps you see the percentage that dropped and how many sessions did not continue.</Li>
-        <Li>The largest drop is labelled <b>Biggest drop</b>, so the leak worth fixing first stands out.</Li>
-        <Li>The strip above the steps sums it up: conversion, sessions entered, sessions completed and the biggest drop.</Li>
+        <Li>
+          The strip at the top sums it up: conversion from the first step to the last, sessions that entered, sessions
+          that completed, and the <b>Biggest leak</b>.
+        </Li>
+        <Li>
+          The chart has a bar per step. The solid part is the sessions that continued; the lighter part above it is the
+          sessions lost since the previous step. Switch between <b>From first step</b> and <b>From previous step</b> to
+          read each step either way.
+        </Li>
+        <Li>
+          The table lists every step with its sessions, its share of the first and of the previous step, how many dropped,
+          and the average time people took to get there from the previous step.
+        </Li>
+        <Li>
+          The biggest leak is the step that lost the most sessions, not the highest percentage, so a busy step losing 30%
+          ranks above a quiet one losing 60%.
+        </Li>
+      </Ul>
+
+      <H2 id="tracking">Tracking a funnel over time</H2>
+      <Ul>
+        <Li>
+          Turn on <b>vs previous period</b> to compare every number with the period just before, with green and red
+          arrows for what improved and what slipped.
+        </Li>
+        <Li>
+          <b>Conversion over time</b> shows conversion by when visitors entered: every 5 minutes, by hour, by day or by
+          week depending on the range. A bar well below the usual level is shown in red; sudden dips usually mean a
+          release or an outage, while a steady low rate points to a step that needs work.
+        </Li>
       </Ul>
 
       <H2 id="saving">Saving and sharing</H2>
