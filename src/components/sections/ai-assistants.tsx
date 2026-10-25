@@ -12,7 +12,7 @@ const POINTS = [
 
 export function AiAssistants() {
   return (
-    <section id="ai-assistants" className="section-y">
+    <div id="ai-assistants" className="mt-20 scroll-mt-24 sm:mt-28">
       <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
         <div>
           <p className="text-[15px] font-semibold text-accent">Claude &amp; ChatGPT</p>
@@ -47,6 +47,6 @@ export function AiAssistants() {
 
         <AssistantChat />
       </div>
-    </section>
+    </div>
   );
 }

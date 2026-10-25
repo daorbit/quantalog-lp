@@ -5,8 +5,8 @@ import { Countries } from "@/components/sections/countries";
 import { BookMeeting } from "@/components/sections/book-meeting";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Explore } from "@/components/sections/explore";
-import { AiAssistants } from "@/components/sections/ai-assistants";
 import { OrbitAi } from "@/components/sections/orbit-ai";
+import { CompareGa4 } from "@/components/sections/compare-ga4";
 import { DashboardsGoals } from "@/components/sections/dashboards-goals";
 import { QuantalogApps } from "@/components/sections/quantalog-apps";
 import { HowItWorks } from "@/components/sections/how-it-works";
@@ -105,16 +105,16 @@ export default function HomePage() {
     <>
       <JsonLd data={jsonLd} />
       <Hero />
-      <Logos />
       <Countries />
       <ConsentGap />
+      <Logos />
       <Explore />
       <BookMeeting />
       <DashboardsGoals />
-      <AiAssistants />
       <QuantalogApps />
       <OrbitAi />
       <HowItWorks />
+      <CompareGa4 />
       <Pricing />
       <Referrals />
       <Faq />

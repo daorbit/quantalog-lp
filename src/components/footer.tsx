@@ -24,7 +24,8 @@ const columns = [
       { href: "/social", label: "Orbit AI" },
       { href: site.orbitExtension, label: "Orbit for Chrome" },
       { href: "/compare", label: "Comparisons" },
-      { href: "/#demo", label: "Live demo" },
+      { href: "/#compare", label: "Quantalog vs GA4" },
+      { href: `${site.app}/login`, label: "Live demo" },
     ],
   },
   {
@@ -39,6 +40,7 @@ const columns = [
     links: [
       { href: "/about", label: "About" },
       { href: "/contact", label: "Contact" },
+      { href: `${site.app}/login`, label: "Sign in" },
     ],
   },
 ];

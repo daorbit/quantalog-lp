@@ -2,7 +2,7 @@ const chips = ["No cookies set", "No IP addresses stored", "Under 5 KB tracker",
 
 export function TrustChips({ className = "justify-center lg:justify-start" }: { className?: string }) {
   return (
-    <ul className={`flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[13px] text-fg-faint ${className}`}>
+    <ul className={`flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[13px] text-fg-muted ${className}`}>
       {chips.map((label, i) => (
         <li key={label} className="flex items-center gap-3">
           {i > 0 && <span className="h-0.75 w-0.75 rounded-full bg-border-strong" aria-hidden="true" />}
