@@ -25,7 +25,7 @@ export function Cta({
         <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">{title}</h2>
         <p className="mx-auto mt-5 max-w-lg text-pretty text-lead leading-normal text-fg-muted">{body}</p>
 
-        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           <Button
             href={`${site.app}/signup`}
             size="lg"

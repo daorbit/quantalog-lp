@@ -23,7 +23,7 @@ export function HowItWorks() {
           <SetupStepper />
         </div>
 
-        <div className="mt-16 border-t border-border pt-12 sm:mt-20">
+        <div className="mt-10 border-t border-border pt-8 sm:mt-20 sm:pt-12">
           <SetupFacts />
         </div>
       </div>

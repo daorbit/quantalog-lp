@@ -6,7 +6,7 @@ export const GA4_ROWS: Ga4Row[] = [
   {
     point: "Consent banner",
     ours: { text: "Not needed", good: true },
-    theirs: { text: "Required in the EU and UK", good: false },
+    theirs: { text: "Required in EU & UK", good: false },
   },
   {
     point: "Visitors counted",
@@ -16,7 +16,7 @@ export const GA4_ROWS: Ga4Row[] = [
   {
     point: "Reports",
     ours: { text: "Live", good: true },
-    theirs: { text: "24–48 hours for standard reports", good: false },
+    theirs: { text: "24–48 h delay", good: false },
   },
   {
     point: "Data sampling",

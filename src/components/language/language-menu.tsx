@@ -11,9 +11,17 @@ export function LanguageMenu() {
   const active = useActiveLanguage();
   const [open, setOpen] = useState(false);
   const [armed, setArmed] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const close = useCallback(() => setOpen(false), []);
   const arm = () => setArmed(true);
+
+  const dismiss = useCallback(() => {
+    setOpen(false);
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+    setDismissed(true);
+    window.setTimeout(() => setDismissed(false), 400);
+  }, []);
 
   useDismiss(rootRef, open, close);
 
@@ -23,7 +31,7 @@ export function LanguageMenu() {
       onPointerEnter={arm}
       onFocus={arm}
       translate="no"
-      className={`notranslate mega group flex items-center self-stretch ${open ? "mega--open" : ""}`}
+      className={`notranslate mega group flex items-center self-stretch ${open ? "mega--open" : ""} ${dismissed ? "mega--dismissed" : ""}`}
     >
       <button
         type="button"
@@ -45,7 +53,7 @@ export function LanguageMenu() {
       </button>
 
       <div className="mega__panel">
-        {armed && <LanguagePanel active={active} onClose={close} />}
+        {armed && <LanguagePanel active={active} onClose={dismiss} />}
       </div>
       <div className="mega__scrim" aria-hidden="true" />
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
@@ -10,11 +10,19 @@ import { ProductMenu } from "./product-menu";
 import { MenuToggle } from "./mobile-nav/menu-toggle";
 import { MobileMenu } from "./mobile-nav/mobile-menu";
 import { LanguageMenu } from "./language/language-menu";
+import { MobileLanguageTrigger } from "./language/mobile-language-trigger";
+import { MobileLanguageMenu } from "./language/mobile-language-menu";
+import { useActiveLanguage } from "./use-active-language";
 import { nav, site } from "@/lib/site";
 import { track } from "@/lib/track";
 
+type MobilePanel = "menu" | "language" | null;
+
 export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNode>> }) {
-  const [open, setOpen] = useState(false);
+  const [panel, setPanel] = useState<MobilePanel>(null);
+  const open = panel !== null;
+  const closePanel = useCallback(() => setPanel(null), []);
+  const activeLanguage = useActiveLanguage();
   const pathname = usePathname();
   const isDocs = pathname === "/docs" || pathname.startsWith("/docs/");
 
@@ -22,7 +30,7 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
     document.body.style.overflow = open ? "hidden" : "";
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") setPanel(null);
     };
     window.addEventListener("keydown", onKey);
     return () => {
@@ -32,7 +40,7 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
   }, [open]);
 
   useEffect(() => {
-    setOpen(false);
+    setPanel(null);
   }, [pathname]);
 
   return (
@@ -75,7 +83,14 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
           </nav>
 
           <div className="flex flex-1 items-center justify-end gap-2 self-stretch">
-            <LanguageMenu />
+            <div className="hidden self-stretch lg:flex">
+              <LanguageMenu />
+            </div>
+            <MobileLanguageTrigger
+              active={activeLanguage}
+              open={panel === "language"}
+              onToggle={() => setPanel((p) => (p === "language" ? null : "language"))}
+            />
 
             <a
               href={`${site.app}/signup`}
@@ -94,12 +109,13 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
                 Start free
               </a>
             )}
-            <MenuToggle open={open} onToggle={() => setOpen((v) => !v)} />
+            <MenuToggle open={open} onToggle={() => setPanel((p) => (p ? null : "menu"))} />
           </div>
         </div>
       </div>
 
-      {open && <MobileMenu onClose={() => setOpen(false)} />}
+      {panel === "menu" && <MobileMenu onClose={closePanel} />}
+      {panel === "language" && <MobileLanguageMenu active={activeLanguage} onClose={closePanel} />}
     </header>
   );
 }

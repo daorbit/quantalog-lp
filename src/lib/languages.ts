@@ -43,4 +43,5 @@ export const languageCopy = {
   description: "Pages are translated automatically by Google. English stays authoritative for docs, pricing and legal terms.",
   listLabel: "Languages",
   trigger: "Change language",
+  close: "Close language menu",
 };

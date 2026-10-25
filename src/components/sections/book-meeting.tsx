@@ -21,13 +21,19 @@ export function BookMeeting() {
           body="Add a booking field to any Quantalog form. Visitors pick a time that suits you both, and the meeting is on your calendar before they close the tab."
           centered
         />
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button href={`${site.app}/signup`} size="lg" track="cta_start_free" trackProps={{ location: "book_meeting" }}>
-            Create a booking form
+        <div className="mt-8 flex justify-center gap-2 sm:gap-3">
+          <Button
+            href={`${site.app}/signup`}
+            size="lg"
+            className="max-sm:px-4"
+            track="cta_start_free"
+            trackProps={{ location: "book_meeting" }}
+          >
+            Create booking form
             <ArrowRight className="h-4 w-4" />
           </Button>
-          <Button href="/docs/forms-booking" variant="secondary" size="lg">
-            How booking works
+          <Button href="/docs/forms-booking" variant="secondary" size="lg" className="max-sm:px-4">
+            How it works
           </Button>
         </div>
 
@@ -35,14 +41,14 @@ export function BookMeeting() {
           <BookingShowcase />
         </div>
 
-        <ul className="mt-16 grid border-t border-border pt-10 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+        <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-8 border-t border-border pt-8 sm:mt-16 sm:gap-8 sm:pt-10 lg:grid-cols-4 lg:gap-0">
           {FEATURES.map(({ icon: Icon, title, body }) => (
             <li key={title} className="bm-spec">
               <span className="bm-spec-icon">
                 <Icon className="h-4.5 w-4.5" />
               </span>
-              <p className="mt-4 text-[15px] font-semibold tracking-[-0.01em]">{title}</p>
-              <p className="mt-1.5 text-[14px] leading-relaxed text-fg-muted">{body}</p>
+              <p className="mt-3 text-[14px] font-semibold tracking-[-0.01em] sm:mt-4 sm:text-[15px]">{title}</p>
+              <p className="mt-1 text-[13px] leading-relaxed text-fg-muted sm:mt-1.5 sm:text-[14px]">{body}</p>
             </li>
           ))}
         </ul>

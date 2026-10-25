@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 import { SectionHeading } from "../ui";
 import { BrandGlyph } from "../compare/brand-badge";
 import { GA4_ROWS } from "../compare-home/ga4-rows";
-import { Ga4RowItem } from "../compare-home/ga4-row";
+import { GA4_GRID, Ga4RowItem } from "../compare-home/ga4-row";
 
 const GA4_SLUG = "google-analytics-alternative";
 
@@ -23,25 +23,23 @@ export function CompareGa4() {
           centered
         />
 
-        <div className="mt-12 sm:mt-16">
-          <div
-            className="hidden grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-6 border-b border-border-strong pb-4 sm:grid"
-            aria-hidden="true"
-          >
+        <div className="mt-10 sm:mt-16">
+          <div className={`${GA4_GRID} border-b border-border-strong pb-3 sm:pb-4`} aria-hidden="true">
             <span />
-            <span className="flex items-center gap-2 text-[14px] font-semibold text-fg">
+            <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg sm:gap-2 sm:text-[14px]">
               <Image src="/favicon.png" alt="" width={16} height={16} />
               {site.name}
             </span>
-            <span className="flex items-center gap-2 text-[14px] font-semibold text-fg-muted">
+            <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg-muted sm:gap-2 sm:text-[14px]">
               <BrandGlyph icon={comparison.logo} />
-              {comparison.rival}
+              <span className="sm:hidden">GA4</span>
+              <span className="hidden sm:inline">{comparison.rival}</span>
             </span>
           </div>
 
           <ul className="divide-y divide-border">
             {GA4_ROWS.map((row) => (
-              <Ga4RowItem key={row.point} row={row} rival={comparison.rival} />
+              <Ga4RowItem key={row.point} row={row} ours={site.name} rival={comparison.rival} />
             ))}
           </ul>
         </div>

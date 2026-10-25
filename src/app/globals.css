@@ -3811,7 +3811,7 @@ body {
 .hm-l5 { background: var(--accent); }
 
 .section-y {
-  padding-block: clamp(3.5rem, 2.5rem + 2.5vw, 5.5rem);
+  padding-block: clamp(2.75rem, 2rem + 2.75vw, 5.5rem);
 }
 
 .bm-window {
