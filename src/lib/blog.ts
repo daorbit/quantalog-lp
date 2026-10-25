@@ -1,4 +1,5 @@
 import { getCmsPage, listCmsPages, type CmsPage } from "@/lib/cms";
+import { withHeadingIds, type PostHeading } from "@/lib/blog-headings";
 
  
 const BLOG_GROUP = "blogs";
@@ -34,6 +35,7 @@ export type PostMeta = {
 
 export type Post = PostMeta & {
   html: string;
+  headings: PostHeading[];
   readingMinutes: number;
 };
 
@@ -81,10 +83,11 @@ export async function getPost(slug: string): Promise<Post | undefined> {
   // A page outside the blog group is not a post, even if the slug matches.
   if (!page || page.group !== BLOG_GROUP) return undefined;
 
-  const html = page.content ?? "";
+  const { html, headings } = withHeadingIds(page.content ?? "");
   return {
     ...toMeta(page),
     html,
+    headings,
     readingMinutes: toReadingMinutes(html),
   };
 }
@@ -116,4 +119,12 @@ export function formatDate(iso: string): string {
     day: "numeric",
     timeZone: "UTC",
   });
+}
+
+export function formatMonth(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", timeZone: "UTC" });
+}
+
+export function formatDay(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 }
