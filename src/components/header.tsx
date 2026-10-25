@@ -78,13 +78,6 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
             <LanguageMenu />
 
             <a
-              href={`${site.app}/login`}
-              onClick={() => track("sign_in", { location: "header" })}
-              className="hidden h-8 items-center whitespace-nowrap rounded-full px-3.5 text-[13px] font-medium text-fg transition-colors duration-200 hover:bg-bg-subtle lg:inline-flex"
-            >
-              Sign in
-            </a>
-            <a
               href={`${site.app}/signup`}
               onClick={() => track("cta_start_free", { location: "header" })}
               className="group hidden h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-cta px-3.5 text-[13px] font-semibold text-cta-fg transition-colors duration-200 hover:bg-cta-hover lg:inline-flex"

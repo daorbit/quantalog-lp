@@ -5,23 +5,29 @@ function TileLink({
   href,
   children,
   primary,
-  ariaLabel,
+  topic,
 }: {
   href: string;
   children: React.ReactNode;
   primary?: boolean;
-  ariaLabel?: string;
+  topic: string;
 }) {
   const cls = `inline-flex h-10 items-center rounded-full px-5 text-[14px] font-semibold transition-colors duration-200 ${
     primary ? "bg-cta text-cta-fg hover:bg-cta-hover" : "text-fg ring-1 ring-inset ring-border-strong hover:bg-surface"
   }`;
-  return href.startsWith("/") ? (
-    <Link href={href} className={cls} aria-label={ariaLabel}>
+  const content = (
+    <>
       {children}
+      <span className="sr-only">: {topic}</span>
+    </>
+  );
+  return href.startsWith("/") ? (
+    <Link href={href} className={cls}>
+      {content}
     </Link>
   ) : (
-    <a href={href} className={cls} aria-label={ariaLabel}>
-      {children}
+    <a href={href} className={cls}>
+      {content}
     </a>
   );
 }
@@ -40,10 +46,10 @@ export function ExploreTile({ item }: { item: ExploreItem }) {
       </h3>
       <p className="mt-2 text-[15px] text-fg-muted sm:mt-3 sm:text-[19px]">{item.body}</p>
       <div className="mt-5 flex flex-wrap justify-center gap-2.5 sm:mt-6 sm:gap-3">
-        <TileLink href={item.primary.href} primary ariaLabel={`${item.primary.label}: ${item.label}`}>
+        <TileLink href={item.primary.href} primary topic={item.label}>
           {item.primary.label}
         </TileLink>
-        <TileLink href={item.secondary.href} ariaLabel={`${item.secondary.label}: ${item.label}`}>
+        <TileLink href={item.secondary.href} topic={item.label}>
           {item.secondary.label}
         </TileLink>
       </div>

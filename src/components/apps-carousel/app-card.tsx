@@ -25,7 +25,7 @@ export function AppCard({ app }: { app: AppEntry }) {
     "apps-card flex flex-col rounded-[1.5rem] bg-surface p-6 ring-1 ring-inset ring-border transition-colors duration-200 hover:ring-border-strong dark:bg-surface-raised";
 
   return app.href ? (
-    <Link href={app.href} className={className} aria-label={`${app.name}: ${app.body}`}>
+    <Link href={app.href} className={className}>
       {body}
     </Link>
   ) : (

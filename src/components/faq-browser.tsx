@@ -38,27 +38,28 @@ export function FaqBrowser({ intro }: { intro: React.ReactNode }) {
 
       <div className="min-w-0">
         {faqCategories.map((c) => (
-          <ul
+          <div
             key={c.id}
             id={`faq-panel-${c.id}`}
             role="tabpanel"
             aria-labelledby={`faq-tab-${c.id}`}
             hidden={c.id !== active}
-            className="space-y-3"
           >
-            {c.items.map((item, i) => {
-              const id = `${c.id}-${i}`;
-              return (
-                <FaqItem
-                  key={id}
-                  id={`faq-${id}`}
-                  item={item}
-                  open={open === id}
-                  onToggle={() => setOpen(open === id ? null : id)}
-                />
-              );
-            })}
-          </ul>
+            <ul className="space-y-3">
+              {c.items.map((item, i) => {
+                const id = `${c.id}-${i}`;
+                return (
+                  <FaqItem
+                    key={id}
+                    id={`faq-${id}`}
+                    item={item}
+                    open={open === id}
+                    onToggle={() => setOpen(open === id ? null : id)}
+                  />
+                );
+              })}
+            </ul>
+          </div>
         ))}
       </div>
     </div>
