@@ -146,17 +146,42 @@ function Body() {
         <Li>
           <b>GSTIN</b>: your 15-character Goods and Services Tax number, for
           businesses registered for GST in India. When filled in, it is printed
-          as <Code>GSTIN: 22AAAAA0000A1Z5</Code> under your address, which a GST
-          invoice must show. Leave it blank if you are not registered or not in
-          India. Quantalog checks the format and refuses a number that
-          can&apos;t be a valid GSTIN.
+          under your address and the invoice heading changes from{" "}
+          <b>Invoice</b> to <b>Tax invoice</b>, as a GST invoice must say. Leave
+          it blank if you are not registered or not in India. Quantalog checks
+          the format and refuses a number that can&apos;t be a valid GSTIN.
         </Li>
         <Li>
           <b>Website</b>: optional, printed with your contact details.
         </Li>
       </Ul>
 
-      <H3 id="numbers-and-payment">Numbers and payment</H3>
+      <H3 id="logo-and-style">Logo and style</H3>
+      <Ul>
+        <Li>
+          <b>Logo</b>: your logo, printed at the top left of every new document.
+          Upload a PNG, JPG or SVG up to 300 KB. A wide logo on a transparent
+          background looks best. <b>Remove</b> takes it off new documents.
+        </Li>
+        <Li>
+          <b>Template</b>: the layout new documents start with.{" "}
+          <b>Classic</b> has clean lines with your colour on the details,{" "}
+          <b>Modern</b> puts a band of your colour across the top,{" "}
+          <b>Minimal</b> uses light type and plenty of white space, and{" "}
+          <b>Bold</b> has a dark header with your colour on the total.
+        </Li>
+        <Li>
+          <b>Colour</b>: the accent used for headings, table lines and the
+          total. Pick from blue, indigo, teal, emerald, amber, crimson and
+          slate. Choose the one closest to your brand.
+        </Li>
+      </Ul>
+      <P>
+        Every document can still switch template and colour on its own, in the{" "}
+        <b>Design</b> section of the editor.
+      </P>
+
+      <H3 id="numbers-and-payment">Numbers and payment terms</H3>
       <Ul>
         <Li>
           <b>Currency</b>: the currency new documents start in. Choose from
@@ -187,6 +212,42 @@ function Body() {
         carries on, so after <Code>INV-0007</Code> a new prefix of{" "}
         <Code>ACME</Code> gives <Code>ACME-0008</Code>. Numbers that were
         already given out never change.
+      </Callout>
+
+      <H3 id="payment-details">Payment details</H3>
+      <P>
+        Where clients should send the money. They are printed in a{" "}
+        <b>Payment details</b> box on every invoice (not on quotations), so
+        clients don&apos;t have to write back and ask. All of them are optional.
+      </P>
+      <Ul>
+        <Li>
+          <b>Bank name</b>: the bank that holds your business account.
+        </Li>
+        <Li>
+          <b>Account name</b>: the name on the account, exactly as the bank
+          has it. Transfers to a different name can bounce.
+        </Li>
+        <Li>
+          <b>Account number</b>: 6 to 34 letters and digits, with no spaces.
+        </Li>
+        <Li>
+          <b>IFSC</b>: the 11-character code of your branch, such as{" "}
+          <Code>HDFC0001234</Code>, needed for NEFT, RTGS and IMPS transfers in
+          India.
+        </Li>
+        <Li>
+          <b>UPI ID</b>: your business UPI address, such as{" "}
+          <Code>acme@okhdfcbank</Code>. On invoices in Indian rupees it adds a{" "}
+          <b>scan-to-pay QR code</b> for the amount due, so a client can pay
+          from any UPI app in seconds. The QR code carries the invoice number
+          as the payment note, which makes the payment easy to match.
+        </Li>
+      </Ul>
+      <Callout>
+        Like your other details, payment details are copied onto each document
+        when it is created. If you change bank accounts, documents you already
+        sent keep the old details.
       </Callout>
 
       <H3 id="defaults">Defaults</H3>
@@ -272,6 +333,15 @@ function Body() {
         already saved keep their copy.
       </P>
 
+      <H3 id="design">Design</H3>
+      <P>
+        Pick a <b>template</b> (Classic, Modern, Minimal or Bold) and a{" "}
+        <b>colour</b> for this document. Each template card shows a small
+        sketch of the layout, and the preview on the right switches as soon as
+        you click. New documents start with the template and colour from your
+        business details.
+      </P>
+
       <H3 id="details">Details</H3>
       <Ul>
         <Li>
@@ -305,9 +375,9 @@ function Body() {
       <H3 id="client">Bill to and Quote for</H3>
       <P>
         Who the document is for. <b>Name or company</b> is required to save;{" "}
-        <b>Email</b>, <b>Phone</b> and <b>Address</b> are optional but printed
-        when filled in. For a GST invoice to a registered business, add their
-        GSTIN on a line of the address.
+        <b>Email</b>, <b>Phone</b>, <b>Address</b> and <b>GSTIN</b> are optional
+        but printed when filled in. A GST invoice to a registered business must
+        show the buyer&apos;s GSTIN, so fill it in for those clients.
       </P>
 
       <H3 id="items">Items</H3>
@@ -384,6 +454,50 @@ function Body() {
         with your defaults and can be changed for this document alone. They are
         printed at the bottom.
       </P>
+
+      <H3 id="preview">What the finished document shows</H3>
+      <Ul>
+        <Li>
+          <b>Header</b>: your logo, business name, address, GSTIN and contact
+          details, with <b>Invoice</b>, <b>Tax invoice</b> or <b>Quotation</b>{" "}
+          and the number on the right.
+        </Li>
+        <Li>
+          <b>Client and dates</b>: who it is for, the date, the due date or
+          valid-until date, and the PO number or reference.
+        </Li>
+        <Li>
+          <b>Items</b>: numbered lines with quantity, rate and amount.
+        </Li>
+        <Li>
+          <b>Amount due box</b>: the figure your client cares about most,
+          shown large. On invoices it reads <b>Amount due</b>, or{" "}
+          <b>Balance due</b> after a part payment, with the due date under it.
+          On quotations it reads <b>Quote total</b> with the valid-until date.
+        </Li>
+        <Li>
+          <b>Totals</b>: subtotal, discount, tax, shipping, total and any amount
+          paid.
+        </Li>
+        <Li>
+          <b>Amount in words</b>: the total written out, such as &quot;Rupees
+          Twelve Thousand Five Hundred Only&quot;. Rupee amounts use lakh and
+          crore.
+        </Li>
+        <Li>
+          <b>Payment details</b> (invoices): your bank details and, for rupee
+          invoices with a UPI ID, a QR code for the amount due.
+        </Li>
+        <Li>
+          <b>Notes, terms and signature</b>: your notes and terms, and a{" "}
+          <b>For your business / Authorised signatory</b> block to sign on a
+          printed copy.
+        </Li>
+        <Li>
+          <b>Stamp</b>: invoices marked <b>Paid</b> or <b>Cancelled</b> carry a
+          faint stamp saying so, so nobody pays a paid invoice twice.
+        </Li>
+      </Ul>
 
       <H3 id="save">Saving and the PDF</H3>
       <Ul>
@@ -488,14 +602,16 @@ function Body() {
       <H2 id="gst">GST invoices in India</H2>
       <P>Invoicing covers what most small GST-registered businesses need:</P>
       <Ul>
-        <Li>your GSTIN printed under your address;</Li>
+        <Li>the heading <b>Tax invoice</b> once your GSTIN is filled in;</Li>
+        <Li>your GSTIN, and your client&apos;s when they are registered;</Li>
         <Li>a unique, sequential number for every invoice;</Li>
         <Li>the date, your client&apos;s name and address, and each item;</Li>
-        <Li>the tax rate and tax amount, and the total.</Li>
+        <Li>the tax rate and tax amount, the total, and the amount in words;</Li>
+        <Li>a signature block for the authorised signatory.</Li>
       </Ul>
       <Callout variant="warn">
-        Separate CGST, SGST and IGST lines, HSN or SAC codes per item, and
-        e-invoicing (IRN) are not supported yet. Enter the combined GST rate in{" "}
+        Separate CGST, SGST and IGST lines, place of supply, HSN or SAC codes
+        per item, and e-invoicing (IRN) are not supported yet. Enter the combined GST rate in{" "}
         <b>Tax</b>, and check with your accountant if your business needs the
         full breakdown.
       </Callout>
@@ -528,8 +644,10 @@ function Body() {
       </P>
       <H3 id="faq-email">Can Quantalog email the invoice or collect payment?</H3>
       <P>
-        Not yet. Download the PDF and send it yourself. Sending by email and
-        payment links through the gateways you connected in Apps are planned.
+        Not by email yet: download the PDF and send it yourself. Invoices in
+        rupees can already be paid by scanning the UPI QR code when you add a
+        UPI ID. Sending by email and card payment links through the gateways
+        you connected in Apps are planned.
       </P>
     </>
   );
