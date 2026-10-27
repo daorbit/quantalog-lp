@@ -1,5 +1,5 @@
 import type { Doc } from "@/lib/docs";
-import { H2, H3, P, Ul, Li, Code, Callout } from "@/components/prose";
+import { A, H2, H3, P, Ul, Li, Code, Callout } from "@/components/prose";
 
 function Body() {
   return (
@@ -12,6 +12,12 @@ function Body() {
         what has been paid and what is still due. It is an official Quantalog
         app: free, available in every workspace, and off until a workspace
         admin turns it on.
+      </P>
+      <P>
+        Four tabs run across the top: <b>Invoices</b> for your quotations and
+        invoices, <b>Customers</b> for everyone you bill, <b>Items</b> for what
+        you sell, and <b>Reports</b> for what you billed, collected and are
+        still owed.
       </P>
 
       <H2 id="basics">Quotations and invoices</H2>
@@ -338,18 +344,21 @@ function Body() {
         scroll separately, so the document stays in view while you work. The
         button above the preview shows the current design (for example{" "}
         <b>Standard · Blue</b>) and opens the design screen. At the top,{" "}
-        <b>Preview</b> opens the same screen, the download button saves a PDF,
-        and <b>Create invoice</b> saves it.
+        <b>Preview</b> opens the same screen, the download button saves a PDF,{" "}
+        <b>Share</b> emails it or makes a link once it is saved, and{" "}
+        <b>Create invoice</b> saves it.
       </P>
       <Ul>
         <Li>
-          <b>1. Who is it for?</b> The client. Start typing a name and
-          Quantalog suggests clients you have billed or quoted before; pick one
-          and their email, phone, address and GSTIN fill in.
+          <b>1. Who is it for?</b> The customer. Start typing and Quantalog
+          suggests customers from your <b>Customers</b> list; pick one and their
+          email, phone, address, GSTIN and state fill in. Type a new name and
+          the customer is added to your list when you save.
         </Li>
         <Li>
           <b>2. What are you billing for?</b> The items, with a running
-          subtotal.
+          subtotal. Start typing to pick a saved item, which fills in its rate,
+          unit, HSN or SAC code and GST rate.
         </Li>
         <Li>
           <b>3. When is it due?</b> (or <b>How long does the price stand?</b>{" "}
@@ -359,9 +368,10 @@ function Body() {
           <b>Quotation number and reference</b>) under the dates to set those.
         </Li>
         <Li>
-          <b>4. Tax and discounts.</b> Tap a GST rate (0, 5, 12, 18 or 28%) on
-          rupee documents, or type any rate, plus discount, shipping and any
-          amount already paid.
+          <b>4. GST, discounts and totals</b> (<b>Tax and discounts</b> when you
+          are not GST-registered). The place of supply, a GST rate for every
+          item at once, discount, shipping, any amount already paid, and the
+          options described under <A href="#pricing">Tax, discount and payment</A>.
         </Li>
         <Li>
           <b>5. Notes and terms.</b> Optional text for the bottom of the
@@ -420,73 +430,114 @@ function Body() {
 
       <H3 id="client">Bill to and Quote for</H3>
       <P>
-        Who the document is for. <b>Name or company</b> is required to save;{" "}
+        Who the document is for. <b>Customer</b> is required to save;{" "}
         <b>Email</b>, <b>Phone</b>, <b>Address</b> and <b>GSTIN</b> are optional
         but printed when filled in. A GST invoice to a registered business must
-        show the buyer&apos;s GSTIN, so fill it in for those clients.
+        show the buyer&apos;s GSTIN, so fill it in for those clients. The hint
+        under the name tells you whether it came from your customers or is a
+        new customer that will be added when you save. Changing the details
+        here changes this document only; edit the customer itself on the{" "}
+        <b>Customers</b> tab.
       </P>
 
       <H3 id="items">Items</H3>
       <Ul>
         <Li>
-          <b>Description</b>: what you are charging for, such as &quot;Website
-          design, 5 pages&quot;.
+          <b>Item</b>: what you are charging for, such as &quot;Website
+          design, 5 pages&quot;. Type to pick a saved item from the{" "}
+          <b>Items</b> tab.
         </Li>
         <Li>
           <b>Qty</b>: how many, such as hours, units or months.
         </Li>
         <Li>
-          <b>Rate</b>: the price of one, before tax.
+          <b>Rate</b>: the price of one.
         </Li>
         <Li>
           <b>Amount</b>: worked out for you as quantity times rate.
+        </Li>
+        <Li>
+          Under each line: <b>HSN/SAC</b> (GST-registered businesses only), the{" "}
+          <b>Unit</b> printed next to the quantity, such as <Code>Hrs</Code> or{" "}
+          <Code>Nos</Code>, and the <b>GST</b> (or <b>Tax</b>) rate for that
+          line.
         </Li>
       </Ul>
       <P>
         <b>Add item</b> adds a line and the <b>×</b> removes one. A document
         has at least one line and up to 200. Lines left completely empty are
-        not printed.
+        not printed. Each line can carry its own rate, so a 5% item and an 18%
+        item can sit on the same invoice.
       </P>
 
       <H3 id="pricing">Tax, discount and payment</H3>
       <Ul>
         <Li>
+          <b>Place of supply</b> (GST-registered businesses): the state the
+          supply is made to. It is worked out from your customer&apos;s GSTIN or
+          state, and you can change it. When it is your own state the tax is
+          split into <b>CGST</b> and <b>SGST</b>; when it is another state it is
+          charged as <b>IGST</b>.
+        </Li>
+        <Li>
+          <b>GST on every item</b>: tap a rate to set it on every line at once.
+          Change single lines in the item list.
+        </Li>
+        <Li>
           <b>Currency</b>: the currency of this document. It starts as your
           default.
         </Li>
         <Li>
-          <b>Tax</b>: one tax rate, as a percentage of the subtotal. For GST,
-          enter the full rate, for example <Code>18</Code> for 9% CGST plus 9%
-          SGST.
-        </Li>
-        <Li>
           <b>Discount</b>: either a percentage of the subtotal (<b>%</b>) or a
-          fixed sum (<b>Amount</b>). Use the switch inside the field to choose.
+          fixed sum (<b>Amount</b>). It is taken off before tax, as GST
+          requires.
         </Li>
         <Li>
           <b>Shipping</b>: delivery or other charges added after tax.
         </Li>
         <Li>
-          <b>Amount paid</b> (invoices): any advance or part payment already
+          <b>Already paid</b> (invoices): any advance or part payment already
           received. The invoice then shows a <b>Balance due</b>.
         </Li>
+        <Li>
+          <b>Prices include tax</b>: turn on when your rates already have GST
+          in them. The tax is worked out backwards from each line.
+        </Li>
+        <Li>
+          <b>Round off the total</b>: rounds the total to the nearest whole
+          rupee and prints the difference as <b>Round off</b>. On by default for
+          rupee documents.
+        </Li>
+        <Li>
+          <b>Reverse charge</b>: when the buyer pays the GST. The invoice
+          prints <b>Reverse Charge: Yes</b>.
+        </Li>
+        <Li>
+          <b>Export under LUT</b>: a zero-rated export under a Letter of
+          Undertaking. No GST is charged and the invoice says so.
+        </Li>
       </Ul>
-      <P>The totals under the fields are worked out like this:</P>
+      <P>The totals are worked out like this:</P>
       <Ul>
         <Li>
           <b>Subtotal</b> = the sum of every line&apos;s amount
         </Li>
         <Li>
-          <b>Tax</b> = subtotal × tax rate
+          <b>Discount</b> = subtotal × discount %, or the fixed amount, shared
+          across the lines
         </Li>
         <Li>
-          <b>Discount</b> = subtotal × discount %, or the fixed amount
+          <b>Taxable amount</b> = subtotal − discount
         </Li>
         <Li>
-          <b>Total</b> = subtotal + tax − discount + shipping
+          <b>Tax</b> = each line&apos;s taxable amount × its rate, shown per rate as
+          CGST and SGST or IGST
         </Li>
         <Li>
-          <b>Balance due</b> = total − amount paid
+          <b>Total</b> = taxable amount + tax + shipping, plus any round off
+        </Li>
+        <Li>
+          <b>Balance due</b> = total − amount already paid
         </Li>
       </Ul>
       <P>
@@ -645,6 +696,150 @@ function Body() {
         </Li>
       </Ul>
 
+      <H2 id="sharing">Sharing with your client</H2>
+      <P>
+        Once a document is saved, <b>Share</b> at the top of the editor opens
+        two ways to send it. If you have unsaved changes, they are saved first.
+      </P>
+      <H3 id="share-email">Email</H3>
+      <Ul>
+        <Li>
+          <b>To</b> and <b>Cc</b>: up to five addresses each. The customer&apos;s
+          email is filled in for you.
+        </Li>
+        <Li>
+          <b>Subject</b> and <b>Message</b>: written for you and yours to edit.
+          A <b>View invoice</b> (or <b>View quotation</b>) button is added under
+          your message.
+        </Li>
+        <Li>
+          <b>Attach PDF</b>: on by default. The PDF is exactly what the preview
+          shows.
+        </Li>
+        <Li>
+          <b>Send now</b> or <b>Schedule</b>: pick a date and time up to 90 days
+          ahead. A scheduled email goes out within five minutes of that time,
+          with the document as it was when you scheduled it. The dialog shows
+          the scheduled email with a <b>Cancel</b> button until it is sent.
+        </Li>
+      </Ul>
+      <P>
+        Emails come from <b>Your business via Quantalog</b>, and replies go to
+        your billing email. Sending a draft marks it <b>Sent</b>. A workspace
+        can send up to 200 emails a day.
+      </P>
+      <H3 id="share-link">Link</H3>
+      <P>
+        <b>Create link</b> makes a private web page for the document. Anyone
+        with the link can view it and download the PDF, and pay with the UPI QR
+        code on rupee invoices. From the <b>Link</b> tab you can copy the link,
+        send it on <b>WhatsApp</b> or from your own <b>Email app</b>, or{" "}
+        <b>Open</b> it to see what your client sees.
+      </P>
+      <Ul>
+        <Li>
+          <b>Views</b>: the tab shows how many times the link was opened and
+          when it was last opened. Opening it yourself with <b>Open</b> is not
+          counted.
+        </Li>
+        <Li>
+          <b>Accept or decline</b>: on a quotation that is <b>Draft</b> or{" "}
+          <b>Sent</b>, your client can accept or decline it on the page, with
+          their name and a note. The quotation&apos;s status changes for you, and
+          the editor shows who answered, when, and what they wrote.
+        </Li>
+        <Li>
+          <b>Turn off link</b>: stops the link working straight away. Creating
+          a new one gives a different address.
+        </Li>
+      </Ul>
+      <P>
+        The line under a document&apos;s title in the editor shows its activity:
+        when it was emailed, any scheduled email, how often it was viewed, and
+        the client&apos;s answer.
+      </P>
+
+      <H2 id="customers">Customers</H2>
+      <P>
+        The <b>Customers</b> tab lists everyone you quote and bill, A to Z, with
+        what each still owes you. Search by name, email, GSTIN or phone. The
+        first time you open it, the clients on your existing documents are
+        added for you.
+      </P>
+      <Ul>
+        <Li>
+          <b>New customer</b>: name (required), contact person, email, phone,
+          GSTIN, state, billing and shipping address, website and private
+          notes. Typing a GSTIN fills in the state.
+        </Li>
+        <Li>
+          <b>State</b>: used as the place of supply on their documents when
+          they have no GSTIN.
+        </Li>
+        <Li>
+          Open a customer to see their <b>outstanding</b>, <b>overdue</b>,{" "}
+          <b>invoiced</b> and <b>paid</b> totals, their details, and every
+          invoice and quotation for them. <b>Statement</b> downloads their
+          invoices as a CSV file.
+        </Li>
+        <Li>
+          <b>New invoice</b> and <b>New quotation</b> on a customer start a
+          document with their details already filled in.
+        </Li>
+      </Ul>
+      <P>
+        Customer names are unique in a workspace. Deleting a customer keeps
+        their documents.
+      </P>
+
+      <H2 id="item-list">Items</H2>
+      <P>
+        The <b>Items</b> tab holds the products and services you sell. Each has
+        a <b>type</b> (goods or service), a <b>name</b>, an optional{" "}
+        <b>description</b>, a <b>rate</b>, a <b>unit</b>, an <b>HSN</b> code
+        for goods or <b>SAC</b> code for services, and a <b>GST rate</b>. Pick
+        an item on any document and all of these fill in. Changing an item
+        later doesn&apos;t change documents that already use it.
+      </P>
+
+      <H2 id="reports">Reports</H2>
+      <P>
+        The <b>Reports</b> tab adds up your sent, paid and overdue invoices in
+        your default currency. Drafts and cancelled invoices are left out. Pick
+        a period at the top: this month, last month, this quarter, this or last
+        financial year (April to March), the last 12 months, or a custom range.
+        Every table has an <b>Export CSV</b> button.
+      </P>
+      <Ul>
+        <Li>
+          <b>Overview</b>: invoiced, collected, outstanding and overdue, a
+          month-by-month chart of invoiced against collected, and how many
+          quotations were accepted.
+        </Li>
+        <Li>
+          <b>Receivables</b>: who owes you as of today, split by how long each
+          invoice is past due: not due yet, 1–15, 16–30, 31–45 and over 45 days.
+        </Li>
+        <Li>
+          <b>Sales</b>: invoiced, paid and outstanding by customer, or quantity
+          and amount by item.
+        </Li>
+        <Li>
+          <b>Payments</b>: invoices marked paid in the period, how long each took
+          to pay, and the average.
+        </Li>
+        <Li>
+          <b>GST</b> (GST-registered businesses): taxable value, IGST, CGST and
+          SGST by rate, B2B against B2C, and every invoice with its place of
+          supply. <b>Export for GSTR-1</b> downloads it in the order the return
+          asks for.
+        </Li>
+      </Ul>
+      <Callout>
+        A payment counts on the day the invoice was marked <b>Paid</b>.
+        Documents in other currencies are left out of the totals.
+      </Callout>
+
       <H2 id="gst">GST invoices in India</H2>
       <P>Invoicing covers what most small GST-registered businesses need:</P>
       <Ul>
@@ -655,11 +850,20 @@ function Body() {
         <Li>the tax rate and tax amount, the total, and the amount in words;</Li>
         <Li>a signature block for the authorised signatory.</Li>
       </Ul>
+      <P>Once your GSTIN is saved in your business details, every document also gets:</P>
+      <Ul>
+        <Li>an HSN or SAC code, unit and GST rate on each line;</Li>
+        <Li>
+          the <b>place of supply</b>, and the tax split into CGST and SGST
+          within your state or IGST across states;
+        </Li>
+        <Li>prices that include tax, round off, reverse charge and export under LUT;</Li>
+        <Li>a GST summary and an export laid out like GSTR-1 on the <b>Reports</b> tab.</Li>
+      </Ul>
       <Callout variant="warn">
-        Separate CGST, SGST and IGST lines, place of supply, HSN or SAC codes
-        per item, and e-invoicing (IRN) are not supported yet. Enter the combined GST rate in{" "}
-        <b>Tax</b>, and check with your accountant if your business needs the
-        full breakdown.
+        E-invoicing (IRN and QR from the GST portal), e-way bills and filing
+        returns are not supported yet. Check the GSTR-1 export with your
+        accountant before you file.
       </Callout>
 
       <H2 id="disable">Turning Invoicing off</H2>
@@ -690,10 +894,16 @@ function Body() {
       </P>
       <H3 id="faq-email">Can Quantalog email the invoice or collect payment?</H3>
       <P>
-        Not by email yet: download the PDF and send it yourself. Invoices in
-        rupees can already be paid by scanning the UPI QR code when you add a
-        UPI ID. Sending by email and card payment links through the gateways
-        you connected in Apps are planned.
+        Yes to email: use <b>Share</b> in the editor, described under{" "}
+        <A href="#sharing">Sharing with your client</A>. Invoices in rupees can
+        be paid by scanning the UPI QR code when you add a UPI ID. Card payment
+        links through the gateways you connected in Apps are planned.
+      </P>
+      <H3 id="faq-gst-old">An older invoice shows one tax line instead of CGST and SGST</H3>
+      <P>
+        Invoices saved before per-line GST keep their single tax rate until
+        you open and save them again. When you do, the rate is copied onto
+        every line and the tax is worked out per line.
       </P>
     </>
   );
@@ -703,7 +913,7 @@ export const quantalogInvoicing: Doc = {
   slug: "quantalog-invoicing",
   title: "Quantalog Invoicing",
   description:
-    "Turn on Invoicing, add your business details, and send quotations and GST-ready invoices to your leads. Every field explained.",
+    "Turn on Invoicing, add your business details, and send quotations and GST invoices to your customers by email or link. Customers, items and reports, every field explained.",
   category: "Tracking",
   order: 13.8,
   Body,
