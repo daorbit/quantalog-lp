@@ -170,8 +170,14 @@ function Body() {
           right with a coloured table header; <b>Spreadsheet</b> lays
           everything out in a neat bordered grid, which suits long item lists;{" "}
           <b>Minimalist</b> uses large light type and plenty of white space with
-          colour only on the amount due; and <b>Grand</b> opens with a bold
-          colour header showing the amount due, followed by a client card.
+          colour only on the amount due; <b>Grand</b> opens with a bold colour
+          header showing the amount due; <b>Soft Cards</b> puts every section
+          in a soft rounded card; <b>Studio</b> has a big quiet title and a
+          highlighted amount due; <b>Agency</b> pairs a colour brand card with
+          the amount due; <b>Capsule</b> lays items out as rounded pills;{" "}
+          <b>Banner</b> has a full colour header with the page rising over it;
+          and <b>Panel</b> opens with a soft header panel and the client in its
+          own card.
         </Li>
         <Li>
           <b>Colour</b>: the accent used for headings, table lines and the
@@ -373,8 +379,8 @@ function Body() {
         summary card, to open the full-screen preview. It shows the document
         exactly as your client will see it, on a laptop or a phone (switch with
         the buttons at the top). The <b>Design</b> panel on the right is where
-        you pick a <b>template</b> (Standard, Spreadsheet, Minimalist or Grand)
-        and a{" "}
+        you pick a <b>template</b> from ten layouts, each shown as a small
+        preview of your own document, and a{" "}
         <b>colour</b>; the document changes as you click. Close the preview and
         save to keep the design. <b>PDF</b> in the preview downloads the file.
         New documents start with the template and colour from your business
