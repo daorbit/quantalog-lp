@@ -159,8 +159,9 @@ function Body() {
       <H3 id="logo-and-style">Logo and style</H3>
       <Ul>
         <Li>
-          <b>Logo</b>: your logo, printed at the top left of every new document
-          and shown in the preview.
+          <b>Logo</b>: your logo, shown on every quotation and invoice in every
+          template, including ones made before you uploaded it. Replace it here
+          and documents without their own logo pick up the new one.
           Upload a PNG, JPG or SVG up to 300 KB. A wide logo on a transparent
           background looks best. <b>Remove</b> takes it off new documents.
         </Li>
