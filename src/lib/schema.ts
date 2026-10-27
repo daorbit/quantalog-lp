@@ -19,7 +19,7 @@ export const organization = {
     "@type": "ImageObject",
     url: `${site.url}/favicon.png`,
   },
-  sameAs: [site.github, `https://x.com/${site.twitter.replace(/^@/, "")}`],
+  sameAs: [site.linkedin, site.instagram],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
@@ -66,7 +66,7 @@ export const author = {
     url: `${site.url}/favicon.png`,
   },
   jobTitle: "Product Team",
-  sameAs: [site.github, `https://x.com/${site.twitter.replace(/^@/, "")}`],
+  sameAs: [site.linkedin, site.instagram],
 };
 
 export function article({

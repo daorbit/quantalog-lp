@@ -23,6 +23,8 @@ export const site = {
   author: "The Quantalog Team",
   twitter: "@quantalog",
   github: "https://github.com/quantalog",
+  linkedin: "https://www.linkedin.com/in/da-orbit-32865b388/",
+  instagram: "https://www.instagram.com/daorbit/",
   email: "daorbit2k25@gmail.com",
   legalName: "DA Orbit",
 

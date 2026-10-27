@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
-// import { SocialLinks } from "./social-links";
+import { SocialLinks } from "./social-links";
 import { site } from "@/lib/site";
 
 const columns = [
@@ -63,10 +63,6 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-fg-muted">
               {site.description}
             </p>
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-[12px] text-fg-muted">
-              <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
-              All systems operational
-            </p>
           </div>
 
           {columns.map((col) => (
@@ -113,7 +109,7 @@ export function Footer() {
               © {new Date().getFullYear()} {site.name}. All rights reserved.
             </p>
             <div className="flex items-center gap-3 lg:order-3">
-              {/* <SocialLinks /> */}
+              <SocialLinks />
               <ThemeToggle />
             </div>
           </div>
