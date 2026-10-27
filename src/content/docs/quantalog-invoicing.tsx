@@ -159,16 +159,19 @@ function Body() {
       <H3 id="logo-and-style">Logo and style</H3>
       <Ul>
         <Li>
-          <b>Logo</b>: your logo, printed at the top left of every new document.
+          <b>Logo</b>: your logo, printed at the top left of every new document
+          and shown in the preview.
           Upload a PNG, JPG or SVG up to 300 KB. A wide logo on a transparent
           background looks best. <b>Remove</b> takes it off new documents.
         </Li>
         <Li>
           <b>Template</b>: the layout new documents start with.{" "}
-          <b>Classic</b> has clean lines with your colour on the details,{" "}
-          <b>Modern</b> puts a band of your colour across the top,{" "}
-          <b>Minimal</b> uses light type and plenty of white space, and{" "}
-          <b>Bold</b> has a dark header with your colour on the total.
+          <b>Standard</b> puts a large title and the balance due at the top
+          right with a coloured table header; <b>Spreadsheet</b> lays
+          everything out in a neat bordered grid, which suits long item lists;{" "}
+          <b>Minimalist</b> uses large light type and plenty of white space with
+          colour only on the amount due; and <b>Grand</b> opens with a bold
+          colour header showing the amount due, followed by a client card.
         </Li>
         <Li>
           <b>Colour</b>: the accent used for headings, table lines and the
@@ -178,7 +181,7 @@ function Body() {
       </Ul>
       <P>
         Every document can still switch template and colour on its own, in the{" "}
-        <b>Design</b> section of the editor.
+        <b>Design</b> panel of its preview.
       </P>
 
       <H3 id="numbers-and-payment">Numbers and payment terms</H3>
@@ -321,25 +324,61 @@ function Body() {
 
       <H2 id="create">Creating a quotation or invoice</H2>
       <P>
-        Press <b>New invoice</b> or <b>New quotation</b>. The editor has the
-        form on the left and a live preview of the finished document on the
-        right, which updates as you type.
+        Press <b>New invoice</b> or <b>New quotation</b>. The editor walks you
+        through five numbered steps, and each number turns into a tick once
+        that step is filled in. The right side is a <b>live preview</b> of the
+        finished document, updating as you type; the form and the preview
+        scroll separately, so the document stays in view while you work. The
+        button above the preview shows the current design (for example{" "}
+        <b>Standard · Blue</b>) and opens the design screen. At the top,{" "}
+        <b>Preview</b> opens the same screen, the download button saves a PDF,
+        and <b>Create invoice</b> saves it.
+      </P>
+      <Ul>
+        <Li>
+          <b>1. Who is it for?</b> The client. Start typing a name and
+          Quantalog suggests clients you have billed or quoted before; pick one
+          and their email, phone, address and GSTIN fill in.
+        </Li>
+        <Li>
+          <b>2. What are you billing for?</b> The items, with a running
+          subtotal.
+        </Li>
+        <Li>
+          <b>3. When is it due?</b> (or <b>How long does the price stand?</b>{" "}
+          on quotations) Tap a payment term such as <b>On receipt</b>,{" "}
+          <b>15 days</b> or <b>30 days</b> and the due date sets itself, or pick
+          dates yourself. Open <b>Invoice number and PO number</b> (or{" "}
+          <b>Quotation number and reference</b>) under the dates to set those.
+        </Li>
+        <Li>
+          <b>4. Tax and discounts.</b> Tap a GST rate (0, 5, 12, 18 or 28%) on
+          rupee documents, or type any rate, plus discount, shipping and any
+          amount already paid.
+        </Li>
+        <Li>
+          <b>5. Notes and terms.</b> Optional text for the bottom of the
+          document.
+        </Li>
+      </Ul>
+      <P>
+        The <b>From</b> block on the document is your business details from
+        Apps. Change them there; new documents pick up the change, and
+        documents already saved keep their copy.
       </P>
 
-      <H3 id="from">From</H3>
+      <H3 id="design">Preview and design</H3>
       <P>
-        Your business details, filled in from Apps. To change them, press{" "}
-        <b>Business details</b>. New documents pick up the change; documents
-        already saved keep their copy.
-      </P>
-
-      <H3 id="design">Design</H3>
-      <P>
-        Pick a <b>template</b> (Classic, Modern, Minimal or Bold) and a{" "}
-        <b>colour</b> for this document. Each template card shows a small
-        sketch of the layout, and the preview on the right switches as soon as
-        you click. New documents start with the template and colour from your
-        business details.
+        Press <b>Preview</b> at the top, or <b>Preview and design</b> in the
+        summary card, to open the full-screen preview. It shows the document
+        exactly as your client will see it, on a laptop or a phone (switch with
+        the buttons at the top). The <b>Design</b> panel on the right is where
+        you pick a <b>template</b> (Standard, Spreadsheet, Minimalist or Grand)
+        and a{" "}
+        <b>colour</b>; the document changes as you click. Close the preview and
+        save to keep the design. <b>PDF</b> in the preview downloads the file.
+        New documents start with the template and colour from your business
+        details.
       </P>
 
       <H3 id="details">Details</H3>
