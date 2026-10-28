@@ -410,6 +410,46 @@ function Body() {
         documents already saved keep their copy.
       </P>
 
+      <H3 id="orbit">Drafting and editing with Orbit</H3>
+      <P>
+        Press <b>Draft with Orbit</b> on the Invoices or Quotations page, or{" "}
+        <b>Orbit</b> at the top of the editor. Orbit opens beside a live
+        preview of the document, and nothing reaches the document until you
+        press <b>Use this invoice</b> (or <b>Apply changes</b>).
+      </P>
+      <Ul>
+        <Li>
+          <b>Draft from a sentence</b>: for example &ldquo;Invoice Acme for 3
+          days of consulting at 8,000 a day, 18% GST, due in 15 days&rdquo;.
+          Orbit fills in the client, items, tax and due date, and picks your
+          saved customers and items when the names match.
+        </Li>
+        <Li>
+          <b>From a photo or PDF</b>: attach a purchase order, a quote or an old
+          invoice (the paperclip, or drag it in). Orbit reads the client and
+          every line item from it. A scanned PDF has no text to read, so attach
+          a photo of it instead. PDFs can be up to 3 MB.
+        </Li>
+        <Li>
+          <b>Edit by asking</b>: &ldquo;give 10% off&rdquo;, &ldquo;add 2 hours
+          of support at 1,500&rdquo;, &ldquo;make it due on the 30th&rdquo; or
+          &ldquo;write payment terms for a 50% advance&rdquo;. Orbit changes only
+          what you ask for. <b>Undo</b> steps back one change at a time.
+        </Li>
+        <Li>
+          <b>Check GST and HSN codes</b>: Orbit suggests an HSN or SAC code and
+          a GST rate for each item, then lists anything still missing, such as
+          a place of supply or a client GSTIN. Check the suggestions before you
+          send.
+        </Li>
+      </Ul>
+      <Callout>
+        Orbit never sends anything and never works out totals: tax, discount
+        and the amount due come from the same calculator as the rest of the
+        editor. Each answer uses one of your workspace&apos;s AI questions, the
+        same allowance as Orbit chat and form building.
+      </Callout>
+
       <H3 id="design">Preview and design</H3>
       <P>
         Press <b>Preview</b> at the top, or <b>Preview and design</b> in the
