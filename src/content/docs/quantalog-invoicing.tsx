@@ -52,7 +52,7 @@ function Body() {
         </Li>
         <Li>
           They pay. You mark the invoice <b>Paid</b>, and it moves from{" "}
-          <b>Outstanding</b> to <b>Paid</b> on the Invoices page.
+          <b>Total receivables</b> to <b>Collected</b> on the Invoices page.
         </Li>
       </Ul>
       <Callout variant="tip">
@@ -283,28 +283,28 @@ function Body() {
 
       <H2 id="invoices-page">The Invoices page</H2>
       <H3 id="summary">Summary</H3>
-      <P>The strip at the top adds up every invoice in the workspace:</P>
+      <P>The panel at the top adds up every invoice in the workspace:</P>
       <Ul>
         <Li>
-          <b>Paid</b>: the total of every invoice marked <b>Paid</b>, with how
-          many there are.
+          <b>Total receivables</b>: what your customers still owe you, from
+          every <b>Sent</b> or <b>Overdue</b> invoice. The bar below splits it
+          into <b>Current</b>, not yet due, and <b>Overdue</b>, past its due
+          date. Drafts are not counted until you send them.
         </Li>
         <Li>
-          <b>Outstanding</b>: the total of every invoice that is not paid or
-          cancelled, which is what you are still waiting for. Drafts count
-          here too, so mark an invoice <b>Cancelled</b> if it will never be
-          sent.
+          <b>Collected</b>: the total of every invoice marked <b>Paid</b>, with
+          how many there are.
         </Li>
         <Li>
-          <b>Invoices</b>: how many invoices exist, and how many were created in
-          the last 30 days.
-        </Li>
-        <Li>
-          <b>Open quotations</b>: quotations still in <b>Draft</b> or{" "}
-          <b>Sent</b>, which are waiting for an answer, with how many were
-          accepted.
+          <b>Drafts</b>: invoices you have not sent yet.
         </Li>
       </Ul>
+      <P>
+        On the Quotations page the panel shows how many quotations are still
+        open, a bar of accepted, open and declined quotations, your win rate
+        (accepted out of every quotation that got an answer) and how many have
+        expired.
+      </P>
       <Callout>
         The amounts are shown in your default currency. If you bill in more
         than one currency, the summary adds the amounts together as they are,
@@ -317,8 +317,13 @@ function Body() {
           <b>Invoices</b> and <b>Quotations</b> switch between the two lists.
         </Li>
         <Li>
-          The <b>status</b> menu shows only documents in one status, such as
-          every <b>Overdue</b> invoice.
+          The <b>status</b> chips above the list show how many documents are in
+          each status, and pick one to show only those, such as every{" "}
+          <b>Overdue</b> invoice.
+        </Li>
+        <Li>
+          The list shows the customer, the dates and the amount. Unpaid invoices
+          also say how many days are left, or how many days they are overdue.
         </Li>
         <Li>
           <b>Search</b> finds a document by its number or the client&apos;s name.
@@ -637,7 +642,7 @@ function Body() {
         </Li>
         <Li>
           <b>Cancelled</b>: it will not be paid, for example it was raised by
-          mistake. It leaves <b>Outstanding</b> but keeps its number, because
+          mistake. It leaves <b>Total receivables</b> but keeps its number, because
           an invoice number should never be reused.
         </Li>
       </Ul>
