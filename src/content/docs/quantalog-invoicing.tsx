@@ -323,8 +323,10 @@ function Body() {
       </P>
       <Callout>
         The amounts are shown in your default currency. If you bill in more
-        than one currency, the summary adds the amounts together as they are,
-        without converting them.
+        than one currency, a switch (for example <b>INR</b> and <b>USD</b>)
+        picks the currency to show, and every invoice is converted into it at
+        the day&apos;s exchange rate, which is printed under the total. The
+        rate updates once a day. The documents themselves are never changed.
       </Callout>
 
       <H3 id="list">Finding a document</H3>
