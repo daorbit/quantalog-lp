@@ -362,10 +362,13 @@ function Body() {
         through five numbered steps, and each number turns into a tick once
         that step is filled in. The right side is a <b>live preview</b> of the
         finished document, updating as you type; the form and the preview
-        scroll separately, so the document stays in view while you work. The
-        button above the preview shows the current design (for example{" "}
-        <b>Standard · Blue</b>) and opens the design screen. At the top,{" "}
-        <b>Preview</b> opens the same screen, the download button saves a PDF,{" "}
+        scroll separately, so the document stays in view while you work. You
+        can also click text on the preview to edit it in place: the client
+        name and address, each item&apos;s description, quantity and rate, and
+        the notes and terms. Press <b>Enter</b> or click away to keep the
+        change, or <b>Esc</b> to undo it; the form updates to match. At the
+        top, <b>Preview</b> opens the design screen, the download button saves
+        a PDF,{" "}
         <b>Share</b> emails it or makes a link once it is saved, and{" "}
         <b>Create invoice</b> saves it.
       </P>
