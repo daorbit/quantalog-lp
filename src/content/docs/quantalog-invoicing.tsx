@@ -703,8 +703,11 @@ function Body() {
 
       <H2 id="sharing">Sharing with your client</H2>
       <P>
-        Once a document is saved, <b>Share</b> at the top of the editor opens
-        two ways to send it. If you have unsaved changes, they are saved first.
+        Once a document is saved, <b>Share</b> at the top of the editor opens a
+        full-screen share view. The settings are on the left, under{" "}
+        <b>Email</b> and <b>Link</b>, and a <b>Preview</b> on the right shows the
+        document your client opens, on a laptop, tablet or phone. If you have
+        unsaved changes, they are saved first.
       </P>
       <H3 id="share-email">Email</H3>
       <Ul>
@@ -722,10 +725,11 @@ function Body() {
           shows.
         </Li>
         <Li>
-          <b>Send now</b> or <b>Schedule</b>: pick a date and time up to 90 days
-          ahead. A scheduled email goes out within five minutes of that time,
-          with the document as it was when you scheduled it. The dialog shows
-          the scheduled email with a <b>Cancel</b> button until it is sent.
+          <b>When</b>: <b>Now</b>, or <b>Schedule</b> and pick a date and time
+          up to 90 days ahead. A scheduled email goes out within five minutes of
+          that time, with the document as it was when you scheduled it. The
+          share view shows the scheduled email with a <b>Cancel</b> button until
+          it is sent.
         </Li>
       </Ul>
       <P>
@@ -735,11 +739,12 @@ function Body() {
       </P>
       <H3 id="share-link">Link</H3>
       <P>
-        <b>Create link</b> makes a private web page for the document. Anyone
-        with the link can view it and download the PDF, and pay with the UPI QR
-        code on rupee invoices. From the <b>Link</b> tab you can copy the link,
-        send it on <b>WhatsApp</b> or from your own <b>Email app</b>, or{" "}
-        <b>Open</b> it to see what your client sees.
+        Turn on <b>Share with a link</b> to make a private web page for the
+        document. Anyone with the link can view it and download the PDF, and pay
+        with the UPI QR code on rupee invoices. From the <b>Link</b> tab you can
+        copy the link, send it on <b>WhatsApp</b>, <b>Telegram</b> or from your
+        own <b>Email app</b>, <b>Open</b> it to see what your client sees, or
+        download a <b>QR code</b> for a printout or a screen at the counter.
       </P>
       <Ul>
         <Li>
@@ -754,8 +759,8 @@ function Body() {
           the editor shows who answered, when, and what they wrote.
         </Li>
         <Li>
-          <b>Turn off link</b>: stops the link working straight away. Creating
-          a new one gives a different address.
+          Turning <b>Share with a link</b> off stops the link working straight
+          away. Turning it on again gives a different address.
         </Li>
       </Ul>
       <P>
