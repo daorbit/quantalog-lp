@@ -63,12 +63,14 @@ function Body() {
       <H2 id="roles">Who can do what</H2>
       <Ul>
         <Li>
-          <b>Owners and admins</b> turn the app on and off, and edit the
+          <b>Owners and admins</b> turn the app on and off, and can edit the
           business details in Apps.
         </Li>
         <Li>
           <b>Owners, admins and editors</b> open Invoices and create, edit,
-          duplicate, convert and delete quotations and invoices.
+          duplicate, convert and delete quotations and invoices. They can also
+          edit the business details on the <b>Settings</b> page inside
+          Invoices.
         </Li>
         <Li>
           <b>Viewers</b> can&apos;t open Invoices. Invoices hold prices and
@@ -108,15 +110,29 @@ function Body() {
         You can open Invoices before saving your business details, but every
         new document will have an empty <b>From</b> block until you do. The
         Invoices page shows an <b>Add your business details</b> reminder until
-        they are saved.
+        they are saved. Its <b>Business details</b> button opens the{" "}
+        <b>Settings</b> page inside Invoices.
       </Callout>
 
       <H2 id="business-details">Business details</H2>
       <P>
         Business details are the information about <i>you</i> that appears on
-        every quotation and invoice. They live in{" "}
-        <b>Apps → Quantalog Invoicing</b>, and the <b>Business details</b>{" "}
-        button on the Invoices page and in the editor takes you there. Changes
+        every quotation and invoice. Edit them in either of two places, which
+        show the same fields and save to the same place:
+      </P>
+      <Ul>
+        <Li>
+          <b>Settings</b> inside Invoices: the gear at the bottom of the
+          Invoices side rail (on a phone, at the end of the icon row). Make
+          your changes, then press <b>Save changes</b> in the bar that appears
+          at the bottom, or <b>Discard</b> to undo them.
+        </Li>
+        <Li>
+          <b>Apps → Quantalog Invoicing</b> in Quantalog, for owners and admins.
+        </Li>
+      </Ul>
+      <P>
+        Changes
         apply to documents you create from then on. Documents you have already
         created keep the details they were made with, because a sent invoice
         must not change after the fact.
