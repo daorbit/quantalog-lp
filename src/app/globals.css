@@ -4739,6 +4739,79 @@ body:has(.site-header[data-menu-open]) .offer-bar {
   color: var(--festive-bg);
 }
 
+.offer-firework {
+  position: absolute;
+  top: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  overflow: visible;
+  pointer-events: none;
+}
+.offer-firework--gold {
+  --firework-tone: var(--festive-gold);
+}
+.offer-firework--rose {
+  --firework-tone: var(--festive-rose);
+}
+.offer-firework--marigold {
+  --firework-tone: var(--festive-marigold);
+}
+.offer-firework__trail {
+  fill: none;
+  stroke: var(--festive-gold);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: offer-firework-trail 3.6s ease-out infinite;
+}
+.offer-firework__burst {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  animation: offer-firework-burst 3.6s ease-out infinite;
+}
+.offer-firework__ray {
+  fill: none;
+  stroke: var(--firework-tone);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+.offer-firework__spark {
+  fill: var(--festive-gold);
+}
+.offer-firework__core {
+  fill: var(--festive-flame-core);
+}
+.offer-firework--d1 .offer-firework__trail,
+.offer-firework--d1 .offer-firework__burst {
+  animation-delay: 0.9s;
+}
+.offer-firework--d2 .offer-firework__trail,
+.offer-firework--d2 .offer-firework__burst {
+  animation-delay: 1.8s;
+}
+.offer-firework--d3 .offer-firework__trail,
+.offer-firework--d3 .offer-firework__burst {
+  animation-delay: 2.7s;
+}
+@media (max-width: 767px) {
+  .offer-firework {
+    opacity: 0.6;
+  }
+}
+
+@keyframes offer-firework-trail {
+  0% { translate: 0 1.75rem; opacity: 0; }
+  4% { opacity: 1; }
+  18% { translate: 0 0; opacity: 1; }
+  21%, 100% { translate: 0 0; opacity: 0; }
+}
+@keyframes offer-firework-burst {
+  0%, 18% { scale: 0.15; opacity: 0; }
+  22% { opacity: 1; }
+  48% { scale: 1; opacity: 0.95; }
+  64%, 100% { scale: 1.12; opacity: 0; }
+}
 @keyframes offer-twinkle {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
@@ -4757,5 +4830,8 @@ body:has(.site-header[data-menu-open]) .offer-bar {
   .offer-lantern,
   .offer-diya__flame {
     animation: none;
+  }
+  .offer-firework {
+    display: none;
   }
 }
