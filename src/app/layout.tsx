@@ -6,7 +6,11 @@ import { Header } from "@/components/header";
 import { DocsMenu } from "@/components/menus/docs-menu";
 import { CompareMenu } from "@/components/menus/compare-menu";
 import { Footer } from "@/components/footer";
-import { HideOnRoutes } from "@/components/hide-on-routes";
+import { HideOnRoutes, ShowOnPaths } from "@/components/hide-on-routes";
+import { OfferBanner } from "@/components/offers/offer-banner";
+import { DiwaliDecor } from "@/components/offers/festive/diwali-decor";
+import { Diya } from "@/components/offers/festive/diya";
+import { diwaliOffer } from "@/lib/offers";
 // import { DisplayMenu } from "@/components/display/display-menu";
 import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { PlansProvider } from "@/components/plans-provider";
@@ -127,6 +131,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             Skip to content
           </a>
+          <ShowOnPaths paths={["/"]}>
+            <OfferBanner offer={diwaliOffer} icon={<Diya />} decor={<DiwaliDecor />} />
+          </ShowOnPaths>
           <Header menus={{ "/docs": <DocsMenu />, "/compare": <CompareMenu /> }} />
 
           <PlansProvider>

@@ -1,27 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { track } from "@/lib/track";
+import { useCopyText } from "./use-copy-text";
 
 export function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyText();
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      track("docs_code_copied");
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
-    } catch {
-
-    }
+  const onCopy = async () => {
+    if (await copy(text)) track("docs_code_copied");
   };
 
   return (
     <button
       type="button"
-      onClick={copy}
+      onClick={onCopy}
       className="doc-code__copy"
       data-copied={copied}
       aria-label={copied ? "Copied" : "Copy code"}

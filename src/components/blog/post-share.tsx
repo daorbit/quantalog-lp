@@ -1,33 +1,26 @@
 "use client";
 
-import { useState } from "react";
 import { Check, Link2 } from "lucide-react";
 import { siX } from "simple-icons";
 import { track } from "@/lib/track";
 import { LinkedInMark } from "../auth-marks";
 import { BrandGlyph } from "../compare/brand-badge";
+import { useCopyText } from "../use-copy-text";
 
 const COPIED_MS = 2000;
 
 export function PostShare({ url, title }: { url: string; title: string }) {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyText(COPIED_MS);
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      track("blog_share", { channel: "copy" });
-      window.setTimeout(() => setCopied(false), COPIED_MS);
-    } catch {
-      setCopied(false);
-    }
+  const onCopy = async () => {
+    if (await copy(url)) track("blog_share", { channel: "copy" });
   };
 
   return (
     <div className="post-share" role="group" aria-label="Share this article">
-      <button type="button" onClick={copy} className="post-share__btn" aria-label={copied ? "Link copied" : "Copy link"}>
+      <button type="button" onClick={onCopy} className="post-share__btn" aria-label={copied ? "Link copied" : "Copy link"}>
         {copied ? <Check className="h-4 w-4 text-accent" aria-hidden="true" /> : <Link2 className="h-4 w-4" aria-hidden="true" />}
       </button>
       <a
