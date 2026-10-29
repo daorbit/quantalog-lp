@@ -64,6 +64,9 @@ export const metadata: Metadata = {
     "migrate from Google Analytics",
     "Plausible alternative",
     "Matomo alternative",
+    "invoicing software",
+    "GST invoice generator",
+    "quotation software",
   ],
   openGraph: {
     type: "website",

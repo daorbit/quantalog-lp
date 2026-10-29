@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { Logos } from "@/components/sections/logos";
 import { Countries } from "@/components/sections/countries";
 import { BookMeeting } from "@/components/sections/book-meeting";
+import { Invoicing } from "@/components/sections/invoicing";
 import { ConsentGap } from "@/components/sections/consent-gap";
 import { Explore } from "@/components/sections/explore";
 import { OrbitAi } from "@/components/sections/orbit-ai";
@@ -86,6 +87,11 @@ const jsonLd = graph(
       "Submission webhooks for Zapier, Make and custom endpoints",
       "Read-only Claude and ChatGPT connectors for forms, leads, bookings and traffic",
       "Referral program with discount coupons for every invite that joins",
+      "Quotations that convert to invoices in one click",
+      "GST-ready tax invoices with HSN and SAC codes, CGST, SGST and IGST",
+      "UPI scan-to-pay QR codes on rupee invoices",
+      "Invoices emailed or shared by link, with view counts",
+      "Paid invoices created automatically from paid form responses",
     ],
   },
   {
@@ -113,6 +119,7 @@ export default function HomePage() {
       <DashboardsGoals />
       <QuantalogApps />
       <OrbitAi />
+      <Invoicing />
       <HowItWorks />
       <CompareGa4 />
       <Pricing />

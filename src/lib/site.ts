@@ -1,12 +1,12 @@
 export const site = {
   name: "Quantalog",
-  tagline: "Real-time analytics you can embed.",
-  seoTitle: "Cookieless, real-time web analytics",
+  tagline: "From first visit to paid invoice.",
+  seoTitle: "Analytics, lead forms and invoicing in one workspace",
   ogImage: "/og-image.jpg",
   // Kept under 160 characters so search results show it in full rather than
   // truncating mid-sentence. The longer pitch lives in the footer copy.
   description:
-    "Privacy-first web analytics with real-time dashboards, built-in SEO audits and a multi-tenant API you can embed for your own users.",
+    "Cookieless analytics, lead forms, SEO audits, social posts and GST-ready invoicing in one workspace, from first visit to paid invoice.",
   url: "https://quantalog.daorbit.in",
   app: "https://studio-quantalog.daorbit.in",
   api: "https://quantalog-be.daorbit.in",
@@ -67,6 +67,11 @@ export const productNav = [
     href: "/forms",
     label: "Forms",
     blurb: "Drag-and-drop forms with per-field drop-off analytics",
+  },
+  {
+    href: "/invoicing",
+    label: "Invoicing",
+    blurb: "Quotations and GST-ready invoices, paid by UPI",
   },
   {
     href: "/platform-api",

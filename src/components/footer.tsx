@@ -12,6 +12,7 @@ const columns = [
       { href: "/seo-audits", label: "SEO audits" },
       { href: "/search-visibility", label: "Search visibility" },
       { href: "/reports", label: "Reports" },
+      { href: "/invoicing", label: "Invoicing" },
       { href: "/platform-api", label: "Platform API" },
       { href: "/social", label: "Scheduled posts" },
       { href: "/#pricing", label: "Pricing" },

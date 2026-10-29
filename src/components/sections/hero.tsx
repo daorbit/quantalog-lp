@@ -14,21 +14,23 @@ export function Hero() {
       <div className="mx-auto grid w-full max-w-360 items-center gap-10 px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:py-20">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <AnnouncementPill
-            href={site.orbitExtension}
+            href="/invoicing"
             label="New"
-            event="cta_orbit_extension"
+            event="cta_invoicing_pill"
+            external={false}
             className="rise rise-1"
           >
-            Orbit AI is now on Chrome
+            Quotations and invoices are here
           </AnnouncementPill>
 
           <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.75rem]">
-            <Words text="Cookieless analytics" />{" "}
-            <Words text="that counts the visitors others miss." offset={2} />
+            <Words text="From first visit" />{" "}
+            <Words text="to paid invoice." offset={3} />
           </h1>
 
           <p className="rise rise-3 mt-6 max-w-lg text-pretty text-[1.0625rem] leading-[1.6] text-fg-muted sm:text-[1.1875rem]">
-            Real-time dashboards, SEO audits and AI insights in one place. No cookies, no consent banner.
+            Cookieless analytics, lead forms, SEO, social posts and GST-ready invoicing in one workspace, with
+            Orbit AI to help. No cookie banner.
           </p>
 
           <div className="rise rise-4 mt-9 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">

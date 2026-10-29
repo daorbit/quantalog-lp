@@ -146,6 +146,34 @@ function Body() {
         steps on their own page, each showing its own webhook URL.
       </P>
 
+      <H3 id="payment-invoices">Invoices for paid responses</H3>
+      <P>
+        A form with a payment field can create an invoice for every response
+        that is paid. Open the payment field&apos;s properties in the form
+        builder and turn on <b>Invoice paid responses</b>. It is off by
+        default, so you choose which forms get invoices.
+      </P>
+      <Ul>
+        <Li>
+          The <b>Invoicing</b> app must be on in Apps, and your business name,
+          email and address saved in Invoicing, because the invoice is made
+          from them.
+        </Li>
+        <Li>
+          The amount the respondent paid is the invoice total. Pick a{" "}
+          <b>Tax included in the price</b> rate to show how much of it is tax.
+        </Li>
+        <Li>
+          The invoice is created as paid, with the payment ID in its notes, and
+          the customer is added to your Customers list.
+        </Li>
+        <Li>
+          Open the response and click the payment. The <b>Invoice</b> row links
+          to the invoice, where the client can download the PDF. If it could
+          not be created, <b>Retry invoice</b> tries again.
+        </Li>
+      </Ul>
+
       <H3 id="connecting">Connecting Razorpay</H3>
       <P>
         Open <b>Apps</b> in Quantalog and choose{" "}

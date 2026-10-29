@@ -8,19 +8,21 @@ export function AnnouncementPill({
   label,
   children,
   event,
+  external = true,
   className = "",
 }: {
   href: string;
   label: string;
   children: React.ReactNode;
   event: string;
+  external?: boolean;
   className?: string;
 }) {
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       onClick={() => track(event, { location: "hero_pill" })}
       className={`group inline-flex items-center gap-2.5 rounded-full border border-border py-1 pl-1 pr-3 text-[13px] text-fg-muted transition-colors duration-200 hover:border-border-strong hover:text-fg ${className}`}
     >

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, FileSearch, LayoutGrid, Mail, Plug, TrendingUp } from "lucide-react";
+import { ArrowRight, BarChart3, FileSearch, LayoutGrid, Mail, Plug, Receipt, TrendingUp } from "lucide-react";
 import { OrbitIcon } from "../orbit/orbit-icon";
 import { productNav } from "@/lib/site";
 
@@ -10,6 +10,7 @@ const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   "/reports": Mail,
   "/social": OrbitIcon,
   "/forms": LayoutGrid,
+  "/invoicing": Receipt,
   "/platform-api": Plug,
 };
 

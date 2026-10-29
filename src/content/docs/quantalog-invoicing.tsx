@@ -830,6 +830,17 @@ function Body() {
         the client&apos;s answer.
       </P>
 
+      <H2 id="form-payments">Invoices from paid forms</H2>
+      <P>
+        A form with a payment field can create an invoice for each paid
+        response. Turn it on per form, in the payment field&apos;s properties,
+        under <b>Invoice paid responses</b>. Each invoice is created as paid,
+        numbered from your sequence, and shared with a link, so the response in
+        Lead capture links straight to it. The customer is added from the
+        respondent&apos;s name and email. Your business details must be saved
+        first.
+      </P>
+
       <H2 id="customers">Customers</H2>
       <P>
         The <b>Customers</b> tab lists everyone you quote and bill, A to Z, with
