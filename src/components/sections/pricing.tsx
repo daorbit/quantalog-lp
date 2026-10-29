@@ -10,9 +10,11 @@ import { BillingFacts } from "../pricing/billing-facts";
 import { ProviderSignup } from "../provider-signup";
 import { site } from "@/lib/site";
 import { detectCurrency } from "@/lib/plans";
+import { diwaliOffer, liveOffer } from "@/lib/offers";
 import type { Currency, ResolvedPlan } from "@/lib/plans";
 
 const CARD_FEATURE_ROWS = 8;
+const OFFER = liveOffer(diwaliOffer);
 
 const BLURB =
   "Every plan includes the full dashboard, the SEO audit suite and Orbit AI. Start on Free and move up as your sites grow.";
@@ -84,6 +86,7 @@ export function Pricing() {
                   yearly={yearly}
                   maxRows={CARD_FEATURE_ROWS}
                   location="home"
+                  offer={OFFER}
                 />
               ))}
             </div>

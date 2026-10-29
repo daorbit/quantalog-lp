@@ -4,7 +4,15 @@ import { Check, Copy } from "lucide-react";
 import { track } from "@/lib/track";
 import { useCopyText } from "../use-copy-text";
 
-export function CouponCode({ code, location }: { code: string; location: string }) {
+export function CouponCode({
+  code,
+  location,
+  tone = "festive",
+}: {
+  code: string;
+  location: string;
+  tone?: "festive" | "plain";
+}) {
   const { copied, copy } = useCopyText();
 
   const onCopy = async () => {
@@ -17,7 +25,7 @@ export function CouponCode({ code, location }: { code: string; location: string 
       onClick={onCopy}
       translate="no"
       aria-label={copied ? "Code copied" : `Copy code ${code}`}
-      className="offer-code inline-flex h-7 shrink-0 items-center gap-1.5 rounded-md px-2.5 text-[12px] font-semibold tracking-[0.08em] transition-colors duration-200"
+      className={`offer-code ${tone === "plain" ? "offer-code--plain" : ""} inline-flex h-7 shrink-0 items-center gap-1.5 rounded-md px-2.5 text-[12px] font-semibold tracking-[0.08em] transition-colors duration-200`}
     >
       {code}
       {copied ? (

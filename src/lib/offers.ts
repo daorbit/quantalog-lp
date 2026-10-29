@@ -7,6 +7,7 @@ export type Offer = {
   code: string;
   percent: number;
   endsOn: string;
+  endsLabel: string;
   claimUrl: string;
 };
 
@@ -16,9 +17,18 @@ export const diwaliOffer: Offer = {
   code: "DIWALI30",
   percent: 30,
   endsOn: "2026-11-15",
+  endsLabel: "Nov 15",
   claimUrl: `${site.app}/app/billing?coupon=DIWALI30`,
 };
 
 export function isOfferLive(offer: Offer) {
   return BUILD_DATE <= offer.endsOn;
+}
+
+export function liveOffer(offer: Offer) {
+  return isOfferLive(offer) ? offer : undefined;
+}
+
+export function applyOfferDiscount(amountMinor: number, offer: Offer) {
+  return Math.round((amountMinor * (100 - offer.percent)) / 100);
 }

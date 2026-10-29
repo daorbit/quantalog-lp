@@ -43,6 +43,7 @@
   --fg-faint: #6b6b6b;
   --accent: #0066cc;
   --accent-fg: #ffffff;
+  --green: #1a8f47;
   --cta: #171717;
   --cta-hover: #333333;
   --cta-fg: #ffffff;
@@ -79,6 +80,7 @@
   --fg-faint: #8f8f8f;
   --accent: #0a84ff;
   --accent-fg: #ffffff;
+  --green: #30d158;
   --cta: #fafafa;
   --cta-hover: #e5e5e5;
   --cta-fg: #0a0a0a;
@@ -107,6 +109,7 @@
   --color-fg-faint: var(--fg-faint);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
+  --color-green: var(--green);
   --color-cta: var(--cta);
   --color-cta-hover: var(--cta-hover);
   --color-cta-fg: var(--cta-fg);
@@ -4733,6 +4736,14 @@ body:has(.site-header[data-menu-open]) .offer-bar {
 }
 .offer-code:hover {
   border-color: var(--festive-gold);
+}
+.offer-code--plain {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: var(--accent-quiet);
+  color: var(--accent);
+}
+.offer-code--plain:hover {
+  border-color: var(--accent);
 }
 .offer-claim {
   background: var(--festive-fg);

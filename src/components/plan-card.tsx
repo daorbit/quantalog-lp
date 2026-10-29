@@ -6,6 +6,8 @@ import { site } from "@/lib/site";
 import { track } from "@/lib/track";
 import { FEATURED_SLUG, formatPrice, planQuotas } from "@/lib/plans";
 import type { Currency, ResolvedPlan } from "@/lib/plans";
+import { applyOfferDiscount, type Offer } from "@/lib/offers";
+import { PlanOfferRow } from "./offers/plan-offer-row";
 
 /**
  * One plan card. Shared by the pricing section on the home page and the /plans
@@ -17,6 +19,7 @@ export function PlanCard({
   yearly,
   maxRows,
   location,
+  offer,
 }: {
   plan: ResolvedPlan;
   currency: Currency;
@@ -25,6 +28,7 @@ export function PlanCard({
   maxRows?: number;
   /** Distinguishes the home section from /plans in analytics. */
   location: string;
+  offer?: Offer;
 }) {
   const featured = plan.slug === FEATURED_SLUG;
   const quotas = planQuotas(plan);
@@ -37,8 +41,10 @@ export function PlanCard({
       : plan.features.slice(0, Math.max(0, maxRows - quotas.length));
 
   const price = (yearly ? plan.priceYearly : plan.priceMonthly)[currency];
+  const discounted = offer && price > 0 ? applyOfferDiscount(price, offer) : null;
   const yearlyPrice = plan.priceYearly[currency];
-  const monthlyEquivalent = yearly && yearlyPrice > 0 ? Math.round(yearlyPrice / 12) : null;
+  const yearlyCharged = offer && yearlyPrice > 0 ? applyOfferDiscount(yearlyPrice, offer) : yearlyPrice;
+  const monthlyEquivalent = yearly && yearlyCharged > 0 ? Math.round(yearlyCharged / 12) : null;
 
   return (
     <div
@@ -63,8 +69,17 @@ export function PlanCard({
       </p>
 
       <div className="relative mt-6 flex items-baseline gap-1.5">
-        <span className="text-[2.25rem] font-semibold sm:text-[2.75rem] leading-none tracking-[-0.04em] tabular-nums">
-          {price === 0 ? "Free" : formatPrice(price, currency)}
+        {discounted !== null && (
+          <s className="mr-1 text-[1.25rem] font-medium leading-none tracking-[-0.02em] text-fg-faint tabular-nums sm:text-[1.5rem]">
+            {formatPrice(price, currency)}
+          </s>
+        )}
+        <span
+          className={`text-[2.25rem] font-semibold sm:text-[2.75rem] leading-none tracking-[-0.04em] tabular-nums ${
+            discounted !== null ? "text-green" : ""
+          }`}
+        >
+          {price === 0 ? "Free" : formatPrice(discounted ?? price, currency)}
         </span>
         {price > 0 && (
           <span className="text-[13px] text-fg-muted">/ {yearly ? "year" : "month"}</span>
@@ -74,6 +89,7 @@ export function PlanCard({
         {monthlyEquivalent !== null &&
           `≈ ${formatPrice(monthlyEquivalent, currency)} / month billed yearly`}
       </div>
+      {offer && <PlanOfferRow offer={offer} slug={plan.slug} free={price === 0} />}
 
       {/* Full-width, with the arrow in its own disc at the trailing edge. */}
       <a

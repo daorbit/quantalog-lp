@@ -7,21 +7,36 @@ import { BookDemoButton } from "../book-demo-button";
 import { ProviderSignup } from "../provider-signup";
 import { TrustChips } from "../trust-chips";
 import { HeroVisual } from "../hero-visual";
+import { diwaliOffer, liveOffer } from "@/lib/offers";
+
+const OFFER = liveOffer(diwaliOffer);
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <div className="mx-auto grid w-full max-w-360 items-center gap-10 px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10 lg:py-20">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <AnnouncementPill
-            href="/invoicing"
-            label="New"
-            event="cta_invoicing_pill"
-            external={false}
-            className="rise rise-1"
-          >
-            Quotations and invoices are here
-          </AnnouncementPill>
+          {OFFER ? (
+            <AnnouncementPill
+              href="#pricing"
+              label="Offer"
+              event="cta_offer_pill"
+              external={false}
+              className="rise rise-1"
+            >
+              {OFFER.title} · {OFFER.percent}% off
+            </AnnouncementPill>
+          ) : (
+            <AnnouncementPill
+              href="/invoicing"
+              label="New"
+              event="cta_invoicing_pill"
+              external={false}
+              className="rise rise-1"
+            >
+              Quotations and invoices are here
+            </AnnouncementPill>
+          )}
 
           <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.75rem]">
             <Words text="From first visit" />{" "}
