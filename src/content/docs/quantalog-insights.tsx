@@ -53,8 +53,9 @@ function Body() {
 
       <H2 id="history">History</H2>
       <P>
-        Pick an earlier week from the menu at the top of the page. Free
-        workspaces keep 4 weeks, Starter 12 and Pro a full year.
+        Use the arrows next to the week&apos;s dates to step back through
+        earlier weeks. Free workspaces keep 4 weeks, Starter 12 and Pro a full
+        year.
       </P>
     </>
   );
