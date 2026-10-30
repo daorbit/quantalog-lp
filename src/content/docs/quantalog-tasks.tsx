@@ -21,20 +21,28 @@ function Body() {
       <H2 id="board">The board</H2>
       <Ul>
         <Li>
-          Tasks are cards in columns. By default the columns are{" "}
-          <b>Not started</b>, <b>In progress</b> and <b>Completed</b>. Drag a
-          card to another column to change it, or click the circle next to its
-          name to complete it.
+          Tasks are cards in <b>buckets</b>, the board&apos;s columns. Every
+          plan starts with six: Backlog, To do, In progress, Review, Blocked
+          and Done. Press <b>Add new bucket</b> at the end of the board to add
+          your own, and use the <b>⋯</b> menu on a bucket (or double-click its
+          name) to rename or delete it. Deleting a bucket moves its tasks to
+          another bucket; nothing else is deleted.
         </Li>
         <Li>
-          Use <b>Group by</b> to arrange the columns by <b>Assigned to</b> or{" "}
-          <b>Priority</b> instead. Dragging a card between those columns
-          reassigns it or changes its priority. Completed tasks fold away under{" "}
-          <b>Show completed</b> at the bottom of each column.
+          Drag a card to move it within a bucket or into another one. Click the
+          circle next to a task&apos;s name to complete it; completed tasks fold
+          away under <b>Completed tasks</b> at the bottom of each bucket.
+        </Li>
+        <Li>
+          Use <b>Group by</b> to arrange the columns by <b>Progress</b>,{" "}
+          <b>Assigned to</b> or <b>Priority</b> instead. Dragging a card between
+          those columns changes that field.
         </Li>
         <Li>
           Press <b>Add task</b> at the top of any column to add one straight
-          into it, or switch to <b>Grid</b> to see every task in a table.
+          into it, switch to <b>Grid</b> to see every task in a table, or open{" "}
+          <b>Charts</b> for how many tasks are left by status, priority,
+          bucket and person.
         </Li>
         <Li>
           Search by name, label or task number such as <b>T-12</b>, and click
