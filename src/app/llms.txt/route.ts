@@ -2,6 +2,7 @@ import { site, productNav } from "@/lib/site";
 import { getDocNav } from "@/lib/docs";
 import { getAllPosts } from "@/lib/blog";
 import { getAllComparisons } from "@/lib/comparisons";
+import { APP_PAGES, appPath } from "@/lib/quantalog-apps";
 
 export const dynamic = "force-static";
 
@@ -26,6 +27,11 @@ export async function GET(): Promise<Response> {
     link("Home", "/", site.tagline),
     ...productNav.map((n) => link(n.label, n.href, n.blurb)),
     link("Pricing", "/#pricing", "Plans and limits, including the free tier"),
+    "",
+    "## Quantalog Apps",
+    "",
+    link("Quantalog Apps", "/apps", "Every official Quantalog app and every integration, and how to set them up"),
+    ...APP_PAGES.map((app) => link(app.name, appPath(app.slug), app.metaDescription)),
     "",
   ];
 

@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { getAllDocs } from "@/lib/docs";
 import { getAllComparisons } from "@/lib/comparisons";
-import { comparisonsEditedAt, docEditedAt, routeEditedAt } from "@/lib/page-edit-dates";
+import { appPageEditedAt, comparisonsEditedAt, docEditedAt, routeEditedAt } from "@/lib/page-edit-dates";
+import { APP_PAGES, appPath } from "@/lib/quantalog-apps";
 import { site } from "@/lib/site";
 
 export const revalidate = 3600;
@@ -23,6 +24,7 @@ const STATIC_ROUTES: { path: string; changeFrequency: Entry["changeFrequency"]; 
   { path: "/reports", changeFrequency: "monthly", priority: 0.8 },
   { path: "/social", changeFrequency: "monthly", priority: 0.8 },
   { path: "/platform-api", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/apps", changeFrequency: "monthly", priority: 0.8 },
   { path: "/about", changeFrequency: "yearly", priority: 0.5 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.5 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
@@ -41,6 +43,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: routeEditedAt(route.path),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
+  }));
+
+  const appRoutes: MetadataRoute.Sitemap = APP_PAGES.map((app) => ({
+    url: `${site.url}${appPath(app.slug)}`,
+    lastModified: appPageEditedAt(app.slug),
+    changeFrequency: "monthly",
+    priority: 0.7,
   }));
 
   const docRoutes: MetadataRoute.Sitemap = docs.map((doc) => ({
@@ -66,5 +75,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }));
 
-  return [...staticRoutes, ...comparisonRoutes, ...docRoutes, ...postRoutes];
+  return [...staticRoutes, ...appRoutes, ...comparisonRoutes, ...docRoutes, ...postRoutes];
 }

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "../ui";
 import { allApps } from "../apps-carousel/app-items";
 import { AppCard } from "../apps-carousel/app-card";
@@ -10,9 +12,9 @@ export function QuantalogApps() {
     <section id="apps" className="section-y">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <SectionHeading
-          eyebrow="Apps"
+          eyebrow="Q Apps"
           title="Everything you use, connected."
-          body="Built-in Quantalog apps you switch on for your whole team, and the tools you already rely on, from Claude and ChatGPT to Slack, WhatsApp, Razorpay and Google Sheets."
+          body="Built-in Quantalog Apps you switch on for your whole team, and the tools you already rely on, from Claude and ChatGPT to Slack, WhatsApp, Razorpay and Google Sheets."
           centered
         />
       </div>
@@ -30,6 +32,16 @@ export function QuantalogApps() {
             ))}
           </div>
         ))}
+      </div>
+
+      <div className="mt-10 text-center sm:mt-12">
+        <Link
+          href="/apps"
+          className="inline-flex items-center gap-1 text-[15px] font-medium text-accent hover:underline hover:underline-offset-4"
+        >
+          See all Quantalog Apps and how to set them up
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </section>
   );

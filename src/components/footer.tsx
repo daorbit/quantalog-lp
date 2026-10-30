@@ -14,6 +14,7 @@ const columns = [
       { href: "/reports", label: "Reports" },
       { href: "/invoicing", label: "Invoicing" },
       { href: "/platform-api", label: "Platform API" },
+      { href: "/apps", label: "Q Apps" },
       { href: "/social", label: "Scheduled posts" },
       { href: "/#pricing", label: "Pricing" },
     ],

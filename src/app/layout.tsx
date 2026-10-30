@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { DocsMenu } from "@/components/menus/docs-menu";
 import { CompareMenu } from "@/components/menus/compare-menu";
+import { AppsMenu } from "@/components/menus/apps-menu";
 import { Footer } from "@/components/footer";
 import { HideOnRoutes, ShowOnPaths } from "@/components/hide-on-routes";
 import { OfferBanner } from "@/components/offers/offer-banner";
@@ -134,7 +135,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ShowOnPaths paths={["/"]}>
             <OfferBanner offer={diwaliOffer} icon={<Diya />} decor={<DiwaliDecor />} />
           </ShowOnPaths>
-          <Header menus={{ "/docs": <DocsMenu />, "/compare": <CompareMenu /> }} />
+          <Header menus={{ "/apps": <AppsMenu />, "/docs": <DocsMenu />, "/compare": <CompareMenu /> }} />
 
           <PlansProvider>
             <main id="main">{children}</main>

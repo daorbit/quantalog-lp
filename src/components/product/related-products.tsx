@@ -1,18 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, FileSearch, LayoutGrid, Mail, Plug, Receipt, TrendingUp } from "lucide-react";
-import { OrbitIcon } from "../orbit/orbit-icon";
+import { ArrowRight } from "lucide-react";
 import { productNav } from "@/lib/site";
-
-const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  "/analytics": BarChart3,
-  "/seo-audits": FileSearch,
-  "/search-visibility": TrendingUp,
-  "/reports": Mail,
-  "/social": OrbitIcon,
-  "/forms": LayoutGrid,
-  "/invoicing": Receipt,
-  "/platform-api": Plug,
-};
+import { PRODUCT_ICONS as ICONS } from "./product-icons";
 
 export function RelatedProducts({ hrefs }: { hrefs: readonly string[] }) {
   const items = hrefs

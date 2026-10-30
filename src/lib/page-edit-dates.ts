@@ -18,6 +18,10 @@ export function docEditedAt(slug: string): string | undefined {
   return latestEdit([`src/content/docs/${slug}.tsx`]);
 }
 
+export function appPageEditedAt(slug: string): string | undefined {
+  return latestEdit([`src/lib/quantalog-apps/${slug}.ts`, "src/components/app-page", "src/app/apps/[slug]/page.tsx"]);
+}
+
 export function comparisonsEditedAt(): string | undefined {
   return latestEdit(["src/lib/comparisons.ts"]);
 }

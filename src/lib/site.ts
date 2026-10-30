@@ -81,6 +81,7 @@ export const productNav = [
 ] as const;
 
 export const nav = [
+  { href: "/apps", label: "Q Apps" },
   { href: "/plans", label: "Pricing" },
   { href: "/docs", label: "Docs" },
   { href: "/blog", label: "Blog" },
