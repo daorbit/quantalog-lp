@@ -489,8 +489,9 @@ function Body() {
           starts as today plus your <b>Payment due</b> days.
         </Li>
         <Li>
-          <b>Valid until</b> (quotations): the last day the price stands. After
-          it, you can mark the quotation <b>Expired</b>.
+          <b>Valid until</b> (quotations): the last day the price stands. A sent
+          quotation shows as <b>Expired</b> the day after, and the client can no
+          longer accept it from the link.
         </Li>
       </Ul>
 
@@ -697,9 +698,9 @@ function Body() {
           summary.
         </Li>
         <Li>
-          <b>Overdue</b>: the due date has passed and it is still unpaid.
-          Quantalog doesn&apos;t switch to this on its own yet, so mark it when
-          you chase the payment.
+          <b>Overdue</b>: the due date has passed and it is still unpaid. A
+          sent invoice shows as overdue on its own the day after its due date,
+          and you can also mark one overdue yourself.
         </Li>
         <Li>
           <b>Cancelled</b>: it will not be paid, for example it was raised by
@@ -724,6 +725,7 @@ function Body() {
         </Li>
         <Li>
           <b>Expired</b>: the <b>Valid until</b> date passed without an answer.
+          A sent quotation shows as expired on its own the day after that date.
         </Li>
       </Ul>
 
@@ -734,7 +736,9 @@ function Body() {
       </P>
       <Ul>
         <Li>the next number in your invoice series;</Li>
-        <Li>today as its date, and a due date 30 days later;</Li>
+        <Li>
+          today as its date, and a due date your <b>Payment due</b> days later;
+        </Li>
         <Li>
           the quotation&apos;s client, items, currency, tax, discount, shipping
           and notes;
@@ -753,7 +757,8 @@ function Body() {
         <Li>
           <b>Duplicate</b> makes a copy for repeat work, such as the same
           monthly retainer. The copy gets the next number in the series, starts
-          as <b>Draft</b>, has its amount paid cleared, and opens straight away.
+          as <b>Draft</b> dated today with the same number of days to pay, has
+          its amount paid cleared, and opens straight away.
         </Li>
         <Li>
           <b>Delete</b> removes a document for everyone in the workspace, after
