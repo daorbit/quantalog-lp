@@ -20,14 +20,14 @@ type ButtonProps = {
 };
 
 const variants = {
-  primary: "bg-cta text-cta-fg hover:bg-cta-hover active:scale-[0.99]",
+  primary: "bg-cta text-cta-fg hover:bg-cta-hover active:opacity-80",
   secondary:
-    "border border-border bg-surface text-fg hover:border-border-strong hover:bg-bg-subtle active:scale-[0.99]",
-  ghost: "text-fg-muted hover:text-fg",
+    "border border-border bg-surface text-fg hover:border-border-strong hover:bg-bg-subtle active:opacity-80",
+  ghost: "text-fg-muted hover:text-fg active:opacity-80",
 } as const;
 
 const sizes = {
-  md: "h-9 px-4 text-[14px]",
+  md: "h-10 px-4 text-[14px] sm:h-9",
   lg: "h-11 px-5 text-[14px] sm:h-12 sm:px-6 sm:text-[15px]",
 } as const;
 
@@ -42,7 +42,7 @@ export function Button({
   onClick: handleClick,
   onIntent,
 }: ButtonProps) {
-  const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
+  const cls = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-[color,background-color,border-color,opacity] duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   const internal = href.startsWith("/") || href.startsWith("#");
 
   const onClick =

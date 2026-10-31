@@ -22,8 +22,9 @@ export function ThemeToggle() {
 
       {mounted && (
         <span
-          className="absolute h-7 w-7 rounded-full bg-surface shadow-soft transition-transform duration-300 ease-[cubic-bezier(0.34,1.4,0.64,1)]"
-          style={{ transform: `translateX(${isDark ? "1.75rem" : "0"})` }}
+          className={`absolute h-7 w-7 rounded-full bg-surface shadow-soft transition-transform duration-200 ease-out ${
+            isDark ? "translate-x-7" : "translate-x-0"
+          }`}
           aria-hidden="true"
         />
       )}
@@ -44,10 +45,6 @@ export function ThemeToggle() {
               setTheme(key);
               track("theme_changed", { theme: key });
             }}
-            /* The visible pill stays 28px so the sliding thumb still lines up,
-               but a bare 28px control is below the 44px touch target guideline.
-               The ::after pseudo-element grows the hit area past the button box
-               without affecting layout. */
             className={`relative z-10 inline-flex h-7 w-7 items-center justify-center rounded-full transition-colors duration-200 after:absolute after:left-1/2 after:top-1/2 after:h-11 after:w-11 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[''] ${
               active ? "text-accent" : "text-fg-faint hover:text-fg-muted"
             }`}
