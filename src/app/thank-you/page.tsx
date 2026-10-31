@@ -90,7 +90,7 @@ export default function ThankYouPage() {
 
       <div className="settle settle-4 mt-10 flex justify-center">
         <Button href="/" variant="secondary" className="group">
-          <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
+          <ArrowLeft className="h-4 w-4" />
           Back to home
         </Button>
       </div>

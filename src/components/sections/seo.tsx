@@ -66,7 +66,7 @@ export function Seo() {
               className="group bg-surface p-6 sm:p-7"
             >
               <c.icon
-                className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+                className="h-5 w-5 text-accent"
                 aria-hidden="true"
               />
               <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">

@@ -45,7 +45,7 @@ export function TryDemo() {
               className="group p-6 sm:p-7"
             >
               <item.icon
-                className="h-5 w-5 text-accent transition-transform duration-300 group-hover:-translate-y-0.5"
+                className="h-5 w-5 text-accent"
                 aria-hidden="true"
               />
               <h3 className="mt-5 text-h3 font-medium tracking-[-0.02em]">
@@ -61,7 +61,7 @@ export function TryDemo() {
         <div className="mt-14 flex flex-col items-center gap-4">
           <Button
             href={`${site.app}/login`}
-            size="lg"
+            size="lg"
             track="try_demo"
             trackProps={{ location: "demo_section" }}
           >

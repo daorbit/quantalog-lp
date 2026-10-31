@@ -124,7 +124,7 @@ export function PlanCard({
 
       {/* The tier mark and its headline quota lead the list. */}
       <div className="relative mt-6 flex items-center gap-2.5">
-        <PlanIcon slug={plan.slug} size={22} uid={`plan-${location}`} />
+        <PlanIcon slug={plan.slug} size={22} />
         <span className="text-sm font-semibold">
           {plan.monthlyAuditQuota.toLocaleString()} SEO audits
           <span className="font-normal text-fg-muted"> / month</span>
