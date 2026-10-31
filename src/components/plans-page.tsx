@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Check, Minus } from "lucide-react";
-import { PlanIcon } from "./plan-icons";
+import { PlanIcon, PLAN_ACCENTS, PLAN_GRADIENTS, PLAN_ON_ACCENT } from "./plan-icons";
 import { PlanCard } from "./plan-card";
 import { usePlans } from "./plans-provider";
 import { IntegrationLogo } from "./integration-logos";
@@ -84,7 +84,7 @@ export function PlansPage() {
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
       <div>
         <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11.5px] font-medium text-fg-muted">
-          <PlanIcon slug="pro" size={13} />
+          <PlanIcon slug="pro" size={13} uid="plans-eyebrow" />
           Plans
         </span>
         <h1 className="mt-5 max-w-3xl text-h2 font-medium leading-[1.08] tracking-[-0.03em]">
@@ -226,12 +226,19 @@ export function PlansPage() {
                         }`}
                       >
                         <div className="flex flex-col items-center gap-1.5">
-                          <PlanIcon slug={plan.slug} size={22} />
+                          <PlanIcon slug={plan.slug} size={22} uid="matrix" />
                           <div className="flex items-center gap-1.5">
                             <span className="text-sm font-semibold">{plan.name}</span>
                             {featured && (
                               <span
-                                className="rounded-full bg-accent px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-accent-fg"
+                                className="rounded-full px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide"
+                                style={{
+                                  background:
+                                    PLAN_GRADIENTS[plan.slug] ??
+                                    PLAN_ACCENTS[plan.slug] ??
+                                    "#8b5cf6",
+                                  color: PLAN_ON_ACCENT[plan.slug] ?? "#fff",
+                                }}
                               >
                                 Popular
                               </span>

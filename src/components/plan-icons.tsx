@@ -1,5 +1,23 @@
-const PLAN_TONE: Record<string, string> = {
-  free: "text-fg-faint",
+const FREE_COLOR = "#64748b";
+const STARTER_GRADIENT = ["#a855f7", "#6366f1"] as const;
+const PRO_GRADIENT = ["#b45309", "#fcd34d", "#d97706"] as const;
+
+export const PLAN_ACCENTS: Record<string, string> = {
+  free: "#64748b",
+  starter: "#8b5cf6",
+  pro: "#d9a441",
+};
+
+export const PLAN_GRADIENTS: Record<string, string> = {
+  starter: `linear-gradient(135deg, ${STARTER_GRADIENT[0]}, ${STARTER_GRADIENT[1]})`,
+
+  pro: "linear-gradient(135deg, #d97706 0%, #fcd34d 50%, #e59819 100%)",
+};
+
+export const PLAN_ON_ACCENT: Record<string, string> = {
+  free: "#ffffff",
+  starter: "#ffffff",
+  pro: "#3b2503",
 };
 
 function DiamondPaths() {
@@ -17,17 +35,64 @@ function DiamondPaths() {
   );
 }
 
-export function PlanIcon({ slug, size = 28 }: { slug: string; size?: number }) {
+function Diamond({
+  size,
+  color,
+  gradient,
+  uid,
+}: {
+  size: number;
+  color?: string;
+  gradient?: readonly string[];
+  uid: string;
+}) {
+  const gradientId = gradient ? `plan-grad-${uid}` : null;
+
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 512 512"
-      fill="currentColor"
+      fill="none"
       aria-hidden="true"
-      className={`block shrink-0 ${PLAN_TONE[slug] ?? "text-accent"}`}
+      style={{ display: "block" }}
     >
-      <DiamondPaths />
+      {gradient && gradientId && (
+        <defs>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+            {gradient.map((stop, i) => (
+              <stop
+                key={i}
+                offset={
+                  gradient.length === 3 && i === 1
+                    ? "45%"
+                    : `${(i / (gradient.length - 1)) * 100}%`
+                }
+                stopColor={stop}
+              />
+            ))}
+          </linearGradient>
+        </defs>
+      )}
+      <g fill={gradientId ? `url(#${gradientId})` : color}>
+        <DiamondPaths />
+      </g>
     </svg>
   );
+}
+
+export function PlanIcon({
+  slug,
+  size = 28,
+  uid,
+}: {
+  slug: string;
+  size?: number;
+  uid?: string;
+}) {
+  const key = `${slug}-${uid ?? "lp"}`;
+
+  if (slug === "free") return <Diamond size={size} color={FREE_COLOR} uid={key} />;
+  if (slug === "pro") return <Diamond size={size} gradient={PRO_GRADIENT} uid={key} />;
+  return <Diamond size={size} gradient={STARTER_GRADIENT} uid={key} />;
 }
