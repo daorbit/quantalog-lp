@@ -198,9 +198,15 @@ function Body() {
           in a soft rounded card; <b>Studio</b> has a big quiet title and a
           highlighted amount due; <b>Agency</b> pairs a colour brand card with
           the amount due; <b>Capsule</b> lays items out as rounded pills;{" "}
-          <b>Banner</b> has a full colour header with the page rising over it;
-          and <b>Panel</b> opens with a soft header panel and the client in its
-          own card.
+          <b>Banner</b> has a full colour header with the page rising over it;{" "}
+          <b>Panel</b> opens with a soft header panel and the client in its
+          own card; <b>Executive</b> is a centred serif letterhead with ruled
+          totals and a &ldquo;For your business&rdquo; signature;{" "}
+          <b>Sidebar</b> keeps your details, the client and payment in a
+          tinted side column; <b>Headline</b> opens with the amount due in
+          large type, like a payment receipt; <b>Geometric</b> has a bold title
+          with colour shapes in the corners; and <b>Corporate</b> has a colour
+          top rule, boxed details and a dark amount-due panel.
         </Li>
         <Li>
           <b>Colour</b>: the accent used for headings, table lines and the
