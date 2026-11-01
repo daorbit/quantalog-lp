@@ -1,5 +1,6 @@
 import { alertsApp } from "./alerts";
 import { compareApp } from "./compare";
+import { experimentsApp } from "./experiments";
 import { funnelsApp } from "./funnels";
 import { goalsApp } from "./goals";
 import { insightsApp } from "./insights";
@@ -19,6 +20,7 @@ export const APP_PAGES: AppPage[] = [
   goalsApp,
   insightsApp,
   funnelsApp,
+  experimentsApp,
   alertsApp,
   popupsApp,
   linkInBioApp,
