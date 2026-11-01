@@ -1,14 +1,14 @@
 import { alertsApp } from "./alerts";
 import { compareApp } from "./compare";
-import { experimentsApp } from "./experiments";
+// import { experimentsApp } from "./experiments";
 import { funnelsApp } from "./funnels";
 import { goalsApp } from "./goals";
-import { insightsApp } from "./insights";
-import { linkInBioApp } from "./link-in-bio";
+// import { insightsApp } from "./insights";
+// import { linkInBioApp } from "./link-in-bio";
 import { linksApp } from "./links";
 import { mediaApp } from "./media";
 import { notesApp } from "./notes";
-import { popupsApp } from "./popups";
+// import { popupsApp } from "./popups";
 import { publicDashboardApp } from "./public-dashboard";
 import { reviewsApp } from "./reviews";
 import { seoReportsApp } from "./seo-reports";
@@ -18,12 +18,12 @@ import type { AppGroup, AppPage } from "./types";
 export const APP_PAGES: AppPage[] = [
   compareApp,
   goalsApp,
-  insightsApp,
+  // insightsApp,
   funnelsApp,
-  experimentsApp,
+  // experimentsApp,
   alertsApp,
-  popupsApp,
-  linkInBioApp,
+  // popupsApp,
+  // linkInBioApp,
   reviewsApp,
   tasksApp,
   notesApp,

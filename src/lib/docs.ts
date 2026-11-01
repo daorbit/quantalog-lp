@@ -30,12 +30,12 @@ import { seo } from "@/content/docs/seo";
 import { quantalogCompare } from "@/content/docs/quantalog-compare";
 import { quantalogNotes } from "@/content/docs/quantalog-notes";
 import { quantalogTasks } from "@/content/docs/quantalog-tasks";
-import { quantalogInsights } from "@/content/docs/quantalog-insights";
+// import { quantalogInsights } from "@/content/docs/quantalog-insights";
 import { quantalogLinks } from "@/content/docs/quantalog-links";
 import { quantalogAlerts } from "@/content/docs/quantalog-alerts";
-import { quantalogPopups } from "@/content/docs/quantalog-popups";
-import { quantalogExperiments } from "@/content/docs/quantalog-experiments";
-import { quantalogBio } from "@/content/docs/quantalog-bio";
+// import { quantalogPopups } from "@/content/docs/quantalog-popups";
+// import { quantalogExperiments } from "@/content/docs/quantalog-experiments";
+// import { quantalogBio } from "@/content/docs/quantalog-bio";
 import { quantalogSeoReports } from "@/content/docs/quantalog-seo-reports";
 import { quantalogInvoicing } from "@/content/docs/quantalog-invoicing";
 import { searchVisibility } from "@/content/docs/search-visibility";
@@ -95,12 +95,12 @@ const DOCS: Doc[] = [
   quantalogCompare,
   quantalogNotes,
   quantalogTasks,
-  quantalogInsights,
+  // quantalogInsights,
   quantalogLinks,
   quantalogAlerts,
-  quantalogPopups,
-  quantalogExperiments,
-  quantalogBio,
+  // quantalogPopups,
+  // quantalogExperiments,
+  // quantalogBio,
   quantalogInvoicing,
   searchVisibility,
   emailReports,

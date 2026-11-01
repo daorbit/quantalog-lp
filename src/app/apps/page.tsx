@@ -19,7 +19,7 @@ import { site } from "@/lib/site";
 const PATH = "/apps";
 const TITLE = "Quantalog Apps and integrations";
 const META_DESCRIPTION =
-  "Built-in Quantalog Apps for goals, funnels, alerts, popups, tasks and more, switched on in one click, plus Slack, WhatsApp, Razorpay, Google Sheets and other integrations.";
+  "Built-in Quantalog Apps for goals, funnels, alerts, tasks and more, switched on in one click, plus Slack, WhatsApp, Razorpay, Google Sheets and other integrations.";
 
 const enableSteps = [
   {
@@ -121,7 +121,7 @@ export default function AppsPage() {
             Switch on what you need. <span className="text-accent">Connect what you use.</span>
           </>
         }
-        description="Official Quantalog Apps for targets, funnels, alerts, popups, tasks and more, one switch each. And the tools your team already relies on, connected once."
+        description="Official Quantalog Apps for targets, funnels, alerts, tasks and more, one switch each. And the tools your team already relies on, connected once."
         primary={{ label: "Start free — no card" }}
         secondary={{ label: "See how apps work", href: "#how" }}
         visual={<AppsMosaic apps={officialApps} />}

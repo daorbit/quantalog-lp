@@ -44,13 +44,13 @@ const quantalog = (id: string, name: string, body: string, href: string): AppEnt
 export const allApps: AppEntry[] = [
   quantalog("compare", "Quantalog Compare", "Score your pages against up to 10 competitors and see what to fix first.", "/apps/compare"),
   quantalog("goals", "Quantalog Goals", "Monthly and quarterly targets that fill in from your live data.", "/apps/goals"),
-  quantalog("insights", "Quantalog Insights", "A weekly feed of what changed on your sites and why, with Orbit's summary.", "/apps/insights"),
+  // quantalog("insights", "Quantalog Insights", "A weekly feed of what changed on your sites and why, with Orbit's summary.", "/apps/insights"),
   quantalog("tasks", "Quantalog Tasks", "One shared board for what the team has to do next, with owners and due dates.", "/apps/tasks"),
   quantalog("funnels", "Quantalog Funnels", "See where visitors drop off between the pages and events that lead to a sale.", "/apps/funnels"),
-  quantalog("experiments", "Quantalog A/B Tests", "Test a new headline, button or page against the original and keep the winner.", "/apps/ab-tests"),
+  // quantalog("experiments", "Quantalog A/B Tests", "Test a new headline, button or page against the original and keep the winner.", "/apps/ab-tests"),
   quantalog("alerts", "Quantalog Alerts", "Hear about traffic drops, spikes and stalled goals by email, Telegram or WhatsApp.", "/apps/alerts"),
-  quantalog("popups", "Quantalog Popups", "Show your lead capture forms as popups and slide-ins on your site.", "/apps/popups"),
-  quantalog("bio", "Quantalog Link-in-bio", "One link for your social bios, with every tap counted.", "/apps/link-in-bio"),
+  // quantalog("popups", "Quantalog Popups", "Show your lead capture forms as popups and slide-ins on your site.", "/apps/popups"),
+  // quantalog("bio", "Quantalog Link-in-bio", "One link for your social bios, with every tap counted.", "/apps/link-in-bio"),
   {
     ...quantalog("invoicing", "Quantalog Invoicing", "Send quotations and GST-ready invoices to your leads, and see what is paid.", "/invoicing"),
     mark: { kind: "quantalog", id: "invoicing", file: "quantalog-invoicing.png" },
