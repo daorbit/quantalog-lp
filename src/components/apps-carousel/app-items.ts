@@ -62,8 +62,8 @@ export const allApps: AppEntry[] = [
   quantalog("links", "Quantalog Links", "Your team's other tools in the sidebar, opened right inside Quantalog.", "/apps/links"),
   quantalog("media", "Quantalog Media", "One library for the images and files your posts and forms use.", "/apps/media"),
 
-  { id: "claude", name: "Claude", category: "ai", body: "Ask Claude about your forms, leads, bookings and traffic. Read-only.", mark: { kind: "logo", file: "claude" }, href: "/docs/ai-assistants" },
-  { id: "chatgpt", name: "ChatGPT", category: "ai", body: "Ask ChatGPT about your workspace through a secure, read-only connector.", mark: { kind: "logo", file: "openai-chatgpt" }, href: "/docs/ai-assistants" },
+  { id: "claude", name: "Claude", category: "ai", body: "Ask Claude about your forms, leads and traffic, and have it add tasks and notes.", mark: { kind: "logo", file: "claude" }, href: "/docs/ai-assistants" },
+  { id: "chatgpt", name: "ChatGPT", category: "ai", body: "Ask ChatGPT about your workspace and manage tasks and notes through a secure connector.", mark: { kind: "logo", file: "openai-chatgpt" }, href: "/docs/ai-assistants" },
 
   { id: "slack", name: "Slack", category: "notifications", body: "New form responses posted to the channel you choose.", mark: { kind: "logo", file: "slack" }, href: "/docs/forms-notifications-and-apps#chat" },
   { id: "whatsapp", name: "WhatsApp", category: "notifications", body: "Reports and new responses sent to the numbers you verify.", mark: { kind: "logo", file: "whatsapp" }, href: "/docs/forms-notifications-and-apps#whatsapp" },

@@ -5,8 +5,8 @@ import { Button } from "../ui";
 import { AssistantChat } from "../ai-assistants/assistant-chat";
 
 const POINTS = [
-  "Forms, leads, bookings and traffic, per workspace",
-  "Read-only, and you approve every connection",
+  "Forms, leads, bookings, traffic, tasks and notes, per workspace",
+  "Adds and updates tasks and notes, never deletes, and you approve every connection",
   "Works in Claude and ChatGPT with one link",
 ];
 
