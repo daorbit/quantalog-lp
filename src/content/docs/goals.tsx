@@ -112,7 +112,7 @@ function Body() {
         <Li><b>Pro</b> — 30 goals.</Li>
       </Ul>
       <Callout variant="tip">
-        Goal numbers refresh every minute. Editors and owners can create, edit
+        Goal numbers refresh every two minutes. Editors and owners can create, edit
         and delete goals; viewers see them read-only.
       </Callout>
     </>

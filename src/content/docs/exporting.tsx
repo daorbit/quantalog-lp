@@ -42,7 +42,7 @@ function Body() {
       <Callout>
         Exports are privacy-preserving by design: they never include the visitor
         hash, IP address, or session id, so a downloaded file can&apos;t be used to
-        re-identify anyone. Large windows are capped at 50,000 rows per download.
+        re-identify anyone. Large windows are capped at 20,000 rows per download.
       </Callout>
     </>
   );

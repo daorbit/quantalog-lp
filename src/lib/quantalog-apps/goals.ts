@@ -70,7 +70,7 @@ export const goalsApp: AppPage = {
     },
     {
       title: "Watch the pace",
-      body: "Each card shows progress, days left and whether you're on course. Numbers refresh every minute.",
+      body: "Each card shows progress, days left and whether you're on course. Numbers refresh every 2 minutes.",
     },
   ],
   story: {
