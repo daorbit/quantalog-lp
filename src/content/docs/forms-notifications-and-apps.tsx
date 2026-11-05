@@ -46,6 +46,12 @@ function Body() {
         through the connection straight away, so a wrong key shows up now
         rather than at the first real response.
       </P>
+      <P>
+        You can keep more than one connected. Under <b>Email delivery</b> in{" "}
+        <b>Apps</b>, <b>Send form emails with</b> shows which provider is
+        sending. Choose another and form emails switch to it, while the others
+        stay saved.
+      </P>
       <Callout variant="warn">
         Without a connected, switched-on email app, no form emails are sent at
         all — neither yours nor the respondent&apos;s. The Email Notifications
