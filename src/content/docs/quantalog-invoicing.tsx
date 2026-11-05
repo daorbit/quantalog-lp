@@ -962,8 +962,8 @@ function Body() {
       <H2 id="disable">Turning Invoicing off</H2>
       <P>
         In <b>Apps</b>, open <b>Quantalog Invoicing</b> and press{" "}
-        <b>Turn off</b>. Invoices leaves the sidebar for everyone and the page
-        can&apos;t be opened. Your quotations, invoices, numbering and business
+        <b>Turn off</b>. Invoices stays in the sidebar, but it shows the option
+        to turn the app back on instead of your documents. Your quotations, invoices, numbering and business
         details are all kept, so turning it back on picks up exactly where you
         left off. Deleting the workspace deletes them for good.
       </P>
@@ -971,9 +971,9 @@ function Body() {
       <H2 id="faq">Common questions</H2>
       <H3 id="faq-sidebar">I can&apos;t see Invoices in the sidebar</H3>
       <P>
-        Either the app is off for this workspace, it was hidden in{" "}
-        <b>Settings → Sidebar</b>, or you are a viewer. Ask a workspace admin
-        to turn it on or change your role.
+        It was probably hidden in <b>Settings → Sidebar</b>. Turn it back on
+        there. Invoices shows in the sidebar even while the app is off, so a
+        workspace admin can unlock or enable it from that page.
       </P>
       <H3 id="faq-number">Saving says the number is already in use</H3>
       <P>

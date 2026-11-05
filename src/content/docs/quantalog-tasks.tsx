@@ -13,9 +13,9 @@ function Body() {
 
       <H2 id="enable">Turning Tasks on</H2>
       <P>
-        Open <b>Apps</b>, find <b>Quantalog Tasks</b> in the{" "}
-        <b>Quantalog apps</b> group and press <b>Enable</b>. Tasks then
-        appears in the sidebar for everyone in the workspace.
+        <b>Tasks</b> is always in the sidebar. Open it and a workspace admin
+        can unlock or enable it right there, or from <b>Quantalog Tasks</b> in{" "}
+        <b>Apps</b>. The board then opens for everyone in the workspace.
       </P>
 
       <H2 id="board">The board</H2>
