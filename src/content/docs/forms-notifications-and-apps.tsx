@@ -47,10 +47,9 @@ function Body() {
         rather than at the first real response.
       </P>
       <P>
-        You can keep more than one connected. Under <b>Email delivery</b> in{" "}
-        <b>Apps</b>, <b>Send form emails with</b> shows which provider is
-        sending. Choose another and form emails switch to it, while the others
-        stay saved.
+        You can keep more than one connected, but only one sends at a time. In{" "}
+        <b>Apps</b>, open a provider with <b>Manage</b> and press{" "}
+        <b>Activate</b>. Form emails switch to it, and the others stay saved.
       </P>
       <Callout variant="warn">
         Without a connected, switched-on email app, no form emails are sent at
