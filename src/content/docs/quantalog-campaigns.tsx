@@ -20,15 +20,32 @@ function Body() {
       </P>
 
       <H2 id="create">Create a campaign</H2>
+      <P>
+        Pick a template: Product launch, Newsletter, Special offer, Event
+        invite, Welcome or Personal note. You can also start from Blank or
+        Custom HTML.
+      </P>
       <Ul>
         <Li>
-          <b>Email</b>: add a subject and message. Write <Code>{"{{name}}"}</Code>{" "}
-          to use each person&apos;s name, which becomes &quot;there&quot; when a name is
-          missing. You can add one button.
+          <b>Content</b>: your email is a list of sections you can drag to
+          reorder: logo, heading, text, image, button, two columns, divider and
+          space. Open a section to edit it. Write <Code>{"{{name}}"}</Code> to
+          use each person&apos;s name, which becomes &quot;there&quot; when a name is
+          missing, and <Code>**bold**</Code> for bold text.
         </Li>
         <Li>
-          <b>Postal address</b>: your business address appears in the footer,
-          because many email laws ask for it on marketing emails.
+          <b>Style</b>: choose a preset, then change the font, colors, width and
+          corners.
+        </Li>
+        <Li>
+          <b>Custom HTML</b>: paste or upload your own template, up to 100 KB.
+          Use <Code>{"{{name}}"}</Code> and <Code>{"{{unsubscribe_url}}"}</Code>.
+          If you leave out the unsubscribe link, Quantalog adds a footer with
+          one. Scripts and forms are removed.
+        </Li>
+        <Li>
+          <b>Address</b>: your business address appears in the footer, because
+          many email laws ask for it on marketing emails.
         </Li>
         <Li>
           <b>Audience</b>: pick forms that collect an email address, add your

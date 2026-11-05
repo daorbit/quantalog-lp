@@ -55,8 +55,8 @@ export const campaignsApp: AppPage = {
     },
     {
       icon: Mail,
-      title: "Test before you send",
-      body: "Preview the email as you write, send yourself a test, and confirm the audience before anything goes out.",
+      title: "Designed, or your own HTML",
+      body: "Start from a template and drag sections into place, or paste your own HTML. Preview on desktop and phone, and send yourself a test.",
     },
   ],
   steps: [
@@ -90,6 +90,7 @@ export const campaignsApp: AppPage = {
     "Paste or upload your own contacts",
     "Repeated addresses removed",
     "Personalise with each person's name",
+    "Email templates and custom HTML",
     "Live preview and test emails",
     "Unsubscribe link in every email",
     "Pause and resume sending",
