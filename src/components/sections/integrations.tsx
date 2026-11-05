@@ -38,6 +38,11 @@ const delivery: Integration[] = [
     body: "Notification emails sent from your own Brevo account and domain.",
   },
   {
+    id: "resend",
+    name: "Resend",
+    body: "Notification emails sent through Resend from a domain you have verified.",
+  },
+  {
     id: "smtp",
     name: "Custom SMTP",
     body: "Any mail server you already run — host, port, credentials, done.",

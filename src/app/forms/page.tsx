@@ -119,7 +119,7 @@ const included = [
   "Per-field drop-off, so you can see which question loses people",
   "Source URL on every submission",
   "Payments through your own Razorpay, Cashfree or PayU account — fixed, priced by answer, or respondent-chosen",
-  "Notification email through Brevo or your own SMTP server, plus submission webhooks",
+  "Notification email through Brevo, Resend or your own SMTP server, plus submission webhooks",
   "Conditional logic — show or hide a field on an earlier answer",
   "Multi-step forms with per-step validation and a progress indicator",
   "Honeypot spam trap and per-IP rate limiting on every public form",

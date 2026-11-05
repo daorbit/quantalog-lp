@@ -83,7 +83,7 @@ const jsonLd = graph(
       "Scheduled LinkedIn posts written with Orbit AI",
       "Booking forms with Google Calendar sync and Google Meet links",
       "Form payments through Razorpay, Cashfree and PayU",
-      "Form notification email through Brevo or your own SMTP server",
+      "Form notification email through Brevo, Resend or your own SMTP server",
       "Submission webhooks for Zapier, Make and custom endpoints",
       "Read-only Claude and ChatGPT connectors for forms, leads, bookings and traffic",
       "Referral program with discount coupons for every invite that joins",

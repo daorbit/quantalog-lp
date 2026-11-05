@@ -36,6 +36,10 @@ export function FormIntegrations() {
             Brevo
           </li>
           <li className="flex items-center gap-3">
+            <IntegrationLogo id="resend" height={20} />
+            Resend
+          </li>
+          <li className="flex items-center gap-3">
             <IntegrationLogo id="smtp" height={20} />
             Custom SMTP
           </li>

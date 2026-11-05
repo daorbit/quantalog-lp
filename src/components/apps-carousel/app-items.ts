@@ -81,6 +81,7 @@ export const allApps: AppEntry[] = [
   { id: "payu", name: "PayU", category: "payments", body: "Take form payments through the PayU account you already use.", mark: { kind: "logo", file: "payu", wide: true }, href: "/docs/lead-capture#connecting" },
 
   { id: "brevo", name: "Brevo", category: "email", body: "Form emails sent from your own Brevo account and domain.", mark: { kind: "logo", file: "brevo" }, href: "/docs/forms-notifications-and-apps#email-app" },
+  { id: "resend", name: "Resend", category: "email", body: "Form emails sent through Resend from a domain you have verified.", mark: { kind: "logo", file: "resend" }, href: "/docs/forms-notifications-and-apps#email-app" },
   { id: "smtp", name: "Custom SMTP", category: "email", body: "Any mail server you already run. Host, port, credentials, done.", mark: { kind: "logo", file: "smtp" }, href: "/docs/forms-notifications-and-apps#email-app" },
 
   { id: "google-calendar", name: "Google Calendar", category: "workflow", body: "Booking fields check busy times and add a Meet link.", mark: { kind: "logo", file: "google-calendar" }, href: "/docs/forms-booking" },

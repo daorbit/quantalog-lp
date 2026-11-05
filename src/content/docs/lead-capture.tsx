@@ -396,8 +396,8 @@ function Body() {
         for a payment that failed would be worse than no confirmation at all.
       </P>
       <P>
-        Emails go out through an email app you connect (Brevo or your own
-        SMTP), and new responses can also reach the Quantalog bell, Slack and
+        Emails go out through an email app you connect (Brevo, Resend or your
+        own SMTP), and new responses can also reach the Quantalog bell, Slack and
         Discord. Setup for all of these is in{" "}
         <a href="/docs/forms-notifications-and-apps">Notifications &amp;
         integrations</a>.

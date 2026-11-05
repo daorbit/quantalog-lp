@@ -29,13 +29,19 @@ function Body() {
           &quot;Authentication failed&quot;.
         </Li>
         <Li>
+          <b>Resend</b> — paste an <b>API key</b> (it starts{" "}
+          <Code>re_</Code>) from the API Keys page in Resend. A key with sending
+          access is enough. The From address must be on a domain you have
+          verified in Resend.
+        </Li>
+        <Li>
           <b>Custom SMTP</b> — host, port, username and password of your own
           mail server. Use port 587 with <b>Use implicit TLS</b> off, or 465
           with it on.
         </Li>
       </Ul>
       <P>
-        Both ask for a <b>From name</b> and <b>From address</b>; the address
+        All three ask for a <b>From name</b> and <b>From address</b>; the address
         must be one your provider allows you to send from. <b>Test</b> sends
         through the connection straight away, so a wrong key shows up now
         rather than at the first real response.
@@ -257,7 +263,7 @@ export const formsNotificationsAndApps: Doc = {
   slug: "forms-notifications-and-apps",
   title: "Forms: notifications & integrations",
   description:
-    "Connect Brevo or your own SMTP, alert yourself and confirm to respondents by email, and get new responses in the Quantalog bell, Slack, Discord or Telegram.",
+    "Connect Brevo, Resend or your own SMTP, alert yourself and confirm to respondents by email, and get new responses in the Quantalog bell, Slack, Discord or Telegram.",
   category: "Tracking",
   order: 17.35,
   Body,

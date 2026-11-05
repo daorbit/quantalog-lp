@@ -124,6 +124,22 @@ export function BrevoLogo({ height = 20 }: LogoProps) {
   );
 }
 
+export function ResendLogo({ height = 20 }: LogoProps) {
+  return (
+    <svg
+      height={height}
+      width={height}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      role="img"
+      aria-label="Resend"
+      className="block"
+    >
+      <path d="M14.679 0c4.648 0 7.413 2.765 7.413 6.434s-2.765 6.434-7.413 6.434H12.33L24 24h-8.245l-8.88-8.44c-.636-.588-.93-1.273-.93-1.86 0-.831.587-1.565 1.713-1.883l4.574-1.224c1.737-.465 2.936-1.81 2.936-3.572 0-2.153-1.761-3.4-3.939-3.4H0V0z" />
+    </svg>
+  );
+}
+
 export function SmtpLogo({ height = 20 }: LogoProps) {
   return (
     <svg
@@ -169,6 +185,7 @@ export type IntegrationId =
   | "cashfree"
   | "payu"
   | "brevo"
+  | "resend"
   | "smtp";
 
 /**
@@ -182,6 +199,7 @@ const OPTICAL_SCALE: Record<IntegrationId, number> = {
   cashfree: 1.5,
   payu: 1,
   brevo: 1.1,
+  resend: 1,
   smtp: 1.1,
 };
 
@@ -196,6 +214,7 @@ export function IntegrationLogo({
   if (id === "cashfree") return <CashfreeLogo height={scaled} />;
   if (id === "payu") return <PayuLogo height={scaled} />;
   if (id === "brevo") return <BrevoLogo height={scaled} />;
+  if (id === "resend") return <ResendLogo height={scaled} />;
   if (id === "smtp") return <SmtpLogo height={scaled} />;
   return <RazorpayLogo height={scaled} />;
 }
