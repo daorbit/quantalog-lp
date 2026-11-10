@@ -174,6 +174,40 @@ function Body() {
         </Li>
       </Ul>
 
+      <H3 id="analytics-page">The Form analytics page</H3>
+      <P>
+        To compare every form at once, open <b>Lead capture</b> and click the
+        chart icon next to <b>Lead sources</b>. Pick 7, 30 or 90 days, and
+        choose <b>All forms</b> or a single form from the menu. Clicking a form
+        in the list opens the same page for just that form.
+      </P>
+      <Ul>
+        <Li>
+          <b>Views</b>, <b>Responses</b> and <b>Completion rate</b>, each
+          compared with the period before, plus paid revenue when your forms
+          take payments.
+        </Li>
+        <Li>
+          <b>Trend</b> — views, responses or completion per day, and{" "}
+          <b>Worth a look</b>, a few plain notes such as a form that converts
+          poorly or the question where most people stop.
+        </Li>
+        <Li>
+          <b>Forms</b> — every form ranked by responses, views or completion,
+          with the change on the previous period.
+        </Li>
+        <Li>
+          <b>Funnel</b>, <b>Where responses come from</b>, <b>Lead quality</b>,
+          <b> Campaigns</b>, <b>Devices</b> and <b>Pipeline</b>, and a weekday
+          and hour chart of when people respond, in your own time zone.
+        </Li>
+      </Ul>
+      <Callout>
+        Device and time to complete are recorded from new responses onwards,
+        so they start empty and fill in as responses arrive. Figures refresh
+        about once a minute.
+      </Callout>
+
       <H2 id="lead-sources">Lead sources</H2>
       <P>
         Every new response records where the person came from, such as
