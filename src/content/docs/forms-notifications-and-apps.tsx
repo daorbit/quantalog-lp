@@ -245,6 +245,48 @@ function Body() {
         checkout that is abandoned never notifies anyone.
       </P>
 
+      <H2 id="crm">Zoho CRM</H2>
+      <P>
+        Connect Zoho CRM once and every new response from every form in the
+        workspace is added to Zoho as a <b>lead</b>. The name, email, phone
+        and company are taken from the form, and the description holds the
+        form name, the lead source and all the answers.
+      </P>
+      <H3 id="crm-setup">Setting it up</H3>
+      <Ul>
+        <Li>
+          Open the <b>Zoho API Console</b>, choose <b>Add client</b> and pick{" "}
+          <b>Self Client</b>. Copy the <b>Client ID</b> and{" "}
+          <b>Client secret</b>.
+        </Li>
+        <Li>
+          On the <b>Generate code</b> tab, enter the scope{" "}
+          <Code>ZohoCRM.modules.leads.CREATE</Code>, pick a duration and create
+          the code.
+        </Li>
+        <Li>
+          Exchange that code for a <b>refresh token</b> (Zoho&apos;s guide shows
+          the one request needed). The refresh token does not expire unless you
+          revoke it.
+        </Li>
+        <Li>
+          In Quantalog, open <b>App Store</b>, find <b>Zoho CRM</b> and enter
+          your data centre (<Code>com</Code>, <Code>in</Code>, <Code>eu</Code>,{" "}
+          <Code>com.au</Code>, <Code>jp</Code> or <Code>ca</Code>), the client
+          ID, the client secret and the refresh token. Click <b>Test</b>, then
+          switch it on.
+        </Li>
+      </Ul>
+      <Callout title="Required fields in Zoho">
+        Zoho needs a last name and a company on every lead. When a form has no
+        name field, the email is used as the last name; when it has no company
+        field, the person&apos;s name is used as the company.
+      </Callout>
+      <P>
+        Leads are sent after the response is saved, so the respondent never
+        waits on Zoho. Paid forms send the lead once the payment clears.
+      </P>
+
       <H2 id="webhook">Anything else: the webhook</H2>
       <P>
         For a spreadsheet, connect{" "}
