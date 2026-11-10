@@ -25,6 +25,7 @@ const STATIC_ROUTES: { path: string; changeFrequency: Entry["changeFrequency"]; 
   { path: "/social", changeFrequency: "monthly", priority: 0.8 },
   { path: "/platform-api", changeFrequency: "monthly", priority: 0.8 },
   { path: "/apps", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/why-quantalog", changeFrequency: "monthly", priority: 0.7 },
   { path: "/about", changeFrequency: "yearly", priority: 0.5 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.5 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },

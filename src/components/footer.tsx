@@ -40,6 +40,7 @@ const columns = [
   {
     title: "Company",
     links: [
+      { href: "/why-quantalog", label: "Why Quantalog" },
       { href: "/about", label: "About" },
       { href: "/contact", label: "Contact" },
       { href: `${site.app}/login`, label: "Sign in" },

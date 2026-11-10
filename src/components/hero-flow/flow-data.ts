@@ -1,109 +1,79 @@
-import type { Edge, Node } from "@xyflow/react";
-import type { CardData } from "./flow-card";
+export type FlowRow = { label: string; value?: string; live?: number; count?: number };
 
-export const FLOW_NODES: Node[] = [
-  {
-    id: "script",
-    type: "card",
-    position: { x: 0, y: 150 },
-    data: {
-      title: "Your website",
-      icon: "code",
-      order: 0,
-      note: '<script src="quantalog.js" defer />',
-      source: true,
-    } satisfies CardData,
-  },
-  {
-    id: "events",
-    type: "card",
-    position: { x: 270, y: 150 },
-    data: {
-      title: "Cookieless events",
-      icon: "shield",
-      order: 1,
-      rows: [
-        { label: "Cookies set", value: "0" },
-        { label: "Consent banner", value: "None" },
-        { label: "Visitors counted", value: "100%" },
-      ],
-      accent: true,
-      target: true,
-      source: true,
-      flare: "events",
-    } satisfies CardData,
-  },
+export type FlowTone = "accent" | "blue" | "teal" | "violet" | "orange";
+
+export type FlowIcon = "code" | "shield" | "search" | "mail" | "activity" | "orbit";
+
+export type FlowCardData = {
+  id: string;
+  title: string;
+  icon: FlowIcon;
+  tone: FlowTone;
+  rows?: FlowRow[];
+  note?: string;
+  notes?: string[];
+};
+
+export const FLOW_SOURCE: FlowCardData = {
+  id: "script",
+  title: "Your website",
+  icon: "code",
+  tone: "accent",
+  note: '<script src="quantalog.js" defer />',
+};
+
+export const FLOW_EVENTS: FlowCardData = {
+  id: "events",
+  title: "Cookieless events",
+  icon: "shield",
+  tone: "accent",
+  rows: [
+    { label: "Cookies set", value: "0" },
+    { label: "Consent banner", value: "None" },
+    { label: "Visitors counted", value: "100%" },
+  ],
+};
+
+export const FLOW_OUTPUTS: FlowCardData[] = [
   {
     id: "live",
-    type: "card",
-    position: { x: 540, y: -10 },
-    data: {
-      title: "Live dashboard",
-      icon: "activity",
-      order: 2,
-      rows: [
-        { label: "Online now", live: 48 },
-        { label: "Pageviews today", count: 12408 },
-      ],
-      target: true,
-      flare: "output",
-    } satisfies CardData,
+    title: "Live dashboard",
+    icon: "activity",
+    tone: "blue",
+    rows: [
+      { label: "Online now", live: 48 },
+      { label: "Pageviews today", count: 12408 },
+    ],
   },
   {
     id: "seo",
-    type: "card",
-    position: { x: 540, y: 120 },
-    data: {
-      title: "SEO audits",
-      icon: "search",
-      order: 3,
-      rows: [
-        { label: "Health score", value: "92 / 100" },
-        { label: "Issues fixed", value: "14 of 17" },
-      ],
-      target: true,
-      flare: "output",
-    } satisfies CardData,
+    title: "SEO audits",
+    icon: "search",
+    tone: "teal",
+    rows: [
+      { label: "Health score", value: "92 / 100" },
+      { label: "Issues fixed", value: "14 of 17" },
+    ],
   },
   {
     id: "orbit",
-    type: "card",
-    position: { x: 540, y: 250 },
-    data: {
-      title: "Orbit AI",
-      icon: "orbit",
-      order: 4,
-      notes: [
-        "Signups up 42% this week, mostly from Product Hunt.",
-        "Your pricing page converts 3x better from Google.",
-        "Bounce rate on /blog fell 18% after the last fix.",
-      ],
-      target: true,
-      flare: "output",
-    } satisfies CardData,
+    title: "Orbit AI",
+    icon: "orbit",
+    tone: "violet",
+    notes: [
+      "Signups up 42% this week, mostly from Product Hunt.",
+      "Your pricing page converts 3x better from Google.",
+      "Bounce rate on /blog fell 18% after the last fix.",
+    ],
   },
   {
     id: "reports",
-    type: "card",
-    position: { x: 540, y: 365 },
-    data: {
-      title: "Email reports",
-      icon: "mail",
-      order: 5,
-      rows: [
-        { label: "Schedule", value: "Mon · 9:00" },
-        { label: "Recipients", value: "6" },
-      ],
-      target: true,
-      flare: "output",
-    } satisfies CardData,
+    title: "Email reports",
+    icon: "mail",
+    tone: "orange",
+    rows: [
+      { label: "Schedule", value: "Mon · 9:00" },
+      { label: "Recipients", value: "6" },
+    ],
   },
-];
-
-export const FLOW_EDGES: Edge[] = [
-  { id: "e1", type: "pulse", source: "script", target: "events", data: { stage: 0, order: 0 } },
-  { id: "e2", type: "pulse", source: "events", target: "live", data: { stage: 1, order: 1 } },
-  { id: "e3", type: "pulse", source: "events", target: "seo", data: { stage: 1, order: 2 } },
-  { id: "e4", type: "pulse", source: "events", target: "orbit", data: { stage: 1, order: 3 } },
-  { id: "e5", type: "pulse", source: "events", target: "reports", data: { stage: 1, order: 4 } },
 ];
