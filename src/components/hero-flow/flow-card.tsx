@@ -23,7 +23,13 @@ export function FlowCard({ card, order, emphasis = false }: { card: FlowCardData
   const Icon = ICONS[card.icon];
 
   return (
-    <div className="hf-card" data-tone={card.tone} data-order={ORDER[order]} data-emphasis={emphasis || undefined}>
+    <div
+      className="hf-card"
+      data-node={card.id}
+      data-tone={card.tone}
+      data-order={ORDER[order]}
+      data-emphasis={emphasis || undefined}
+    >
       <div className="hf-card__head">
         <span className="hf-card__icon">
           <Icon className="h-3.5 w-3.5" />

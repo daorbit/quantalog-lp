@@ -1084,6 +1084,37 @@ section {
 .prose-q .table-wrap {
   overflow-x: auto;
 }
+
+.prose-q .not-prose ol,
+.prose-q ol.not-prose {
+  padding-left: 0;
+  list-style: none;
+}
+
+.prose-q .not-prose li + li,
+.prose-q ol.not-prose li + li {
+  margin-top: 0;
+}
+
+.prose-q .not-prose a,
+.prose-q a.not-prose {
+  color: inherit;
+  text-decoration: none;
+}
+
+.prose-q .not-prose th,
+.prose-q .not-prose td {
+  border: 0;
+}
+
+.prose-q .not-prose tr + tr td,
+.prose-q .not-prose tbody tr td {
+  border-top: 1px solid var(--border);
+}
+
+.prose-q .not-prose th {
+  background: var(--bg-subtle);
+}
 .prose-q :not(pre) > code {
   background: var(--bg-subtle);
   border: 1px solid var(--border);
@@ -3290,8 +3321,10 @@ body {
   --hf-teal: #1baf7a;
   --hf-violet: #a550d6;
   --hf-orange: #f28a00;
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1.05fr) 56px minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1.1fr);
+  column-gap: clamp(36px, 5vw, 72px);
   align-items: center;
   min-height: 440px;
   pointer-events: none;
@@ -3305,33 +3338,21 @@ body {
   --hf-orange: #ff9f0a;
 }
 
-.hf__gap,
-.hf__fan {
-  align-self: stretch;
-  position: relative;
-}
-
-.hf__gap {
-  height: 100%;
+.hf__col--center {
+  display: flex;
+  justify-content: center;
 }
 
 .hf__outputs {
-  display: grid;
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  align-self: stretch;
-  gap: 12px;
-}
-
-.hf__slot {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .hf-links {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
   overflow: visible;
 }
 
@@ -3397,6 +3418,8 @@ body {
 
 .hf-card {
   --tone: var(--accent);
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 236px;
   overflow: hidden;
@@ -3406,11 +3429,6 @@ body {
   box-shadow: var(--shadow-md);
   animation: hf-card-in 0.7s var(--ease-out-q) both;
   animation-delay: 0.5s;
-}
-
-.hf__events .hf-card,
-.hf__source .hf-card {
-  margin-inline: auto;
 }
 
 .hf-card[data-tone="blue"] { --tone: var(--hf-blue); }
@@ -3506,25 +3524,20 @@ body {
 
 @media (max-width: 40rem) {
   .hf {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
     min-height: 0;
   }
 
-  .hf__source,
-  .hf__gap,
-  .hf__fan {
+  .hf-links,
+  .hf__col:first-of-type {
     display: none;
   }
 
-  .hf__events {
-    grid-column: 1 / -1;
-  }
-
   .hf__outputs {
-    grid-column: 1 / -1;
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: none;
+    gap: 12px;
   }
 
   .hf-card {

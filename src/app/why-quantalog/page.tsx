@@ -3,10 +3,7 @@ import { JsonLd } from "@/components/json-ld";
 import { BigStats } from "@/components/big-stats";
 import { Cta } from "@/components/sections/cta";
 import { WhyHero } from "@/components/why/why-hero";
-import { WhyPillars } from "@/components/why/why-pillars";
-import { WhyJourney } from "@/components/why/why-journey";
-import { WhyStack } from "@/components/why/why-stack";
-import { WhyTrust } from "@/components/why/why-trust";
+import { WhyDoc } from "@/components/why/why-doc";
 import { WhyFaq } from "@/components/why/why-faq";
 import { WHY_DESCRIPTION, whyFaqs, whyStats } from "@/components/why/why-data";
 import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -73,10 +70,7 @@ export default function WhyQuantalogPage() {
         </div>
       </div>
 
-      <WhyPillars />
-      <WhyJourney />
-      <WhyStack />
-      <WhyTrust />
+      <WhyDoc />
       <WhyFaq />
 
       <section>
