@@ -287,6 +287,72 @@ function Body() {
         waits on Zoho. Paid forms send the lead once the payment clears.
       </P>
 
+      <H2 id="hubspot">HubSpot</H2>
+      <P>
+        Connect HubSpot and every new response is added as a{" "}
+        <b>contact</b> with the lifecycle stage <b>Lead</b>. The form name, the
+        lead source and all the answers are saved on the contact as a{" "}
+        <b>note</b>. When someone with the same email is already in HubSpot,
+        the note is added to that contact instead of creating a duplicate.
+      </P>
+      <Ul>
+        <Li>
+          In HubSpot, open <b>Settings → Integrations → Private apps</b> and
+          create an app.
+        </Li>
+        <Li>
+          On the <b>Scopes</b> tab, tick{" "}
+          <Code>crm.objects.contacts.read</Code> and{" "}
+          <Code>crm.objects.contacts.write</Code>, create the app and copy its{" "}
+          <b>access token</b>.
+        </Li>
+        <Li>
+          In Quantalog, open <b>App Store</b>, find <b>HubSpot</b>, paste the
+          token, click <b>Test</b> and switch it on.
+        </Li>
+      </Ul>
+
+      <H2 id="pipedrive">Pipedrive</H2>
+      <P>
+        Connect Pipedrive and every new response becomes a <b>person</b> and a{" "}
+        <b>lead</b> in your Leads inbox, titled with the person&apos;s name and
+        the form. The answers and lead source are attached to the lead as a{" "}
+        <b>note</b>.
+      </P>
+      <Ul>
+        <Li>
+          In Pipedrive, open your profile, then{" "}
+          <b>Personal preferences → API</b>, and copy your API token.
+        </Li>
+        <Li>
+          In Quantalog, open <b>App Store</b>, find <b>Pipedrive</b>, paste the
+          token, click <b>Test</b> and switch it on.
+        </Li>
+      </Ul>
+
+      <H2 id="freshsales">Freshsales</H2>
+      <P>
+        Connect Freshsales and every new response is added as a{" "}
+        <b>contact</b>, with the answers and lead source saved as a{" "}
+        <b>note</b> on it.
+      </P>
+      <Ul>
+        <Li>
+          In Freshsales, open <b>Personal settings → API settings</b> and copy
+          your API key.
+        </Li>
+        <Li>
+          In Quantalog, open <b>App Store</b>, find <b>Freshsales</b>, enter the
+          address you sign in at (like <Code>acme.myfreshworks.com</Code> or{" "}
+          <Code>acme.freshsales.io</Code>) and the API key. Click <b>Test</b>,
+          then switch it on.
+        </Li>
+      </Ul>
+      <Callout title="More than one CRM">
+        You can switch on several CRMs at once. Each new response is sent to
+        every CRM that is on, and a problem with one never stops the others.
+      </Callout>
+
       <H2 id="webhook">Anything else: the webhook</H2>
       <P>
         For a spreadsheet, connect{" "}

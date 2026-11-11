@@ -10,6 +10,7 @@ const CATEGORY_BODY: Partial<Record<AppCategory, string>> = {
   social: "Publish on schedule and bring your search data next to your traffic.",
   payments: "Collect payments on your forms through your own merchant account.",
   email: "Send form emails from your own account and domain.",
+  crm: "Every new response added to your CRM as a lead, with its answers and source.",
   workflow: "Bookings, spreadsheets and anything else that takes a webhook.",
 };
 

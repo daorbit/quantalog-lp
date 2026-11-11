@@ -1,6 +1,6 @@
 import type { AppMarkSpec } from "./app-marks";
 
-export type AppCategory = "quantalog" | "ai" | "notifications" | "payments" | "email" | "social" | "workflow";
+export type AppCategory = "quantalog" | "ai" | "notifications" | "payments" | "email" | "crm" | "social" | "workflow";
 
 export type AppEntry = {
   id: string;
@@ -19,6 +19,7 @@ export const APP_CATEGORIES: { id: AppCategory | "all"; label: string }[] = [
   { id: "social", label: "Social & search" },
   { id: "payments", label: "Payments" },
   { id: "email", label: "Email" },
+  { id: "crm", label: "CRM" },
   { id: "workflow", label: "Scheduling & sheets" },
 ];
 
@@ -28,6 +29,7 @@ export const CATEGORY_LABEL: Record<AppCategory, string> = {
   notifications: "Notifications",
   payments: "Payments",
   email: "Email",
+  crm: "CRM",
   social: "Social & search",
   workflow: "Scheduling & sheets",
 };
@@ -84,6 +86,11 @@ export const allApps: AppEntry[] = [
   { id: "brevo", name: "Brevo", category: "email", body: "Form emails sent from your own Brevo account and domain.", mark: { kind: "logo", file: "brevo" }, href: "/docs/forms-notifications-and-apps#email-app" },
   { id: "resend", name: "Resend", category: "email", body: "Form emails sent through Resend from a domain you have verified.", mark: { kind: "logo", file: "resend" }, href: "/docs/forms-notifications-and-apps#email-app" },
   { id: "smtp", name: "Custom SMTP", category: "email", body: "Any mail server you already run. Host, port, credentials, done.", mark: { kind: "logo", file: "smtp" }, href: "/docs/forms-notifications-and-apps#email-app" },
+
+  { id: "zoho-crm", name: "Zoho CRM", category: "crm", body: "Every new response added to Zoho CRM as a lead.", mark: { kind: "logo", file: "zoho-crm" }, href: "/docs/forms-notifications-and-apps#crm" },
+  { id: "hubspot", name: "HubSpot", category: "crm", body: "New responses become HubSpot contacts, answers in a note.", mark: { kind: "logo", file: "hubspot" }, href: "/docs/forms-notifications-and-apps#hubspot" },
+  { id: "pipedrive", name: "Pipedrive", category: "crm", body: "Each response becomes a person and a lead in Pipedrive.", mark: { kind: "logo", file: "pipedrive" }, href: "/docs/forms-notifications-and-apps#pipedrive" },
+  { id: "freshsales", name: "Freshsales", category: "crm", body: "New responses become Freshsales contacts, answers in a note.", mark: { kind: "logo", file: "freshsales" }, href: "/docs/forms-notifications-and-apps#freshsales" },
 
   { id: "google-calendar", name: "Google Calendar", category: "workflow", body: "Booking fields check busy times and add a Meet link.", mark: { kind: "logo", file: "google-calendar" }, href: "/docs/forms-booking" },
   { id: "google-sheets", name: "Google Sheets", category: "workflow", body: "Every response becomes a new row, one sheet per form.", mark: { kind: "logo", file: "google-sheets" }, href: "/docs/forms-google-sheets" },
