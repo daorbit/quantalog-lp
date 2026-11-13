@@ -64,6 +64,12 @@
   --radius-card: 0.5rem;
   --radius-panel: 0.75rem;
   --radius-stage: 1.25rem;
+
+  --status-ok: #34c759;
+  --status-degraded: #e08a00;
+  --status-outage: #d92d20;
+  --status-maintenance: #0071e3;
+  --status-none: #e5e7eb;
 }
 
 .dark {
@@ -95,6 +101,12 @@
   --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 48px -24px rgba(0, 0, 0, 0.7);
   --hairline: rgba(255, 255, 255, 0.06);
+
+  --status-ok: #30d158;
+  --status-degraded: #ff9f0a;
+  --status-outage: #ff453a;
+  --status-maintenance: #0a84ff;
+  --status-none: #2c2c2e;
 }
 
 @theme inline {
@@ -117,6 +129,11 @@
   --color-accent-quiet: var(--accent-quiet);
   --color-hairline: var(--hairline);
   --color-border-warm: var(--border-warm);
+  --color-status-ok: var(--status-ok);
+  --color-status-degraded: var(--status-degraded);
+  --color-status-outage: var(--status-outage);
+  --color-status-maintenance: var(--status-maintenance);
+  --color-status-none: var(--status-none);
 
   --shadow-soft: var(--shadow-sm);
   --shadow-card: var(--shadow-md);

@@ -43,6 +43,7 @@ const columns = [
       { href: "/why-quantalog", label: "Why Quantalog" },
       { href: "/about", label: "About" },
       { href: "/contact", label: "Contact" },
+      { href: "/status", label: "System status" },
       { href: `${site.app}/login`, label: "Sign in" },
     ],
   },
@@ -53,6 +54,7 @@ const legal = [
   { href: "/terms", label: "Terms of Service" },
   { href: "/dpa", label: "Data Processing Addendum" },
   { href: "/contact", label: "Contact" },
+  { href: "/status", label: "Status" },
   { href: "/docs", label: "Docs" },
 ];
 
