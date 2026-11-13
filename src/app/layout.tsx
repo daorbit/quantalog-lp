@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { DocsMenu } from "@/components/menus/docs-menu";
@@ -14,6 +15,8 @@ import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { GoogleTranslate } from "@/components/language/google-translate";
 import { site } from "@/lib/site";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -106,7 +109,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://forms.daorbit.in" />
         <link rel="prefetch" as="document" href={site.contactFormSrc} />

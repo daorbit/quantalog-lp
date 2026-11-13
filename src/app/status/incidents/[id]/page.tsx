@@ -5,7 +5,7 @@ import { StatusHeader } from "@/components/status/status-header";
 import { IncidentTimeline } from "@/components/status/incident-timeline";
 import { IMPACT_BG } from "@/components/status/state-style";
 
-export const revalidate = 60;
+export const revalidate = 20;
 
 type Props = { params: Promise<{ id: string }> };
 

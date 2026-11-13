@@ -1,43 +1,40 @@
 import Link from "next/link";
-import { dayOf, recentDays, utcDay, utcStamp, type Incident } from "@/lib/status";
-import { STATE_TEXT } from "./state-style";
-
-const IMPACT_STATE = { minor: "degraded", major: "outage", maintenance: "maintenance" } as const;
+import { ChevronRight } from "lucide-react";
+import { dayOf, recentDays, utcDay, utcTime, type Incident } from "@/lib/status";
+import { IMPACT_BG } from "./state-style";
 
 export function PastIncidents({ incidents, updatedAt, days }: { incidents: Incident[]; updatedAt: string; days: number }) {
+  const inRange = new Set(recentDays(updatedAt, days));
+  const shown = incidents.filter((i) => i.resolvedAt && inRange.has(dayOf(i.startedAt)));
+
+  if (!shown.length) {
+    return (
+      <div className="rounded-[8px] border border-border bg-surface px-5 py-4 text-[14px] text-fg-muted sm:px-6">
+        No incidents in the last {days} days.
+      </div>
+    );
+  }
+
   return (
-    <div className="divide-y divide-border">
-      {recentDays(updatedAt, days).map((day) => {
-        const onDay = incidents.filter((i) => dayOf(i.startedAt) === day);
+    <div className="rounded-[8px] border border-border bg-surface">
+      {shown.map((incident) => {
+        const last = incident.updates[0];
         return (
-          <section key={day} className="py-5 first:pt-0">
-            <h3 className="text-[15px] font-semibold text-fg">{utcDay(`${day}T00:00:00.000Z`)}</h3>
-            {onDay.length ? (
-              <ul className="mt-3 space-y-4">
-                {onDay.map((incident) => {
-                  const last = incident.updates[0];
-                  return (
-                    <li key={incident.id}>
-                      <Link
-                        href={`/status/incidents/${incident.id}`}
-                        className={`text-[15px] font-medium hover:underline ${STATE_TEXT[IMPACT_STATE[incident.impact]]}`}
-                      >
-                        {incident.title}
-                      </Link>
-                      {last && (
-                        <p className="mt-1 text-[14px] leading-relaxed text-fg-muted">
-                          <span className="font-semibold text-fg">{last.statusLabel}</span> · {last.body}
-                        </p>
-                      )}
-                      <p className="mt-1 text-[12.5px] text-fg-faint">{utcStamp(incident.startedAt)}</p>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <p className="mt-2 text-[14px] text-fg-muted">No incidents reported.</p>
-            )}
-          </section>
+          <Link
+            key={incident.id}
+            href={`/status/incidents/${incident.id}`}
+            className="flex items-start gap-3 border-t border-border px-5 py-4 transition-colors first:border-t-0 hover:bg-bg-subtle sm:px-6"
+          >
+            <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${IMPACT_BG[incident.impact]}`} aria-hidden="true" />
+            <span className="min-w-0 flex-1">
+              <span className="block text-[15px] font-medium text-fg">{incident.title}</span>
+              {last && <span className="mt-0.5 line-clamp-2 block text-[14px] leading-relaxed text-fg-muted">{last.body}</span>}
+              <span className="mt-1 block text-[12.5px] text-fg-faint">
+                {utcDay(incident.startedAt)} · {utcTime(incident.startedAt)}
+              </span>
+            </span>
+            <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-fg-faint" aria-hidden="true" />
+          </Link>
         );
       })}
     </div>

@@ -22,6 +22,12 @@ export const IMPACT_BG: Record<IncidentImpact, string> = {
   maintenance: "bg-status-maintenance",
 };
 
+export const IMPACT_TEXT: Record<IncidentImpact, string> = {
+  minor: "text-status-degraded",
+  major: "text-status-outage",
+  maintenance: "text-status-maintenance",
+};
+
 export const IMPACT_BORDER: Record<IncidentImpact, string> = {
   minor: "border-status-degraded",
   major: "border-status-outage",

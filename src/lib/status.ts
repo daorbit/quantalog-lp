@@ -38,7 +38,7 @@ export type StatusSummary = {
 
 export type IncidentPage = { incidents: Incident[]; nextBefore: string | null };
 
-const REVALIDATE = 60;
+const REVALIDATE = 20;
 const TIMEOUT_MS = 5_000;
 
 async function read<T>(path: string): Promise<T | null> {
@@ -96,6 +96,10 @@ const UTC_TIME = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-
 export function utcStamp(value: string): string {
   const date = new Date(value);
   return `${UTC_DATE.format(date)} · ${UTC_TIME.format(date)} UTC`;
+}
+
+export function utcTime(value: string): string {
+  return `${UTC_TIME.format(new Date(value))} UTC`;
 }
 
 export function utcDay(value: string): string {
