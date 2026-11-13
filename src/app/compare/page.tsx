@@ -60,7 +60,7 @@ export default function ComparisonsIndexPage() {
       <section className="mx-auto max-w-6xl px-4 pb-14 pt-16 sm:px-6 sm:pb-24 sm:pt-28">
         <header className="mx-auto max-w-3xl text-center">
           <Eyebrow>Compare</Eyebrow>
-          <h1 className="mt-4 text-balance text-display font-medium leading-[1.02] tracking-display">
+          <h1 className="mt-4 text-balance text-display font-bold leading-[1.2] tracking-display">
             {site.name} vs the rest.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">

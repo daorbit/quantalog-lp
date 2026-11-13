@@ -7,7 +7,7 @@ export function ProductFaq({ faqs, idPrefix }: { faqs: readonly Faq[]; idPrefix:
       <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
         <div>
           <p className="text-[15px] font-semibold text-accent sm:text-[17px]">FAQ</p>
-          <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
+          <h2 className="mt-3 text-balance text-h2 font-semibold leading-[1.1] tracking-display">
             Common questions.
           </h2>
         </div>

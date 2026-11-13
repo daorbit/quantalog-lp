@@ -87,7 +87,7 @@ export function PlansPage() {
           <PlanIcon slug="pro" size={13} uid="plans-eyebrow" />
           Plans
         </span>
-        <h1 className="mt-5 max-w-3xl text-h2 font-medium leading-[1.08] tracking-[-0.03em]">
+        <h1 className="mt-5 max-w-3xl text-h2 font-semibold leading-[1.1] tracking-[-0.03em]">
           Pick the plan
           <br />
           <span className="pricing-display-accent">that fits your sites.</span>

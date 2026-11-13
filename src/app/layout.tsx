@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { DocsMenu } from "@/components/menus/docs-menu";
@@ -15,13 +14,6 @@ import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { GoogleTranslate } from "@/components/language/google-translate";
 import { site } from "@/lib/site";
 import "./globals.css";
-
-const sans = localFont({
-  src: "../fonts/GoogleSansFlex-latin.woff2",
-  weight: "400 700",
-  variable: "--font-sans-loaded",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -114,7 +106,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={sans.variable}>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://forms.daorbit.in" />
         <link rel="prefetch" as="document" href={site.contactFormSrc} />

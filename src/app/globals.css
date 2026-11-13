@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-sans-loaded), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   --color-brand-50: #eff6ff;
@@ -12,8 +12,8 @@
   --color-brand-300: #93c5fd;
   --color-brand-400: #4ea2ff;
   --color-brand-500: #0a84ff;
-  --color-brand-600: #007aff;
-  --color-brand-700: #0062cc;
+  --color-brand-600: #0071e3;
+  --color-brand-700: #0066cc;
   --color-brand-800: #004a99;
   --color-brand-900: #00346b;
 
@@ -31,39 +31,39 @@
 
 :root {
   --bg: #ffffff;
-  --bg-subtle: #f5f5f5;
+  --bg-subtle: #f5f5f7;
   --surface: #ffffff;
   --surface-raised: #ffffff;
-  --border: #e5e5e5;
+  --border: #e5e7eb;
   --border-strong: #d4d4d4;
-  --border-warm: #e5e5e5;
-  --fg: #171717;
+  --border-warm: #e5e7eb;
+  --fg: #1d1d1f;
   --fg-muted: #636363;
 
   --fg-faint: #6b6b6b;
   --accent: #0066cc;
   --accent-fg: #ffffff;
-  --green: #15803d;
-  --cta: #171717;
-  --cta-hover: #333333;
+  --green: #34c759;
+  --cta: #1d1d1f;
+  --cta-hover: #333336;
   --cta-fg: #ffffff;
   --grid-line: rgba(10, 10, 10, 0.04);
-  --tint: rgba(0, 122, 255, 0.04);
-  --glow: rgba(0, 122, 255, 0.12);
-  --ring: rgba(0, 122, 255, 0.35);
+  --tint: rgba(0, 113, 227, 0.04);
+  --glow: rgba(0, 113, 227, 0.12);
+  --ring: rgba(0, 113, 227, 0.35);
 
   --accent-muted: #5f6166;
   --accent-quiet: rgba(0, 102, 204, 0.12);
-  --hairline-accent: rgba(0, 122, 255, 0.2);
+  --hairline-accent: rgba(0, 113, 227, 0.2);
 
   --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.04);
   --shadow-md: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px -12px rgba(10, 10, 10, 0.08);
   --shadow-lg: 0 1px 2px rgba(10, 10, 10, 0.04), 0 24px 48px -24px rgba(10, 10, 10, 0.12);
   --hairline: rgba(10, 10, 10, 0.06);
 
-  --radius-card: 1.375rem;
-  --radius-panel: 1.875rem;
-  --radius-stage: 2.75rem;
+  --radius-card: 0.5rem;
+  --radius-panel: 0.75rem;
+  --radius-stage: 1.25rem;
 }
 
 .dark {
@@ -124,10 +124,10 @@
 }
 
 @theme {
-  --text-display: clamp(1.875rem, 1.2rem + 3vw, 3.75rem);
-  --text-h2: clamp(1.625rem, 1.1rem + 2vw, 3rem);
+  --text-display: clamp(2.5rem, 1.6rem + 3vw, 3.5rem);
+  --text-h2: clamp(2.0625rem, 1.6rem + 1.4vw, 2.5rem);
   --text-h3: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
-  --text-lead: clamp(0.9375rem, 0.85rem + 0.4vw, 1.25rem);
+  --text-lead: clamp(1.0625rem, 0.8rem + 1.2vw, 1.75rem);
 
   --tracking-display: -0.022em;
   --tracking-tight: -0.015em;
@@ -224,6 +224,8 @@ tbody tr:last-child .pricing-col--featured {
 body {
   background: var(--bg);
   color: var(--fg);
+  font-size: 1.0625rem;
+  line-height: 1.53;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -1152,11 +1154,11 @@ section {
 }
 
 .legal-shell {
-  --docs-top: 3rem;
+  --docs-top: 2.75rem;
 }
 
 .docs-shell {
-  --docs-top: 3rem;
+  --docs-top: 2.75rem;
   width: 100%;
   background: var(--bg);
 }
@@ -2586,7 +2588,22 @@ body {
 }
 
 .site-header {
+  --bg: #1d1d1f;
+  --bg-subtle: #2a2a2d;
+  --surface: #2a2a2d;
+  --surface-raised: #333336;
+  --border: #3a3a3d;
+  --border-strong: #4a4a4d;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --fg: #f5f5f7;
+  --fg-muted: #a1a1a6;
+  --fg-faint: #86868b;
+  --accent: #2997ff;
+  --cta: #f5f5f7;
+  --cta-hover: #e8e8ed;
+  --cta-fg: #1d1d1f;
   background-color: var(--bg);
+  color: var(--fg);
   view-transition-name: site-header;
 }
 .site-header[data-docs] {
@@ -2611,7 +2628,7 @@ body {
 }
 .mega__scrim {
   position: fixed;
-  inset: 3rem 0 0;
+  inset: 2.75rem 0 0;
   z-index: 40;
   pointer-events: none;
   opacity: 0;
@@ -2745,7 +2762,7 @@ body {
 
 .mobile-menu {
   position: fixed;
-  inset: 3rem 0 0;
+  inset: 2.75rem 0 0;
   z-index: 49;
   display: flex;
   flex-direction: column;
@@ -3777,7 +3794,7 @@ body {
 .hm-l5 { background: var(--accent); }
 
 .section-y {
-  padding-block: clamp(2.75rem, 2rem + 2.75vw, 5.5rem);
+  padding-block: clamp(3.375rem, 2.8rem + 1.6vw, 4.375rem);
 }
 
 .bm-window {

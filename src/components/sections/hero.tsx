@@ -23,7 +23,7 @@ export function Hero() {
             Quotations and invoices are here
           </AnnouncementPill>
 
-          <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.75rem]">
+          <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-bold leading-[1.2] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.5rem]">
             <Words text="From first visit" />{" "}
             <Words text="to paid invoice." offset={3} />
           </h1>

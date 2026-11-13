@@ -7,7 +7,7 @@ export function CompareCta({ rival }: { rival: string }) {
   return (
     <section className="px-3 pb-16 sm:px-6 sm:pb-24">
       <div className="stage mx-auto max-w-7xl px-4 py-16 text-center sm:py-24">
-        <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">
+        <h2 className="text-balance text-h2 font-semibold leading-[1.1] tracking-display">
           Try it against your own traffic.
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-pretty text-lead leading-normal text-fg-muted">

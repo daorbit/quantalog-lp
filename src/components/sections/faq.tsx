@@ -8,7 +8,7 @@ export function Faq() {
         <FaqBrowser
           intro={
             <>
-              <h2 className="text-h2 font-medium leading-[1.04] tracking-display">
+              <h2 className="text-h2 font-semibold leading-[1.1] tracking-display">
                 Got questions
                 <br />
                 about <span className="text-accent">{site.name}</span>?

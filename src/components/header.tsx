@@ -53,7 +53,7 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
 
       <div>
 
-        <div className="site-header__bar mx-auto flex h-12 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
+        <div className="site-header__bar mx-auto flex h-11 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>
@@ -75,7 +75,7 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
             <Link
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap px-3.5 py-1.5 text-[13px] text-fg transition-colors duration-200 hover:text-fg-muted"
+              className="whitespace-nowrap px-3.5 py-1.5 text-[12px] text-fg transition-colors duration-200 hover:text-fg-muted"
             >
               {item.label}
             </Link>

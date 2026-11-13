@@ -22,7 +22,7 @@ export function Cta({
   return (
     <section className="px-3 pb-16 sm:px-6 sm:pb-24">
       <div className="stage mx-auto max-w-7xl px-4 py-16 text-center sm:py-24 lg:py-28">
-        <h2 className="text-balance text-h2 font-medium leading-[1.06] tracking-display">{title}</h2>
+        <h2 className="text-balance text-h2 font-semibold leading-[1.1] tracking-display">{title}</h2>
         <p className="mx-auto mt-5 max-w-lg text-pretty text-lead leading-normal text-fg-muted">{body}</p>
 
         <div className="mt-9 flex flex-wrap items-center justify-center gap-2 sm:gap-3">

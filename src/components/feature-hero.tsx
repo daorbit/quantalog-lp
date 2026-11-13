@@ -25,7 +25,7 @@ export function FeatureHero({
         <div className="rise rise-1">
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>
-        <h1 className="rise rise-2 mt-4 text-balance text-[2.375rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[3rem] xl:text-[3.5rem]">
+        <h1 className="rise rise-2 mt-4 text-balance text-[2.375rem] font-bold leading-[1.2] tracking-[-0.035em] sm:text-[3rem] xl:text-[3.5rem]">
           {title}
         </h1>
         <p className="rise rise-3 mt-6 max-w-lg text-pretty text-[1.0625rem] leading-[1.6] text-fg-muted sm:text-[1.1875rem]">

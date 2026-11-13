@@ -9,7 +9,7 @@ export function AboutHero() {
     <section className="mx-auto max-w-4xl px-4 pb-14 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-28">
       <div>
         <Eyebrow>About Quantalog</Eyebrow>
-        <h1 className="mt-4 text-balance text-display font-medium leading-[1.02] tracking-display">
+        <h1 className="mt-4 text-balance text-display font-bold leading-[1.2] tracking-display">
           Analytics that counts everyone.
           <br className="hidden sm:block" />{" "}
           <span className="text-accent">And follows no one.</span>

@@ -23,7 +23,7 @@ export function LegalPage({
     <div className="legal-shell">
       <header className="mx-auto max-w-3xl px-4 pb-10 pt-16 text-center sm:px-6 sm:pb-14 sm:pt-24">
         <p className="text-[15px] font-semibold text-accent sm:text-[17px]">Legal</p>
-        <h1 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">{title}</h1>
+        <h1 className="mt-3 text-balance text-h2 font-semibold leading-[1.1] tracking-display">{title}</h1>
         <p className="mx-auto mt-5 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">{lead}</p>
         <p className="mt-5 text-[13px] text-fg-faint">Last updated {updated}</p>
         <div className="mt-8">

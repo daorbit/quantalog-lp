@@ -33,7 +33,7 @@ export function OrbitExtension({ location = "home" }: { location?: string }) {
           <span className="orbit-tone text-[15px] font-semibold">Orbit AI for Chrome</span>
         </div>
 
-        <h2 className="mx-auto mt-4 max-w-3xl text-balance text-h2 font-medium leading-[1.06] tracking-display">
+        <h2 className="mx-auto mt-4 max-w-3xl text-balance text-h2 font-semibold leading-[1.1] tracking-display">
           Orbit, on every tab you open.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">

@@ -124,7 +124,7 @@ export default async function ComparisonPage({
             <span className="text-[15px] font-medium text-fg-faint">vs</span>
             <BrandBadge icon={c.logo} size="lg" />
           </div>
-          <h1 className="mt-8 text-balance text-display font-medium leading-[1.02] tracking-display">
+          <h1 className="mt-8 text-balance text-display font-bold leading-[1.2] tracking-display">
             {site.name} <span className="text-fg-faint">vs</span> {c.rival}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-lead leading-normal text-fg-muted">
@@ -222,7 +222,7 @@ export default async function ComparisonPage({
         <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-16">
           <div>
             <p className="text-[15px] font-semibold text-accent sm:text-[17px]">FAQ</p>
-            <h2 className="mt-3 text-balance text-h2 font-medium leading-[1.06] tracking-display">
+            <h2 className="mt-3 text-balance text-h2 font-semibold leading-[1.1] tracking-display">
               Common questions.
             </h2>
           </div>

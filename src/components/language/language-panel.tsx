@@ -17,7 +17,7 @@ export function LanguagePanel({ active, onClose }: LanguagePanelProps) {
   const select = useLanguageSelect(active, onClose);
 
   return (
-    <div className="relative mx-auto grid max-h-[calc(100dvh-3rem)] max-w-360 gap-8 overflow-y-auto px-4 pb-14 pt-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-12 lg:px-12">
+    <div className="relative mx-auto grid max-h-[calc(100dvh-2.75rem)] max-w-360 gap-8 overflow-y-auto px-4 pb-14 pt-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-12 lg:px-12">
       <button
         type="button"
         onClick={onClose}
