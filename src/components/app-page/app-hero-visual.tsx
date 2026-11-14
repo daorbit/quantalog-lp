@@ -10,7 +10,7 @@ export function AppHeroVisual({ app }: { app: AppPage }) {
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[30rem]">
       <img
-        src={`/apps/${app.logo}?v=9`}
+        src={`/apps/${app.logo}?v=10`}
         alt={app.name}
         width={512}
         height={512}
