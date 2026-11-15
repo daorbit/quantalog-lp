@@ -84,8 +84,10 @@ function Body() {
       <H3 id="availability">Opening, closing and response limits</H3>
       <P>
         Under <b>Availability</b>, set when the form <b>Opens</b>, when it{" "}
-        <b>Closes</b>, and a <b>Response limit</b>. Leave any of them empty for
-        no limit. Outside those limits the link stays live but shows your{" "}
+        <b>Closes</b>, and a <b>Response limit</b>. Pick the date and time from
+        the calendar, in your own time zone; the closing time can't be set
+        before the opening time. Leave any of them empty, or clear a date with
+        its × button, for no limit. Outside those limits the link stays live but shows your{" "}
         <b>Closed message</b> instead of the form, and nothing can be
         submitted — useful for event registrations and limited offers.
       </P>

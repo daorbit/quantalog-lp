@@ -135,8 +135,9 @@ function Body() {
           fields&apos; corners or fully rounded as a pill.
         </li>
         <li>
-          <b>Card</b> — corner radius, shadow depth, opacity, and a
-          frosted-glass blur over whatever sits behind a translucent card.
+          <b>Card</b> — padding (from 0 to 64px, overriding the padding that
+          comes with <b>Spacing</b>), corner radius, shadow depth, opacity, and
+          a frosted-glass blur over whatever sits behind a translucent card.
         </li>
       </Ul>
     </>
