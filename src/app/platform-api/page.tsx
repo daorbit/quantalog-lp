@@ -20,6 +20,8 @@ import { pageAlternates } from "@/lib/alternates";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
 
+const TITLE = "White label analytics API for SaaS and agencies";
+
 const META_DESCRIPTION =
   "Embed white label analytics in your own product. One API key provisions a project per customer and reads their stats back — your branding, your UI.";
 
@@ -121,7 +123,7 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "White label analytics API for your product",
+  title: TITLE,
   description: META_DESCRIPTION,
   alternates: pageAlternates("/platform-api"),
   other: {
@@ -142,12 +144,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${site.url}/platform-api`,
-    title: "White label analytics API for your product",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "White label analytics API for your product",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
 };
@@ -157,7 +159,7 @@ export default function PlatformApiPage() {
     {
       "@type": "WebPage",
       "@id": `${site.url}/platform-api#page`,
-      name: "White label analytics API for your product",
+      name: TITLE,
       description: META_DESCRIPTION,
       url: `${site.url}/platform-api`,
       isPartOf: { "@id": SITE_ID },
@@ -172,7 +174,7 @@ export default function PlatformApiPage() {
     }),
     article({
       path: "/platform-api",
-      headline: "White label analytics API for your product",
+      headline: TITLE,
       description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
@@ -201,7 +203,7 @@ export default function PlatformApiPage() {
         eyebrow="Platform API"
         title={
           <>
-            Give analytics to{" "}
+            White label analytics for{" "}
             <span className="text-accent">your</span> customers.
           </>
         }

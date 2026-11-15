@@ -32,11 +32,13 @@ import { pageAlternates } from "@/lib/alternates";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
 
+const TITLE = "Cookieless web analytics without a consent banner";
+
 const META_DESCRIPTION =
-  "Real-time, cookieless web analytics: a live visitor dashboard, funnels, goals and retention cohorts — no consent banner, no sampling.";
+  "Real-time cookieless web analytics with no consent banner: live visitors, funnels, goals and retention cohorts, computed from every event and never sampled.";
 
 const DESCRIPTION =
-  "See every visitor the moment they land. No cookies, no consent banner, and nothing sampled.";
+  "A Google Analytics alternative that counts every visitor the moment they land, without cookies or a consent banner, and never samples the data.";
 
 const stats = [
   { value: "<1", unit: "KB", label: "Tracker size" },
@@ -136,7 +138,7 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Real-time web analytics dashboard",
+  title: TITLE,
   description: META_DESCRIPTION,
   alternates: pageAlternates("/analytics"),
   other: {
@@ -144,6 +146,8 @@ export const metadata: Metadata = {
     "article:modified_time": MODIFIED,
   },
   keywords: [
+    "cookieless web analytics",
+    "analytics without cookie banner",
     "real-time analytics",
     "real-time web analytics dashboard",
     "cookieless analytics",
@@ -158,12 +162,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${site.url}/analytics`,
-    title: "Real-time web analytics dashboard",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Real-time web analytics dashboard",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
 };
@@ -173,7 +177,7 @@ export default function AnalyticsPage() {
     {
       "@type": "WebPage",
       "@id": `${site.url}/analytics#page`,
-      name: "Real-time web analytics dashboard",
+      name: TITLE,
       description: META_DESCRIPTION,
       url: `${site.url}/analytics`,
       isPartOf: { "@id": SITE_ID },
@@ -182,13 +186,13 @@ export default function AnalyticsPage() {
     },
     service({
       path: "/analytics",
-      name: "Real-time web analytics dashboard",
+      name: TITLE,
       description: META_DESCRIPTION,
       serviceType: "Web analytics",
     }),
     article({
       path: "/analytics",
-      headline: "Real-time web analytics dashboard",
+      headline: TITLE,
       description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
@@ -214,12 +218,12 @@ export default function AnalyticsPage() {
       <JsonLd data={jsonLd} />
 
       <FeatureHero
-        eyebrow="Analytics"
+        eyebrow="Cookieless analytics"
         title={
           <>
-            Every number, from every visit.
+            Real-time analytics from every visit.
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">Nothing sampled.</span>
+            <span className="text-accent">No cookies. Nothing sampled.</span>
           </>
         }
         description={DESCRIPTION}

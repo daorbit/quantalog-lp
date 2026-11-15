@@ -14,7 +14,7 @@ const LINKS = [
 
 export function AppsMenu() {
   return (
-    <div className="mx-auto grid max-w-360 grid-cols-[minmax(0,2.6fr)_minmax(0,1fr)] gap-12 px-4 pb-12 pt-8 sm:px-8 lg:px-12">
+    <div className="mx-auto grid max-w-360 grid-cols-[minmax(0,2.6fr)_minmax(0,1fr)] gap-12 px-4 pb-12 pt-8 sm:px-6">
       <div>
         <p className="menu-reveal text-[12px] text-fg-faint">Quantalog Apps</p>
         <ul className="mt-4 grid grid-cols-5 gap-1">
@@ -25,7 +25,7 @@ export function AppsMenu() {
                 className="flex items-center gap-3 rounded-2xl p-2.5 transition-colors duration-200 hover:bg-bg-subtle"
               >
                 <AppMark mark={app.mark} name={app.name} size="sm" />
-                <span className="min-w-0 truncate text-[14px] font-semibold tracking-tight text-fg">
+                <span className="line-clamp-2 min-w-0 text-[14px] font-semibold leading-[1.25] tracking-tight text-fg">
                   {app.name.replace(/^Quantalog /, "")}
                 </span>
               </Link>

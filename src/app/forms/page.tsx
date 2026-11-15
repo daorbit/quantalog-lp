@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Table2,
   TrendingDown,
+  UserPlus,
   Workflow,
 } from "lucide-react";
 import { FeatureHero } from "@/components/feature-hero";
@@ -37,14 +38,16 @@ import { pageAlternates } from "@/lib/alternates";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
 
+const TITLE = "Form builder with Razorpay payments and bookings";
+
 const META_DESCRIPTION =
-  "Drag-and-drop form builder with analytics attached. Multi-step forms, conditional logic, payments, and per-field drop-off you can actually see.";
+  "Build forms that take Razorpay, Cashfree or PayU payments, book Google Meet calls and sync to Google Sheets, then see which field people drop off at.";
 
 const DESCRIPTION =
   "A drag-and-drop form builder with the analytics already attached. Build multi-step forms with conditional logic, take payments through your own Razorpay, Cashfree or PayU account, embed them anywhere, and see exactly which field people abandon — because a form you cannot measure is a funnel you are guessing at.";
 
 const HERO_LEAD =
-  "Multi-step forms with logic, payments and bookings, plus the field-by-field drop-off other builders hide.";
+  "Multi-step forms with conditional logic, Razorpay, Cashfree and PayU payments, Google Calendar bookings and Google Sheets sync, plus the field-by-field drop-off other builders hide.";
 
 const capabilities = [
   {
@@ -56,6 +59,11 @@ const capabilities = [
     icon: CreditCard,
     title: "Take payments, into your own account",
     body: "A payment field turns a form into a checkout: registration fees, deposits, paid applications, donations. Charge a fixed amount, a price that follows an earlier answer, or whatever the respondent chooses to pay. Money moves through your own Razorpay, Cashfree or PayU account and lands with you, not with us — and a response is only recorded once the payment actually clears.",
+  },
+  {
+    icon: UserPlus,
+    title: "Every response, straight into your CRM",
+    body: "Connect Zoho CRM, HubSpot, Pipedrive or Freshsales once in Apps, and each new response is added as a lead or contact in every CRM you turn on, with the answers attached. No Zapier step in between.",
   },
   {
     icon: GitBranch,
@@ -120,6 +128,7 @@ const included = [
   "Source URL on every submission",
   "Payments through your own Razorpay, Cashfree or PayU account — fixed, priced by answer, or respondent-chosen",
   "Notification email through Brevo, Resend or your own SMTP server, plus submission webhooks",
+  "New responses sent to Zoho CRM, HubSpot, Pipedrive or Freshsales as leads",
   "Conditional logic — show or hide a field on an earlier answer",
   "Multi-step forms with per-step validation and a progress indicator",
   "Honeypot spam trap and per-IP rate limiting on every public form",
@@ -151,6 +160,18 @@ const faqs = [
     a: "You connect your own gateway account once per workspace — Razorpay, Cashfree or PayU — and every paid form in it charges through those keys. The money goes directly to you: it never passes through Quantalog, and we take nothing beyond your normal plan. The gateway's fees are between you and them.",
   },
   {
+    q: "Can people book a meeting through a form?",
+    a: "Yes. Add a booking field, set your weekly hours, buffers, notice and seats, and connect Google Calendar once in Apps. Respondents pick a free slot, the seat is reserved so two people cannot take the same one, and the event lands in your calendar with a Google Meet link.",
+  },
+  {
+    q: "Can responses go straight into Google Sheets?",
+    a: "Yes. Connect a Google account in Apps and each form gets its own spreadsheet on its first response. Every completed response after that is added as a new row, with the columns kept in the form's order.",
+  },
+  {
+    q: "Which CRMs can form responses go to?",
+    a: "Zoho CRM, HubSpot, Pipedrive and Freshsales. Connect each one once in Apps, use the Test button to check the keys, and every new response is sent to all the CRMs you have turned on: as a lead in Zoho, a contact with the answers in a note in HubSpot and Freshsales, and a person plus a lead in Pipedrive.",
+  },
+  {
     q: "What happens if someone abandons the payment?",
     a: "Nothing is charged and no response is recorded. Their answers stay on screen so they can try again without retyping, and the abandoned attempt is cleared automatically rather than sitting in your entries as a lead that never paid. A response is only confirmed once the gateway tells us the money arrived — not when the browser says so.",
   },
@@ -165,10 +186,17 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Form builder with built-in form analytics",
+  title: TITLE,
   description: META_DESCRIPTION,
   alternates: pageAlternates("/forms"),
   keywords: [
+    "form builder with Razorpay payment",
+    "Google Forms with payment option",
+    "registration form with UPI payment",
+    "booking form with Google Meet link",
+    "form to Google Sheets",
+    "form to HubSpot",
+    "Zoho CRM form integration",
     "form builder",
     "online form builder",
     "form analytics",
@@ -187,12 +215,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${site.url}/forms`,
-    title: "Form builder with built-in form analytics",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Form builder with built-in form analytics",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
 };
@@ -202,7 +230,7 @@ export default function FormsPage() {
     {
       "@type": "WebPage",
       "@id": `${site.url}/forms#page`,
-      name: "Form builder with built-in form analytics",
+      name: TITLE,
       description: DESCRIPTION,
       url: `${site.url}/forms`,
       isPartOf: { "@id": SITE_ID },
@@ -212,13 +240,13 @@ export default function FormsPage() {
     },
     service({
       path: "/forms",
-      name: "Form builder with built-in form analytics",
+      name: TITLE,
       description: DESCRIPTION,
       serviceType: "Form builder",
     }),
     article({
       path: "/forms",
-      headline: "Form builder with built-in form analytics",
+      headline: TITLE,
       description: DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
@@ -244,12 +272,12 @@ export default function FormsPage() {
       <JsonLd data={jsonLd} />
 
       <FeatureHero
-        eyebrow="Forms"
+        eyebrow="Form builder"
         title={
           <>
-            Every form is a funnel.
+            A form builder that takes payments
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">Most are invisible ones.</span>
+            <span className="text-accent">and shows where people drop off.</span>
           </>
         }
         description={HERO_LEAD}

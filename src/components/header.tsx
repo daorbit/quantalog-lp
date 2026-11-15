@@ -49,12 +49,11 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
     <header
       className="site-header sticky top-0 z-50"
       data-docs={isDocs || undefined}
-      data-menu-open={open || undefined}
-    >
+      data-menu-open={open || undefined}    >
 
       <div>
 
-        <div className="site-header__bar mx-auto flex h-11 max-w-360 items-center gap-4 px-4 sm:px-8 lg:px-12">
+        <div className="site-header__bar mx-auto flex h-11 max-w-360 items-center gap-4 px-4 sm:px-6">
           <div className="flex flex-1 items-center">
             <Logo />
           </div>

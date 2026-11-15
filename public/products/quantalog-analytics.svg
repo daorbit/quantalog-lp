@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256" role="img" aria-label="Quantalog Analytics">
+  <path d="M48 476V320A22 22 0 0 1 70 298H138A22 22 0 0 1 160 320V476Z" fill="#26C6DA"/>
+  <path d="M104 298H138A22 22 0 0 1 160 320V476H104Z" fill="#00ACC1"/>
+  <path d="M200 476V230A22 22 0 0 1 222 208H290A22 22 0 0 1 312 230V476Z" fill="#42A5F5"/>
+  <path d="M256 208H290A22 22 0 0 1 312 230V476H256Z" fill="#1E88E5"/>
+  <path d="M352 476V146A22 22 0 0 1 374 124H442A22 22 0 0 1 464 146V476Z" fill="#7E57C2"/>
+  <path d="M408 124H442A22 22 0 0 1 464 146V476H408Z" fill="#5E35B1"/>
+  <path d="M104 236L256 150L408 60" fill="none" stroke="#FFCA28" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="104" cy="236" r="24" fill="#FFCA28"/>
+  <circle cx="256" cy="150" r="24" fill="#FFCA28"/>
+  <circle cx="408" cy="60" r="24" fill="#FFB300"/>
+</svg>

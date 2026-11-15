@@ -54,7 +54,7 @@ export const allApps: AppEntry[] = [
   quantalog("campaigns", "Quantalog Campaigns", "Email the people who answered your forms, from your own email provider.", "/apps/campaigns"),
   quantalog("alerts", "Quantalog Alerts", "Hear about traffic drops, spikes and stalled goals by email, Telegram or WhatsApp.", "/apps/alerts"),
   // quantalog("popups", "Quantalog Popups", "Show your lead capture forms as popups and slide-ins on your site.", "/apps/popups"),
-  // quantalog("bio", "Quantalog Link-in-bio", "One link for your social bios, with every tap counted.", "/apps/link-in-bio"),
+  quantalog("bio", "Quantalog Link-in-bio & Smart Links", "A bio page for your socials and a smart link for every release, each with a short link and a QR code.", "/apps/link-in-bio"),
   {
     ...quantalog("invoicing", "Quantalog Invoicing", "Send quotations and GST-ready invoices to your leads, and see what is paid.", "/invoicing"),
     mark: { kind: "quantalog", id: "invoicing", file: "quantalog-invoicing.png" },

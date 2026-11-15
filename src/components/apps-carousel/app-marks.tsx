@@ -1,5 +1,6 @@
 export type AppMarkSpec =
   | { kind: "quantalog"; id: string; file?: string }
+  | { kind: "product"; file: string }
   | { kind: "logo"; file: string; wide?: boolean };
 
 const SIZES = {
@@ -14,6 +15,10 @@ export function AppMark({ mark, name, size = "md" }: { mark: AppMarkSpec; name: 
   if (mark.kind === "quantalog") {
     const src = `/apps/${mark.file ?? `quantalog-${mark.id}.svg`}?v=9`;
     return <img src={src} alt={name} width={px} height={px} className={box} />;
+  }
+
+  if (mark.kind === "product") {
+    return <img src={`/products/${mark.file}?v=1`} alt={name} width={px} height={px} className={box} />;
   }
 
   return (

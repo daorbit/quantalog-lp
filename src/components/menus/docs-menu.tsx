@@ -17,7 +17,7 @@ export function DocsMenu() {
   ];
 
   return (
-    <div className="mx-auto grid max-w-360 grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] gap-12 px-4 pb-14 pt-8 sm:px-8 lg:px-12">
+    <div className="mx-auto grid max-w-360 grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] gap-12 px-4 pb-14 pt-8 sm:px-6">
       <div>
         <p className="menu-reveal text-[12px] text-fg-faint">Documentation</p>
         <ul className="mt-4 space-y-2.5">

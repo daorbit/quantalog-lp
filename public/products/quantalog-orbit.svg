@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256" role="img" aria-label="Orbit AI and social">
+  <path d="M84 268L56 336L148 284Z" fill="#8E6CF2"/>
+  <rect x="32" y="48" width="340" height="236" rx="60" fill="#8E6CF2"/>
+  <path d="M202 48H312A60 60 0 0 1 372 108V224A60 60 0 0 1 312 284H202Z" fill="#7651E8"/>
+  <circle cx="122" cy="166" r="22" fill="#FFFFFF"/>
+  <circle cx="202" cy="166" r="22" fill="#FFFFFF"/>
+  <circle cx="282" cy="166" r="22" fill="#FFFFFF"/>
+  <path d="M404 444L460 500L452 420Z" fill="#F0447A"/>
+  <rect x="180" y="236" width="300" height="220" rx="56" fill="#FF5C8A"/>
+  <path d="M330 236H424A56 56 0 0 1 480 292V400A56 56 0 0 1 424 456H330Z" fill="#F0447A"/>
+  <path d="M330 404C250 352 262 298 302 298C318 298 326 308 330 316C334 308 342 298 358 298C398 298 410 352 330 404Z" fill="#FFFFFF"/>
+</svg>

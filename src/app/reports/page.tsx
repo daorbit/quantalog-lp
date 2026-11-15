@@ -29,8 +29,10 @@ import { pageAlternates } from "@/lib/alternates";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
 
+const TITLE = "Automated client reports by email and WhatsApp";
+
 const META_DESCRIPTION =
-  "Automated analytics reports by email and WhatsApp. A scheduled traffic and SEO summary for clients or your team — no dashboard login required.";
+  "Send clients a scheduled traffic and SEO report by email, WhatsApp or Telegram, in plain language with the spreadsheet attached, so they never need to log in.";
 
 const DESCRIPTION =
   "A scheduled traffic and SEO summary by email, WhatsApp or Telegram, in plain language, with the spreadsheet attached.";
@@ -129,7 +131,7 @@ const faqs = [
 ];
 
 export const metadata: Metadata = {
-  title: "Automated analytics reports by email and WhatsApp",
+  title: TITLE,
   description: META_DESCRIPTION,
   alternates: pageAlternates("/reports"),
   other: {
@@ -137,6 +139,8 @@ export const metadata: Metadata = {
     "article:modified_time": MODIFIED,
   },
   keywords: [
+    "automated client reports",
+    "client reporting tool for agencies",
     "automated analytics reports",
     "scheduled analytics email",
     "client reporting tool",
@@ -151,12 +155,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${site.url}/reports`,
-    title: "Automated analytics reports by email and WhatsApp",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Automated analytics reports by email and WhatsApp",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
 };
@@ -166,7 +170,7 @@ export default function ReportsPage() {
     {
       "@type": "WebPage",
       "@id": `${site.url}/reports#page`,
-      name: "Automated analytics reports by email and WhatsApp",
+      name: TITLE,
       description: META_DESCRIPTION,
       url: `${site.url}/reports`,
       isPartOf: { "@id": SITE_ID },
@@ -176,13 +180,13 @@ export default function ReportsPage() {
     },
     service({
       path: "/reports",
-      name: "Automated analytics reports by email and WhatsApp",
+      name: TITLE,
       description: META_DESCRIPTION,
       serviceType: "Analytics reporting",
     }),
     article({
       path: "/reports",
-      headline: "Automated analytics reports by email and WhatsApp",
+      headline: TITLE,
       description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
@@ -208,12 +212,12 @@ export default function ReportsPage() {
       <JsonLd data={jsonLd} />
 
       <FeatureHero
-        eyebrow="Reports"
+        eyebrow="Client reports"
         title={
           <>
-            Automated analytics reports,
+            Automated client reports,
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">delivered where people read.</span>
+            <span className="text-accent">delivered where clients read.</span>
           </>
         }
         description={DESCRIPTION}

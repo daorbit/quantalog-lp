@@ -6,7 +6,7 @@ import { funnelsApp } from "./funnels";
 import { goalsApp } from "./goals";
 import { growthRadarApp } from "./growth-radar";
 // import { insightsApp } from "./insights";
-// import { linkInBioApp } from "./link-in-bio";
+import { linkInBioApp } from "./link-in-bio";
 import { linksApp } from "./links";
 import { mediaApp } from "./media";
 import { notesApp } from "./notes";
@@ -27,7 +27,7 @@ export const APP_PAGES: AppPage[] = [
   alertsApp,
   campaignsApp,
   // popupsApp,
-  // linkInBioApp,
+  linkInBioApp,
   reviewsApp,
   tasksApp,
   notesApp,

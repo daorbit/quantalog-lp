@@ -35,16 +35,16 @@ import { pageAlternates } from "@/lib/alternates";
 const PUBLISHED = "2026-10-29";
 const MODIFIED = BUILD_DATE;
 
-const TITLE = "Quotations and GST-ready invoices, paid by UPI";
+const TITLE = "Free GST invoice generator with UPI QR code";
 
 const META_DESCRIPTION =
-  "Send quotations and GST-ready invoices from the workspace your leads already live in. Email or share a link, collect by UPI, and see what is still owed.";
+  "Create GST invoices and quotations free, with CGST, SGST and IGST worked out, HSN and SAC codes, a UPI QR for the amount due and a link you can share.";
 
 const DESCRIPTION =
   "Quantalog Invoicing sends quotations and invoices to the people your forms and campaigns bring in. An accepted quotation becomes an invoice in one click, GST is split into CGST and SGST or IGST for you, rupee invoices carry a UPI QR code for the amount due, and the Invoices page shows what has been paid and what is still owed.";
 
 const HERO_LEAD =
-  "Quotations and GST-ready invoices for the leads Quantalog brings in. Email them or share a link, collect by UPI, and see what is still owed.";
+  "Free quotations and GST invoices for the leads Quantalog brings in. CGST, SGST and IGST are worked out for you, rupee invoices carry a UPI QR, and you see what is still owed.";
 
 const steps = [
   {
@@ -99,7 +99,7 @@ const capabilities = [
   },
   {
     icon: Palette,
-    title: "Ten templates, your logo and colour",
+    title: "Fifteen templates, your logo and colour",
     body: "From a quiet minimalist page to a bold banner header, each previewed with your own document on a laptop or a phone before you send it.",
   },
 ];
@@ -141,7 +141,7 @@ const included = [
   "Customers with outstanding and overdue totals, and a CSV statement",
   "Saved items with rate, unit, code and GST rate",
   "Receivables ageing, sales, payments and a GSTR-1 style export",
-  "Ten templates, seven accent colours and your logo",
+  "Fifteen templates, seven accent colours and your logo",
   "Amount in words, in lakh and crore for rupee totals",
 ];
 
@@ -177,8 +177,11 @@ export const metadata: Metadata = {
   description: META_DESCRIPTION,
   alternates: pageAlternates("/invoicing"),
   keywords: [
+    "free GST invoice generator",
+    "GST invoice with UPI QR code",
+    "GST invoice format",
+    "quotation to invoice",
     "invoice generator",
-    "GST invoice generator",
     "online invoicing software",
     "quotation software",
     "estimate to invoice",
@@ -250,12 +253,12 @@ export default function InvoicingPage() {
       <JsonLd data={jsonLd} />
 
       <FeatureHero
-        eyebrow="Invoicing"
+        eyebrow="GST invoicing"
         title={
           <>
-            Quote it. Invoice it.
+            Quote it. Send a GST invoice.
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">Get paid.</span>
+            <span className="text-accent">Get paid by UPI.</span>
           </>
         }
         description={HERO_LEAD}

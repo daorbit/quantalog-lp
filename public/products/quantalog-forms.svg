@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256" role="img" aria-label="Quantalog Forms">
+  <rect x="40" y="40" width="432" height="448" rx="34" fill="#14B8A6"/>
+  <path d="M256 40H438A34 34 0 0 1 472 74V454A34 34 0 0 1 438 488H256Z" fill="#0E9F8F"/>
+  <circle cx="92" cy="76" r="11" fill="#A7F3EA"/>
+  <circle cx="126" cy="76" r="11" fill="#A7F3EA"/>
+  <circle cx="160" cy="76" r="11" fill="#A7F3EA"/>
+  <rect x="72" y="112" width="368" height="344" rx="18" fill="#F6F8FB"/>
+  <path d="M256 112H422A18 18 0 0 1 440 130V438A18 18 0 0 1 422 456H256Z" fill="#E9EEF4"/>
+  <rect x="104" y="144" width="304" height="52" rx="14" fill="#D3DCE6"/>
+  <rect x="104" y="216" width="304" height="52" rx="14" fill="#D3DCE6"/>
+  <rect x="104" y="288" width="36" height="36" rx="9" fill="#14B8A6"/>
+  <path d="M112 306L120 314L133 298" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M164 306H300" stroke="#B8C4D2" stroke-width="16" stroke-linecap="round"/>
+  <rect x="104" y="356" width="150" height="64" rx="16" fill="#FF7A40"/>
+  <path d="M179 356H238A16 16 0 0 1 254 372V404A16 16 0 0 1 238 420H179Z" fill="#FF5F2A"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256" role="img" aria-label="Quantalog Search visibility">
+  <rect x="32" y="40" width="448" height="100" rx="50" fill="#F1F5F9"/>
+  <path d="M256 40H430A50 50 0 0 1 480 90A50 50 0 0 1 430 140H256Z" fill="#DCE3EA"/>
+  <circle cx="98" cy="86" r="24" fill="none" stroke="#1E88E5" stroke-width="14"/>
+  <path d="M115 103L136 124" stroke="#1E88E5" stroke-width="14" stroke-linecap="round"/>
+  <path d="M168 90H330" stroke="#B0BEC5" stroke-width="16" stroke-linecap="round"/>
+  <rect x="32" y="184" width="448" height="80" rx="22" fill="#1E88E5"/>
+  <path d="M256 184H458A22 22 0 0 1 480 206V242A22 22 0 0 1 458 264H256Z" fill="#1976D2"/>
+  <circle cx="80" cy="224" r="18" fill="#FFFFFF"/>
+  <path d="M118 224H300" stroke="#BBDEFB" stroke-width="16" stroke-linecap="round"/>
+  <path d="M420 244V204M402 222L420 204L438 222" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="32" y="288" width="448" height="80" rx="22" fill="#DAE5EF"/>
+  <path d="M256 288H458A22 22 0 0 1 480 310V346A22 22 0 0 1 458 368H256Z" fill="#C5D3DF"/>
+  <circle cx="80" cy="328" r="18" fill="#90A4AE"/>
+  <path d="M118 328H260" stroke="#90A4AE" stroke-width="16" stroke-linecap="round"/>
+  <rect x="32" y="392" width="448" height="80" rx="22" fill="#DAE5EF"/>
+  <path d="M256 392H458A22 22 0 0 1 480 414V450A22 22 0 0 1 458 472H256Z" fill="#C5D3DF"/>
+  <circle cx="80" cy="432" r="18" fill="#90A4AE"/>
+  <path d="M118 432H230" stroke="#90A4AE" stroke-width="16" stroke-linecap="round"/>
+</svg>

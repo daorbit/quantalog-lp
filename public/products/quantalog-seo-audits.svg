@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256" role="img" aria-label="Quantalog SEO audits">
+  <g fill="none" stroke-linecap="round" stroke-width="60">
+    <path d="M66 316A190 190 0 0 1 446 316" stroke="#DAE5EF"/>
+    <path d="M256 126A190 190 0 0 1 446 316" stroke="#C5D3DF"/>
+    <path d="M66 316A190 190 0 0 1 256 126" stroke="#43D16A"/>
+    <path d="M256 126A190 190 0 0 1 440 269" stroke="#2FB457"/>
+  </g>
+  <path d="M256 316L362 242" stroke="#1F2550" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="256" cy="316" r="38" fill="#1F2550"/>
+  <circle cx="256" cy="316" r="14" fill="#DAE5EF"/>
+  <g stroke-linecap="round" stroke-width="32">
+    <path d="M86 446H206" stroke="#FF5A5F"/>
+    <path d="M246 446H326" stroke="#FFB020"/>
+    <path d="M366 446H426" stroke="#34C759"/>
+  </g>
+</svg>

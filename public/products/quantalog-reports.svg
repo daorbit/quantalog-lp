@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="256" height="256" role="img" aria-label="Quantalog Reports">
+  <path d="M72 60A28 28 0 0 1 100 32H300L392 124V452A28 28 0 0 1 364 480H100A28 28 0 0 1 72 452Z" fill="#F4F6FB"/>
+  <path d="M232 32H300L392 124V452A28 28 0 0 1 364 480H232Z" fill="#E3E8F2"/>
+  <path d="M300 32V100A24 24 0 0 0 324 124H392Z" fill="#C9D3E6"/>
+  <circle cx="172" cy="180" r="70" fill="#4F8DF7"/>
+  <path d="M172 180V110A70 70 0 0 1 242 180Z" fill="#FFB020"/>
+  <path d="M172 180H242A70 70 0 0 1 207 240.6Z" fill="#34C759"/>
+  <g stroke="#9AA5B8" stroke-width="18" stroke-linecap="round">
+    <path d="M270 160H336"/>
+    <path d="M270 204H320"/>
+    <path d="M110 300H280"/>
+    <path d="M110 350H280"/>
+    <path d="M110 400H230"/>
+  </g>
+  <circle cx="392" cy="404" r="92" fill="#FF7A40"/>
+  <path d="M392 312A92 92 0 0 1 392 496Z" fill="#FF5F2A"/>
+  <circle cx="392" cy="404" r="62" fill="#FFF3EC"/>
+  <path d="M392 404V364M392 404L424 420" fill="none" stroke="#1F2550" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="392" cy="404" r="10" fill="#1F2550"/>
+</svg>
