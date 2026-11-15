@@ -21,6 +21,19 @@ function Body() {
         <Li>Press <b>Publish page</b>. The phone preview shows exactly what visitors see.</Li>
       </Ul>
 
+      <H2 id="templates">Templates</H2>
+      <P>
+        Every page starts from a template: a ready-made layout, font, colour
+        and button style. To try another one later, open the page and press{" "}
+        <b>Change template</b>. Each preview shows your own title, photo and
+        links in that design. Picking one changes only the design, and nothing
+        is saved until you press <b>Save changes</b>.
+      </P>
+      <P>
+        Under <b>Design</b> you can still adjust everything by hand, including
+        the <b>Deep</b> background, a rich dark shade of your page colour.
+      </P>
+
       <H2 id="address">Your page address</H2>
       <P>
         Every page has its own address, such as <Code>/bio/your-name</Code>.
