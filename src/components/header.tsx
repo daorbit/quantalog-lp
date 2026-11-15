@@ -12,6 +12,7 @@ import { MobileMenu } from "./mobile-nav/mobile-menu";
 import { LanguageMenu } from "./language/language-menu";
 import { MobileLanguageTrigger } from "./language/mobile-language-trigger";
 import { MobileLanguageMenu } from "./language/mobile-language-menu";
+import { HeaderThemeToggle } from "./header-theme-toggle";
 import { useActiveLanguage } from "./use-active-language";
 import { nav, site } from "@/lib/site";
 import { track } from "@/lib/track";
@@ -91,6 +92,7 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
               open={panel === "language"}
               onToggle={() => setPanel((p) => (p === "language" ? null : "language"))}
             />
+            <HeaderThemeToggle />
 
             <a
               href={`${site.app}/signup`}

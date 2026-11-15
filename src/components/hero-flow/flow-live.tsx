@@ -60,7 +60,7 @@ export function OrbitNotes({ notes }: { notes: string[] }) {
   }, [reduced, notes.length]);
 
   return (
-    <p className="min-h-8.5 font-mono text-[10.5px] leading-relaxed text-fg-muted">
+    <p className="min-h-9 text-[12px] leading-[1.5] tracking-[-0.005em] text-fg">
       <TypedText key={index} text={notes[index]} speed={28} caret={false} />
     </p>
   );

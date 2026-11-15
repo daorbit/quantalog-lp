@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import { track } from "@/lib/track";
+import { useThemeSwitch, type ThemeChoice } from "./use-theme-switch";
+
+const OPTIONS: { key: ThemeChoice; Icon: typeof Sun; label: string }[] = [
+  { key: "light", Icon: Sun, label: "Light" },
+  { key: "dark", Icon: Moon, label: "Dark" },
+];
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { isDark, choose } = useThemeSwitch();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
-
-  const isDark = resolvedTheme === "dark";
 
   return (
     <div
@@ -29,10 +31,7 @@ export function ThemeToggle() {
         />
       )}
 
-      {[
-        { key: "light", Icon: Sun, label: "Light" },
-        { key: "dark", Icon: Moon, label: "Dark" },
-      ].map(({ key, Icon, label }) => {
+      {OPTIONS.map(({ key, Icon, label }) => {
         const active = mounted && (key === "dark") === isDark;
         return (
           <button
@@ -41,10 +40,7 @@ export function ThemeToggle() {
             role="radio"
             aria-checked={active}
             aria-label={label}
-            onClick={() => {
-              setTheme(key);
-              track("theme_changed", { theme: key });
-            }}
+            onClick={() => choose(key, "footer")}
             className={`relative z-10 inline-flex h-7 w-7 items-center justify-center rounded-full transition-colors duration-200 after:absolute after:left-1/2 after:top-1/2 after:h-11 after:w-11 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[''] ${
               active ? "text-accent" : "text-fg-faint hover:text-fg-muted"
             }`}

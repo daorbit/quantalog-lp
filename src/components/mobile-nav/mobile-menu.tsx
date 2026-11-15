@@ -3,6 +3,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { nav, productNav, site } from "@/lib/site";
 import { track } from "@/lib/track";
 import { ProviderSignup } from "../provider-signup";
+import { ThemeToggle } from "../theme-toggle";
 
 export function MobileMenu({ onClose }: { onClose: () => void }) {
   return (
@@ -33,6 +34,11 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         </div>
 
         <ProviderSignup location="mobile_menu" align="start" className="rise v-d6 mt-10" />
+
+        <div className="mobile-menu__row rise v-d6 mt-10">
+          <p className="mobile-menu__label">Appearance</p>
+          <ThemeToggle />
+        </div>
       </nav>
 
       <div className="mobile-menu__actions">

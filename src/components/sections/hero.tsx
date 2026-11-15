@@ -24,13 +24,19 @@ export function Hero() {
           </AnnouncementPill>
 
           <h1 className="word-rise mt-7 text-balance text-[2.5rem] font-bold leading-[1.2] tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.5rem]">
-            <Words text="From first visit" />{" "}
-            <Words text="to paid invoice." offset={3} />
+            <Words text="Turn visitors into leads," />{" "}
+            <Words text="and leads into" offset={4} />{" "}
+            <Words
+              text="paid invoices."
+              offset={7}
+              className="font-serif text-[1.12em] font-normal italic tracking-[-0.01em] text-accent"
+            />
           </h1>
 
-          <p className="rise rise-3 mt-6 max-w-lg text-pretty text-[1.0625rem] leading-[1.6] text-fg-muted sm:text-[1.1875rem]">
-            Cookieless analytics, lead forms, SEO, social posts and GST-ready invoicing in one workspace, with
-            Orbit AI to help. No cookie banner.
+          <p className="rise rise-3 mt-6 max-w-lg text-pretty text-[1.0625rem] leading-[1.65] text-fg-muted sm:text-[1.1875rem] [&_strong]:font-medium [&_strong]:text-fg">
+            <strong>Cookieless analytics</strong> shows where every visitor came from.{" "}
+            <strong>Forms and bookings</strong> turn them into leads. <strong>GST-ready invoices</strong> get
+            you paid by UPI.
           </p>
 
           <div className="rise rise-4 mt-9 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">

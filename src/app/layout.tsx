@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { DocsMenu } from "@/components/menus/docs-menu";
@@ -17,6 +17,13 @@ import { site } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  display: "swap",
+  variable: "--font-instrument",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -109,7 +116,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://forms.daorbit.in" />
         <link rel="prefetch" as="document" href={site.contactFormSrc} />
