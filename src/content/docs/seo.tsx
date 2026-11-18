@@ -18,10 +18,11 @@ function Body() {
         specific page. Hit <b>Run audit</b>.
       </P>
       <P>
-        The <b>Overview</b> tab lists every route on the site, read from its
-        sitemap, with a search box. Click <b>Run audit</b> on a route to check
-        it. Once a page has been audited it appears under <b>SEO</b> in the
-        sidebar with its latest score, so you can jump back to it. The report is
+        The route picker at the left of the audit bar lists every route in the
+        site&apos;s sitemap. Type to search. An audited route opens its report;
+        any other route fills the path, ready for <b>Run audit</b>. Once a page
+        has been audited it appears under <b>SEO</b> in the sidebar with its
+        latest score, so you can jump back to it. The report is
         split into tabs: <b>Overview</b>, <b>Issues</b>, <b>On-page</b>,{" "}
         <b>Performance</b> and <b>Site health</b>.
       </P>
