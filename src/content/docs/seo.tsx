@@ -15,7 +15,15 @@ function Body() {
       <P>
         Open <b>SEO</b> in the sidebar, pick a site, and enter the path you want
         checked — <code>/</code> for the homepage, <code>/pricing</code> for a
-        specific page. Hit <b>Analyze</b>.
+        specific page. Hit <b>Run audit</b>.
+      </P>
+      <P>
+        The <b>Overview</b> tab lists every route on the site, read from its
+        sitemap, with a search box. Click <b>Run audit</b> on a route to check
+        it. Once a page has been audited it appears under <b>SEO</b> in the
+        sidebar with its latest score, so you can jump back to it. The report is
+        split into tabs: <b>Overview</b>, <b>Issues</b>, <b>On-page</b>,{" "}
+        <b>Performance</b> and <b>Site health</b>.
       </P>
       <P>
         Audits are scoped to sites in your workspace: the URL has to be on that
