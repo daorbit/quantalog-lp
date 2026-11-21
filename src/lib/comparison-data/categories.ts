@@ -39,6 +39,16 @@ export const COMPARISON_CATEGORIES: ComparisonCategoryInfo[] = [
         `Add your business details once and send a GST invoice with a UPI QR in a few minutes. Invoicing is a free ${site.name} app, and the Free plan needs no card.`,
     },
   },
+  {
+    id: "reporting",
+    label: "Agency reporting",
+    keywords: ["client reporting tool comparison", "agency reporting software alternatives"],
+    cta: {
+      title: "Send one client report from here.",
+      body: (rival) =>
+        `Set up a report for one client in ${site.name} and compare it with what you send from ${rival} today. The Free plan includes a monthly report, and no card is needed.`,
+    },
+  },
 ];
 
 export function comparisonCategory(id: ComparisonCategory): ComparisonCategoryInfo {

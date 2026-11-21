@@ -2,7 +2,7 @@ import type { SimpleIcon } from "simple-icons";
 
 export type Verdict = "quantalog" | "rival" | "both" | "neither";
 
-export type ComparisonCategory = "analytics" | "forms" | "invoicing";
+export type ComparisonCategory = "analytics" | "forms" | "invoicing" | "reporting";
 
 export type ComparisonRow = {
   point: string;

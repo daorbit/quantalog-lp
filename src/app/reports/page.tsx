@@ -20,6 +20,7 @@ import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
 import { ProductChecklist } from "@/components/product/product-checklist";
 import { ProductFaq } from "@/components/product/product-faq";
 import { RelatedProducts } from "@/components/product/related-products";
+import { ProductComparisons } from "@/components/product/product-comparisons";
 import { ReportInboxPreview } from "@/components/product/report-inbox-preview";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -264,6 +265,12 @@ export default function ReportsPage() {
       </SplitStory>
 
       <ProductFaq faqs={faqs} idPrefix="reports-faq" />
+
+      <ProductComparisons
+        category="reporting"
+        title="Reporting from another tool today?"
+        body="Side-by-side comparisons with the client reporting tools agencies use most, including where the other tool is the better choice."
+      />
 
       <RelatedProducts hrefs={["/analytics", "/seo-audits", "/search-visibility"]} />
 

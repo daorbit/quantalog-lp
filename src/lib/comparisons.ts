@@ -12,6 +12,7 @@ import { site } from "@/lib/site";
 import { COMPARISON_CATEGORIES, type ComparisonCategoryInfo } from "@/lib/comparison-data/categories";
 import { FORM_COMPARISONS } from "@/lib/comparison-data/forms";
 import { INVOICING_COMPARISONS } from "@/lib/comparison-data/invoicing";
+import { REPORTING_COMPARISONS } from "@/lib/comparison-data/reporting";
 import type { Comparison, ComparisonCategory, ComparisonEntry } from "@/lib/comparison-data/types";
 
 export type {
@@ -724,6 +725,7 @@ const COMPARISONS: Comparison[] = [
   ...inCategory("analytics", ANALYTICS_COMPARISONS),
   ...inCategory("forms", FORM_COMPARISONS),
   ...inCategory("invoicing", INVOICING_COMPARISONS),
+  ...inCategory("reporting", REPORTING_COMPARISONS),
 ];
 
 export function getComparisonSlugs(): string[] {

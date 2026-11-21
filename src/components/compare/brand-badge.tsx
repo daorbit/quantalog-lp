@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChartLine, ClipboardList, ReceiptText, type LucideIcon } from "lucide-react";
+import { ChartLine, ClipboardList, FileChartColumn, ReceiptText, type LucideIcon } from "lucide-react";
 import type { SimpleIcon } from "simple-icons";
 import { isDarkHex } from "@/lib/brand-color";
 import type { Comparison, ComparisonCategory } from "@/lib/comparison-data/types";
@@ -42,6 +42,7 @@ const CATEGORY_ICONS: Record<ComparisonCategory, LucideIcon> = {
   analytics: ChartLine,
   forms: ClipboardList,
   invoicing: ReceiptText,
+  reporting: FileChartColumn,
 };
 
 export function RivalGlyph({ rival, size = 16, label }: { rival: Rival; size?: number; label?: string }) {
