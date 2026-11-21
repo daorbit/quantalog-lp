@@ -1,4 +1,4 @@
-import { siGoogleforms, siTypeform } from "simple-icons";
+import { siCalendly, siGoogleforms, siTypeform } from "simple-icons";
 import type { ComparisonEntry, ComparisonRow } from "./types";
 
 const CHECKED_ON = "November 2026";
@@ -336,6 +336,90 @@ export const FORM_COMPARISONS: ComparisonEntry[] = [
       {
         q: "Can I see which ad or post produced a lead?",
         a: "Yes. Every Quantalog response records its channel, source and campaign automatically, and the same workspace shows the traffic that reached the form.",
+      },
+    ],
+  },
+  {
+    slug: "calendly-alternative",
+    rival: "Calendly",
+    logo: siCalendly,
+    title: "Quantalog vs Calendly",
+    description:
+      "A Calendly alternative for Indian businesses: a booking field with Google Meet links inside a full form, UPI payments through Razorpay, Cashfree or PayU, lead follow-up and GST invoices for paid bookings.",
+    intro:
+      "Calendly is the scheduler most teams reach for first, and as a pure scheduler it is hard to fault. Quantalog's booking is a field inside a form. It makes sense when the booking starts a sale: a paid consultation, a demo request with qualifying questions, or a class that needs a UPI payment.",
+    whenTheirs:
+      "Stay with Calendly if you need reminder emails and self-service rescheduling, Outlook or iCloud calendars, Zoom or Teams links, or round-robin scheduling across a team. It is a dedicated scheduler, and it does all of that better than a booking field inside a form.",
+    checkedOn: CHECKED_ON,
+    rows: [
+      {
+        point: "Free plan",
+        ours: "1 form and 100 responses a month, with payments and Google Meet links included.",
+        theirs: "One event type and one calendar with unlimited meetings. Payments, reminders and most integrations need a paid plan.",
+        verdict: "both",
+      },
+      withTheirs(PAYMENTS_ROW, "Stripe and PayPal only, according to Calendly's help centre."),
+      {
+        point: "Questions before the booking",
+        ours: "The booking field sits inside a full form, with 40-odd field types, conditional logic and a thank-you page picked by answer.",
+        theirs: "Invitee questions on the booking page, with routing forms on team plans.",
+        verdict: "quantalog",
+      },
+      {
+        point: "Calendars",
+        ours: "Google Calendar. It checks the calendars you pick for conflicts and adds each booking to one of them.",
+        theirs: "Google, Outlook, Microsoft 365 and iCloud calendars, with several connected on paid plans.",
+        verdict: "rival",
+      },
+      {
+        point: "Video meeting links",
+        ours: "A Google Meet link on every booking.",
+        theirs: "Zoom, Google Meet, Microsoft Teams and others.",
+        verdict: "rival",
+      },
+      {
+        point: "Reminders and rescheduling",
+        ours: "Not offered yet. A booking is cancelled by deleting its entry, not by the person who booked.",
+        theirs: "Reminder emails and texts with reschedule and cancel links, on paid plans.",
+        verdict: "rival",
+      },
+      {
+        point: "Team scheduling",
+        ours: "Not offered. Each booking field books one person's calendar.",
+        theirs: "Round robin and shared team pages on team plans.",
+        verdict: "rival",
+      },
+      {
+        point: "Group sessions",
+        ours: "Seats per slot for classes and webinars, with a daily limit.",
+        theirs: "Group events on paid plans.",
+        verdict: "both",
+      },
+      {
+        point: "Where each booking came from",
+        ours: "Channel, source and campaign are recorded on every response automatically, from UTM tags and the referrer.",
+        theirs: "UTM parameters on the booking link can be tracked with each booking.",
+        verdict: "both",
+      },
+      withTheirs(PIPELINE_ROW, "Bookings are listed in Calendly. Follow-up usually happens in a connected CRM."),
+      withTheirs(INVOICE_ROW, "Not offered. Calendly takes the payment but does not issue GST invoices."),
+    ],
+    faqs: [
+      {
+        q: "Can Quantalog replace Calendly?",
+        a: "For one person taking bookings on Google Calendar with Meet links, yes, and it adds UPI payments and lead follow-up. It does not replace Calendly's reminders, rescheduling links, Outlook and iCloud calendars or team scheduling.",
+      },
+      {
+        q: "Can I take UPI payments for bookings?",
+        a: "Yes. Add a payment field next to the booking field and it charges through your own Razorpay, Cashfree or PayU account. The time is held while the person pays and released if they abandon the payment.",
+      },
+      {
+        q: "Does it check my calendar for conflicts?",
+        a: "Yes. Pick the Google calendars to check, and any busy time is hidden from the form. Quantalog reads only free and busy times, never event titles or details.",
+      },
+      {
+        q: "Do people see times in their own timezone?",
+        a: "Yes. You set your weekly hours in your own timezone, and the person booking sees the open times converted to theirs.",
       },
     ],
   },

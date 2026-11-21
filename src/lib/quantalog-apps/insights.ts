@@ -84,7 +84,7 @@ export const insightsApp: AppPage = {
   connections: [
     { kind: "product", href: "/analytics", how: "Built from the traffic, sources, pages and campaigns you already track." },
     { kind: "app", id: "tasks", how: "Create task turns an insight into a card with a link back to the filtered data." },
-    { kind: "product", href: "/social", how: "Orbit writes the weekly summary from your own numbers." },
+    { kind: "product", href: "/orbit-ai", how: "Orbit writes the weekly summary from your own numbers." },
     { kind: "app", id: "alerts", how: "Alerts catch sudden drops the same day; Insights explains the week." },
   ],
   included: [

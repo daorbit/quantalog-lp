@@ -35,6 +35,11 @@ export async function GET(): Promise<Response> {
       "/tools/gst-invoice-generator",
       "Make a GST invoice in the browser with CGST, SGST or IGST, HSN and SAC codes and a UPI QR, then download it as a PDF. No signup."
     ),
+    link(
+      "Quotation generator",
+      "/tools/quotation-generator",
+      "Make a GST quotation in the browser with a valid-until date and a line for the customer to accept, then download it as a PDF. No signup."
+    ),
     "",
     "## Quantalog Apps",
     "",

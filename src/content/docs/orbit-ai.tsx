@@ -27,13 +27,13 @@ function Body() {
 
       <H2 id="what-it-cannot-see">What it can and cannot see</H2>
       <P>
-        On <b>Orbit Free</b> and <b>Orbit Starter</b>, Orbit has no access to
+        On the <b>Free</b> and <b>Starter</b> plans, Orbit has no access to
         your account, your workspaces, or your analytics. Ask it what your
         traffic was yesterday and it will tell you it cannot read your data and
         send you to the Analytics page.
       </P>
       <P>
-        On <b>Orbit Pro</b>, it can. A short summary of the workspace you are in
+        On the <b>Pro</b> plan, it can. A short summary of the workspace you are in
         — the last seven days of visitors, pageviews, sessions and bounce rate,
         each against the previous week, plus your top pages, referrers,
         countries and devices — is sent with the question, so &quot;why is
@@ -67,21 +67,21 @@ function Body() {
 
       <H2 id="plans">Questions and models</H2>
       <P>
-        Orbit is bought per workspace, on its own ladder — separate from the
-        analytics plan. A workspace on analytics Free can run Orbit Pro, and the
-        other way round, because a small site can still be a heavy Orbit user.
+        Orbit comes with your workspace&apos;s plan, the free one included, so
+        there is nothing extra to buy. The plan sets how many questions you get
+        each month.
       </P>
       <Ul>
         <Li>
-          <b>Orbit Free</b> — 10 questions a month.
+          <b>Free</b> — 10 questions a month.
         </Li>
         <Li>
-          <b>Orbit Starter</b> — 300 questions a month, and a longer conversation
+          <b>Starter</b> — 300 questions a month, and a longer conversation
           memory.
         </Li>
         <Li>
-          <b>Orbit Pro</b> — 2,000 questions a month, the longest conversation
-          memory, and answers that read your own analytics.
+          <b>Pro</b> — 2,000 questions a month, the longest conversation memory,
+          and answers that read your own analytics.
         </Li>
       </Ul>
       <P>

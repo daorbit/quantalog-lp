@@ -84,8 +84,6 @@ export const metadata: Metadata = {
     "lead form integrations",
     "slack form notifications",
     "whatsapp form alerts",
-    "razorpay form payments",
-    "google sheets form integration",
   ],
   openGraph: { type: "website", url: `${site.url}${PATH}`, title: TITLE, description: META_DESCRIPTION },
   twitter: { card: "summary_large_image", title: TITLE, description: META_DESCRIPTION },

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { DOCUMENT_KINDS, type DocumentKind } from "@/lib/gst-invoice/document-kinds";
 import { supplyStates } from "@/lib/gst-invoice/gst";
 import { computeTotals } from "@/lib/gst-invoice/totals";
 import { track } from "@/lib/track";
@@ -15,28 +16,29 @@ import { ToolActions } from "./tool-actions";
 import { useInvoiceDraft } from "./use-invoice-draft";
 import { useUpiQr } from "./use-upi-qr";
 
-export function GstInvoiceTool() {
+export function GstInvoiceTool({ kind = "invoice" }: { kind?: DocumentKind }) {
+  const config = DOCUMENT_KINDS[kind];
   const { draft, update, updateSeller, updateBuyer, updateItem, addItem, removeItem, startBlank } =
-    useInvoiceDraft();
+    useInvoiceDraft(config);
   const totals = useMemo(() => computeTotals(draft), [draft]);
   const supply = useMemo(() => supplyStates(draft), [draft]);
   const qrSrc = useUpiQr({
-    upiId: draft.upiId,
+    upiId: config.showUpi ? draft.upiId : "",
     payee: draft.seller.name || "Payee",
     amount: totals.total,
     note: draft.number,
   });
 
   function download() {
-    track("gst_invoice_download", {
+    track(config.downloadEvent, {
       items: draft.items.length,
       interState: supply.interState,
       upi: Boolean(qrSrc),
     });
-    printInvoice([draft.number, draft.buyer.name].filter(Boolean).join(" ") || "GST invoice");
+    printInvoice([draft.number, draft.buyer.name].filter(Boolean).join(" ") || config.fileFallback);
   }
 
-  const sheet = <InvoiceSheet draft={draft} totals={totals} supply={supply} qrSrc={qrSrc} />;
+  const sheet = <InvoiceSheet config={config} draft={draft} totals={totals} supply={supply} qrSrc={qrSrc} />;
 
   return (
     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
@@ -58,13 +60,18 @@ export function GstInvoiceTool() {
           party={draft.buyer}
           onChange={updateBuyer}
         />
-        <DetailsFields draft={draft} onChange={update} />
+        <DetailsFields config={config} draft={draft} onChange={update} />
         <ItemsSection items={draft.items} onChange={updateItem} onAdd={addItem} onRemove={removeItem} />
-        <PaymentFields draft={draft} onChange={update} />
+        <PaymentFields config={config} draft={draft} onChange={update} />
       </div>
 
       <div className="lg:sticky lg:top-24 lg:self-start">
-        <ToolActions onDownload={download} onStartBlank={startBlank} />
+        <ToolActions
+          prompt={config.actionsPrompt}
+          location={config.actionsLocation}
+          onDownload={download}
+          onStartBlank={startBlank}
+        />
         <div className="mt-5 lg:max-h-[calc(100vh-13rem)] lg:overflow-y-auto">{sheet}</div>
       </div>
 

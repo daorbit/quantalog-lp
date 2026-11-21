@@ -197,7 +197,7 @@ function Body() {
 
       <H2 id="orbit">Orbit AI</H2>
       <P>
-        With an Orbit plan that includes data access, Orbit can read your Google search data for the selected period:
+        On the Pro plan, Orbit can read your Google search data for the selected period:
       </P>
       <Ul>
         <Li>

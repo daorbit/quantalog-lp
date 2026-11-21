@@ -8,7 +8,17 @@ import { track } from "@/lib/track";
 
 const CONFIRM_WINDOW_MS = 3000;
 
-export function ToolActions({ onDownload, onStartBlank }: { onDownload: () => void; onStartBlank: () => void }) {
+export function ToolActions({
+  prompt,
+  location,
+  onDownload,
+  onStartBlank,
+}: {
+  prompt: string;
+  location: string;
+  onDownload: () => void;
+  onStartBlank: () => void;
+}) {
   const [confirming, setConfirming] = useState(false);
 
   useEffect(() => {
@@ -39,10 +49,10 @@ export function ToolActions({ onDownload, onStartBlank }: { onDownload: () => vo
         </ActionButton>
       </div>
       <p className="mt-3 text-pretty text-[13px] leading-relaxed text-fg-muted">
-        Your draft stays in this browser. Need numbering that keeps count, saved customers and share links?{" "}
+        Your draft stays in this browser. {prompt}{" "}
         <a
           href={`${site.app}/signup`}
-          onClick={() => track("cta_start_free", { location: "gst_tool_actions" })}
+          onClick={() => track("cta_start_free", { location })}
           className="inline-flex items-center gap-0.5 font-medium text-accent hover:underline hover:underline-offset-4"
         >
           Send it from Quantalog

@@ -1,17 +1,19 @@
 "use client";
 
 import { FormField, fieldDescribedBy } from "../form-field";
+import type { DocumentKindConfig } from "@/lib/gst-invoice/document-kinds";
 import type { InvoiceDraft } from "@/lib/gst-invoice/types";
 import { ToggleField } from "./toggle-field";
 import { ToolSection } from "./tool-section";
 
-const NUMBER_HINT = "Unique in the financial year, up to 16 characters.";
 const NUMBER_PATTERN = /^[A-Za-z0-9/-]{1,16}$/;
 
 export function DetailsFields({
+  config,
   draft,
   onChange,
 }: {
+  config: DocumentKindConfig;
   draft: InvoiceDraft;
   onChange: (patch: Partial<InvoiceDraft>) => void;
 }) {
@@ -21,12 +23,12 @@ export function DetailsFields({
       : undefined;
 
   return (
-    <ToolSection id="gst-details-heading" title="Invoice details">
+    <ToolSection id="gst-details-heading" title="Details">
       <FormField
-        label="Invoice number"
+        label={config.numberLabel}
         htmlFor="gst-number"
         error={numberError}
-        hint={NUMBER_HINT}
+        hint={config.numberHint}
         className="sm:col-span-2"
       >
         <input
@@ -36,12 +38,12 @@ export function DetailsFields({
           maxLength={16}
           spellCheck={false}
           aria-invalid={Boolean(numberError)}
-          aria-describedby={fieldDescribedBy("gst-number", numberError, NUMBER_HINT)}
+          aria-describedby={fieldDescribedBy("gst-number", numberError, config.numberHint)}
           onChange={(e) => onChange({ number: e.target.value.replace(/\s/g, "") })}
         />
       </FormField>
 
-      <FormField label="Invoice date" htmlFor="gst-issue-date">
+      <FormField label={config.dateLabel} htmlFor="gst-issue-date">
         <input
           id="gst-issue-date"
           type="date"
@@ -51,7 +53,7 @@ export function DetailsFields({
         />
       </FormField>
 
-      <FormField label="Due date" htmlFor="gst-due-date" optional>
+      <FormField label={config.endLabel} htmlFor="gst-due-date" optional>
         <input
           id="gst-due-date"
           type="date"
@@ -76,13 +78,15 @@ export function DetailsFields({
         checked={draft.roundOff}
         onChange={(roundOff) => onChange({ roundOff })}
       />
-      <ToggleField
-        id="gst-reverse-charge"
-        label="Tax payable on reverse charge"
-        description="Only for supplies where your customer pays the GST to the government instead of you."
-        checked={draft.reverseCharge}
-        onChange={(reverseCharge) => onChange({ reverseCharge })}
-      />
+      {config.showReverseCharge && (
+        <ToggleField
+          id="gst-reverse-charge"
+          label="Tax payable on reverse charge"
+          description="Only for supplies where your customer pays the GST to the government instead of you."
+          checked={draft.reverseCharge}
+          onChange={(reverseCharge) => onChange({ reverseCharge })}
+        />
+      )}
     </ToolSection>
   );
 }

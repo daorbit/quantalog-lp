@@ -1,8 +1,8 @@
+import type { DocumentKindConfig } from "./document-kinds";
 import { addDays, isoDay } from "./format";
 import type { InvoiceDraft, InvoiceItem } from "./types";
 
 export const DEFAULT_TAX_RATE = 18;
-export const DEFAULT_PAYMENT_DAYS = 15;
 
 let itemCounter = 0;
 
@@ -21,11 +21,11 @@ export function newItem(patch: Partial<InvoiceItem> = {}): InvoiceItem {
 
 const EMPTY_PARTY = { name: "", address: "", gstin: "", state: "" };
 
-export function blankDraft(): InvoiceDraft {
+export function blankDraft(config: DocumentKindConfig): InvoiceDraft {
   return {
     seller: { ...EMPTY_PARTY, contact: "" },
     buyer: { ...EMPTY_PARTY },
-    number: "INV-0001",
+    number: config.numberPrefix,
     issueDate: "",
     dueDate: "",
     items: [newItem()],
@@ -38,7 +38,7 @@ export function blankDraft(): InvoiceDraft {
   };
 }
 
-export function sampleDraft(): InvoiceDraft {
+export function sampleDraft(config: DocumentKindConfig): InvoiceDraft {
   return {
     seller: {
       name: "Northwind Studio",
@@ -53,7 +53,7 @@ export function sampleDraft(): InvoiceDraft {
       gstin: "27AAACA1234B1Z2",
       state: "",
     },
-    number: "INV-0001",
+    number: config.numberPrefix,
     issueDate: "",
     dueDate: "",
     items: [
@@ -65,12 +65,12 @@ export function sampleDraft(): InvoiceDraft {
     reverseCharge: false,
     upiId: "",
     bankDetails: "",
-    notes: "Thank you for your business.",
+    notes: config.sampleNotes,
   };
 }
 
-export function withDates(draft: InvoiceDraft, today: Date): InvoiceDraft {
+export function withDates(draft: InvoiceDraft, today: Date, endDays: number): InvoiceDraft {
   if (draft.issueDate) return draft;
   const issueDate = isoDay(today);
-  return { ...draft, issueDate, dueDate: draft.dueDate || addDays(issueDate, DEFAULT_PAYMENT_DAYS) };
+  return { ...draft, issueDate, dueDate: draft.dueDate || addDays(issueDate, endDays) };
 }

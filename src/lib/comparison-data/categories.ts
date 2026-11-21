@@ -12,7 +12,7 @@ export const COMPARISON_CATEGORIES: ComparisonCategoryInfo[] = [
   {
     id: "analytics",
     label: "Analytics",
-    keywords: ["privacy-first analytics", "cookieless analytics"],
+    keywords: ["analytics tool comparison", "privacy-friendly analytics alternatives"],
     cta: {
       title: "Try it against your own traffic.",
       body: (rival) =>
@@ -22,7 +22,7 @@ export const COMPARISON_CATEGORIES: ComparisonCategoryInfo[] = [
   {
     id: "forms",
     label: "Forms and bookings",
-    keywords: ["online form builder", "form with Razorpay payment", "booking form with Google Meet"],
+    keywords: ["form builder comparison", "form builder alternatives"],
     cta: {
       title: "Rebuild one form and compare.",
       body: (rival) =>
@@ -32,7 +32,7 @@ export const COMPARISON_CATEGORIES: ComparisonCategoryInfo[] = [
   {
     id: "invoicing",
     label: "Invoicing",
-    keywords: ["GST invoice software", "quotation and invoice software", "invoice with UPI QR"],
+    keywords: ["invoicing software comparison", "GST billing software alternatives"],
     cta: {
       title: "Send your next invoice from here.",
       body: () =>

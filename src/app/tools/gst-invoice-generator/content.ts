@@ -4,6 +4,17 @@ import type { Faq } from "@/lib/faqs";
 
 export const TITLE = "Free GST invoice generator, no signup";
 
+export const KEYWORDS = [
+  "free GST invoice generator",
+  "GST invoice generator",
+  "GST invoice format",
+  "online GST bill maker",
+  "GST invoice with UPI QR code",
+  "CGST SGST IGST invoice",
+  "tax invoice format India",
+  "invoice generator no signup",
+];
+
 export const META_DESCRIPTION =
   "Make a GST invoice in your browser: CGST, SGST or IGST worked out, HSN and SAC codes, amount in words and a UPI QR. Download it as a PDF. Free, no signup.";
 

@@ -23,7 +23,7 @@ const columns = [
     title: "Why Quantalog",
     links: [
       { href: "/#consent-gap", label: "The consent gap" },
-      { href: "/social", label: "Orbit AI" },
+      { href: "/orbit-ai", label: "Orbit AI" },
       { href: site.orbitExtension, label: "Orbit for Chrome" },
       { href: "/compare", label: "Comparisons" },
       { href: "/#compare", label: "Quantalog vs GA4" },
@@ -36,6 +36,7 @@ const columns = [
       { href: "/docs", label: "Documentation" },
       { href: "/blog", label: "Blog" },
       { href: "/tools/gst-invoice-generator", label: "GST invoice generator" },
+      { href: "/tools/quotation-generator", label: "Quotation generator" },
     ],
   },
   {

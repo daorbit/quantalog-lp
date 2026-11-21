@@ -165,7 +165,6 @@ export const metadata: Metadata = {
     "Google Search Console integration",
     "Search Console dashboard",
     "Search Console analytics",
-    "keyword ranking tracker",
     "Google search performance",
     "URL inspection tool",
     "SEO opportunities",
@@ -235,7 +234,7 @@ export default function SearchVisibilityPage() {
         eyebrow="Search visibility"
         title={
           <>
-            See how people find you on Google.
+            Google Search Console, next to your traffic.
             <br className="hidden sm:block" />{" "}
             <span className="text-accent">And what to fix next.</span>
           </>

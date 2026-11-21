@@ -59,9 +59,14 @@ export const productNav = [
     blurb: "Scheduled email and WhatsApp summaries for clients",
   },
   {
+    href: "/orbit-ai",
+    label: "Orbit AI",
+    blurb: "An in-app assistant grounded in the product's docs",
+  },
+  {
     href: "/social",
-    label: "Orbit AI & social",
-    blurb: "In-app assistant and scheduled LinkedIn posts",
+    label: "Scheduled posts",
+    blurb: "LinkedIn posts written ahead and published on time",
   },
   {
     href: "/forms",

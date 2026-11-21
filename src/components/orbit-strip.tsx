@@ -24,7 +24,7 @@ export function OrbitStrip({
             {body}
           </p>
           <Link
-            href="/social"
+            href="/orbit-ai"
             className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-medium text-fg hover:text-fg-muted"
           >
             How Orbit works

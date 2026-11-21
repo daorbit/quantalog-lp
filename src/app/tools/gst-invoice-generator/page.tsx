@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import { Check } from "lucide-react";
 import { BUILD_DATE } from "@/lib/build-date";
-import { Eyebrow } from "@/components/ui";
 import { GstInvoiceTool } from "@/components/gst-invoice-tool/gst-invoice-tool";
+import { ToolPageHeader } from "@/components/tool-page-header";
 import { ProductSection } from "@/components/product/product-section";
 import { ProductSteps } from "@/components/product/product-steps";
 import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
@@ -12,102 +10,41 @@ import { ProductComparisons } from "@/components/product/product-comparisons";
 import { SplitStory } from "@/components/split-story";
 import { Cta } from "@/components/sections/cta";
 import { JsonLd } from "@/components/json-ld";
-import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
-import { site } from "@/lib/site";
-import { formatDate } from "@/lib/blog";
-import { pageAlternates } from "@/lib/alternates";
-import { FAQS, INVOICE_RULES, LEAD, META_DESCRIPTION, PROMISES, STEPS, TAX_SPLIT, TITLE } from "./content";
+import { PageDate } from "@/components/page-date";
+import { toolPageJsonLd, toolPageMetadata } from "@/lib/tool-page-schema";
+import {
+  FAQS,
+  INVOICE_RULES,
+  KEYWORDS,
+  LEAD,
+  META_DESCRIPTION,
+  PROMISES,
+  STEPS,
+  TAX_SPLIT,
+  TITLE,
+} from "./content";
 
-const PATH = "/tools/gst-invoice-generator";
-const PUBLISHED = "2026-11-21";
-const MODIFIED = BUILD_DATE;
-
-export const metadata: Metadata = {
+const PAGE = {
+  path: "/tools/gst-invoice-generator",
+  name: "GST invoice generator",
   title: TITLE,
   description: META_DESCRIPTION,
-  alternates: pageAlternates(PATH),
-  keywords: [
-    "free GST invoice generator",
-    "GST invoice generator",
-    "GST invoice format",
-    "online GST bill maker",
-    "GST invoice with UPI QR code",
-    "CGST SGST IGST invoice",
-    "tax invoice format India",
-    "invoice generator no signup",
-  ],
-  other: {
-    "article:published_time": PUBLISHED,
-    "article:modified_time": MODIFIED,
-  },
-  openGraph: {
-    type: "website",
-    url: `${site.url}${PATH}`,
-    title: TITLE,
-    description: META_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: META_DESCRIPTION,
-  },
+  keywords: KEYWORDS,
+  published: "2026-11-21",
+  modified: BUILD_DATE,
 };
 
-export default function GstInvoiceGeneratorPage() {
-  const jsonLd = graph(
-    {
-      "@type": "WebApplication",
-      "@id": `${site.url}${PATH}#app`,
-      name: "GST invoice generator",
-      description: META_DESCRIPTION,
-      url: `${site.url}${PATH}`,
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Any",
-      browserRequirements: "Requires JavaScript",
-      isAccessibleForFree: true,
-      offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-      publisher: { "@id": ORG_ID },
-      isPartOf: { "@id": SITE_ID },
-      inLanguage: "en-IN",
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${site.url}${PATH}#faq`,
-      isPartOf: { "@id": SITE_ID },
-      mainEntity: FAQS.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-    breadcrumbs([
-      { name: "Home", path: "/" },
-      { name: "GST invoice generator", path: PATH },
-    ])
-  );
+export const metadata = toolPageMetadata(PAGE);
 
+export default function GstInvoiceGeneratorPage() {
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd data={toolPageJsonLd(PAGE, FAQS)} />
 
-      <section className="mx-auto max-w-6xl px-4 pt-12 sm:px-6 sm:pt-20">
-        <Eyebrow>Free tool</Eyebrow>
-        <h1 className="mt-4 text-balance text-display font-bold leading-[1.2] tracking-display">
-          Free GST invoice generator
-        </h1>
-        <p className="mt-5 max-w-2xl text-pretty text-[17px] leading-relaxed text-fg-muted sm:text-[19px]">{LEAD}</p>
-        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-fg-muted">
-          {PROMISES.map((promise) => (
-            <li key={promise} className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-accent" aria-hidden="true" />
-              {promise}
-            </li>
-          ))}
-        </ul>
-      </section>
+      <ToolPageHeader title="Free GST invoice generator" lead={LEAD} promises={PROMISES} />
 
       <section aria-label="Invoice generator" className="mx-auto max-w-6xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-16">
-        <GstInvoiceTool />
+        <GstInvoiceTool kind="invoice" />
       </section>
 
       <ProductSection eyebrow="How it works" title="An invoice in three steps." bordered>
@@ -127,6 +64,7 @@ export default function GstInvoiceGeneratorPage() {
         eyebrow="The rules"
         title="What a GST invoice must show."
         body="Rule 46 of the CGST Rules lists what a tax invoice has to carry. Every item below has a place in the generator."
+        link={{ label: "Quoting first? Use the free quotation generator", href: "/tools/quotation-generator" }}
         bordered
       >
         <ProductChecklist items={INVOICE_RULES} />
@@ -161,10 +99,7 @@ export default function GstInvoiceGeneratorPage() {
         location="gst_tool_cta"
       />
 
-      <p className="mx-auto max-w-6xl px-4 pb-10 text-center text-[13px] text-fg-faint sm:px-6">
-        Published <time dateTime={PUBLISHED}>{formatDate(PUBLISHED)}</time>. Last updated{" "}
-        <time dateTime={MODIFIED}>{formatDate(MODIFIED)}</time>.
-      </p>
+      <PageDate published={PAGE.published} modified={PAGE.modified} />
     </>
   );
 }

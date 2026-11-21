@@ -179,13 +179,10 @@ export const metadata: Metadata = {
   alternates: pageAlternates("/invoicing"),
   keywords: [
     "GST invoicing software",
-    "GST invoice with UPI QR code",
     "quotation to invoice",
-    "invoice generator",
     "online invoicing software",
     "quotation software",
     "estimate to invoice",
-    "UPI QR invoice",
     "GST billing software for small business",
     "invoice and quotation maker",
   ],
@@ -253,7 +250,7 @@ export default function InvoicingPage() {
       <JsonLd data={jsonLd} />
 
       <FeatureHero
-        eyebrow="GST invoicing"
+        eyebrow="GST invoicing software"
         title={
           <>
             Quote it. Send a GST invoice.

@@ -1,3 +1,4 @@
+import type { DocumentKindConfig } from "@/lib/gst-invoice/document-kinds";
 import { formatDay } from "@/lib/gst-invoice/format";
 import { isValidGstin, stateLabel, type SupplyStates } from "@/lib/gst-invoice/gst";
 import { lineAmount } from "@/lib/gst-invoice/totals";
@@ -38,19 +39,30 @@ function MetaRow({ label, value }: { label: string; value: string }) {
   );
 }
 
+function SignatureLine({ lead, caption }: { lead: string; caption: string }) {
+  return (
+    <div>
+      <p className="text-fg">{lead}</p>
+      <p className="mt-10 border-t border-border pt-1.5 text-[11px] text-fg-faint">{caption}</p>
+    </div>
+  );
+}
+
 export function InvoiceSheet({
+  config,
   draft,
   totals,
   supply,
   qrSrc,
 }: {
+  config: DocumentKindConfig;
   draft: InvoiceDraft;
   totals: InvoiceTotals;
   supply: SupplyStates;
   qrSrc: string | null;
 }) {
   const items = draft.items.filter((item) => item.description.trim() || lineAmount(item) > 0);
-  const heading = isValidGstin(draft.seller.gstin) ? "Tax invoice" : "Invoice";
+  const heading = isValidGstin(draft.seller.gstin) ? config.registeredHeading : config.unregisteredHeading;
 
   return (
     <article className="invoice-sheet rounded-[var(--radius-card)] border border-border text-[13px] leading-relaxed">
@@ -68,7 +80,7 @@ export function InvoiceSheet({
             <p className="text-[13px] font-semibold uppercase tracking-wide text-accent">{heading}</p>
             <p className="mt-1 text-[15px] font-semibold tabular-nums text-fg">{draft.number}</p>
             <MetaRow label="Date" value={formatDay(draft.issueDate)} />
-            <MetaRow label="Due" value={formatDay(draft.dueDate)} />
+            <MetaRow label={config.sheetEndLabel} value={formatDay(draft.dueDate)} />
           </div>
         </header>
 
@@ -82,7 +94,9 @@ export function InvoiceSheet({
           <div className="@md:text-right">
             <p className={LABEL}>Place of supply</p>
             <p className="mt-1.5 text-fg">{stateLabel(supply.placeOfSupply) || "Not set"}</p>
-            <p className="mt-3 text-fg-muted">Tax payable on reverse charge: {draft.reverseCharge ? "Yes" : "No"}</p>
+            {config.showReverseCharge && (
+              <p className="mt-3 text-fg-muted">Tax payable on reverse charge: {draft.reverseCharge ? "Yes" : "No"}</p>
+            )}
           </div>
         </div>
 
@@ -94,12 +108,17 @@ export function InvoiceSheet({
           total={totals.total}
           bankDetails={draft.bankDetails}
           notes={draft.notes}
+          notesLabel={config.sheetNotesLabel}
         />
 
-        <footer className="mt-12 flex justify-end break-inside-avoid">
+        <footer
+          className={`mt-12 flex gap-10 break-inside-avoid ${config.acceptanceBlock ? "justify-between" : "justify-end"}`}
+        >
+          {config.acceptanceBlock && (
+            <SignatureLine lead={`Accepted by ${draft.buyer.name || "the customer"}`} caption="Signature and date" />
+          )}
           <div className="text-right">
-            <p className="text-fg">For {draft.seller.name || "your business"}</p>
-            <p className="mt-10 border-t border-border pt-1.5 text-[11px] text-fg-faint">Authorised signatory</p>
+            <SignatureLine lead={`For ${draft.seller.name || "your business"}`} caption="Authorised signatory" />
           </div>
         </footer>
       </div>

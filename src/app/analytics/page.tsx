@@ -23,6 +23,7 @@ import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid, type ProductFeature } from "@/components/product/product-feature-grid";
 import { ProductFaq } from "@/components/product/product-faq";
 import { RelatedProducts } from "@/components/product/related-products";
+import { ProductComparisons } from "@/components/product/product-comparisons";
 import { LiveVisitsVisual } from "@/components/product/visuals/live-visits-visual";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
@@ -157,7 +158,6 @@ export const metadata: Metadata = {
     "unsampled analytics",
     "privacy-first analytics",
     "live visitor dashboard",
-    "Google Analytics alternative",
   ],
   openGraph: {
     type: "website",
@@ -221,9 +221,9 @@ export default function AnalyticsPage() {
         eyebrow="Cookieless analytics"
         title={
           <>
-            Real-time analytics from every visit.
+            Cookieless web analytics, live from every visit.
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">No cookies. Nothing sampled.</span>
+            <span className="text-accent">No banner. Nothing sampled.</span>
           </>
         }
         description={DESCRIPTION}
@@ -283,6 +283,12 @@ export default function AnalyticsPage() {
       />
 
       <ProductFaq faqs={faqs} idPrefix="analytics-faq" />
+
+      <ProductComparisons
+        category="analytics"
+        title="Leaving another analytics tool?"
+        body="Side-by-side comparisons with the analytics tools teams most often leave, including where the other tool is the better choice."
+      />
 
       <RelatedProducts hrefs={["/seo-audits", "/search-visibility", "/reports"]} />
 

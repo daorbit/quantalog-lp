@@ -206,8 +206,6 @@ export const metadata: Metadata = {
     "conditional logic forms",
     "multi-step form builder",
     "embeddable forms",
-    "Typeform alternative",
-    "Google Forms alternative",
   ],
   other: {
     "article:published_time": PUBLISHED,
@@ -375,7 +373,7 @@ export default function FormsPage() {
         body="Side-by-side comparisons with the form builders teams most often leave, including where the other tool is the better choice."
       />
 
-      <RelatedProducts hrefs={["/analytics", "/reports", "/social"]} />
+      <RelatedProducts hrefs={["/analytics", "/invoicing", "/reports"]} />
 
       <Cta
         title="Build one and watch what happens."

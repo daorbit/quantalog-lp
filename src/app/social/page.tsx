@@ -1,27 +1,10 @@
 import { BUILD_DATE } from "@/lib/build-date";
 import type { Metadata } from "next";
-import {
-  BarChart3,
-  BookOpenCheck,
-  CalendarClock,
-  CornerDownRight,
-  Eye,
-  History,
-  LifeBuoy,
-  Lock,
-  Mic,
-  PauseCircle,
-  PenLine,
-  Shuffle,
-  Wrench,
-  UserRound,
-} from "lucide-react";
+import { CalendarClock, Eye, History, PauseCircle, PenLine, UserRound } from "lucide-react";
 import { FeatureHero } from "@/components/feature-hero";
 import { BigStats } from "@/components/big-stats";
 import { Cta } from "@/components/sections/cta";
-import { OrbitVisual } from "@/components/explore/visuals/orbit-visual";
-import { Orbit } from "@/components/sections/orbit";
-import { OrbitExtension } from "@/components/sections/orbit-extension";
+import { SocialVisual } from "@/components/explore/visuals/social-visual";
 import { Scheduling } from "@/components/sections/scheduling";
 import { ProductSection } from "@/components/product/product-section";
 import { ProductFeatureGrid, type ProductFeature } from "@/components/product/product-feature-grid";
@@ -32,66 +15,26 @@ import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/sch
 import { site } from "@/lib/site";
 import { pageAlternates } from "@/lib/alternates";
 
+const PATH = "/social";
 const PUBLISHED = "2025-11-01";
 const MODIFIED = BUILD_DATE;
 
+const TITLE = "LinkedIn post scheduler with AI-written posts";
+
 const META_DESCRIPTION =
-  "Orbit AI is the assistant built into your dashboard, grounded in the product's own docs. It also writes your scheduled LinkedIn posts from your data.";
+  "Schedule LinkedIn posts once or on a repeat in your own timezone. Orbit drafts the post from what you tell it, and nothing publishes until you approve it.";
 
 const DESCRIPTION =
-  "Orbit answers from the product's own docs, and writes your scheduled LinkedIn and Instagram posts from your real numbers.";
+  "Write LinkedIn posts ahead of time, preview them as they will render, and let Quantalog publish them once or on a repeat. Orbit can draft the post for you.";
 
 const stats = [
-  { value: "10", label: "Free questions a month" },
-  { value: "2,000", label: "Questions a month on Orbit Pro" },
-  { value: "3", label: "Suggested follow-ups per answer" },
-  { value: "0", label: "Conversations used for training" },
+  { value: "3", label: "Scheduled posts on Free" },
+  { value: "30", label: "On Starter, with repeats" },
+  { value: "3", label: "Repeat cadences" },
+  { value: "0", label: "Posts sent without your approval" },
 ] as const;
 
-const orbitFeatures: ProductFeature[] = [
-  {
-    icon: BookOpenCheck,
-    title: "Grounded in the docs",
-    body: "Orbit answers from a reference kept in step with the product, so it never describes a button that doesn't exist.",
-  },
-  {
-    icon: Wrench,
-    title: "Fixes SEO issues",
-    body: "Paste an audit issue and get the steps to resolve it — including the tag to add and where it goes.",
-  },
-  {
-    icon: BarChart3,
-    title: "Reads your analytics",
-    body: "On Orbit Pro, a seven-day summary of your workspace goes with each question, so \"why is traffic down?\" gets an answer.",
-  },
-  {
-    icon: CornerDownRight,
-    title: "Suggested follow-ups",
-    body: "Every answer comes with up to three one-tap follow-ups — each one answerable, so none lead to a dead end.",
-  },
-  {
-    icon: Mic,
-    title: "Ask by voice",
-    body: "Dictate a question with your browser's speech recognition in Chrome, Edge and Safari, then edit before sending.",
-  },
-  {
-    icon: Shuffle,
-    title: "Every model, every plan",
-    body: "Pick the model you prefer. If it is busy, Orbit falls through to another and tells you which one answered.",
-  },
-  {
-    icon: Lock,
-    title: "Private by design",
-    body: "Individual visitors and raw events are never sent to a model, and nothing you type is used for training.",
-  },
-  {
-    icon: LifeBuoy,
-    title: "A person behind it",
-    body: "When a question is outside what Orbit knows, it says so and points you to Help & support, where a person replies.",
-  },
-];
-
-const postFeatures: ProductFeature[] = [
+const features: ProductFeature[] = [
   {
     icon: PenLine,
     title: "Write and preview",
@@ -119,66 +62,59 @@ const postFeatures: ProductFeature[] = [
   },
   {
     icon: UserRound,
-    title: "Yours alone",
-    body: "Schedules belong to you, publish under your own account, and stay invisible to other workspace members.",
+    title: "Private to you",
+    body: "Only you see the schedules you create. They publish through the LinkedIn account connected to your workspace.",
   },
 ];
 
 const faqs = [
   {
-    q: "Is Orbit a chatbot bolted on?",
-    a: "No. It answers from Quantalog's own reference and links to the exact docs page. When a question falls outside what it knows, it says so instead of inventing a feature.",
-  },
-  {
     q: "Which networks can it post to?",
-    a: "LinkedIn today, to your own member feed. Instagram support is built but waiting on platform review, so it is not offered to new accounts yet.",
+    a: "LinkedIn today. Instagram support is built but waiting on platform review, so it is not offered to new accounts yet.",
   },
   {
     q: "Does it post without me?",
     a: "Only on the schedule you set, and only after you have approved the draft. Nothing goes out unattended that you have not already read.",
   },
   {
-    q: "Can Orbit see my analytics?",
-    a: "On Orbit Free and Starter it cannot see your account or data. On Orbit Pro, a short seven-day summary of the workspace you are in is sent with each question. Individual visitors, sessions and raw events are never sent to a model on any plan.",
+    q: "Can Orbit write the post for me?",
+    a: "Yes. Tell Orbit what to announce and when, and it writes the post, asks for anything it still needs, such as an image, and fills in the form for you to check.",
   },
   {
-    q: "How many questions do I get?",
-    a: "Orbit Free includes 10 questions a month, Starter 300 and Pro 2,000. A question only counts once Orbit has actually answered it, and question packs never expire.",
+    q: "How many posts can I schedule?",
+    a: "The Free plan holds 3 scheduled posts at a time. Starter holds 30 and adds repeating posts, and Pro holds 500.",
   },
   {
-    q: "Is Orbit bought separately from analytics?",
-    a: "Yes. Orbit is bought per workspace on its own ladder, so a workspace on the free analytics plan can still run Orbit Pro — and the other way round.",
+    q: "Who can see my scheduled posts?",
+    a: "Only you. Other members of the workspace cannot see or change your schedules. Posts publish through the LinkedIn account an editor connected to the workspace.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "AI analytics assistant and scheduled social posts",
+  title: TITLE,
   description: META_DESCRIPTION,
-  alternates: pageAlternates("/social"),
+  alternates: pageAlternates(PATH),
   other: {
     "article:published_time": PUBLISHED,
     "article:modified_time": MODIFIED,
   },
   keywords: [
-    "AI analytics assistant",
-    "AI analytics chatbot",
-    "in-app support assistant",
-    "schedule LinkedIn posts",
     "LinkedIn post scheduler",
-    "AI-written social posts",
+    "schedule LinkedIn posts",
+    "recurring LinkedIn posts",
+    "AI-written LinkedIn posts",
     "social media scheduling tool",
     "analytics to social content",
-    "docs-grounded AI assistant",
   ],
   openGraph: {
     type: "website",
-    url: `${site.url}/social`,
-    title: "AI analytics assistant and scheduled social posts",
+    url: `${site.url}${PATH}`,
+    title: TITLE,
     description: META_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI analytics assistant and scheduled social posts",
+    title: TITLE,
     description: META_DESCRIPTION,
   },
 };
@@ -187,30 +123,30 @@ export default function SocialPage() {
   const jsonLd = graph(
     {
       "@type": "WebPage",
-      "@id": `${site.url}/social#page`,
-      name: "AI analytics assistant and scheduled social posts",
+      "@id": `${site.url}${PATH}#page`,
+      name: TITLE,
       description: META_DESCRIPTION,
-      url: `${site.url}/social`,
+      url: `${site.url}${PATH}`,
       isPartOf: { "@id": SITE_ID },
       publisher: { "@id": ORG_ID },
       inLanguage: "en",
     },
     service({
-      path: "/social",
-      name: "Orbit AI assistant and scheduled social posts",
+      path: PATH,
+      name: "Scheduled LinkedIn posts",
       description: META_DESCRIPTION,
-      serviceType: "AI assistant and social scheduling",
+      serviceType: "Social media scheduling",
     }),
     article({
-      path: "/social",
-      headline: "AI analytics assistant and scheduled social posts",
+      path: PATH,
+      headline: TITLE,
       description: META_DESCRIPTION,
       published: PUBLISHED,
       modified: MODIFIED,
     }),
     {
       "@type": "FAQPage",
-      "@id": `${site.url}/social#faq`,
+      "@id": `${site.url}${PATH}#faq`,
       isPartOf: { "@id": SITE_ID },
       mainEntity: faqs.map((f) => ({
         "@type": "Question",
@@ -220,7 +156,7 @@ export default function SocialPage() {
     },
     breadcrumbs([
       { name: "Home", path: "/" },
-      { name: "Orbit AI & social", path: "/social" },
+      { name: "Scheduled posts", path: PATH },
     ])
   );
 
@@ -229,18 +165,18 @@ export default function SocialPage() {
       <JsonLd data={jsonLd} />
 
       <FeatureHero
-        eyebrow="Orbit AI & social"
+        eyebrow="Scheduled posts"
         title={
           <>
-            An assistant that knows the product,
+            Schedule LinkedIn posts
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">and says what it doesn&apos;t.</span>
+            <span className="text-accent">written from what you tell Orbit.</span>
           </>
         }
         description={DESCRIPTION}
         primary={{ label: "Start free" }}
-        secondary={{ label: "Read the docs", href: "/docs/orbit-ai" }}
-        visual={<OrbitVisual />}
+        secondary={{ label: "Read the docs", href: "/docs/scheduled-posts" }}
+        visual={<SocialVisual />}
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -249,42 +185,26 @@ export default function SocialPage() {
         </div>
       </div>
 
-      <Orbit />
-
-      <OrbitExtension location="social" />
-
-      <ProductSection
-        eyebrow="What Orbit does"
-        title="Fast answers you can trust."
-        body="Grounded in the product's own reference, honest about its limits, and one tap away on every page of the dashboard."
-        link={{ label: "Read the Orbit AI docs", href: "/docs/orbit-ai" }}
-        bordered
-      >
-        <ProductFeatureGrid features={orbitFeatures} columns={4} />
-      </ProductSection>
-
-      <div className="border-t border-border">
-        <Scheduling />
-      </div>
+      <Scheduling />
 
       <ProductSection
         eyebrow="Post studio"
         title="Write once. Publish on time."
-        body="Draft posts where your analytics live, preview them as they will render, and let Quantalog publish — once, or on a repeat in your own timezone."
+        body="Draft posts where your analytics live, preview them as they will render, and let Quantalog publish, once or on a repeat in your own timezone."
         link={{ label: "Read the scheduled posts docs", href: "/docs/scheduled-posts" }}
         bordered
       >
-        <ProductFeatureGrid features={postFeatures} columns={3} />
+        <ProductFeatureGrid features={features} columns={3} />
       </ProductSection>
 
       <ProductFaq faqs={faqs} idPrefix="social-faq" />
 
-      <RelatedProducts hrefs={["/analytics", "/seo-audits", "/reports"]} />
+      <RelatedProducts hrefs={["/orbit-ai", "/analytics", "/reports"]} />
 
       <Cta
-        title="Ask it anything after you sign up."
-        body="Orbit is on every plan, free tier included. So is one scheduled post a week — enough to keep a feed alive from the numbers you already have."
-        secondary={{ label: "Read the docs", href: "/docs/orbit-ai" }}
+        title="Schedule your first post free."
+        body="The Free plan holds three scheduled posts at a time, and Orbit can draft each one. No card needed."
+        secondary={{ label: "Read the docs", href: "/docs/scheduled-posts" }}
         location="social_cta"
       />
     </>

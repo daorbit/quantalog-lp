@@ -236,9 +236,9 @@ export default function SeoAuditsPage() {
         eyebrow="SEO audits"
         title={
           <>
-            Traffic tells you who came.
+            SEO audits that sit next to your traffic.
             <br className="hidden sm:block" />{" "}
-            <span className="text-accent">SEO tells you who didn&apos;t.</span>
+            <span className="text-accent">Traffic says who came. SEO says who didn&apos;t.</span>
           </>
         }
         description={HERO_LEAD}

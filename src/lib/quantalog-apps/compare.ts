@@ -85,7 +85,7 @@ export const compareApp: AppPage = {
     { kind: "product", href: "/seo-audits", how: "Compare uses the same scoring as your SEO audits, so a fix shows up in both." },
     { kind: "app", id: "tasks", how: "Turn a gap into a task on your board, with an owner and a due date." },
     { kind: "app", id: "seo-reports", how: "Send the client a read-only audit link to show the work behind the plan." },
-    { kind: "product", href: "/social", how: "Orbit reads the comparison and tells you what to fix first, in plain language." },
+    { kind: "product", href: "/orbit-ai", how: "Orbit reads the comparison and tells you what to fix first, in plain language." },
   ],
   included: [
     "Up to 10 competitor pages per site",

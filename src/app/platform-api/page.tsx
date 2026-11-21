@@ -136,7 +136,6 @@ export const metadata: Metadata = {
     "multi-tenant analytics API",
     "analytics API for SaaS",
     "embed analytics in my product",
-    "client dashboard analytics",
     "analytics for site builders",
     "reseller analytics platform",
     "per-customer analytics provisioning",

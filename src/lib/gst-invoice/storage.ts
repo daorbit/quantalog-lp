@@ -1,7 +1,5 @@
 import type { InvoiceDraft } from "./types";
 
-const STORAGE_KEY = "quantalog:gst-invoice-draft:v1";
-
 function isDraft(value: unknown): value is InvoiceDraft {
   if (!value || typeof value !== "object") return false;
   const draft = value as Partial<InvoiceDraft>;
@@ -13,9 +11,9 @@ function isDraft(value: unknown): value is InvoiceDraft {
   );
 }
 
-export function loadDraft(): InvoiceDraft | null {
+export function loadDraft(key: string): InvoiceDraft | null {
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
+    const raw = window.localStorage.getItem(key);
     if (!raw) return null;
     const parsed: unknown = JSON.parse(raw);
     return isDraft(parsed) ? parsed : null;
@@ -24,17 +22,17 @@ export function loadDraft(): InvoiceDraft | null {
   }
 }
 
-export function saveDraft(draft: InvoiceDraft): void {
+export function saveDraft(key: string, draft: InvoiceDraft): void {
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+    window.localStorage.setItem(key, JSON.stringify(draft));
   } catch {
     return;
   }
 }
 
-export function clearDraft(): void {
+export function clearDraft(key: string): void {
   try {
-    window.localStorage.removeItem(STORAGE_KEY);
+    window.localStorage.removeItem(key);
   } catch {
     return;
   }

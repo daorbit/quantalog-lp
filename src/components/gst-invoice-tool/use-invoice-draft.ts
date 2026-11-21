@@ -1,14 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { DocumentKindConfig } from "@/lib/gst-invoice/document-kinds";
 import { blankDraft, newItem, sampleDraft, withDates } from "@/lib/gst-invoice/draft";
 import { clearDraft, loadDraft, saveDraft } from "@/lib/gst-invoice/storage";
 import type { InvoiceDraft, InvoiceItem, InvoiceParty, InvoiceSeller } from "@/lib/gst-invoice/types";
 
 const SAVE_DELAY_MS = 400;
 
-function withDefaults(stored: InvoiceDraft): InvoiceDraft {
-  const base = blankDraft();
+function withDefaults(stored: InvoiceDraft, config: DocumentKindConfig): InvoiceDraft {
+  const base = blankDraft(config);
   return {
     ...base,
     ...stored,
@@ -18,21 +19,22 @@ function withDefaults(stored: InvoiceDraft): InvoiceDraft {
   };
 }
 
-export function useInvoiceDraft() {
-  const [draft, setDraft] = useState<InvoiceDraft>(sampleDraft);
+export function useInvoiceDraft(config: DocumentKindConfig) {
+  const [draft, setDraft] = useState<InvoiceDraft>(() => sampleDraft(config));
   const loaded = useRef(false);
+  const { storageKey, endDays } = config;
 
   useEffect(() => {
-    const stored = loadDraft();
-    setDraft((current) => withDates(stored ? withDefaults(stored) : current, new Date()));
+    const stored = loadDraft(storageKey);
+    setDraft((current) => withDates(stored ? withDefaults(stored, config) : current, new Date(), endDays));
     loaded.current = true;
-  }, []);
+  }, [config, storageKey, endDays]);
 
   useEffect(() => {
     if (!loaded.current) return;
-    const timer = setTimeout(() => saveDraft(draft), SAVE_DELAY_MS);
+    const timer = setTimeout(() => saveDraft(storageKey, draft), SAVE_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [draft]);
+  }, [draft, storageKey]);
 
   const update = useCallback((patch: Partial<InvoiceDraft>) => {
     setDraft((d) => ({ ...d, ...patch }));
@@ -59,9 +61,9 @@ export function useInvoiceDraft() {
   }, []);
 
   const startBlank = useCallback(() => {
-    clearDraft();
-    setDraft(withDates(blankDraft(), new Date()));
-  }, []);
+    clearDraft(storageKey);
+    setDraft(withDates(blankDraft(config), new Date(), endDays));
+  }, [config, storageKey, endDays]);
 
   return { draft, update, updateSeller, updateBuyer, updateItem, addItem, removeItem, startBlank };
 }

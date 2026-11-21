@@ -13,15 +13,18 @@ function Body() {
 
       <H2 id="connecting">Connecting an account</H2>
       <P>
-        Before anything can publish, connect the network from{" "}
-        <b>Apps</b>. Each is a separate permission from signing
-        in: signing in proves who you are, but it does not let us post on your
+        Before anything can publish, connect the network on the{" "}
+        <b>Scheduled posts</b> page; its tile in <b>Apps</b> takes you there.
+        The connection belongs to the workspace, so one editor or above connects
+        it once for everyone. It is a separate permission from signing in:
+        signing in proves who you are, but it does not let us post on your
         behalf, so the network asks again the first time you connect for
         publishing.
       </P>
       <Ul>
         <Li>
-          <b>LinkedIn</b> — publishes to your own member feed.
+          <b>LinkedIn</b> — publishes to the member feed of the account connected
+          to the workspace.
         </Li>
         <Li>
           <b>Instagram</b> — publishes to a Business or Creator account. Personal
@@ -114,9 +117,10 @@ function Body() {
 
       <H2 id="ownership">Who can see your schedules</H2>
       <P>
-        Scheduled posts belong to you, not to the workspace. They publish under
-        your own connected account, so other members of the same workspace cannot
-        see or change them.
+        Only you can see and change the schedules you create; other members of
+        the workspace cannot. They all publish through the account connected to
+        the workspace, so a post goes out under that account&apos;s name, whoever
+        scheduled it.
       </P>
     </>
   );

@@ -7,12 +7,14 @@ export function SheetPayment({
   total,
   bankDetails,
   notes,
+  notesLabel,
 }: {
   qrSrc: string | null;
   upiId: string;
   total: number;
   bankDetails: string;
   notes: string;
+  notesLabel: string;
 }) {
   if (!qrSrc && !bankDetails.trim() && !notes.trim()) return null;
 
@@ -38,7 +40,7 @@ export function SheetPayment({
           )}
           {notes.trim() && (
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-wide text-fg-faint">Notes</p>
+              <p className="text-[11px] font-medium uppercase tracking-wide text-fg-faint">{notesLabel}</p>
               <p className="mt-1 whitespace-pre-line text-fg-muted">{notes}</p>
             </div>
           )}

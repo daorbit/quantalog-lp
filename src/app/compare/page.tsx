@@ -12,7 +12,7 @@ import { pageAlternates } from "@/lib/alternates";
 const TITLE = "Analytics, forms and invoicing comparisons";
 
 const DESCRIPTION =
-  "How Quantalog compares to Google Analytics, Plausible, Google Forms, Typeform, Jotform, Zoho Invoice, Vyapar and other tools: features, limits and price, including where the other tool is the better choice.";
+  "How Quantalog compares to Google Analytics, Plausible, Google Forms, Typeform, Calendly, Zoho Invoice, Vyapar and other tools: features, limits and price, including where the other tool is the better choice.";
 
 export const metadata: Metadata = {
   title: TITLE,

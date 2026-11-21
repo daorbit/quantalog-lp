@@ -82,7 +82,7 @@ export const reviewsApp: AppPage = {
     ],
   },
   connections: [
-    { kind: "product", href: "/social", how: "Orbit can see your reviews when you ask it about traffic and reputation." },
+    { kind: "product", href: "/orbit-ai", how: "Orbit can see your reviews when you ask it about traffic and reputation." },
     { kind: "app", id: "tasks", how: "Turn a review that needs a reply into a task for the right person." },
     { kind: "product", href: "/reports", how: "Share how the business is doing alongside the traffic numbers." },
     { kind: "app", id: "alerts", how: "Pair with Alerts so a traffic drop and a run of reviews don't go unnoticed." },
