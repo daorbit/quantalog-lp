@@ -14,6 +14,7 @@ import { MobileLanguageTrigger } from "./language/mobile-language-trigger";
 import { MobileLanguageMenu } from "./language/mobile-language-menu";
 import { HeaderThemeToggle } from "./header-theme-toggle";
 import { useActiveLanguage } from "./use-active-language";
+import { useAtTop } from "./use-at-top";
 import { nav, site } from "@/lib/site";
 import { track } from "@/lib/track";
 
@@ -26,6 +27,7 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
   const activeLanguage = useActiveLanguage();
   const pathname = usePathname();
   const isDocs = pathname === "/docs" || pathname.startsWith("/docs/");
+  const atTop = useAtTop();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -49,7 +51,9 @@ export function Header({ menus = {} }: { menus?: Partial<Record<string, ReactNod
     <header
       className="site-header sticky top-0 z-50"
       data-docs={isDocs || undefined}
-      data-menu-open={open || undefined}    >
+      data-at-top={atTop || undefined}
+      data-menu-open={open || undefined}
+    >
 
       <div>
 
