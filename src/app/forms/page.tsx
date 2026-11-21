@@ -27,6 +27,7 @@ import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
 import { ProductChecklist } from "@/components/product/product-checklist";
 import { ProductFaq } from "@/components/product/product-faq";
 import { RelatedProducts } from "@/components/product/related-products";
+import { ProductComparisons } from "@/components/product/product-comparisons";
 import { FormDropoffPreview } from "@/components/product/form-dropoff-preview";
 import { FormIntegrations } from "@/components/product/form-integrations";
 import { JsonLd } from "@/components/json-ld";
@@ -367,6 +368,12 @@ export default function FormsPage() {
       />
 
       <ProductFaq faqs={faqs} idPrefix="forms-faq" />
+
+      <ProductComparisons
+        category="forms"
+        title="Coming from another form builder?"
+        body="Side-by-side comparisons with the form builders teams most often leave, including where the other tool is the better choice."
+      />
 
       <RelatedProducts hrefs={["/analytics", "/reports", "/social"]} />
 

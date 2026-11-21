@@ -7,17 +7,22 @@ export function SelectField({
   name,
   options,
   defaultValue,
+  value: controlledValue,
+  onChange,
   id,
 }: {
-  name: string;
+  name?: string;
   options: { value: string; label: string }[];
-  defaultValue: string;
+  defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
   id?: string;
 }) {
-  const [value, setValue] = useState(defaultValue);
+  const [innerValue, setInnerValue] = useState(defaultValue ?? options[0]?.value ?? "");
+  const value = controlledValue ?? innerValue;
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(() =>
-    Math.max(0, options.findIndex((o) => o.value === defaultValue))
+    Math.max(0, options.findIndex((o) => o.value === value))
   );
   const wrapRef = useRef<HTMLDivElement>(null);
   const listId = useId();
@@ -34,8 +39,13 @@ export function SelectField({
     return () => document.removeEventListener("mousedown", onPointer);
   }, [open]);
 
+  useEffect(() => {
+    if (open) document.getElementById(`${listId}-${active}`)?.scrollIntoView({ block: "nearest" });
+  }, [open, active, listId]);
+
   function choose(i: number) {
-    setValue(options[i].value);
+    setInnerValue(options[i].value);
+    onChange?.(options[i].value);
     setActive(i);
     setOpen(false);
   }
@@ -64,7 +74,7 @@ export function SelectField({
 
   return (
     <div className="relative" ref={wrapRef}>
-      <input type="hidden" name={name} value={value} />
+      {name && <input type="hidden" name={name} value={value} />}
 
       <button
         id={id}
@@ -76,7 +86,7 @@ export function SelectField({
         aria-controls={open ? listId : undefined}
         className="q-input q-select-trigger"
       >
-        <span className="truncate">{selected.label}</span>
+        <span className="truncate">{selected?.label}</span>
         <ChevronDown
           className={`h-4 w-4 shrink-0 text-fg-faint transition-transform duration-200 ${
             open ? "rotate-180" : ""
@@ -90,7 +100,7 @@ export function SelectField({
           id={listId}
           role="listbox"
           aria-activedescendant={`${listId}-${active}`}
-          className="absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-lg border border-border bg-surface p-1 shadow-float"
+          className="absolute left-0 right-0 top-full z-50 mt-1.5 max-h-72 overflow-y-auto rounded-lg border border-border bg-surface p-1 shadow-float"
         >
           {options.map((o, i) => {
             const isSelected = o.value === value;

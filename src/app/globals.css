@@ -4446,3 +4446,49 @@ body {
   transition: opacity 0.3s ease 0.08s, transform 0.3s var(--ease-out-q) 0.08s;
 }
 
+.invoice-sheet {
+  --fg: #1d1d1f;
+  --fg-muted: #4b4b50;
+  --fg-faint: #6b6b6b;
+  --border: #e5e7eb;
+  --border-strong: #d4d4d4;
+  --accent: #0066cc;
+  container-type: inline-size;
+  background: #ffffff;
+  color: var(--fg);
+  color-scheme: light;
+}
+
+.invoice-print-root {
+  display: none;
+}
+
+@page invoice {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  body:has(> .invoice-print-root) > :not(.invoice-print-root) {
+    display: none !important;
+  }
+  body:has(> .invoice-print-root) {
+    background: #ffffff;
+  }
+  .invoice-print-root {
+    display: block;
+    page: invoice;
+  }
+  .invoice-print-root .invoice-sheet {
+    border: 0;
+    border-radius: 0;
+  }
+  .invoice-print-root .invoice-sheet__page {
+    padding: 0;
+  }
+  .invoice-print-root img {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+

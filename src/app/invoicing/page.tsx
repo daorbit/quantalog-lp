@@ -26,6 +26,7 @@ import { ProductFeatureGrid } from "@/components/product/product-feature-grid";
 import { ProductChecklist } from "@/components/product/product-checklist";
 import { ProductFaq } from "@/components/product/product-faq";
 import { RelatedProducts } from "@/components/product/related-products";
+import { ProductComparisons } from "@/components/product/product-comparisons";
 import { JsonLd } from "@/components/json-ld";
 import { graph, breadcrumbs, service, article, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -35,10 +36,10 @@ import { pageAlternates } from "@/lib/alternates";
 const PUBLISHED = "2026-10-29";
 const MODIFIED = BUILD_DATE;
 
-const TITLE = "Free GST invoice generator with UPI QR code";
+const TITLE = "GST invoicing software with quotations and UPI QR";
 
 const META_DESCRIPTION =
-  "Create GST invoices and quotations free, with CGST, SGST and IGST worked out, HSN and SAC codes, a UPI QR for the amount due and a link you can share.";
+  "Send quotations and GST invoices from the workspace your leads are in, with CGST, SGST and IGST worked out, a UPI QR for the amount due and trackable links.";
 
 const DESCRIPTION =
   "Quantalog Invoicing sends quotations and invoices to the people your forms and campaigns bring in. An accepted quotation becomes an invoice in one click, GST is split into CGST and SGST or IGST for you, rupee invoices carry a UPI QR code for the amount due, and the Invoices page shows what has been paid and what is still owed.";
@@ -124,7 +125,7 @@ const connected = [
 ];
 
 const stats = [
-  { value: "10", label: "Document templates" },
+  { value: "15", label: "Document templates" },
   { value: "8", label: "Currencies" },
   { value: "1", label: "Click from quote to invoice" },
   { value: "Free", label: "In every workspace" },
@@ -177,9 +178,8 @@ export const metadata: Metadata = {
   description: META_DESCRIPTION,
   alternates: pageAlternates("/invoicing"),
   keywords: [
-    "free GST invoice generator",
+    "GST invoicing software",
     "GST invoice with UPI QR code",
-    "GST invoice format",
     "quotation to invoice",
     "invoice generator",
     "online invoicing software",
@@ -263,7 +263,7 @@ export default function InvoicingPage() {
         }
         description={HERO_LEAD}
         primary={{ label: "Start invoicing free" }}
-        secondary={{ label: "Read the docs", href: "/docs/quantalog-invoicing" }}
+        secondary={{ label: "Try the free generator", href: "/tools/gst-invoice-generator" }}
         visual={<InvoiceVisual />}
       />
 
@@ -336,6 +336,12 @@ export default function InvoicingPage() {
       />
 
       <ProductFaq faqs={faqs} idPrefix="invoicing-faq" />
+
+      <ProductComparisons
+        category="invoicing"
+        title="Weighing it against your billing app?"
+        body="Honest comparisons with the invoicing tools Indian businesses use most, including what they do that Quantalog Invoicing does not."
+      />
 
       <RelatedProducts hrefs={["/forms", "/analytics", "/reports"]} />
 

@@ -21,6 +21,7 @@ const STATIC_ROUTES: { path: string; changeFrequency: Entry["changeFrequency"]; 
   { path: "/search-visibility", changeFrequency: "monthly", priority: 0.8 },
   { path: "/forms", changeFrequency: "monthly", priority: 0.8 },
   { path: "/invoicing", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/tools/gst-invoice-generator", changeFrequency: "monthly", priority: 0.8 },
   { path: "/reports", changeFrequency: "monthly", priority: 0.8 },
   { path: "/social", changeFrequency: "monthly", priority: 0.8 },
   { path: "/platform-api", changeFrequency: "monthly", priority: 0.8 },

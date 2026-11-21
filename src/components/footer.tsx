@@ -35,6 +35,7 @@ const columns = [
     links: [
       { href: "/docs", label: "Documentation" },
       { href: "/blog", label: "Blog" },
+      { href: "/tools/gst-invoice-generator", label: "GST invoice generator" },
     ],
   },
   {

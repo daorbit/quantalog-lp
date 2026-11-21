@@ -28,6 +28,14 @@ export async function GET(): Promise<Response> {
     ...productNav.map((n) => link(n.label, n.href, n.blurb)),
     link("Pricing", "/#pricing", "Plans and limits, including the free tier"),
     "",
+    "## Free tools",
+    "",
+    link(
+      "GST invoice generator",
+      "/tools/gst-invoice-generator",
+      "Make a GST invoice in the browser with CGST, SGST or IGST, HSN and SAC codes and a UPI QR, then download it as a PDF. No signup."
+    ),
+    "",
     "## Quantalog Apps",
     "",
     link("Quantalog Apps", "/apps", "Every official Quantalog app and every integration, and how to set them up"),

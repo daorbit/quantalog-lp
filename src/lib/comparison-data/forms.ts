@@ -219,6 +219,12 @@ export const FORM_COMPARISONS: ComparisonEntry[] = [
       },
       withTheirs(PAYMENTS_ROW, "Payments through Stripe."),
       {
+        point: "Fee on payments",
+        ours: "None on any plan. Money goes straight to your gateway account, and only the gateway's own fees apply.",
+        theirs: "5% per payment on the free plan and 0% on Pro, plus Stripe's fee, according to Tally's help centre.",
+        verdict: "quantalog",
+      },
+      {
         point: "Bookings",
         ours: "A booking field with weekly hours, buffers and seats. Each booking creates a Google Calendar event with a Meet link.",
         theirs: "By embedding a scheduling tool such as Calendly or Cal.com in the form.",

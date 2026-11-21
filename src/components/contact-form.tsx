@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
 import { SelectField } from "./select-field";
+import { FormField as Field } from "./form-field";
 import { site } from "@/lib/site";
 
 const SUBJECTS = [
@@ -217,38 +218,5 @@ export function ContactForm() {
         We use what you send only to reply. Nothing is added to a mailing list.
       </p>
     </form>
-  );
-}
-
-function Field({
-  label,
-  htmlFor,
-  optional = false,
-  error,
-  children,
-}: {
-  label: string;
-  htmlFor: string;
-  optional?: boolean;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <label htmlFor={htmlFor} className="mb-1.5 flex items-baseline gap-2 text-sm font-medium">
-        {label}
-        {optional && <span className="text-xs font-normal text-fg-faint">Optional</span>}
-      </label>
-      {children}
-      {error && (
-        <p
-          id={`${htmlFor}-error`}
-          className="mt-1.5 flex items-center gap-1.5 text-xs text-red-400"
-        >
-          <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          {error}
-        </p>
-      )}
-    </div>
   );
 }
