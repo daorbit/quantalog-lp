@@ -1,3 +1,4 @@
+import { BRAND_MARKS } from "./brand-marks";
 import type { ComparisonEntry, ComparisonRow } from "./types";
 
 const CHECKED_ON = "November 2026";
@@ -40,6 +41,7 @@ export const REPORTING_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "agencyanalytics-alternative",
     rival: "AgencyAnalytics",
+    mark: BRAND_MARKS.agencyAnalytics,
     title: "Quantalog vs AgencyAnalytics",
     description:
       "An AgencyAnalytics alternative for agencies that build and track client websites: cookieless analytics, SEO audits and Search Console in scheduled email, WhatsApp and Telegram reports, with a free plan.",
@@ -96,6 +98,7 @@ export const REPORTING_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "looker-studio-alternative",
     rival: "Looker Studio",
+    mark: BRAND_MARKS.lookerStudio,
     title: "Quantalog vs Looker Studio",
     description:
       "A Looker Studio alternative for agencies and small businesses that want client reports without building them: cookieless analytics, SEO audits and Search Console, sent by email, WhatsApp or Telegram.",

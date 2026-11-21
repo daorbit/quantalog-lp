@@ -1,4 +1,4 @@
-import { siZoho } from "simple-icons";
+import { BRAND_MARKS } from "./brand-marks";
 import type { ComparisonEntry, ComparisonRow } from "./types";
 
 const CHECKED_ON = "November 2026";
@@ -34,7 +34,7 @@ export const INVOICING_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "zoho-invoice-alternative",
     rival: "Zoho Invoice",
-    logo: siZoho,
+    mark: BRAND_MARKS.zohoInvoice,
     title: "Quantalog vs Zoho Invoice",
     description:
       "A Zoho Invoice alternative for Indian businesses that win customers online: quotations, GST invoices with a UPI QR and trackable share links, connected to the forms and website traffic that produced each customer.",
@@ -114,6 +114,7 @@ export const INVOICING_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "vyapar-alternative",
     rival: "Vyapar",
+    mark: BRAND_MARKS.vyapar,
     title: "Quantalog vs Vyapar",
     description:
       "A Vyapar alternative for service businesses, agencies and freelancers who send quotations and GST invoices online, and want them tied to their leads, bookings and website traffic.",

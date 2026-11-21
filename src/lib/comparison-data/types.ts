@@ -4,6 +4,13 @@ export type Verdict = "quantalog" | "rival" | "both" | "neither";
 
 export type ComparisonCategory = "analytics" | "forms" | "invoicing" | "reporting";
 
+export type BrandIcon = Pick<SimpleIcon, "path" | "hex">;
+
+export type BrandMark = {
+  src: string;
+  invertInDark?: boolean;
+};
+
 export type ComparisonRow = {
   point: string;
   ours: string;
@@ -25,7 +32,8 @@ export type Comparison = {
   slug: string;
   category: ComparisonCategory;
   rival: string;
-  logo?: SimpleIcon;
+  logo?: BrandIcon;
+  mark?: BrandMark;
   title: string;
   description: string;
   intro: string;

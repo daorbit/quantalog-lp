@@ -36,7 +36,7 @@ export function BrandGlyph({
   );
 }
 
-type Rival = Pick<Comparison, "rival" | "logo" | "category">;
+type Rival = Pick<Comparison, "rival" | "logo" | "mark" | "category">;
 
 const CATEGORY_ICONS: Record<ComparisonCategory, LucideIcon> = {
   analytics: ChartLine,
@@ -47,6 +47,17 @@ const CATEGORY_ICONS: Record<ComparisonCategory, LucideIcon> = {
 
 export function RivalGlyph({ rival, size = 16, label }: { rival: Rival; size?: number; label?: string }) {
   if (rival.logo) return <BrandGlyph icon={rival.logo} size={size} label={label} />;
+  if (rival.mark) {
+    return (
+      <img
+        src={rival.mark.src}
+        alt={label ?? ""}
+        width={size}
+        height={size}
+        className={`shrink-0 object-contain ${rival.mark.invertInDark ? "dark:invert" : ""}`}
+      />
+    );
+  }
   const Icon = CATEGORY_ICONS[rival.category];
   return (
     <Icon

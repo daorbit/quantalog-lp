@@ -1,4 +1,5 @@
-import { siCalendly, siGoogleforms, siTypeform } from "simple-icons";
+import { siCalendly, siGoogleforms } from "simple-icons";
+import { BRAND_MARKS, TYPEFORM_ICON } from "./brand-marks";
 import type { ComparisonEntry, ComparisonRow } from "./types";
 
 const CHECKED_ON = "November 2026";
@@ -125,7 +126,7 @@ export const FORM_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "typeform-alternative",
     rival: "Typeform",
-    logo: siTypeform,
+    logo: TYPEFORM_ICON,
     title: "Quantalog vs Typeform",
     description:
       "A Typeform alternative with one-question-at-a-time forms, UPI payments through Razorpay, Cashfree or PayU, bookings with Google Meet, lead follow-up and 100 free responses a month.",
@@ -202,6 +203,7 @@ export const FORM_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "tally-forms-alternative",
     rival: "Tally Forms",
+    mark: BRAND_MARKS.tally,
     title: "Quantalog vs Tally Forms",
     description:
       "A Tally Forms alternative for businesses that need what happens after the form: UPI payments through Razorpay, Cashfree or PayU, bookings with Google Meet, lead follow-up and GST invoices for paid responses.",
@@ -273,6 +275,7 @@ export const FORM_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "jotform-alternative",
     rival: "Jotform",
+    mark: BRAND_MARKS.jotform,
     title: "Quantalog vs Jotform",
     description:
       "A Jotform alternative for small businesses that want forms tied to their website traffic: UPI payments, bookings with Google Meet, lead follow-up and GST invoices for paid responses, in one workspace.",
