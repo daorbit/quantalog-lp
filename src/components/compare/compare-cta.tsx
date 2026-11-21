@@ -1,18 +1,19 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui";
 import { ProviderSignup } from "../provider-signup";
+import { comparisonCategory, type Comparison } from "@/lib/comparisons";
 import { site } from "@/lib/site";
 
-export function CompareCta({ rival }: { rival: string }) {
+export function CompareCta({ comparison }: { comparison: Comparison }) {
+  const { cta } = comparisonCategory(comparison.category);
   return (
     <section className="px-3 pb-16 sm:px-6 sm:pb-24">
       <div className="stage mx-auto max-w-7xl px-4 py-16 text-center sm:py-24">
         <h2 className="text-balance text-h2 font-semibold leading-[1.1] tracking-display">
-          Try it against your own traffic.
+          {cta.title}
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-pretty text-lead leading-normal text-fg-muted">
-          Run {site.name} alongside {rival} for a couple of weeks and compare the numbers yourself.
-          The Free plan needs no card.
+          {cta.body(comparison.rival)}
         </p>
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button
@@ -20,7 +21,7 @@ export function CompareCta({ rival }: { rival: string }) {
             size="lg"
             className="group"
             track="cta_start_free"
-            trackProps={{ location: "compare_cta" }}
+            trackProps={{ location: "compare_cta", rival: comparison.rival }}
           >
             Start free
             <ArrowRight className="h-4 w-4" />

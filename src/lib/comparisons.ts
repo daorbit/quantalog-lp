@@ -7,59 +7,27 @@ import {
   siPosthog,
   siSimpleanalytics,
   siUmami,
-  type SimpleIcon,
 } from "simple-icons";
 import { site } from "@/lib/site";
+import { COMPARISON_CATEGORIES, type ComparisonCategoryInfo } from "@/lib/comparison-data/categories";
+import { FORM_COMPARISONS } from "@/lib/comparison-data/forms";
+import { INVOICING_COMPARISONS } from "@/lib/comparison-data/invoicing";
+import type { Comparison, ComparisonCategory, ComparisonEntry } from "@/lib/comparison-data/types";
 
-export type Verdict = "quantalog" | "rival" | "both" | "neither";
-
-export type ComparisonRow = {
-
-  point: string;
-
-  ours: string;
-
-  theirs: string;
-  verdict: Verdict;
-};
-
-export type ComparisonMetric = {
-  label: string;
-
-  ours: number;
-  theirs: number;
-  unit: string;
-
-  format: (n: number) => string;
-
-  lowerIsBetter: boolean;
-
-  source: string;
-};
-
-export type Comparison = {
-  slug: string;
-
-  rival: string;
-  logo: SimpleIcon;
-  title: string;
-  description: string;
-
-  intro: string;
-
-  whenTheirs: string;
-  rows: ComparisonRow[];
-
-  metrics?: ComparisonMetric[];
-
-  faqs: { q: string; a: string }[];
-};
+export type {
+  Comparison,
+  ComparisonCategory,
+  ComparisonMetric,
+  ComparisonRow,
+  Verdict,
+} from "@/lib/comparison-data/types";
+export { COMPARISON_CATEGORIES, comparisonCategory } from "@/lib/comparison-data/categories";
 
 const kb = (n: number) => (n >= 1024 ? `${(n / 1024).toFixed(0)} KB` : `${n} B`);
 const hours = (n: number) => (n === 0 ? "Live" : `${n} h`);
 const percent = (n: number) => `${n}%`;
 
-const COMPARISONS: Comparison[] = [
+const ANALYTICS_COMPARISONS: ComparisonEntry[] = [
   {
     slug: "google-analytics-alternative",
     rival: "Google Analytics",
@@ -749,6 +717,15 @@ const COMPARISONS: Comparison[] = [
   },
 ];
 
+const inCategory = (category: ComparisonCategory, entries: ComparisonEntry[]): Comparison[] =>
+  entries.map((entry) => ({ ...entry, category }));
+
+const COMPARISONS: Comparison[] = [
+  ...inCategory("analytics", ANALYTICS_COMPARISONS),
+  ...inCategory("forms", FORM_COMPARISONS),
+  ...inCategory("invoicing", INVOICING_COMPARISONS),
+];
+
 export function getComparisonSlugs(): string[] {
   return COMPARISONS.map((c) => c.slug);
 }
@@ -759,6 +736,20 @@ export function getComparison(slug: string): Comparison | undefined {
 
 export function getAllComparisons(): Comparison[] {
   return COMPARISONS;
+}
+
+export function getComparisonsByCategory(): { category: ComparisonCategoryInfo; comparisons: Comparison[] }[] {
+  return COMPARISON_CATEGORIES.map((category) => ({
+    category,
+    comparisons: COMPARISONS.filter((c) => c.category === category.id),
+  })).filter((group) => group.comparisons.length > 0);
+}
+
+export function getRelatedComparisons(current: Comparison, count: number): Comparison[] {
+  const others = COMPARISONS.filter((c) => c.slug !== current.slug);
+  const sameCategory = others.filter((c) => c.category === current.category);
+  const rest = others.filter((c) => c.category !== current.category);
+  return [...sameCategory, ...rest].slice(0, count);
 }
 
 export const comparisonUrl = (slug: string) => `${site.url}/compare/${slug}`;

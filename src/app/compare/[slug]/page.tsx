@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Scale } from "lucide-react";
-import { getComparison, getComparisonSlugs, getAllComparisons } from "@/lib/comparisons";
+import {
+  comparisonCategory,
+  getComparison,
+  getComparisonSlugs,
+  getRelatedComparisons,
+} from "@/lib/comparisons";
 import { site } from "@/lib/site";
 import { Button, SectionHeading } from "@/components/ui";
 import { DocsBreadcrumb } from "@/components/docs-breadcrumb";
 import { HeadToHead } from "@/components/charts";
 import { BigStats } from "@/components/big-stats";
-import { BrandBadge, QuantalogBadge } from "@/components/compare/brand-badge";
+import { RivalBadge, QuantalogBadge } from "@/components/compare/brand-badge";
 import { CompareCard } from "@/components/compare/compare-card";
 import { CompareCta } from "@/components/compare/compare-cta";
 import { FaqList } from "@/components/faq-list";
@@ -46,8 +51,7 @@ export async function generateMetadata({
       `${c.rival} vs ${site.name}`,
       `switch from ${c.rival}`,
       `${c.rival} comparison`,
-      "privacy-first analytics",
-      "cookieless analytics",
+      ...comparisonCategory(c.category).keywords,
     ],
     openGraph: {
       type: "article",
@@ -72,7 +76,7 @@ export default async function ComparisonPage({
   const c = getComparison(slug);
   if (!c) notFound();
 
-  const others = getAllComparisons().filter((o) => o.slug !== c.slug).slice(0, 3);
+  const others = getRelatedComparisons(c, 3);
   const score = tally(c);
 
   const jsonLd = graph(
@@ -122,7 +126,7 @@ export default async function ComparisonPage({
           <div className="flex items-center justify-center gap-4 sm:gap-5">
             <QuantalogBadge size="lg" />
             <span className="text-[15px] font-medium text-fg-faint">vs</span>
-            <BrandBadge icon={c.logo} size="lg" />
+            <RivalBadge rival={c} size="lg" />
           </div>
           <h1 className="mt-8 text-balance text-display font-bold leading-[1.2] tracking-display">
             {site.name} <span className="text-fg-faint">vs</span> {c.rival}
@@ -199,8 +203,14 @@ export default async function ComparisonPage({
          
         />
         <div className="mt-10 sm:mt-14">
-          <CompareTable rows={c.rows} rival={c.rival} logo={c.logo} />
+          <CompareTable comparison={c} />
         </div>
+        {c.checkedOn && (
+          <p className="mt-4 text-pretty text-center text-[13px] text-fg-faint">
+            {c.rival} details checked against its public pages in {c.checkedOn}. Plans change, so check
+            their pricing page before you decide.
+          </p>
+        )}
 
         <div className="tile tile--static mt-3 p-6 sm:mt-4 sm:p-10">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12">
@@ -256,7 +266,7 @@ export default async function ComparisonPage({
         </section>
       )}
 
-      <CompareCta rival={c.rival} />
+      <CompareCta comparison={c} />
     </>
   );
 }

@@ -5,6 +5,7 @@ export const EDIT_DATE_SOURCES = [
   "src/components/sections",
   "src/content/docs",
   "src/lib/comparisons.ts",
+  "src/lib/comparison-data",
 ];
 
 export function collectEditDates(sources: string[]): Record<string, string> {

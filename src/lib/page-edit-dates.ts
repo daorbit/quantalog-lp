@@ -23,5 +23,5 @@ export function appPageEditedAt(slug: string): string | undefined {
 }
 
 export function comparisonsEditedAt(): string | undefined {
-  return latestEdit(["src/lib/comparisons.ts"]);
+  return latestEdit(["src/lib/comparisons.ts", "src/lib/comparison-data"]);
 }

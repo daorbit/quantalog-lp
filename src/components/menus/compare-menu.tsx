@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { getAllComparisons } from "@/lib/comparisons";
+import { getComparisonsByCategory } from "@/lib/comparisons";
 import { site } from "@/lib/site";
-import { BrandGlyph } from "../compare/brand-badge";
+import { RivalGlyph } from "../compare/brand-badge";
 
 const REASONS = [
   "No cookie banner to lose visitors to",
   "Live numbers, not a 24-hour delay",
-  "SEO audits and forms in the same plan",
-  "Every visitor counted, never sampled",
+  "UPI payments and bookings inside your forms",
+  "GST invoices in the same login as your leads",
 ];
 
 const NEXT_STEPS = [
@@ -21,21 +21,27 @@ const NEXT_STEPS = [
 export function CompareMenu() {
   return (
     <div className="mx-auto grid max-w-360 grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] gap-12 px-4 pb-14 pt-8 sm:px-6">
-      <div>
-        <p className="menu-reveal text-[12px] text-fg-faint">{site.name} vs</p>
-        <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-3">
-          {getAllComparisons().map((c) => (
-            <li key={c.slug} className="menu-reveal">
-              <Link
-                href={`/compare/${c.slug}`}
-                className="inline-flex items-center gap-2.5 text-[17px] font-semibold tracking-tight text-fg transition-colors hover:text-accent"
-              >
-                <BrandGlyph icon={c.logo} size={18} />
-                {c.rival}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="space-y-7">
+        {getComparisonsByCategory().map(({ category, comparisons }) => (
+          <div key={category.id}>
+            <p className="menu-reveal text-[12px] text-fg-faint">
+              {site.name} vs · {category.label}
+            </p>
+            <ul className="mt-3 grid grid-cols-2 gap-x-8 gap-y-2.5">
+              {comparisons.map((c) => (
+                <li key={c.slug} className="menu-reveal">
+                  <Link
+                    href={`/compare/${c.slug}`}
+                    className="inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-fg transition-colors hover:text-accent"
+                  >
+                    <RivalGlyph rival={c} size={16} />
+                    {c.rival}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
       <div>

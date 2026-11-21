@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { VerdictBar } from "../charts";
 import type { Comparison } from "@/lib/comparisons";
 import { site } from "@/lib/site";
-import { BrandBadge } from "./brand-badge";
+import { RivalBadge } from "./brand-badge";
 import { tally } from "./compare-utils";
 
 export function CompareCard({ comparison: c }: { comparison: Comparison }) {
@@ -12,7 +12,7 @@ export function CompareCard({ comparison: c }: { comparison: Comparison }) {
   return (
     <Link href={`/compare/${c.slug}`} className="tile group flex h-full flex-col p-6 sm:p-8">
       <span className="flex items-center gap-3">
-        <BrandBadge icon={c.logo} />
+        <RivalBadge rival={c} />
         <span className="min-w-0">
           <span className="block text-[13px] text-fg-muted">{site.name} vs</span>
           <span className="block truncate text-[1.25rem] font-semibold tracking-tight text-fg sm:text-[1.375rem]">

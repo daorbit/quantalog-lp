@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { ChartLine, ClipboardList, ReceiptText, type LucideIcon } from "lucide-react";
 import type { SimpleIcon } from "simple-icons";
 import { isDarkHex } from "@/lib/brand-color";
+import type { Comparison, ComparisonCategory } from "@/lib/comparison-data/types";
 import { site } from "@/lib/site";
 
 const SIZES = {
@@ -34,11 +36,32 @@ export function BrandGlyph({
   );
 }
 
-export function BrandBadge({ icon, size = "sm" }: { icon: SimpleIcon; size?: keyof typeof SIZES }) {
+type Rival = Pick<Comparison, "rival" | "logo" | "category">;
+
+const CATEGORY_ICONS: Record<ComparisonCategory, LucideIcon> = {
+  analytics: ChartLine,
+  forms: ClipboardList,
+  invoicing: ReceiptText,
+};
+
+export function RivalGlyph({ rival, size = 16, label }: { rival: Rival; size?: number; label?: string }) {
+  if (rival.logo) return <BrandGlyph icon={rival.logo} size={size} label={label} />;
+  const Icon = CATEGORY_ICONS[rival.category];
+  return (
+    <Icon
+      size={size}
+      strokeWidth={1.6}
+      className="shrink-0 text-fg-muted"
+      {...(label ? { role: "img", "aria-label": label } : { "aria-hidden": true })}
+    />
+  );
+}
+
+export function RivalBadge({ rival, size = "sm" }: { rival: Rival; size?: keyof typeof SIZES }) {
   const { box, glyph } = SIZES[size];
   return (
     <span className={`${BOX} ${box}`}>
-      <BrandGlyph icon={icon} size={glyph} label={icon.title} />
+      <RivalGlyph rival={rival} size={glyph} label={rival.rival} />
     </span>
   );
 }

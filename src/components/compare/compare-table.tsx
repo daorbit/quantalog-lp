@@ -1,19 +1,11 @@
 import Image from "next/image";
-import type { SimpleIcon } from "simple-icons";
-import type { ComparisonRow } from "@/lib/comparisons";
+import type { Comparison } from "@/lib/comparisons";
 import { site } from "@/lib/site";
-import { BrandGlyph } from "./brand-badge";
+import { RivalGlyph } from "./brand-badge";
 import { VerdictBadge } from "./verdict-badge";
 
-export function CompareTable({
-  rows,
-  rival,
-  logo,
-}: {
-  rows: ComparisonRow[];
-  rival: string;
-  logo: SimpleIcon;
-}) {
+export function CompareTable({ comparison }: { comparison: Comparison }) {
+  const { rows, rival } = comparison;
   return (
     <div className="tile tile--static overflow-hidden">
       <div className="hidden border-b border-border md:grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)]">
@@ -23,7 +15,7 @@ export function CompareTable({
           {site.name}
         </p>
         <p className="flex items-center gap-2 px-6 py-4 text-[13px] font-semibold text-fg-muted">
-          <BrandGlyph icon={logo} />
+          <RivalGlyph rival={comparison} />
           {rival}
         </p>
       </div>

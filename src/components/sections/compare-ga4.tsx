@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { getComparison } from "@/lib/comparisons";
 import { site } from "@/lib/site";
 import { SectionHeading } from "../ui";
-import { BrandGlyph } from "../compare/brand-badge";
+import { RivalGlyph } from "../compare/brand-badge";
 import { GA4_ROWS } from "../compare-home/ga4-rows";
 import { GA4_GRID, Ga4RowItem } from "../compare-home/ga4-row";
 
@@ -31,7 +31,7 @@ export function CompareGa4() {
               {site.name}
             </span>
             <span className="flex items-center gap-1.5 text-[13px] font-semibold text-fg-muted sm:gap-2 sm:text-[14px]">
-              <BrandGlyph icon={comparison.logo} />
+              <RivalGlyph rival={comparison} />
               <span className="sm:hidden">GA4</span>
               <span className="hidden sm:inline">{comparison.rival}</span>
             </span>

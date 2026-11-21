@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllComparisons } from "@/lib/comparisons";
+import { getAllComparisons, getComparisonsByCategory } from "@/lib/comparisons";
 import { Eyebrow } from "@/components/ui";
 import { Compare } from "@/components/sections/compare";
 import { Cta } from "@/components/sections/cta";
@@ -9,29 +9,32 @@ import { graph, breadcrumbs, ORG_ID, SITE_ID } from "@/lib/schema";
 import { site } from "@/lib/site";
 import { pageAlternates } from "@/lib/alternates";
 
+const TITLE = "Analytics, forms and invoicing comparisons";
+
 const DESCRIPTION =
-  "How Quantalog compares to Google Analytics, Plausible, Matomo and other analytics tools — consent banners, real-time reporting, SEO audits, script weight and price, including where the other tool is the better choice.";
+  "How Quantalog compares to Google Analytics, Plausible, Google Forms, Typeform, Jotform, Zoho Invoice, Vyapar and other tools: features, limits and price, including where the other tool is the better choice.";
 
 export const metadata: Metadata = {
-  title: "Analytics tool comparisons",
+  title: TITLE,
   description: DESCRIPTION,
   alternates: pageAlternates("/compare"),
   openGraph: {
     type: "website",
     url: `${site.url}/compare`,
-    title: "Analytics tool comparisons",
+    title: TITLE,
     description: DESCRIPTION,
   },
 };
 
 export default function ComparisonsIndexPage() {
   const comparisons = getAllComparisons();
+  const groups = getComparisonsByCategory();
 
   const jsonLd = graph(
     {
       "@type": "CollectionPage",
       "@id": `${site.url}/compare#page`,
-      name: "Analytics tool comparisons",
+      name: TITLE,
       description: DESCRIPTION,
       url: `${site.url}/compare`,
       isPartOf: { "@id": SITE_ID },
@@ -69,13 +72,27 @@ export default function ComparisonsIndexPage() {
           </p>
         </header>
 
-        <ul className="mt-10 grid gap-3 sm:mt-16 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-          {comparisons.map((c, i) => (
-            <li key={c.slug}>
-              <CompareCard comparison={c} />
-            </li>
-          ))}
-        </ul>
+        {groups.map(({ category, comparisons: items }) => (
+          <section
+            key={category.id}
+            aria-labelledby={`compare-${category.id}`}
+            className="mt-12 sm:mt-20"
+          >
+            <h2
+              id={`compare-${category.id}`}
+              className="text-[1.5rem] font-semibold tracking-tight text-fg sm:text-[1.75rem]"
+            >
+              {category.label}
+            </h2>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+              {items.map((c) => (
+                <li key={c.slug}>
+                  <CompareCard comparison={c} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </section>
 
       <div className="border-t border-border">
