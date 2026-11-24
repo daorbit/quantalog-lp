@@ -103,6 +103,9 @@ function Body() {
           <b>Web</b>, <b>Image</b>, <b>Video</b> and <b>News tab</b> — the tabs of Google Search.
         </Li>
         <Li>
+          <b>Lens and image search</b> — results from Google Lens, Circle to Search and image uploads.
+        </Li>
+        <Li>
           <b>Discover</b> — your pages shown in the Google app&apos;s Discover feed.
         </Li>
         <Li>
@@ -110,15 +113,16 @@ function Body() {
         </Li>
       </Ul>
       <Callout>
-        Discover and Google News have no search queries, so the Queries tab is hidden for them and average position
-        shows as —. Pages, countries and devices work as usual.
+        The Queries tab is hidden for Lens and image search, Discover and Google News, because they aren&apos;t based
+        on typed queries. Pages, countries and devices work as usual.
       </Callout>
       <Ul>
         <Li>
           <b>Overview</b> — total clicks, impressions, average click-through rate and average position, with the change
           against the previous period. Tick the cards to overlay those metrics on the chart. Below it, the{" "}
           <b>Last 48 hours</b> chart shows clicks or impressions hour by hour in your time zone, with the last 24 hours
-          compared to the 24 before — useful right after publishing. Then your top queries and top pages.
+          compared to the 24 before — useful right after publishing. Then how your branded and
+          non-branded searches compare, your top queries and your top pages.
         </Li>
         <Li>
           <b>Insights</b> — a ranked list of actions: queries in positions 4–20 that could reach page one, page-one
@@ -139,10 +143,85 @@ function Body() {
           position.
         </Li>
         <Li>
+          <b>Appearance</b> — the special result types Google shows your pages in, such as product snippets, reviews or
+          videos. Click one to see the pages behind it.
+        </Li>
+        <Li>
+          <b>Web vitals</b> — how fast and steady your site is for real Chrome visitors. See{" "}
+          <A href="#web-vitals">Web vitals</A>.
+        </Li>
+        <Li>
+          <b>Indexing</b> — which of your pages are on Google, and why the rest aren&apos;t. See{" "}
+          <A href="#indexing">Indexing</A>.
+        </Li>
+        <Li>
+          <b>Links</b> — the sites linking to you, your most linked pages and the words used. See{" "}
+          <A href="#links">Links</A>.
+        </Li>
+        <Li>
           <b>Sitemaps</b> — every sitemap submitted to Search Console, its status, errors and warnings, and when Google
           last read it. Submit a new sitemap or remove one from here.
         </Li>
       </Ul>
+
+      <H3 id="branded">Branded and non-branded searches</H3>
+      <P>
+        Google sorts searches into ones for your brand and everything else. The Overview compares the two; click a row
+        to see its queries. Google provides this from 21 February 2026, and only for top-level properties with enough
+        searches, so smaller sites may not see it.
+      </P>
+
+      <H2 id="filters">Filters</H2>
+      <P>
+        Press <b>Add filter</b> to narrow every report except Web vitals, Indexing, Links and Sitemaps by query, page, country, device or
+        brand. Query and page filters can match text, exclude it, or use a regular expression. Add several to combine
+        them, such as one country on mobile, and click a filter to remove it.
+      </P>
+      <Ul>
+        <Li>Google can&apos;t combine a query filter with a brand filter, so adding one replaces the other.</Li>
+        <Li>Page views, Orbit and a page&apos;s own detail view are not filtered.</Li>
+      </Ul>
+
+      <H2 id="web-vitals">Web vitals</H2>
+      <P>
+        This tab uses the Chrome UX Report, the data behind the Core Web Vitals report in Search Console. Switch between
+        mobile, desktop and all devices to see whether your site passes, each vital with its four-week change, up to 40
+        weeks of history, and the result for your 10 pages with the most Google clicks.
+      </P>
+      <Ul>
+        <Li>Each figure covers 28 days of visits, whatever date range the toolbar shows. Google updates it weekly.</Li>
+        <Li>
+          Your site passes when LCP and CLS, plus INP where Google has it, are good for at least 75% of visits.
+        </Li>
+        <Li>
+          Google only reports sites and pages with enough Chrome visits. When your site has too few, the tab shows the
+          vitals measured by your own visitors instead.
+        </Li>
+      </Ul>
+
+      <H2 id="indexing">Indexing</H2>
+      <P>
+        Quantalog lists up to 500 pages from your sitemap and your Google results. Press <b>Check pages</b> and choose
+        10, 25 or 50 to ask Google about the next ones. Pages that don&apos;t appear in your top results are checked
+        first, because they are the most likely to be missing. Nothing is checked until you ask.
+      </P>
+      <Ul>
+        <Li>Each page uses one of your plan&apos;s monthly index checks. Editors and above can run checks.</Li>
+        <Li>Results are kept for 90 days. Pages checked more than 7 days ago join the end of the queue.</Li>
+        <Li>Pages that aren&apos;t on Google are grouped by Google&apos;s reason; click one to see its pages.</Li>
+        <Li>Structured data found on checked pages is grouped by type, with any issues.</Li>
+      </Ul>
+      <Callout>
+        Google doesn&apos;t share its full Page indexing report, so this covers the pages checked here rather than every
+        address Google knows.
+      </Callout>
+
+      <H2 id="links">Links</H2>
+      <P>
+        Google doesn&apos;t share its Links report either, so this tab uses the links Quantalog tracks in{" "}
+        <b>Backlinks</b>: your top linked pages, top linking sites and top linking text. <b>Find new links</b> looks
+        through your last 90 days of referrers and confirms each link. The numbers differ from Google&apos;s.
+      </P>
 
       <H2 id="submitting-sitemaps">Submitting a sitemap</H2>
       <P>
@@ -219,11 +298,14 @@ function Body() {
       <H2 id="plans">What each plan includes</H2>
       <Ul>
         <Li>
+          <b>Every plan</b> — Web vitals, search appearance, branded searches, links and filters.
+        </Li>
+        <Li>
           <b>Free</b> — connect Search Console; the last 7 days; top 10 queries, pages and countries.
         </Li>
         <Li>
           <b>Starter</b> — up to 3 months; every row; search insights (top 5 per insight); Google clicks beside
-          Quantalog views; 100 index checks a month.
+          Quantalog views; the Indexing tab with 100 index checks a month.
         </Li>
         <Li>
           <b>Pro</b> — up to 16 months; full insights; 1,000 index checks a month.

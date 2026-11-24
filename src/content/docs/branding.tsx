@@ -24,6 +24,18 @@ function Body() {
         lets you pick another one or remove it.
       </P>
 
+      <H2 id="workspace-logo">Your workspace logo</H2>
+      <P>
+        The sidebar and the workspace list show your Branding logo, then your site&apos;s logo, then the Quantalog logo
+        if you have neither. In a workspace with one site, adding a logo in either place fills in the other when it is
+        empty, and changing one updates the other while they match. Once you give them different logos, each keeps its
+        own. Removing a logo only removes it from that place.
+      </P>
+      <P>
+        Branding needs the Pro plan and admin access, so on other plans, or when an editor changes the site logo, only
+        the site logo changes.
+      </P>
+
       <H2 id="per-form">Showing your logo on a form</H2>
       <P>
         Public forms don&apos;t show your logo and business name at the top
