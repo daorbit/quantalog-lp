@@ -1,0 +1,249 @@
+.banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #0e4a33;
+  color: #ffffff;
+}
+
+.snow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+.lights {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 36px;
+  background: url("/christmas/lights.svg") center top / 240px 36px repeat-x;
+  pointer-events: none;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  max-width: 90rem;
+  min-height: 152px;
+  margin: 0 auto;
+  padding: 40px 24px 36px;
+}
+
+.santa {
+  align-self: flex-end;
+  flex: none;
+  width: 150px;
+  height: auto;
+  margin-bottom: -26px;
+  animation: peek 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: clamp(1.375rem, 1rem + 1.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.merry {
+  font-family: var(--font-serif);
+  font-size: 1.12em;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #ffd166;
+}
+
+.offer {
+  display: inline-block;
+  animation: pop 2.8s ease-in-out infinite;
+}
+
+.note {
+  margin-top: 6px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.code,
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.code {
+  border: 2px dashed #ffd166;
+  background: #0a3a27;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: #ffd166;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease;
+  animation: ticket 1.6s ease-in-out infinite alternate;
+}
+
+.code:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.cta {
+  background: #ffffff;
+  color: #1d1d1f;
+  transition: background-color 200ms ease;
+}
+
+.cta:hover {
+  background: #e8e8ed;
+}
+
+.code:focus-visible,
+.cta:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.scene {
+  display: flex;
+  align-self: flex-end;
+  align-items: flex-end;
+  flex: none;
+  margin-bottom: -26px;
+}
+
+.gift {
+  width: 44px;
+  height: auto;
+  margin-right: -6px;
+  transform-origin: 50% 100%;
+  animation: jiggle 2.4s ease-in-out infinite;
+}
+
+.tree {
+  width: 92px;
+  height: auto;
+}
+
+.drift {
+  position: absolute;
+  inset: auto 0 -1px;
+  z-index: 1;
+  width: 100%;
+  height: 20px;
+  fill: var(--bg);
+  pointer-events: none;
+}
+
+:global(.dark) .drift {
+  fill: #dfe7ef;
+}
+
+@keyframes peek {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  0%,
+  80%,
+  100% {
+    transform: none;
+  }
+  88% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes ticket {
+  from {
+    border-color: rgba(255, 209, 102, 0.45);
+  }
+  to {
+    border-color: #ffd166;
+  }
+}
+
+@keyframes jiggle {
+  0%,
+  70%,
+  100% {
+    transform: none;
+  }
+  78% {
+    transform: rotate(-7deg);
+  }
+  86% {
+    transform: rotate(6deg);
+  }
+  93% {
+    transform: rotate(-3deg);
+  }
+}
+
+@media (max-width: 75em) {
+  .scene {
+    display: none;
+  }
+}
+
+@media (max-width: 56em) {
+  .inner {
+    flex-wrap: wrap;
+    gap: 14px 18px;
+    padding: 44px 16px 40px;
+  }
+
+  .santa {
+    display: none;
+  }
+
+  .text {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .actions {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .santa,
+  .offer,
+  .code,
+  .gift {
+    animation: none;
+  }
+}

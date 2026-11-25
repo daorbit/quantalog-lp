@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 130" width="184" height="130">
+  <style>
+    .arm { transform-origin: 122px 112px; animation: wave 0.8s ease-in-out infinite alternate; }
+    .eyes { transform-origin: 80px 52px; animation: blink 4s linear infinite; }
+    .pom { transform-origin: 106px 30px; animation: sway 1.6s ease-in-out infinite alternate; }
+    @keyframes wave { from { transform: rotate(-8deg); } to { transform: rotate(14deg); } }
+    @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+    @keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(5deg); } }
+    @media (prefers-reduced-motion: reduce) { .arm, .eyes, .pom { animation: none; } }
+  </style>
+  <g transform="translate(14 0)"><g class="arm">
+    <path fill="none" stroke="#c92b33" stroke-width="24" stroke-linecap="round" d="M118 114C134 106 142 92 143 78"/>
+    <rect x="129" y="60" width="28" height="13" rx="6.5" fill="#ffffff"/>
+    <path fill="#f4c14b" d="M132 62C128 46 130 34 143 33C156 34 158 46 154 62Z"/>
+    <path fill="#f4c14b" d="M133 56C126 54 122 47 125 43C130 42 134 47 136 52Z"/>
+  </g></g>
+  <path fill="#d8343c" d="M22 130C22 96 48 84 80 84C112 84 138 96 138 130Z"/>
+  <path fill="#ffffff" d="M72 92H88V130H72Z"/>
+  <circle cx="80" cy="54" r="30" fill="#f6c9a5"/>
+  <path fill="#f3f4f6" d="M50 48C44 88 62 110 80 110C98 110 116 88 110 48C104 64 92 64 80 64C68 64 56 64 50 48Z"/>
+  <ellipse cx="80" cy="81" rx="7" ry="5" fill="#b2222a"/>
+  <path fill="#ffffff" d="M80 68C72 60 58 64 54 74C64 80 76 78 80 73C84 78 96 80 106 74C102 64 88 60 80 68Z"/>
+  <circle cx="62" cy="62" r="5" fill="#f2a892"/>
+  <circle cx="98" cy="62" r="5" fill="#f2a892"/>
+  <circle cx="80" cy="62" r="6" fill="#ee8f78"/>
+  <g class="eyes" fill="#2b1a10"><circle cx="69" cy="52" r="3.2"/><circle cx="91" cy="52" r="3.2"/></g>
+  <g class="pom">
+    <path fill="#d8343c" d="M50 38C50 8 86 -2 112 16C124 25 132 38 134 52C122 42 114 40 106 40Z"/>
+    <path fill="#b9262e" d="M112 16C124 25 132 38 134 52C124 44 116 41 108 40C114 34 115 24 112 16Z"/>
+    <circle cx="133" cy="56" r="10" fill="#ffffff"/>
+  </g>
+  <rect x="44" y="31" width="72" height="16" rx="8" fill="#ffffff"/>
+</svg>

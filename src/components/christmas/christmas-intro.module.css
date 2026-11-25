@@ -1,0 +1,212 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  pointer-events: none;
+  animation: overlay 11.5s linear both;
+}
+
+.snow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: #8fbdf0;
+}
+
+:global(.dark) .snow {
+  color: #ffffff;
+}
+
+.flight {
+  position: absolute;
+  top: 14vh;
+  left: 0;
+  width: max-content;
+  animation: flight 9.5s 300ms both;
+}
+
+.bob {
+  display: flex;
+  align-items: center;
+  animation: bob 1.8s ease-in-out infinite alternate;
+}
+
+.sleigh {
+  flex: none;
+  width: clamp(300px, 42vw, 620px);
+  height: auto;
+}
+
+.rope {
+  flex: none;
+  width: clamp(16px, 3vw, 44px);
+  height: 3px;
+  background: #f4c14b;
+}
+
+.ribbon {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 24px 14px 44px;
+  background: #c92b33;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 50%);
+  color: #ffffff;
+  white-space: nowrap;
+  transform-origin: 100% 50%;
+  animation: flutter 1.1s ease-in-out infinite alternate;
+}
+
+.merry {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.offer {
+  font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1.125rem);
+  font-weight: 600;
+}
+
+.offer b {
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  color: #ffd166;
+}
+
+.gift {
+  position: absolute;
+  top: 26vh;
+  width: clamp(30px, 3.4vw, 48px);
+  height: auto;
+  opacity: 0;
+  animation: drop 3.6s cubic-bezier(0.45, 0, 0.8, 0.6) both;
+}
+
+.gift:nth-of-type(1) {
+  left: 18vw;
+  animation-delay: 2s;
+}
+
+.gift:nth-of-type(2) {
+  left: 34vw;
+  animation-delay: 3s;
+}
+
+.gift:nth-of-type(3) {
+  left: 46vw;
+  animation-delay: 4.1s;
+}
+
+.gift:nth-of-type(4) {
+  left: 58vw;
+  animation-delay: 5.2s;
+}
+
+.gift:nth-of-type(5) {
+  left: 70vw;
+  animation-delay: 6.3s;
+}
+
+.gift:nth-of-type(6) {
+  left: 84vw;
+  animation-delay: 7.2s;
+}
+
+@keyframes overlay {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  6%,
+  88% {
+    opacity: 1;
+  }
+}
+
+@keyframes flight {
+  0% {
+    transform: translate3d(-100%, 6vh, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1);
+  }
+  38% {
+    transform: translate3d(calc(50vw - 54%), 0, 0);
+    animation-timing-function: linear;
+  }
+  64% {
+    transform: translate3d(calc(50vw - 46%), -1vh, 0);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.3);
+  }
+  100% {
+    transform: translate3d(100vw, -12vh, 0);
+  }
+}
+
+@keyframes bob {
+  from {
+    transform: translateY(-8px) rotate(-1.2deg);
+  }
+  to {
+    transform: translateY(8px) rotate(1deg);
+  }
+}
+
+@keyframes flutter {
+  from {
+    transform: skewY(-1.6deg);
+  }
+  to {
+    transform: skewY(1.6deg);
+  }
+}
+
+@keyframes drop {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(-14deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    transform: translateY(18vh) rotate(12deg);
+  }
+  65% {
+    transform: translateY(44vh) rotate(-10deg);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(78vh) rotate(8deg);
+  }
+}
+
+@media (max-width: 48em) {
+  .flight {
+    top: 20vh;
+  }
+
+  .bob {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ribbon {
+    order: 3;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 10px;
+    clip-path: none;
+  }
+
+  .rope {
+    order: 2;
+    width: 3px;
+    height: 18px;
+  }
+}

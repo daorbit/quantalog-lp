@@ -13,6 +13,9 @@ import { OrbitBubble } from "@/components/orbit/orbit-bubble";
 import { PlansProvider } from "@/components/plans-provider";
 import { ContactFormPrewarm } from "@/components/contact-form-prewarm";
 import { GoogleTranslate } from "@/components/language/google-translate";
+import { ChristmasBanner } from "@/components/christmas/christmas-banner";
+import { ChristmasIntroGate } from "@/components/christmas/christmas-intro-gate";
+import { isChristmasLive } from "@/lib/christmas";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -114,6 +117,8 @@ export const metadata: Metadata = {
   },
 };
 
+const CHRISTMAS_HIDDEN_ROUTES = ["/docs", "/status", "/privacy", "/terms", "/dpa"];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
@@ -132,6 +137,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </a>
           <Header menus={{ "/apps": <AppsMenu />, "/docs": <DocsMenu />, "/compare": <CompareMenu /> }} />
 
+          {isChristmasLive && (
+            <HideOnRoutes routes={CHRISTMAS_HIDDEN_ROUTES}>
+              <ChristmasBanner />
+            </HideOnRoutes>
+          )}
+
           <PlansProvider>
             <main id="main">{children}</main>
           </PlansProvider>
@@ -144,6 +155,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <OrbitBubble />
 
           <ContactFormPrewarm />
+
+          {isChristmasLive && <ChristmasIntroGate />}
         </ThemeProvider>
 
         <GoogleTranslate />
